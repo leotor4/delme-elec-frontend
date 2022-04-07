@@ -11,6 +11,7 @@
 .text-box {
   display: flex;
   margin-left: 10px;
+  align-items: center;
 }
 .text-box p {
   position: absolute;
