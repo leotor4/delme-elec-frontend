@@ -14,6 +14,9 @@ import { ParceiroComponent } from "./steps/passo1/parceiro/parceiro.component";
 import { FormsModule } from "@angular/forms";
 import { Step2Component } from './steps/step2/step2.component';
 import { NcsCreateStepperComponent } from './ncs-create-stepper/ncs-create-stepper.component';
+import { ProductComponent } from './steps/step2/product/product.component';
+import { CheckpointComponent } from './steps/step2/checkpoint/checkpoint.component';
+import { RejectionPointComponent } from './steps/step2/rejection-point/rejection-point.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +29,9 @@ import { NcsCreateStepperComponent } from './ncs-create-stepper/ncs-create-stepp
     ParceiroComponent,
     Step2Component,
     NcsCreateStepperComponent,
+    ProductComponent,
+    CheckpointComponent,
+    RejectionPointComponent,
   ],
   imports: [
     CommonModule,
