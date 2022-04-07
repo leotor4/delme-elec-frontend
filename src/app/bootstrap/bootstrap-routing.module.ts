@@ -21,6 +21,13 @@ const routes: Routes = [
             (m) => m.NcsCreateModule
           ),
       },
+      {
+        path: "import",
+        loadChildren: () =>
+          import("../pages/ncs/import-json/import-json-routing.module").then(
+            (m) => m.ImportJsonRoutingModule
+          ),
+      },
     ],
   },
 ];
