@@ -1,80 +1,69 @@
 import { Component, OnInit } from "@angular/core";
 import * as XLSX from "xlsx";
-import { saveAs } from "file-saver";
+import * as fs from "file-saver";
 import { ActivatedRoute } from "@angular/router";
-import { CustomerService } from "src/app/_services/customer.service";
-import { ProductService } from "src/app/_services/product.service";
-import { ProviderService } from "src/app/_services/provider.service";
+
+import {MessageService} from "primeng/api";
+import {ImportService} from "./import.service";
+
 @Component({
   selector: "app-provider",
   templateUrl: "./import-json.component.html",
   styleUrls: ["./import-json.component.css"],
+  providers: [MessageService]
 })
 export class ImportJsonComponent implements OnInit {
+  uploadedFile: File;
   convertedJson!: string;
-  fileName: string;
-  importTypes = ["Fornecedor", "Clientes", "Produtos"];
-  importType: string;
-  importTypeId: number;
 
-  constructor(
-    private route: ActivatedRoute,
-    public customerService: CustomerService,
-    public productService: ProductService,
-    public ProviderService: ProviderService
-  ) {}
+  constructor(private messageService: MessageService, private importService: ImportService) {}
 
   ngOnInit(): void {
-    this.importTypeId = Number(this.route.snapshot.paramMap.get("id"));
-    this.getTypeName();
   }
 
-  getTypeName() {
-    this.importType = this.importTypes[this.importTypeId];
-  }
-  handleFileUpdate(event: any): void {
-    const selectedFile = event.target.files[0];
-    this.fileName = selectedFile.name;
+  onUpload(event:any, type:string) {
+    this.uploadedFile = event.files[0]
     const fileReader = new FileReader();
-    fileReader.readAsArrayBuffer(selectedFile);
+
+    fileReader.readAsArrayBuffer(this.uploadedFile);
     fileReader.onload = (event: any) => {
       let binaryData = event.target.result;
       let workbook = XLSX.read(binaryData, { type: "binary" });
-      workbook.SheetNames.forEach((sheet: any) => {
-        const data = XLSX.utils.sheet_to_json(workbook.Sheets[sheet]);
-        this.convertedJson = JSON.stringify(data, undefined, 4);
+      workbook.SheetNames.forEach((sheet) => {
+        let data = XLSX.utils.sheet_to_json(workbook.Sheets[sheet]);
+        let convertedJson = JSON.stringify(data, undefined, 4);
+        this.importService.post(convertedJson,type).subscribe();
       });
     };
+    this.messageService.add({severity: 'success', summary: `Arquivo importado com sucesso`});
   }
 
-  sendJson() {
-    switch (this.importType) {
-      case "Fornecedor":
-        this.ProviderService.post(this.convertedJson).subscribe();
-        break;
-      case "Clientes":
-        this.customerService.post(this.convertedJson).subscribe();
-        break;
-      case "Produtos":
-        this.productService.post(this.convertedJson).subscribe();
-        break;
-    }
+  convertFile(file:File){
+
   }
 
-  downloadFile(): void {
-    switch (this.importType) {
-      case "Fornecedor":
-        saveAs(
-          "./assets/files/exemplo_fornecedor.xlsx",
-          "exemplo_fornecedor.xlsx"
+  downloadFile(type:string): void {
+    switch (type) {
+      case "fornecedores":
+        fs.saveAs(
+            "./assets/files/exemplo_fornecedor.xlsx",
+            "exemplo_fornecedor.xlsx"
         );
         break;
-      case "Clientes":
-        saveAs("./assets/files/exemplo_cliente.xlsx", "exemplo_cliente.xlsx");
+      case "clientes":
+        fs.saveAs(
+            "./assets/files/exemplo_cliente.xlsx",
+            "exemplo_cliente.xlsx"
+        );
         break;
-      case "Produtos":
-        saveAs("./assets/files/exemplo_produtos.xlsx", "exemplo_produtos.xlsx");
+      case "produtos":
+        fs.saveAs(
+            "./assets/files/exemplo_produto.xls",
+            "exemplo_produto.xls"
+        );
         break;
     }
   }
+
+
 }

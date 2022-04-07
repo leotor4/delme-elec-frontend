@@ -24,8 +24,8 @@ const routes: Routes = [
       {
         path: "import",
         loadChildren: () =>
-          import("../pages/ncs/import-json/import-json-routing.module").then(
-            (m) => m.ImportJsonRoutingModule
+          import("../pages/ncs/import-json/import-json.module").then(
+            (m) => m.ImportJsonModule
           ),
       },
     ],

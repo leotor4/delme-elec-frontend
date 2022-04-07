@@ -1,58 +1,40 @@
-<div class="container">
-  <div class="row">
-    <h2 class="title">Importar {{ importType }}</h2>
-  </div>
-  <div class="row">
-    <div class="dropzone-wrapper">
-      <div class="dropzone-desc">
-        <div *ngIf="fileName == null">
-          <img src="../../assets/images/img.svg" alt="" />
-        </div>
+<p-toast></p-toast>
+<h1>Importar Clientes</h1>
+<p-fileUpload (uploadHandler)="onUpload($event, 'customer')"
+              [customUpload]="true"
+              accept=".xlsx, .xls"
+              chooseLabel="Escolher Arquivo"
+              uploadLabel="Importar Arquivo Selecionado"
+              [showCancelButton]="false"
+              invalidFileTypeMessageDetail="Formato de arquivo inválido, selecione apenas arquivos do tipo {0}">
+    <ng-template pTemplate="toolbar">
+        <p-button label="Baixar Arquivo de Exemplo" styleClass="p-button-link" (onClick)="downloadFile('clientes')"></p-button>
+    </ng-template>
+</p-fileUpload>
 
-        <div *ngIf="fileName != null">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="46"
-            height="46"
-            fill="currentColor"
-            class="bi bi-file-earmark-excel"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="M5.884 6.68a.5.5 0 1 0-.768.64L7.349 10l-2.233 2.68a.5.5 0 0 0 .768.64L8 10.781l2.116 2.54a.5.5 0 0 0 .768-.641L8.651 10l2.233-2.68a.5.5 0 0 0-.768-.64L8 9.219l-2.116-2.54z"
-            />
-            <path
-              d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"
-            />
-          </svg>
-        </div>
+<h1>Importar Fornecedores</h1>
+<p-fileUpload (uploadHandler)="onUpload($event, 'provider')"
+              [customUpload]="true"
+              accept=".xlsx, .xls"
+              chooseLabel="Escolher Arquivo"
+              uploadLabel="Importar Arquivo Selecionado"
+              [showCancelButton]="false"
+              invalidFileTypeMessageDetail="Formato de arquivo inválido, selecione apenas arquivos do tipo {0}">
 
-        <div *ngIf="fileName == null">
-          <p class="arrastar">escolha um arquivo .xlsx ou .xls e arraste</p>
-        </div>
-        <div *ngIf="fileName != null">
-          <p class="fileName">{{ fileName }}</p>
-        </div>
-      </div>
+    <ng-template pTemplate="toolbar">
+        <p-button label="Baixar Arquivo de Exemplo" styleClass="p-button-link" (onClick)="downloadFile('fornecedores')"></p-button>
+    </ng-template>
+</p-fileUpload>
 
-      <input
-        id="file-upload"
-        class="dropzone"
-        type="file"
-        name="fileUpload"
-        accept=".xls,.xlsx"
-        (change)="handleFileUpdate($event)"
-      />
-    </div>
-  </div>
-  <div class="row">
-    <a href="" (click)="downloadFile()" class="link-primary"
-      >Baixar planilha exemplo</a
-    >
-  </div>
-  <div class="row justify-content-end">
-    <button class="btn btn-primary" id="enviar" (click)="sendJson()">
-      enviar
-    </button>
-  </div>
-</div>
+<h1>Importar Produtos</h1>
+<p-fileUpload (uploadHandler)="onUpload($event, 'product')"
+              [customUpload]="true"
+              accept=".xlsx, .xls"
+              chooseLabel="Escolher Arquivo"
+              uploadLabel="Importar Arquivo Selecionado"
+              [showCancelButton]="false"
+              invalidFileTypeMessageDetail="Formato de arquivo inválido, selecione apenas arquivos do tipo {0}">
+    <ng-template pTemplate="toolbar">
+        <p-button label="Baixar Arquivo de Exemplo" styleClass="p-button-link" (onClick)="downloadFile('produtos')"></p-button>
+    </ng-template>
+</p-fileUpload>
