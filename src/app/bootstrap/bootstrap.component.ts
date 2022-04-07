@@ -1,0 +1,23 @@
+import { TokenStorageService } from '../_services/token-storage.service';
+import { Component, OnInit } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
+
+@Component({
+  selector: 'app-bootstrap',
+  templateUrl: './bootstrap.component.html',
+  styleUrls: ['./bootstrap.component.css']
+})
+export class BootstrapComponent implements OnInit {
+
+
+  constructor(private router: Router, private tokenStorageService : TokenStorageService) {}
+
+  ngOnInit(): void {
+    this.tokenStorageService.isLoggedIn.subscribe((value:{isLoged: boolean, cameFromLoggin: boolean}) => {
+      if(value.cameFromLoggin && value.isLoged) {
+          this.router.navigate(['/ncs']);
+      }
+    });
+  }
+
+}

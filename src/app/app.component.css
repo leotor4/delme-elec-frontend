@@ -1,0 +1,35 @@
+.content {
+  height: calc(100vh - 98px);
+  border-radius: 10px;
+  margin: 16px;
+  margin-left: 32px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: lightgray;
+}
+
+mat-sidenav-container {
+  height: calc(100vh - 65px);
+}
+
+div {
+  overflow: inherit;
+}
+
+.mat-sidenav-container {
+  background-color: white;
+  min-height: 93vh !important;
+}
+
+.buttonMenu {
+  font-size: 110%;
+  min-width: min-content;
+}
+
+.mat-sidenav-content {
+  font-size: 200%;
+  text-align: center;
+}

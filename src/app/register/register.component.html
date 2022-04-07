@@ -1,0 +1,70 @@
+
+          <form
+          *ngIf="!isSuccessful"
+          name="form"
+          (ngSubmit)="f.form.valid && onSubmit()"
+          #f="ngForm"
+          novalidate
+        >
+          <div class="form-group">
+            <label for="name">Nome</label>
+            <input
+              type="text"
+              class="form-control"
+              name="name"
+              [(ngModel)]="form.name"
+              required
+              #name="ngModel"
+            />
+            <div class="alert-danger" *ngIf="name.errors && f.submitted">
+              <div *ngIf="name.errors['required']">Digite seu nome</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              class="form-control"
+              name="email"
+              [(ngModel)]="form.email"
+              required
+              email
+              #email="ngModel"
+            />
+            <div class="alert-danger" *ngIf="email.errors && f.submitted">
+              <div *ngIf="email.errors['required']">Digite seu e-mail</div>
+              <div *ngIf="email.errors['email']">
+                Digite um e-mail válido
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="password">Senha</label>
+            <input
+              type="password"
+              class="form-control"
+              name="password"
+              [(ngModel)]="form.password"
+              required
+              minlength="6"
+              #password="ngModel"
+            />
+            <div class="alert-danger" *ngIf="password.errors && f.submitted">
+              <div *ngIf="password.errors['required']">Digite sua senha</div>
+              <div *ngIf="password.errors['minlength']">
+                Senha deve ter pelo menos 6 caracteres
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <button class="btn btn-outline-dark">Cadastrar</button>
+          </div>
+          <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+            Signup failed!<br />{{ errorMessage }}
+          </div>
+        </form>
+
+
+
+
+

@@ -1,0 +1,17 @@
+.designation {
+  font-size: 0.8rem;
+  color: lightgrey;
+}
+
+.nomeUser {
+  font-size: 1.0rem;
+  color: white;
+}
+
+
+.avatar {
+  margin-top: 8;
+  width: 50;
+  height: 50px;
+  border-radius: 50%;
+}

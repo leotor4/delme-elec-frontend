@@ -1,0 +1,54 @@
+body {
+  font-family: Arial;
+  color: white;
+}
+
+.split {
+  height: 100%;
+  width: 40%;
+  position: fixed;
+  z-index: auto;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.left {
+  left: 0;
+  background-color: gray;
+  color: white;
+  width: 100%;
+}
+
+.right {
+  right: 0;
+  background-color: white;
+}
+
+.centered-left {
+  position: absolute;
+  left: 1%;
+  top: 50%;
+  text-align: left;
+}
+
+.welcomeText {
+  font-size: 50px;
+}
+
+.centered-right {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.loginFormText {
+  font-size: 100%;
+  text-align: left;
+}
+
+.btn-home {
+  margin-top: 5%;
+  min-width: 300px;
+}
