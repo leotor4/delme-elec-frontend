@@ -1,5 +1,6 @@
 .content-create-nc {
   width: 100%;
+  padding: 40px;
   height: calc(100vh - 186.6px);
   border-top: 2px solid #e5e5e5;
   border-right: 2px solid #e5e5e5;

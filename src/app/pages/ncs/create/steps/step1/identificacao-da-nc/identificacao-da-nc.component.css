@@ -1,0 +1,81 @@
+* {
+  margin: 0;
+}
+
+.row {
+  display: -webkit-box;
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.cabecalho h1 {
+  font-size: 30px;
+  margin-bottom: 0px;
+}
+
+.cabecalho {
+  margin-bottom: 4px;
+}
+
+.cabecalho p {
+  font-size: 14px;
+  color: gray;
+}
+
+.dropdown p {
+  font-size: 14px;
+}
+
+.dropdown select {
+  background-color: white;
+  border-radius: 5px;
+  border: 2px solid rgb(51, 51, 51);
+  padding: 7px;
+  width: 100%;
+
+  font-size: 13px;
+}
+
+label {
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 2px;
+}
+
+span > .p-inputtext:enabled:focus {
+  border-color: black !important;
+  box-shadow: 0 0 0 0.02rem green !important;
+}
+
+.date-group p {
+  font-size: 12px;
+  margin-bottom: 0px;
+  color: gray;
+}
+
+.date-group {
+  font-size: 14px;
+}
+
+.date-group input {
+  outline: none;
+  background-color: white;
+  border-radius: 5px;
+  border: 2px solid rgb(51, 51, 51);
+  padding-left: 30px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 5px;
+  width: 100%;
+  font-size: 14px;
+}
+
+.p-input-icon-left {
+  width: 100%;
+}
+
+.date-group {
+  margin-top: 14px;
+}

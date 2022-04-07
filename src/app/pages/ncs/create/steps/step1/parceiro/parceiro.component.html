@@ -1,0 +1,50 @@
+
+<div class="row">
+    <div class="col">
+        <div class="cabecalho">
+            <h1>Parceiro</h1>
+            <p>Preencha os campos abaixo para identificar um parceiro e confirme os dados abaixo. Caso não encontre um parceiro, atualize a base de cadastros.</p>
+        </div>
+    </div>
+
+    <div class="col-2" id="div-att-col2">
+                <p>Última atualização: Há 3 minutos</p>
+            
+                <button  type="button" class="btn btn-dark" iconPos="right" >
+                   Atualizar Cadastros
+                <i class="pi pi-download" id="icon-button"></i>
+            </button>
+        </div>
+    </div>
+
+<div class="div-search">
+    <div class="row" >
+        <div class="col-3">
+            <div class="dropdown">
+                <label>Tipo de Parceiro</label>
+                    <select [(ngModel)]="tiposParceiroItem">
+                        <option *ngFor="let tiposAuditoria of tiposParceiro">{{tiposAuditoria}}</option>
+                    </select>
+            </div>
+        </div>
+        <div class="col col-search">
+            <div class="input-group" >
+                <input type="text" class="form-control" id="search-input" placeholder="Busque por código SAP ou razão social...">
+                <div class="input-group-append">
+                  <button class="btn btn-dark" type="button">Buscar</button>
+                </div>
+        </div>
+    </div>
+</div>
+
+<div class="div-ident-parceiro">
+    <h1>Aguardando identificação do parceiro</h1>
+    <div></div>
+</div>
+
+
+
+<div class="pt-3 pb-3">
+    <p-divider class=""></p-divider>
+</div>
+
