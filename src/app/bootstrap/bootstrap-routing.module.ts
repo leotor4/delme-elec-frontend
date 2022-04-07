@@ -1,35 +1,32 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { AuthGuardService } from '../_services/auth-guard.service';
-
-
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
+import { AuthGuardService } from "../_services/auth-guard.service";
 
 const routes: Routes = [
   {
-    path: 'ncs',
-    canActivate: [AuthGuardService],
+    path: "ncs",
+    // canActivate: [AuthGuardService],
     children: [
       {
-        path: '',
+        path: "",
         loadChildren: () =>
-          import(
-            '../pages/ncs/list/ncs-list.module'
-          ).then((m) => m.NcsListModule)
+          import("../pages/ncs/list/ncs-list.module").then(
+            (m) => m.NcsListModule
+          ),
       },
       {
-        path: 'create',
+        path: "create",
         loadChildren: () =>
-          import(
-            '../pages/ncs/create/ncs-create.module'
-          ).then((m) => m.NcsCreateModule)
-      }
-    ]
+          import("../pages/ncs/create/ncs-create.module").then(
+            (m) => m.NcsCreateModule
+          ),
+      },
+    ],
   },
-
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class BootstrapRoutingModule { }
+export class BootstrapRoutingModule {}
