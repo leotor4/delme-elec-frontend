@@ -12,6 +12,8 @@ import { DescricaoNcComponent } from "./steps/passo1/descricao-nc/descricao-nc.c
 import { IdentificacaoDaNcComponent } from "./steps/passo1/identificacao-da-nc/identificacao-da-nc.component";
 import { ParceiroComponent } from "./steps/passo1/parceiro/parceiro.component";
 import { FormsModule } from "@angular/forms";
+import { Step2Component } from './steps/step2/step2.component';
+import { NcsCreateStepperComponent } from './ncs-create-stepper/ncs-create-stepper.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { FormsModule } from "@angular/forms";
     DescricaoNcComponent,
     IdentificacaoDaNcComponent,
     ParceiroComponent,
+    Step2Component,
+    NcsCreateStepperComponent,
   ],
   imports: [
     CommonModule,
