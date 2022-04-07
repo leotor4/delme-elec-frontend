@@ -1,0 +1,33 @@
+.header-create-nc {
+  display: flex;
+  justify-content: space-between;
+  height: 100px;
+  align-items: flex-end;
+  padding-bottom: 15px;
+}
+.button-box-left {
+  padding-left: 0;
+}
+.text-box {
+  display: flex;
+  margin-left: 10px;
+}
+.text-box p {
+  position: absolute;
+  margin: auto 0;
+  font-weight: 700;
+  font-size: 24px;
+  white-space: nowrap;
+}
+
+.button-box-right {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 0;
+}
+.button-box-right button i {
+  margin-left: 10px;
+}
+.button-box-right .buttons > button:first-child {
+  margin-right: 10px;
+}

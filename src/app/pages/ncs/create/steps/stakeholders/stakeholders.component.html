@@ -1,0 +1,47 @@
+<h2>Contactar Partes Interessadas</h2>
+<p>Visualiza e adicione contatos de partes interessadas que serão notificadas acerca do andamento desta NC. Por padrão, são adicionadas partes já cadastradas  nos passos anteriores.</p>
+<div class="container">
+    <div class="input-group">
+        <input type="text" class="form-control" placeholder="Busque por nome ou e-mail..." aria-label="Recipient's username" aria-describedby="button-addon2">
+        <button type="button" class="btn btn-dark">
+            Adicionar
+            <i class="bi bi-plus"></i>
+        </button>
+    </div>
+    <button type="submit" class="btn btn-dark newContact">
+        Novo Contato
+        <i class="bi bi-person-plus"></i>
+    </button>
+
+</div>
+<div class="card">
+    <table class="table mb-0">
+        <thead>
+        <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">E-mail</th>
+            <th scope="col">Tipo de Contato</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let contact of contacts; index as i">
+            <td>
+                {{ contact.name }}
+            </td>
+            <td>{{ contact.email }}</td>
+            <td>{{ contact.cType }}</td>
+            <td>
+                <button type="button" class="btn btn-outline">
+                    <i class="bi bi-pencil"></i>
+                </button>
+
+                <button type="button" class="btn btn-outline">
+                    <i class="bi bi-trash3"></i>
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
