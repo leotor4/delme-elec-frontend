@@ -9,6 +9,7 @@
         (click)="backStep()"
         class="p-button-secondary"
         icon="pi pi-arrow-left"
+        [disabled]="isFirstStep()"
       ></button>
     </div>
     <div class="col-8">
@@ -24,11 +25,11 @@
           pButton
           pRipple
           type="button"
-          label="Avançar"
           (click)="nextStep()"
-          class="p-button-secondary buttonx"
+          [label]="getNextPageBtnLabel()"
+          class="p-button-secondary"
           iconPos="right"
-          icon="pi pi-arrow-right"
+          [icon]="getNextPageBtnIcon()"
         ></button>
       </div>
     </div>

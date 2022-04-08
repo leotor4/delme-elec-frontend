@@ -9,7 +9,7 @@ import { MenuItem } from "primeng/api";
 export class NcsCreateStepperComponent implements OnInit {
   items: MenuItem[];
   stepPosition: number = 0;
-
+  lastStepLabel = "Avançar";
   constructor() {}
 
   ngOnInit() {
@@ -20,7 +20,19 @@ export class NcsCreateStepperComponent implements OnInit {
       { label: "Revisar Informações" },
     ];
   }
-
+  getNextPageBtnLabel() {
+    let isLastStep = this.stepPosition === this.items.length - 1;
+    let labelName = isLastStep ? "Criar nova NC" : "Avançar";
+    return labelName;
+  }
+  getNextPageBtnIcon() {
+    let isLastStep = this.stepPosition === this.items.length - 1;
+    let iconClass = isLastStep ? "pi pi-upload" : "pi pi-arrow-right";
+    return iconClass;
+  }
+  isFirstStep() {
+    return this.stepPosition === 0 ? true : false;
+  }
   nextStep() {
     if (this.stepPosition >= this.items.length - 1) return;
     this.stepPosition++;
@@ -28,5 +40,6 @@ export class NcsCreateStepperComponent implements OnInit {
   backStep() {
     if (this.stepPosition <= 0) return;
     this.stepPosition--;
+    this.isFirstStep();
   }
 }
