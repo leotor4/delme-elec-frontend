@@ -1,3 +1,37 @@
-<div class="content-create-nc">
-  <app-step2></app-step2>
+<div class="stepper-content">
+  <div class="stepper-buttons">
+    <div class="button-box col-2">
+      <p-button
+        (click)="backStep()"
+        label="Voltar"
+        icon="pi pi-arrow-left"
+      ></p-button>
+    </div>
+    <div class="col-8">
+      <p-steps
+        [model]="items"
+        [readonly]="true"
+        [activeIndex]="stepPosition"
+      ></p-steps>
+    </div>
+    <div class="button-box col-2">
+      <p-button
+        (click)="nextStep()"
+        label="Avançar"
+        iconPos="right"
+        icon="pi pi-arrow-right"
+      ></p-button>
+    </div>
+  </div>
+  <div class="content-create-nc">
+    <div *ngIf="stepPosition === 0">
+      <app-identificar-nc></app-identificar-nc>
+    </div>
+    <div *ngIf="stepPosition === 1">
+      <app-step2></app-step2>
+    </div>
+    <div *ngIf="stepPosition === 2">
+      <app-stakeholders></app-stakeholders>
+    </div>
+  </div>
 </div>
