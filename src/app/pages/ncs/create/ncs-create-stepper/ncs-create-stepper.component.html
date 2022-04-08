@@ -1,11 +1,15 @@
 <div class="stepper-content">
   <div class="stepper-buttons">
-    <div class="button-box col-2">
-      <p-button
-        (click)="backStep()"
+    <div class="col-2 p-0">
+      <button
+        pButton
+        pRipple
+        type="button"
         label="Voltar"
+        (click)="backStep()"
+        class="p-button-secondary"
         icon="pi pi-arrow-left"
-      ></p-button>
+      ></button>
     </div>
     <div class="col-8">
       <p-steps
@@ -14,13 +18,19 @@
         [activeIndex]="stepPosition"
       ></p-steps>
     </div>
-    <div class="button-box col-2">
-      <p-button
-        (click)="nextStep()"
-        label="Avançar"
-        iconPos="right"
-        icon="pi pi-arrow-right"
-      ></p-button>
+    <div class="col-2 d-flex justify-content-end p-0">
+      <div>
+        <button
+          pButton
+          pRipple
+          type="button"
+          label="Avançar"
+          (click)="nextStep()"
+          class="p-button-secondary"
+          iconPos="right"
+          icon="pi pi-arrow-right"
+        ></button>
+      </div>
     </div>
   </div>
   <div class="content-create-nc">

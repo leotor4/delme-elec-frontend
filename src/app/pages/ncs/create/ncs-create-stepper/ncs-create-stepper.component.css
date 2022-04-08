@@ -1,6 +1,6 @@
 .content-create-nc {
   width: 100%;
-  height: calc(100vh - 246.6px);
+  height: calc(100vh - 249.6px);
   border-top: 2px solid #e5e5e5;
   border-right: 2px solid #e5e5e5;
   border-left: 2px solid #e5e5e5;
@@ -9,20 +9,8 @@
   overflow-y: auto;
   padding: 40px;
 }
-/* .nc-steps-header button {
-  padding: 4.5px 12px;
-} */
-.stepper-content {
-}
 .stepper-buttons {
   display: flex;
   justify-content: space-between;
   height: 80px;
-}
-.button-box {
-  padding: 0;
-}
-.button-box:last-child {
-  display: flex;
-  justify-content: flex-end;
 }
