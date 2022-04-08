@@ -1,47 +1,79 @@
-<h2>Contactar Partes Interessadas</h2>
-<p>Visualiza e adicione contatos de partes interessadas que serão notificadas acerca do andamento desta NC. Por padrão, são adicionadas partes já cadastradas  nos passos anteriores.</p>
-<div class="container">
-    <div class="input-group">
-        <input type="text" class="form-control" placeholder="Busque por nome ou e-mail..." aria-label="Recipient's username" aria-describedby="button-addon2">
-        <button type="button" class="btn btn-dark">
-            Adicionar
-            <i class="bi bi-plus"></i>
-        </button>
+<p-toast></p-toast>
+<div class="d-flex">
+    <div class="col-8">
+        <h2>Contatos a serem notificados</h2>
+        <p>Visualiza contatos que serão automaticamente notificados do progresso dessa NC desta fase em diante. </p>
     </div>
-    <button type="submit" class="btn btn-dark newContact">
-        Novo Contato
-        <i class="bi bi-person-plus"></i>
-    </button>
+    <div class="col-4 d-flex justify-content-end align-items-center">
+        <button pButton pRipple label="Adicionar Contato" icon="pi pi-plus" iconPos="right" class="p-button-secondary"(click)="newContact()"></button>
+    </div>
 
 </div>
+
 <div class="card">
-    <table class="table mb-0">
-        <thead>
-        <tr>
-            <th scope="col">Nome</th>
-            <th scope="col">E-mail</th>
-            <th scope="col">Tipo de Contato</th>
-            <th scope="col"></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let contact of contacts; index as i">
-            <td>
-                {{ contact.name }}
-            </td>
-            <td>{{ contact.email }}</td>
-            <td>{{ contact.cType }}</td>
-            <td>
-                <button type="button" class="btn btn-outline">
-                    <i class="bi bi-pencil"></i>
-                </button>
-
-                <button type="button" class="btn btn-outline">
-                    <i class="bi bi-trash3"></i>
-                </button>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+    <p-table [value]="contacts">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>Tipo de Contato</th>
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-contact>
+            <tr>
+                <td>{{contact.name}}</td>
+                <td>{{contact.email}}</td>
+                <td>{{contact.cType}}</td>
+                <td>
+                    <button pButton type="button" icon="pi pi-pencil" class="p-button-text"(click)="editContact(contact)"></button>
+                    <button pButton type="button" icon="pi pi-trash" class="p-button-danger p-button-text"(click)="deleteContact(contact)"></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
 </div>
+<p-dialog [(visible)]="editDialog" [style]="{width: '450px'}" header="Editar contato da parte interessada" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <div class="p-field">
+            <label for="name">Nome</label>
+            <input type="text" pInputText id="name" [(ngModel)]="contact.name" required autofocus />
+            <small class="p-invalid" *ngIf="!contact.name">Campo obrigatório.</small>
+        </div>
+        <div class="p-field">
+            <label for="email">E-mail</label>
+            <input type="text" pInputText id="email" [(ngModel)]="contact.email" required autofocus />
+            <small class="p-invalid" *ngIf="!contact.email">Campo obrigatório.</small>
+        </div>
+        <div class="p-field">
+            <label for="type">Tipo de Contato</label>
+            <input type="text" pInputText id="type" [(ngModel)]="contact.cType" required autofocus />
+            <small class="p-invalid" *ngIf="!contact.cType">Campo obrigatório.</small>
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-outlined p-button-danger" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Confirmar" icon="pi pi-check" class="p-button p-button-success" [disabled]="!contact.name||!contact.cType||!contact.email" (click)="saveProduct()"></button>
+    </ng-template>
+</p-dialog>
+
+<p-dialog [(visible)]="newContactDialog" header="Editar contato da parte interessada" [modal]="true" styleClass="p-fluid">
+
+    <ng-template pTemplate="header">
+            <h2>Adicionar outros contatos</h2>
+    </ng-template>
+
+    <ng-template pTemplate="content">
+        <h3>Adicione contatos de partes interessadas que serão notificadas acerca do andamento desta NC</h3>
+        <p-autoComplete></p-autoComplete>
+    </ng-template>
+</p-dialog>
+
+<p-confirmDialog #cd [style]="{width: '50vw'}">
+    <ng-template pTemplate="footer">
+        <button type="button" pButton icon="pi pi-times" label="Não" class="p-button-outlined p-button-danger" (click)="cd.reject()"></button>
+        <button type="button" pButton icon="pi pi-check" label="Sim" class="p-button-success" (click)="cd.accept()"></button>
+    </ng-template>
+</p-confirmDialog>
 

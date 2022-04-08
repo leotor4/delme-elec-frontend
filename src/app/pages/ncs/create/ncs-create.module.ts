@@ -20,6 +20,13 @@ import { DropdownModule } from "primeng/dropdown";
 import { ProductComponent } from "./steps/step2/product/product.component";
 import { CheckpointComponent } from "./steps/step2/checkpoint/checkpoint.component";
 import { RejectionPointComponent } from "./steps/step2/rejection-point/rejection-point.component";
+import {TableModule} from "primeng/table";
+import { ConfirmationService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
+import {ConfirmDialogModule} from "primeng/confirmdialog";
+import {DialogModule} from "primeng/dialog";
+import {AutoCompleteModule} from "primeng/autocomplete";
+import {ToastModule} from "primeng/toast";
 
 @NgModule({
   declarations: [
@@ -45,6 +52,12 @@ import { RejectionPointComponent } from "./steps/step2/rejection-point/rejection
     DividerModule,
     InputTextModule,
     DropdownModule,
+    TableModule,
+    ConfirmDialogModule,
+    DialogModule,
+    AutoCompleteModule,
+    ToastModule
   ],
+  providers: [MessageService, ConfirmationService]
 })
 export class NcsCreateModule {}
