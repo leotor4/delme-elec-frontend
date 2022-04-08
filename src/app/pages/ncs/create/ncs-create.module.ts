@@ -20,6 +20,7 @@ import { DropdownModule } from "primeng/dropdown";
 import { ProductComponent } from "./steps/step2/product/product.component";
 import { CheckpointComponent } from "./steps/step2/checkpoint/checkpoint.component";
 import { RejectionPointComponent } from "./steps/step2/rejection-point/rejection-point.component";
+import { EditorModule } from "primeng/editor";
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { RejectionPointComponent } from "./steps/step2/rejection-point/rejection
     DividerModule,
     InputTextModule,
     DropdownModule,
+    EditorModule,
   ],
 })
 export class NcsCreateModule {}

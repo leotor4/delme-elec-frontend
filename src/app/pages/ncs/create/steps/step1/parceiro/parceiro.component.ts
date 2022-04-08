@@ -1,24 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-parceiro',
-  templateUrl: './parceiro.component.html',
-  styleUrls: ['./parceiro.component.css']
+  selector: "app-parceiro",
+  templateUrl: "./parceiro.component.html",
+  styleUrls: ["./parceiro.component.css"],
 })
 export class ParceiroComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  public tiposParceiro:Array<String> = [
+  public tiposParceiro: Array<String> = [
     "Selecione...",
     "Interno",
     "Cliente",
-    "Fornecedor"
+    "Fornecedor",
   ];
 
-  public tiposParceiroItem = "Selecione...";
+  public tiposParceiroItem = "";
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

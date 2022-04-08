@@ -13,13 +13,17 @@
 
 .cabecalho h1 {
   font-size: 30px;
+  margin-bottom: 0px;
+  margin-top: 0px;
 }
 
 .cabecalho p {
   font-size: 14px;
   color: gray;
 }
-
+.cabecalho{
+  margin-top: 0px;
+}
 label {
   font-size: 14px;
   margin-bottom: 6px;
@@ -36,11 +40,12 @@ textarea {
 .div-attachment {
   outline: none;
   overflow: hidden;
-  border: 1px solid black;
+  border: 1px solid rgb(220, 220, 220);
   border-radius: 5px;
   padding: 8px;
   height: 250px;
   text-align: center;
+  
   background-color: rgb(243, 243, 243);
 }
 .div-attachment h1 {
@@ -50,12 +55,28 @@ textarea {
 
 .white-background {
   margin-top: 8px;
-  height: 80%;
+  height: 75%;
   background-color: white;
   border-radius: 7px;
 }
 
 .div-attachment i {
-  color: grey;
+  position: absolute;
+  font-size: 30px;
+  color: gray;
   vertical-align: middle;
+  
+}
+.input-attachment{
+  height: 100%;
+  width: 100%;
+  opacity: 100;
+  background-color: red;
+}
+
+
+label {
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 2px;
 }
