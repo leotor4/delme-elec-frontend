@@ -1,1 +1,47 @@
-<div class="content-create-nc"></div>
+<div class="stepper-content">
+  <div class="stepper-buttons">
+    <div class="col-2 p-0">
+      <button
+        pButton
+        pRipple
+        type="button"
+        label="Voltar"
+        (click)="backStep()"
+        class="p-button-secondary"
+        icon="pi pi-arrow-left"
+      ></button>
+    </div>
+    <div class="col-8">
+      <p-steps
+        [model]="items"
+        [readonly]="true"
+        [activeIndex]="stepPosition"
+      ></p-steps>
+    </div>
+    <div class="col-2 d-flex justify-content-end p-0">
+      <div>
+        <button
+          pButton
+          pRipple
+          type="button"
+          label="Avançar"
+          (click)="nextStep()"
+          class="p-button-secondary buttonx"
+          iconPos="right"
+          icon="pi pi-arrow-right"
+        ></button>
+      </div>
+    </div>
+  </div>
+  <div class="content-create-nc">
+    <div *ngIf="stepPosition === 0">
+      <app-identificar-nc></app-identificar-nc>
+    </div>
+    <div *ngIf="stepPosition === 1">
+      <app-step2></app-step2>
+    </div>
+    <div *ngIf="stepPosition === 2">
+      <app-stakeholders></app-stakeholders>
+    </div>
+  </div>
+</div>

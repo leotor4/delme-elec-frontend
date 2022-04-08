@@ -1,1 +1,31 @@
-<p>step2 works!</p>
+<div class="header d-flex justify-content-between">
+  <div class="text-box">
+    <h3>Produto</h3>
+    <p>
+      Preencha os campos abaixo para identificar um produto e confirme os dados
+      abaixo. Caso não encontre um produto. Atualize a base de cadastros.
+    </p>
+  </div>
+  <div class="button-box">
+    <span> <i class="pi pi-history"></i> ultima atualização: Há 3 minutos</span>
+    <p-button
+      label="Atualizar Cadastros"
+      icon="pi pi-download"
+      iconPos="right"
+    ></p-button>
+  </div>
+</div>
+<div class="content">
+  <div class="input-box">
+    <input type="text" />
+    <input type="text" />
+    <input type="text" />
+    <input type="radio" />
+    <span>Não conformidade real</span>
+    <input type="radio" />
+    <span>Não conformidade Potencial / Oportunidade de Melhoria</span>
+  </div>
+  <app-product></app-product>
+  <app-checkpoint></app-checkpoint>
+  <app-rejection-point></app-rejection-point>
+</div>

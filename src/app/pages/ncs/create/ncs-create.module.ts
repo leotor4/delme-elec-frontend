@@ -12,11 +12,14 @@ import { DescricaoNcComponent } from "./steps/step1/descricao-nc/descricao-nc.co
 import { IdentificacaoDaNcComponent } from "./steps/step1/identificacao-da-nc/identificacao-da-nc.component";
 import { ParceiroComponent } from "./steps/step1/parceiro/parceiro.component";
 import { FormsModule } from "@angular/forms";
-import { Step2Component } from './steps/step2/step2.component';
-import { NcsCreateStepperComponent } from './ncs-create-stepper/ncs-create-stepper.component';
-import {DividerModule} from 'primeng/divider';
-import {InputTextModule} from 'primeng/inputtext';
-import {DropdownModule} from 'primeng/dropdown';
+import { Step2Component } from "./steps/step2/step2.component";
+import { NcsCreateStepperComponent } from "./ncs-create-stepper/ncs-create-stepper.component";
+import { DividerModule } from "primeng/divider";
+import { InputTextModule } from "primeng/inputtext";
+import { DropdownModule } from "primeng/dropdown";
+import { ProductComponent } from "./steps/step2/product/product.component";
+import { CheckpointComponent } from "./steps/step2/checkpoint/checkpoint.component";
+import { RejectionPointComponent } from "./steps/step2/rejection-point/rejection-point.component";
 
 @NgModule({
   declarations: [
@@ -29,7 +32,9 @@ import {DropdownModule} from 'primeng/dropdown';
     ParceiroComponent,
     Step2Component,
     NcsCreateStepperComponent,
-    
+    ProductComponent,
+    CheckpointComponent,
+    RejectionPointComponent,
   ],
   imports: [
     CommonModule,
@@ -37,7 +42,9 @@ import {DropdownModule} from 'primeng/dropdown';
     StepsModule,
     ButtonModule,
     FormsModule,
-    DividerModule,InputTextModule,DropdownModule,
+    DividerModule,
+    InputTextModule,
+    DropdownModule,
   ],
 })
 export class NcsCreateModule {}
