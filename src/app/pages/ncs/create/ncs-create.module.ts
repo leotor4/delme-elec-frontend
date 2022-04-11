@@ -27,6 +27,7 @@ import {ConfirmDialogModule} from "primeng/confirmdialog";
 import {DialogModule} from "primeng/dialog";
 import {AutoCompleteModule} from "primeng/autocomplete";
 import {ToastModule} from "primeng/toast";
+import {CardModule} from "primeng/card";
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import {ToastModule} from "primeng/toast";
     ConfirmDialogModule,
     DialogModule,
     AutoCompleteModule,
-    ToastModule
+    ToastModule,
+    CardModule,
   ],
   providers: [MessageService, ConfirmationService]
 })

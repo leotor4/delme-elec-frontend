@@ -38,10 +38,14 @@ const CONTACTS: Contact[] = [
 export class StakeholdersComponent implements OnInit {
 
   contacts = CONTACTS;
-  editDialog: boolean;
+  formDialog: boolean;
   submitted: boolean;
   newContactDialog: boolean
-  contact: Contact;
+  contact: Contact = {};
+  selectedContacts: Contact[] = []
+  selectedContact: String;
+  results: string[];
+  formType: string;
 
   constructor(private confirmationService:ConfirmationService, private messageService:MessageService){ }
 
@@ -63,17 +67,56 @@ export class StakeholdersComponent implements OnInit {
 
   editContact(contact: Contact) {
     this.contact = {...contact};
-    this.editDialog = true;
+    this.formType = "Editar"
+    this.formDialog = true;
   }
-  newContact() {
+  showAddContacts() {
     this.newContactDialog = true;
   }
+  hideAddContacts() {
+    this.newContactDialog = false;
+  }
   hideDialog() {
-    this.editDialog = false;
+    this.formDialog = false;
     this.submitted = false;
   }
 
   saveProduct() {
     //TODO
+  }
+
+  search(event:any) {
+    //in a real application, make a request to a remote url with the query and return filtered results, for demo we filter at client side
+    let filtered: any[] = [];
+    let query = event.query;
+    for (let i = 0; i < CONTACTS.length; i++) {
+      let contact = CONTACTS[i];
+      if (contact.name?.toLowerCase().indexOf(query.toLowerCase()) == 0) {
+        filtered.push(contact);
+      }
+    }
+
+    this.results = filtered;
+  }
+
+  show(contact: Contact) {
+    this.selectedContacts.push(contact)
+    this.selectedContact = ""
+  }
+
+  uncheckContact(contact: Contact) {
+    this.selectedContacts = this.selectedContacts.filter(val => val.name !== contact.name);
+  }
+
+  createNewContact() {
+    this.contact = {}
+    this.formType = "Criar"
+    this.newContactDialog = false;
+    this.formDialog = true;
+  }
+
+  addToTable() {
+    this.newContactDialog = false;
+    this.contacts = this.contacts.concat(this.selectedContacts)
   }
 }
