@@ -17,5 +17,9 @@ export class ParceiroComponent implements OnInit {
 
   public tiposParceiroItem = "";
 
+  public pesquisar = "";
+
+  public parceiroIdent = false;
+
   ngOnInit(): void {}
 }

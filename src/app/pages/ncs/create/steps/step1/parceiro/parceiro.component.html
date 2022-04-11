@@ -40,6 +40,7 @@
           class="form-control"
           id="search-input"
           placeholder="Busque por código SAP ou razão social..."
+          [(ngModel)]="pesquisar"
         />
         <div class="input-group-append">
           <button class="btn btn-dark" type="button">Buscar</button>
@@ -48,9 +49,57 @@
     </div>
   </div>
 
-  <div class="div-ident-parceiro">
-    <h1>Aguardando identificação do parceiro</h1>
-    <div></div>
+  <div class="div-ident-parceiro row">
+    <!-- <div>
+      <h1 class="div-ident-parceiro-titulo">
+        Aguardando identificação do parceiro
+      </h1>
+      <div class="background-white"></div>
+    </div> -->
+    <h1 class="titulo-parceiro">Dados do Parceiro</h1>
+    <div class="dados-parceiro col razao-social">
+      <h1>Razão Social</h1>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Est quis
+        repellendus corporis obcaecati vitae enim qui accusamus ea autem, libero
+        ab architecto aliquam error facere cupiditate odit eligendi voluptatibus
+        impedit?
+      </p>
+    </div>
+    <div class="dados-parceiro col">
+      <div class="dados-contato">
+        <div class="d-flex justify-content-between">
+          <h1>Dados do Contato</h1>
+          <button type="button" class="btn btn-dark" iconPos="left">
+            <i class="pi pi-pencil"></i>Editar Contato
+          </button>
+        </div>
+        <div class="contato-info d-flex flex-row">
+          <i class="pi pi-user"></i>
+          <div>
+            <span class="info-titulo">Nome</span>
+            <br />
+            <span class="info-dados">Joyce Fernandes</span>
+          </div>
+        </div>
+        <div class="contato-info d-flex flex-row">
+          <i class="pi pi-phone"></i>
+          <div>
+            <span class="info-titulo">Telefone</span>
+            <br />
+            <span class="info-dados">(55) 4 7744-5544</span>
+          </div>
+        </div>
+        <div class="contato-info d-flex flex-row">
+          <i class="pi pi-at"></i>
+          <div>
+            <span class="info-titulo">E-mail</span>
+            <br />
+            <span class="info-dados">joyse.fernandes@parceirolegal.com</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 <div class="pt-3 pb-3">
