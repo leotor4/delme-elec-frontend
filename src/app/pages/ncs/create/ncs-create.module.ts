@@ -25,6 +25,14 @@ import { FileUploadModule } from "primeng/fileupload";
 import { RadioButtonModule } from "primeng/radiobutton";
 import { WaitingProductComponent } from "./waiting-product/waiting-product.component";
 import { AutoCompleteModule } from "primeng/autocomplete";
+import {TableModule} from "primeng/table";
+import { ConfirmationService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
+import {ConfirmDialogModule} from "primeng/confirmdialog";
+import {DialogModule} from "primeng/dialog";
+import {AutoCompleteModule} from "primeng/autocomplete";
+import {ToastModule} from "primeng/toast";
+import {CardModule} from "primeng/card";
 
 @NgModule({
   declarations: [
@@ -55,6 +63,13 @@ import { AutoCompleteModule } from "primeng/autocomplete";
     FileUploadModule,
     RadioButtonModule,
     AutoCompleteModule,
+    TableModule,
+    ConfirmDialogModule,
+    DialogModule,
+    AutoCompleteModule,
+    ToastModule,
+    CardModule,
   ],
+  providers: [MessageService, ConfirmationService]
 })
 export class NcsCreateModule {}
