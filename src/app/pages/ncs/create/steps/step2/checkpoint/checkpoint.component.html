@@ -1,9 +1,9 @@
 <div class="content">
   <h3>Ponto de Controle</h3>
-  <div *ngIf="true">
+  <div *ngIf="false">
     <app-waiting-product></app-waiting-product>
   </div>
-  <div *ngIf="false">
+  <div *ngIf="true">
     <div class="content">
       <div class="text-box">
         <span class=""
@@ -20,6 +20,27 @@
             placeholder="digite"
           />
           <label for="">Anexar Documentos</label>
+          <div class="div-attachment">
+            <h1>Envie seus documentos</h1>
+            <div
+              class="white-background"
+              (change)="onUpload($event)"
+              *ngIf="fileName.length == 0"
+            >
+              <input type="file" class="input-attachment" multiple />
+              <i class="pi pi-cloud-upload"></i>
+              <p>
+                Arraste e solte ou <strong>navegue para escolher</strong> um
+                arquivo
+              </p>
+            </div>
+            <div class="white-background-files" *ngIf="fileName.length > 0">
+              <button type="button" (click)="clearFile()" class="btn btn-light">
+                <i class="pi pi-replay"></i>
+              </button>
+              <p *ngFor="let files of fileName">{{ files }}</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
