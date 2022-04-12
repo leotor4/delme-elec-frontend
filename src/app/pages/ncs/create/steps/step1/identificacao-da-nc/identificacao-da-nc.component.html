@@ -1,66 +1,77 @@
 <div class="cabecalho">
-    <h1>Identificação da Não Conformidade</h1>
-    <p>Preencha os campos abaixo com as informações da NC</p>
+  <h1>Identificação da Não Conformidade</h1>
+  <p>Preencha os campos abaixo com as informações da NC</p>
 </div>
 
 <div class="row">
-    <div class="col">
-        <div class="dropdown">
-            <label for="">Tipo de NC</label>
-                <select [(ngModel)]="tiposNcItem">
-                    <option *ngFor="let tiposNc of tiposNc">{{tiposNc}}</option>
-                </select>
-            </div>
+  <div class="col">
+    <div class="dropdown">
+      <label for="">Tipo de NC</label>
+      <select [(ngModel)]="tiposNcItem">
+        <option value="" disabled selected hidden>Selecione...</option>
+        <option *ngFor="let tiposNc of tiposNc">{{ tiposNc }}</option>
+      </select>
     </div>
+  </div>
 
-    <div class="col">
-        <div class="dropdown">
-            <label for="">Segmento de Auditoria</label>
-                <select [(ngModel)]="tiposAuditoriaItem">
-                    
-                    <option *ngFor="let tiposAuditoria of tiposAuditoria">{{tiposAuditoria}}</option>
-                </select>
-            </div>
+  <div class="col">
+    <div class="dropdown">
+      <label for="">Segmento de Auditoria</label>
+      <select [(ngModel)]="tiposAuditoriaItem">
+        <option value="" disabled selected hidden>Selecione...</option>
+        <option *ngFor="let tiposAuditoria of tiposAuditoria">
+          {{ tiposAuditoria }}
+        </option>
+      </select>
     </div>
+  </div>
 
-    <div class="col">
-        <div class="dropdown">
-            <label for="">Local ou Setor Afetado</label>
-                <select [(ngModel)]="tiposLocalItem">
-                    
-                    <option *ngFor="let tiposLocalSetor of tiposLocalSetor">{{tiposLocalSetor}}</option>
-                </select>
-            </div>
+  <div class="col">
+    <div class="dropdown">
+      <label for="">Local ou Setor Afetado</label>
+      <select [(ngModel)]="tiposLocalItem">
+        <option value="" disabled selected hidden>Selecione...</option>
+        <option *ngFor="let tiposLocalSetor of tiposLocalSetor">
+          {{ tiposLocalSetor }}
+        </option>
+      </select>
     </div>
+  </div>
 </div>
 
 <div class="row">
-    <div class="col date-group">
-        <div><label for="date-input">Data de Abertura</label></div>
-        <span class="p-input-icon-left">
-            <i class="pi pi-search"></i>
-            <input type="date" pInputText id="date-input" [(ngModel)]="dataAbertura">         
-        </span>
-        <p>Altere a data caso a NC tenha acontecido antes deste cadastro.</p>
-    </div>
+  <div class="col date-group">
+    <div><label for="date-input">Data de Abertura</label></div>
+    <span class="p-input-icon-left">
+      <i class="pi pi-calendar"></i>
+      <input
+        type="date"
+        pInputText
+        id="date-input"
+        [(ngModel)]="dataAbertura"
+      />
+    </span>
+    <p>Altere a data caso a NC tenha acontecido antes deste cadastro.</p>
+  </div>
 
-    
-        <div class="col date-group">
-            <div><label for="date-input">Data de Fechamento</label></div>
-            <span class="p-input-icon-left">
-                <i class="pi pi-search"></i>
-                <input type="date" pInputText id="date-input" [(ngModel)]="dataFechamento" >         
-            </span>
-            <p>Programada automaticamente para 30 dias corridos após a data de abertura.</p>
-        </div>
-    
+  <div class="col date-group">
+    <div><label for="date-input">Data de Fechamento</label></div>
+
+    <span class="p-input-icon-left">
+      <i class="pi pi-calendar icone"></i>
+      <input
+        type="date"
+        pInputText
+        id="date-input"
+        [(ngModel)]="dataFechamento"
+      />
+    </span>
+    <p>
+      Programada automaticamente para 30 dias corridos após a data de abertura.
+    </p>
+  </div>
 </div>
 
 <div class="pt-3 pb-3">
-    <p-divider class=""></p-divider>
+  <p-divider class=""></p-divider>
 </div>
-
-
-
-
-

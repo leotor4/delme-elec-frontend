@@ -1,50 +1,121 @@
+<p *ngFor="let item of this.customerService.customers">
+  {{ item.city }}
+</p>
 
 <div class="row">
-    <div class="col">
-        <div class="cabecalho">
-            <h1>Parceiro</h1>
-            <p>Preencha os campos abaixo para identificar um parceiro e confirme os dados abaixo. Caso não encontre um parceiro, atualize a base de cadastros.</p>
-        </div>
+  <div class="col">
+    <div class="cabecalho">
+      <h1>Parceiro</h1>
+      <p>
+        Preencha os campos abaixo para identificar um parceiro e confirme os
+        dados abaixo. Caso não encontre um parceiro, atualize a base de
+        cadastros.
+      </p>
     </div>
+  </div>
 
-    <div class="col-2" id="div-att-col2">
-                <p>Última atualização: Há 3 minutos</p>
-            
-                <button  type="button" class="btn btn-dark" iconPos="right" >
-                   Atualizar Cadastros
-                <i class="pi pi-download" id="icon-button"></i>
-            </button>
-        </div>
-    </div>
+  <div class="col-2" id="div-att-col2">
+    <p>Última atualização: Há 3 minutos</p>
+
+    <a
+      href="http://localhost:4200/ncs/import"
+      role="button"
+      class="btn btn-dark"
+    >
+      Atualizar Cadastros
+      <i class="pi pi-download" id="icon-button"></i>
+    </a>
+  </div>
+</div>
 
 <div class="div-search">
-    <div class="row" >
-        <div class="col-3">
-            <div class="dropdown">
-                <label>Tipo de Parceiro</label>
-                    <select [(ngModel)]="tiposParceiroItem">
-                        <option *ngFor="let tiposAuditoria of tiposParceiro">{{tiposAuditoria}}</option>
-                    </select>
-            </div>
-        </div>
-        <div class="col col-search">
-            <div class="input-group" >
-                <input type="text" class="form-control" id="search-input" placeholder="Busque por código SAP ou razão social...">
-                <div class="input-group-append">
-                  <button class="btn btn-dark" type="button">Buscar</button>
-                </div>
-        </div>
+  <div class="row row-1">
+    <div class="col-3">
+      <div class="dropdown">
+        <label>Tipo de Parceiro</label>
+        <select [(ngModel)]="tiposParceiroItem">
+          <option value="" disabled selected hidden>Selecione...</option>
+          <option *ngFor="let tiposAuditoria of tiposParceiro">
+            {{ tiposAuditoria }}
+          </option>
+        </select>
+      </div>
     </div>
+    <div class="col col-search">
+      <div class="input-group">
+        <input
+          type="text"
+          class="form-control"
+          id="search-input"
+          placeholder="Busque por código SAP ou razão social..."
+          [(ngModel)]="pesquisar"
+        />
+        <div class="input-group-append">
+          <button
+            href="http://localhost:4200/ncs/import"
+            class="btn btn-dark"
+            type="button"
+          >
+            Buscar <i class="pi pi-search"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="div-ident-parceiro row">
+    <!-- <div>
+      <h1 class="div-ident-parceiro-titulo">
+        Aguardando identificação do parceiro
+      </h1>
+      <div class="background-white"></div>
+    </div> -->
+    <h1 class="titulo-parceiro">Dados do Parceiro</h1>
+    <div class="dados-parceiro col razao-social">
+      <h1>Razão Social</h1>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Est quis
+        repellendus corporis obcaecati vitae enim qui accusamus ea autem, libero
+        ab architecto aliquam error facere cupiditate odit eligendi voluptatibus
+        impedit?
+      </p>
+    </div>
+    <div class="dados-parceiro col">
+      <div class="dados-contato">
+        <div class="d-flex justify-content-between">
+          <h1>Dados do Contato</h1>
+          <button type="button" class="btn btn-dark" iconPos="left">
+            <i class="pi pi-pencil"></i>Editar Contato
+          </button>
+        </div>
+        <div class="contato-info d-flex flex-row">
+          <i class="pi pi-user"></i>
+          <div>
+            <span class="info-titulo">Nome</span>
+            <br />
+            <span class="info-dados">Joyce Fernandes</span>
+          </div>
+        </div>
+        <div class="contato-info d-flex flex-row">
+          <i class="pi pi-phone"></i>
+          <div>
+            <span class="info-titulo">Telefone</span>
+            <br />
+            <span class="info-dados">(55) 4 7744-5544</span>
+          </div>
+        </div>
+        <div class="contato-info d-flex flex-row">
+          <i class="pi pi-at"></i>
+          <div>
+            <span class="info-titulo">E-mail</span>
+            <br />
+            <span class="info-dados">joyse.fernandes@parceirolegal.com</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-
-<div class="div-ident-parceiro">
-    <h1>Aguardando identificação do parceiro</h1>
-    <div></div>
-</div>
-
-
-
 <div class="pt-3 pb-3">
-    <p-divider class=""></p-divider>
+  <p-divider></p-divider>
 </div>
-

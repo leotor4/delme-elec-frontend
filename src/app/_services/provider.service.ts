@@ -14,4 +14,7 @@ export class ProviderService {
   post(data: string): Observable<Provider> {
     return this.http.post<Provider>(this.apiUrl, JSON.parse(data));
   }
+  get(): Observable<Provider[]> {
+    return this.http.get<Provider[]>(this.apiUrl);
+  }
 }
