@@ -30,7 +30,6 @@ import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/api';
 import {ConfirmDialogModule} from "primeng/confirmdialog";
 import {DialogModule} from "primeng/dialog";
-import {AutoCompleteModule} from "primeng/autocomplete";
 import {ToastModule} from "primeng/toast";
 import {CardModule} from "primeng/card";
 
