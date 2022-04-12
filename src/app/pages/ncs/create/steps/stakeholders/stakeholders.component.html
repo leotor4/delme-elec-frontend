@@ -11,7 +11,7 @@
 </div>
 
 <div class="card">
-    <p-table [value]="contacts">
+    <p-table [value]="contactsList">
         <ng-template pTemplate="header">
             <tr>
                 <th>Nome</th>
@@ -24,7 +24,7 @@
             <tr>
                 <td>{{contact.name}}</td>
                 <td>{{contact.email}}</td>
-                <td>{{contact.cType}}</td>
+                <td>{{contact.type}}</td>
                 <td>
                     <button pButton type="button" icon="pi pi-pencil" class="p-button-text"(click)="editContact(contact)"></button>
                     <button pButton type="button" icon="pi pi-trash" class="p-button-danger p-button-text"(click)="deleteContact(contact)"></button>
@@ -50,14 +50,14 @@
         </div>
         <div class="p-field">
             <label for="type">Tipo de Contato</label>
-            <input type="text" pInputText id="type" [(ngModel)]="contact.cType" required #cTypeCtrl="ngModel" />
+            <input type="text" pInputText id="type" [(ngModel)]="contact.type" required #cTypeCtrl="ngModel" />
             <small class="p-invalid" *ngIf="cTypeCtrl.invalid">Campo obrigatório.</small>
         </div>
     </ng-template>
 
     <ng-template pTemplate="footer">
         <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-outlined p-button-danger" (click)="hideDialog()"></button>
-        <button pButton pRipple label="Confirmar" icon="pi pi-check" class="p-button p-button-success" [disabled]="!contact.name||!contact.cType||!contact.email" (click)="saveProduct()"></button>
+        <button pButton pRipple label="Confirmar" icon="pi pi-check" class="p-button p-button-success" [disabled]="!contact.name||!contact.type||!contact.email" (click)="saveProduct()"></button>
     </ng-template>
 </p-dialog>
 
@@ -85,7 +85,7 @@
                                 </div>
                                 <div class="px-5">
                                     <p class="font-weight-light">TIPO DE CONTATO</p>
-                                    {{contact.cType}}
+                                    {{contact.type}}
                                 </div>
                             </div>
                         </div>

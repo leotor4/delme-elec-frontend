@@ -1,32 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import {ConfirmationService, MessageService} from "primeng/api";
-interface Contact {
-  id?: string
-  name?: string;
-  email?: string;
-  cType?: string;
-}
+import {Contact} from "../../../../../models/contact.model";
+import {ContactsService} from "./contacts.service";
 
 const CONTACTS: Contact[] = [
   {
     name: "lucas",
     email: "lucas@gmail.com",
-    cType: "emissor",
+    type: "emissor",
   },
   {
     name: 'João',
     email: "João@gmail.com",
-    cType: "Area afetada"
+    type: "Area afetada"
   },
   {
     name: 'Ednaldo',
     email: "Ednaldo@gmail.com",
-    cType: "emissor",
+    type: "emissor",
   },
   {
     name: 'Lucio',
     email: "Lucio@gmail.com",
-    cType: "emissor",
+    type: "emissor",
   }
 ];
 @Component({
@@ -37,9 +33,9 @@ const CONTACTS: Contact[] = [
 
 export class StakeholdersComponent implements OnInit {
 
-  contacts = CONTACTS;
+  contactsList = CONTACTS;
+  allContacts: Contact[];
   formDialog: boolean;
-  submitted: boolean;
   newContactDialog: boolean
   contact: Contact = {};
   selectedContacts: Contact[] = []
@@ -47,9 +43,10 @@ export class StakeholdersComponent implements OnInit {
   results: string[];
   formType: string;
 
-  constructor(private confirmationService:ConfirmationService, private messageService:MessageService){ }
+  constructor(private confirmationService:ConfirmationService, private messageService:MessageService, private contactsSrvc:ContactsService){ }
 
   ngOnInit(): void {
+    this.getContacts()
   }
 
 
@@ -59,7 +56,7 @@ export class StakeholdersComponent implements OnInit {
       header: 'Excluir Contato',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.contacts = this.contacts.filter(val => val.name !== contact.name);
+        this.contactsList = this.contactsList.filter(val => val.name !== contact.name);
         this.messageService.add({severity:'info', summary: 'Contato Removido com sucesso', life: 3000});
       }
     });
@@ -75,27 +72,35 @@ export class StakeholdersComponent implements OnInit {
   }
   hideAddContacts() {
     this.newContactDialog = false;
+    this.selectedContacts = [];
   }
   hideDialog() {
     this.formDialog = false;
-    this.submitted = false;
   }
 
   saveProduct() {
-    //TODO
+    if(this.formType === "Criar"){
+      this.contactsSrvc.post(this.contact).subscribe(data=>this.contactsList.push(data.contact))
+      this.messageService.add({severity:'info', summary: 'Contato criado com sucesso', life: 3000});
+
+    } else{
+      console.log(this.contact)
+      this.contactsSrvc.update(this.contact).subscribe()
+      this.messageService.add({severity:'info', summary: 'Contato atualizado com sucesso', life: 3000});
+    }
+
+    this.formDialog = false;
   }
 
   search(event:any) {
-    //in a real application, make a request to a remote url with the query and return filtered results, for demo we filter at client side
     let filtered: any[] = [];
     let query = event.query;
-    for (let i = 0; i < CONTACTS.length; i++) {
-      let contact = CONTACTS[i];
+    for (let i = 0; i < this.allContacts.length; i++) {
+      let contact = this.allContacts[i];
       if (contact.name?.toLowerCase().indexOf(query.toLowerCase()) == 0) {
         filtered.push(contact);
       }
     }
-
     this.results = filtered;
   }
 
@@ -117,6 +122,12 @@ export class StakeholdersComponent implements OnInit {
 
   addToTable() {
     this.newContactDialog = false;
-    this.contacts = this.contacts.concat(this.selectedContacts)
+    this.contactsList = this.contactsList.concat(this.selectedContacts)
+  }
+
+  private getContacts() {
+    this.contactsSrvc.get().subscribe((data: any) => {
+      this.allContacts = data.contact;
+    })
   }
 }
