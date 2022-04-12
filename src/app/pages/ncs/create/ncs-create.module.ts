@@ -22,6 +22,9 @@ import { CheckpointComponent } from "./steps/step2/checkpoint/checkpoint.compone
 import { RejectionPointComponent } from "./steps/step2/rejection-point/rejection-point.component";
 import { EditorModule } from "primeng/editor";
 import { FileUploadModule } from "primeng/fileupload";
+import { RadioButtonModule } from "primeng/radiobutton";
+import { WaitingProductComponent } from "./waiting-product/waiting-product.component";
+import { AutoCompleteModule } from "primeng/autocomplete";
 
 @NgModule({
   declarations: [
@@ -37,6 +40,7 @@ import { FileUploadModule } from "primeng/fileupload";
     ProductComponent,
     CheckpointComponent,
     RejectionPointComponent,
+    WaitingProductComponent,
   ],
   imports: [
     CommonModule,
@@ -49,6 +53,8 @@ import { FileUploadModule } from "primeng/fileupload";
     DropdownModule,
     EditorModule,
     FileUploadModule,
+    RadioButtonModule,
+    AutoCompleteModule,
   ],
 })
 export class NcsCreateModule {}

@@ -1,1 +1,27 @@
-<p>checkpoint works!</p>
+<div class="content">
+  <h3>Ponto de Controle</h3>
+  <div *ngIf="true">
+    <app-waiting-product></app-waiting-product>
+  </div>
+  <div *ngIf="false">
+    <div class="content">
+      <div class="text-box">
+        <span class=""
+          >Selecione a opção desejada e o número referente. Visualize a
+          documentação se necessário</span
+        >
+        <div class="input-box mt-3">
+          <input type="text" pInputText placeholder="Selecione" />
+          <label for="numberController">Número de Controle</label>
+          <input
+            name="numberController"
+            type="text"
+            pInputText
+            placeholder="digite"
+          />
+          <label for="">Anexar Documentos</label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
