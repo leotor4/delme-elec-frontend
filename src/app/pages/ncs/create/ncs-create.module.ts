@@ -21,6 +21,7 @@ import { ProductComponent } from "./steps/step2/product/product.component";
 import { CheckpointComponent } from "./steps/step2/checkpoint/checkpoint.component";
 import { RejectionPointComponent } from "./steps/step2/rejection-point/rejection-point.component";
 import { EditorModule } from "primeng/editor";
+import { FileUploadModule } from "primeng/fileupload";
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { EditorModule } from "primeng/editor";
     InputTextModule,
     DropdownModule,
     EditorModule,
+    FileUploadModule,
   ],
 })
 export class NcsCreateModule {}

@@ -1,12 +1,13 @@
-export interface Provider {
+export class Provider {
   id: any;
-  code: String;
-  corporateName?: String;
-  fantasyName?: String;
+  code?: String;
+  corporate_name?: String;
+  fantasy_name?: String;
   cnpj?: String;
   ie?: String;
   city?: String;
-  state?: String;
-  responsibleName?: String;
-  responsibleEmail?: String;
+  state: String;
+  responsible_name?: String;
+  responsible_email?: String;
+  responsible_phone?: String;
 }

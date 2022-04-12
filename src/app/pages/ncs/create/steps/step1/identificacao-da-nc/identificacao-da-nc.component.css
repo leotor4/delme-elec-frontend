@@ -11,16 +11,14 @@
 }
 
 .cabecalho h1 {
-  font-size: 30px;
+  font-size: 25px;
+  font-weight: 500;
   margin-bottom: 0px;
 }
 
 .cabecalho {
   margin-bottom: 4px;
 }
-
-
-
 
 .cabecalho p {
   font-size: 14px;

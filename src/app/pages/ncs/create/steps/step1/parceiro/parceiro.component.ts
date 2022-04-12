@@ -1,4 +1,8 @@
 import { Component, OnInit } from "@angular/core";
+import { Customer } from "src/app/models/customer";
+import { Provider } from "src/app/models/provider";
+import { CustomerService } from "src/app/_services/customer.service";
+import { ProviderService } from "src/app/_services/provider.service";
 
 @Component({
   selector: "app-parceiro",
@@ -6,14 +10,15 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./parceiro.component.css"],
 })
 export class ParceiroComponent implements OnInit {
-  constructor() {}
+  constructor(
+    public customerService: CustomerService,
+    public providerService: ProviderService
+  ) {}
 
-  public tiposParceiro: Array<String> = [
-    "Selecione...",
-    "Interno",
-    "Cliente",
-    "Fornecedor",
-  ];
+  customers: Customer[];
+  providers: Provider[];
+
+  public tiposParceiro: Array<String> = ["Interno", "Cliente", "Fornecedor"];
 
   public tiposParceiroItem = "";
 
@@ -21,5 +26,14 @@ export class ParceiroComponent implements OnInit {
 
   public parceiroIdent = false;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.customerService.get().subscribe((data: Customer[]) => {
+      this.customers = data;
+    });
+
+    this.providerService.get().subscribe((data: Provider[]) => {
+      this.providers = data;
+      console.log(data);
+    });
+  }
 }
