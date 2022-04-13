@@ -41,23 +41,20 @@
         <div class="p-field">
             <label for="name">Nome</label>
             <input type="text" pInputText id="name" [(ngModel)]="contact.name" required #nameCtrl="ngModel" />
-            <small class="p-invalid" *ngIf="!nameCtrl.invalid">Campo obrigatório.</small>
         </div>
         <div class="p-field">
             <label for="email">E-mail</label>
             <input type="text" pInputText id="email" [(ngModel)]="contact.email" required #emailCtrl="ngModel" />
-            <small class="p-invalid" *ngIf="emailCtrl.invalid">Campo obrigatório.</small>
         </div>
         <div class="p-field">
             <label for="type">Tipo de Contato</label>
             <input type="text" pInputText id="type" [(ngModel)]="contact.type" required #cTypeCtrl="ngModel" />
-            <small class="p-invalid" *ngIf="cTypeCtrl.invalid">Campo obrigatório.</small>
         </div>
     </ng-template>
 
     <ng-template pTemplate="footer">
-        <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-outlined p-button-danger" (click)="hideDialog()"></button>
-        <button pButton pRipple label="Confirmar" icon="pi pi-check" class="p-button p-button-success" [disabled]="!contact.name||!contact.type||!contact.email" (click)="saveContact()"></button>
+        <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-outlined p-button-secondary" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Confirmar" icon="pi pi-check" class="p-button p-button-secondary" [disabled]="!contact.name||!contact.type||!contact.email" (click)="saveContact()"></button>
     </ng-template>
 </p-dialog>
 
@@ -124,16 +121,16 @@
     </ng-template>
     <ng-template pTemplate="footer">
         <div class="d-flex justify-content-end">
-            <button type="button" pButton label="Cancelar" class="p-button-outlined p-button-danger" (click)="hideAddContacts()"></button>
-            <button type="button" pButton icon="pi pi-plus" label="Adicionar Contatos" iconPos="right" class="p-button-success" (click)="addToTable()"></button>
+            <button type="button" pButton label="Cancelar" class="p-button-outlined p-button-secondary" (click)="hideAddContacts()"></button>
+            <button type="button" pButton icon="pi pi-plus" label="Adicionar Contatos" iconPos="right" class="p-button-secondary" (click)="addToTable()"></button>
         </div>
     </ng-template>
 </p-dialog>
 
 <p-confirmDialog #cd [style]="{width: '50vw'}">
     <ng-template pTemplate="footer">
-        <button type="button" pButton icon="pi pi-times" label="Não" class="p-button-outlined p-button-danger" (click)="cd.reject()"></button>
-        <button type="button" pButton icon="pi pi-check" label="Sim" class="p-button-success" (click)="cd.accept()"></button>
+        <button type="button" pButton icon="pi pi-times" label="Não" class="p-button-outlined p-button-secondary" (click)="cd.reject()"></button>
+        <button type="button" pButton icon="pi pi-check" label="Sim" class="p-button-secondary" (click)="cd.accept()"></button>
     </ng-template>
 </p-confirmDialog>
 

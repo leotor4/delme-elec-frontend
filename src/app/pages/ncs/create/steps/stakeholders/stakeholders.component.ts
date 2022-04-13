@@ -31,7 +31,7 @@ export class StakeholdersComponent implements OnInit {
 
   deleteContact(contact: Contact) {
     this.confirmationService.confirm({
-      message: 'Você tem certeza que quer deletar o contato ' + contact.name + '?',
+      message: 'Você tem certeza que quer excluir o contato ' + contact.name + ' da lista?',
       header: 'Excluir Contato',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
