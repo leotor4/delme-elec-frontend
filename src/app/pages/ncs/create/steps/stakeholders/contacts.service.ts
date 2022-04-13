@@ -15,12 +15,12 @@ export class ContactsService {
   post(data: Contact): Observable<any> {
     return this.http.post<Contact>(this.apiUrl, data);
   }
-  update(data: Contact): Observable<Contact> {
-    return this.http.put<Contact>(this.apiUrl+data.id, data);
+  update(data: Contact): Observable<any> {
+    return this.http.put<any>(this.apiUrl+data.id, data);
   }
 
-  findByID(id:string): Observable<Contact[]> {
-    return this.http.get<Contact[]>(this.apiUrl+id);
+  findByID(id:string): Observable<any> {
+    return this.http.get<any>(this.apiUrl+id);
   }
   get(): Observable<any> {
     return this.http.get<any>(this.apiUrl);

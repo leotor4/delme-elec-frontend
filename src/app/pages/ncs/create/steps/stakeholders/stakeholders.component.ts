@@ -3,28 +3,6 @@ import {ConfirmationService, MessageService} from "primeng/api";
 import {Contact} from "../../../../../models/contact.model";
 import {ContactsService} from "./contacts.service";
 
-const CONTACTS: Contact[] = [
-  {
-    name: "lucas",
-    email: "lucas@gmail.com",
-    type: "emissor",
-  },
-  {
-    name: 'João',
-    email: "João@gmail.com",
-    type: "Area afetada"
-  },
-  {
-    name: 'Ednaldo',
-    email: "Ednaldo@gmail.com",
-    type: "emissor",
-  },
-  {
-    name: 'Lucio',
-    email: "Lucio@gmail.com",
-    type: "emissor",
-  }
-];
 @Component({
   selector: 'app-stakeholders',
   templateUrl: './stakeholders.component.html',
@@ -33,20 +11,21 @@ const CONTACTS: Contact[] = [
 
 export class StakeholdersComponent implements OnInit {
 
-  contactsList = CONTACTS;
+  contactsList: Contact[] = [];
   allContacts: Contact[];
   formDialog: boolean;
-  newContactDialog: boolean
+  addContactsDialog: boolean
   contact: Contact = {};
   selectedContacts: Contact[] = []
   selectedContact: String;
-  results: string[];
+  results: Contact[];
   formType: string;
 
   constructor(private confirmationService:ConfirmationService, private messageService:MessageService, private contactsSrvc:ContactsService){ }
 
   ngOnInit(): void {
     this.getContacts()
+
   }
 
 
@@ -56,7 +35,7 @@ export class StakeholdersComponent implements OnInit {
       header: 'Excluir Contato',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.contactsList = this.contactsList.filter(val => val.name !== contact.name);
+        this.contactsList = this.contactsList.filter(val => val.id !== contact.id);
         this.messageService.add({severity:'info', summary: 'Contato Removido com sucesso', life: 3000});
       }
     });
@@ -68,25 +47,36 @@ export class StakeholdersComponent implements OnInit {
     this.formDialog = true;
   }
   showAddContacts() {
-    this.newContactDialog = true;
+    this.addContactsDialog = true;
   }
   hideAddContacts() {
-    this.newContactDialog = false;
+    this.addContactsDialog = false;
     this.selectedContacts = [];
   }
   hideDialog() {
     this.formDialog = false;
   }
 
-  saveProduct() {
-    if(this.formType === "Criar"){
-      this.contactsSrvc.post(this.contact).subscribe(data=>this.contactsList.push(data.contact))
-      this.messageService.add({severity:'info', summary: 'Contato criado com sucesso', life: 3000});
+  saveContact() {
+    if(!this.contact.id){
+      this.contactsSrvc.post(this.contact).subscribe(data=> {
+        this.contactsList.push(data.contact)
+        this.messageService.add({severity:'info', summary: 'Contato criado com sucesso', life: 3000});
 
+      }, error => {
+        this.messageService.add({severity:'error', summary: 'Campos inválidos', life: 3000});
+      })
+      this.contact={}
     } else{
-      console.log(this.contact)
-      this.contactsSrvc.update(this.contact).subscribe()
-      this.messageService.add({severity:'info', summary: 'Contato atualizado com sucesso', life: 3000});
+      this.contactsSrvc.update(this.contact).subscribe(data=>{
+        let index = this.contactsList.findIndex(contact =>{
+          return contact.id==data.contact.id
+        })
+        this.contactsList[index]= data.contact;
+        this.messageService.add({severity:'info', summary: 'Contato atualizado com sucesso', life: 3000});
+      }, error => {
+        this.messageService.add({severity:'error', summary: 'Campos inválidos', life: 3000});
+      })
     }
 
     this.formDialog = false;
@@ -95,9 +85,10 @@ export class StakeholdersComponent implements OnInit {
   search(event:any) {
     let filtered: any[] = [];
     let query = event.query;
-    for (let i = 0; i < this.allContacts.length; i++) {
-      let contact = this.allContacts[i];
-      if (contact.name?.toLowerCase().indexOf(query.toLowerCase()) == 0) {
+    let contacts = this.allContacts.filter(val => this.contactsList.indexOf(val) < 0 && this.selectedContacts.indexOf(val) < 0)
+    for (let i = 0; i < contacts.length; i++) {
+      let contact = contacts[i];
+      if (contact.name?.toLowerCase().indexOf(query.toLowerCase()) == 0|| contact.email?.toLowerCase().indexOf(query.toLowerCase())  == 0) {
         filtered.push(contact);
       }
     }
@@ -110,24 +101,26 @@ export class StakeholdersComponent implements OnInit {
   }
 
   uncheckContact(contact: Contact) {
-    this.selectedContacts = this.selectedContacts.filter(val => val.name !== contact.name);
+    this.selectedContacts = this.selectedContacts.filter(val => val.id !== contact.id);
   }
 
   createNewContact() {
     this.contact = {}
     this.formType = "Criar"
-    this.newContactDialog = false;
+    this.addContactsDialog = false;
     this.formDialog = true;
   }
 
   addToTable() {
-    this.newContactDialog = false;
-    this.contactsList = this.contactsList.concat(this.selectedContacts)
+    this.addContactsDialog = false;
+    this.contactsList = this.contactsList.concat(this.selectedContacts);
+    this.selectedContacts = [];
   }
 
   private getContacts() {
     this.contactsSrvc.get().subscribe((data: any) => {
       this.allContacts = data.contact;
+      this.contactsList = this.allContacts.filter(val => val.id! <= 4)
     })
   }
 }

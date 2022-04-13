@@ -20,12 +20,12 @@
                 <th></th>
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-contact>
+        <ng-template pTemplate="body" let-contact let-i="rowIndex">
             <tr>
                 <td>{{contact.name}}</td>
                 <td>{{contact.email}}</td>
                 <td>{{contact.type}}</td>
-                <td>
+                <td *ngIf="i>3">
                     <button pButton type="button" icon="pi pi-pencil" class="p-button-text"(click)="editContact(contact)"></button>
                     <button pButton type="button" icon="pi pi-trash" class="p-button-danger p-button-text"(click)="deleteContact(contact)"></button>
                 </td>
@@ -57,11 +57,11 @@
 
     <ng-template pTemplate="footer">
         <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-outlined p-button-danger" (click)="hideDialog()"></button>
-        <button pButton pRipple label="Confirmar" icon="pi pi-check" class="p-button p-button-success" [disabled]="!contact.name||!contact.type||!contact.email" (click)="saveProduct()"></button>
+        <button pButton pRipple label="Confirmar" icon="pi pi-check" class="p-button p-button-success" [disabled]="!contact.name||!contact.type||!contact.email" (click)="saveContact()"></button>
     </ng-template>
 </p-dialog>
 
-<p-dialog [(visible)]="newContactDialog" header="Editar contato da parte interessada" [modal]="true" styleClass="p-fluid">
+<p-dialog [(visible)]="addContactsDialog" header="Editar contato da parte interessada" [modal]="true" styleClass="p-fluid">
 
     <ng-template pTemplate="header">
         <div>
@@ -76,7 +76,7 @@
             <div class="col-9 pl-0">
                 <p-autoComplete placeholder="Busque por nome ou e-mail..." [(ngModel)]="selectedContact"[suggestions]="results" (completeMethod)="search($event)" field="name" (onSelect)="show($event)">
                     <ng-template let-contact pTemplate="item">
-                        <div class="text-capitalize">
+                        <div>
                             <p class="font-weight-bold">{{contact.name}}</p>
                             <div class="d-flex text-start ">
                                 <div>
