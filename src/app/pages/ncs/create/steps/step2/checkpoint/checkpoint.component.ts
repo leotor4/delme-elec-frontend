@@ -7,8 +7,23 @@ import { Component, OnInit } from "@angular/core";
 })
 export class CheckpointComponent implements OnInit {
   selectedCity: any;
+  fileName: string[] = [];
   fileNameAcoes: ["marcelo"];
   constructor() {}
 
   ngOnInit(): void {}
+
+  clearFile() {
+    this.fileName = [];
+  }
+
+  onUpload(event: any) {
+    const target = event.target as HTMLInputElement;
+    if (target.files && target.files.length > 0) {
+      let files = target.files;
+      for (let i = 0; i < files.length; i++) {
+        this.fileName.push(files[i].name);
+      }
+    }
+  }
 }

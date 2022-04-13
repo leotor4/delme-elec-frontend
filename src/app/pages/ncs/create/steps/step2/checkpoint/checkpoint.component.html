@@ -1,25 +1,57 @@
 <div class="content">
   <h3>Ponto de Controle</h3>
-  <div *ngIf="true">
+  <div *ngIf="false">
     <app-waiting-product></app-waiting-product>
   </div>
-  <div *ngIf="false">
+  <div *ngIf="true">
     <div class="content">
       <div class="text-box">
         <span class=""
           >Selecione a opção desejada e o número referente. Visualize a
-          documentação se necessário</span
+          documentação se necessário.</span
         >
         <div class="input-box mt-3">
           <input type="text" pInputText placeholder="Selecione" />
-          <label for="numberController">Número de Controle</label>
+          <label for="numberController" class="mb-2 mt-3"
+            >Número de Controle</label
+          >
           <input
             name="numberController"
             type="text"
             pInputText
             placeholder="digite"
           />
-          <label for="">Anexar Documentos</label>
+          <label class="mb-2 mt-3">Anexar Documentos</label>
+          <div class="div-attachment">
+            <h1>Envie seus documentos</h1>
+            <div
+              class="white-background"
+              (change)="onUpload($event)"
+              *ngIf="fileName.length == 0"
+            >
+              <input type="file" class="input-attachment" multiple />
+              <i class="pi pi-cloud-upload"></i>
+              <p>
+                Arraste e solte ou <strong>navegue para escolher</strong> um
+                arquivo
+              </p>
+            </div>
+            <div class="white-background-files" *ngIf="fileName.length > 0">
+              <button type="button" (click)="clearFile()" class="btn btn-light">
+                <i class="pi pi-replay"></i>
+              </button>
+              <p *ngFor="let files of fileName">{{ files }}</p>
+            </div>
+          </div>
+          <div class="d-flex justify-content-center mt-3">
+            <button
+              pButton
+              pRipple
+              type="button"
+              label="Visualizar instrução de Trabalho"
+              class="p-button-secondary"
+            ></button>
+          </div>
         </div>
       </div>
     </div>

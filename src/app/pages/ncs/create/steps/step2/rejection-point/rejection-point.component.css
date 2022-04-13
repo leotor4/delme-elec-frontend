@@ -2,3 +2,6 @@
   font-weight: 700;
   font-size: 28px;
 }
+.content span {
+  opacity: 0.6;
+}
