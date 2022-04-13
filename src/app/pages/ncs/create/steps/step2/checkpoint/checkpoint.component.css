@@ -5,7 +5,9 @@
 .input-box input {
   width: 100%;
 }
-
+.text-box span {
+  opacity: 0.6;
+}
 .div-attachment {
   outline: none;
   overflow: hidden;
@@ -22,7 +24,6 @@
   margin-top: 5px;
   font-size: 25px;
   color: rgb(89, 89, 89);
-
 }
 
 .white-background {
@@ -68,7 +69,6 @@
   color: gray;
 }
 
-
 .white-background i {
   position: absolute;
   font-size: 30px;
@@ -77,10 +77,8 @@
 }
 
 .white-background-files i {
-
   font-size: 17px;
   color: rgb(89, 89, 89);
-
 }
 
 .input-attachment {

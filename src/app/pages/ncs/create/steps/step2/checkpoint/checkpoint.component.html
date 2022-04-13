@@ -12,14 +12,16 @@
         >
         <div class="input-box mt-3">
           <input type="text" pInputText placeholder="Selecione" />
-          <label for="numberController">Número de Controle</label>
+          <label for="numberController" class="mb-2 mt-3"
+            >Número de Controle</label
+          >
           <input
             name="numberController"
             type="text"
             pInputText
             placeholder="digite"
           />
-          <label for="">Anexar Documentos</label>
+          <label class="mb-2 mt-3">Anexar Documentos</label>
           <div class="div-attachment">
             <h1>Envie seus documentos</h1>
             <div
@@ -40,6 +42,15 @@
               </button>
               <p *ngFor="let files of fileName">{{ files }}</p>
             </div>
+          </div>
+          <div class="d-flex justify-content-center mt-3">
+            <button
+              pButton
+              pRipple
+              type="button"
+              label="Visualizar instrução de Trabalho"
+              class="p-button-secondary"
+            ></button>
           </div>
         </div>
       </div>
