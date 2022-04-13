@@ -43,10 +43,11 @@ label {
   background-color: white;
   border-radius: 5px;
   border: 2px solid rgb(51, 51, 51);
+  font-size: 14px;
   padding: 7px;
 
   width: 100%;
-  font-size: 14px;
+  
 }
 
 .div-att button {
@@ -103,6 +104,7 @@ label {
 .col-search {
   display: flex;
   align-items: flex-end;
+  
 }
 
 .col-search i{
@@ -128,6 +130,7 @@ label {
   background-color: white;
   border-radius: 7px;
   height: 300px;
+  
 }
 
 
@@ -202,5 +205,56 @@ color: rgb(103, 103, 103);
 }
 
 .contato-info{
-  margin-top: 5px;
+  margin-top: 8px;
+  height: 35px;
+}
+
+.auto-complete-title{
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.auto-complete-label {
+  font-size: 11px;
+  color: gray;
+ 
+}
+
+.p-autocomplete{
+  width: 100%;
+border-bottom-left-radius: 5px;
+border-top-left-radius: 5px;
+border: 2px solid rgb(51, 51, 51);
+
+height: 38px;
+
+}
+
+.col-search button{
+  width: 120px;
+  height: 38px;
+  border-bottom-left-radius: 0px;
+  border-top-left-radius: 0px;
+}
+.editar-campo{
+  margin-top: 15px;
+}
+.editar-campo input{
+width: 400px;
+border: 2px solid rgb(51, 51, 51);
+border-radius: 5px;
+padding-left: 7px;
+padding-top: 5px;
+padding-bottom: 5px;
+font-size: 13px;
+}
+
+.editar-buttons{
+  margin-top: 30px;
+}
+
+.editar-buttons i{
+  font-size: 12px;
+  margin-left: 5px;
 }
