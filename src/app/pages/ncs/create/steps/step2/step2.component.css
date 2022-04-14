@@ -37,3 +37,8 @@
 .red {
   background: red;
 }
+label {
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 2px;
+}
