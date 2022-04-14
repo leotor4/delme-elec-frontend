@@ -11,6 +11,10 @@
   margin-left: -15px;
 }
 
+.cabecalho{
+  min-width: 400px;
+}
+
 .cabecalho h1 {
   
   font-size: 25px;
@@ -73,6 +77,11 @@ label {
   box-shadow: 0 0 0 0.02rem green !important;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
+}
+
+#div-att-col2{
+  background-color: red;
+min-width: 200px;
 }
 
 #div-att-col2 p {

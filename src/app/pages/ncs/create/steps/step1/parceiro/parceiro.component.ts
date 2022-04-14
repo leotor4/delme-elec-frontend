@@ -26,7 +26,7 @@ export class ParceiroComponent implements OnInit {
   public tiposParceiro: Array<String> = ["Interno", "Cliente", "Fornecedor"];
   public isSelected = false;
   public parceiroIdent = false;
-  public display = true;
+  public display = false;
 
   public tiposParceiroItem = "";
   public editarNomeItem = "";
@@ -84,10 +84,12 @@ export class ParceiroComponent implements OnInit {
     this.selected.responsible_email = this.editarEmailItem;
     if (this.tiposParceiroItem == "Cliente") {
       this.customerService.put(this.selected).subscribe((data: any) => {
+        this.customerService.get();
         console.log(data);
       });
     } else if (this.tiposParceiroItem == "Fornecedor") {
       this.providerService.put(this.selected).subscribe((data: any) => {
+        this.providerService.get();
         console.log(data);
       });
     }
