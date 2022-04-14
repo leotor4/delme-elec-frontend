@@ -7,7 +7,29 @@ import { Component, OnInit } from "@angular/core";
 })
 export class Step2Component implements OnInit {
   selectedValue: string = "val1";
+  text: string;
+  numbers: string[] = [
+    "onne",
+    "two",
+    "three",
+    "four",
+    "five",
+    "six",
+    "seven",
+    "eight",
+    "nine",
+    "ten",
+  ];
+  haveSelectedProduct: boolean;
+  output: string[];
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.haveSelectedProduct = false;
+  }
+
+  search(event: any) {
+    console.log("event", event);
+    this.output = this.numbers.filter((c) => c.startsWith(event.query));
+  }
 }
