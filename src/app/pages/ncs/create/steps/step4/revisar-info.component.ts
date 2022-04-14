@@ -6,7 +6,7 @@ import { Component, EventEmitter, OnInit, Output } from "@angular/core";
   styleUrls: ["./revisar-info.component.css"],
 })
 export class RevisarInfoComponent implements OnInit {
-  ncID = 202227353;
+  ncID = "0001/2022";
   isAllOpen = true;
   unselectedClass = "btn btn-outline-dark";
   selectedClass = "btn btn-dark";
