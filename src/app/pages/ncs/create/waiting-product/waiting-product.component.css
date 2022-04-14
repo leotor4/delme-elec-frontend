@@ -3,14 +3,21 @@
   background: #eeeeee;
   border-radius: 8px;
   text-align: center;
+  
 }
 .image-box {
   background: #fff;
   margin-inline: 8px;
   margin-bottom: 8px;
 }
-.image-box img {
-  margin: 48px;
+.image-box img{
+ 
+  
+  min-width: 40%;
+  min-height: 40%;  
+  padding: 48px;
+  object-fit: cover;
+  
 }
 h4 {
   margin: 8px;

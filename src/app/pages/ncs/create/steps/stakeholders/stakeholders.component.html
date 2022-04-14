@@ -1,22 +1,18 @@
 <p-toast></p-toast>
 <div class="d-flex">
   <div class="col-8">
-    <h2>Contatos a serem notificados</h2>
-    <p>
-      Visualiza contatos que serão automaticamente notificados do progresso
-      dessa NC desta fase em diante.
-    </p>
+    <div class="cabecalho">
+      <h1>Contatos a serem notificados</h1>
+      <p>
+        Visualiza contatos que serão automaticamente notificados do progresso
+        dessa NC desta fase em diante.
+      </p>
+    </div>
   </div>
   <div class="col-4 d-flex justify-content-end align-items-center">
-    <button
-      pButton
-      pRipple
-      label="Adicionar Contato"
-      icon="pi pi-plus"
-      iconPos="right"
-      class="p-button-secondary"
-      (click)="showAddContacts()"
-    ></button>
+    <button iconPos="right" class="btn btn-dark" (click)="showAddContacts()">
+      Adicionar Contato<i class="pi pi-plus"></i>
+    </button>
   </div>
 </div>
 
@@ -35,7 +31,7 @@
         <td>{{ contact.name }}</td>
         <td>{{ contact.email }}</td>
         <td>{{ contact.type }}</td>
-        <td *ngIf="i > 3">
+        <td>
           <button
             pButton
             type="button"
@@ -55,59 +51,55 @@
     </ng-template>
   </p-table>
 </div>
-<p-dialog
-  [(visible)]="formDialog"
-  [style]="{ width: '450px' }"
-  header="Editar contato da parte interessada"
-  [modal]="true"
-  styleClass="p-fluid"
->
+<p-dialog [(visible)]="formDialog" [modal]="true" styleClass="p-fluid">
   <ng-template pTemplate="header">
-    <h2>{{ formType }} contato</h2>
-  </ng-template>
-  <ng-template pTemplate="content">
-    <div class="p-field">
-      <label for="name">Nome</label>
-      <input
-        type="text"
-        pInputText
-        id="name"
-        [(ngModel)]="contact.name"
-        required
-        #nameCtrl="ngModel"
-      />
-    </div>
-    <div class="p-field">
-      <label for="email">E-mail</label>
-      <input
-        type="text"
-        pInputText
-        id="email"
-        [(ngModel)]="contact.email"
-        required
-        #emailCtrl="ngModel"
-      />
-    </div>
-    <div class="p-field">
-      <label for="type">Tipo de Contato</label>
-      <input
-        type="text"
-        pInputText
-        id="type"
-        [(ngModel)]="contact.type"
-        required
-        #cTypeCtrl="ngModel"
-      />
+    <div class="cabecalho">
+      <h1>Editar Contato</h1>
+      <p>Edite os campos abaixo.</p>
     </div>
   </ng-template>
 
-  <ng-template pTemplate="footer">
-    <button
+  <div class="editar-campo">
+    <label for="name">Nome</label>
+    <input
+      type="text"
+      pInputText
+      id="name"
+      [(ngModel)]="contact.name"
+      required
+      #nameCtrl="ngModel"
+    />
+  </div>
+  <div class="editar-campo">
+    <label for="email">E-mail</label>
+    <input
+      type="text"
+      pInputText
+      id="email"
+      [(ngModel)]="contact.email"
+      required
+      #emailCtrl="ngModel"
+    />
+  </div>
+  <div class="editar-campo">
+    <label for="type">Tipo de Contato</label>
+    <input
+      type="text"
+      pInputText
+      id="type"
+      [(ngModel)]="contact.type"
+      required
+      #cTypeCtrl="ngModel"
+    />
+  </div>
+
+  <div class="d-flex justify-content-end editar-buttons">
+    <!-- <button
       pButton
       pRipple
       label="Cancelar"
       icon="pi pi-times"
-      class="p-button-outlined p-button-secondary"
+      class="btn btn-outline-dark"
       (click)="hideDialog()"
     ></button>
     <button
@@ -115,11 +107,23 @@
       pRipple
       label="Confirmar"
       icon="pi pi-check"
-      class="p-button p-button-secondary"
+      class="btn btn-dark"
       [disabled]="!contact.name || !contact.type || !contact.email"
       (click)="saveContact()"
-    ></button>
-  </ng-template>
+    ></button> -->
+    <button type="button" class="btn btn-outline-dark" (click)="hideDialog()">
+      Cancelar
+    </button>
+    <div class="ml-2 mr-2"></div>
+    <button
+      type="button"
+      class="btn btn-dark"
+      [disabled]="!contact.name || !contact.type || !contact.email"
+      (click)="saveContact()"
+    >
+      Confirmar <i class="pi pi-check"></i>
+    </button>
+  </div>
 </p-dialog>
 
 <p-dialog

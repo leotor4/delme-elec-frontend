@@ -77,6 +77,9 @@ export class ParceiroComponent implements OnInit {
   showDialog() {
     this.display = true;
   }
+  hideDialog() {
+    this.display = false;
+  }
 
   editar() {
     this.selected.responsible_name = this.editarNomeItem;

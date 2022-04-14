@@ -16,23 +16,26 @@
 }
 
 .cabecalho h1 {
-  
   font-size: 25px;
   font-weight: 500;
   margin-bottom: 0px;
   margin-top: 0px;
 }
+.cabecalho p {
+  font-size: 15px;
+  color: gray;
+}
 
 label {
+  display: block;
   font-size: 13px;
   font-weight: bold;
   margin-bottom: 2px;
 }
 
-.cabecalho p {
-  font-size: 15px;
-  color: gray;
-}
+
+
+
 
 .p-button-secondary {
   background-color: rgb(51, 51, 51);
@@ -44,15 +47,22 @@ label {
 }
 
 .dropdown select {
+  width: 200px;
+  min-width: 150px;
   background-color: white;
   border-radius: 5px;
   border: 2px solid rgb(51, 51, 51);
   font-size: 14px;
   padding: 7px;
-
-  width: 100%;
   
+ 
+ 
 }
+
+.dropdown{
+  margin-top: 10px;
+}
+
 
 .div-att button {
   width: 200px;
@@ -80,7 +90,6 @@ label {
 }
 
 #div-att-col2{
-  background-color: red;
 min-width: 200px;
 }
 
@@ -104,7 +113,6 @@ min-width: 200px;
   border: 2px solid rgb(51, 51, 51);
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
-
   padding: 7px;
 }
 
@@ -113,17 +121,23 @@ min-width: 200px;
 .col-search {
   display: flex;
   align-items: flex-end;
+  margin-top: 10px;
   
 }
 
 .col-search i{
   font-size: 15px;
   margin-left: 4px;
+  
+}
+
+.row-search{
+  margin-bottom: 15px;
 }
 
 .div-ident-parceiro {
   margin: 0;
-  margin-top: 15px;
+  
   width: 100%;
   
   border: 1px solid rgb(51, 51, 51);
@@ -142,13 +156,12 @@ min-width: 200px;
   
 }
 
-
-
 .div-ident-parceiro-titulo{
   text-align: center;
 }
 
 .dados-parceiro {
+  min-width: 230px;
   margin: 10px;
   margin-top: 0px;
   background-color: white;
@@ -231,17 +244,18 @@ color: rgb(103, 103, 103);
 }
 
 .p-autocomplete{
-  width: 100%;
+width: 850px;
 border-bottom-left-radius: 5px;
 border-top-left-radius: 5px;
 border: 2px solid rgb(51, 51, 51);
-
 height: 38px;
+
 
 }
 
 .col-search button{
   width: 120px;
+  min-width: 120px;
   height: 38px;
   border-bottom-left-radius: 0px;
   border-top-left-radius: 0px;
@@ -250,7 +264,7 @@ height: 38px;
   margin-top: 15px;
 }
 .editar-campo input{
-width: 400px;
+width: 100%;
 border: 2px solid rgb(51, 51, 51);
 border-radius: 5px;
 padding-left: 7px;

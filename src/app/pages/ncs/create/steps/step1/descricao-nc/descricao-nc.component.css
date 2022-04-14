@@ -43,10 +43,17 @@ textarea {
   border: 1px solid rgb(220, 220, 220);
   border-radius: 5px;
   padding: 8px;
-  height: 250px;
+  height: 252px;
   text-align: center;
-  
   background-color: rgb(243, 243, 243);
+}
+.col-attachment{
+  min-width: 400px;
+}
+
+.col-editor {
+  min-width: 650px;
+  min-height: 210px;
 }
 .div-attachment h1 {
   margin-top: 5px;
@@ -81,11 +88,12 @@ textarea {
   margin-top: 100px;
   font-size: 12px;color: rgb(89, 89, 89);
   color: gray;
+  text-align: center;
 }
 .white-background-files button{
   background-color: white;
   border: none;
-width: 40px;
+  width: 40px;
   font-size: 14px;
   outline: none;
 }
@@ -97,7 +105,7 @@ width: 40px;
 
 
 .white-background i{
-  position:absolute;
+  position: absolute;
   font-size: 30px;
   color: rgb(89, 89, 89);
   font-size: 60px;
@@ -121,4 +129,9 @@ label {
   font-size: 13px;
   font-weight: bold;
   margin-bottom: 2px;
+  margin-top: 10px;
+}
+
+.p-editor{
+  min-width: 250px;
 }

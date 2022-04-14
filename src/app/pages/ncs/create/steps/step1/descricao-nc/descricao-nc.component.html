@@ -6,94 +6,84 @@
   </p>
 </div>
 
-<div class="div-desc">
-  <div class="row">
-    <div class="col-8">
-      <label for="desc-area">Descreva a não conformidade</label>
-      <p-editor
-        [style]="{ height: '210px' }"
-        [(ngModel)]="textAreaNc"
-      ></p-editor>
-    </div>
-    <div class="col">
-      <label for="desc-area">Anexe evidências objetivas ou fotográficas</label>
-      <div class="div-attachment">
-        <h1>Envie seus documentos</h1>
-        <div class="white-background" *ngIf="fileNameNc.length == 0">
-          <input
-            type="file"
-            class="input-attachment"
-            (change)="onUploadNc($event)"
-            multiple
-          />
-          <i class="pi pi-cloud-upload"></i>
-          <p>
-            Arraste e solte ou <strong>navegue para escolher</strong> um arquivo
-          </p>
-        </div>
-        <div class="white-background-files" *ngIf="fileNameNc.length != 0">
-          <button
-            type="button"
-            (click)="clearFileNameNc()"
-            class="btn btn-light"
-          >
-            <i class="pi pi-replay"></i>
-          </button>
-          <p *ngFor="let files of fileNameNc">{{ files }}</p>
-        </div>
+<div class="d-flex row">
+  <div class="col col-editor">
+    <label>Descreva a não conformidade</label>
+    <p-editor
+      [style]="{ height: '210px' }"
+      [(ngModel)]="textAreaNc"
+      class="p-editor"
+    ></p-editor>
+  </div>
+  <div class="col-3 col-attachment">
+    <label>Anexe evidências objetivas ou fotográficas</label>
+    <div class="div-attachment">
+      <h1>Envie seus documentos</h1>
+      <div class="white-background" *ngIf="fileNameNc.length == 0">
+        <input
+          type="file"
+          class="input-attachment"
+          (change)="onUploadNc($event)"
+          multiple
+        />
+        <i class="pi pi-cloud-upload"></i>
+        <p>
+          Arraste e solte ou <strong>navegue para escolher</strong> um arquivo
+        </p>
+      </div>
+      <div class="white-background-files" *ngIf="fileNameNc.length != 0">
+        <button type="button" (click)="clearFileNameNc()" class="btn btn-light">
+          <i class="pi pi-replay"></i>
+        </button>
+        <p *ngFor="let files of fileNameNc">{{ files }}</p>
       </div>
     </div>
   </div>
+</div>
 
-  <div class="mt-4 mb-4"></div>
+<div class="mt-4 mb-4"></div>
 
-  <div class="cabecalho">
-    <h1>Ações Imediatas</h1>
-    <p>
-      Preencha o campo abaixo com ações imediatas e anexe evidências, sejam
-      fotográficas ou documentais.
-    </p>
+<div class="cabecalho">
+  <h1>Ações Imediatas</h1>
+  <p>
+    Preencha o campo abaixo com ações imediatas e anexe evidências, sejam
+    fotográficas ou documentais.
+  </p>
+</div>
+
+<div class="d-flex row">
+  <div class="col col-editor">
+    <label for="desc-area">Descreve as ações imediatas</label>
+    <p-editor
+      [style]="{ height: '210px' }"
+      [(ngModel)]="textAreaAcoes"
+    ></p-editor>
   </div>
-
-  <div class="div-desc">
-    <div class="row">
-      <div class="col-8">
-        <label for="desc-area">Descreve as ações imediatas</label>
-        <p-editor
-          [style]="{ height: '210px' }"
-          [(ngModel)]="textAreaAcoes"
-        ></p-editor>
+  <div class="col-3 col-attachment">
+    <label for="desc-area">Anexe evidências objetivas ou fotográficas</label>
+    <div class="div-attachment">
+      <h1>Envie seus documentos</h1>
+      <div class="white-background" *ngIf="fileNameAcoes.length == 0">
+        <input
+          type="file"
+          class="input-attachment"
+          (change)="onUploadAcoes($event)"
+          multiple
+        />
+        <i class="pi pi-cloud-upload"></i>
+        <p>
+          Arraste e solte ou <strong>navegue para escolher</strong> um arquivo
+        </p>
       </div>
-      <div class="col">
-        <label for="desc-area"
-          >Anexe evidências objetivas ou fotográficas</label
+      <div class="white-background-files" *ngIf="fileNameAcoes.length != 0">
+        <button
+          type="button"
+          (click)="clearFileNameAcoes()"
+          class="btn btn-light"
         >
-        <div class="div-attachment">
-          <h1>Envie seus documentos</h1>
-          <div class="white-background" *ngIf="fileNameAcoes.length == 0">
-            <input
-              type="file"
-              class="input-attachment"
-              (change)="onUploadAcoes($event)"
-              multiple
-            />
-            <i class="pi pi-cloud-upload"></i>
-            <p>
-              Arraste e solte ou <strong>navegue para escolher</strong> um
-              arquivo
-            </p>
-          </div>
-          <div class="white-background-files" *ngIf="fileNameAcoes.length != 0">
-            <button
-              type="button"
-              (click)="clearFileNameAcoes()"
-              class="btn btn-light"
-            >
-              <i class="pi pi-replay"></i>
-            </button>
-            <p *ngFor="let files of fileNameAcoes">{{ files }}</p>
-          </div>
-        </div>
+          <i class="pi pi-replay"></i>
+        </button>
+        <p *ngFor="let files of fileNameAcoes">{{ files }}</p>
       </div>
     </div>
   </div>
