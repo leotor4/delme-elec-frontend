@@ -31,10 +31,19 @@
         <div class="p-fluid">
           <p-autoComplete
             [(ngModel)]="text"
-            [suggestions]="output"
+            [suggestions]="results"
             (completeMethod)="search($event)"
             placeholder="Search"
-          ></p-autoComplete>
+            field="name"
+            (onSelect)="show($event)"
+            (input)="test($event)"
+          >
+            <ng-template let-product pTemplate="item">
+              <h4>{{ product.id }}</h4>
+              <h4>{{ product.description }}</h4>
+              <h4>{{ product.name }}</h4>
+            </ng-template>
+          </p-autoComplete>
         </div>
       </div>
       <div class="col-8 d-flex">
@@ -76,14 +85,19 @@
       </div>
     </div>
   </div>
-  <app-product [hasProduct]="haveSelectedProduct"></app-product>
+  <app-product
+    [hasProduct]="haveSelectedProduct"
+    [product]="selectedContact"
+  ></app-product>
   <hr class="mb-5 mt-5" />
   <div class="row">
     <div class="col">
-      <app-checkpoint></app-checkpoint>
+      <app-checkpoint [hasProduct]="haveSelectedProduct"></app-checkpoint>
     </div>
-    <div class="col mt-4 mt-xl-0">
-      <app-rejection-point></app-rejection-point>
+    <div class="col mt-4 mt-xxl-0">
+      <app-rejection-point
+        [hasProduct]="haveSelectedProduct"
+      ></app-rejection-point>
     </div>
   </div>
 </div>
