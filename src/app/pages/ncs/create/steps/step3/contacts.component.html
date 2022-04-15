@@ -1,4 +1,5 @@
 <p-toast></p-toast>
+
 <div class="d-flex">
   <div class="col-8">
     <div class="cabecalho">
@@ -31,19 +32,19 @@
         <td>{{ contact.name }}</td>
         <td>{{ contact.email }}</td>
         <td>{{ contact.type }}</td>
-        <td>
+        <td *ngIf="i>=4">
           <button
             pButton
             type="button"
             icon="pi pi-pencil"
-            class="p-button-text"
+            class="p-button-secondary p-button-text"
             (click)="editContact(contact)"
           ></button>
           <button
             pButton
             type="button"
             icon="pi pi-trash"
-            class="p-button-danger p-button-text"
+            class="p-button-secondary p-button-text"
             (click)="deleteContact(contact)"
           ></button>
         </td>
@@ -51,84 +52,9 @@
     </ng-template>
   </p-table>
 </div>
-<p-dialog [(visible)]="formDialog" [modal]="true" styleClass="p-fluid">
-  <ng-template pTemplate="header">
-    <div class="cabecalho">
-      <h1>Editar Contato</h1>
-      <p>Edite os campos abaixo.</p>
-    </div>
-  </ng-template>
-
-  <div class="editar-campo">
-    <label for="name">Nome</label>
-    <input
-      type="text"
-      pInputText
-      id="name"
-      [(ngModel)]="contact.name"
-      required
-      #nameCtrl="ngModel"
-    />
-  </div>
-  <div class="editar-campo">
-    <label for="email">E-mail</label>
-    <input
-      type="text"
-      pInputText
-      id="email"
-      [(ngModel)]="contact.email"
-      required
-      #emailCtrl="ngModel"
-    />
-  </div>
-  <div class="editar-campo">
-    <label for="type">Tipo de Contato</label>
-    <input
-      type="text"
-      pInputText
-      id="type"
-      [(ngModel)]="contact.type"
-      required
-      #cTypeCtrl="ngModel"
-    />
-  </div>
-
-  <div class="d-flex justify-content-end editar-buttons">
-    <!-- <button
-      pButton
-      pRipple
-      label="Cancelar"
-      icon="pi pi-times"
-      class="btn btn-outline-dark"
-      (click)="hideDialog()"
-    ></button>
-    <button
-      pButton
-      pRipple
-      label="Confirmar"
-      icon="pi pi-check"
-      class="btn btn-dark"
-      [disabled]="!contact.name || !contact.type || !contact.email"
-      (click)="saveContact()"
-    ></button> -->
-    <button type="button" class="btn btn-outline-dark" (click)="hideDialog()">
-      Cancelar
-    </button>
-    <div class="ml-2 mr-2"></div>
-    <button
-      type="button"
-      class="btn btn-dark"
-      [disabled]="!contact.name || !contact.type || !contact.email"
-      (click)="saveContact()"
-    >
-      Confirmar <i class="pi pi-check"></i>
-    </button>
-  </div>
-</p-dialog>
 
 <p-dialog
   [(visible)]="addContactsDialog"
-  header="Editar contato da parte interessada"
   [modal]="true"
   styleClass="p-fluid"
 >
@@ -141,7 +67,6 @@
       </h3>
     </div>
   </ng-template>
-
   <ng-template pTemplate="content">
     <div class="d-flex pb-2">
       <div class="col-9 pl-0">
@@ -151,19 +76,22 @@
           [suggestions]="results"
           (completeMethod)="search($event)"
           field="name"
-          (onSelect)="show($event)"
+          [style]="{ width: '100%' }"
+          [inputStyle]="{ width: '100%' }"
+          class="p-autocomplete"
+          (onSelect)="checkContact($event)"
         >
           <ng-template let-contact pTemplate="item">
             <div>
-              <p class="font-weight-bold">{{ contact.name }}</p>
+              <span class="auto-complete-title">{{ contact.name }}</span>
               <div class="d-flex text-start">
                 <div>
-                  <p class="font-weight-light">E-MAIL</p>
-                  {{ contact.email }}
+                  <span class="auto-complete-label">E-MAIL</span><br />
+                  <span class="auto-complete-item">{{ contact.email }}</span>
                 </div>
                 <div class="px-5">
-                  <p class="font-weight-light">TIPO DE CONTATO</p>
-                  {{ contact.type }}
+                  <span class="auto-complete-label">TIPO DE CONTATO</span><br />
+                  <span class="auto-complete-item">{{ contact.type }}</span>
                 </div>
               </div>
             </div>
@@ -171,16 +99,14 @@
         </p-autoComplete>
       </div>
       <button
-        pButton
-        pRipple
-        label="Criar Contato"
-        icon="pi pi-user-plus"
-        iconPos="right"
-        class="p-button-secondary"
-        (click)="createNewContact()"
-      ></button>
+              type="button"
+              class="btn btn-dark col-3"
+              (click)="createNewContact()"
+      >
+        Criar Contato <i class="pi pi-user-plus"></i>
+      </button>
     </div>
-    <div class="d-flex">
+    <div class="d-flex mt-3">
       <i class="pi pi-users" style="font-size: 2rem"></i>
       <h2>Contatos Selecionados</h2>
     </div>
@@ -204,7 +130,7 @@
                 pButton
                 type="button"
                 icon="pi pi-user-minus"
-                class="p-button-danger p-button-text"
+                class="p-button-secondary p-button-text"
                 (click)="uncheckContact(contact)"
               ></button>
             </td>
@@ -216,21 +142,20 @@
   <ng-template pTemplate="footer">
     <div class="d-flex justify-content-end">
       <button
-        type="button"
-        pButton
-        label="Cancelar"
-        class="p-button-outlined p-button-secondary"
-        (click)="hideAddContacts()"
-      ></button>
+              type="button"
+              class="btn btn-outline-dark"
+              (click)="hideAddContacts()"
+      >
+        Cancelar
+      </button>
       <button
-        type="button"
-        pButton
-        icon="pi pi-plus"
-        label="Adicionar Contatos"
-        iconPos="right"
-        class="p-button-secondary"
-        (click)="addToTable()"
-      ></button>
+              type="button"
+              class="btn btn-dark"
+              [disabled]="selectedContacts.length==0"
+              (click)="saveSelection()"
+      >
+        Adicionar Contatos <i class="pi pi-plus"></i>
+      </button>
     </div>
   </ng-template>
 </p-dialog>
@@ -238,20 +163,18 @@
 <p-confirmDialog #cd [style]="{ width: '50vw' }">
   <ng-template pTemplate="footer">
     <button
-      type="button"
-      pButton
-      icon="pi pi-times"
-      label="Não"
-      class="p-button-outlined p-button-secondary"
-      (click)="cd.reject()"
-    ></button>
+            type="button"
+            class="btn btn-outline-dark"
+            (click)="cd.reject()"
+    >
+      Não, cancelar
+    </button>
     <button
-      type="button"
-      pButton
-      icon="pi pi-check"
-      label="Sim"
-      class="p-button-secondary"
-      (click)="cd.accept()"
-    ></button>
+            type="button"
+            class="btn btn-dark"
+            (click)="cd.accept()"
+    >
+      Sim, excluir contato
+    </button>
   </ng-template>
 </p-confirmDialog>
