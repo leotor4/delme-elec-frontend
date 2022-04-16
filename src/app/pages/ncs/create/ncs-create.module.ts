@@ -32,6 +32,7 @@ import { ConfirmDialogModule } from "primeng/confirmdialog";
 import { DialogModule } from "primeng/dialog";
 import { ToastModule } from "primeng/toast";
 import { CardModule } from "primeng/card";
+import { ProductInfoComponent } from './steps/step2/product/product-info/product-info.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { CardModule } from "primeng/card";
     CheckpointComponent,
     RejectionPointComponent,
     WaitingProductComponent,
+    ProductInfoComponent,
   ],
   imports: [
     CommonModule,

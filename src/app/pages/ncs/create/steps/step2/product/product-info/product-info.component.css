@@ -1,0 +1,30 @@
+.product-info {
+  border: 2px solid #333333;
+  background: #eeeeee;
+  border-radius: 8px;
+}
+.product-box {
+  background: #fff;
+  margin-inline: 8px;
+  margin-bottom: 8px;
+}
+.product-info h4 {
+  margin-left: 8px;
+  font-weight: 500;
+}
+.product-info h5 {
+  font-weight: 800;
+}
+.product-info h4,
+.product-info h5 {
+  font-size: 20px;
+  line-height: 33px;
+  margin-bottom: 0;
+}
+.id-box {
+  background: #eeeeee;
+  border-radius: 18px;
+  padding: 4px 8px;
+  color: #7d7d7d;
+  font-weight: 700;
+}

@@ -10,65 +10,24 @@ type product = {
   styleUrls: ["./step2.component.css"],
 })
 export class Step2Component implements OnInit {
-  selectedValue: string = "val1";
-  text: string;
-  results: any;
-  selectedContact: any;
-  products = [
-    {
-      id: "9083144551",
-      name: "Caixa de Pandora",
-      description:
-        "lorem dhasdhsa dhsadhasdas dsa dasdqewd ewq ewq dasdsadqwdqdwq",
-    },
-    {
-      id: "31232324551",
-      name: "test1",
-      description:
-        "lorem dhasdhsa dhsadhasdas dsa dasdqewd ewq ewq dasdsadqwdqdwq",
-    },
-    {
-      id: "23213421321",
-      name: "test2",
-      description:
-        "lorem dhasdhsa dhsadhasdas dsa dasdqewd ewq ewq dasdsadqwdqdwq",
-    },
-    {
-      id: "12344551",
-      name: "test3",
-      description:
-        "lorem dhasdhsa dhsadhasdas dsa dasdqewd ewq ewq dasdsadqwdqdwq",
-    },
-  ];
-  haveSelectedProduct: boolean;
-  output: product[];
-  constructor() {}
+  hasSelectedProduct: boolean;
+  childDataReceived: string = "";
+  constructor() {
+    this.hasSelectedProduct = false;
+  }
 
-  ngOnInit(): void {
-    this.haveSelectedProduct = false;
+  ngOnInit(): void {}
+  test1(n: boolean) {
+    this.hasSelectedProduct = n;
   }
-  search(event: any) {
-    let filtered: any[] = [];
-    let query = event.query;
-    let contacts = this.products;
-    for (let i = 0; i < contacts.length; i++) {
-      let contact = contacts[i];
-      if (
-        contact.name?.toLowerCase().indexOf(query.toLowerCase()) == 0 ||
-        contact.description?.toLowerCase().indexOf(query.toLowerCase()) == 0 ||
-        contact.id.toLowerCase().indexOf(query.toLowerCase()) == 0
-      ) {
-        filtered.push(contact);
-      }
-    }
-    this.results = filtered;
+  test2(string: any) {
+    console.log(string);
   }
-  show(contact: any) {
-    this.haveSelectedProduct = true;
-    this.selectedContact = contact;
-    console.log(this.selectedContact);
+  ReceiveData(event: string) {
+    console.log(event);
+    this.childDataReceived = event;
   }
-  test(contact: any) {
-    this.haveSelectedProduct = false;
+  Receive2Data(event: boolean) {
+    this.hasSelectedProduct = event;
   }
 }
