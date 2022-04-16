@@ -12,7 +12,7 @@
       <span>
         <i class="pi pi-history"></i> ultima atualização: Há 3 minutos</span
       >
-      <a href="ncs/import">
+      <a href="ncs/import" class="text-decoration-none">
         <button
           pButton
           pRipple
@@ -33,7 +33,7 @@
         <p-autoComplete
           [(ngModel)]="autoCompleteValue"
           [suggestions]="results"
-          (completeMethod)="search($event)"
+          (completeMethod)="getFilteredList($event)"
           placeholder="Busque por nome, descrição ou código SAP"
           field="name"
           (onSelect)="checkProduct($event)"

@@ -17,17 +17,8 @@ export class Step2Component implements OnInit {
   }
 
   ngOnInit(): void {}
-  test1(n: boolean) {
-    this.hasSelectedProduct = n;
-  }
-  test2(string: any) {
-    console.log(string);
-  }
-  ReceiveData(event: string) {
-    console.log(event);
-    this.childDataReceived = event;
-  }
-  Receive2Data(event: boolean) {
+
+  getHasSelectedProduct(event: boolean) {
     this.hasSelectedProduct = event;
   }
 }

@@ -13,7 +13,7 @@ export class ProductComponent implements OnInit {
   results: Product[];
   selectedProduct: Product;
 
-  @Output() data: EventEmitter<boolean> = new EventEmitter();
+  @Output() hasSelectedProductEvent: EventEmitter<boolean> = new EventEmitter();
 
   products = [
     {
@@ -46,11 +46,11 @@ export class ProductComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  search(event: any) {
+  getFilteredList(event: any) {
     let filtered: any[] = [];
     let query = event.query;
-    let products = this.products;
-    products.map((product) => {
+
+    this.products.map((product) => {
       if (
         product.name?.toLowerCase().indexOf(query.toLowerCase()) == 0 ||
         product.description?.toLowerCase().indexOf(query.toLowerCase()) == 0 ||
@@ -64,11 +64,11 @@ export class ProductComponent implements OnInit {
 
   checkProduct(Product: Product) {
     this.hasSelectedProduct = true;
-    this.data.emit(this.hasSelectedProduct);
+    this.hasSelectedProductEvent.emit(this.hasSelectedProduct);
     this.selectedProduct = Product;
   }
   uncheckProduct() {
     this.hasSelectedProduct = false;
-    this.data.emit(this.hasSelectedProduct);
+    this.hasSelectedProductEvent.emit(this.hasSelectedProduct);
   }
 }
