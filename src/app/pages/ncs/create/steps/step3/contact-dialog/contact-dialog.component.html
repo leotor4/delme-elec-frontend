@@ -51,7 +51,7 @@
     <button
             type="button"
             class="btn btn-dark"
-            [disabled]="(nameCtrl.dirty) || (emailCtrl.invalid) || (typeCtrl.invalid)"
+            [disabled]="(nameCtrl.invalid) || (emailCtrl.invalid) || (typeCtrl.invalid)"
             (click)="saveContact()"
     >
         Confirmar
