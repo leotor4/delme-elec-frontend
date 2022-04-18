@@ -34,6 +34,12 @@ import { ToastModule } from "primeng/toast";
 import { CardModule } from "primeng/card";
 import { ContactDialogComponent } from './steps/step3/contact-dialog/contact-dialog.component';
 import {DynamicDialogModule} from "primeng/dynamicdialog";
+import { RevisarInfoComponent } from './steps/step4/revisar-info.component';
+import {AccordionModule} from 'primeng/accordion';
+import { ChipModule } from 'primeng/chip';
+import { StakeholdersComponent } from './steps/step4/stakeholders/stakeholders.component';
+import { ProductsAndPointsComponent } from './steps/step4/products-and-points/products-and-points.component';
+import { IdentifyNCComponent } from './steps/step4/identify-nc/identify-nc.component';
 
 
 @NgModule({
@@ -52,6 +58,10 @@ import {DynamicDialogModule} from "primeng/dynamicdialog";
     RejectionPointComponent,
     WaitingProductComponent,
     ContactDialogComponent,
+    RevisarInfoComponent,
+    StakeholdersComponent,
+    ProductsAndPointsComponent,
+    IdentifyNCComponent,
   ],
   imports: [
     CommonModule,
@@ -72,6 +82,8 @@ import {DynamicDialogModule} from "primeng/dynamicdialog";
     DynamicDialogModule,
     ToastModule,
     CardModule,
+    AccordionModule,
+    ChipModule,
   ],
   entryComponents: [
     ContactDialogComponent

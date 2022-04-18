@@ -8,7 +8,7 @@ import { MenuItem } from "primeng/api";
 })
 export class NcsCreateStepperComponent implements OnInit {
   items: MenuItem[];
-  stepPosition: number = 2;
+  stepPosition: number = 3;
   lastStepLabel = "Avançar";
   constructor() {}
 

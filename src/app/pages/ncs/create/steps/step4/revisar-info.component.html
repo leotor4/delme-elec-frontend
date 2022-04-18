@@ -1,0 +1,71 @@
+<div class="d-flex">
+    <div class="col-8">
+        <div class="cabecalho">
+            <div class="d-flex align-items-center">
+                <h1 class="mr-3">Não Conformidade</h1>
+                <p-chip>
+                    <i class="bi bi-ticket-perforated mr-2"></i>
+                    {{ncID}}
+                </p-chip>
+            </div>
+            <p>
+                Revise ou altere os dados da NC. Se tudo estiver OK, confirme a criação desta NC
+            </p>
+        </div>
+    </div>
+    <div class="col-4 d-flex justify-content-end align-items-center" *ngIf="isAllOpen">
+        <button class="btn btn-dark btn-sm mr-3" (click)="isAllOpen = true">
+            <i class="bi bi-arrows-expand"></i>
+            Expandir Todos
+        </button>
+        <button class="btn btn-outline-dark btn-sm"(click)="isAllOpen = false">
+            <i class="bi bi-arrows-collapse"></i>
+            Colapsar Todos
+        </button>
+    </div>
+    <div class="col-4 d-flex justify-content-end align-items-center" *ngIf="!isAllOpen">
+        <button class="btn btn-outline-dark btn-sm mr-3" (click)="isAllOpen = true">
+            <i class="bi bi-arrows-expand"></i>
+            Expandir Todos
+        </button>
+        <button class="btn btn-dark btn-sm"(click)="isAllOpen = false">
+            <i class="bi bi-arrows-collapse"></i>
+            Colapsar Todos
+        </button>
+    </div>
+</div>
+<p-accordion [multiple]="true">
+    <p-accordionTab [selected]="isAllOpen">
+        <ng-template pTemplate="header">
+            <p>
+                <i class="bi bi-file-earmark-text"></i>
+                Identificação da NC
+            </p>
+        </ng-template>
+        <ng-template pTemplate="content">
+            <app-identify-nc></app-identify-nc>
+        </ng-template>
+    </p-accordionTab>
+    <p-accordionTab [selected]="isAllOpen">
+        <ng-template pTemplate="header">
+            <p>
+                <i class="bi bi-box-seam"></i>
+                Produtos e Pontos
+            </p>
+        </ng-template>
+        <ng-template pTemplate="content">
+            <app-products-and-points></app-products-and-points>
+        </ng-template>
+    </p-accordionTab>
+    <p-accordionTab [selected]="isAllOpen">
+        <ng-template pTemplate="header">
+            <p>
+                <i class="bi bi-envelope-plus"></i>
+                Partes Interessadas
+            </p>
+        </ng-template>
+        <ng-template pTemplate="content">
+            <app-stakeholders></app-stakeholders>
+        </ng-template>
+    </p-accordionTab>
+</p-accordion>
