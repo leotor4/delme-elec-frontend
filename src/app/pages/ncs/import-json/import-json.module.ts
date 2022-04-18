@@ -19,7 +19,7 @@ import {ToastModule} from "primeng/toast";
     ImportJsonRoutingModule,
     FileUploadModule,
     HttpClientModule,
-    ToastModule
+    ToastModule,
 
   ]
 })

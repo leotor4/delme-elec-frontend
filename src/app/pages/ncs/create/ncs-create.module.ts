@@ -6,7 +6,7 @@ import { NcsCreateComponent } from "./ncs-create.component";
 import { StepsModule } from "primeng/steps";
 import { ButtonModule } from "primeng/button";
 import { NcsCreateHeaderComponent } from "./ncs-create-header/ncs-create-header.component";
-import { StakeholdersComponent } from "./steps/stakeholders/stakeholders.component";
+import { ContactsComponent } from "./steps/step3/contacts.component";
 import { IdentificarNcComponent } from "./steps/step1/identificar-nc/identificar-nc.component";
 import { DescricaoNcComponent } from "./steps/step1/descricao-nc/descricao-nc.component";
 import { IdentificacaoDaNcComponent } from "./steps/step1/identificacao-da-nc/identificacao-da-nc.component";
@@ -32,12 +32,15 @@ import { ConfirmDialogModule } from "primeng/confirmdialog";
 import { DialogModule } from "primeng/dialog";
 import { ToastModule } from "primeng/toast";
 import { CardModule } from "primeng/card";
+import { ContactDialogComponent } from './steps/step3/contact-dialog/contact-dialog.component';
+import {DynamicDialogModule} from "primeng/dynamicdialog";
+
 
 @NgModule({
   declarations: [
     NcsCreateComponent,
     NcsCreateHeaderComponent,
-    StakeholdersComponent,
+    ContactsComponent,
     IdentificarNcComponent,
     DescricaoNcComponent,
     IdentificacaoDaNcComponent,
@@ -48,6 +51,7 @@ import { CardModule } from "primeng/card";
     CheckpointComponent,
     RejectionPointComponent,
     WaitingProductComponent,
+    ContactDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -65,10 +69,13 @@ import { CardModule } from "primeng/card";
     TableModule,
     ConfirmDialogModule,
     DialogModule,
-
+    DynamicDialogModule,
     ToastModule,
     CardModule,
   ],
-  providers: [MessageService, ConfirmationService],
+  entryComponents: [
+    ContactDialogComponent
+  ],
+  providers: [MessageService, ConfirmationService]
 })
 export class NcsCreateModule {}

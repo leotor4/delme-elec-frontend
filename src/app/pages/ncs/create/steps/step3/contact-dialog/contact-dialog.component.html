@@ -1,0 +1,60 @@
+<div class="editar-campo">
+    <label for="name">Nome</label>
+    <input
+            type="text"
+            pInputText
+            id="name"
+            [(ngModel)]="contact.name"
+            required
+            #nameCtrl="ngModel"
+    />
+    <small *ngIf="nameCtrl.invalid && nameCtrl.touched">
+        Por favor insira um nome.
+    </small>
+</div>
+<div class="editar-campo">
+    <label for="email">E-mail</label>
+    <input
+            type="email"
+            pInputText
+            id="email"
+            [(ngModel)]="contact.email"
+            email="true"
+            required
+            #emailCtrl="ngModel"
+    />
+    <small *ngIf="emailCtrl.invalid && emailCtrl.touched">
+        Por favor insira um email válido.
+    </small>
+</div>
+<div class="editar-campo">
+    <label for="type">Tipo de Contato</label>
+    <input
+            type="text"
+            pInputText
+            id="type"
+            [(ngModel)]="contact.type"
+            required
+            #typeCtrl="ngModel"
+    />
+    <small *ngIf="typeCtrl.invalid && typeCtrl.touched">
+        Por favor insira o tipo de contato.
+    </small>
+</div>
+<div class="d-flex justify-content-end editar-buttons">
+    <button type="button"
+            class="btn btn-outline-dark"
+            (click)="cancel()">
+        Cancelar
+    </button>
+    <div class="ml-2 mr-2"></div>
+    <button
+            type="button"
+            class="btn btn-dark"
+            [disabled]="(nameCtrl.dirty) || (emailCtrl.invalid) || (typeCtrl.invalid)"
+            (click)="saveContact()"
+    >
+        Confirmar
+        <i class="pi pi-check"></i>
+    </button>
+</div>
