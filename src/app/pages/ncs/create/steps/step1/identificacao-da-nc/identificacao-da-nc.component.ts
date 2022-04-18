@@ -1,4 +1,8 @@
 import { Component, OnInit } from "@angular/core";
+import { Place } from "src/app/models/place";
+import { Sector } from "src/app/models/sector";
+import { PlaceService } from "src/app/_services/place.service";
+import { SectorService } from "src/app/_services/sector.service";
 
 @Component({
   selector: "app-identificacao-da-nc",
@@ -6,7 +10,14 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./identificacao-da-nc.component.css"],
 })
 export class IdentificacaoDaNcComponent implements OnInit {
-  constructor() {}
+  constructor(
+    public sectorService: SectorService,
+    public placeService: PlaceService
+  ) {}
+
+  sectors!: Sector[];
+  places!: Place[];
+
   public tiposNc: Array<String> = [
     "Auditoria Interna",
     "Auditoria Externa",
@@ -33,5 +44,15 @@ export class IdentificacaoDaNcComponent implements OnInit {
   public dataAbertura = "";
   public dataFechamento = "";
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.sectorService.get().subscribe((data: any) => {
+      this.sectors = data.sectors;
+      console.log(this.sectors);
+    });
+
+    this.placeService.get().subscribe((data: any) => {
+      this.places = data.places;
+      console.log(this.places);
+    });
+  }
 }

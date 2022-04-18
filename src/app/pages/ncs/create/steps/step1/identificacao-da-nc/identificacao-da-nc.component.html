@@ -31,8 +31,13 @@
       <label for="">Local ou Setor Afetado</label>
       <select [(ngModel)]="tiposLocalItem">
         <option value="" disabled selected hidden>Selecione...</option>
-        <option *ngFor="let tiposLocalSetor of tiposLocalSetor">
-          {{ tiposLocalSetor }}
+        <option class="option-titulo" disabled>Setor</option>
+        <option *ngFor="let item of sectors">
+          {{ item.name }}
+        </option>
+        <option class="option-titulo" disabled>Local</option>
+        <option *ngFor="let item of places">
+          {{ item.name }}
         </option>
       </select>
     </div>

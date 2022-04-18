@@ -245,8 +245,8 @@ color: rgb(103, 103, 103);
 
 .p-autocomplete{
 width: 850px;
-border-bottom-left-radius: 5px;
-border-top-left-radius: 5px;
+
+border-radius: 5px;
 border: 2px solid rgb(51, 51, 51);
 height: 38px;
 
