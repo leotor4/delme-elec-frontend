@@ -1,6 +1,6 @@
 <div class="header">
   <div class="row m-0">
-    <div class="text-box col-8 p-0">
+    <div class="text-box col-12 p-0 col-lg-8">
       <h3>Produto</h3>
       <p>
         Preencha os campos abaixo para identificar um produto e confirme os
@@ -8,7 +8,7 @@
         cadastros.
       </p>
     </div>
-    <div class="button-box col-4">
+    <div class="button-box col-12 col-lg-4 mb-4 mb-lg-0">
       <span>
         <i class="pi pi-history"></i> ultima atualização: Há 3 minutos</span
       >
@@ -28,7 +28,7 @@
 </div>
 <div class="input-box pt-2">
   <div class="row m-0">
-    <div class="col-4 p-0 my-auto">
+    <div class="col-12 col-lg-4 my-auto pb-3 pb-lg-0">
       <div class="p-fluid autoComplete">
         <p-autoComplete
           [(ngModel)]="autoCompleteValue"
@@ -42,15 +42,15 @@
           <ng-template let-product pTemplate="item">
             <div class="autoComplete-item">
               <h4>{{ product.name }}</h4>
-              <span>{{ product.sap }}</span>
+              <span>{{ product.code }}</span>
               <p>{{ product.description }}</p>
             </div>
           </ng-template>
         </p-autoComplete>
       </div>
     </div>
-    <div class="col-8 d-flex">
-      <div class="d-flex flex-column mr-3 my-auto">
+    <div class="col-lg-8 d-flex col-12 flex-column flex-lg-row">
+      <div class="d-flex flex-column mr-lg-3 my-auto">
         <label for="amountNC">Quantidade de NC</label>
         <input
           name="amountNC"
@@ -60,7 +60,7 @@
           class="p-inputtext-sm"
         />
       </div>
-      <div class="d-flex flex-column my-auto">
+      <div class="d-flex flex-column my-auto mt-3">
         <label for="amountTotal">Quantidade Total</label>
         <input
           name="amountTotal"
@@ -70,7 +70,7 @@
           class="p-inputtext-sm"
         />
       </div>
-      <div class="d-flex flex-column pl-3">
+      <div class="d-flex flex-column pl-lg-3 pt-3 pt-lg-0 mb-3">
         <p-radioButton
           name="ncType"
           label="Não conformidade real"

@@ -1,5 +1,5 @@
 export class Product {
-  sap: string;
+  code: string;
   name: string;
   description: string;
 }
