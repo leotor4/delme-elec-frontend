@@ -16,6 +16,7 @@ export class IdentificacaoDaNcComponent implements OnInit {
   ) {}
 
   sectors!: Sector[];
+
   places!: Place[];
 
   public tiposNc: Array<String> = [
