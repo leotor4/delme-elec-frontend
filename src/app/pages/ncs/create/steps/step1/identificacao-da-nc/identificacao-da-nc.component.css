@@ -80,3 +80,7 @@ span > .p-inputtext:enabled:focus {
 .date-group {
   margin-top: 14px;
 }
+
+.option-titulo{
+  font-weight: bold;
+}

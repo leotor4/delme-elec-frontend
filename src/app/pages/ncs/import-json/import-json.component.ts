@@ -34,20 +34,23 @@ export class ImportJsonComponent implements OnInit {
       workbook.SheetNames.forEach((sheet) => {
         let data = XLSX.utils.sheet_to_json(workbook.Sheets[sheet]);
         let convertedJson = JSON.stringify(data, undefined, 4);
-        this.importService.post(convertedJson, type).subscribe(value => {
-          this.messageService.add({
-            severity: "success",
-            summary: `Arquivo importado com sucesso`,
-          });
-          },error => {
-          this.messageService.add({
-            severity: "error",
-            summary: `Erro ao importar arquivo`,
-          });
-        });
+        this.importService.post(convertedJson, type).subscribe(
+          (value) => {
+            this.importService.postUpdateTime().subscribe();
+            this.messageService.add({
+              severity: "success",
+              summary: `Arquivo importado com sucesso`,
+            });
+          },
+          (error) => {
+            this.messageService.add({
+              severity: "error",
+              summary: `Erro ao importar arquivo`,
+            });
+          }
+        );
       });
     };
-
   }
 
   convertFile(file: File) {}
@@ -59,6 +62,12 @@ export class ImportJsonComponent implements OnInit {
           "./assets/files/exemplo_fornecedor.xlsx",
           "exemplo_fornecedor.xlsx"
         );
+        break;
+      case "local":
+        fs.saveAs("./assets/files/exemplo_cliente.xlsx", "exemplo_local.xlsx");
+        break;
+      case "setor":
+        fs.saveAs("./assets/files/exemplo_cliente.xlsx", "exemplo_setor.xlsx");
         break;
       case "clientes":
         fs.saveAs(
