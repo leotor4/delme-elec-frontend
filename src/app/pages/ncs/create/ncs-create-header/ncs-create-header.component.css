@@ -16,3 +16,8 @@
   font-size: 24px;
   white-space: nowrap;
 }
+@media screen and (max-width: 1000px) {
+  .text-box {
+    display: none;
+  }
+}

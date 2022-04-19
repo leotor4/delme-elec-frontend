@@ -1,93 +1,16 @@
-<div class="header d-flex justify-content-between">
-  <div class="text-box">
-    <h3>Produto</h3>
-    <p>
-      Preencha os campos abaixo para identificar um produto e confirme os dados
-      abaixo. Caso não encontre um produto. Atualize a base de cadastros.
-    </p>
+<app-product
+  (hasSelectedProductEvent)="getHasSelectedProduct($event)"
+></app-product>
+
+<hr class="mb-5 mt-5" />
+
+<div class="row points-box">
+  <div class="col">
+    <app-checkpoint [hasProduct]="hasSelectedProduct"></app-checkpoint>
   </div>
-  <div class="button-box">
-    <span> <i class="pi pi-history"></i> ultima atualização: Há 3 minutos</span>
-    <button
-      pButton
-      pRipple
-      type="button"
-      class="p-button-secondary"
-      label="Atualizar Cadastros"
-      icon="pi pi-download"
-      iconPos="right"
-    ></button>
-  </div>
-</div>
-<div class="content">
-  <div class="input-box pt-4">
-    <div class="row m-0">
-      <div class="col-6 search-box">
-        <div class="search-input">
-          <i class="pi pi-search"></i>
-          <input
-            type="text"
-            pInputText
-            placeholder="Busque por código SAP ou razão social..."
-          />
-          <button
-            type="button"
-            pButton
-            pRipple
-            label="Search"
-            iconPos="right"
-            icon="pi pi-search"
-            class="p-button-secondary"
-          ></button>
-        </div>
-      </div>
-      <div class="col-6 d-flex align-items-end">
-        <div class="d-flex flex-column mr-3">
-          <label for="amountNC">Quantidade de NC</label>
-          <input
-            name="amountNC"
-            type="text"
-            pInputText
-            placeholder="Digite"
-            class="p-inputtext-sm"
-          />
-        </div>
-        <div class="d-flex flex-column">
-          <label for="amountTotal">Quantidade Total</label>
-          <input
-            name="amountTotal"
-            type="text"
-            pInputText
-            placeholder="Digite"
-            class="p-inputtext-sm"
-          />
-        </div>
-        <div class="d-flex flex-column pl-3 xs">
-          <p-radioButton
-            name="ncType"
-            label="Não conformidade real"
-            value="val1"
-            [(ngModel)]="selectedValue"
-          ></p-radioButton>
-          <p-radioButton
-            name="ncType"
-            label="Não conformidade Potencial / Oportunidade de Melhoria"
-            class="pt-2"
-            value="val2"
-            [(ngModel)]="selectedValue"
-          ></p-radioButton>
-        </div>
-      </div>
-    </div>
-  </div>
-  <app-product></app-product>
-  <hr class="mb-5 mt-5" />
-  <div class="row">
-    <div class="col">
-      <app-checkpoint></app-checkpoint>
-    </div>
-    <div class="col">
-      <app-rejection-point></app-rejection-point>
-    </div>
+  <div class="col mt-4 mt-xxl-0">
+    <app-rejection-point
+      [hasProduct]="hasSelectedProduct"
+    ></app-rejection-point>
   </div>
 </div>
