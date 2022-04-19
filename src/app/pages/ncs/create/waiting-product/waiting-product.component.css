@@ -18,3 +18,11 @@ h4 {
   font-size: 20px;
   line-height: 33px;
 }
+@media (max-width: 600px) {
+  .image-box img {
+    padding: 10px;
+  }
+  .image-box img {
+    width: 100%;
+  }
+}
