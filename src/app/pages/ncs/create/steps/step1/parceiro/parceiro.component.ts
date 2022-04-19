@@ -5,6 +5,7 @@ import { Provider } from "src/app/models/provider";
 import { Sector } from "src/app/models/sector";
 import { UpdateDate } from "src/app/models/update-date";
 import { CustomerService } from "src/app/_services/customer.service";
+import { NonComplianceService } from "src/app/_services/non-compliance.service";
 import { ProviderService } from "src/app/_services/provider.service";
 import { SectorService } from "src/app/_services/sector.service";
 import { UpdateDateService } from "src/app/_services/update-date.service";
@@ -19,7 +20,8 @@ export class ParceiroComponent implements OnInit {
     public customerService: CustomerService,
     public providerService: ProviderService,
     public updateService: UpdateDateService,
-    public sectorService: SectorService
+    public sectorService: SectorService,
+    public nonComplicanceService: NonComplianceService
   ) {}
 
   customers: Customer[];
@@ -29,14 +31,13 @@ export class ParceiroComponent implements OnInit {
   results: any[];
 
   public pesquisar: any;
-  public selected: any;
+  public selected: any = this.nonComplicanceService.selected;
 
   public tiposParceiro: Array<String> = ["Interno", "Cliente", "Fornecedor"];
   public isSelected = false;
   public parceiroIdent = false;
   public display = false;
 
-  public tiposParceiroItem = "";
   public editarNomeItem = "";
   public editarEmailItem = "";
   public editarTelefoneItem = "";
@@ -45,19 +46,19 @@ export class ParceiroComponent implements OnInit {
     var filtro = event.query;
     this.results = [];
 
-    if (this.tiposParceiroItem == "Cliente") {
+    if (this.nonComplicanceService.tiposParceiroItem == "Cliente") {
       this.customers.forEach((element) => {
         if (this.verificarExistencia(element, filtro)) {
           this.results.push(element);
         }
       });
-    } else if (this.tiposParceiroItem == "Fornecedor") {
+    } else if (this.nonComplicanceService.tiposParceiroItem == "Fornecedor") {
       this.providers.forEach((element) => {
         if (this.verificarExistencia(element, filtro)) {
           this.results.push(element);
         }
       });
-    } else if (this.tiposParceiroItem == "Interno") {
+    } else if (this.nonComplicanceService.tiposParceiroItem == "Interno") {
       this.sectors.forEach((element) => {
         if (this.verificarExistenciaInterno(element, filtro)) {
           this.results.push(element);
@@ -68,9 +69,16 @@ export class ParceiroComponent implements OnInit {
 
   returnUpdateTime() {
     if (this.updates) {
-      let date = this.updates.update_time;
-
-      return date;
+      let dateAtt = new Date(this.updates.update_time);
+      let dateNow = new Date();
+      var Difference_In_Time = dateNow.getTime() - dateAtt.getTime();
+      var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+      var round_day = Math.floor(Difference_In_Days);
+      if (round_day < 1) {
+        return "Hoje";
+      } else {
+        return "Há " + round_day + " dias.";
+      }
     }
     return "";
   }
@@ -109,7 +117,7 @@ export class ParceiroComponent implements OnInit {
   }
 
   isInterno(): boolean {
-    if (this.tiposParceiroItem == "Interno") {
+    if (this.nonComplicanceService.tiposParceiroItem == "Interno") {
       return true;
     } else {
       return false;
@@ -129,6 +137,13 @@ export class ParceiroComponent implements OnInit {
     this.isSelected = false;
   }
 
+  onChangeAutoComplete() {
+    console.log(this.pesquisar);
+    if (this.pesquisar == "") {
+      this.isSelected = false;
+    }
+  }
+
   showDialog() {
     this.display = true;
   }
@@ -140,11 +155,11 @@ export class ParceiroComponent implements OnInit {
     this.selected.responsible_name = this.editarNomeItem;
     this.selected.responsible_phone = this.editarTelefoneItem;
     this.selected.responsible_email = this.editarEmailItem;
-    if (this.tiposParceiroItem == "Cliente") {
+    if (this.nonComplicanceService.tiposParceiroItem == "Cliente") {
       this.customerService.put(this.selected).subscribe((data: any) => {
         this.customerService.get();
       });
-    } else if (this.tiposParceiroItem == "Fornecedor") {
+    } else if (this.nonComplicanceService.tiposParceiroItem == "Fornecedor") {
       this.providerService.put(this.selected).subscribe((data: any) => {
         this.providerService.get();
       });

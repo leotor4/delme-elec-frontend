@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Place } from "src/app/models/place";
 import { Sector } from "src/app/models/sector";
+import { NonComplianceService } from "src/app/_services/non-compliance.service";
 import { PlaceService } from "src/app/_services/place.service";
 import { SectorService } from "src/app/_services/sector.service";
 
@@ -12,7 +13,8 @@ import { SectorService } from "src/app/_services/sector.service";
 export class IdentificacaoDaNcComponent implements OnInit {
   constructor(
     public sectorService: SectorService,
-    public placeService: PlaceService
+    public placeService: PlaceService,
+    public nonComplicanceService: NonComplianceService
   ) {}
 
   sectors!: Sector[];
@@ -38,12 +40,6 @@ export class IdentificacaoDaNcComponent implements OnInit {
     "setor 2",
     "setor 3",
   ];
-
-  public tiposNcItem = "";
-  public tiposAuditoriaItem = "";
-  public tiposLocalItem = "";
-  public dataAbertura = "";
-  public dataFechamento = "";
 
   ngOnInit(): void {
     this.sectorService.get().subscribe((data: any) => {

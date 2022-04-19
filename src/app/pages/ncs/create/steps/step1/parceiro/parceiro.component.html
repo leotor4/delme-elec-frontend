@@ -58,7 +58,10 @@
 <div class="row row-search">
   <div class="dropdown col">
     <label>Tipo de Parceiro</label>
-    <select [(ngModel)]="tiposParceiroItem" (change)="onChange()">
+    <select
+      [(ngModel)]="nonComplicanceService.tiposParceiroItem"
+      (change)="onChange()"
+    >
       <option value="" disabled selected hidden>Selecione...</option>
       <option *ngFor="let tiposAuditoria of tiposParceiro">
         {{ tiposAuditoria }}
@@ -73,6 +76,7 @@
         [suggestions]="results"
         (completeMethod)="search($event)"
         (onSelect)="onSelected()"
+        (ngModelChange)="onChangeAutoComplete()"
         field="corporate_name"
         [style]="{ width: '100%' }"
         [inputStyle]="{ width: '100%' }"
