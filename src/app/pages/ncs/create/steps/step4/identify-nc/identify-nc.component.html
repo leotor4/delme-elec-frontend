@@ -1,61 +1,66 @@
-<div class="div-ident-parceiro d-flex mt-3 flex-column flex-lg-row">
+<div class="div-ident-parceiro d-flex mt-3 flex-column flex-lg-row" xmlns="http://www.w3.org/1999/html">
   <div class="div-ident-parceiro">
     <h2>
       <i class="bi bi-card-text"></i>
       Dados de Identificação
     </h2>
     <div class="d-flex justify-content-between flex-column flex-lg-row">
-      <div class="">
+      <div class="contato-info d-flex flex-row">
+        <i class="bi bi-ticket-perforated mr-1"></i>
         <div>
-          <i class="bi bi-ticket-perforated"></i>
           <span class="info-titulo">Número</span>
+          <br />
+          <span class="info-dados">544554</span>
         </div>
-        <p class="info-dados">544554</p>
       </div>
-      <div class="">
+      <div class="contato-info d-flex flex-row">
+        <i class="bi bi-calendar-week mr-1"></i>
         <div>
-          <i class="bi bi-calendar-week"></i>
           <span class="info-titulo">Data de Abertura</span>
+          <br />
+          <span class="info-dados">26/04/2022</span>
         </div>
-        <p class="info-dados">26/04/2022</p>
       </div>
-      <div class="">
+      <div class="contato-info d-flex flex-row">
+        <i class="bi bi-calendar-week mr-1"></i>
         <div>
-          <i class="bi bi-calendar-week"></i>
           <span class="info-titulo">Data de Fechamento</span>
+          <br/>
+          <span class="info-dados">26/04/2022</span>
         </div>
-        <p class="info-dados">26/04/2022</p>
       </div>
     </div>
   </div>
   <p-divider class="test1" layout="vertical"></p-divider>
-  <p-divider class="test2" layout="horizontal"></p-divider>
   <div class="div-ident-parceiro">
     <h2>
-      <i class="bi bi-people"></i>
+      <i class="bi bi-people mr-1"></i>
       Dados de Emissão
     </h2>
-    <div class="d-flex flex-column flex-lg-row">
-      <div class="col-3">
+    <div class="d-flex justify-content-between flex-column flex-lg-row">
+      <div class="contato-info d-flex flex-row">
+        <i class="bi bi-person-circle mr-1"></i>
         <div>
-          <i class="bi bi-person-circle"></i>
           <span class="info-titulo">Emissor</span>
+          <br/>
+          <span class="info-dados">Elias</span>
         </div>
-        <p class="info-dados">Elias</p>
       </div>
-      <div class="col-4">
+      <div class="contato-info d-flex flex-row">
+        <i class="bi bi-person-circle mr-1"></i>
         <div>
-          <i class="bi bi-person-circle"></i>
           <span class="info-titulo">Responsável</span>
+          <br/>
+          <span class="info-dados">Janaína</span>
         </div>
-        <p class="info-dados">Janaína</p>
       </div>
-      <div class="col-5">
+      <div class="contato-info d-flex flex-row">
+        <i class="bi bi-geo-alt mr-1"></i>
         <div>
-          <i class="bi bi-geo-alt"></i>
           <span class="info-titulo">Departamento</span>
+          <br>
+          <p class="info-dados">Rh</p>
         </div>
-        <p class="info-dados">Rh</p>
       </div>
     </div>
   </div>
@@ -63,7 +68,7 @@
 <div class="div-ident-parceiro mt-3">
   <h1 class="titulo-parceiro">Dados do Parceiro</h1>
   <div class="d-flex">
-    <div class="row col-12 col-lg-6">
+    <div class="item">
       <div class="dados-parceiro razao-social">
         <div class="d-flex">
           <h2 class="mr-2">Razão Social</h2>
@@ -80,7 +85,7 @@
         </p>
       </div>
     </div>
-    <div class="row col-12 col-lg-6">
+    <div class="item">
       <div class="dados-parceiro">
         <div class="dados-contato">
           <h1>Dados do Contato</h1>
@@ -114,8 +119,8 @@
     </div>
   </div>
 </div>
-<div class="div-ident-parceiro d-flex mt-3">
-  <div class="dados-parceiro razao-social">
+<div class="div-ident-parceiro d-flex flex-column flex-lg-row mt-3">
+  <div class="dados-parceiro razao-social item ">
     <h2 class="mr-2">
       <i class="bi bi-file-earmark-text"></i>
       Descrição da Não Conformidade
@@ -128,21 +133,17 @@
     </p>
   </div>
   <p-divider layout="vertical"></p-divider>
-  <div class="dados-parceiro razao-social">
+  <div class="dados-parceiro razao-social item">
     <h2 class="mr-2">
       <i class="pi pi-camera"></i>
       Evidencias fotográficas
     </h2>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aperiam
-      aspernatur beatae consequatur deserunt dolorem est fuga incidunt iste nam
-      officia placeat quam quidem quisquam reprehenderit, ullam vel veritatis,
-      vero.
-    </p>
+    <p-carousel>
+    </p-carousel>
   </div>
 </div>
-<div class="div-ident-parceiro d-flex mt-3">
-  <div class="dados-parceiro razao-social">
+<div class="div-ident-parceiro d-flex  mt-3">
+  <div class="dados-parceiro razao-social item">
     <h2 class="mr-2">
       <i class="bi bi-geo"></i>
       Descrição de Ações Imediatas
@@ -155,16 +156,12 @@
     </p>
   </div>
   <p-divider layout="vertical"></p-divider>
-  <div class="dados-parceiro razao-social">
+  <div class="dados-parceiro razao-social item">
     <h2 class="mr-2">
       <i class="pi pi-camera"></i>
       Evidencias fotográficas
     </h2>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aperiam
-      aspernatur beatae consequatur deserunt dolorem est fuga incidunt iste nam
-      officia placeat quam quidem quisquam reprehenderit, ullam vel veritatis,
-      vero.
-    </p>
+    <p-carousel>
+    </p-carousel>
   </div>
 </div>

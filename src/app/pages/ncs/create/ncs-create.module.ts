@@ -40,8 +40,8 @@ import { ChipModule } from "primeng/chip";
 import { StakeholdersComponent } from "./steps/step4/stakeholders/stakeholders.component";
 import { ProductsAndPointsComponent } from "./steps/step4/products-and-points/products-and-points.component";
 import { IdentifyNCComponent } from "./steps/step4/identify-nc/identify-nc.component";
-
 import { ProductInfoComponent } from "./steps/step2/product/product-info/product-info.component";
+import {CarouselModule} from "primeng/carousel";
 
 @NgModule({
   declarations: [
@@ -86,6 +86,7 @@ import { ProductInfoComponent } from "./steps/step2/product/product-info/product
     CardModule,
     AccordionModule,
     ChipModule,
+    CarouselModule
   ],
   entryComponents: [ContactDialogComponent],
   providers: [MessageService, ConfirmationService],
