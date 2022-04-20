@@ -1,3 +1,4 @@
+<p-toast key="myKey1"></p-toast>
 <p-dialog [(visible)]="display">
   <ng-template pTemplate="header">
     <div class="cabecalho">
@@ -42,8 +43,9 @@
   </div>
 
   <div class="col-2" id="div-att-col2">
-    <p>Última atualização: {{ returnUpdateTime() }}</p>
-
+    <p>
+      <i class="pi pi-history"> </i>Última atualização: {{ returnUpdateTime() }}
+    </p>
     <a
       href="http://localhost:4200/ncs/import"
       role="button"
@@ -72,7 +74,7 @@
   <div class="col-search col">
     <div class="d-flex justify-content-start" style="width: 100%">
       <p-autoComplete
-        [(ngModel)]="pesquisar"
+        [(ngModel)]="nonComplicanceService.pesquisar"
         [suggestions]="results"
         (completeMethod)="search($event)"
         (onSelect)="onSelected()"
@@ -117,18 +119,20 @@
   </div>
 </div>
 
-<div *ngIf="!isSelected"><app-waiting-product></app-waiting-product></div>
+<div *ngIf="!nonComplicanceService.isSelected">
+  <app-waiting-product></app-waiting-product>
+</div>
 
-<div class="div-ident-parceiro row" *ngIf="isSelected">
+<div class="div-ident-parceiro row" *ngIf="nonComplicanceService.isSelected">
   <h1 class="titulo-parceiro">Dados do Parceiro</h1>
   <div class="dados-parceiro col razao-social">
     <h1 *ngIf="!isInterno()">Razão Social</h1>
     <h1 *ngIf="isInterno()">Setor</h1>
     <p *ngIf="!isInterno()">
-      {{ selected.corporate_name }}
+      {{ nonComplicanceService.selected.corporate_name }}
     </p>
     <p *ngIf="isInterno()">
-      {{ selected.name }}
+      {{ nonComplicanceService.selected.name }}
     </p>
   </div>
   <div class="dados-parceiro col">
@@ -150,7 +154,7 @@
           <span class="info-titulo">Nome</span>
           <br />
           <span class="info-dados" *ngIf="!isInterno()">{{
-            selected.responsible_name
+            nonComplicanceService.selected.responsible_name
           }}</span>
         </div>
       </div>
@@ -160,7 +164,7 @@
           <span class="info-titulo">Telefone</span>
           <br />
           <span class="info-dados" *ngIf="!isInterno()">{{
-            selected.responsible_phone
+            nonComplicanceService.selected.responsible_phone
           }}</span>
         </div>
       </div>
@@ -170,7 +174,7 @@
           <span class="info-titulo">E-mail</span>
           <br />
           <span class="info-dados" *ngIf="!isInterno()">{{
-            selected.responsible_email
+            nonComplicanceService.selected.responsible_email
           }}</span>
         </div>
       </div>

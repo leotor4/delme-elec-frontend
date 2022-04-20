@@ -32,9 +32,8 @@ import { ConfirmDialogModule } from "primeng/confirmdialog";
 import { DialogModule } from "primeng/dialog";
 import { ToastModule } from "primeng/toast";
 import { CardModule } from "primeng/card";
-import { ContactDialogComponent } from './steps/step3/contact-dialog/contact-dialog.component';
-import {DynamicDialogModule} from "primeng/dynamicdialog";
-
+import { ContactDialogComponent } from "./steps/step3/contact-dialog/contact-dialog.component";
+import { DynamicDialogModule } from "primeng/dynamicdialog";
 
 @NgModule({
   declarations: [
@@ -73,9 +72,7 @@ import {DynamicDialogModule} from "primeng/dynamicdialog";
     ToastModule,
     CardModule,
   ],
-  entryComponents: [
-    ContactDialogComponent
-  ],
-  providers: [MessageService, ConfirmationService]
+  entryComponents: [ContactDialogComponent],
+  providers: [MessageService, ConfirmationService],
 })
 export class NcsCreateModule {}

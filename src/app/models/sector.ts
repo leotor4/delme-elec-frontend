@@ -1,5 +1,5 @@
 export class Sector {
   id: any;
-  code?: String;
+  codigo_pn?: String;
   name?: String;
 }
