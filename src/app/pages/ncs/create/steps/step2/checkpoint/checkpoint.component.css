@@ -49,24 +49,17 @@
 
 .white-background p {
   position: absolute;
-  margin-top: 100px;
+  margin-top: 110px;
   font-size: 12px;
-  color: rgb(89, 89, 89);
   color: gray;
+  flex-wrap: wrap;
 }
-
 .white-background-files button {
   background-color: white;
   border: none;
   width: 40px;
   font-size: 14px;
   outline: none;
-}
-
-.white-background-files p {
-  font-size: 12px;
-  color: rgb(89, 89, 89);
-  color: gray;
 }
 
 .white-background i {
@@ -92,4 +85,9 @@ label {
   font-size: 13px;
   font-weight: bold;
   margin-bottom: 2px;
+}
+@media (max-width: 500px) {
+  .white-background p {
+    width: 220px;
+  }
 }

@@ -43,3 +43,7 @@
   position: relative;
   top: -12px;
 }
+.update-box {
+  display: flex;
+  flex-direction: column;
+}
