@@ -34,6 +34,12 @@ import { ToastModule } from "primeng/toast";
 import { CardModule } from "primeng/card";
 import { ContactDialogComponent } from "./steps/step3/contact-dialog/contact-dialog.component";
 import { DynamicDialogModule } from "primeng/dynamicdialog";
+import { RevisarInfoComponent } from "./steps/step4/revisar-info.component";
+import { AccordionModule } from "primeng/accordion";
+import { ChipModule } from "primeng/chip";
+import { StakeholdersComponent } from "./steps/step4/stakeholders/stakeholders.component";
+import { ProductsAndPointsComponent } from "./steps/step4/products-and-points/products-and-points.component";
+import { IdentifyNCComponent } from "./steps/step4/identify-nc/identify-nc.component";
 
 import { ProductInfoComponent } from "./steps/step2/product/product-info/product-info.component";
 
@@ -54,6 +60,10 @@ import { ProductInfoComponent } from "./steps/step2/product/product-info/product
     WaitingProductComponent,
     ContactDialogComponent,
     ProductInfoComponent,
+    RevisarInfoComponent,
+    StakeholdersComponent,
+    ProductsAndPointsComponent,
+    IdentifyNCComponent,
   ],
   imports: [
     CommonModule,
@@ -74,6 +84,8 @@ import { ProductInfoComponent } from "./steps/step2/product/product-info/product
     DynamicDialogModule,
     ToastModule,
     CardModule,
+    AccordionModule,
+    ChipModule,
   ],
   entryComponents: [ContactDialogComponent],
   providers: [MessageService, ConfirmationService],
