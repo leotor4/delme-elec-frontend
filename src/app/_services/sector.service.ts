@@ -13,4 +13,8 @@ export class SectorService {
   get(): Observable<Sector[]> {
     return this.http.get<Sector[]>(this.apiUrl);
   }
+
+  put(sector: Sector): Observable<Sector> {
+    return this.http.put<Sector>(this.apiUrl + "/" + sector.id, sector);
+  }
 }

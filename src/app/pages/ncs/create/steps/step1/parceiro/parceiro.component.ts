@@ -1,4 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { MessageService } from "primeng/api";
+
 import { elementAt } from "rxjs";
 import { Customer } from "src/app/models/customer";
 import { Provider } from "src/app/models/provider";
@@ -21,7 +23,8 @@ export class ParceiroComponent implements OnInit {
     public providerService: ProviderService,
     public updateService: UpdateDateService,
     public sectorService: SectorService,
-    public nonComplicanceService: NonComplianceService
+    public nonComplicanceService: NonComplianceService,
+    private messageService: MessageService
   ) {}
 
   customers: Customer[];
@@ -30,11 +33,8 @@ export class ParceiroComponent implements OnInit {
   updates: UpdateDate;
   results: any[];
 
-  public pesquisar: any;
-  public selected: any = this.nonComplicanceService.selected;
-
   public tiposParceiro: Array<String> = ["Interno", "Cliente", "Fornecedor"];
-  public isSelected = false;
+
   public parceiroIdent = false;
   public display = false;
 
@@ -83,14 +83,6 @@ export class ParceiroComponent implements OnInit {
     return "";
   }
 
-  dataFormatada(data: Date) {
-    let dia = data.getDate().toString().padStart(2, "0");
-    let mes = (data.getMonth() + 1).toString().padStart(2, "0");
-    let ano = data.getFullYear();
-    console.log(dia + "/" + mes + "/" + ano);
-    return dia + "/" + mes + "/" + ano;
-  }
-
   verificarExistencia(element: any, filtro: String): boolean {
     if (
       element.corporate_name?.toUpperCase().includes(filtro.toUpperCase()) ||
@@ -125,22 +117,24 @@ export class ParceiroComponent implements OnInit {
   }
 
   onSelected() {
-    this.selected = this.pesquisar;
-    this.editarNomeItem = this.selected.responsible_name;
-    this.editarTelefoneItem = this.selected.responsible_phone;
-    this.editarEmailItem = this.selected.responsible_email;
-    this.isSelected = true;
+    this.nonComplicanceService.selected = this.nonComplicanceService.pesquisar;
+    this.editarNomeItem = this.nonComplicanceService.selected.responsible_name;
+    this.editarTelefoneItem =
+      this.nonComplicanceService.selected.responsible_phone;
+    this.editarEmailItem =
+      this.nonComplicanceService.selected.responsible_email;
+    this.nonComplicanceService.isSelected = true;
   }
 
   onChange() {
-    this.pesquisar = "";
-    this.isSelected = false;
+    this.nonComplicanceService.pesquisar = "";
+    this.nonComplicanceService.isSelected = false;
   }
 
   onChangeAutoComplete() {
-    console.log(this.pesquisar);
-    if (this.pesquisar == "") {
-      this.isSelected = false;
+    console.log(this.nonComplicanceService.pesquisar);
+    if (this.nonComplicanceService.pesquisar == "") {
+      this.nonComplicanceService.isSelected = false;
     }
   }
 
@@ -152,18 +146,67 @@ export class ParceiroComponent implements OnInit {
   }
 
   editar() {
-    this.selected.responsible_name = this.editarNomeItem;
-    this.selected.responsible_phone = this.editarTelefoneItem;
-    this.selected.responsible_email = this.editarEmailItem;
+    this.nonComplicanceService.selected.responsible_name = this.editarNomeItem;
+    this.nonComplicanceService.selected.responsible_phone =
+      this.editarTelefoneItem;
+    this.nonComplicanceService.selected.responsible_email =
+      this.editarEmailItem;
+
     if (this.nonComplicanceService.tiposParceiroItem == "Cliente") {
-      this.customerService.put(this.selected).subscribe((data: any) => {
-        this.customerService.get();
-      });
+      this.customerService.put(this.nonComplicanceService.selected).subscribe(
+        (value) => {
+          this.sucess();
+          this.customerService.get().subscribe((data: any) => {
+            this.customers = data.customers;
+          });
+        },
+        (err) => {
+          this.fail();
+          this.customerService.get().subscribe((data: any) => {
+            this.customers = data.customers;
+          });
+        }
+      );
     } else if (this.nonComplicanceService.tiposParceiroItem == "Fornecedor") {
-      this.providerService.put(this.selected).subscribe((data: any) => {
-        this.providerService.get();
-      });
+      this.providerService.put(this.nonComplicanceService.selected).subscribe(
+        (value) => {
+          this.sucess();
+          this.providerService.get().subscribe((data: any) => {
+            this.providers = data.providers;
+          });
+        },
+        (err) => {
+          this.providerService.get().subscribe((data: any) => {
+            this.providers = data.providers;
+          });
+          this.fail();
+        }
+      );
     }
+  }
+
+  sucess() {
+    this.messageService.add({
+      key: "myKey1",
+      severity: "success",
+      summary: "Dados editados com sucesso.",
+      life: 3000,
+    });
+    this.nonComplicanceService.isSelected = false;
+    this.nonComplicanceService.pesquisar = "";
+    this.hideDialog();
+  }
+
+  fail() {
+    this.messageService.add({
+      key: "myKey1",
+      severity: "error",
+      summary: "Houve um problema ao editar os dados.",
+      life: 3000,
+    });
+    this.nonComplicanceService.pesquisar = "";
+    this.nonComplicanceService.isSelected = false;
+    this.hideDialog();
   }
 
   ngOnInit(): void {

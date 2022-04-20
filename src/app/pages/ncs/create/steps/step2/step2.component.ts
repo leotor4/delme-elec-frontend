@@ -1,9 +1,7 @@
 import { Component, OnInit } from "@angular/core";
-type product = {
-  id: number;
-  name: string;
-  description: string;
-};
+import { UpdateDate } from "src/app/models/update-date";
+import { UpdateDateService } from "src/app/_services/update-date.service";
+
 @Component({
   selector: "app-step2",
   templateUrl: "./step2.component.html",

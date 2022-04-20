@@ -108,6 +108,12 @@ min-width: 200px;
   padding-top: 7px;
 }
 
+#div-att-col2 i {
+  margin-right: 3px;
+  font-size: 12px;
+  
+}
+
 #search-input {
   outline: none;
   border: 2px solid rgb(51, 51, 51);

@@ -1,5 +1,5 @@
 export interface Place {
   id: any;
-  code?: String;
+  codigo_pn?: String;
   name?: String;
 }

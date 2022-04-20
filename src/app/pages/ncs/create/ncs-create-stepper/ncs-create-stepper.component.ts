@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { MenuItem } from "primeng/api";
+import { NonComplianceService } from "src/app/_services/non-compliance.service";
 
 @Component({
   selector: "app-ncs-create-stepper",
@@ -10,7 +11,23 @@ export class NcsCreateStepperComponent implements OnInit {
   items: MenuItem[];
   stepPosition: number = 1;
   lastStepLabel = "Avançar";
-  constructor() {}
+  constructor(public nonComplianceService: NonComplianceService) {}
+
+  disableButton(): boolean {
+    switch (this.stepPosition) {
+      case 0:
+        return false;
+        return this.nonComplianceService.avancarPasso1();
+      case 1:
+        return false;
+      case 2:
+        return false;
+      case 3:
+        return false;
+      default:
+        return false;
+    }
+  }
 
   ngOnInit() {
     this.items = [

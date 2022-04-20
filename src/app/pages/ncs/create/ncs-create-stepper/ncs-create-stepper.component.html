@@ -27,6 +27,7 @@
           type="button"
           (click)="nextStep()"
           [label]="getNextPageBtnLabel()"
+          [disabled]="disableButton()"
           class="p-button-secondary"
           iconPos="right"
           [icon]="getNextPageBtnIcon()"

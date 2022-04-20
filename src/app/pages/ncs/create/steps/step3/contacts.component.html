@@ -18,7 +18,7 @@
 </div>
 
 <div class="card">
-  <p-table [value]="contactsList">
+  <p-table [value]="nonComplianceService.contactsList">
     <ng-template pTemplate="header">
       <tr>
         <th>Nome</th>
@@ -32,7 +32,7 @@
         <td>{{ contact.name }}</td>
         <td>{{ contact.email }}</td>
         <td>{{ contact.type }}</td>
-        <td *ngIf="i>=4">
+        <td *ngIf="i >= 4">
           <button
             pButton
             type="button"
@@ -53,11 +53,7 @@
   </p-table>
 </div>
 
-<p-dialog
-  [(visible)]="addContactsDialog"
-  [modal]="true"
-  styleClass="p-fluid"
->
+<p-dialog [(visible)]="addContactsDialog" [modal]="true" styleClass="p-fluid">
   <ng-template pTemplate="header">
     <div>
       <h2>Adicionar outros contatos</h2>
@@ -99,9 +95,9 @@
         </p-autoComplete>
       </div>
       <button
-              type="button"
-              class="btn btn-dark col-3"
-              (click)="createNewContact()"
+        type="button"
+        class="btn btn-dark col-3"
+        (click)="createNewContact()"
       >
         Criar Contato <i class="pi pi-user-plus"></i>
       </button>
@@ -142,17 +138,17 @@
   <ng-template pTemplate="footer">
     <div class="d-flex justify-content-end">
       <button
-              type="button"
-              class="btn btn-outline-dark"
-              (click)="hideAddContacts()"
+        type="button"
+        class="btn btn-outline-dark"
+        (click)="hideAddContacts()"
       >
         Cancelar
       </button>
       <button
-              type="button"
-              class="btn btn-dark"
-              [disabled]="selectedContacts.length==0"
-              (click)="saveSelection()"
+        type="button"
+        class="btn btn-dark"
+        [disabled]="selectedContacts.length == 0"
+        (click)="saveSelection()"
       >
         Adicionar Contatos <i class="pi pi-plus"></i>
       </button>
@@ -162,18 +158,10 @@
 
 <p-confirmDialog #cd [style]="{ width: '50vw' }">
   <ng-template pTemplate="footer">
-    <button
-            type="button"
-            class="btn btn-outline-dark"
-            (click)="cd.reject()"
-    >
+    <button type="button" class="btn btn-outline-dark" (click)="cd.reject()">
       Não, cancelar
     </button>
-    <button
-            type="button"
-            class="btn btn-dark"
-            (click)="cd.accept()"
-    >
+    <button type="button" class="btn btn-dark" (click)="cd.accept()">
       Sim, excluir contato
     </button>
   </ng-template>
