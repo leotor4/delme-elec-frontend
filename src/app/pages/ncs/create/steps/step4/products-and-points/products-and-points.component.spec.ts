@@ -1,16 +1,15 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ProductsAndPointsComponent } from './products-and-points.component';
+import { ProductsAndPointsComponent } from "./products-and-points.component";
 
-describe('ProductsAndPointsComponent', () => {
+describe("ProductsAndPointsComponent", () => {
   let component: ProductsAndPointsComponent;
   let fixture: ComponentFixture<ProductsAndPointsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProductsAndPointsComponent ]
-    })
-    .compileComponents();
+      declarations: [ProductsAndPointsComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('ProductsAndPointsComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

@@ -1,23 +1,19 @@
 h2 {
-    font-size: 28px;
-}
-
-.cabecalho {
-    min-width: 400px;
+  font-size: 28px;
 }
 
 .cabecalho h1 {
-    font-size: 25px;
-    font-weight: 500;
-    margin-bottom: 0px;
-    margin-top: 0px;
+  font-size: 25px;
+  font-weight: 500;
+  margin-bottom: 0px;
+  margin-top: 0px;
 }
 
 .cabecalho p {
-    font-size: 15px;
-    color: gray;
+  font-size: 15px;
+  color: gray;
 }
 
-:host /deep/ .p-accordion .p-accordion-header:hover a{
-    text-decoration: none ;
+:host /deep/ .p-accordion .p-accordion-header:hover a {
+  text-decoration: none;
 }

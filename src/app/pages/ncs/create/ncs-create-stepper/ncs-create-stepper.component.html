@@ -1,22 +1,24 @@
 <div class="stepper-content">
   <div class="stepper-buttons">
-    <div class="col-2 p-0">
-      <button type="button"
-              class="btn btn-dark btn-sm"
-              (click)="backStep()"
-              [disabled]="isFirstStep()">
+    <div class="p-0">
+      <button
+        type="button"
+        class="btn btn-dark btn-sm"
+        (click)="backStep()"
+        [disabled]="isFirstStep()"
+      >
         <i class="pi pi-arrow-left"></i>
         Voltar
       </button>
     </div>
-    <div class="col-8 stepper">
+    <div class="stepper">
       <p-steps
         [model]="items"
         [readonly]="true"
         [activeIndex]="stepPosition"
       ></p-steps>
     </div>
-    <div class="col-2 d-flex justify-content-end p-0">
+    <div class="d-flex justify-content-end p-0 last-button">
       <div>
         <button
           type="button"
@@ -24,7 +26,7 @@
           [disabled]="disableButton()"
           class="btn btn-dark btn-sm"
         >
-          {{getNextPageBtnLabel()}}
+          {{ getNextPageBtnLabel() }}
           <i [class]="getNextPageBtnIcon()"></i>
         </button>
       </div>

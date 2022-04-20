@@ -1,17 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-step4',
-  templateUrl: './revisar-info.component.html',
-  styleUrls: ['./revisar-info.component.css']
+  selector: "app-step4",
+  templateUrl: "./revisar-info.component.html",
+  styleUrls: ["./revisar-info.component.css"],
 })
 export class RevisarInfoComponent implements OnInit {
   ncID = 202227353;
   isAllOpen = true;
+  unselectedClass = "btn btn-outline-dark";
+  selectedClass = "btn btn-dark";
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }
