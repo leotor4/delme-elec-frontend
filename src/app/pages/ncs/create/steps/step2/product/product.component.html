@@ -14,15 +14,10 @@
           <i class="pi pi-history"></i> ultima atualização: Há 3 minutos</span
         >
         <a href="ncs/import" class="text-decoration-none">
-          <button
-            pButton
-            pRipple
-            type="button"
-            class="p-button-secondary"
-            label="Atualizar Cadastros"
-            icon="pi pi-download"
-            iconPos="right"
-          ></button>
+          <button type="button" class="btn btn-dark">
+            Atualizar Cadastros
+            <i class="pi pi-download"></i>
+          </button>
         </a>
       </div>
     </div>
@@ -36,6 +31,9 @@
           [(ngModel)]="autoCompleteValue"
           [suggestions]="results"
           (completeMethod)="getFilteredList($event)"
+          class="p-autocomplete"
+          [style]="{ width: '100%' }"
+          [inputStyle]="{ width: '100%' }"
           placeholder="Busque por nome, descrição ou código SAP"
           field="name"
           (onSelect)="checkProduct($event)"
@@ -59,7 +57,7 @@
           type="text"
           pInputText
           placeholder="Digite"
-          class="p-inputtext-sm"
+          class="p-inputtext-sm input"
         />
       </div>
       <div class="d-flex flex-column inputs-sm my-auto">
@@ -69,7 +67,7 @@
           type="text"
           pInputText
           placeholder="Digite"
-          class="p-inputtext-sm"
+          class="p-inputtext-sm input"
         />
       </div>
       <div class="d-flex flex-column pl-lg-3 pt-3 pt-lg-0 mb-lg-0 mb-2">
