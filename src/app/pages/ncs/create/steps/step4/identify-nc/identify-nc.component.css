@@ -88,6 +88,9 @@
   margin-top: 8px;
   height: 35px;
 }
+.item {
+  width: 100%;
+}
 .card-data {
   background-color: white;
   border-radius: 7px;
