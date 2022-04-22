@@ -43,7 +43,9 @@
       <app-step3></app-step3>
     </div>
     <div *ngIf="stepPosition === 3">
-      <app-step4></app-step4>
+      <app-step4
+        (changeStepPosition)="changeStepByPosition($event)"
+      ></app-step4>
     </div>
   </div>
 </div>

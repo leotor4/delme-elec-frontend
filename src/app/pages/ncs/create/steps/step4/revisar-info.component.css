@@ -17,3 +17,6 @@ h2 {
 :host /deep/ .p-accordion .p-accordion-header:hover a {
   text-decoration: none;
 }
+.accordion {
+  width: 100%;
+}

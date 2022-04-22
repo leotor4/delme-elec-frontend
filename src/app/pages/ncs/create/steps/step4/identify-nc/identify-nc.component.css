@@ -88,3 +88,8 @@
   margin-top: 8px;
   height: 35px;
 }
+.card-data {
+  background-color: white;
+  border-radius: 7px;
+  padding: 13px;
+}

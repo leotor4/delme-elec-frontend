@@ -36,10 +36,16 @@
 <p-accordion [multiple]="true">
   <p-accordionTab [selected]="isAllOpen">
     <ng-template pTemplate="header">
-      <p>
-        <i class="bi bi-file-earmark-text"></i>
-        Identificação da NC
-      </p>
+      <div class="d-flex justify-content-between accordion">
+        <p>
+          <i class="bi bi-file-earmark-text"></i>
+          Identificação da NC
+        </p>
+        <button class="btn btn-dark red" (click)="goToStepById(0)">
+          <i class="bi bi-pencil mr-1"></i>
+          Alterar
+        </button>
+      </div>
     </ng-template>
     <ng-template pTemplate="content">
       <app-identify-nc></app-identify-nc>
@@ -47,10 +53,16 @@
   </p-accordionTab>
   <p-accordionTab [selected]="isAllOpen">
     <ng-template pTemplate="header">
-      <p>
-        <i class="bi bi-box-seam"></i>
-        Produtos e Pontos
-      </p>
+      <div class="d-flex justify-content-between accordion">
+        <p>
+          <i class="bi bi-box-seam"></i>
+          Produtos e Pontos
+        </p>
+        <button class="btn btn-dark red" (click)="goToStepById(1)">
+          <i class="bi bi-pencil mr-1"></i>
+          Alterar
+        </button>
+      </div>
     </ng-template>
     <ng-template pTemplate="content">
       <app-products-and-points></app-products-and-points>
@@ -58,10 +70,16 @@
   </p-accordionTab>
   <p-accordionTab [selected]="isAllOpen">
     <ng-template pTemplate="header">
-      <p>
-        <i class="bi bi-envelope-plus"></i>
-        Partes Interessadas
-      </p>
+      <div class="d-flex justify-content-between accordion">
+        <p>
+          <i class="bi bi-file-earmark-text"></i>
+          Identificação da NC
+        </p>
+        <button class="btn btn-dark red" (click)="goToStepById(2)">
+          <i class="bi bi-pencil mr-1"></i>
+          Alterar
+        </button>
+      </div>
     </ng-template>
     <ng-template pTemplate="content">
       <app-stakeholders></app-stakeholders>

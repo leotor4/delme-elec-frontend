@@ -17,7 +17,7 @@ export class NcsCreateStepperComponent implements OnInit {
     switch (this.stepPosition) {
       case 0:
         return false;
-        return this.nonComplianceService.avancarPasso1();
+      // return this.nonComplianceService.avancarPasso1();
       case 1:
         return false;
       case 2:
@@ -58,5 +58,8 @@ export class NcsCreateStepperComponent implements OnInit {
     if (this.stepPosition <= 0) return;
     this.stepPosition--;
     this.isFirstStep();
+  }
+  changeStepByPosition(event: any) {
+    this.stepPosition = event;
   }
 }
