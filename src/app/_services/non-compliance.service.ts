@@ -1,10 +1,14 @@
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { Observable } from "rxjs/internal/Observable";
 import { Contact } from "../models/contact.model";
+import { Product } from "../models/product.model";
 
 @Injectable({
   providedIn: "root",
 })
 export class NonComplianceService {
+  apiUrl = "http://localhost:3333/noncompliances";
   //passo 1
   public tiposNcItem = "";
   public tiposAuditoriaItem = "";
@@ -23,6 +27,14 @@ export class NonComplianceService {
   //passo 2
   public quantNc = "";
   public quantTotal = "";
+  public fileProduct: any = [];
+  public selectedProduct: Product;
+  public radioButtonValue: string = "val1";
+  public textAreaRejectPoint: String = "";
+  public autoCompleteValue: string = "";
+  public controlNumber: string = "";
+
+  hasSelectedProduct: boolean;
 
   //passo 3
   contactsList: Contact[] = [];
@@ -43,5 +55,27 @@ export class NonComplianceService {
     );
   }
 
-  constructor() {}
+  avancarPasso2(): boolean {
+    return !(!!this.quantNc && !!this.quantTotal && !!this.selectedProduct);
+  }
+
+  uploadFiles(formData: any) {
+    for (var i = 0; i < this.fileNc.length; i++) {
+      formData.append("fileNc[]", this.fileNc[i], this.fileNc[i].name);
+    }
+
+    for (var i = 0; i < this.fileAcoes.length; i++) {
+      formData.append("fileAcoes[]", this.fileAcoes[i], this.fileAcoes[i].name);
+    }
+  }
+
+  post() {
+    let formData = new FormData();
+    this.uploadFiles(formData);
+    this.http.post(this.apiUrl, formData).subscribe((response) => {
+      console.log("response received is ", response);
+    });
+  }
+
+  constructor(private http: HttpClient) {}
 }
