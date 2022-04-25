@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {NonComplianceService} from "../../../../../../_services/non-compliance.service";
 
 @Component({
   selector: 'app-products-and-points',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductsAndPointsComponent implements OnInit {
 
-  constructor() { }
+  constructor(public nonComplicanceService: NonComplianceService) { }
 
   ngOnInit(): void {
   }
