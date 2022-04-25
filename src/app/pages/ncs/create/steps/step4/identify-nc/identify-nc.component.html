@@ -138,7 +138,10 @@
       <i class="pi pi-camera"></i>
       Evidencias fotográficas
     </h2>
-    <p-carousel>
+    <p-carousel [value]="images2" [numVisible]="4" [numScroll]="4">
+      <ng-template pTemplate="item">
+        <img src="https://www.w3schools.com/images/w3schools_green.jpg" alt="" height="95">
+      </ng-template>
     </p-carousel>
   </div>
 </div>
@@ -161,7 +164,10 @@
       <i class="pi pi-camera"></i>
       Evidencias fotográficas
     </h2>
-    <p-carousel>
+    <p-carousel [value]="images2" [numVisible]="4" [numScroll]="4">
+      <ng-template pTemplate="item">
+        <img src="https://www.w3schools.com/images/w3schools_green.jpg" alt="" height="95">
+      </ng-template>
     </p-carousel>
   </div>
 </div>
