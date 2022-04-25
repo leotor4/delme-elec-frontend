@@ -1,7 +1,7 @@
 <div class="header">
   <div class="row m-0">
-    <div class="text-box col-12 p-0 col-lg-8">
-      <h3>Produto</h3>
+    <div class="cabecalho text-box col-12 p-0 col-lg-8">
+      <h1>Produto</h1>
       <p>
         Preencha os campos abaixo para identificar um produto e confirme os
         dados abaixo. Caso não encontre um produto. Atualize a base de
@@ -9,17 +9,21 @@
       </p>
     </div>
     <div class="button-box col-12 col-lg-4 mb-4 mb-lg-0">
-      <div class="update-box">
-        <span class="update-text">
-          <i class="pi pi-history"></i> ultima atualização: Há 3 minutos</span
-        >
-        <a href="ncs/import" class="text-decoration-none">
-          <button type="button" class="btn btn-dark">
-            Atualizar Cadastros
-            <i class="pi pi-download"></i>
-          </button>
-        </a>
-      </div>
+      <span>
+        <i class="pi pi-history"></i> ultima atualização:
+        {{ returnUpdateTime() }}</span
+      >
+      <a href="ncs/import" class="text-decoration-none">
+        <button
+          pButton
+          pRipple
+          type="button"
+          class="p-button-secondary"
+          label="Atualizar Cadastros"
+          icon="pi pi-download"
+          iconPos="right"
+        ></button>
+      </a>
     </div>
   </div>
 </div>
@@ -28,7 +32,7 @@
     <div class="col-12 col-lg-4 my-auto pb-3 pb-lg-0">
       <div class="p-fluid autoComplete">
         <p-autoComplete
-          [(ngModel)]="autoCompleteValue"
+          [(ngModel)]="nonComplicanceService.autoCompleteValue"
           [suggestions]="results"
           (completeMethod)="getFilteredList($event)"
           class="p-autocomplete"
@@ -53,6 +57,7 @@
       <div class="d-flex flex-column mr-lg-3 inputs-sm my-auto">
         <label for="amountNC">Quantidade de NC</label>
         <input
+          [(ngModel)]="nonComplicanceService.quantNc"
           name="amountNC"
           type="text"
           pInputText
@@ -63,6 +68,7 @@
       <div class="d-flex flex-column inputs-sm my-auto">
         <label for="amountTotal">Quantidade Total</label>
         <input
+          [(ngModel)]="nonComplicanceService.quantTotal"
           name="amountTotal"
           type="text"
           pInputText
@@ -75,20 +81,20 @@
           name="ncType"
           label="Não conformidade real"
           value="val1"
-          [(ngModel)]="radioButtonValue"
+          [(ngModel)]="nonComplicanceService.radioButtonValue"
         ></p-radioButton>
         <p-radioButton
           name="ncType"
           label="Não conformidade Potencial / Oportunidade de Melhoria"
           class="pt-2"
           value="val2"
-          [(ngModel)]="radioButtonValue"
+          [(ngModel)]="nonComplicanceService.radioButtonValue"
         ></p-radioButton>
       </div>
     </div>
   </div>
 </div>
 <app-product-info
-  [hasProduct]="hasSelectedProduct"
-  [product]="selectedProduct"
+  [hasProduct]="nonComplicanceService.hasSelectedProduct"
+  [product]="nonComplicanceService.selectedProduct"
 ></app-product-info>

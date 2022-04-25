@@ -9,7 +9,7 @@ import { NonComplianceService } from "src/app/_services/non-compliance.service";
 })
 export class NcsCreateStepperComponent implements OnInit {
   items: MenuItem[];
-  stepPosition: number = 3;
+  stepPosition: number = 0;
   lastStepLabel = "Avançar";
   constructor(public nonComplianceService: NonComplianceService) {}
 
@@ -19,6 +19,7 @@ export class NcsCreateStepperComponent implements OnInit {
         return false;
       // return this.nonComplianceService.avancarPasso1();
       case 1:
+        //return this.nonComplianceService.avancarPasso2();
         return false;
       case 2:
         return false;

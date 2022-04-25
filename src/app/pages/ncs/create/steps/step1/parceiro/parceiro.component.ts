@@ -22,8 +22,9 @@ export class ParceiroComponent implements OnInit {
     public customerService: CustomerService,
     public providerService: ProviderService,
     public updateService: UpdateDateService,
-    public sectorService: SectorService,
     public nonComplicanceService: NonComplianceService,
+    public sectorService: SectorService,
+
     private messageService: MessageService
   ) {}
 

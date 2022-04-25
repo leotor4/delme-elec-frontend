@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
+import { NonComplianceService } from "src/app/_services/non-compliance.service";
 
 @Component({
   selector: "app-rejection-point",
@@ -6,9 +7,8 @@ import { Component, Input, OnInit } from "@angular/core";
   styleUrls: ["./rejection-point.component.css"],
 })
 export class RejectionPointComponent implements OnInit {
-  textAreaAcoes: String;
   @Input("hasProduct") test: boolean;
-  constructor() {}
+  constructor(public nonComplianceService: NonComplianceService) {}
 
   ngOnInit(): void {}
 }

@@ -1,9 +1,9 @@
 <div class="content">
   <h3>Ponto de Controle</h3>
-  <div *ngIf="!test">
+  <div *ngIf="!nonComplicanceService.hasSelectedProduct">
     <app-waiting-product></app-waiting-product>
   </div>
-  <div *ngIf="test">
+  <div *ngIf="nonComplicanceService.hasSelectedProduct">
     <div class="content">
       <div class="text-box">
         <span class=""

@@ -12,14 +12,25 @@
   </div>
   <div class="d-flex justify-content-end p-0">
     <div class="d-flex buttons">
-      <button type="button" class="btn btn-outline-dark mr-2">
-        Cancelar
-        <i class="pi pi-times"></i>
-      </button>
-      <button type="button" class="btn btn-dark">
-        Salvar
-        <i class="pi pi-save"></i>
-      </button>
+      <button
+        pButton
+        pRipple
+        type="button"
+        label="Cancelar"
+        class="p-button-outlined p-button-secondary mr-2"
+        iconPos="right"
+        icon="pi pi-times"
+      ></button>
+      <button
+        pButton
+        pRipple
+        type="button"
+        label="Salvar"
+        class="p-button-secondary"
+        iconPos="right"
+        icon="pi pi-save"
+        (click)="teste()"
+      ></button>
     </div>
   </div>
 </div>
