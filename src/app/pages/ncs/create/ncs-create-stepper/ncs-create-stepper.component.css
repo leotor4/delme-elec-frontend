@@ -17,6 +17,10 @@
 .stepper-buttons button {
   padding: 6px 12px;
 }
+.stepper {
+  width: calc(100% - 252px);
+  padding: 0 50px;
+}
 @media (max-width: 1000px) {
   .stepper {
     display: none;
