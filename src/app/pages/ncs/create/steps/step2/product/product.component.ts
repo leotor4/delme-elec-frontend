@@ -1,6 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { Product } from "src/app/models/product.model";
+import { UpdateDate } from "src/app/models/update-date";
+import { NonComplianceService } from "src/app/_services/non-compliance.service";
 import { ProductService } from "src/app/_services/product.service";
+import { UpdateDateService } from "src/app/_services/update-date.service";
 
 @Component({
   selector: "app-product",
@@ -8,18 +11,23 @@ import { ProductService } from "src/app/_services/product.service";
   styleUrls: ["./product.component.css"],
 })
 export class ProductComponent implements OnInit {
-  radioButtonValue: string = "val1";
-  autoCompleteValue: string;
-  hasSelectedProduct: boolean;
   results: Product[];
-  selectedProduct: Product;
+
   products: Product[];
+  updates: UpdateDate;
   @Output() hasSelectedProductEvent: EventEmitter<boolean> = new EventEmitter();
 
-  constructor(private productService: ProductService) {}
+  constructor(
+    private productService: ProductService,
+    public updateService: UpdateDateService,
+    public nonComplicanceService: NonComplianceService
+  ) {}
 
   ngOnInit(): void {
     this.getProducts();
+    this.updateService.get().subscribe((data: any) => {
+      this.updates = data.Updatedate[0];
+    });
   }
 
   getProducts(): void {
@@ -44,12 +52,33 @@ export class ProductComponent implements OnInit {
   }
 
   checkProduct(Product: Product) {
-    this.hasSelectedProduct = true;
-    this.hasSelectedProductEvent.emit(this.hasSelectedProduct);
-    this.selectedProduct = Product;
+    this.nonComplicanceService.hasSelectedProduct = true;
+    this.hasSelectedProductEvent.emit(
+      this.nonComplicanceService.hasSelectedProduct
+    );
+    this.nonComplicanceService.selectedProduct = Product;
+    console.log(this.nonComplicanceService.selectedProduct);
   }
   uncheckProduct() {
-    this.hasSelectedProduct = false;
-    this.hasSelectedProductEvent.emit(this.hasSelectedProduct);
+    this.nonComplicanceService.hasSelectedProduct = false;
+    this.hasSelectedProductEvent.emit(
+      this.nonComplicanceService.hasSelectedProduct
+    );
+  }
+
+  returnUpdateTime() {
+    if (this.updates) {
+      let dateAtt = new Date(this.updates.update_time);
+      let dateNow = new Date();
+      var Difference_In_Time = dateNow.getTime() - dateAtt.getTime();
+      var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+      var round_day = Math.floor(Difference_In_Days);
+      if (round_day < 1) {
+        return "Hoje";
+      } else {
+        return "Há " + round_day + " dias.";
+      }
+    }
+    return "";
   }
 }

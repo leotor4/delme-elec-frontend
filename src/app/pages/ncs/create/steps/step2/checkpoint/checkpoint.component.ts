@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
+import { NonComplianceService } from "src/app/_services/non-compliance.service";
 
 @Component({
   selector: "app-checkpoint",
@@ -10,18 +11,20 @@ export class CheckpointComponent implements OnInit {
   fileName: string[] = [];
   fileNameAcoes: ["marcelo"];
   @Input("hasProduct") test: boolean;
-  constructor() {}
+  constructor(public nonComplicanceService: NonComplianceService) {}
 
   ngOnInit(): void {}
 
   clearFile() {
     this.fileName = [];
+    this.nonComplicanceService.fileProduct = [];
   }
 
   onUpload(event: any) {
     const target = event.target as HTMLInputElement;
     if (target.files && target.files.length > 0) {
       let files = target.files;
+      this.nonComplicanceService.fileProduct = files;
       for (let i = 0; i < files.length; i++) {
         this.fileName.push(files[i].name);
       }
