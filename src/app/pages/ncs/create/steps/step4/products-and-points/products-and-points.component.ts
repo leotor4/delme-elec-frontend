@@ -7,6 +7,7 @@ import {NonComplianceService} from "../../../../../../_services/non-compliance.s
   styleUrls: ['./products-and-points.component.css']
 })
 export class ProductsAndPointsComponent implements OnInit {
+  percent= Math.floor(parseInt(this.nonComplicanceService.quantNc)/parseInt(this.nonComplicanceService.quantTotal)*100);
 
   constructor(public nonComplicanceService: NonComplianceService) { }
 

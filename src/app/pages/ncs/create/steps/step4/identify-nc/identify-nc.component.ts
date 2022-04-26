@@ -9,6 +9,7 @@ import {NonComplianceService} from "../../../../../../_services/non-compliance.s
 export class IdentifyNCComponent implements OnInit {
   images1= ["imagem1", "imagem2", "imagem3", "imagem4", "imagem5", "imagem1", "imagem2", "imagem3", "imagem4", "imagem5"];
   images2 = ["imagem1", "imagem2", "imagem3", "imagem4", "imagem5", "imagem1", "imagem2", "imagem3", "imagem4", "imagem5"];
+    ncID = "001/2022";
 
   constructor(public nonComplicanceService: NonComplianceService) { }
 

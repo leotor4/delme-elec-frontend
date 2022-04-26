@@ -10,7 +10,7 @@
         <div>
           <span class="info-titulo">Número</span>
           <br />
-          <span class="info-dados">544554</span>
+          <span class="info-dados">{{ncID}}</span>
         </div>
       </div>
       <div class="contato-info d-flex flex-row">
@@ -18,7 +18,7 @@
         <div>
           <span class="info-titulo">Data de Abertura</span>
           <br />
-          <span class="info-dados">{{this.nonComplicanceService.dataAbertura||"dados não preenchidos"}}</span>
+          <span class="info-dados">{{this.nonComplicanceService.dataAbertura||"00/00/0000"}}</span>
         </div>
       </div>
       <div class="contato-info d-flex flex-row">
@@ -26,7 +26,7 @@
         <div>
           <span class="info-titulo">Data de Fechamento</span>
           <br/>
-          <span class="info-dados">{{this.nonComplicanceService.dataFechamento||"dados não preenchidos"}}</span>
+          <span class="info-dados">{{this.nonComplicanceService.dataFechamento||"00/00/0000"}}</span>
         </div>
       </div>
     </div>
@@ -74,14 +74,11 @@
           <h2 class="mr-2">Razão Social</h2>
           <p-chip>
             <i class="bi bi-ticket-perforated mr-2"></i>
-            {{ 8411684 }}
+            {{ this.nonComplicanceService.selected?.corporate_name||"00000000" }}
           </p-chip>
         </div>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci
-          aperiam aspernatur beatae consequatur deserunt dolorem est fuga
-          incidunt iste nam officia placeat quam quidem quisquam reprehenderit,
-          ullam vel veritatis, vero.
+          {{this.nonComplicanceService.selected?.corporate_name||"Dado não preenchido"}}
         </p>
       </div>
     </div>
@@ -95,7 +92,9 @@
             <div>
               <span class="info-titulo">Nome</span>
               <br />
-              <span class="info-dados">João</span>
+              <span class="info-dados">
+                {{this.nonComplicanceService.selected?.responsible_name||"Dado não preenchido"}}
+              </span>
             </div>
           </div>
           <div class="contato-info d-flex flex-row">
@@ -103,7 +102,9 @@
             <div>
               <span class="info-titulo">Telefone</span>
               <br />
-              <span class="info-dados">(85) 98553-4200</span>
+              <span class="info-dados">
+                {{this.nonComplicanceService.selected?.responsible_phone||"(00) 00000-0000"}}
+              </span>
             </div>
           </div>
           <div class="contato-info d-flex flex-row">
@@ -111,7 +112,9 @@
             <div>
               <span class="info-titulo">E-mail</span>
               <br />
-              <span class="info-dados">joao@gmail.com</span>
+              <span class="info-dados">
+                {{this.nonComplicanceService.selected?.responsible_email||"Dado não preenchido"}}
+              </span>
             </div>
           </div>
         </div>
@@ -126,10 +129,7 @@
       Descrição da Não Conformidade
     </h2>
     <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aperiam
-      aspernatur beatae consequatur deserunt dolorem est fuga incidunt iste nam
-      officia placeat quam quidem quisquam reprehenderit, ullam vel veritatis,
-      vero.
+      {{this.nonComplicanceService.textAreaNc||"Dado não preenchidos"}}
     </p>
   </div>
   <p-divider layout="vertical"></p-divider>
@@ -138,7 +138,7 @@
       <i class="pi pi-camera"></i>
       Evidencias fotográficas
     </h2>
-    <p-carousel [value]="images2" [numVisible]="4" [numScroll]="4">
+    <p-carousel [value]="images1" [numVisible]="4" [numScroll]="4">
       <ng-template pTemplate="item">
         <img src="https://www.w3schools.com/images/w3schools_green.jpg" alt="" height="95">
       </ng-template>

@@ -2,16 +2,16 @@
   <h1 class="titulo-parceiro">Dados do Produto</h1>
   <div class="dados-parceiro col razao-social">
     <div class="d-flex">
-      <h2 class="mr-2">Caixa de Pandora</h2>
+      <h2 class="mr-2">
+        {{this.nonComplicanceService.selectedProduct?.name||"Dado não preenchido"}}
+      </h2>
       <p-chip>
         <i class="bi bi-ticket-perforated mr-2"></i>
-        {{ 464646 }}
+        {{this.nonComplicanceService.selectedProduct?.code||"000000"}}
       </p-chip>
     </div>
     <p class="d-block">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus facere
-      magni mollitia sapiente. Ea eum libero nihil quam quas sed unde vitae?
-      Aliquam commodi debitis eos labore maiores, officiis pariatur.
+      {{this.nonComplicanceService.selectedProduct?.description||"Dado não preenchido"}}
     </p>
   </div>
   <div class="dados-parceiro col">
@@ -24,7 +24,7 @@
         <div>
           <span class="info-titulo">Quantidade Total</span>
           <br />
-          <span class="info-dados">2500</span>
+          <span class="info-dados">{{this.nonComplicanceService.quantTotal||"0"}}</span>
         </div>
       </div>
       <div class="contato-info d-flex flex-row">
@@ -32,7 +32,7 @@
         <div>
           <span class="info-titulo">Quantidade em Não Conformidade</span>
           <br />
-          <span class="info-dados">150</span>
+          <span class="info-dados">{{this.nonComplicanceService.quantNc||"0"}}</span>
         </div>
       </div>
       <div class="contato-info d-flex flex-row">
@@ -40,7 +40,7 @@
         <div>
           <span class="info-titulo">Percentual</span>
           <br />
-          <span class="info-dados">5%</span>
+          <span class="info-dados">{{percent||"0"}}%</span>
         </div>
       </div>
     </div>
