@@ -5,6 +5,12 @@ import { ActivatedRoute } from "@angular/router";
 
 import { MessageService } from "primeng/api";
 import { ImportService } from "./import.service";
+import { CustomerService } from "src/app/_services/customer.service";
+import { UpdateDateService } from "src/app/_services/update-date.service";
+import { SectorService } from "src/app/_services/sector.service";
+import { ProviderService } from "src/app/_services/provider.service";
+import { PlaceService } from "src/app/_services/place.service";
+import { NonComplianceService } from "src/app/_services/non-compliance.service";
 
 @Component({
   selector: "app-provider",
@@ -18,7 +24,13 @@ export class ImportJsonComponent implements OnInit {
 
   constructor(
     private messageService: MessageService,
-    private importService: ImportService
+    private importService: ImportService,
+    public customerService: CustomerService,
+    public updateService: UpdateDateService,
+    public sectorService: SectorService,
+    public placeService: PlaceService,
+    public nonComplianceService: NonComplianceService,
+    public providerService: ProviderService
   ) {}
 
   ngOnInit(): void {}
@@ -36,6 +48,7 @@ export class ImportJsonComponent implements OnInit {
         let convertedJson = JSON.stringify(data, undefined, 4);
         this.importService.post(convertedJson, type).subscribe(
           (value) => {
+            this.attByType(type);
             this.importService.postUpdateTime().subscribe();
             this.messageService.add({
               severity: "success",
@@ -54,6 +67,31 @@ export class ImportJsonComponent implements OnInit {
   }
 
   convertFile(file: File) {}
+
+  attByType(type: string) {
+    switch (type) {
+      case "customer":
+        this.customerService.get().subscribe((data: any) => {
+          this.nonComplianceService.customers = data.customers;
+        });
+        break;
+      case "provider":
+        this.providerService.get().subscribe((data: any) => {
+          this.nonComplianceService.providers = data.providers;
+        });
+        break;
+      case "sector":
+        this.sectorService.get().subscribe((data: any) => {
+          this.nonComplianceService.sectors = data.sectors;
+        });
+        break;
+      case "place":
+        this.placeService.get().subscribe((data: any) => {
+          this.nonComplianceService.places = data.places;
+        });
+        break;
+    }
+  }
 
   downloadFile(type: string): void {
     switch (type) {

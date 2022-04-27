@@ -28,14 +28,8 @@ export class ParceiroComponent implements OnInit {
     private messageService: MessageService
   ) {}
 
-  customers: Customer[];
-  sectors: Sector[];
-  providers: Provider[];
-  updates: UpdateDate;
-  results: any[];
-
   public tiposParceiro: Array<String> = ["Interno", "Cliente", "Fornecedor"];
-
+  results: any[];
   public parceiroIdent = false;
   public display = false;
 
@@ -47,20 +41,22 @@ export class ParceiroComponent implements OnInit {
     var filtro = event.query;
     this.results = [];
 
-    if (this.nonComplicanceService.tiposParceiroItem == "Cliente") {
-      this.customers.forEach((element) => {
+    if (this.nonComplicanceService.nc.tiposParceiroItem == "Cliente") {
+      this.nonComplicanceService.customers.forEach((element) => {
         if (this.verificarExistencia(element, filtro)) {
           this.results.push(element);
         }
       });
-    } else if (this.nonComplicanceService.tiposParceiroItem == "Fornecedor") {
-      this.providers.forEach((element) => {
+    } else if (
+      this.nonComplicanceService.nc.tiposParceiroItem == "Fornecedor"
+    ) {
+      this.nonComplicanceService.providers.forEach((element) => {
         if (this.verificarExistencia(element, filtro)) {
           this.results.push(element);
         }
       });
-    } else if (this.nonComplicanceService.tiposParceiroItem == "Interno") {
-      this.sectors.forEach((element) => {
+    } else if (this.nonComplicanceService.nc.tiposParceiroItem == "Interno") {
+      this.nonComplicanceService.sectors.forEach((element) => {
         if (this.verificarExistenciaInterno(element, filtro)) {
           this.results.push(element);
         }
@@ -69,8 +65,8 @@ export class ParceiroComponent implements OnInit {
   }
 
   returnUpdateTime() {
-    if (this.updates) {
-      let dateAtt = new Date(this.updates.update_time);
+    if (this.nonComplicanceService.updates) {
+      let dateAtt = new Date(this.nonComplicanceService.updates.update_time);
       let dateNow = new Date();
       var Difference_In_Time = dateNow.getTime() - dateAtt.getTime();
       var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
@@ -110,7 +106,7 @@ export class ParceiroComponent implements OnInit {
   }
 
   isInterno(): boolean {
-    if (this.nonComplicanceService.tiposParceiroItem == "Interno") {
+    if (this.nonComplicanceService.nc.tiposParceiroItem == "Interno") {
       return true;
     } else {
       return false;
@@ -133,7 +129,6 @@ export class ParceiroComponent implements OnInit {
   }
 
   onChangeAutoComplete() {
-    console.log(this.nonComplicanceService.pesquisar);
     if (this.nonComplicanceService.pesquisar == "") {
       this.nonComplicanceService.isSelected = false;
     }
@@ -153,32 +148,34 @@ export class ParceiroComponent implements OnInit {
     this.nonComplicanceService.selected.responsible_email =
       this.editarEmailItem;
 
-    if (this.nonComplicanceService.tiposParceiroItem == "Cliente") {
+    if (this.nonComplicanceService.nc.tiposParceiroItem == "Cliente") {
       this.customerService.put(this.nonComplicanceService.selected).subscribe(
         (value) => {
           this.sucess();
           this.customerService.get().subscribe((data: any) => {
-            this.customers = data.customers;
+            this.nonComplicanceService.customers = data.customers;
           });
         },
         (err) => {
           this.fail();
           this.customerService.get().subscribe((data: any) => {
-            this.customers = data.customers;
+            this.nonComplicanceService.customers = data.customers;
           });
         }
       );
-    } else if (this.nonComplicanceService.tiposParceiroItem == "Fornecedor") {
+    } else if (
+      this.nonComplicanceService.nc.tiposParceiroItem == "Fornecedor"
+    ) {
       this.providerService.put(this.nonComplicanceService.selected).subscribe(
         (value) => {
           this.sucess();
           this.providerService.get().subscribe((data: any) => {
-            this.providers = data.providers;
+            this.nonComplicanceService.providers = data.providers;
           });
         },
         (err) => {
           this.providerService.get().subscribe((data: any) => {
-            this.providers = data.providers;
+            this.nonComplicanceService.providers = data.providers;
           });
           this.fail();
         }
@@ -210,21 +207,5 @@ export class ParceiroComponent implements OnInit {
     this.hideDialog();
   }
 
-  ngOnInit(): void {
-    this.customerService.get().subscribe((data: any) => {
-      this.customers = data.customers;
-    });
-
-    this.updateService.get().subscribe((data: any) => {
-      this.updates = data.Updatedate[0];
-    });
-
-    this.sectorService.get().subscribe((data: any) => {
-      this.sectors = data.sectors;
-    });
-
-    this.providerService.get().subscribe((data: any) => {
-      this.providers = data.providers;
-    });
-  }
+  ngOnInit(): void {}
 }

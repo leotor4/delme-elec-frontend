@@ -17,10 +17,6 @@ export class IdentificacaoDaNcComponent implements OnInit {
     public nonComplicanceService: NonComplianceService
   ) {}
 
-  sectors!: Sector[];
-
-  places!: Place[];
-
   public tiposNc: Array<String> = [
     "Auditoria Interna",
     "Auditoria Externa",
@@ -32,24 +28,5 @@ export class IdentificacaoDaNcComponent implements OnInit {
 
   public tiposAuditoria: Array<String> = ["Interna", "Externa"];
 
-  public tiposLocalSetor: Array<String> = [
-    "local 1",
-    "local 2",
-    "local 3",
-    "setor 1",
-    "setor 2",
-    "setor 3",
-  ];
-
-  ngOnInit(): void {
-    this.sectorService.get().subscribe((data: any) => {
-      this.sectors = data.sectors;
-      console.log(this.sectors);
-    });
-
-    this.placeService.get().subscribe((data: any) => {
-      this.places = data.places;
-      console.log(this.places);
-    });
-  }
+  ngOnInit(): void {}
 }

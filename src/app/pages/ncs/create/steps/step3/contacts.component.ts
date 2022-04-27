@@ -13,7 +13,6 @@ import { NonComplianceService } from "src/app/_services/non-compliance.service";
   providers: [DialogService],
 })
 export class ContactsComponent implements OnInit, OnDestroy {
-  allContacts: Contact[];
   addContactsDialog: boolean;
   selectedContacts: Contact[] = [];
   selectedContact: String;
@@ -47,8 +46,8 @@ export class ContactsComponent implements OnInit, OnDestroy {
     });
     ref.onClose.subscribe((contact: Contact) => {
       if (contact) {
-        this.nonComplianceService.contactsList.push(contact);
-        this.allContacts.push(contact);
+        this.nonComplianceService.nc.contacts.push(contact);
+        this.nonComplianceService.allContacts.push(contact);
       }
     });
   }
@@ -64,14 +63,14 @@ export class ContactsComponent implements OnInit, OnDestroy {
     });
     ref.onClose.subscribe((contact: Contact) => {
       if (contact) {
-        let index = this.nonComplianceService.contactsList.findIndex((item) => {
+        let index = this.nonComplianceService.nc.contacts.findIndex((item) => {
           return item.id == contact.id;
         });
-        this.nonComplianceService.contactsList[index] = contact;
-        index = this.allContacts.findIndex((item) => {
+        this.nonComplianceService.nc.contacts[index] = contact;
+        index = this.nonComplianceService.allContacts.findIndex((item) => {
           return item.id == contact.id;
         });
-        this.allContacts[index] = contact;
+        this.nonComplianceService.allContacts[index] = contact;
       }
     });
   }
@@ -85,8 +84,8 @@ export class ContactsComponent implements OnInit, OnDestroy {
       header: "Excluir Contato",
       icon: "pi pi-exclamation-triangle",
       accept: () => {
-        this.nonComplianceService.contactsList =
-          this.nonComplianceService.contactsList.filter(
+        this.nonComplianceService.nc.contacts =
+          this.nonComplianceService.nc.contacts.filter(
             (val) => val.id !== contact.id
           );
         this.messageService.add({
@@ -110,9 +109,9 @@ export class ContactsComponent implements OnInit, OnDestroy {
   search(event: any) {
     let filtered: Contact[] = [];
     let query = event.query;
-    let contacts = this.allContacts.filter(
+    let contacts = this.nonComplianceService.allContacts.filter(
       (val) =>
-        this.nonComplianceService.contactsList.indexOf(val) < 0 &&
+        this.nonComplianceService.nc.contacts.indexOf(val) < 0 &&
         this.selectedContacts.indexOf(val) < 0
     );
     contacts.forEach((contact) => {
@@ -139,17 +138,16 @@ export class ContactsComponent implements OnInit, OnDestroy {
 
   saveSelection() {
     this.addContactsDialog = false;
-    this.nonComplianceService.contactsList =
-      this.nonComplianceService.contactsList.concat(this.selectedContacts);
+    this.nonComplianceService.nc.contacts =
+      this.nonComplianceService.nc.contacts.concat(this.selectedContacts);
     this.selectedContacts = [];
   }
 
   getContacts() {
     this.contactsSrvc.get().subscribe((data: any) => {
-      this.allContacts = data.contact;
-      this.nonComplianceService.contactsList = this.allContacts.filter(
-        (val) => val.id! <= 4
-      );
+      this.nonComplianceService.allContacts = data.contact;
+      this.nonComplianceService.nc.contacts =
+        this.nonComplianceService.allContacts.filter((val) => val.id! <= 4);
     });
   }
 }

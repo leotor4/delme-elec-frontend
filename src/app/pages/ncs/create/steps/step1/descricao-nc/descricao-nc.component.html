@@ -11,7 +11,7 @@
     <label>Descreva a não conformidade</label>
     <p-editor
       [style]="{ height: '210px' }"
-      [(ngModel)]="this.nonComplicanceService.textAreaNc"
+      [(ngModel)]="this.nonComplicanceService.nc.textAreaNc"
       class="p-editor"
     ></p-editor>
   </div>
@@ -64,7 +64,7 @@
     <label for="desc-area">Descreve as ações imediatas</label>
     <p-editor
       [style]="{ height: '210px' }"
-      [(ngModel)]="this.nonComplicanceService.textAreaAcoes"
+      [(ngModel)]="this.nonComplicanceService.nc.textAreaAcoes"
     ></p-editor>
   </div>
   <div class="col-3 col-attachment">

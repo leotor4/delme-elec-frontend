@@ -7,7 +7,7 @@
   <div class="col">
     <div class="dropdown">
       <label for="">Tipo de NC</label>
-      <select [(ngModel)]="nonComplicanceService.tiposNcItem">
+      <select [(ngModel)]="nonComplicanceService.nc.tiposNcItem">
         <option value="" disabled selected hidden>Selecione...</option>
         <option *ngFor="let tiposNc of tiposNc">{{ tiposNc }}</option>
       </select>
@@ -17,7 +17,7 @@
   <div class="col">
     <div class="dropdown">
       <label for="">Segmento de Auditoria</label>
-      <select [(ngModel)]="nonComplicanceService.tiposAuditoriaItem">
+      <select [(ngModel)]="nonComplicanceService.nc.tiposAuditoriaItem">
         <option value="" disabled selected hidden>Selecione...</option>
         <option *ngFor="let tiposAuditoria of tiposAuditoria">
           {{ tiposAuditoria }}
@@ -29,14 +29,14 @@
   <div class="col">
     <div class="dropdown">
       <label for="">Local ou Setor Afetado</label>
-      <select [(ngModel)]="nonComplicanceService.tiposLocalItem">
+      <select [(ngModel)]="nonComplicanceService.nc.tiposLocalItem">
         <option value="" disabled selected hidden>Selecione...</option>
         <option class="option-titulo" disabled>Setor</option>
-        <option *ngFor="let item of sectors">
+        <option *ngFor="let item of nonComplicanceService.sectors">
           {{ item.name }}
         </option>
         <option class="option-titulo" disabled>Local</option>
-        <option *ngFor="let item of places">
+        <option *ngFor="let item of nonComplicanceService.places">
           {{ item.name }}
         </option>
       </select>
@@ -53,7 +53,7 @@
         type="date"
         pInputText
         id="date-input"
-        [(ngModel)]="nonComplicanceService.dataAbertura"
+        [(ngModel)]="nonComplicanceService.nc.dataAbertura"
       />
     </span>
     <p>Altere a data caso a NC tenha acontecido antes deste cadastro.</p>
@@ -68,7 +68,7 @@
         type="date"
         pInputText
         id="date-input"
-        [(ngModel)]="nonComplicanceService.dataFechamento"
+        [(ngModel)]="nonComplicanceService.nc.dataFechamento"
       />
     </span>
     <p>

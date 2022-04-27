@@ -1,24 +1,30 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs/internal/Observable";
 import { Contact } from "../models/contact.model";
+import { Customer } from "../models/customer";
+import { NonCompliance } from "../models/non-compliance";
+import { Place } from "../models/place";
 import { Product } from "../models/product.model";
+import { Provider } from "../models/provider";
+import { Sector } from "../models/sector";
+import { UpdateDate } from "../models/update-date";
 
 @Injectable({
   providedIn: "root",
 })
 export class NonComplianceService {
   apiUrl = "http://localhost:3333/noncompliances";
+  public nc = new NonCompliance();
+
   //passo 1
-  public tiposNcItem = "";
-  public tiposAuditoriaItem = "";
-  public tiposLocalItem = "";
-  public dataAbertura = "";
-  public dataFechamento = "";
-  public tiposParceiroItem = "";
-  public textAreaNc = "";
-  public textAreaAcoes = "";
-  public pesquisar = "";
+  customers: Customer[];
+  sectors: Sector[];
+  providers: Provider[];
+  places!: Place[];
+  updates: UpdateDate;
+
+  pesquisar: string = "";
+
   public fileNc: any = [];
   public fileAcoes: any = [];
   public isSelected = false;
@@ -34,21 +40,21 @@ export class NonComplianceService {
   public autoCompleteValue: string = "";
   public controlNumber: string = "";
 
-  hasSelectedProduct: boolean;
-
   //passo 3
-  contactsList: Contact[] = [];
+  allContacts: Contact[];
+
+  hasSelectedProduct: boolean;
 
   avancarPasso1(): boolean {
     return !(
-      !!this.tiposNcItem &&
-      !!this.tiposAuditoriaItem &&
-      !!this.tiposLocalItem &&
-      !!this.dataAbertura &&
-      !!this.dataFechamento &&
-      !!this.tiposParceiroItem &&
-      !!this.textAreaNc &&
-      !!this.textAreaAcoes &&
+      !!this.nc.tiposNcItem &&
+      !!this.nc.tiposAuditoriaItem &&
+      !!this.nc.tiposLocalItem &&
+      !!this.nc.dataAbertura &&
+      !!this.nc.dataFechamento &&
+      !!this.nc.tiposParceiroItem &&
+      !!this.nc.textAreaNc &&
+      !!this.nc.textAreaAcoes &&
       !!this.selected &&
       this.fileNc.length > 0 &&
       this.fileAcoes.length > 0
@@ -72,7 +78,7 @@ export class NonComplianceService {
   post() {
     let formData = new FormData();
     this.uploadFiles(formData);
-    this.http.post(this.apiUrl, formData).subscribe((response) => {
+    this.http.post(this.apiUrl, this.nc).subscribe((response) => {
       console.log("response received is ", response);
     });
   }
