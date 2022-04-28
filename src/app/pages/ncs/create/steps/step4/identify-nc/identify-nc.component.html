@@ -19,7 +19,7 @@
           <span class="info-titulo">Data de Abertura</span>
           <br />
           <span class="info-dados">
-            {{ this.nonComplicanceService.dataAbertura.split("-").reverse().join("/")
+            {{ this.nonComplicanceService.nc.dataAbertura?.split("-")?.reverse()?.join("/")
             ||"00/00/0000"}}
           </span>
         </div>
@@ -29,7 +29,7 @@
         <div>
           <span class="info-titulo">Data de Fechamento</span>
           <br/>
-          <span class="info-dados">{{this.nonComplicanceService.dataFechamento.split("-").reverse().join("/")
+          <span class="info-dados">{{this.nonComplicanceService.nc.dataFechamento?.split("-")?.reverse()?.join("/")
           ||"00/00/0000"}}</span>
         </div>
       </div>
@@ -132,7 +132,7 @@
       <i class="bi bi-file-earmark-text"></i>
       Descrição da Não Conformidade
     </h2>
-    <p-editor [(ngModel)]="this.nonComplicanceService.textAreaNc" [style]="{'height':'144px'}" [readonly]="true">
+    <p-editor [(ngModel)]="this.nonComplicanceService.nc.textAreaNc" [style]="{'height':'144px'}" [readonly]="true">
       <ng-template pTemplate="header">
       </ng-template>
     </p-editor>
@@ -157,7 +157,7 @@
       <i class="bi bi-geo"></i>
       Descrição de Ações Imediatas
     </h2>
-    <p-editor [(ngModel)]="this.nonComplicanceService.textAreaAcoes" [style]="{'height':'144px'}" [readonly]="true">
+    <p-editor [(ngModel)]="this.nonComplicanceService.nc.textAreaAcoes" [style]="{'height':'144px'}" [readonly]="true">
       <ng-template pTemplate="header" hidden>
       </ng-template>
     </p-editor>
