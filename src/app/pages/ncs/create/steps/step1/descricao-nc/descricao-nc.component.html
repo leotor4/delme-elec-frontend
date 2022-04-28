@@ -21,7 +21,7 @@
       <h1>Envie seus documentos</h1>
       <div
         class="white-background"
-        *ngIf="nonComplicanceService.fileNc.length == 0"
+        *ngIf="nonComplicanceService.nc.attachments.length == 0"
       >
         <input
           type="file"
@@ -41,7 +41,7 @@
         <button type="button" (click)="clearFileNameNc()" class="btn btn-light">
           <i class="pi pi-replay"></i>
         </button>
-        <p *ngFor="let files of nonComplicanceService.fileNc">
+        <p *ngFor="let files of returnEvidenciasFile()">
           {{ files.name }}
         </p>
       </div>
@@ -97,7 +97,7 @@
         >
           <i class="pi pi-replay"></i>
         </button>
-        <p *ngFor="let files of nonComplicanceService.fileAcoes">
+        <p *ngFor="let files of returnAcoesFile()">
           {{ files.name }}
         </p>
       </div>

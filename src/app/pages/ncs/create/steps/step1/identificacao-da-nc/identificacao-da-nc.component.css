@@ -16,9 +16,7 @@
   margin-bottom: 0px;
 }
 
-.cabecalho {
-  margin-bottom: 4px;
-}
+
 
 .cabecalho p {
   font-size: 14px;
@@ -77,8 +75,8 @@ span > .p-inputtext:enabled:focus {
   width: 100%;
 }
 
-.date-group {
-  margin-top: 14px;
+.dropdown{
+  margin-bottom: 12px;
 }
 
 .option-titulo{

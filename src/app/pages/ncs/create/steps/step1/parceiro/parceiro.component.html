@@ -128,10 +128,10 @@
   <div class="dados-parceiro col razao-social">
     <h1 *ngIf="!isInterno()">Razão Social</h1>
     <h1 *ngIf="isInterno()">Setor</h1>
-    <p *ngIf="!isInterno()">
+    <p>
       {{ nonComplicanceService.selected.corporate_name }}
     </p>
-    <p *ngIf="isInterno()">
+    <p>
       {{ nonComplicanceService.selected.name }}
     </p>
   </div>
@@ -153,7 +153,7 @@
         <div>
           <span class="info-titulo">Nome</span>
           <br />
-          <span class="info-dados" *ngIf="!isInterno()">{{
+          <span class="info-dados">{{
             nonComplicanceService.selected.responsible_name
           }}</span>
         </div>
@@ -163,7 +163,7 @@
         <div>
           <span class="info-titulo">Telefone</span>
           <br />
-          <span class="info-dados" *ngIf="!isInterno()">{{
+          <span class="info-dados">{{
             nonComplicanceService.selected.responsible_phone
           }}</span>
         </div>
@@ -173,7 +173,7 @@
         <div>
           <span class="info-titulo">E-mail</span>
           <br />
-          <span class="info-dados" *ngIf="!isInterno()">{{
+          <span class="info-dados">{{
             nonComplicanceService.selected.responsible_email
           }}</span>
         </div>

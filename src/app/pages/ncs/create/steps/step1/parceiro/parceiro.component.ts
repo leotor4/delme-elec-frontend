@@ -180,6 +180,21 @@ export class ParceiroComponent implements OnInit {
           this.fail();
         }
       );
+    } else if (this.nonComplicanceService.nc.tiposParceiroItem == "Interno") {
+      this.sectorService.put(this.nonComplicanceService.selected).subscribe(
+        (value) => {
+          this.sucess();
+          this.sectorService.get().subscribe((data: any) => {
+            this.nonComplicanceService.sectors = data.sectors;
+          });
+        },
+        (err) => {
+          this.providerService.get().subscribe((data: any) => {
+            this.nonComplicanceService.sectors = data.sectors;
+          });
+          this.fail();
+        }
+      );
     }
   }
 

@@ -14,6 +14,7 @@ import { UpdateDate } from "../models/update-date";
 })
 export class NonComplianceService {
   apiUrl = "http://localhost:3333/noncompliances";
+
   public nc = new NonCompliance();
 
   //passo 1
@@ -24,8 +25,7 @@ export class NonComplianceService {
   updates: UpdateDate;
 
   pesquisar: string = "";
-
-  public fileNc: any = [];
+  fileNc: any = [];
   public fileAcoes: any = [];
   public isSelected = false;
   public selected: any;
@@ -78,9 +78,9 @@ export class NonComplianceService {
   post() {
     let formData = new FormData();
     this.uploadFiles(formData);
-    this.http.post(this.apiUrl, this.nc).subscribe((response) => {
-      console.log("response received is ", response);
-    });
+    this.nc.partnerId = this.selected.id;
+    formData.append("data", JSON.stringify(this.nc));
+    this.http.post(this.apiUrl, formData).subscribe((response) => {});
   }
 
   constructor(private http: HttpClient) {}

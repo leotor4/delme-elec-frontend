@@ -1,8 +1,11 @@
+import { Attachment } from "./attachment";
 import { Contact } from "./contact.model";
 
 export class NonCompliance {
   id?: number;
-  contacts: Contact[];
+  partnerId?: number;
+  attachments: Attachment[] = [];
+  contacts: Contact[] = [];
   tiposNcItem?: string = "";
   tiposAuditoriaItem?: string = "";
   tiposLocalItem?: string = "";

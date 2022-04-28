@@ -1,11 +1,12 @@
+import { NodeWithI18n } from "@angular/compiler";
 import { Component, OnInit } from "@angular/core";
+import { MessageService } from "primeng/api/messageservice";
 import { CustomerService } from "src/app/_services/customer.service";
 import { NonComplianceService } from "src/app/_services/non-compliance.service";
 import { PlaceService } from "src/app/_services/place.service";
 import { ProviderService } from "src/app/_services/provider.service";
 import { SectorService } from "src/app/_services/sector.service";
 import { UpdateDateService } from "src/app/_services/update-date.service";
-import { ContactsService } from "../steps/step3/contacts.service";
 
 @Component({
   selector: "app-ncs-create-header",
@@ -42,9 +43,40 @@ export class NcsCreateHeaderComponent implements OnInit {
     this.placeService.get().subscribe((data: any) => {
       this.nonComplianceService.places = data.places;
     });
+
+    this.popularData();
   }
 
   teste() {
     this.nonComplianceService.post();
   }
+
+  popularData() {
+    let now = new Date();
+    let late = new Date();
+    late.setDate(now.getDate() + 30);
+    this.nonComplianceService.nc.dataAbertura = now.toISOString().slice(0, 10);
+
+    this.nonComplianceService.nc.dataFechamento = late
+      .toISOString()
+      .slice(0, 10);
+  }
+
+  // sucess() {
+  //   this.messageService.add({
+  //     key: "myKey1",
+  //     severity: "success",
+  //     summary: "Não conformidade salva com sucesso.",
+  //     life: 3000,
+  //   });
+  // }
+
+  // fail() {
+  //   this.messageService.add({
+  //     key: "myKey1",
+  //     severity: "error",
+  //     summary: "Houve um problema ao salvar não conformidade.",
+  //     life: 3000,
+  //   });
+  // }
 }
