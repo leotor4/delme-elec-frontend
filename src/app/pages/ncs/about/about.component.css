@@ -1,0 +1,3 @@
+:host /deep/ .p-tabPanel  .p-tabview-nav:hover a {
+    text-decoration: none;
+}

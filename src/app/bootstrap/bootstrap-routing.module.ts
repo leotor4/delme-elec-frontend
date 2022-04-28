@@ -28,6 +28,13 @@ const routes: Routes = [
             (m) => m.ImportJsonModule
           ),
       },
+      {
+        path: "about",
+        loadChildren: () =>
+            import("../pages/ncs/about/about.module").then(
+                (m) => m.NcAboutModule
+            ),
+      },
     ],
   },
 ];

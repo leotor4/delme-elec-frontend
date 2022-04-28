@@ -1,0 +1,176 @@
+<div class="div-ident-parceiro d-flex mt-3 flex-column flex-lg-row">
+  <div class="div-ident-parceiro">
+    <h2>
+      <i class="bi bi-card-text"></i>
+      Dados de Identificação
+    </h2>
+    <div class="d-flex justify-content-between flex-column flex-lg-row">
+      <div class="contato-info d-flex flex-row">
+        <i class="bi bi-ticket-perforated mr-1"></i>
+        <div>
+          <span class="info-titulo">Número</span>
+          <br />
+          <span class="info-dados">{{ncID}}</span>
+        </div>
+      </div>
+      <div class="contato-info d-flex flex-row">
+        <i class="bi bi-calendar-week mr-1"></i>
+        <div>
+          <span class="info-titulo">Data de Abertura</span>
+          <br />
+          <span class="info-dados">
+            {{"00/00/0000"}}
+          </span>
+        </div>
+      </div>
+      <div class="contato-info d-flex flex-row">
+        <i class="bi bi-calendar-week mr-1"></i>
+        <div>
+          <span class="info-titulo">Data de Fechamento</span>
+          <br/>
+          <span class="info-dados">{{"00/00/0000"}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p-divider class="test1" layout="vertical"></p-divider>
+  <div class="div-ident-parceiro">
+    <h2>
+      <i class="bi bi-people mr-1"></i>
+      Dados de Emissão
+    </h2>
+    <div class="d-flex justify-content-between flex-column flex-lg-row">
+      <div class="contato-info d-flex flex-row">
+        <i class="bi bi-person-circle mr-1"></i>
+        <div>
+          <span class="info-titulo">Emissor</span>
+          <br/>
+          <span class="info-dados">Elias</span>
+        </div>
+      </div>
+      <div class="contato-info d-flex flex-row">
+        <i class="bi bi-person-circle mr-1"></i>
+        <div>
+          <span class="info-titulo">Responsável</span>
+          <br/>
+          <span class="info-dados">Janaína</span>
+        </div>
+      </div>
+      <div class="contato-info d-flex flex-row">
+        <i class="bi bi-geo-alt mr-1"></i>
+        <div>
+          <span class="info-titulo">Departamento</span>
+          <br>
+          <p class="info-dados">Rh</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="div-ident-parceiro mt-3">
+  <h1 class="titulo-parceiro">Dados do Parceiro</h1>
+  <div class="d-flex">
+    <div class="item">
+      <div class="dados-parceiro razao-social">
+        <div class="d-flex">
+          <h2 class="mr-2">Razão Social</h2>
+          <p-chip>
+            <i class="bi bi-ticket-perforated mr-2"></i>
+            {{ "00000000" }}
+          </p-chip>
+        </div>
+        <p>
+          {{"Dado não preenchido"}}
+        </p>
+      </div>
+    </div>
+    <div class="item">
+      <div class="dados-parceiro">
+        <div class="dados-contato">
+          <h1>Dados do Contato</h1>
+          <div></div>
+          <div class="contato-info d-flex flex-row">
+            <i class="pi pi-user"></i>
+            <div>
+              <span class="info-titulo">Nome</span>
+              <br />
+              <span class="info-dados">
+                {{"Dado não preenchido"}}
+              </span>
+            </div>
+          </div>
+          <div class="contato-info d-flex flex-row">
+            <i class="pi pi-phone"></i>
+            <div>
+              <span class="info-titulo">Telefone</span>
+              <br />
+              <span class="info-dados">
+                {{"(00) 00000-0000"}}
+              </span>
+            </div>
+          </div>
+          <div class="contato-info d-flex flex-row">
+            <i class="pi pi-at"></i>
+            <div>
+              <span class="info-titulo">E-mail</span>
+              <br />
+              <span class="info-dados">
+                {{"Dado não preenchido"}}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="div-ident-parceiro d-flex flex-column flex-lg-row mt-3">
+  <div class="dados-parceiro razao-social item ">
+    <h2 class="mr-2">
+      <i class="bi bi-file-earmark-text"></i>
+      Descrição da Não Conformidade
+    </h2>
+    <p-editor [style]="{'height':'144px'}" [readonly]="true">
+      <ng-template pTemplate="header">
+      </ng-template>
+    </p-editor>
+  </div>
+  <p-divider layout="vertical"></p-divider>
+  <div class="dados-parceiro razao-social item">
+    <h2 class="mr-2 mb-5">
+      <i class="pi pi-camera"></i>
+      Evidencias fotográficas
+    </h2>
+    <p-carousel [value]="this.images1" [numVisible]="3" [numScroll]="3" [showIndicators]="false">
+      <ng-template let-file pTemplate="item" >
+        <i class="bi bi-file-earmark fs-1"></i>
+        <p>{{file.name||"file.txt"}}</p>
+      </ng-template>
+    </p-carousel>
+  </div>
+</div>
+<div class="div-ident-parceiro d-flex  mt-3">
+  <div class="dados-parceiro razao-social item">
+    <h2 class="mr-2">
+      <i class="bi bi-geo"></i>
+      Descrição de Ações Imediatas
+    </h2>
+    <p-editor [style]="{'height':'144px'}" [readonly]="true">
+      <ng-template pTemplate="header" hidden>
+      </ng-template>
+    </p-editor>
+  </div>
+  <p-divider layout="vertical"></p-divider>
+  <div class="dados-parceiro razao-social item">
+    <h2 class="mr-2 mb-5">
+      <i class="pi pi-camera"></i>
+      Evidencias fotográficas
+    </h2>
+    <p-carousel [value]="this.images2" [numVisible]="3" [numScroll]="3" [showIndicators]="false">
+      <ng-template let-file pTemplate="item">
+          <i class="bi bi-file-earmark fs-1"></i>
+          <p>{{file.name||"file.txt"}}</p>
+      </ng-template>
+    </p-carousel>
+  </div>
+</div>

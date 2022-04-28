@@ -20,16 +20,17 @@ import { RegisterComponent } from './register/register.component';
     AppComponent,
     LoginComponent,
     RegisterComponent,
-     BoardUserComponent
+      BoardUserComponent,
 
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    BootstrapModule,
-    FormsModule,
-    HttpClientModule
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        BootstrapModule,
+        FormsModule,
+        HttpClientModule,
+
+    ],
   providers: [authInterceptorProviders, AuthGuardService,
     {provide: ErrorHandler, useClass: GlobalErrorHandler}
   ],
