@@ -10,7 +10,7 @@
         <div>
           <span class="info-titulo">Número</span>
           <br />
-          <span class="info-dados">544554</span>
+          <span class="info-dados">{{ncID}}</span>
         </div>
       </div>
       <div class="contato-info d-flex flex-row">
@@ -18,7 +18,10 @@
         <div>
           <span class="info-titulo">Data de Abertura</span>
           <br />
-          <span class="info-dados">26/04/2022</span>
+          <span class="info-dados">
+            {{ this.nonComplicanceService.dataAbertura.split("-").reverse().join("/")
+            ||"00/00/0000"}}
+          </span>
         </div>
       </div>
       <div class="contato-info d-flex flex-row">
@@ -26,7 +29,8 @@
         <div>
           <span class="info-titulo">Data de Fechamento</span>
           <br/>
-          <span class="info-dados">26/04/2022</span>
+          <span class="info-dados">{{this.nonComplicanceService.dataFechamento.split("-").reverse().join("/")
+          ||"00/00/0000"}}</span>
         </div>
       </div>
     </div>
@@ -74,14 +78,11 @@
           <h2 class="mr-2">Razão Social</h2>
           <p-chip>
             <i class="bi bi-ticket-perforated mr-2"></i>
-            {{ 8411684 }}
+            {{ this.nonComplicanceService.selected?.corporate_name||"00000000" }}
           </p-chip>
         </div>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci
-          aperiam aspernatur beatae consequatur deserunt dolorem est fuga
-          incidunt iste nam officia placeat quam quidem quisquam reprehenderit,
-          ullam vel veritatis, vero.
+          {{this.nonComplicanceService.selected?.corporate_name||"Dado não preenchido"}}
         </p>
       </div>
     </div>
@@ -95,7 +96,9 @@
             <div>
               <span class="info-titulo">Nome</span>
               <br />
-              <span class="info-dados">João</span>
+              <span class="info-dados">
+                {{this.nonComplicanceService.selected?.responsible_name||"Dado não preenchido"}}
+              </span>
             </div>
           </div>
           <div class="contato-info d-flex flex-row">
@@ -103,7 +106,9 @@
             <div>
               <span class="info-titulo">Telefone</span>
               <br />
-              <span class="info-dados">(85) 98553-4200</span>
+              <span class="info-dados">
+                {{this.nonComplicanceService.selected?.responsible_phone||"(00) 00000-0000"}}
+              </span>
             </div>
           </div>
           <div class="contato-info d-flex flex-row">
@@ -111,7 +116,9 @@
             <div>
               <span class="info-titulo">E-mail</span>
               <br />
-              <span class="info-dados">joao@gmail.com</span>
+              <span class="info-dados">
+                {{this.nonComplicanceService.selected?.responsible_email||"Dado não preenchido"}}
+              </span>
             </div>
           </div>
         </div>
@@ -125,22 +132,21 @@
       <i class="bi bi-file-earmark-text"></i>
       Descrição da Não Conformidade
     </h2>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aperiam
-      aspernatur beatae consequatur deserunt dolorem est fuga incidunt iste nam
-      officia placeat quam quidem quisquam reprehenderit, ullam vel veritatis,
-      vero.
-    </p>
+    <p-editor [(ngModel)]="this.nonComplicanceService.textAreaNc" [style]="{'height':'144px'}" [readonly]="true">
+      <ng-template pTemplate="header">
+      </ng-template>
+    </p-editor>
   </div>
   <p-divider layout="vertical"></p-divider>
   <div class="dados-parceiro razao-social item">
-    <h2 class="mr-2">
+    <h2 class="mr-2 mb-5">
       <i class="pi pi-camera"></i>
       Evidencias fotográficas
     </h2>
-    <p-carousel [value]="images2" [numVisible]="4" [numScroll]="4">
-      <ng-template pTemplate="item">
-        <img src="https://www.w3schools.com/images/w3schools_green.jpg" alt="" height="95">
+    <p-carousel [value]="this.nonComplicanceService.fileNc" [numVisible]="3" [numScroll]="3" [showIndicators]="false">
+      <ng-template let-file pTemplate="item" >
+        <i class="bi bi-file-earmark fs-1"></i>
+        <p>{{file.name}}</p>
       </ng-template>
     </p-carousel>
   </div>
@@ -151,22 +157,21 @@
       <i class="bi bi-geo"></i>
       Descrição de Ações Imediatas
     </h2>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aperiam
-      aspernatur beatae consequatur deserunt dolorem est fuga incidunt iste nam
-      officia placeat quam quidem quisquam reprehenderit, ullam vel veritatis,
-      vero.
-    </p>
+    <p-editor [(ngModel)]="this.nonComplicanceService.textAreaAcoes" [style]="{'height':'144px'}" [readonly]="true">
+      <ng-template pTemplate="header" hidden>
+      </ng-template>
+    </p-editor>
   </div>
   <p-divider layout="vertical"></p-divider>
   <div class="dados-parceiro razao-social item">
-    <h2 class="mr-2">
+    <h2 class="mr-2 mb-5">
       <i class="pi pi-camera"></i>
       Evidencias fotográficas
     </h2>
-    <p-carousel [value]="images2" [numVisible]="4" [numScroll]="4">
-      <ng-template pTemplate="item">
-        <img src="https://www.w3schools.com/images/w3schools_green.jpg" alt="" height="95">
+    <p-carousel [value]="this.nonComplicanceService.fileAcoes" [numVisible]="3" [numScroll]="3" [showIndicators]="false">
+      <ng-template let-file pTemplate="item">
+          <i class="bi bi-file-earmark fs-1"></i>
+          <p>{{file.name}}</p>
       </ng-template>
     </p-carousel>
   </div>
