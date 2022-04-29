@@ -15,6 +15,11 @@ import {DividerModule} from "primeng/divider";
 import {CarouselModule} from "primeng/carousel";
 import {TableModule} from "primeng/table";
 import { ProposalComponent } from './proposal/proposal.component';
+import { CostsComponent } from './costs/costs.component';
+import {ButtonModule} from "primeng/button";
+import { SGQEvaluationComponent } from './sgq-evaluation/sgq-evaluation.component';
+import { ClosingComponent } from './closing/closing.component';
+import { TrakingComponent } from './traking/traking.component';
 
 
 
@@ -27,21 +32,26 @@ import { ProposalComponent } from './proposal/proposal.component';
     ViewProductsAndPointsComponent,
     ViewIdentifyNCComponent,
     ProposalComponent,
+    CostsComponent,
+    SGQEvaluationComponent,
+    ClosingComponent,
+    TrakingComponent,
 
 
   ],
-  imports: [
-    CommonModule,
-    NcAboutRoutingModule,
-    ChipModule,
-    TabViewModule,
-    AccordionModule,
-    EditorModule,
-    DividerModule,
-    CarouselModule,
-    TableModule
+    imports: [
+        CommonModule,
+        NcAboutRoutingModule,
+        ChipModule,
+        TabViewModule,
+        AccordionModule,
+        EditorModule,
+        DividerModule,
+        CarouselModule,
+        TableModule,
+        ButtonModule
 
 
-  ]
+    ]
 })
 export class NcAboutModule { }
