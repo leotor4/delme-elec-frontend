@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { AuthGuardService } from "../_services/auth-guard.service";
+import {CreatePropModule} from "../pages/ncs/create-prop/create-prop.module";
 
 const routes: Routes = [
   {
@@ -33,6 +34,12 @@ const routes: Routes = [
         loadChildren: () =>
             import("../pages/ncs/about/about.module").then(
                 (m) => m.NcAboutModule
+            ),
+      },{
+        path: "createProp",
+        loadChildren: () =>
+            import("../pages/ncs/create-prop/create-prop.module").then(
+                (m) => m.CreatePropModule
             ),
       },
     ],
