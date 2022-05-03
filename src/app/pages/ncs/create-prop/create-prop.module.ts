@@ -12,6 +12,11 @@ import { ActionPlanComponent } from './steps/step3/action-plan.component';
 import { NotificationsComponent } from './steps/step4/notifications.component';
 import { ReviewInfomationsComponent } from './steps/step5/review-infomations.component';
 import {InputTextareaModule} from "primeng/inputtextarea";
+import { IshikawaDialogComponent } from './steps/step1/ishikawa-dialog/ishikawa-dialog.component';
+import {DynamicDialogModule} from "primeng/dynamicdialog";
+import {CheckboxModule} from "primeng/checkbox";
+import {EditorModule} from "primeng/editor";
+
 
 
 
@@ -25,14 +30,19 @@ import {InputTextareaModule} from "primeng/inputtextarea";
       ReasonsWhyComponent,
       ActionPlanComponent,
       NotificationsComponent,
-      ReviewInfomationsComponent
+      ReviewInfomationsComponent,
+      IshikawaDialogComponent
   ],
     imports: [
         CommonModule,
         CreatePropRoutingModule,
         ChipModule,
         StepsModule,
-        InputTextareaModule
-    ]
+        InputTextareaModule,
+        DynamicDialogModule,
+        CheckboxModule,
+        EditorModule
+    ],
+    entryComponents: [IshikawaDialogComponent]
 })
 export class CreatePropModule { }

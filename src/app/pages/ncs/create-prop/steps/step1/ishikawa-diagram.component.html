@@ -1,56 +1,60 @@
 <div class="d-flex flex-lg-row flex-column justify-content-between">
-    <div class="d-flex">
-        <div class="cabecalho">
-            <div class="d-flex align-items-center">
-                <h1 class="mr-3">Diagrama de Ishikawa</h1>
-            </div>
-            <p>
-                descreva o problema referente aos respectivos campos de acordo com o Diagrama de Causa e Efeito - Ishikawa.
-            </p>
-        </div>
+    <div class="cabecalho">
+        <h1 class="mr-3">Diagrama de Ishikawa</h1>
+        <p>
+            Descreva o problema referente aos respectivos campos de acordo com o Diagrama de Causa e Efeito - Ishikawa.
+        </p>
     </div>
     <div class="d-flex justify-content-end align-items-center mb-3">
-
         <button class="btn btn-dark ml-3">
             Visualizar Descrição da NC
             <i class="bi bi-file-earmark-medical"></i>
         </button>
     </div>
 </div>
-<div class="d-flex mt-5 cinza">
+<div class="d-flex caixa-cinza pr-2 py-4 mt-4">
     <div>
         <div class="d-flex">
             <div class="col">
-                <label>Descreva a não conformidade</label>
-                <textarea  pInputTextarea [autoResize]="true" readonly></textarea>
+                <label>Matéria Prima</label>
+                <textarea  pInputTextarea rows="5" cols="25" readonly class="textarea" (click)="openDialog(1)">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda, est, quisquam?
+                </textarea>
+
             </div>
             <div class="col">
-                <label>Descreva a não conformidade</label>
-                <textarea  pInputTextarea [autoResize]="true" readonly></textarea>
+                <label>Medição</label>
+                <textarea  pInputTextarea rows="5" cols="25" readonly class="textarea" (click)="openDialog(2)">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda, est, quisquam?
+                </textarea>
             </div>
             <div class="col">
-                <label>Descreva a não conformidade</label>
-                <textarea  pInputTextarea [autoResize]="true" readonly></textarea>
+                <label>Método</label>
+                <textarea  pInputTextarea rows="5" cols="25" readonly class="textarea" (click)="openDialog(3)">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda, est, quisquam?
+                </textarea>
             </div>
         </div>
-        <img src="../../../../../../assets/images/Espinha de Peixe.png" width="1000">
+        <img src="../../../../../../assets/images/Espinha de Peixe.png" width="900" class="ml-5 mr-3">
         <div class="d-flex">
             <div class="col">
-                <label>Descreva a não conformidade</label>
-                <textarea  pInputTextarea [autoResize]="true" readonly></textarea>
+                <label>Mão de Obra</label>
+                <textarea  pInputTextarea rows="5" cols="25" readonly class="textarea" (click)="openDialog(4)">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda, est, quisquam?
+                </textarea>
             </div>
             <div class="col">
-                <label>Descreva a não conformidade</label>
-                <textarea  pInputTextarea [autoResize]="true" readonly></textarea>
+                <label>Meio Ambiente</label>
+                <textarea  pInputTextarea rows="5" cols="25" readonly class="textarea" (click)="openDialog(5)">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda, est, quisquam?
+                </textarea>
             </div>
             <div class="col">
-                <label>Descreva a não conformidade</label>
-                <textarea  pInputTextarea [autoResize]="true" readonly></textarea>
+                <label>Máquina</label>
+                <textarea  pInputTextarea rows="5" cols="25" readonly class="textarea" (click)="openDialog(6)">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda, est, quisquam?
+                </textarea>
+
             </div>
         </div>
     </div>
-    <div class="d-block">
-        <label>Descreva a não conformidade</label>
-        <textarea  pInputTextarea [autoResize]="true" readonly rows="15"></textarea>
+    <div class="d-block mt-5">
+        <label>Efeito</label>
+        <textarea  pInputTextarea readonly rows="15" class="textarea">Texto do campo descreva a não conformidade.
+        </textarea>
     </div>
 </div>
