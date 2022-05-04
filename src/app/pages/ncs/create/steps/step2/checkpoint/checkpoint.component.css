@@ -81,13 +81,55 @@
   z-index: 3;
 }
 
-label {
-  font-size: 13px;
-  font-weight: bold;
-  margin-bottom: 2px;
-}
+
 @media (max-width: 500px) {
   .white-background p {
     width: 220px;
   }
+}
+
+.dropdown p {
+  font-size: 14px;
+}
+
+.dropdown select {
+  background-color: white;
+  border-radius: 5px;
+  border: 2px solid rgb(51, 51, 51);
+  padding: 7px;
+  width: 100%;
+  font-size: 13px;
+}
+
+label {
+  min-width: 200px;
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 2px;
+}
+
+.cabecalho h1 {
+  font-size: 25px;
+  font-weight: 500;
+  margin-bottom: 0px;
+}
+
+
+
+.cabecalho p {
+  font-size: 14px;
+  color: gray;
+}
+
+input{
+  outline: none;
+  background-color: white;
+  border-radius: 5px;
+  border: 2px solid rgb(51, 51, 51);
+  padding-left: 30px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 5px;
+  width: 100%;
+  font-size: 14px;
 }

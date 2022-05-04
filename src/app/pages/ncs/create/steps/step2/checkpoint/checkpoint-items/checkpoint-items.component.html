@@ -1,0 +1,116 @@
+<div *ngIf="returnOpScreen()">
+  <label for="NumOp">Número da OP</label>
+  <input
+    [(ngModel)]="nonComplicanceService.nc.numOp"
+    name="NumOp"
+    type="text"
+    pInputText
+    placeholder="Digite"
+    class="p-inputtext-sm input"
+  />
+</div>
+
+<div *ngIf="returnNfScreen()">
+  <label for="NumOp">Número da Nota</label>
+  <input
+    [(ngModel)]="nonComplicanceService.nc.numNota"
+    name="NumOp"
+    type="text"
+    pInputText
+    placeholder="Digite"
+    class="p-inputtext-sm input"
+  />
+</div>
+
+<div *ngIf="returnPrScreen()">
+  <div class="row">
+    <div class="col-8">
+      <div class="p-fluid autoComplete">
+        <label class="">Selecionar PR</label>
+        <p-autoComplete
+          [(ngModel)]="nonComplicanceService.autoCompletePrValue"
+          class="p-autocomplete"
+          [suggestions]="results"
+          (onSelect)="onSelected()"
+          (completeMethod)="search($event)"
+          [style]="{ width: '100%' }"
+          [inputStyle]="{ width: '100%' }"
+          field="description"
+          placeholder="Busque por nome, número ou descrição"
+        >
+          <ng-template let-brand pTemplate="item">
+            <div>
+              <div class="d-flex justify-content-between">
+                <div>
+                  <span class="auto-complete-label">CÓDIGO</span><br />
+                  <span class="auto-complete-item">{{ brand.code }}</span>
+                </div>
+                <div>
+                  <span class="auto-complete-label">DESCRIÇÃO</span><br />
+                  <span class="auto-complete-item">{{
+                    brand.description
+                  }}</span>
+                </div>
+                <div>
+                  <span class="auto-complete-label">REVISÃO</span><br />
+                  <span class="auto-complete-item">{{ brand.rev }}</span>
+                </div>
+              </div>
+            </div></ng-template
+          >
+        </p-autoComplete>
+      </div>
+    </div>
+    <div class="col att-button">
+      <div>
+        <p><i class="pi pi-history"></i> ultima atualização:</p>
+        <button
+          href="http://localhost:4200/ncs/import"
+          role="button"
+          class="btn btn-dark"
+          (click)="openDialog()"
+        >
+          Atualizar PRs
+          <i class="pi pi-download" id="icon-button"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="input-box mt-3" *ngIf="returnPrScreen() || returnNfScreen()">
+  <label class="mb-2 mt-3">Anexar Documentos</label>
+  <div class="div-attachment">
+    <h1>Envie seus documentos</h1>
+    <div
+      class="white-background"
+      *ngIf="nonComplicanceService.fileControle.length == 0"
+    >
+      <input
+        type="file"
+        class="input-attachment"
+        (change)="onUpload($event, 'pontoControle')"
+        multiple
+      />
+      <i class="pi pi-cloud-upload"></i>
+      <p>
+        Arraste e solte ou <strong>navegue para escolher</strong> um arquivo
+      </p>
+    </div>
+    <div
+      class="white-background-files"
+      *ngIf="returnFiles('pontoControle').length != 0"
+    >
+      <button
+        type="button"
+        (click)="clearFileName('pontoControle')"
+        class="btn btn-light"
+      >
+        <i class="pi pi-replay"></i>
+      </button>
+      <p *ngFor="let files of returnFiles('pontoControle')">
+        {{ files.name }}
+      </p>
+    </div>
+  </div>
+</div>

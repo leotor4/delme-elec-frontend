@@ -2,8 +2,10 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Contact } from "../models/contact.model";
 import { Customer } from "../models/customer";
+import { Instruction } from "../models/instruction";
 import { NonCompliance } from "../models/non-compliance";
 import { Place } from "../models/place";
+import { Procedure } from "../models/procedure";
 import { Product } from "../models/product.model";
 import { Provider } from "../models/provider";
 import { Sector } from "../models/sector";
@@ -25,20 +27,25 @@ export class NonComplianceService {
   updates: UpdateDate;
 
   pesquisar: string = "";
-  fileNc: any = [];
+  public fileNc: any = [];
   public fileAcoes: any = [];
   public isSelected = false;
-  public selected: any;
 
   //passo 2
   public quantNc = "";
   public quantTotal = "";
   public fileProduct: any = [];
+  public fileControle: any = [];
+  public instructions: Instruction[];
+  public procedures: Procedure[];
   public selectedProduct: Product;
-  public radioButtonValue: string = "val1";
-  public textAreaRejectPoint: String = "";
+
   public autoCompleteValue: string = "";
+  public autoCompletePrValue: any;
+  public autoCompleteItValue: any;
   public controlNumber: string = "";
+  public selectedIt: any;
+  public selectedPr: any;
 
   //passo 3
   allContacts: Contact[];
@@ -55,7 +62,7 @@ export class NonComplianceService {
       !!this.nc.tiposParceiroItem &&
       !!this.nc.textAreaNc &&
       !!this.nc.textAreaAcoes &&
-      !!this.selected &&
+      !!this.nc.partner &&
       this.fileNc.length > 0 &&
       this.fileAcoes.length > 0
     );
@@ -73,14 +80,25 @@ export class NonComplianceService {
     for (var i = 0; i < this.fileAcoes.length; i++) {
       formData.append("fileAcoes[]", this.fileAcoes[i], this.fileAcoes[i].name);
     }
+
+    for (var i = 0; i < this.fileControle.length; i++) {
+      formData.append(
+        "fileControle[]",
+        this.fileControle[i],
+        this.fileControle[i].name
+      );
+    }
   }
 
   post() {
     let formData = new FormData();
     this.uploadFiles(formData);
-    this.nc.partnerId = this.selected.id;
+
     formData.append("data", JSON.stringify(this.nc));
-    this.http.post(this.apiUrl, formData).subscribe((response) => {});
+
+    this.http.post(this.apiUrl, formData).subscribe((response) => {
+      console.log(response);
+    });
   }
 
   constructor(private http: HttpClient) {}

@@ -2,8 +2,10 @@ import { NodeWithI18n } from "@angular/compiler";
 import { Component, OnInit } from "@angular/core";
 import { MessageService } from "primeng/api/messageservice";
 import { CustomerService } from "src/app/_services/customer.service";
+import { InstructionsService } from "src/app/_services/instructions.service";
 import { NonComplianceService } from "src/app/_services/non-compliance.service";
 import { PlaceService } from "src/app/_services/place.service";
+import { ProcedureService } from "src/app/_services/procedure.service";
 import { ProviderService } from "src/app/_services/provider.service";
 import { SectorService } from "src/app/_services/sector.service";
 import { UpdateDateService } from "src/app/_services/update-date.service";
@@ -20,7 +22,9 @@ export class NcsCreateHeaderComponent implements OnInit {
     public updateService: UpdateDateService,
     public sectorService: SectorService,
     public providerService: ProviderService,
-    public placeService: PlaceService
+    public placeService: PlaceService,
+    public procedureService: ProcedureService,
+    public instructionService: InstructionsService
   ) {}
 
   ngOnInit(): void {
@@ -42,6 +46,14 @@ export class NcsCreateHeaderComponent implements OnInit {
 
     this.placeService.get().subscribe((data: any) => {
       this.nonComplianceService.places = data.places;
+    });
+
+    this.procedureService.get().subscribe((data: any) => {
+      this.nonComplianceService.procedures = data.procedures;
+    });
+
+    this.instructionService.get().subscribe((data: any) => {
+      this.nonComplianceService.instructions = data.instructions;
     });
 
     this.popularData();

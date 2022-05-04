@@ -10,8 +10,22 @@ export class CheckpointComponent implements OnInit {
   selectedCity: any;
   fileName: string[] = [];
   fileNameAcoes: ["marcelo"];
+
+  tipoControle = "";
+
   @Input("hasProduct") test: boolean;
   constructor(public nonComplicanceService: NonComplianceService) {}
+
+  controleOptions = [
+    "OP-PROD",
+    "OP-SA",
+    "OP-I",
+    "NF-e",
+    "PC",
+    "PV",
+    "CC",
+    "PR",
+  ];
 
   ngOnInit(): void {}
 

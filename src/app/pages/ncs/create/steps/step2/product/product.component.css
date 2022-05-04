@@ -52,6 +52,16 @@
   color: #7d7d7d;
   white-space: normal !important;
 }
+
+.p-autocomplete {
+  border-radius: 5px;
+  border: 2px solid rgb(51, 51, 51);
+}
+
+.input {
+  border-radius: 5px;
+  border: 2px solid rgb(51, 51, 51);
+}
 .inputs-sm {
   position: relative;
   top: -12px;
@@ -60,11 +70,23 @@
   display: flex;
   flex-direction: column;
 }
-.p-autocomplete{
-  border-radius: 5px;
-  border: 2px solid rgb(51, 51, 51);
+
+i{
+  color: white;
+  font-size: 18px;
+  margin-left: 5px;
 }
-.input{
-  border-radius: 5px;
-  border: 2px solid rgb(51, 51, 51);
+
+.att{
+  font-size: 11px;
+  color: gray;
+  margin: 0;
+}
+
+label {
+
+  min-width: 200px;
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 2px;
 }

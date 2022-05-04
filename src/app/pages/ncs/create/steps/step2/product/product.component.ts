@@ -53,6 +53,7 @@ export class ProductComponent implements OnInit {
 
   checkProduct(Product: Product) {
     this.nonComplicanceService.hasSelectedProduct = true;
+    this.nonComplicanceService.nc.product = Product;
     this.hasSelectedProductEvent.emit(
       this.nonComplicanceService.hasSelectedProduct
     );

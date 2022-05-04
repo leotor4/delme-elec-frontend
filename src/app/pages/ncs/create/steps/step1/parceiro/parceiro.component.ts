@@ -1,11 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { MessageService } from "primeng/api";
 
-import { elementAt } from "rxjs";
-import { Customer } from "src/app/models/customer";
-import { Provider } from "src/app/models/provider";
-import { Sector } from "src/app/models/sector";
-import { UpdateDate } from "src/app/models/update-date";
 import { CustomerService } from "src/app/_services/customer.service";
 import { NonComplianceService } from "src/app/_services/non-compliance.service";
 import { ProviderService } from "src/app/_services/provider.service";
@@ -114,12 +109,14 @@ export class ParceiroComponent implements OnInit {
   }
 
   onSelected() {
-    this.nonComplicanceService.selected = this.nonComplicanceService.pesquisar;
-    this.editarNomeItem = this.nonComplicanceService.selected.responsible_name;
+    this.nonComplicanceService.nc.partner =
+      this.nonComplicanceService.pesquisar;
+    this.editarNomeItem =
+      this.nonComplicanceService.nc.partner.responsible_name;
     this.editarTelefoneItem =
-      this.nonComplicanceService.selected.responsible_phone;
+      this.nonComplicanceService.nc.partner.responsible_phone;
     this.editarEmailItem =
-      this.nonComplicanceService.selected.responsible_email;
+      this.nonComplicanceService.nc.partner.responsible_email;
     this.nonComplicanceService.isSelected = true;
   }
 
@@ -142,14 +139,15 @@ export class ParceiroComponent implements OnInit {
   }
 
   editar() {
-    this.nonComplicanceService.selected.responsible_name = this.editarNomeItem;
-    this.nonComplicanceService.selected.responsible_phone =
+    this.nonComplicanceService.nc.partner.responsible_name =
+      this.editarNomeItem;
+    this.nonComplicanceService.nc.partner.responsible_phone =
       this.editarTelefoneItem;
-    this.nonComplicanceService.selected.responsible_email =
+    this.nonComplicanceService.nc.partner.responsible_email =
       this.editarEmailItem;
 
     if (this.nonComplicanceService.nc.tiposParceiroItem == "Cliente") {
-      this.customerService.put(this.nonComplicanceService.selected).subscribe(
+      this.customerService.put(this.nonComplicanceService.nc.partner).subscribe(
         (value) => {
           this.sucess();
           this.customerService.get().subscribe((data: any) => {
@@ -166,7 +164,7 @@ export class ParceiroComponent implements OnInit {
     } else if (
       this.nonComplicanceService.nc.tiposParceiroItem == "Fornecedor"
     ) {
-      this.providerService.put(this.nonComplicanceService.selected).subscribe(
+      this.providerService.put(this.nonComplicanceService.nc.partner).subscribe(
         (value) => {
           this.sucess();
           this.providerService.get().subscribe((data: any) => {
@@ -181,7 +179,7 @@ export class ParceiroComponent implements OnInit {
         }
       );
     } else if (this.nonComplicanceService.nc.tiposParceiroItem == "Interno") {
-      this.sectorService.put(this.nonComplicanceService.selected).subscribe(
+      this.sectorService.put(this.nonComplicanceService.nc.partner).subscribe(
         (value) => {
           this.sucess();
           this.sectorService.get().subscribe((data: any) => {

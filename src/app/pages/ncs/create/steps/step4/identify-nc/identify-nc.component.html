@@ -10,7 +10,7 @@
         <div>
           <span class="info-titulo">Número</span>
           <br />
-          <span class="info-dados">{{ncID}}</span>
+          <span class="info-dados">{{ ncID }}</span>
         </div>
       </div>
       <div class="contato-info d-flex flex-row">
@@ -19,8 +19,12 @@
           <span class="info-titulo">Data de Abertura</span>
           <br />
           <span class="info-dados">
-            {{ this.nonComplicanceService.nc.dataAbertura?.split("-")?.reverse()?.join("/")
-            ||"00/00/0000"}}
+            {{
+              this.nonComplicanceService.nc.dataAbertura
+                ?.split("-")
+                ?.reverse()
+                ?.join("/") || "00/00/0000"
+            }}
           </span>
         </div>
       </div>
@@ -28,9 +32,13 @@
         <i class="bi bi-calendar-week mr-1"></i>
         <div>
           <span class="info-titulo">Data de Fechamento</span>
-          <br/>
-          <span class="info-dados">{{this.nonComplicanceService.nc.dataFechamento?.split("-")?.reverse()?.join("/")
-          ||"00/00/0000"}}</span>
+          <br />
+          <span class="info-dados">{{
+            this.nonComplicanceService.nc.dataFechamento
+              ?.split("-")
+              ?.reverse()
+              ?.join("/") || "00/00/0000"
+          }}</span>
         </div>
       </div>
     </div>
@@ -46,7 +54,7 @@
         <i class="bi bi-person-circle mr-1"></i>
         <div>
           <span class="info-titulo">Emissor</span>
-          <br/>
+          <br />
           <span class="info-dados">Elias</span>
         </div>
       </div>
@@ -54,7 +62,7 @@
         <i class="bi bi-person-circle mr-1"></i>
         <div>
           <span class="info-titulo">Responsável</span>
-          <br/>
+          <br />
           <span class="info-dados">Janaína</span>
         </div>
       </div>
@@ -62,7 +70,7 @@
         <i class="bi bi-geo-alt mr-1"></i>
         <div>
           <span class="info-titulo">Departamento</span>
-          <br>
+          <br />
           <p class="info-dados">Rh</p>
         </div>
       </div>
@@ -78,11 +86,17 @@
           <h2 class="mr-2">Razão Social</h2>
           <p-chip>
             <i class="bi bi-ticket-perforated mr-2"></i>
-            {{ this.nonComplicanceService.selected?.corporate_name||"00000000" }}
+            {{
+              this.nonComplicanceService.nc.partner?.corporate_name ||
+                "00000000"
+            }}
           </p-chip>
         </div>
         <p>
-          {{this.nonComplicanceService.selected?.corporate_name||"Dado não preenchido"}}
+          {{
+            this.nonComplicanceService.nc.partner?.corporate_name ||
+              "Dado não preenchido"
+          }}
         </p>
       </div>
     </div>
@@ -97,7 +111,10 @@
               <span class="info-titulo">Nome</span>
               <br />
               <span class="info-dados">
-                {{this.nonComplicanceService.selected?.responsible_name||"Dado não preenchido"}}
+                {{
+                  this.nonComplicanceService.nc.partner?.responsible_name ||
+                    "Dado não preenchido"
+                }}
               </span>
             </div>
           </div>
@@ -107,7 +124,10 @@
               <span class="info-titulo">Telefone</span>
               <br />
               <span class="info-dados">
-                {{this.nonComplicanceService.selected?.responsible_phone||"(00) 00000-0000"}}
+                {{
+                  this.nonComplicanceService.nc.partner?.responsible_phone ||
+                    "(00) 00000-0000"
+                }}
               </span>
             </div>
           </div>
@@ -117,7 +137,10 @@
               <span class="info-titulo">E-mail</span>
               <br />
               <span class="info-dados">
-                {{this.nonComplicanceService.selected?.responsible_email||"Dado não preenchido"}}
+                {{
+                  this.nonComplicanceService.nc.partner?.responsible_email ||
+                    "Dado não preenchido"
+                }}
               </span>
             </div>
           </div>
@@ -127,14 +150,17 @@
   </div>
 </div>
 <div class="div-ident-parceiro d-flex flex-column flex-lg-row mt-3">
-  <div class="dados-parceiro razao-social item ">
+  <div class="dados-parceiro razao-social item">
     <h2 class="mr-2">
       <i class="bi bi-file-earmark-text"></i>
       Descrição da Não Conformidade
     </h2>
-    <p-editor [(ngModel)]="this.nonComplicanceService.nc.textAreaNc" [style]="{'height':'144px'}" [readonly]="true">
-      <ng-template pTemplate="header">
-      </ng-template>
+    <p-editor
+      [(ngModel)]="this.nonComplicanceService.nc.textAreaNc"
+      [style]="{ height: '144px' }"
+      [readonly]="true"
+    >
+      <ng-template pTemplate="header"> </ng-template>
     </p-editor>
   </div>
   <p-divider layout="vertical"></p-divider>
@@ -143,23 +169,31 @@
       <i class="pi pi-camera"></i>
       Evidencias fotográficas
     </h2>
-    <p-carousel [value]="this.nonComplicanceService.fileNc" [numVisible]="3" [numScroll]="3" [showIndicators]="false">
-      <ng-template let-file pTemplate="item" >
+    <p-carousel
+      [value]="this.nonComplicanceService.fileNc"
+      [numVisible]="3"
+      [numScroll]="3"
+      [showIndicators]="false"
+    >
+      <ng-template let-file pTemplate="item">
         <i class="bi bi-file-earmark fs-1"></i>
-        <p>{{file.name}}</p>
+        <p>{{ file.name }}</p>
       </ng-template>
     </p-carousel>
   </div>
 </div>
-<div class="div-ident-parceiro d-flex  mt-3">
+<div class="div-ident-parceiro d-flex mt-3">
   <div class="dados-parceiro razao-social item">
     <h2 class="mr-2">
       <i class="bi bi-geo"></i>
       Descrição de Ações Imediatas
     </h2>
-    <p-editor [(ngModel)]="this.nonComplicanceService.nc.textAreaAcoes" [style]="{'height':'144px'}" [readonly]="true">
-      <ng-template pTemplate="header" hidden>
-      </ng-template>
+    <p-editor
+      [(ngModel)]="this.nonComplicanceService.nc.textAreaAcoes"
+      [style]="{ height: '144px' }"
+      [readonly]="true"
+    >
+      <ng-template pTemplate="header" hidden> </ng-template>
     </p-editor>
   </div>
   <p-divider layout="vertical"></p-divider>
@@ -168,10 +202,15 @@
       <i class="pi pi-camera"></i>
       Evidencias fotográficas
     </h2>
-    <p-carousel [value]="this.nonComplicanceService.fileAcoes" [numVisible]="3" [numScroll]="3" [showIndicators]="false">
+    <p-carousel
+      [value]="this.nonComplicanceService.fileAcoes"
+      [numVisible]="3"
+      [numScroll]="3"
+      [showIndicators]="false"
+    >
       <ng-template let-file pTemplate="item">
-          <i class="bi bi-file-earmark fs-1"></i>
-          <p>{{file.name}}</p>
+        <i class="bi bi-file-earmark fs-1"></i>
+        <p>{{ file.name }}</p>
       </ng-template>
     </p-carousel>
   </div>

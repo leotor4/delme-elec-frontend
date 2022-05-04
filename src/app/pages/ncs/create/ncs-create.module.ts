@@ -42,6 +42,10 @@ import { ProductsAndPointsComponent } from "./steps/step4/products-and-points/pr
 import { IdentifyNCComponent } from "./steps/step4/identify-nc/identify-nc.component";
 import { ProductInfoComponent } from "./steps/step2/product/product-info/product-info.component";
 import {CarouselModule} from "primeng/carousel";
+import { CheckpointItemsComponent } from './steps/step2/checkpoint/checkpoint-items/checkpoint-items.component';
+import { RejectionPointItemsComponent } from './steps/step2/rejection-point/rejection-point-items/rejection-point-items.component';
+import { ItDialogComponent } from './steps/step2/rejection-point/it-dialog/it-dialog.component';
+import { PrDialogComponent } from './steps/step2/checkpoint/pr-dialog/pr-dialog.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +68,10 @@ import {CarouselModule} from "primeng/carousel";
     StakeholdersComponent,
     ProductsAndPointsComponent,
     IdentifyNCComponent,
+    CheckpointItemsComponent,
+    RejectionPointItemsComponent,
+    ItDialogComponent,
+    PrDialogComponent,
   ],
   imports: [
     CommonModule,

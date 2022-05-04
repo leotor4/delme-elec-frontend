@@ -9,7 +9,7 @@ import { NonComplianceService } from "src/app/_services/non-compliance.service";
 })
 export class NcsCreateStepperComponent implements OnInit {
   items: MenuItem[];
-  stepPosition: number = 0;
+  stepPosition: number = 1;
   lastStepLabel = "Avançar";
   constructor(public nonComplianceService: NonComplianceService) {}
 

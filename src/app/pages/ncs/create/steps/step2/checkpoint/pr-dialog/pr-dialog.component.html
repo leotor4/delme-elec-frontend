@@ -1,0 +1,46 @@
+<div class="editar-campo">
+  <label for="">Código</label>
+  <input type="text" [(ngModel)]="code" #codCtrl="ngModel" required />
+  <small *ngIf="codCtrl.invalid && codCtrl.touched">
+    Por favor insira o código.
+  </small>
+</div>
+<div class="editar-campo">
+  <label for="">Descrição</label>
+  <input type="text" [(ngModel)]="description" #descCtrl="ngModel" required />
+  <small *ngIf="descCtrl.invalid && descCtrl.touched">
+    Por favor insira a descrição.
+  </small>
+</div>
+<div class="editar-campo">
+  <label for="">Revisão</label>
+  <input type="text" [(ngModel)]="rev" #revCtrl="ngModel" required />
+  <small *ngIf="revCtrl.invalid && revCtrl.touched">
+    Por favor insira a descrição.
+  </small>
+</div>
+
+<div class="mt-4">
+  <input type="file" accept=".pdf" (change)="onchange($event)" />
+</div>
+
+<div class="d-flex justify-content-end editar-buttons">
+  <button type="button" class="btn btn-outline-dark" (click)="close()">
+    Cancelar
+  </button>
+  <div class="ml-2 mr-2"></div>
+  <button
+    type="button"
+    class="btn btn-dark"
+    [disabled]="
+      codCtrl.invalid ||
+      descCtrl.invalid ||
+      revCtrl.invalid ||
+      file == undefined
+    "
+    (click)="save()"
+  >
+    Confirmar
+    <i class="pi pi-check"></i>
+  </button>
+</div>
