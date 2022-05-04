@@ -132,7 +132,7 @@
       <i class="bi bi-file-earmark-text"></i>
       Descrição da Não Conformidade
     </h2>
-    <p-editor [(ngModel)]="this.nonComplicanceService.nc.textAreaNc" [style]="{'height':'144px'}" [readonly]="true">
+    <p-editor [(ngModel)]="this.nonComplicanceService.nc.textAreaNc" [style]="{'height':'144px','border': '1px solid #dddddd'}" [readonly]="true">
       <ng-template pTemplate="header">
       </ng-template>
     </p-editor>
@@ -157,7 +157,7 @@
       <i class="bi bi-geo"></i>
       Descrição de Ações Imediatas
     </h2>
-    <p-editor [(ngModel)]="this.nonComplicanceService.nc.textAreaAcoes" [style]="{'height':'144px'}" [readonly]="true">
+    <p-editor [(ngModel)]="this.nonComplicanceService.nc.textAreaAcoes" [style]="{'height':'144px','border': '1px solid #dddddd'}" [readonly]="true">
       <ng-template pTemplate="header" hidden>
       </ng-template>
     </p-editor>
