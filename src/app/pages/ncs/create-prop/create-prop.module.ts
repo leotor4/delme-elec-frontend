@@ -16,6 +16,7 @@ import { IshikawaDialogComponent } from './steps/step1/ishikawa-dialog/ishikawa-
 import {DynamicDialogModule} from "primeng/dynamicdialog";
 import {CheckboxModule} from "primeng/checkbox";
 import {EditorModule} from "primeng/editor";
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -41,7 +42,8 @@ import {EditorModule} from "primeng/editor";
         InputTextareaModule,
         DynamicDialogModule,
         CheckboxModule,
-        EditorModule
+        EditorModule,
+        FormsModule
     ],
     entryComponents: [IshikawaDialogComponent]
 })
