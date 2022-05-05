@@ -1,5 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
 import { Contact } from "../models/contact.model";
 import { Customer } from "../models/customer";
 import { Instruction } from "../models/instruction";
@@ -18,6 +19,7 @@ export class NonComplianceService {
   apiUrl = "http://localhost:3333/noncompliances";
 
   public nc = new NonCompliance();
+  public ncs: NonCompliance[] = [];
 
   //passo 1
   customers: Customer[];
@@ -54,14 +56,14 @@ export class NonComplianceService {
 
   avancarPasso1(): boolean {
     return !(
-      !!this.nc.tiposNcItem &&
-      !!this.nc.tiposAuditoriaItem &&
-      !!this.nc.tiposLocalItem &&
-      !!this.nc.dataAbertura &&
-      !!this.nc.dataFechamento &&
-      !!this.nc.tiposParceiroItem &&
-      !!this.nc.textAreaNc &&
-      !!this.nc.textAreaAcoes &&
+      !!this.nc.tipos_nc_item &&
+      !!this.nc.tipos_auditoria_item &&
+      !!this.nc.tipos_local_item &&
+      !!this.nc.data_abertura &&
+      !!this.nc.data_fechamento &&
+      !!this.nc.tipos_parceiro_item &&
+      !!this.nc.text_area_nc &&
+      !!this.nc.text_area_acoes &&
       !!this.nc.partner &&
       this.fileNc.length > 0 &&
       this.fileAcoes.length > 0
@@ -95,10 +97,15 @@ export class NonComplianceService {
     this.uploadFiles(formData);
 
     formData.append("data", JSON.stringify(this.nc));
+    console.log(this.nc.contacts);
 
     this.http.post(this.apiUrl, formData).subscribe((response) => {
       console.log(response);
     });
+  }
+
+  get(): Observable<NonCompliance[]> {
+    return this.http.get<NonCompliance[]>(this.apiUrl);
   }
 
   constructor(private http: HttpClient) {}

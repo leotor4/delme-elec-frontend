@@ -56,6 +56,11 @@ export class NcsCreateHeaderComponent implements OnInit {
       this.nonComplianceService.instructions = data.instructions;
     });
 
+    this.nonComplianceService.get().subscribe((data: any) => {
+      this.nonComplianceService.ncs = data.noncompliances;
+      console.log(this.nonComplianceService.ncs[3]);
+    });
+
     this.popularData();
   }
 
@@ -67,9 +72,9 @@ export class NcsCreateHeaderComponent implements OnInit {
     let now = new Date();
     let late = new Date();
     late.setDate(now.getDate() + 30);
-    this.nonComplianceService.nc.dataAbertura = now.toISOString().slice(0, 10);
+    this.nonComplianceService.nc.data_abertura = now.toISOString().slice(0, 10);
 
-    this.nonComplianceService.nc.dataFechamento = late
+    this.nonComplianceService.nc.data_fechamento = late
       .toISOString()
       .slice(0, 10);
   }

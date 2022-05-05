@@ -7,7 +7,7 @@
   <div class="col">
     <div class="dropdown">
       <label for="">Tipo de NC</label>
-      <select [(ngModel)]="nonComplicanceService.nc.tiposNcItem">
+      <select [(ngModel)]="nonComplicanceService.nc.tipos_nc_item">
         <option value="" disabled selected hidden>Selecione...</option>
         <option *ngFor="let tiposNc of tiposNc">{{ tiposNc }}</option>
       </select>
@@ -17,7 +17,7 @@
   <div class="col">
     <div class="dropdown">
       <label for="">Segmento de Auditoria</label>
-      <select [(ngModel)]="nonComplicanceService.nc.tiposAuditoriaItem">
+      <select [(ngModel)]="nonComplicanceService.nc.tipos_auditoria_item">
         <option value="" disabled selected hidden>Selecione...</option>
         <option *ngFor="let tiposAuditoria of tiposAuditoria">
           {{ tiposAuditoria }}
@@ -29,7 +29,7 @@
   <div class="col">
     <div class="dropdown">
       <label for="">Local ou Setor Afetado</label>
-      <select [(ngModel)]="nonComplicanceService.nc.tiposLocalItem">
+      <select [(ngModel)]="nonComplicanceService.nc.tipos_local_item">
         <option value="" disabled selected hidden>Selecione...</option>
         <option class="option-titulo" disabled>Setor</option>
         <option *ngFor="let item of nonComplicanceService.sectors">
@@ -53,7 +53,7 @@
         type="date"
         pInputText
         id="date-input"
-        [(ngModel)]="nonComplicanceService.nc.dataAbertura"
+        [(ngModel)]="nonComplicanceService.nc.data_abertura"
       />
     </span>
     <p>Altere a data caso a NC tenha acontecido antes deste cadastro.</p>
@@ -68,7 +68,7 @@
         type="date"
         pInputText
         id="date-input"
-        [(ngModel)]="nonComplicanceService.nc.dataFechamento"
+        [(ngModel)]="nonComplicanceService.nc.data_fechamento"
       />
     </span>
     <p>

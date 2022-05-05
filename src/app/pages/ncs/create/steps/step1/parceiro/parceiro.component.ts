@@ -36,21 +36,21 @@ export class ParceiroComponent implements OnInit {
     var filtro = event.query;
     this.results = [];
 
-    if (this.nonComplicanceService.nc.tiposParceiroItem == "Cliente") {
+    if (this.nonComplicanceService.nc.tipos_parceiro_item == "Cliente") {
       this.nonComplicanceService.customers.forEach((element) => {
         if (this.verificarExistencia(element, filtro)) {
           this.results.push(element);
         }
       });
     } else if (
-      this.nonComplicanceService.nc.tiposParceiroItem == "Fornecedor"
+      this.nonComplicanceService.nc.tipos_parceiro_item == "Fornecedor"
     ) {
       this.nonComplicanceService.providers.forEach((element) => {
         if (this.verificarExistencia(element, filtro)) {
           this.results.push(element);
         }
       });
-    } else if (this.nonComplicanceService.nc.tiposParceiroItem == "Interno") {
+    } else if (this.nonComplicanceService.nc.tipos_parceiro_item == "Interno") {
       this.nonComplicanceService.sectors.forEach((element) => {
         if (this.verificarExistenciaInterno(element, filtro)) {
           this.results.push(element);
@@ -101,7 +101,7 @@ export class ParceiroComponent implements OnInit {
   }
 
   isInterno(): boolean {
-    if (this.nonComplicanceService.nc.tiposParceiroItem == "Interno") {
+    if (this.nonComplicanceService.nc.tipos_parceiro_item == "Interno") {
       return true;
     } else {
       return false;
@@ -146,7 +146,7 @@ export class ParceiroComponent implements OnInit {
     this.nonComplicanceService.nc.partner.responsible_email =
       this.editarEmailItem;
 
-    if (this.nonComplicanceService.nc.tiposParceiroItem == "Cliente") {
+    if (this.nonComplicanceService.nc.tipos_parceiro_item == "Cliente") {
       this.customerService.put(this.nonComplicanceService.nc.partner).subscribe(
         (value) => {
           this.sucess();
@@ -162,7 +162,7 @@ export class ParceiroComponent implements OnInit {
         }
       );
     } else if (
-      this.nonComplicanceService.nc.tiposParceiroItem == "Fornecedor"
+      this.nonComplicanceService.nc.tipos_parceiro_item == "Fornecedor"
     ) {
       this.providerService.put(this.nonComplicanceService.nc.partner).subscribe(
         (value) => {
@@ -178,7 +178,7 @@ export class ParceiroComponent implements OnInit {
           this.fail();
         }
       );
-    } else if (this.nonComplicanceService.nc.tiposParceiroItem == "Interno") {
+    } else if (this.nonComplicanceService.nc.tipos_parceiro_item == "Interno") {
       this.sectorService.put(this.nonComplicanceService.nc.partner).subscribe(
         (value) => {
           this.sucess();

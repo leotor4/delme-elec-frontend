@@ -52,7 +52,7 @@
       <div class="d-flex flex-column mr-lg-3 inputs-sm my-auto">
         <label for="amountNC">Quantidade de NC</label>
         <input
-          [(ngModel)]="nonComplicanceService.nc.quantNc"
+          [(ngModel)]="nonComplicanceService.nc.quant_nc"
           name="amountNC"
           type="text"
           pInputText
@@ -63,7 +63,7 @@
       <div class="d-flex flex-column inputs-sm my-auto">
         <label for="amountTotal">Quantidade Total</label>
         <input
-          [(ngModel)]="nonComplicanceService.nc.quantTotal"
+          [(ngModel)]="nonComplicanceService.nc.quant_total"
           name="amountTotal"
           type="text"
           pInputText
@@ -76,14 +76,14 @@
           name="ncType"
           label="Não conformidade real"
           value="val1"
-          [(ngModel)]="nonComplicanceService.nc.radioValue"
+          [(ngModel)]="nonComplicanceService.nc.radio_value"
         ></p-radioButton>
         <p-radioButton
           name="ncType"
           label="Não conformidade Potencial / Oportunidade de Melhoria"
           class="pt-2"
           value="val2"
-          [(ngModel)]="nonComplicanceService.nc.radioValue"
+          [(ngModel)]="nonComplicanceService.nc.radio_value"
         ></p-radioButton>
       </div>
     </div>

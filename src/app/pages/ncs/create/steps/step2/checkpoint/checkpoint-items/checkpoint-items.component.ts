@@ -46,9 +46,9 @@ export class CheckpointItemsComponent implements OnInit {
 
   returnOpScreen() {
     if (
-      this.nonComplicanceService.nc.tipoControle == "OP-PROD" ||
-      this.nonComplicanceService.nc.tipoControle == "OP-SA" ||
-      this.nonComplicanceService.nc.tipoControle == "OP-I"
+      this.nonComplicanceService.nc.tipo_controle == "OP-PROD" ||
+      this.nonComplicanceService.nc.tipo_controle == "OP-SA" ||
+      this.nonComplicanceService.nc.tipo_controle == "OP-I"
     ) {
       return true;
     } else {
@@ -58,10 +58,10 @@ export class CheckpointItemsComponent implements OnInit {
 
   returnNfScreen() {
     if (
-      this.nonComplicanceService.nc.tipoControle == "NF-e" ||
-      this.nonComplicanceService.nc.tipoControle == "PC" ||
-      this.nonComplicanceService.nc.tipoControle == "PV" ||
-      this.nonComplicanceService.nc.tipoControle == "CC"
+      this.nonComplicanceService.nc.tipo_controle == "NF-e" ||
+      this.nonComplicanceService.nc.tipo_controle == "PC" ||
+      this.nonComplicanceService.nc.tipo_controle == "PV" ||
+      this.nonComplicanceService.nc.tipo_controle == "CC"
     ) {
       return true;
     } else {
@@ -70,7 +70,7 @@ export class CheckpointItemsComponent implements OnInit {
   }
 
   returnPrScreen() {
-    if (this.nonComplicanceService.nc.tipoControle == "PR") {
+    if (this.nonComplicanceService.nc.tipo_controle == "PR") {
       return true;
     } else {
       return false;

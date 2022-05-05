@@ -46,9 +46,9 @@ export class RejectionPointItemsComponent implements OnInit {
 
   returnOpScreen() {
     if (
-      this.nonComplianceService.nc.tipoControle == "OP-PROD" ||
-      this.nonComplianceService.nc.tipoControle == "OP-SA" ||
-      this.nonComplianceService.nc.tipoControle == "OP-I"
+      this.nonComplianceService.nc.tipo_controle == "OP-PROD" ||
+      this.nonComplianceService.nc.tipo_controle == "OP-SA" ||
+      this.nonComplianceService.nc.tipo_controle == "OP-I"
     ) {
       return true;
     } else {
@@ -57,7 +57,7 @@ export class RejectionPointItemsComponent implements OnInit {
   }
 
   returnNfScreen() {
-    if (this.nonComplianceService.nc.tipoControle == "NF-e") {
+    if (this.nonComplianceService.nc.tipo_controle == "NF-e") {
       return true;
     } else {
       return false;
