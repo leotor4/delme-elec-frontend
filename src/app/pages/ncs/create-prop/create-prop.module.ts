@@ -17,6 +17,14 @@ import {DynamicDialogModule} from "primeng/dynamicdialog";
 import {CheckboxModule} from "primeng/checkbox";
 import {EditorModule} from "primeng/editor";
 import { FormsModule } from '@angular/forms';
+import {AutoCompleteModule} from "primeng/autocomplete";
+import {RadioButtonModule} from "primeng/radiobutton";
+import {InputTextModule} from "primeng/inputtext";
+import {CalendarModule} from "primeng/calendar";
+import {DropdownModule} from "primeng/dropdown";
+import {TableModule} from "primeng/table";
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {ConfirmationService, MessageService} from "primeng/api";
 
 
 
@@ -43,8 +51,16 @@ import { FormsModule } from '@angular/forms';
         DynamicDialogModule,
         CheckboxModule,
         EditorModule,
-        FormsModule
+        FormsModule,
+        AutoCompleteModule,
+        RadioButtonModule,
+        InputTextModule,
+        CalendarModule,
+        DropdownModule,
+        TableModule,
+        ConfirmDialogModule,
     ],
-    entryComponents: [IshikawaDialogComponent]
+    entryComponents: [IshikawaDialogComponent],
+    providers: [MessageService, ConfirmationService],
 })
 export class CreatePropModule { }

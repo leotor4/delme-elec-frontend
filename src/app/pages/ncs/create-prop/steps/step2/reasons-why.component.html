@@ -1,41 +1,145 @@
-<div class="cabecalho">
-<h1 class="mr-3">5 Porquês</h1>
-<p>
-    Descreva a possivel causa do problema utilizando o método dos 5 porquês.
-</p>
-</div>
-<div class="d-flex justify-content-center">
-    <div class="d-block">
-        <div class="d-flex">
-            <p-chip>
-                1
-            </p-chip>
-            <label class="ml-3">Porquê lorem</label>
-        </div>
-        <textarea  pInputTextarea readonly cols="60" rows="5" class="textarea">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium animi dignissimos illum minima mollitia voluptatum.
 
-        </textarea>
+<div class="d-flex flex-lg-row flex-column justify-content-between">
+    <div class="cabecalho">
+        <h1 class="mr-3">5 Porquês</h1>
+        <p>
+            Descreva a possivel causa do problema utilizando o método dos 5 porquês.
+        </p>
+    </div>
+    <div class="d-flex justify-content-end align-items-center mb-3" *ngIf="showAllTextAreas">
+        <button type="button"
+                class="btn btn-dark"
+                (click)="showAllTextAreas=false"
+        >
+            <i class="bi bi-arrow-left"></i>
+            Retornar aos Porquês
+        </button>
     </div>
 </div>
-<div class="d-flex justify-content-center">
-    <button type="button"
-            class="btn btn-dark"
-    >
-        <i class="bi bi-arrow-left"></i>
-        Voltar
-    </button>
-    <button type="button"
-            class="btn btn-dark mx-5"
-    >
-        Identificar Causa Raiz
-        <i class="bi bi-check2"></i>
-    </button>
+<div *ngIf="!showAllTextAreas">
+    <div class="d-flex justify-content-center">
+        <div class="d-block">
+            <div class="d-flex">
+                <p-chip>
+                    {{stepPosition + 1}}
+                </p-chip>
+                <label class="ml-3" *ngIf="stepPosition===0">Porquê lorem ipsum ?</label>
+                <label class="ml-3" *ngIf="stepPosition>=1">Porquê {{textAreas[stepPosition-1]}} ?</label>
+            </div>
+            <textarea  [(ngModel)]="textAreas[stepPosition]" pInputTextarea cols="60" rows="5" class="textarea">
+            </textarea>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center">
+        <button type="button"
+                class="btn btn-dark"
+                [disabled]="isFirstStep()"
+                (click)="backStep()"
+        >
+            <i class="bi bi-arrow-left"></i>
+            Voltar
+        </button>
+        <button type="button"
+                class="btn btn-dark mx-5"
+                [disabled]="!isLastStep()"
+                (click)="showAllTextAreas=true"
+        >
+            Identificar Causa Raiz
+            <i class="bi bi-check2"></i>
+        </button>
 
-    <button
-            type="button"
-            class="btn btn-dark"
-    >
-        Aprofundar
-        <i class="bi bi-arrow-right"></i>
-    </button>
+        <button
+                type="button"
+                class="btn btn-dark"
+                [disabled]="isLastStep()"
+                (click)="nextStep()"
+        >
+            Aprofundar
+            <i class="bi bi-arrow-right"></i>
+        </button>
+    </div>
 </div>
+<div *ngIf="showAllTextAreas">
+    <div class="d-flex justify-content-center">
+        <div class="d-block p-2 caixa-cinza mb-3">
+            <div class="d-flex">
+                <p-chip>
+                    1
+                </p-chip>
+                <label class="ml-3">Porquê lorem ?</label>
+            </div>
+            <textarea  [(ngModel)]="textAreas[0]" pInputTextarea cols="60" rows="5" class="textarea">
+            </textarea>
+        </div>
+    </div>
+    <div class="d-flex justify-content-between mb-3">
+        <div class="d-block p-2 caixa-cinza">
+            <div class="d-flex justify-content-between">
+                <div class="d-flex">
+                    <p-chip>
+                        2
+                    </p-chip>
+                    <label class="ml-3">Porquê {{textAreas[0]}} ?</label>
+                </div>
+                <div class="form-check">
+                    <p-radioButton name="cause" value="cause2" [(ngModel)]="selectedValue"></p-radioButton>
+                    <label class="form-check-label radio-label ml-1">Esta é a Causa Raiz</label>
+                </div>
+            </div>
+
+            <textarea  [(ngModel)]="textAreas[1]" pInputTextarea cols="60" rows="5" class="textarea">
+            </textarea>
+        </div>
+        <div class="d-block p-2 caixa-cinza">
+            <div class="d-flex justify-content-between">
+                <div class="d-flex">
+                    <p-chip>
+                        3
+                    </p-chip>
+                    <label class="ml-3">Porquê {{textAreas[1]}} ?</label>
+                </div>
+                <div class="form-check">
+                    <p-radioButton name="cause" value="cause3" [(ngModel)]="selectedValue"></p-radioButton>
+                    <label class="form-check-label radio-label ml-1">Esta é a Causa Raiz</label>
+                </div>
+            </div>
+            <textarea  [(ngModel)]="textAreas[2]" pInputTextarea cols="60" rows="5" class="textarea">
+            </textarea>
+        </div>
+    </div>
+    <div class="d-flex justify-content-between">
+        <div class="d-block p-2 caixa-cinza">
+            <div class="d-flex justify-content-between">
+            <div class="d-flex">
+                <p-chip>
+                    4
+                </p-chip>
+                <label class="ml-3">Porquê {{textAreas[2]}} ?</label>
+            </div>
+            <div class="form-check">
+                <p-radioButton name="cause" value="cause4" [(ngModel)]="selectedValue"></p-radioButton>
+                <label class="form-check-label radio-label ml-1">Esta é a Causa Raiz</label>
+            </div>
+        </div>
+            <textarea  [(ngModel)]="textAreas[3]" pInputTextarea cols="60" rows="5" class="textarea">
+            </textarea>
+        </div>
+        <div class="d-block p-2 caixa-cinza">
+            <div class="d-flex justify-content-between">
+                <div class="d-flex">
+                    <p-chip>
+                        5
+                    </p-chip>
+                    <label class="ml-3">Porquê {{textAreas[3]}} ?</label>
+                </div>
+                <div class="form-check">
+                    <p-radioButton name="cause" value="cause5" [(ngModel)]="selectedValue"></p-radioButton>
+                    <label class="form-check-label radio-label ml-1">Esta é a Causa Raiz</label>
+                </div>
+            </div>
+            <textarea  [(ngModel)]="textAreas[4]" pInputTextarea cols="60" rows="5" class="textarea">
+            </textarea>
+        </div>
+    </div>
+</div>
+

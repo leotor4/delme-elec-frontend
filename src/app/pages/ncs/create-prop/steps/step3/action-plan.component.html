@@ -1,1 +1,105 @@
-<p>action-plan works!</p>
+<div class="cabecalho">
+    <h1 class="mr-3">Plano de Ações</h1>
+    <p>
+        Descreva o cronograma de atividades de ações corretivas da proposição.
+    </p>
+</div>
+<div class="d-flex justify-content-between flex-column flex-lg-row mt-5">
+    <div class="d-flex justify-content-between flex-column flex-lg-row">
+        <div class="d-flex flex-column mr-lg-3 inputs-sm my-auto">
+            <label>Descrição</label>
+            <input
+                    [(ngModel)]="name"
+                    name="amountNC"
+                    type="text"
+                    pInputText
+                    placeholder="Digite"
+                    class="p-input text-sm input"
+            />
+        </div>
+        <div class="d-flex flex-column mr-lg-3 inputs-sm my-auto">
+            <label>Responsável</label>
+            <p-dropdown  class="p-input input"
+                         [options]="responsible"
+                         [(ngModel)]="selectedResp"
+                         placeholder="Selecione ou busque..."
+                         [showClear]="true"
+            ></p-dropdown>
+        </div>
+
+        <div class="d-flex flex-column mr-lg-3 inputs-sm my-auto">
+            <label>Prazo</label>
+            <input
+                    type="date"
+                    pInputText
+                    id="date-input"
+                    class="p-input text-sm input"
+                    [(ngModel)]="date"
+            />
+        </div>
+        <div class="d-flex flex-column mr-lg-3 inputs-sm my-auto">
+            <label>Status</label>
+            <p-dropdown class="p-input text-sm input"
+                        [options]="statuses"
+                        [(ngModel)]="selectedStatus"
+                        placeholder="Selecione ou busque..."
+                        [showClear]="true"
+            ></p-dropdown>
+        </div>
+    </div>
+    <div class="d-flex">
+        <button class="btn btn-dark my-auto" (click)="addAction()"
+                [disabled]="!name||!date||!selectedResp||!selectedStatus">
+            Adicionar Ação
+            <i class="bi bi-plus"></i>
+        </button>
+    </div>
+</div>
+<div class="card">
+    <p-table [value]="actions">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Descrição</th>
+                <th>Responsável</th>
+                <th>Prazo</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-action>
+            <tr>
+                <td>{{ action.name }}</td>
+                <td>{{ action.responsible }}</td>
+                <td>{{ action.deadline.split("-")?.reverse()?.join("/") }}</td>
+                <td>{{ action.status }}</td>
+                <td>
+                    <button
+                            pButton
+                            type="button"
+                            icon="pi pi-pencil"
+                            class="p-button-secondary p-button-text"
+
+                    ></button>
+                    <button
+                            pButton
+                            type="button"
+                            icon="pi pi-trash"
+                            class="p-button-secondary p-button-text"
+                            (click)="deleteAction(action)"
+
+                    ></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+<p-confirmDialog #cd [style]="{ width: '50vw' }">
+    <ng-template pTemplate="footer">
+        <button type="button" class="btn btn-outline-dark" (click)="cd.reject()">
+            Não, cancelar
+        </button>
+        <button type="button" class="btn btn-dark" (click)="cd.accept()">
+            Sim, excluir!
+        </button>
+    </ng-template>
+</p-confirmDialog>

@@ -23,11 +23,11 @@ export class IshikawaDialogComponent implements OnInit {
   }
 
   isLastStep() {
-    return this.stepPosition === 6;
+    return this.stepPosition === 7;
   }
 
   nextStep() {
-    if (this.stepPosition >= 6) return;
+    if (this.stepPosition >= 7) return;
     this.stepPosition++;
     this.isLastStep()
   }

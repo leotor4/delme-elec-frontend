@@ -12,3 +12,11 @@ p {
     letter-spacing: 0.01em;
     color: #333333;
 }
+.p-autocomplete{
+    border-radius: 5px;
+    border: 2px solid rgb(51, 51, 51);
+}
+label {
+    font-size: 13px;
+    font-weight: bold;
+}

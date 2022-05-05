@@ -20,6 +20,11 @@ h2 {
     border: 2px solid #333333;
     border-radius: 8px;
 }
-label {
-    display:block;
+.caixa-cinza{
+    background-color: #EEEEEE;
+    border-radius: 8px;
+}
+.radio-label {
+    font-size: 13px;
+    font-weight: bold;
 }

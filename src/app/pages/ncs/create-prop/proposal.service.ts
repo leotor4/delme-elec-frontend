@@ -20,5 +20,7 @@ export class ProposalService {
     editor4: "",
     editor5: "",
     editor6: "",
+    editor7: ""
+
   }
 }

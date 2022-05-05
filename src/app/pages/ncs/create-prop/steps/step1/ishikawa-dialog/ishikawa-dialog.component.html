@@ -51,6 +51,56 @@
 
         <p-editor [style]="{'height':'210px'}" [(ngModel)]="this.propService.step1.editor3">
         </p-editor>
+        <div class="d-flex mt-4">
+            <div class="d-flex flex-column col-6">
+                <label>IT - Instrução de Trabalho</label>
+                <p-autoComplete
+                        placeholder="Busque..."
+                        field="name"
+                        [style]="{ width: '100%' }"
+                        [inputStyle]="{ width: '100%' }"
+                        class="p-autocomplete mr-5"
+                >
+                </p-autoComplete>
+
+            </div>
+            <div class="ml-4 d-flex flex-column col-6">
+                <label>PR - Procedimento</label>
+                <p-autoComplete
+                        placeholder="Busque..."
+                        field="name"
+                        [style]="{ width: '100%' }"
+                        [inputStyle]="{ width: '100%' }"
+                        class="p-autocomplete mr-5"
+                >
+                </p-autoComplete>
+            </div>
+        </div>
+        <div class="d-flex mt-4">
+            <div class="d-flex flex-column col-6">
+                <label>NR - Norma Regulamentadora</label>
+                <p-autoComplete
+                        placeholder="Busque..."
+                        field="name"
+                        [style]="{ width: '100%' }"
+                        [inputStyle]="{ width: '100%' }"
+                        class="p-autocomplete mr-5"
+                >
+                </p-autoComplete>
+
+            </div>
+            <div class="ml-4 d-flex flex-column col-6">
+                <label>ISO - Norma NBR</label>
+                <p-autoComplete
+                        placeholder="Busque..."
+                        field="name"
+                        [style]="{ width: '100%' }"
+                        [inputStyle]="{ width: '100%' }"
+                        class="p-autocomplete mr-5"
+                >
+                </p-autoComplete>
+            </div>
+        </div>
     </div>
     <div *ngIf="stepPosition==4">
         <h1 class="mb-3">
@@ -79,6 +129,39 @@
         <p>Quando há ausência, obsolescência, má regulagem, quebra ou outros problemas com os equipamentos, inclusive de informática. Se aplica também nas falhas de manuntenção corretiva ou preventiva destes equipamentos.</p>
 
         <p-editor [style]="{'height':'210px'}" [(ngModel)]="this.propService.step1.editor6">
+        </p-editor>
+        <div class="d-flex mt-4">
+            <div class="d-flex flex-column col-6">
+                <label>Máquinas</label>
+                <p-autoComplete
+                        placeholder="Busque..."
+                        field="name"
+                        [style]="{ width: '100%' }"
+                        [inputStyle]="{ width: '100%' }"
+                        class="p-autocomplete mr-5"
+                >
+                </p-autoComplete>
+
+            </div>
+            <div class="ml-4 d-flex flex-column col-6">
+                <label>Equipamentos</label>
+                <p-autoComplete
+                        placeholder="Busque..."
+                        field="name"
+                        [style]="{ width: '100%' }"
+                        [inputStyle]="{ width: '100%' }"
+                        class="p-autocomplete mr-5"
+                >
+                </p-autoComplete>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="stepPosition==7">
+        <h1 class="mb-3">
+            Efeito
+        </h1>
+        <p class="mb-3">Quando há ausência, obsolescência, má regulagem, quebra ou outros problemas com os equipamentos, inclusive de informática. Se aplica também nas falhas de manuntenção corretiva ou preventiva destes equipamentos.</p>
+        <p-editor [style]="{'height':'210px'}" [(ngModel)]="this.propService.step1.editor7">
         </p-editor>
     </div>
 </div>
