@@ -1,0 +1,29 @@
+h2 {
+    font-size: 28px;
+}
+
+.cabecalho h1 {
+    font-size: 25px;
+    font-weight: 500;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    color: black;
+}
+
+.cabecalho p {
+    font-size: 15px;
+    color: gray;
+}
+.caixa-cinza{
+    background-color: #EEEEEE;
+    border-radius: 8px;
+}
+.textarea{
+    overflow-y:auto;
+    resize:none;
+    border: 2px solid #333333;
+    border-radius: 8px;
+}
+:host ::ng-deep .ql-toolbar.ql-snow {
+    display: none;
+}

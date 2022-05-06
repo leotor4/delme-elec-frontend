@@ -1,0 +1,37 @@
+<app-about-header>
+
+</app-about-header>
+
+<p-tabView>
+    <p-tabPanel header="Informações da NC" leftIcon="bi bi-file-earmark-richtext">
+        <div class="content-box">
+            <app-view-nc></app-view-nc>
+        </div>
+    </p-tabPanel>
+    <p-tabPanel header="Proposta de Solução" leftIcon="bi bi-tools">
+        <div class="content-box">
+            <app-proposal></app-proposal>
+        </div>
+    </p-tabPanel>
+    <p-tabPanel header="Custos Incorridos" leftIcon="bi bi-coin">
+        <div class="content-box">
+            <app-costs></app-costs>
+        </div>
+    </p-tabPanel>
+    <p-tabPanel header="Avaliação SGQ" leftIcon="bi bi-search">
+        <div class="content-box">
+            <app-sgq-evaluation></app-sgq-evaluation>
+        </div>
+    </p-tabPanel>
+    <p-tabPanel header="Monitoramento" leftIcon="bi bi-compass">
+        <div class="content-box">
+            <app-traking></app-traking>
+        </div>
+    </p-tabPanel>
+    <p-tabPanel header="Fechamento" leftIcon="bi bi-folder-check">
+        <div class="content-box">
+            <app-closing></app-closing>
+        </div>
+    </p-tabPanel>
+</p-tabView>
+

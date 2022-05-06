@@ -19,12 +19,7 @@
           <span class="info-titulo">Data de Abertura</span>
           <br />
           <span class="info-dados">
-            {{
-              this.nonComplicanceService.nc.data_abertura
-                ?.split("-")
-                ?.reverse()
-                ?.join("/") || "00/00/0000"
-            }}
+            {{"00/00/0000"}}
           </span>
         </div>
       </div>
@@ -32,13 +27,8 @@
         <i class="bi bi-calendar-week mr-1"></i>
         <div>
           <span class="info-titulo">Data de Fechamento</span>
-          <br />
-          <span class="info-dados">{{
-            this.nonComplicanceService.nc.data_fechamento
-              ?.split("-")
-              ?.reverse()
-              ?.join("/") || "00/00/0000"
-          }}</span>
+          <br/>
+          <span class="info-dados">{{"00/00/0000"}}</span>
         </div>
       </div>
     </div>
@@ -86,17 +76,11 @@
           <h2 class="mr-2">Razão Social</h2>
           <p-chip>
             <i class="bi bi-ticket-perforated mr-2"></i>
-            {{
-              this.nonComplicanceService.nc.partner?.corporate_name ||
-                "00000000"
-            }}
+            {{ "00000000" }}
           </p-chip>
         </div>
         <p>
-          {{
-            this.nonComplicanceService.nc.partner?.corporate_name ||
-              "Dado não preenchido"
-          }}
+          {{"Dado não preenchido"}}
         </p>
       </div>
     </div>
@@ -111,10 +95,7 @@
               <span class="info-titulo">Nome</span>
               <br />
               <span class="info-dados">
-                {{
-                  this.nonComplicanceService.nc.partner?.responsible_name ||
-                    "Dado não preenchido"
-                }}
+                {{"Dado não preenchido"}}
               </span>
             </div>
           </div>
@@ -124,10 +105,7 @@
               <span class="info-titulo">Telefone</span>
               <br />
               <span class="info-dados">
-                {{
-                  this.nonComplicanceService.nc.partner?.responsible_phone ||
-                    "(00) 00000-0000"
-                }}
+                {{"(00) 00000-0000"}}
               </span>
             </div>
           </div>
@@ -137,10 +115,7 @@
               <span class="info-titulo">E-mail</span>
               <br />
               <span class="info-dados">
-                {{
-                  this.nonComplicanceService.nc.partner?.responsible_email ||
-                    "Dado não preenchido"
-                }}
+                {{"Dado não preenchido"}}
               </span>
             </div>
           </div>
@@ -150,17 +125,14 @@
   </div>
 </div>
 <div class="div-ident-parceiro d-flex flex-column flex-lg-row mt-3">
-  <div class="dados-parceiro razao-social item">
+  <div class="dados-parceiro razao-social item ">
     <h2 class="mr-2">
       <i class="bi bi-file-earmark-text"></i>
       Descrição da Não Conformidade
     </h2>
-    <p-editor
-      [(ngModel)]="this.nonComplicanceService.nc.text_area_nc"
-      [style]="{ height: '144px','border': '1px solid #dddddd' }"
-      [readonly]="true"
-    >
-      <ng-template pTemplate="header"> </ng-template>
+    <p-editor [style]="{'height':'144px'}" [readonly]="true">
+      <ng-template pTemplate="header">
+      </ng-template>
     </p-editor>
   </div>
   <p-divider layout="vertical"></p-divider>
@@ -169,31 +141,23 @@
       <i class="pi pi-camera"></i>
       Evidencias fotográficas
     </h2>
-    <p-carousel
-      [value]="returnFile('evidenciasNc')"
-      [numVisible]="3"
-      [numScroll]="3"
-      [showIndicators]="false"
-    >
-      <ng-template let-file pTemplate="item">
+    <p-carousel [value]="this.images1" [numVisible]="3" [numScroll]="3" [showIndicators]="false">
+      <ng-template let-file pTemplate="item" >
         <i class="bi bi-file-earmark fs-1"></i>
-        <p>{{file.name}}</p>
+        <p>{{file.name||"file.txt"}}</p>
       </ng-template>
     </p-carousel>
   </div>
 </div>
-<div class="div-ident-parceiro d-flex mt-3">
+<div class="div-ident-parceiro d-flex  mt-3">
   <div class="dados-parceiro razao-social item">
     <h2 class="mr-2">
       <i class="bi bi-geo"></i>
       Descrição de Ações Imediatas
     </h2>
-    <p-editor
-      [(ngModel)]="this.nonComplicanceService.nc.text_area_acoes"
-      [style]="{ height: '144px', 'border': '1px solid #dddddd'}"
-      [readonly]="true"
-    >
-      <ng-template pTemplate="header" hidden> </ng-template>
+    <p-editor [style]="{'height':'144px'}" [readonly]="true">
+      <ng-template pTemplate="header" hidden>
+      </ng-template>
     </p-editor>
   </div>
   <p-divider layout="vertical"></p-divider>
@@ -202,15 +166,10 @@
       <i class="pi pi-camera"></i>
       Evidencias fotográficas
     </h2>
-    <p-carousel
-      [value]="returnFile('evidenciasAcoes')"
-      [numVisible]="3"
-      [numScroll]="3"
-      [showIndicators]="false"
-    >
+    <p-carousel [value]="this.images2" [numVisible]="3" [numScroll]="3" [showIndicators]="false">
       <ng-template let-file pTemplate="item">
           <i class="bi bi-file-earmark fs-1"></i>
-          <p>{{file.name}}</p>
+          <p>{{file.name||"file.txt"}}</p>
       </ng-template>
     </p-carousel>
   </div>

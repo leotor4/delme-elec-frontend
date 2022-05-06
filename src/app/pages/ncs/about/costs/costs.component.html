@@ -1,0 +1,64 @@
+<div class="d-flex flex-lg-row flex-column justify-content-between">
+    <div class="d-flex">
+        <div class="cabecalho">
+            <div class="d-flex align-items-center">
+                <h1 class="mr-3">Custos Incorridos</h1>
+            </div>
+            <p>
+                Informe se houve custos incorridos nesta NC.
+            </p>
+        </div>
+    </div>
+    <div class="d-flex justify-content-end align-items-center mb-3">
+
+        <button class="btn btn-dark ml-3">
+            Novo Custo Incorrido
+            <i class="bi bi-plus"></i>
+        </button>
+    </div>
+</div>
+<h2 class="mr-4 text-black fs-5">
+    <i class="pi pi-copy"></i>
+    Documentos Anexados
+</h2>
+<div class="card mt-3">
+    <p-table  [value]="documents">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Documento</th>
+                <th>Data de Anexo</th>
+                <th>Anexado Por</th>
+                <th>Valor</th>
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-doc>
+            <tr>
+                <td>{{ doc.name }}</td>
+                <td>{{ doc.date }}</td>
+                <td>{{ doc.annexBy }}</td>
+                <td>{{ doc.price }}</td>
+                <td>
+                    <button
+                            pButton
+                            type="button"
+                            icon="bi bi-file-earmark-richtext"
+                            class="p-button-secondary p-button-text"
+                    ></button>
+                    <button
+                            pButton
+                            type="button"
+                            icon="bi bi-download"
+                            class="p-button-secondary p-button-text"
+                    ></button>
+                    <button
+                            pButton
+                            type="button"
+                            icon="pi pi-trash"
+                            class="p-button-secondary p-button-text"
+                    ></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

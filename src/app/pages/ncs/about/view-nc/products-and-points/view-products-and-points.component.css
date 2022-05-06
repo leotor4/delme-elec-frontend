@@ -88,15 +88,3 @@
   margin-top: 8px;
   height: 35px;
 }
-.item {
-  width: 100%;
-}
-.card-data {
-  background-color: white;
-  border-radius: 7px;
-  padding: 13px;
-}
-
-:host ::ng-deep .ql-toolbar.ql-snow {
-  display: none;
-}

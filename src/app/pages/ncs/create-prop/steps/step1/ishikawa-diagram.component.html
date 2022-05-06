@@ -1,0 +1,78 @@
+<div class="d-flex flex-lg-row flex-column justify-content-between">
+    <div class="cabecalho">
+        <h1 class="mr-3">Diagrama de Ishikawa</h1>
+        <p>
+            Descreva o problema referente aos respectivos campos de acordo com o Diagrama de Causa e Efeito - Ishikawa.
+        </p>
+    </div>
+    <div class="d-flex justify-content-end align-items-center mb-3">
+        <button class="btn btn-dark ml-3">
+            Visualizar Descrição da NC
+            <i class="bi bi-file-earmark-medical"></i>
+        </button>
+    </div>
+</div>
+<div class="d-flex caixa-cinza pr-2 py-4 mt-4">
+    <div>
+        <div class="d-flex">
+            <div class="col">
+                <label>Matéria Prima</label>
+                <p-editor [ngModel]="'<p>'+this.propService.step1.checkbox1 + '</p><p>' + this.propService.step1.checkbox2 + '</p><p>' + this.propService.step1.checkbox3+ '</p>' + this.propService.step1.editor1" [style]="editorStyle" [readonly]="true" (click)="openDialog(1)">
+                    <ng-template pTemplate="header">
+                    </ng-template>
+                </p-editor>
+
+            </div>
+            <div class="col">
+                <label>Medição</label>
+                <p-editor [ngModel]="'<p>'+this.propService.step1.checkbox4 + '</p><p>' + this.propService.step1.checkbox5 + '</p><p>' + this.propService.step1.checkbox6+ '</p>' + this.propService.step1.editor2" [style]="editorStyle" [readonly]="true" (click)="openDialog(2)">
+                    <ng-template pTemplate="header">
+                    </ng-template>
+                </p-editor>
+            </div>
+            <div class="col">
+                <label>Método</label>
+                <p-editor [ngModel]="this.propService.step1.editor3" [style]="editorStyle" [readonly]="true" (click)="openDialog(3)">
+                    <ng-template pTemplate="header">
+                    </ng-template>
+                </p-editor>
+            </div>
+        </div>
+        <img src="../../../../../../assets/images/Espinha de Peixe.png" width="900" class="ml-5 mr-3">
+        <div class="d-flex">
+            <div class="col">
+                <label>Mão de Obra</label>
+                <p-editor [ngModel]="'<p>'+this.propService.step1.checkbox7 + '</p>' + this.propService.step1.editor4" [style]="editorStyle" [readonly]="true" (click)="openDialog(4)">
+                    <ng-template pTemplate="header">
+                    </ng-template>
+                </p-editor>
+            </div>
+            <div class="col">
+                <label>Meio Ambiente</label>
+                <p-editor [ngModel]="this.propService.step1.editor5" [style]="editorStyle" [readonly]="true" (click)="openDialog(5)">
+                    <ng-template pTemplate="header">
+                    </ng-template>
+                </p-editor>
+            </div>
+            <div class="col">
+                <label>Máquina</label>
+                <p-editor [ngModel]="this.propService.step1.editor6" [style]="editorStyle" [readonly]="true" (click)="openDialog(6)">
+                    <ng-template pTemplate="header">
+                    </ng-template>
+                </p-editor>
+
+            </div>
+        </div>
+    </div>
+    <div class="d-block mt-5">
+        <label>Efeito</label>
+        <p-editor [ngModel]="this.propService.step1.editor7"
+                  [style]="{'height':'300px','width':'230px','border': '2px solid #333333','border-radius': '5px'}"
+                  [readonly]="true"
+                  (click)="openDialog(7)"
+        >
+            <ng-template pTemplate="header">
+            </ng-template>
+        </p-editor>
+    </div>
+</div>
