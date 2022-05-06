@@ -20,7 +20,7 @@
           <br />
           <span class="info-dados">
             {{
-              this.nonComplicanceService.nc.dataAbertura
+              this.nonComplicanceService.nc.data_abertura
                 ?.split("-")
                 ?.reverse()
                 ?.join("/") || "00/00/0000"
@@ -34,7 +34,7 @@
           <span class="info-titulo">Data de Fechamento</span>
           <br />
           <span class="info-dados">{{
-            this.nonComplicanceService.nc.dataFechamento
+            this.nonComplicanceService.nc.data_fechamento
               ?.split("-")
               ?.reverse()
               ?.join("/") || "00/00/0000"
@@ -156,7 +156,7 @@
       Descrição da Não Conformidade
     </h2>
     <p-editor
-      [(ngModel)]="this.nonComplicanceService.nc.textAreaNc"
+      [(ngModel)]="this.nonComplicanceService.nc.text_area_nc"
       [style]="{ height: '144px' }"
       [readonly]="true"
     >
@@ -170,7 +170,7 @@
       Evidencias fotográficas
     </h2>
     <p-carousel
-      [value]="this.nonComplicanceService.fileNc"
+      [value]="returnFile('evidenciasNc')"
       [numVisible]="3"
       [numScroll]="3"
       [showIndicators]="false"
@@ -189,7 +189,7 @@
       Descrição de Ações Imediatas
     </h2>
     <p-editor
-      [(ngModel)]="this.nonComplicanceService.nc.textAreaAcoes"
+      [(ngModel)]="this.nonComplicanceService.nc.text_area_acoes"
       [style]="{ height: '144px' }"
       [readonly]="true"
     >
@@ -203,7 +203,7 @@
       Evidencias fotográficas
     </h2>
     <p-carousel
-      [value]="this.nonComplicanceService.fileAcoes"
+      [value]="returnFile('evidenciasAcoes')"
       [numVisible]="3"
       [numScroll]="3"
       [showIndicators]="false"
