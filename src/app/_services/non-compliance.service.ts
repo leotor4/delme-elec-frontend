@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+
 import { Contact } from "../models/contact.model";
 import { Customer } from "../models/customer";
 import { Instruction } from "../models/instruction";
@@ -19,7 +20,7 @@ export class NonComplianceService {
   apiUrl = "http://localhost:3333/noncompliances";
 
   public nc = new NonCompliance();
-  public ncs: NonCompliance[] = [];
+  public ncs = [];
 
   //passo 1
   customers: Customer[];

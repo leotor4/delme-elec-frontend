@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FilterMatchMode, PrimeNGConfig } from 'primeng/api';
 import { Table } from 'primeng/table';
+import { NonComplianceService } from "src/app/_services/non-compliance.service";
 import { Nc } from 'src/app/models/nc.model';
 
 import { NcsService } from '../ncs.service';
@@ -19,9 +20,35 @@ export class NcsListComponent implements OnInit {
   rows = 5;
 
 
-  constructor(private ncsService : NcsService, private config: PrimeNGConfig) { }
+  constructor(private ncsService : NonComplianceService, private config: PrimeNGConfig) { }
 
   ngOnInit(): void {
+
+    this.ncsService.get().subscribe((data: any) => {
+      console.log('teste')
+      this.ncsService.ncs = data.noncompliances;
+      //console.log(this.ncsService.ncs);
+      
+      for (let i = 0; i < this.ncsService.ncs.length; i++) {
+        
+        console.log(this.ncsService.ncs[i])
+        /*
+        let parceiro
+
+        if this.ncsService.ncs[i].tipos_parceiro_item.toUpperCase == 'INTERNO' {
+          parceiro = this.ncsService.ncs[i].sector
+        }
+
+
+        var ncElementList = {
+          numero: this.ncsService.ncs[i].code,
+          parceiro: this.ncsService.ncs[i].parceiro,
+        }
+        */
+      }
+
+
+    });
 
     this.listNcs = [
       { numero : '1', parceiro : 'Daniel', emissor : 'Emissor', estado : 'Estado' },

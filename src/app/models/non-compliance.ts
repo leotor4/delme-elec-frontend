@@ -6,6 +6,7 @@ import { Product } from "./product.model";
 
 export class NonCompliance {
   id?: number;
+  code: string;
   partnerId?: number;
   attachments: Attachment[] = [];
   contacts: Contact[] = [];
