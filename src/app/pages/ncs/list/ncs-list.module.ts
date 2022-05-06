@@ -1,9 +1,10 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { ButtonModule } from 'primeng/button';
+import { TableModule } from 'primeng/table';
 
 import { NcsListRoutingModule } from './ncs-list-routing.module';
 import { NcsListComponent } from './ncs-list.component';
-import {TableModule} from 'primeng/table';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import {TableModule} from 'primeng/table';
   imports: [
     CommonModule,
     NcsListRoutingModule,
-    TableModule
+    TableModule,
+    ButtonModule
   ]
 })
 export class NcsListModule { }

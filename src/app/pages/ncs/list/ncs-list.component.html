@@ -1,2 +1,94 @@
+<h2>Início</h2>
+<p-table #dt [globalFilterFields]="['parceiro','emissor', 'estado']" [value]="listNcs" [columns]="cols" [paginator]="true" [rows]="rows" [(first)]="first" [showCurrentPageReport]="true" responsiveLayout="scroll"
+currentPageReportTemplate="Exibindo de {first} a {last} de {totalRecords} registros" [rowsPerPageOptions]="[5,10,25,50]" [filterDelay]="0">
 
-listagem de ncs
+  <ng-template pTemplate="caption">
+    <p>Visualize ou crie não conformidades</p>
+    <div class="table-header">
+        <span class="p-input-icon-left">
+            <i class="pi pi-search"></i>
+            <input pInputText type="text" (input)="applyFilterGlobal($event, 'contains')" placeholder="" />
+        </span>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="header">
+
+
+
+
+    <tr>
+      <th pSortableColumn="numero">
+        <div class="flex justify-content-between align-items-center">
+            Número
+            <p-sortIcon field="numero"></p-sortIcon>
+            <p-columnFilter type="numeric" field="numero" display="menu" class="ml-auto"></p-columnFilter>
+        </div>
+      </th>
+      <th pSortableColumn="parceiro">
+          <div class="flex justify-content-between align-items-center">
+              Parceiro
+              <p-sortIcon field="parceiro"></p-sortIcon>
+              <p-columnFilter type="text" field="parceiro" display="menu" class="ml-auto"></p-columnFilter>
+          </div>
+      </th>
+      <th pSortableColumn="emissor">
+        <div class="flex justify-content-between align-items-center">
+            Parceiro
+            <p-sortIcon field="emissor"></p-sortIcon>
+            <p-columnFilter type="text" field="emissor" display="menu" class="ml-auto"></p-columnFilter>
+        </div>
+      </th>
+      <th pSortableColumn="estado">
+          <div class="flex justify-content-between align-items-center">
+              Estado
+              <p-sortIcon field="estado"></p-sortIcon>
+              <p-columnFilter type="text" field="estado" display="menu" class="ml-auto"></p-columnFilter>
+          </div>
+      </th>
+
+      <th style="width: 1rem"></th>
+      <th style="width: 1rem"></th>
+      <th style="width: 1rem"></th>
+  </tr>
+
+</ng-template>
+  <ng-template pTemplate="body" let-Nc>
+
+
+
+    <tr class="p-selectable-row">
+      <td>
+          <span class="p-column-title">Número</span>
+          {{Nc.numero}}
+      </td>
+
+      <td>
+          <span class="p-column-title">Parceiro</span>
+          {{Nc.parceiro}}
+      </td>
+
+      <td>
+        <span class="p-column-title">Emissor</span>
+        {{Nc.emissor}}
+      </td>
+
+      <td>
+        <span class="p-column-title">Estado</span>
+        {{Nc.estado}}
+      </td>
+
+      <td style="text-align: center">
+          <button pButton type="button" class="p-button-secondary" icon="pi pi-info-circle"></button>
+      </td>
+
+      <td style="text-align: center">
+        <button pButton type="button" class="p-button-secondary" icon="pi pi-trash"></button>
+      </td>
+
+      <td style="text-align: center">
+        <button pButton type="button" class="p-button-secondary" icon="pi pi-briefcase"></button>
+      </td>
+  </tr>
+
+  </ng-template>
+</p-table>
