@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import {ConfirmationService, MessageService} from "primeng/api";
+import {DialogService} from "primeng/dynamicdialog";
+import {ActionPlanDialogComponent} from "./action-plan-dialog/action-plan-dialog.component";
+import {Contact} from "../../../../../models/contact.model";
 
 @Component({
   selector: 'app-action-plan',
   templateUrl: './action-plan.component.html',
-  styleUrls: ['./action-plan.component.css']
+  styleUrls: ['./action-plan.component.css'],
+  providers: [DialogService]
 })
 export class ActionPlanComponent implements OnInit {
 
@@ -25,10 +29,16 @@ export class ActionPlanComponent implements OnInit {
   selectedResp: string;
   statuses: string[] = ["Pendente", "Em andamento", "Finalizada"];
   selectedStatus: string;
-  actions: any[] = [];
+  actions: any[] = [{
+    id: this.id,
+    name: "this.name",
+    responsible: "this.selectedResp",
+    deadline: "this.date",
+    status: "this.selectedStatus"
+  }];
   name: string;
 
-  constructor(private confirmationService: ConfirmationService, private messageService: MessageService) { }
+  constructor(private confirmationService: ConfirmationService, private messageService: MessageService, public dialogService: DialogService) { }
 
   ngOnInit(): void {
   }
@@ -67,6 +77,25 @@ export class ActionPlanComponent implements OnInit {
           life: 3000,
         });
       },
+    });
+  }
+
+  editAction(action: any){
+    console.log(action)
+    const ref = this.dialogService.open(ActionPlanDialogComponent, {
+      data: {...action},
+      header: 'Editar ação',
+      width: '30%',
+      height: '50%'
+    });
+
+    ref.onClose.subscribe((action: any) => {
+      if (action) {
+        let index = this.actions.findIndex((item) => {
+          return item.id == this.id;
+        });
+        this.actions[index] = action;
+      }
     });
   }
 }

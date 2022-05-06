@@ -23,7 +23,6 @@
                          [options]="responsible"
                          [(ngModel)]="selectedResp"
                          placeholder="Selecione ou busque..."
-                         [showClear]="true"
             ></p-dropdown>
         </div>
 
@@ -78,7 +77,7 @@
                             type="button"
                             icon="pi pi-pencil"
                             class="p-button-secondary p-button-text"
-
+                            (click)="editAction(action)"
                     ></button>
                     <button
                             pButton

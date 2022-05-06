@@ -25,6 +25,8 @@ import {DropdownModule} from "primeng/dropdown";
 import {TableModule} from "primeng/table";
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {ConfirmationService, MessageService} from "primeng/api";
+import { ActionPlanDialogComponent } from './steps/step3/action-plan-dialog/action-plan-dialog.component';
+import {NcsCreateModule} from "../create/ncs-create.module";
 
 
 
@@ -40,7 +42,8 @@ import {ConfirmationService, MessageService} from "primeng/api";
       ActionPlanComponent,
       NotificationsComponent,
       ReviewInfomationsComponent,
-      IshikawaDialogComponent
+      IshikawaDialogComponent,
+      ActionPlanDialogComponent
   ],
     imports: [
         CommonModule,
@@ -59,8 +62,9 @@ import {ConfirmationService, MessageService} from "primeng/api";
         DropdownModule,
         TableModule,
         ConfirmDialogModule,
+        NcsCreateModule,
     ],
-    entryComponents: [IshikawaDialogComponent],
+    entryComponents: [IshikawaDialogComponent, ActionPlanDialogComponent],
     providers: [MessageService, ConfirmationService],
 })
 export class CreatePropModule { }
