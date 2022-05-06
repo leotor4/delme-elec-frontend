@@ -29,13 +29,7 @@ export class ActionPlanComponent implements OnInit {
   selectedResp: string;
   statuses: string[] = ["Pendente", "Em andamento", "Finalizada"];
   selectedStatus: string;
-  actions: any[] = [{
-    id: this.id,
-    name: "this.name",
-    responsible: "this.selectedResp",
-    deadline: "this.date",
-    status: "this.selectedStatus"
-  }];
+  actions: any[] = [];
   name: string;
 
   constructor(private confirmationService: ConfirmationService, private messageService: MessageService, public dialogService: DialogService) { }
