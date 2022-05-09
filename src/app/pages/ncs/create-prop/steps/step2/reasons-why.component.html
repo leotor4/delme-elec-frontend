@@ -24,9 +24,9 @@
                     {{stepPosition + 1}}
                 </p-chip>
                 <label class="ml-3" *ngIf="stepPosition===0">Porquê lorem ipsum ?</label>
-                <label class="ml-3" *ngIf="stepPosition>=1">Porquê {{textAreas[stepPosition-1]}} ?</label>
+                <label class="ml-3" *ngIf="stepPosition>=1">Porquê {{propService.step2.textAreas[stepPosition-1]}} ?</label>
             </div>
-            <textarea  [(ngModel)]="textAreas[stepPosition]" pInputTextarea cols="60" rows="5" class="textarea">
+            <textarea  [(ngModel)]="propService.step2.textAreas[stepPosition]" pInputTextarea cols="60" rows="5" class="textarea">
             </textarea>
         </div>
     </div>
@@ -68,7 +68,7 @@
                 </p-chip>
                 <label class="ml-3">Porquê lorem ?</label>
             </div>
-            <textarea  [(ngModel)]="textAreas[0]" pInputTextarea cols="60" rows="5" class="textarea">
+            <textarea  [(ngModel)]="propService.step2.textAreas[0]" pInputTextarea cols="60" rows="5" class="textarea">
             </textarea>
         </div>
     </div>
@@ -79,15 +79,15 @@
                     <p-chip>
                         2
                     </p-chip>
-                    <label class="ml-3">Porquê {{textAreas[0]}} ?</label>
+                    <label class="ml-3">Porquê {{propService.step2.textAreas[0]}} ?</label>
                 </div>
                 <div class="form-check">
-                    <p-radioButton name="cause" value="cause2" [(ngModel)]="selectedValue"></p-radioButton>
+                    <p-radioButton name="cause" value="cause2" [(ngModel)]="propService.step2.selectedValue"></p-radioButton>
                     <label class="form-check-label radio-label ml-1">Esta é a Causa Raiz</label>
                 </div>
             </div>
 
-            <textarea  [(ngModel)]="textAreas[1]" pInputTextarea cols="60" rows="5" class="textarea">
+            <textarea  [(ngModel)]="propService.step2.textAreas[1]" pInputTextarea cols="60" rows="5" class="textarea">
             </textarea>
         </div>
         <div class="d-block p-2 caixa-cinza">
@@ -96,14 +96,14 @@
                     <p-chip>
                         3
                     </p-chip>
-                    <label class="ml-3">Porquê {{textAreas[1]}} ?</label>
+                    <label class="ml-3">Porquê {{propService.step2.textAreas[1]}} ?</label>
                 </div>
                 <div class="form-check">
-                    <p-radioButton name="cause" value="cause3" [(ngModel)]="selectedValue"></p-radioButton>
+                    <p-radioButton name="cause" value="cause3" [(ngModel)]="propService.step2.selectedValue"></p-radioButton>
                     <label class="form-check-label radio-label ml-1">Esta é a Causa Raiz</label>
                 </div>
             </div>
-            <textarea  [(ngModel)]="textAreas[2]" pInputTextarea cols="60" rows="5" class="textarea">
+            <textarea  [(ngModel)]="propService.step2.textAreas[2]" pInputTextarea cols="60" rows="5" class="textarea">
             </textarea>
         </div>
     </div>
@@ -114,14 +114,14 @@
                 <p-chip>
                     4
                 </p-chip>
-                <label class="ml-3">Porquê {{textAreas[2]}} ?</label>
+                <label class="ml-3">Porquê {{propService.step2.textAreas[2]}} ?</label>
             </div>
             <div class="form-check">
-                <p-radioButton name="cause" value="cause4" [(ngModel)]="selectedValue"></p-radioButton>
+                <p-radioButton name="cause" value="cause4" [(ngModel)]="propService.step2.selectedValue"></p-radioButton>
                 <label class="form-check-label radio-label ml-1">Esta é a Causa Raiz</label>
             </div>
         </div>
-            <textarea  [(ngModel)]="textAreas[3]" pInputTextarea cols="60" rows="5" class="textarea">
+            <textarea  [(ngModel)]="propService.step2.textAreas[3]" pInputTextarea cols="60" rows="5" class="textarea">
             </textarea>
         </div>
         <div class="d-block p-2 caixa-cinza">
@@ -130,14 +130,14 @@
                     <p-chip>
                         5
                     </p-chip>
-                    <label class="ml-3">Porquê {{textAreas[3]}} ?</label>
+                    <label class="ml-3">Porquê {{propService.step2.textAreas[3]}} ?</label>
                 </div>
                 <div class="form-check">
-                    <p-radioButton name="cause" value="cause5" [(ngModel)]="selectedValue"></p-radioButton>
+                    <p-radioButton name="cause" value="cause5" [(ngModel)]="propService.step2.selectedValue"></p-radioButton>
                     <label class="form-check-label radio-label ml-1">Esta é a Causa Raiz</label>
                 </div>
             </div>
-            <textarea  [(ngModel)]="textAreas[4]" pInputTextarea cols="60" rows="5" class="textarea">
+            <textarea  [(ngModel)]="propService.step2.textAreas[4]" pInputTextarea cols="60" rows="5" class="textarea">
             </textarea>
         </div>
     </div>

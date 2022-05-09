@@ -30,7 +30,7 @@ const routes: Routes = [
           ),
       },
       {
-        path: "about",
+        path: "about/:id",
         loadChildren: () =>
             import("../pages/ncs/about/about.module").then(
                 (m) => m.NcAboutModule

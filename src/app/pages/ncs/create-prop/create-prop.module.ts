@@ -9,7 +9,6 @@ import {StepsModule} from "primeng/steps";
 import { IshikawaDiagramComponent } from './steps/step1/ishikawa-diagram.component';
 import {ReasonsWhyComponent} from "./steps/step2/reasons-why.component";
 import { ActionPlanComponent } from './steps/step3/action-plan.component';
-import { NotificationsComponent } from './steps/step4/notifications.component';
 import { ReviewInfomationsComponent } from './steps/step5/review-infomations.component';
 import {InputTextareaModule} from "primeng/inputtextarea";
 import { IshikawaDialogComponent } from './steps/step1/ishikawa-dialog/ishikawa-dialog.component';
@@ -27,6 +26,10 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {ConfirmationService, MessageService} from "primeng/api";
 import { ActionPlanDialogComponent } from './steps/step3/action-plan-dialog/action-plan-dialog.component';
 import {NcsCreateModule} from "../create/ncs-create.module";
+import {NotificationComponent} from "./steps/step4/notification.component";
+import {ToastModule} from "primeng/toast";
+import {DialogModule} from "primeng/dialog";
+import {AccordionModule} from "primeng/accordion";
 
 
 
@@ -40,7 +43,7 @@ import {NcsCreateModule} from "../create/ncs-create.module";
       IshikawaDiagramComponent,
       ReasonsWhyComponent,
       ActionPlanComponent,
-      NotificationsComponent,
+      NotificationComponent,
       ReviewInfomationsComponent,
       IshikawaDialogComponent,
       ActionPlanDialogComponent
@@ -63,6 +66,9 @@ import {NcsCreateModule} from "../create/ncs-create.module";
         TableModule,
         ConfirmDialogModule,
         NcsCreateModule,
+        ToastModule,
+        DialogModule,
+        AccordionModule,
     ],
     entryComponents: [IshikawaDialogComponent, ActionPlanDialogComponent],
     providers: [MessageService, ConfirmationService],

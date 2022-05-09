@@ -20,6 +20,13 @@ import {ButtonModule} from "primeng/button";
 import { SGQEvaluationComponent } from './sgq-evaluation/sgq-evaluation.component';
 import { ClosingComponent } from './closing/closing.component';
 import { TrakingComponent } from './traking/traking.component';
+import {ConfirmDialogModule} from "primeng/confirmdialog";
+import {ToastModule} from "primeng/toast";
+import {ConfirmationService, MessageService} from "primeng/api";
+import {DialogModule} from "primeng/dialog";
+import {FormsModule} from "@angular/forms";
+import {InputTextModule} from "primeng/inputtext";
+import { CurrencyMaskModule } from "ng2-currency-mask";
 
 
 
@@ -49,9 +56,16 @@ import { TrakingComponent } from './traking/traking.component';
         DividerModule,
         CarouselModule,
         TableModule,
-        ButtonModule
+        ButtonModule,
+        ConfirmDialogModule,
+        ToastModule,
+        DialogModule,
+        FormsModule,
+        InputTextModule,
+        CurrencyMaskModule
 
 
-    ]
+    ],
+    providers: [MessageService, ConfirmationService],
 })
 export class NcAboutModule { }
