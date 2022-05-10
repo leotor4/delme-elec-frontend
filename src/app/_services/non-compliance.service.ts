@@ -20,7 +20,7 @@ export class NonComplianceService {
   apiUrl = "http://localhost:3333/noncompliances";
 
   public nc = new NonCompliance();
-  public ncs = [];
+  public ncs: NonCompliance[] = [];
 
   //passo 1
   customers: Customer[];
@@ -107,6 +107,20 @@ export class NonComplianceService {
 
   get(): Observable<NonCompliance[]> {
     return this.http.get<NonCompliance[]>(this.apiUrl);
+  }
+
+  getById(id:number): Observable<NonCompliance> {
+    return this.http.get<NonCompliance>(this.apiUrl + '/' + id);
+  }
+
+
+  archived(id:number): Observable<any> {
+    alert(this.apiUrl + '/arquivar/' + id)
+    return this.http.put<any>(this.apiUrl + '/arquivar/' + id, {});
+  }
+
+  delete(id:number): Observable<any> {
+    return this.http.put<any>(this.apiUrl + '/delete/' + id, {});
   }
 
   constructor(private http: HttpClient) {}

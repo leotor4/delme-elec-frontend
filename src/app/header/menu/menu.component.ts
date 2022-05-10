@@ -28,7 +28,7 @@ export class MenuComponent implements OnInit {
           label: 'Electroson',
           items: [
               {label: 'Usuários', icon: 'pi pi-users'},
-              {label: 'Ncs', icon: 'pi pi-list'},
+              {label: 'Ncs', icon: 'pi pi-list', routerLink:'/ncs'},
               {label: 'Importar Dados', icon: 'pi pi-upload'},
               {label: 'Sair', icon: 'pi pi-sign-out',
                 command: () => {

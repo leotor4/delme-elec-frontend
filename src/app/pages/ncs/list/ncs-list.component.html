@@ -1,27 +1,25 @@
 <h2>Início</h2>
-<p-table #dt [globalFilterFields]="['parceiro','emissor', 'estado']" [value]="listNcs" [columns]="cols" [paginator]="true" [rows]="rows" [(first)]="first" [showCurrentPageReport]="true" responsiveLayout="scroll"
+<p>Visualize ou crie não conformidades</p>
+
+<span class="p-input-icon-left">
+    <i class="pi pi-search"></i>
+    <input pInputText type="text" (input)="applyFilterGlobal($event, 'contains')" placeholder="Global Search" />
+</span>
+<span style="float:right">
+  <p-button label="Nova Não Conformidade" icon="pi pi-check" styleClass="p-button-sm p-button-secondary" icon="pi pi-plus" iconPos="right" routerLink="/ncs/create"></p-button>
+</span>
+
+<div style="margin-top: 10px;">
+<p-table  #dt [globalFilterFields]="['numero','parceiro','emissor', 'estado']" [value]="listNcs" [columns]="cols" [paginator]="true" [rows]="rows" [(first)]="first" [showCurrentPageReport]="true" responsiveLayout="scroll"
 currentPageReportTemplate="Exibindo de {first} a {last} de {totalRecords} registros" [rowsPerPageOptions]="[5,10,25,50]" [filterDelay]="0">
 
-  <ng-template pTemplate="caption">
-    <p>Visualize ou crie não conformidades</p>
-    <div class="table-header">
-        <span class="p-input-icon-left">
-            <i class="pi pi-search"></i>
-            <input pInputText type="text" (input)="applyFilterGlobal($event, 'contains')" placeholder="" />
-        </span>
-    </div>
-  </ng-template>
   <ng-template pTemplate="header">
-
-
-
-
     <tr>
       <th pSortableColumn="numero">
         <div class="flex justify-content-between align-items-center">
             Número
             <p-sortIcon field="numero"></p-sortIcon>
-            <p-columnFilter type="numeric" field="numero" display="menu" class="ml-auto"></p-columnFilter>
+            <p-columnFilter type="text" field="numero" display="menu" class="ml-auto"></p-columnFilter>
         </div>
       </th>
       <th pSortableColumn="parceiro">
@@ -33,7 +31,7 @@ currentPageReportTemplate="Exibindo de {first} a {last} de {totalRecords} regist
       </th>
       <th pSortableColumn="emissor">
         <div class="flex justify-content-between align-items-center">
-            Parceiro
+            Emissor
             <p-sortIcon field="emissor"></p-sortIcon>
             <p-columnFilter type="text" field="emissor" display="menu" class="ml-auto"></p-columnFilter>
         </div>
@@ -78,17 +76,19 @@ currentPageReportTemplate="Exibindo de {first} a {last} de {totalRecords} regist
       </td>
 
       <td style="text-align: center">
-          <button pButton type="button" class="p-button-secondary" icon="pi pi-info-circle"></button>
+          <button pButton type="button" class="p-button-secondary" icon="pi pi-info-circle" routerLink="/ncs/about/{{Nc.id}}"></button>
       </td>
 
       <td style="text-align: center">
-        <button pButton type="button" class="p-button-secondary" icon="pi pi-trash"></button>
+        <button pButton type="button" class="p-button-secondary" icon="pi pi-trash" (click)="delete(Nc.id)"></button>
       </td>
 
       <td style="text-align: center">
-        <button pButton type="button" class="p-button-secondary" icon="pi pi-briefcase"></button>
+        <button pButton type="button" class="p-button-secondary" icon="pi pi-briefcase" (click)="archived(Nc.id)"></button>
       </td>
+
   </tr>
 
   </ng-template>
 </p-table>
+</div>

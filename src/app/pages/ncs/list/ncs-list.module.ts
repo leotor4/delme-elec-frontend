@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
+import {InputTextModule} from 'primeng/inputtext';
 
 import { NcsListRoutingModule } from './ncs-list-routing.module';
 import { NcsListComponent } from './ncs-list.component';
@@ -14,7 +15,8 @@ import { NcsListComponent } from './ncs-list.component';
     CommonModule,
     NcsListRoutingModule,
     TableModule,
-    ButtonModule
+    ButtonModule,
+    InputTextModule
   ]
 })
 export class NcsListModule { }

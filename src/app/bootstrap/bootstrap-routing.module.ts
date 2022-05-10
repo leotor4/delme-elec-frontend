@@ -6,7 +6,7 @@ import {CreatePropModule} from "../pages/ncs/create-prop/create-prop.module";
 const routes: Routes = [
   {
     path: "ncs",
-    // canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService],
     children: [
       {
         path: "",
@@ -30,7 +30,7 @@ const routes: Routes = [
           ),
       },
       {
-        path: "about",
+        path: "about/:id",
         loadChildren: () =>
             import("../pages/ncs/about/about.module").then(
                 (m) => m.NcAboutModule

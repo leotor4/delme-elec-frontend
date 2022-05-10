@@ -1,8 +1,11 @@
 import { Attachment } from "./attachment";
 import { Contact } from "./contact.model";
+import { Customer } from "./customer";
 import { Instruction } from "./instruction";
 import { Procedure } from "./procedure";
 import { Product } from "./product.model";
+import { Provider } from "./provider";
+import { Sector } from "./sector";
 
 export class NonCompliance {
   id?: number;
@@ -31,4 +34,8 @@ export class NonCompliance {
   num_op?: String = "";
   num_nota?: String = "";
   radio_value: string = "val1";
+  sector?: Sector;
+  provider?: Provider;
+  customer?: Customer;
+  status? : string;
 }
