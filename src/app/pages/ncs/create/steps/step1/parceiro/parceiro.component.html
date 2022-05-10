@@ -119,11 +119,11 @@
   </div>
 </div>
 
-<div *ngIf="!nonComplicanceService.isSelected">
+<div *ngIf="!hasSelected()">
   <app-waiting-product></app-waiting-product>
 </div>
 
-<div class="div-ident-parceiro row" *ngIf="nonComplicanceService.isSelected">
+<div class="div-ident-parceiro row" *ngIf="hasSelected()">
   <h1 class="titulo-parceiro">Dados do Parceiro</h1>
   <div class="dados-parceiro col razao-social">
     <h1 *ngIf="!isInterno()">Razão Social</h1>

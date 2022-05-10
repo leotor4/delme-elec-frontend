@@ -10,7 +10,7 @@
         <div>
           <span class="info-titulo">Número</span>
           <br />
-          <span class="info-dados">{{ncID}}</span>
+          <span class="info-dados">{{ ncID }}</span>
         </div>
       </div>
       <div class="contato-info d-flex flex-row">
@@ -54,7 +54,7 @@
         <i class="bi bi-person-circle mr-1"></i>
         <div>
           <span class="info-titulo">Emissor</span>
-          <br/>
+          <br />
           <span class="info-dados">Elias</span>
         </div>
       </div>
@@ -62,7 +62,7 @@
         <i class="bi bi-person-circle mr-1"></i>
         <div>
           <span class="info-titulo">Responsável</span>
-          <br/>
+          <br />
           <span class="info-dados">Janaína</span>
         </div>
       </div>
@@ -70,7 +70,7 @@
         <i class="bi bi-geo-alt mr-1"></i>
         <div>
           <span class="info-titulo">Departamento</span>
-          <br>
+          <br />
           <p class="info-dados">Rh</p>
         </div>
       </div>
@@ -86,15 +86,13 @@
           <h2 class="mr-2">Razão Social</h2>
           <p-chip>
             <i class="bi bi-ticket-perforated mr-2"></i>
-            {{
-              this.nonComplicanceService.nc.partner?.corporate_name ||
-                "00000000"
-            }}
+            {{ this.nonComplicanceService.nc.partner?.code || "00000000" }}
           </p-chip>
         </div>
         <p>
           {{
             this.nonComplicanceService.nc.partner?.corporate_name ||
+              this.nonComplicanceService.nc.partner?.name ||
               "Dado não preenchido"
           }}
         </p>
@@ -157,7 +155,7 @@
     </h2>
     <p-editor
       [(ngModel)]="this.nonComplicanceService.nc.text_area_nc"
-      [style]="{ height: '144px','border': '1px solid #dddddd' }"
+      [style]="{ height: '144px', border: '1px solid #dddddd' }"
       [readonly]="true"
     >
       <ng-template pTemplate="header"> </ng-template>
@@ -177,7 +175,7 @@
     >
       <ng-template let-file pTemplate="item">
         <i class="bi bi-file-earmark fs-1"></i>
-        <p>{{file.name}}</p>
+        <p>{{ file.name }}</p>
       </ng-template>
     </p-carousel>
   </div>
@@ -190,7 +188,7 @@
     </h2>
     <p-editor
       [(ngModel)]="this.nonComplicanceService.nc.text_area_acoes"
-      [style]="{ height: '144px', 'border': '1px solid #dddddd'}"
+      [style]="{ height: '144px', border: '1px solid #dddddd' }"
       [readonly]="true"
     >
       <ng-template pTemplate="header" hidden> </ng-template>
@@ -209,8 +207,8 @@
       [showIndicators]="false"
     >
       <ng-template let-file pTemplate="item">
-          <i class="bi bi-file-earmark fs-1"></i>
-          <p>{{file.name}}</p>
+        <i class="bi bi-file-earmark fs-1"></i>
+        <p>{{ file.name }}</p>
       </ng-template>
     </p-carousel>
   </div>

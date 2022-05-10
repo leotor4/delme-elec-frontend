@@ -1,16 +1,12 @@
-<app-product
-  (hasSelectedProductEvent)="getHasSelectedProduct($event)"
-></app-product>
+<app-product></app-product>
 
 <hr class="mb-5 mt-5" />
 
-<div class="row points-box">
+<div class="row">
   <div class="col">
-    <app-checkpoint [hasProduct]="hasSelectedProduct"></app-checkpoint>
+    <app-checkpoint [hasProduct]="hasProduct()"></app-checkpoint>
   </div>
-  <div class="col mt-4 mt-xxl-0">
-    <app-rejection-point
-      [hasProduct]="hasSelectedProduct"
-    ></app-rejection-point>
+  <div class="col">
+    <app-rejection-point [hasProduct]="hasProduct()"></app-rejection-point>
   </div>
 </div>

@@ -1,5 +1,5 @@
 export class Instruction {
-  id: string;
+  id: number;
   code: string;
   description: string;
   rev: string;

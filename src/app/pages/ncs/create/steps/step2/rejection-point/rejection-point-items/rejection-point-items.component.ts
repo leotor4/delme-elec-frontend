@@ -1,5 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { DialogService } from "primeng/dynamicdialog";
+import { of } from "rxjs";
+
+import { InstructionsService } from "src/app/_services/instructions.service";
 
 import { NonComplianceService } from "src/app/_services/non-compliance.service";
 import { ItDialogComponent } from "../it-dialog/it-dialog.component";
@@ -13,7 +16,8 @@ import { ItDialogComponent } from "../it-dialog/it-dialog.component";
 export class RejectionPointItemsComponent implements OnInit {
   constructor(
     public nonComplianceService: NonComplianceService,
-    public dialogService: DialogService
+    public dialogService: DialogService,
+    public itService: InstructionsService
   ) {}
 
   results: any[];
@@ -64,11 +68,31 @@ export class RejectionPointItemsComponent implements OnInit {
     }
   }
 
+  returnPrScreen() {
+    if (this.nonComplianceService.nc.tipo_controle == "PR") {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   openDialog() {
     const ref = this.dialogService.open(ItDialogComponent, {
       header: "Criar Instrução",
       width: "425px",
     });
   }
-  ngOnInit(): void {}
+
+  returnDownloadLink():string{
+   if (this.nonComplianceService.nc.instruction.id) {
+     let id = this.nonComplianceService.nc.instruction.id;
+     return "localhost:3333/instructions/files/" + id;
+   }
+   return ""
+  }
+
+  
+  ngOnInit(): void {
+   
+  }
 }

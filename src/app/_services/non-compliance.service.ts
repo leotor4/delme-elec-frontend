@@ -32,7 +32,6 @@ export class NonComplianceService {
   pesquisar: string = "";
   public fileNc: any = [];
   public fileAcoes: any = [];
-  public isSelected = false;
 
   //passo 2
   public quantNc = "";
@@ -121,6 +120,12 @@ export class NonComplianceService {
 
   delete(id:number): Observable<any> {
     return this.http.put<any>(this.apiUrl + '/delete/' + id, {});
+ 
+}
+
+ hasProduct(): boolean {
+    if (this.nc.product != null) return true;
+    return false;
   }
 
   constructor(private http: HttpClient) {}

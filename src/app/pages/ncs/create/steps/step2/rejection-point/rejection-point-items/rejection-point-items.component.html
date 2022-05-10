@@ -65,11 +65,11 @@
   </div>
 
   <div class="d-flex justify-content-center mt-3">
-    <button type="button" class="btn btn-dark">Visualizar Documento</button>
+    <a type="button" class="btn btn-dark" href="http://localhost:3333/instructions/files/1">Visualizar Documento</a>
   </div>
 </div>
 
-<div class="d-flex justify-content-between row-inputs" *ngIf="returnNfScreen()">
+<div class="d-flex flex-wrap justify-content-between row-inputs" >
   <div class="d-flex flex-column inputs-sm my-auto">
     <label for="amountTotal">Número do Lote</label>
     <input
@@ -91,5 +91,63 @@
       placeholder="Digite"
       class="p-inputtext-sm input"
     />
+  </div>
+</div>
+
+
+
+<div *ngIf="returnPrScreen()">
+  <div class="row">
+    <div class="col-8">
+      <div class="p-fluid autoComplete">
+        <label class="">Selecionar PR</label>
+        <p-autoComplete
+          [(ngModel)]="nonComplianceService.autoCompletePrValue"
+          class="p-autocomplete"
+          [suggestions]="results"
+          (onSelect)="onSelected()"
+          (completeMethod)="search($event)"
+          [style]="{ width: '100%' }"
+          [inputStyle]="{ width: '100%' }"
+          field="description"
+          placeholder="Busque por nome, número ou descrição"
+        >
+          <ng-template let-brand pTemplate="item">
+            <div>
+              <div class="d-flex justify-content-between">
+                <div>
+                  <span class="auto-complete-label">CÓDIGO</span><br />
+                  <span class="auto-complete-item">{{ brand.code }}</span>
+                </div>
+                <div>
+                  <span class="auto-complete-label">DESCRIÇÃO</span><br />
+                  <span class="auto-complete-item">{{
+                    brand.description
+                  }}</span>
+                </div>
+                <div>
+                  <span class="auto-complete-label">REVISÃO</span><br />
+                  <span class="auto-complete-item">{{ brand.rev }}</span>
+                </div>
+              </div>
+            </div></ng-template
+          >
+        </p-autoComplete>
+      </div>
+    </div>
+    <div class="col att-button">
+      <div>
+        <p><i class="pi pi-history"></i> ultima atualização:</p>
+        <button
+          href="http://localhost:4200/ncs/import"
+          role="button"
+          class="btn btn-dark"
+          (click)="openDialog()"
+        >
+          Atualizar PRs
+          <i class="pi pi-download" id="icon-button"></i>
+        </button>
+      </div>
+    </div>
   </div>
 </div>
