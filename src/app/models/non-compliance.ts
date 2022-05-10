@@ -1,4 +1,4 @@
-import { Provider } from "@angular/core";
+
 import { Attachment } from "./attachment";
 import { Contact } from "./contact.model";
 import { Customer } from "./customer";
@@ -6,6 +6,7 @@ import { Instruction } from "./instruction";
 import { Procedure } from "./procedure";
 import { Product } from "./product.model";
 import { Sector } from "./sector";
+import {Provider} from "./provider";
 
 export class NonCompliance {
   id?: number;
