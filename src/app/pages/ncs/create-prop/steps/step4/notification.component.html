@@ -3,10 +3,9 @@
 <div class="d-flex">
   <div class="col-8">
     <div class="cabecalho">
-      <h1>Contatos a serem notificados</h1>
+      <h1>Emitir Notificações</h1>
       <p>
-        Visualiza contatos que serão automaticamente notificados do progresso
-        dessa NC desta fase em diante.
+        Visualize e adicione contatos a serem notificados acerca do andamento desta NC. Por padrão, são adicionados contatos já incluidos nos passos anteriores.
       </p>
     </div>
   </div>
@@ -18,7 +17,7 @@
 </div>
 
 <div class="card">
-  <p-table [value]="nonComplianceService.nc.contacts">
+  <p-table [value]="propService.contacts">
     <ng-template pTemplate="header">
       <tr>
         <th>Nome</th>

@@ -9,7 +9,6 @@ import {StepsModule} from "primeng/steps";
 import { IshikawaDiagramComponent } from './steps/step1/ishikawa-diagram.component';
 import {ReasonsWhyComponent} from "./steps/step2/reasons-why.component";
 import { ActionPlanComponent } from './steps/step3/action-plan.component';
-import { NotificationsComponent } from './steps/step4/notifications.component';
 import { ReviewInfomationsComponent } from './steps/step5/review-infomations.component';
 import {InputTextareaModule} from "primeng/inputtextarea";
 import { IshikawaDialogComponent } from './steps/step1/ishikawa-dialog/ishikawa-dialog.component';
@@ -25,6 +24,12 @@ import {DropdownModule} from "primeng/dropdown";
 import {TableModule} from "primeng/table";
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {ConfirmationService, MessageService} from "primeng/api";
+import { ActionPlanDialogComponent } from './steps/step3/action-plan-dialog/action-plan-dialog.component';
+import {NcsCreateModule} from "../create/ncs-create.module";
+import {NotificationComponent} from "./steps/step4/notification.component";
+import {ToastModule} from "primeng/toast";
+import {DialogModule} from "primeng/dialog";
+import {AccordionModule} from "primeng/accordion";
 
 
 
@@ -38,9 +43,10 @@ import {ConfirmationService, MessageService} from "primeng/api";
       IshikawaDiagramComponent,
       ReasonsWhyComponent,
       ActionPlanComponent,
-      NotificationsComponent,
+      NotificationComponent,
       ReviewInfomationsComponent,
-      IshikawaDialogComponent
+      IshikawaDialogComponent,
+      ActionPlanDialogComponent
   ],
     imports: [
         CommonModule,
@@ -59,8 +65,12 @@ import {ConfirmationService, MessageService} from "primeng/api";
         DropdownModule,
         TableModule,
         ConfirmDialogModule,
+        NcsCreateModule,
+        ToastModule,
+        DialogModule,
+        AccordionModule,
     ],
-    entryComponents: [IshikawaDialogComponent],
+    entryComponents: [IshikawaDialogComponent, ActionPlanDialogComponent],
     providers: [MessageService, ConfirmationService],
 })
 export class CreatePropModule { }

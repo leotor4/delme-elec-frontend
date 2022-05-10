@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ProposalService} from "../../proposal.service";
 
 @Component({
   selector: 'app-reasons-why',
@@ -8,9 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class ReasonsWhyComponent implements OnInit {
   stepPosition: number = 0;
   showAllTextAreas: boolean = false;
-  textAreas: [string, string, string, string, string] = ["", "", "", "", ""]
-  selectedValue: string;
-  constructor() { }
+  constructor(public propService: ProposalService) { }
 
   ngOnInit(): void {
   }

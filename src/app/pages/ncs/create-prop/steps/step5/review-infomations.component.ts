@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {ProposalService} from "../../proposal.service";
 
 @Component({
   selector: 'app-review-infomations',
@@ -6,9 +7,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./review-infomations.component.css']
 })
 export class ReviewInfomationsComponent implements OnInit {
+  ncID = "001/2022";
+  isAllOpen = true;
+  unselectedClass = "btn btn-outline-dark";
+  selectedClass = "btn btn-dark";
+  editorStyle = {
+    'height': '120px',
+    'width': '260px',
+    'border': '2px solid #333333',
+    'border-radius': '5px'
+  }
+    @Output() changeStepPosition: EventEmitter<number> = new EventEmitter();
+  constructor(public propService: ProposalService) {}
 
-  constructor() { }
-
+  goToStepById(position: number) {
+    this.changeStepPosition.emit(position);
+  }
   ngOnInit(): void {
   }
 

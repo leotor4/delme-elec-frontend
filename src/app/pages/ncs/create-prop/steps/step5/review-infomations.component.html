@@ -1,1 +1,258 @@
-<p>review-infomations works!</p>
+<div class="d-flex flex-lg-row flex-column justify-content-between">
+    <div class="d-flex">
+        <div class="cabecalho">
+            <div class="d-flex align-items-center">
+                <h1 class="mr-3">Análise da Não Conformidade</h1>
+            </div>
+            <p>
+                Revise ou altere os dados da análise da NC. Se tudo estiver OK, submeta a análise desta NC.
+            </p>
+        </div>
+    </div>
+    <div class="d-flex justify-content-end align-items-center mb-3">
+        <button
+                [class]="isAllOpen ? selectedClass : unselectedClass"
+                class="mr-2 btn-sm"
+                (click)="isAllOpen = true"
+        >
+            <i class="bi bi-arrows-expand"></i>
+            Expandir Todos
+        </button>
+        <button
+                [class]="isAllOpen ? unselectedClass : selectedClass"
+                (click)="isAllOpen = false"
+                class="btn-sm"
+        >
+            <i class="bi bi-arrows-collapse"></i>
+            Colapsar Todos
+        </button>
+    </div>
+</div>
+<p-accordion [multiple]="true">
+    <p-accordionTab [selected]="isAllOpen">
+        <ng-template pTemplate="header">
+            <div class="d-flex justify-content-between accordion">
+                <p>
+                    <i class="bi bi-suit-diamond"></i>
+                    Diagrama de Ishikawa
+                </p>
+                <button class="btn btn-dark red" (click)="goToStepById(0)">
+                    <i class="bi bi-pencil mr-1"></i>
+                    Alterar
+                </button>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="content">
+            <div class="d-flex caixa-cinza pr-2 py-4 mt-4">
+                <div>
+                    <div class="d-flex">
+                        <div class="col">
+                            <label>Matéria Prima</label>
+                            <p-editor [ngModel]="'<p>'+this.propService.step1.checkbox1 + '</p><p>' + this.propService.step1.checkbox2 + '</p><p>' + this.propService.step1.checkbox3+ '</p>' + this.propService.step1.editor1" [style]="editorStyle" [readonly]="true" >
+                                <ng-template pTemplate="header">
+                                </ng-template>
+                            </p-editor>
+
+                        </div>
+                        <div class="col">
+                            <label>Medição</label>
+                            <p-editor [ngModel]="'<p>'+this.propService.step1.checkbox4 + '</p><p>' + this.propService.step1.checkbox5 + '</p><p>' + this.propService.step1.checkbox6+ '</p>' + this.propService.step1.editor2" [style]="editorStyle" [readonly]="true">
+                                <ng-template pTemplate="header">
+                                </ng-template>
+                            </p-editor>
+                        </div>
+                        <div class="col">
+                            <label>Método</label>
+                            <p-editor [ngModel]="this.propService.step1.editor3" [style]="editorStyle" [readonly]="true">
+                                <ng-template pTemplate="header">
+                                </ng-template>
+                            </p-editor>
+                        </div>
+                    </div>
+                    <img src="../../../../../../assets/images/Espinha de Peixe.png" width="850" class="ml-5 mr-3">
+                    <div class="d-flex">
+                        <div class="col">
+                            <label>Mão de Obra</label>
+                            <p-editor [ngModel]="'<p>'+this.propService.step1.checkbox7 + '</p>' + this.propService.step1.editor4" [style]="editorStyle" [readonly]="true">
+                                <ng-template pTemplate="header">
+                                </ng-template>
+                            </p-editor>
+                        </div>
+                        <div class="col">
+                            <label>Meio Ambiente</label>
+                            <p-editor [ngModel]="this.propService.step1.editor5" [style]="editorStyle" [readonly]="true">
+                                <ng-template pTemplate="header">
+                                </ng-template>
+                            </p-editor>
+                        </div>
+                        <div class="col">
+                            <label>Máquina</label>
+                            <p-editor [ngModel]="this.propService.step1.editor6" [style]="editorStyle" [readonly]="true">
+                                <ng-template pTemplate="header">
+                                </ng-template>
+                            </p-editor>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="d-block mt-5">
+                    <label>Efeito</label>
+                    <p-editor [ngModel]="this.propService.step1.editor7"
+                              [style]="{'height':'300px','width':'230px','border': '2px solid #333333','border-radius': '5px'}"
+                              [readonly]="true">
+                        <ng-template pTemplate="header">
+                        </ng-template>
+                    </p-editor>
+                </div>
+            </div>
+        </ng-template>
+    </p-accordionTab>
+    <p-accordionTab [selected]="isAllOpen">
+        <ng-template pTemplate="header">
+            <div class="d-flex justify-content-between accordion">
+                <p>
+                    <i class="bi bi-dice-5"></i>
+                     5 Porquês
+                </p>
+                <button class="btn btn-dark red" (click)="goToStepById(1)">
+                    <i class="bi bi-pencil mr-1"></i>
+                    Alterar
+                </button>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="content">
+            <div class="caixa-cinza p-2">
+                <div class="d-flex justify-content-evenly">
+                    <p-chip>1</p-chip>
+                    <div>
+
+                       <textarea  [(ngModel)]="propService.step2.textAreas[0]" pInputTextarea cols="35" rows="5" class="textarea">
+                       </textarea>
+                        <div class="text-center form-check caixa-preta mx-3" *ngIf="propService.step2.selectedValue=='cause1'">
+                            <input class="form-check-input" type="checkbox" value="" onclick="return false;" checked/>
+                            <label class="form-check-label text-light">
+                                Causa Raiz
+                            </label>
+                        </div>
+                    </div>
+                    <p-chip>2</p-chip>
+                    <div>
+                       <textarea  [(ngModel)]="propService.step2.textAreas[0]" pInputTextarea cols="35" rows="5" class="textarea">
+                       </textarea>
+                        <div class="text-center form-check caixa-preta mx-3" *ngIf="propService.step2.selectedValue=='cause2'">
+                            <input class="form-check-input" type="checkbox" value="" onclick="return false;" checked/>
+                            <label class="form-check-label text-light">
+                                Causa Raiz
+                            </label>
+                        </div>
+                    </div>
+                    <p-chip>3</p-chip>
+                    <div>
+                       <textarea  [(ngModel)]="propService.step2.textAreas[0]" pInputTextarea cols="35" rows="5" class="textarea">
+                       </textarea>
+                        <div class="text-center form-check caixa-preta mx-3" *ngIf="propService.step2.selectedValue=='cause3'">
+                            <input class="form-check-input" type="checkbox" value="" onclick="return false;" checked/>
+                            <label class="form-check-label text-light">
+                                Causa Raiz
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-evenly">
+                    <p-chip>4</p-chip>
+                    <div>
+                       <textarea  [(ngModel)]="propService.step2.textAreas[0]" pInputTextarea cols="55" rows="5" class="textarea">
+                       </textarea>
+                        <div class="text-center form-check caixa-preta mx-3" *ngIf="propService.step2.selectedValue=='cause4'">
+                            <input class="form-check-input" type="checkbox" value="" onclick="return false;" checked/>
+                            <label class="form-check-label text-light">
+                                Causa Raiz
+                            </label>
+                        </div>
+                    </div>
+                    <p-chip>5</p-chip>
+                    <div>
+                       <textarea  [(ngModel)]="propService.step2.textAreas[0]" pInputTextarea cols="55" rows="5" class="textarea">
+                       </textarea>
+                        <div class="text-center form-check caixa-preta mx-3" *ngIf="propService.step2.selectedValue=='cause5'">
+                            <input class="form-check-input" type="checkbox" value="" onclick="return false;" checked/>
+                            <label class="form-check-label text-light">
+                                Causa Raiz
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </p-accordionTab>
+    <p-accordionTab [selected]="isAllOpen">
+        <ng-template pTemplate="header">
+            <div class="d-flex justify-content-between accordion">
+                <p>
+                    <i class="bi bi-geo"></i>
+                    Ações Corretivas
+                </p>
+                <button class="btn btn-dark red" (click)="goToStepById(2)">
+                    <i class="bi bi-pencil mr-1"></i>
+                    Alterar
+                </button>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="content">
+            <div class="card">
+                <p-table [value]="propService.actions">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>Descrição</th>
+                            <th>Responsável</th>
+                            <th>Prazo</th>
+                            <th>Status</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-action>
+                        <tr>
+                            <td>{{ action.name }}</td>
+                            <td>{{ action.responsible }}</td>
+                            <td>{{ action.deadline.split("-")?.reverse()?.join("/") }}</td>
+                            <td>{{ action.status }}</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </ng-template>
+    </p-accordionTab>
+    <p-accordionTab [selected]="isAllOpen">
+        <ng-template pTemplate="header">
+            <div class="d-flex justify-content-between accordion">
+                <p>
+                    <i class="bi bi-envelope"></i>
+                    Partes Interessadas
+                </p>
+                <button class="btn btn-dark red" (click)="goToStepById(3)">
+                    <i class="bi bi-pencil mr-1"></i>
+                    Alterar
+                </button>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="content">
+            <div class="card">
+                <p-table [value]="propService.contacts">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>Nome</th>
+                            <th>E-mail</th>
+                            <th>Tipo de Contato</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-contact let-i="rowIndex">
+                        <tr>
+                            <td>{{ contact.name }}</td>
+                            <td>{{ contact.email }}</td>
+                            <td>{{ contact.type }}</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </ng-template>
+    </p-accordionTab>
+</p-accordion>

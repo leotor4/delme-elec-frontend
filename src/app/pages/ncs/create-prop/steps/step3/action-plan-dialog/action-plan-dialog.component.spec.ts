@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NotificationsComponent } from './notifications.component';
+import { ActionPlanDialogComponent } from './action-plan-dialog.component';
 
-describe('NotificationsComponent', () => {
-  let component: NotificationsComponent;
-  let fixture: ComponentFixture<NotificationsComponent>;
+describe('ActionPlanDialogComponent', () => {
+  let component: ActionPlanDialogComponent;
+  let fixture: ComponentFixture<ActionPlanDialogComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NotificationsComponent ]
+      declarations: [ ActionPlanDialogComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NotificationsComponent);
+    fixture = TestBed.createComponent(ActionPlanDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

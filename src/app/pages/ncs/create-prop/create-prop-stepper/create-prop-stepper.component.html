@@ -43,10 +43,14 @@
             <app-action-plan></app-action-plan>
         </div>
         <div *ngIf="stepPosition === 3">
-            <app-notifications></app-notifications>
+            <app-notification></app-notification>
         </div>
         <div *ngIf="stepPosition === 4">
-            <app-review-infomations></app-review-infomations>
+            <app-review-infomations
+                    (changeStepPosition)="changeStepByPosition($event)"
+            >
+
+            </app-review-infomations>
         </div>
     </div>
 </div>

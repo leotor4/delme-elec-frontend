@@ -1,47 +1,72 @@
 import { Component, OnInit } from '@angular/core';
+import {ConfirmationService, MessageService} from "primeng/api";
+import {Attachment} from "../../../../models/attachment";
 
 @Component({
   selector: 'app-costs',
   templateUrl: './costs.component.html',
-  styleUrls: ['./costs.component.css']
+  styleUrls: ['./costs.component.css'],
 })
 export class CostsComponent implements OnInit {
-    documents: any[] = [
-      {
-        "name": "NF-XXX",
-        "date": "03/01/1978",
-        "annexBy": "Dotty Shama",
-        "price": "R$489.62"
-      },
-      {
-        "name": "NF-XXX",
-        "date": "18/05/1987",
-        "annexBy": "Elise Leary",
-        "price": "R$608.63"
-      },
-      {
-        "name": "NF-XXX",
-        "date": "31/05/2021",
-        "annexBy": "Rani Hamil",
-        "price": "R$908.81"
-      },
-      {
-        "name": "NF-XXX",
-        "date": "12/11/1985",
-        "annexBy": "Courtnay Roscoe",
-        "price": "R$413.68"
-      },
-      {
-        "name": "NF-XXX",
-        "date": "30/08/1951",
-        "annexBy": "Adore Fax",
-        "price": "R$156.57"
-      }
-    ];
+  id=0
+  documents: any[] = [];
+  addDocumentDialog: boolean=false;
+  doc = {id: 0, name: "", date: "", annexBy: "test", price: ""};
+  fileChosen: boolean;
 
-  constructor() { }
+  constructor(private confirmationService: ConfirmationService, private messageService: MessageService) { }
 
   ngOnInit(): void {
   }
+  deleteAction(doc:any){
+    this.confirmationService.confirm({
+      message:
+          "Você tem certeza que quer excluir o documento " +
+          doc.name+
+          " da lista?",
+      header: "Excluir Documento",
+      icon: "pi pi-exclamation-triangle",
+      accept: () => {
+        this.documents=
+            this.documents.filter(
+                (val) => val.id !== doc.id
+            );
+        this.messageService.add({
+          severity: "info",
+          summary: "Documento removida com sucesso",
+          life: 3000,
+        });
+      },
+    });
+  }
 
+  clearFile() {
+    this.fileChosen=false
+    this.doc.name=""
+  }
+
+  onUpload(event: any) {
+    const target = event.target as HTMLInputElement;
+    if (target.files && target.files.length > 0) {
+      this.doc.name = target.files[0].name;
+      this.fileChosen=true
+    }
+
+  }
+
+
+  save() {
+    this.doc.id=this.id
+    this.id++
+    let date = new Date(Date.now());
+    this.doc.date = date.toLocaleDateString()
+    this.doc.price=parseInt(this.doc.price).toLocaleString('pt-BR', {
+      style: 'currency',
+      currency: 'BRL',
+    });
+    this.documents.push({...this.doc})
+    this.doc = {id: 0, name: "", date: "", annexBy: "test", price: ""}
+    this.addDocumentDialog=false
+    this.fileChosen=false
+  }
 }
