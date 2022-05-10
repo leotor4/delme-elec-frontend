@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Contact} from "../../../../../models/contact.model";
+import {AboutService} from "../../about.service";
 
 @Component({
   selector: 'app-view-stakeholders',
@@ -31,7 +32,7 @@ export class ViewStakeholdersComponent implements OnInit {
 
     ];
 
-  constructor() { }
+  constructor(public aboutSrvc: AboutService) { }
 
   ngOnInit(): void {
   }

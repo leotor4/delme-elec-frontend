@@ -10,7 +10,7 @@
         <div>
           <span class="info-titulo">Número</span>
           <br />
-          <span class="info-dados">{{ncID}}</span>
+          <span class="info-dados">{{aboutSrvc.nc?.code||""}}</span>
         </div>
       </div>
       <div class="contato-info d-flex flex-row">
@@ -19,7 +19,7 @@
           <span class="info-titulo">Data de Abertura</span>
           <br />
           <span class="info-dados">
-            {{"00/00/0000"}}
+            {{parseDate(aboutSrvc.nc?.data_abertura||"")||"00/00/0000"}}
           </span>
         </div>
       </div>
@@ -28,7 +28,7 @@
         <div>
           <span class="info-titulo">Data de Fechamento</span>
           <br/>
-          <span class="info-dados">{{"00/00/0000"}}</span>
+          <span class="info-dados">{{parseDate(aboutSrvc.nc?.data_fechamento||"")||"00/00/0000"}}</span>
         </div>
       </div>
     </div>
@@ -130,7 +130,7 @@
       <i class="bi bi-file-earmark-text"></i>
       Descrição da Não Conformidade
     </h2>
-    <p-editor [style]="{'height':'144px'}" [readonly]="true">
+    <p-editor [style]="{'height':'144px'}" [readonly]="true" [ngModel]="aboutSrvc.nc?.text_area_nc">
       <ng-template pTemplate="header">
       </ng-template>
     </p-editor>
@@ -155,7 +155,7 @@
       <i class="bi bi-geo"></i>
       Descrição de Ações Imediatas
     </h2>
-    <p-editor [style]="{'height':'144px'}" [readonly]="true">
+    <p-editor [style]="{'height':'144px'}" [readonly]="true" [ngModel]="aboutSrvc.nc?.text_area_acoes">
       <ng-template pTemplate="header" hidden>
       </ng-template>
     </p-editor>

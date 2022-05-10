@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {AboutService} from "../../about.service";
 
 @Component({
   selector: 'app-view-products-and-points',
@@ -8,9 +9,10 @@ import { Component, OnInit } from '@angular/core';
 export class ViewProductsAndPointsComponent implements OnInit {
   percent= 5;
 
-  constructor() { }
+  constructor(public aboutSrvc: AboutService) { }
 
   ngOnInit(): void {
+
   }
 
 }
