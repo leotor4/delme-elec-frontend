@@ -46,6 +46,10 @@ import { CheckpointItemsComponent } from './steps/step2/checkpoint/checkpoint-it
 import { RejectionPointItemsComponent } from './steps/step2/rejection-point/rejection-point-items/rejection-point-items.component';
 import { ItDialogComponent } from './steps/step2/rejection-point/it-dialog/it-dialog.component';
 import { PrDialogComponent } from './steps/step2/checkpoint/pr-dialog/pr-dialog.component';
+import { PdfViewerModule } from "ng2-pdf-viewer";
+import{NgxExtendedPdfViewerModule} from 'ngx-extended-pdf-viewer';
+
+
 
 @NgModule({
   declarations: [
@@ -72,6 +76,7 @@ import { PrDialogComponent } from './steps/step2/checkpoint/pr-dialog/pr-dialog.
     RejectionPointItemsComponent,
     ItDialogComponent,
     PrDialogComponent,
+    
   ],
   imports: [
     CommonModule,
@@ -94,7 +99,8 @@ import { PrDialogComponent } from './steps/step2/checkpoint/pr-dialog/pr-dialog.
     CardModule,
     AccordionModule,
     ChipModule,
-    CarouselModule
+    CarouselModule,
+    PdfViewerModule,
   ],
   entryComponents: [ContactDialogComponent],
   providers: [MessageService, ConfirmationService],

@@ -3,7 +3,6 @@ import { FilterMatchMode, PrimeNGConfig } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { NonComplianceService } from "src/app/_services/non-compliance.service";
 import { Nc } from 'src/app/models/nc.model';
-
 import { NcsService } from '../ncs.service';
 
 @Component({

@@ -1,10 +1,15 @@
+import { JsonpClientBackend } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
+import { MessageService } from "primeng/api";
 import { DialogService } from "primeng/dynamicdialog";
-import { of } from "rxjs";
+import { Instruction } from "src/app/models/instruction";
+import { Procedure } from "src/app/models/procedure";
+import { VisualizarDocumentoDialogComponent } from "src/app/pages/dialogs/visualizar-documento-dialog/visualizar-documento-dialog.component";
 
 import { InstructionsService } from "src/app/_services/instructions.service";
 
 import { NonComplianceService } from "src/app/_services/non-compliance.service";
+import { TokenStorageService } from "src/app/_services/token-storage.service";
 import { ItDialogComponent } from "../it-dialog/it-dialog.component";
 
 @Component({
@@ -17,24 +22,52 @@ export class RejectionPointItemsComponent implements OnInit {
   constructor(
     public nonComplianceService: NonComplianceService,
     public dialogService: DialogService,
-    public itService: InstructionsService
+    public itService: InstructionsService,
+    public tokenService: TokenStorageService,
+    private messageService: MessageService
   ) {}
 
-  results: any[];
+  resultsIt: any[];
+  resultsPr: any[];
 
-  onSelected() {
+  onSelectedIt() {
     this.nonComplianceService.nc.instruction =
       this.nonComplianceService.autoCompleteItValue;
   }
 
-  search(event: any) {
+  onSelectedPr() {
+    this.nonComplianceService.nc.procedure =
+      this.nonComplianceService.autoCompletePrValue;
+  }
+
+  searchIt(event: any) {
     var filtro = event.query;
-    this.results = [];
+    this.resultsIt = [];
     this.nonComplianceService.instructions.forEach((element) => {
       if (this.verificarExistencia(element, filtro)) {
-        this.results.push(element);
+        this.resultsIt.push(element);
       }
     });
+  }
+
+  searchPr(event: any) {
+    var filtro = event.query;
+    this.resultsPr = [];
+    this.nonComplianceService.procedures.forEach((element) => {
+      if (this.verificarExistencia(element, filtro)) {
+        this.resultsPr.push(element);
+      }
+    });
+  }
+
+  onChange() {
+    if (!this.nonComplianceService.autoCompleteItValue) {
+      this.nonComplianceService.nc.instruction = undefined;
+    }
+
+    if (!this.nonComplianceService.autoCompletePrValue) {
+      this.nonComplianceService.nc.procedure = undefined;
+    }
   }
 
   verificarExistencia(element: any, filtro: string): boolean {
@@ -83,16 +116,30 @@ export class RejectionPointItemsComponent implements OnInit {
     });
   }
 
-  returnDownloadLink():string{
-   if (this.nonComplianceService.nc.instruction.id) {
-     let id = this.nonComplianceService.nc.instruction.id;
-     return "localhost:3333/instructions/files/" + id;
-   }
-   return ""
+  visualizarIt() {
+    let instruction = this.nonComplianceService.nc.instruction;
+    if (instruction) {
+      this.itService.downloadFile(instruction.id).subscribe((data) => {
+        const ref = this.dialogService.open(
+          VisualizarDocumentoDialogComponent,
+          {
+            data: {
+              base64: data.data,
+            },
+            header: "Visualizar Instrução",
+            width: "1000px",
+          }
+        );
+      });
+    } else {
+      this.messageService.add({
+        key: "myKey1",
+        severity: "info",
+        summary: "Selecione uma instrução para poder visualizar.",
+        life: 3000,
+      });
+    }
   }
 
-  
-  ngOnInit(): void {
-   
-  }
+  ngOnInit(): void {}
 }

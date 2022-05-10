@@ -63,4 +63,5 @@ export class NcsCreateStepperComponent implements OnInit {
   changeStepByPosition(event: any) {
     this.stepPosition = event;
   }
+
 }

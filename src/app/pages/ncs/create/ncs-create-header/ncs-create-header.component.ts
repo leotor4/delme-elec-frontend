@@ -1,6 +1,6 @@
-import { NodeWithI18n } from "@angular/compiler";
 import { Component, OnInit } from "@angular/core";
-import { MessageService } from "primeng/api/messageservice";
+import { MessageService } from "primeng/api";
+
 import { CustomerService } from "src/app/_services/customer.service";
 import { InstructionsService } from "src/app/_services/instructions.service";
 import { NonComplianceService } from "src/app/_services/non-compliance.service";
@@ -24,6 +24,7 @@ export class NcsCreateHeaderComponent implements OnInit {
     public providerService: ProviderService,
     public placeService: PlaceService,
     public procedureService: ProcedureService,
+    private messageService: MessageService,
     public instructionService: InstructionsService
   ) {}
 
@@ -49,10 +50,12 @@ export class NcsCreateHeaderComponent implements OnInit {
     });
 
     this.procedureService.get().subscribe((data: any) => {
+      console.log(data.procedures);
       this.nonComplianceService.procedures = data.procedures;
     });
 
     this.instructionService.get().subscribe((data: any) => {
+      console.log(data.instructions);
       this.nonComplianceService.instructions = data.instructions;
     });
 
@@ -63,8 +66,8 @@ export class NcsCreateHeaderComponent implements OnInit {
     this.popularData();
   }
 
-  teste() {
-    this.nonComplianceService.post();
+  salvarNc() {
+    this.nonComplianceService.post(this.messageService);
   }
 
   popularData() {
@@ -77,22 +80,4 @@ export class NcsCreateHeaderComponent implements OnInit {
       .toISOString()
       .slice(0, 10);
   }
-
-  // sucess() {
-  //   this.messageService.add({
-  //     key: "myKey1",
-  //     severity: "success",
-  //     summary: "Não conformidade salva com sucesso.",
-  //     life: 3000,
-  //   });
-  // }
-
-  // fail() {
-  //   this.messageService.add({
-  //     key: "myKey1",
-  //     severity: "error",
-  //     summary: "Houve um problema ao salvar não conformidade.",
-  //     life: 3000,
-  //   });
-  // }
 }

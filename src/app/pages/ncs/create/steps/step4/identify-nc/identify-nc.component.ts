@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Attachment } from "src/app/models/attachment";
+import { TokenStorageService } from "src/app/_services/token-storage.service";
 import { NonComplianceService } from "../../../../../../_services/non-compliance.service";
 
 @Component({
@@ -34,7 +35,12 @@ export class IdentifyNCComponent implements OnInit {
   ];
   ncID = "001/2022";
 
-  constructor(public nonComplicanceService: NonComplianceService) {}
+  constructor(
+    public nonComplicanceService: NonComplianceService,
+    public tokenService: TokenStorageService
+  ) {}
+
+  emissor = "";
 
   returnFile(name: string) {
     let acoesFile: Attachment[] = [];
@@ -46,5 +52,8 @@ export class IdentifyNCComponent implements OnInit {
     return acoesFile;
   }
 
-  ngOnInit(): void {}
+   ngOnInit(): void{
+    let user =  this.tokenService.getUser();
+    this.emissor= user['username']
+  }
 }
