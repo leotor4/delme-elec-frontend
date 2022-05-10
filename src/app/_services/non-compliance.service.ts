@@ -31,7 +31,6 @@ export class NonComplianceService {
   pesquisar: string = "";
   public fileNc: any = [];
   public fileAcoes: any = [];
-  public isSelected = false;
 
   //passo 2
   public quantNc = "";
@@ -106,6 +105,11 @@ export class NonComplianceService {
 
   get(): Observable<NonCompliance[]> {
     return this.http.get<NonCompliance[]>(this.apiUrl);
+  }
+
+  hasProduct(): boolean {
+    if (this.nc.product != null) return true;
+    return false;
   }
 
   constructor(private http: HttpClient) {}

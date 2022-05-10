@@ -117,17 +117,23 @@ export class ParceiroComponent implements OnInit {
       this.nonComplicanceService.nc.partner.responsible_phone;
     this.editarEmailItem =
       this.nonComplicanceService.nc.partner.responsible_email;
-    this.nonComplicanceService.isSelected = true;
+  }
+
+  hasSelected(): boolean {
+    if (this.nonComplicanceService.nc.partner != null) {
+      return true;
+    }
+    return false;
   }
 
   onChange() {
     this.nonComplicanceService.pesquisar = "";
-    this.nonComplicanceService.isSelected = false;
+    this.nonComplicanceService.nc.partner = null;
   }
 
   onChangeAutoComplete() {
     if (this.nonComplicanceService.pesquisar == "") {
-      this.nonComplicanceService.isSelected = false;
+      this.nonComplicanceService.nc.partner = null;
     }
   }
 
@@ -203,7 +209,7 @@ export class ParceiroComponent implements OnInit {
       summary: "Dados editados com sucesso.",
       life: 3000,
     });
-    this.nonComplicanceService.isSelected = false;
+    this.nonComplicanceService.nc.partner = null;
     this.nonComplicanceService.pesquisar = "";
     this.hideDialog();
   }
@@ -216,7 +222,7 @@ export class ParceiroComponent implements OnInit {
       life: 3000,
     });
     this.nonComplicanceService.pesquisar = "";
-    this.nonComplicanceService.isSelected = false;
+    this.nonComplicanceService.nc.partner = null;
     this.hideDialog();
   }
 

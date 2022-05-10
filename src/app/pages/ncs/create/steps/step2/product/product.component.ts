@@ -15,7 +15,6 @@ export class ProductComponent implements OnInit {
 
   products: Product[];
   updates: UpdateDate;
-  @Output() hasSelectedProductEvent: EventEmitter<boolean> = new EventEmitter();
 
   constructor(
     private productService: ProductService,
@@ -52,20 +51,9 @@ export class ProductComponent implements OnInit {
   }
 
   checkProduct(Product: Product) {
-    this.nonComplicanceService.hasSelectedProduct = true;
     this.nonComplicanceService.nc.product = Product;
-    this.hasSelectedProductEvent.emit(
-      this.nonComplicanceService.hasSelectedProduct
-    );
-    this.nonComplicanceService.selectedProduct = Product;
-    console.log(this.nonComplicanceService.selectedProduct);
   }
-  uncheckProduct() {
-    this.nonComplicanceService.hasSelectedProduct = false;
-    this.hasSelectedProductEvent.emit(
-      this.nonComplicanceService.hasSelectedProduct
-    );
-  }
+  uncheckProduct() {}
 
   returnUpdateTime() {
     if (this.updates) {

@@ -1,12 +1,17 @@
+import { Provider } from "@angular/core";
 import { Attachment } from "./attachment";
 import { Contact } from "./contact.model";
+import { Customer } from "./customer";
 import { Instruction } from "./instruction";
 import { Procedure } from "./procedure";
 import { Product } from "./product.model";
+import { Sector } from "./sector";
 
 export class NonCompliance {
   id?: number;
-  partnerId?: number;
+  sector?: Sector;
+  provider?: Provider;
+  customer?: Customer;
   attachments: Attachment[] = [];
   contacts: Contact[] = [];
   product: Product;

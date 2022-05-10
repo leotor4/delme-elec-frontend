@@ -1,19 +1,19 @@
-<div *ngIf="!hasProduct" class="mt-1">
+<div *ngIf="!nonComplianceService.hasProduct()" class="mt-1">
   <app-waiting-product></app-waiting-product>
 </div>
-<div *ngIf="hasProduct">
+<div *ngIf="nonComplianceService.hasProduct()">
   <div class="product-info mt-1">
     <h4>Dados do Produto</h4>
     <div class="product-box p-2">
       <div class="title-box d-flex align-items-center">
-        <h5>{{ product?.name }}</h5>
+        <h5>{{ nonComplianceService.nc.product.name }}</h5>
         <div class="id-box ml-2 d-flex align-items-center">
           <i class="pi pi-ticket mr-2"></i>
-          <span>{{ product?.code }}</span>
+          <span>{{ nonComplianceService.nc.product.code }}</span>
         </div>
       </div>
       <p class="mb-0">
-        {{ product?.description }}
+        {{ nonComplianceService.nc.product.description }}
       </p>
     </div>
   </div>

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
+import { NonComplianceService } from "src/app/_services/non-compliance.service";
 
 @Component({
   selector: "app-product-info",
@@ -6,9 +7,15 @@ import { Component, Input, OnInit } from "@angular/core";
   styleUrls: ["./product-info.component.css"],
 })
 export class ProductInfoComponent implements OnInit {
-  @Input("hasProduct") hasProduct: boolean;
-  @Input("product") product: any;
-  constructor() {}
+  constructor(public nonComplianceService: NonComplianceService) {}
 
-  ngOnInit(): void {}
+  hasProduct(): boolean {
+    if (this.nonComplianceService.nc.product != null) return true;
+
+    return false;
+  }
+
+  ngOnInit(): void {
+    console.log(this.hasProduct());
+  }
 }
