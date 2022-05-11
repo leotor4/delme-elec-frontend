@@ -3,15 +3,15 @@
   <div class="dados-parceiro col razao-social">
     <div class="d-flex">
       <h2 class="mr-2">
-        {{"Dado não preenchido"}}
+        {{aboutSrvc.nc?.product?.name||"Dado não preenchido"}}
       </h2>
       <p-chip>
         <i class="bi bi-ticket-perforated mr-2"></i>
-        {{"000000"}}
+        {{aboutSrvc.nc?.product?.code||"000000"}}
       </p-chip>
     </div>
     <p class="d-block">
-      {{"Dado não preenchido"}}
+      {{aboutSrvc.nc?.product?.description||"Dado não preenchido"}}
     </p>
   </div>
   <div class="dados-parceiro col">
@@ -40,7 +40,7 @@
         <div>
           <span class="info-titulo">Percentual</span>
           <br />
-          <span class="info-dados">{{percent||"0"}}%</span>
+          <span class="info-dados">{{getPercent()||"0"}}%</span>
         </div>
       </div>
     </div>

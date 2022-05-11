@@ -20,4 +20,10 @@ export class ViewIdentifyNCComponent implements OnInit {
     let d = new Date(Date.parse(date))
     return d.toLocaleDateString();
   }
+  isType1(element:any) {
+    return element.path=="evidenciasNc";
+  }
+    isType2(element:any) {
+        return element.path=="evidenciasAcoes";
+    }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AboutService} from "../../about.service";
 
 @Component({
@@ -7,12 +7,15 @@ import {AboutService} from "../../about.service";
   styleUrls: ['./view-products-and-points.component.css']
 })
 export class ViewProductsAndPointsComponent implements OnInit {
-  percent= 5;
 
   constructor(public aboutSrvc: AboutService) { }
 
   ngOnInit(): void {
 
+  }
+
+  getPercent(){
+    return (this.aboutSrvc.nc?.quant_nc*100) / this.aboutSrvc.nc?.quant_total
   }
 
 }
