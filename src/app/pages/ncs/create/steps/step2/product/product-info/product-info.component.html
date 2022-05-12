@@ -3,9 +3,8 @@
 </div>
 <div *ngIf="nonComplianceService.hasProduct()">
   <div class="product-info mt-1">
-    <h4>Dados do Produto</h4>
-    <div class="product-box p-2">
-      <div class="title-box d-flex align-items-center">
+    <div class="product-box p-2 mt-3">
+      <div class="title-box d-flex justify-content-between">
         <h5>{{ nonComplianceService.nc.product.name }}</h5>
         <div class="id-box ml-2 d-flex align-items-center">
           <i class="pi pi-ticket mr-2"></i>
@@ -15,6 +14,30 @@
       <p class="mb-0">
         {{ nonComplianceService.nc.product.description }}
       </p>
+    </div>
+    <div class="d-flex my-3 product-box p-3 ">
+      <div class="d-flex flex-column inputs-sm mt-3 col-6">
+        <label for="amountNC">Quantidade de NC</label>
+        <input
+                [(ngModel)]="nonComplianceService.nc.quant_nc"
+                name="amountNC"
+                type="text"
+                pInputText
+                placeholder="Digite"
+                class="p-inputtext-sm input"
+        />
+      </div>
+      <div class="d-flex flex-column inputs-sm mt-3 col-6">
+        <label for="amountTotal">Quantidade Total</label>
+        <input
+                [(ngModel)]="nonComplianceService.nc.quant_total"
+                name="amountTotal"
+                type="text"
+                pInputText
+                placeholder="Digite"
+                class="p-inputtext-sm input"
+        />
+      </div>
     </div>
   </div>
 </div>

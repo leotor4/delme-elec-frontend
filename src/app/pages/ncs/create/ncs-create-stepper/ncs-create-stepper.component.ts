@@ -32,10 +32,9 @@ export class NcsCreateStepperComponent implements OnInit {
 
   ngOnInit() {
     this.items = [
-      { label: "Identificar Não Conformidade" },
-      { label: "Produtos e Pontos" },
-      { label: "Partes Interessadas" },
-      { label: "Revisar Informações" },
+      { label: "Dados da NC" },
+      { label: "Descrição e Notificação da NC" },
+      { label: "Visualização e Emissão da NC" },
     ];
   }
   getNextPageBtnLabel() {

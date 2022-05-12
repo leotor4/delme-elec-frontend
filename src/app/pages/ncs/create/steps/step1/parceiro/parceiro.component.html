@@ -31,34 +31,35 @@
 </p-dialog>
 
 <div class="row">
-  <div class="col">
-    <div class="cabecalho">
-      <h1>Parceiro</h1>
+  <div class="d-flex col">
+    <div class="cabecalho p-0">
+      <h1>Dados do Parceiro</h1>
       <p>
-        Preencha os campos abaixo para identificar um parceiro e confirme os
-        dados abaixo. Caso não encontre um parceiro, atualize a base de
-        cadastros.
+        Identifique o parceiro responsável pelo produto nesta NC.
+        <br>
+        Caso não encontre o parceiro, atualize a base de cadastros.
       </p>
     </div>
+    <div class="col-2" id="div-att-col2">
+      <p>
+        <i class="pi pi-history"> </i>Última atualização: {{ returnUpdateTime() }}
+      </p>
+      <a
+              href="http://localhost:4200/ncs/import"
+              role="button"
+              class="btn btn-dark"
+      >
+        Atualizar Cadastros
+        <i class="pi pi-download" id="icon-button"></i>
+      </a>
+    </div>
+  </div>
   </div>
 
-  <div class="col-2" id="div-att-col2">
-    <p>
-      <i class="pi pi-history"> </i>Última atualização: {{ returnUpdateTime() }}
-    </p>
-    <a
-      href="http://localhost:4200/ncs/import"
-      role="button"
-      class="btn btn-dark"
-    >
-      Atualizar Cadastros
-      <i class="pi pi-download" id="icon-button"></i>
-    </a>
-  </div>
-</div>
 
-<div class="row row-search">
-  <div class="dropdown col">
+
+<div class=" row-search d-flex">
+  <div class="dropdown col ml-0">
     <label>Tipo de Parceiro</label>
     <select
       [(ngModel)]="nonComplicanceService.nc.tipos_parceiro_item"
@@ -71,7 +72,7 @@
     </select>
   </div>
 
-  <div class="col-search col">
+  <div class="ml-0 col-search col-7">
     <div class="d-flex justify-content-start" style="width: 100%">
       <p-autoComplete
         [(ngModel)]="nonComplicanceService.pesquisar"
@@ -123,9 +124,8 @@
   <app-waiting-product></app-waiting-product>
 </div>
 
-<div class="div-ident-parceiro row" *ngIf="hasSelected()">
-  <h1 class="titulo-parceiro">Dados do Parceiro</h1>
-  <div class="dados-parceiro col razao-social">
+<div class="div-ident-parceiro pr-4" *ngIf="hasSelected()">
+  <div class="dados-parceiro razao-social">
     <h1 *ngIf="!isInterno()">Razão Social</h1>
     <h1 *ngIf="isInterno()">Setor</h1>
     <p>
@@ -135,8 +135,8 @@
       {{ nonComplicanceService.nc.partner.name }}
     </p>
   </div>
-  <div class="dados-parceiro col">
-    <div class="dados-contato">
+  <div class="dados-parceiro b-0">
+    <div class="dados-contato ">
       <div class="d-flex justify-content-between">
         <h1>Dados do Contato</h1>
         <button
@@ -148,40 +148,41 @@
           <i class="pi pi-pencil"></i>Editar Contato
         </button>
       </div>
-      <div class="contato-info d-flex flex-row">
-        <i class="pi pi-user"></i>
-        <div>
-          <span class="info-titulo">Nome</span>
-          <br />
-          <span class="info-dados">{{
-            nonComplicanceService.nc.partner.responsible_name
-          }}</span>
+      <div class="d-flex justify-content-evenly">
+        <div class="contato-info d-flex flex-row">
+          <i class="pi pi-user"></i>
+          <div>
+            <span class="info-titulo">Nome</span>
+            <br />
+            <span class="info-dados">{{
+              nonComplicanceService.nc.partner.responsible_name
+              }}</span>
+          </div>
+        </div>
+        <div class="contato-info d-flex flex-row">
+          <i class="pi pi-phone"></i>
+          <div>
+            <span class="info-titulo">Telefone</span>
+            <br />
+            <span class="info-dados">{{
+              nonComplicanceService.nc.partner.responsible_phone
+              }}</span>
+          </div>
+        </div>
+        <div class="contato-info d-flex flex-row">
+          <i class="pi pi-at"></i>
+          <div>
+            <span class="info-titulo">E-mail</span>
+            <br />
+            <span class="info-dados">{{
+              nonComplicanceService.nc.partner.responsible_email
+              }}</span>
+          </div>
         </div>
       </div>
-      <div class="contato-info d-flex flex-row">
-        <i class="pi pi-phone"></i>
-        <div>
-          <span class="info-titulo">Telefone</span>
-          <br />
-          <span class="info-dados">{{
-            nonComplicanceService.nc.partner.responsible_phone
-          }}</span>
-        </div>
-      </div>
-      <div class="contato-info d-flex flex-row">
-        <i class="pi pi-at"></i>
-        <div>
-          <span class="info-titulo">E-mail</span>
-          <br />
-          <span class="info-dados">{{
-            nonComplicanceService.nc.partner.responsible_email
-          }}</span>
-        </div>
-      </div>
+
     </div>
   </div>
 </div>
 
-<div class="pt-3 pb-3">
-  <p-divider></p-divider>
-</div>
+
