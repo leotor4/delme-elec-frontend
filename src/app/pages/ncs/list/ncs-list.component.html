@@ -1,3 +1,5 @@
+
+<p-toast key="myKey2"></p-toast>
 <h2>Início</h2>
 <p>Visualize ou crie não conformidades</p>
 
@@ -6,7 +8,7 @@
     <input pInputText type="text" (input)="applyFilterGlobal($event, 'contains')" placeholder="Global Search" />
 </span>
 <span style="float:right">
-  <p-button label="Nova Não Conformidade" icon="pi pi-check" styleClass="p-button-sm p-button-secondary" icon="pi pi-plus" iconPos="right" routerLink="/ncs/create"></p-button>
+  <p-button label="Nova Não Conformidade"  (click)="openNc()" icon="pi pi-check" styleClass="p-button-sm p-button-secondary" icon="pi pi-plus" iconPos="right" ></p-button>
 </span>
 
 <div style="margin-top: 10px;">

@@ -3,7 +3,6 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations'
-
 import { authInterceptorProviders } from './_interceptors/auth.interceptor';
 import { GlobalErrorHandler } from './_interceptors/global-error-handler';
 import { AuthGuardService } from './_services/auth-guard.service';
@@ -24,6 +23,8 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
     RegisterComponent,
     BoardUserComponent,
     VisualizarDocumentoDialogComponent,
+
+    
   ],
   imports: [
     BrowserModule,

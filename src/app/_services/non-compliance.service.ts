@@ -93,30 +93,29 @@ export class NonComplianceService {
     }
   }
 
-  post(messageService: any): any {
+  post() {
     let formData = new FormData();
     this.uploadFiles(formData);
 
     formData.append("data", JSON.stringify(this.nc));
 
-    this.http.post(this.apiUrl, formData).subscribe(
-      (response) => {
-        messageService.add({
-          key: "myKey1",
-          severity: "success",
-          summary: "Não conformidade salva com sucesso",
-          life: 3000,
-        });
-      },
-      (err) => {
-        messageService.add({
-          key: "myKey1",
-          severity: "error",
-          summary: "Houve um problema ao salvar não conformidade.",
-          life: 3000,
-        });
-      }
-    );
+    return this.http.post(this.apiUrl, formData)
+  }
+
+  put() {
+    let formData = new FormData();
+    this.uploadFiles(formData);
+    console.log("ID:" + this.nc.id)
+    formData.append("data", JSON.stringify(this.nc));
+
+    return this.http.put(this.apiUrl+ "/" + this.nc.id, formData)
+  }
+  
+  
+  abrirNc(){
+    let formData = new FormData();
+    formData.append('data',"{}")
+    return this.http.post(this.apiUrl, formData)
   }
 
   get(): Observable<NonCompliance[]> {

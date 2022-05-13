@@ -2,7 +2,7 @@ export class User {
   id?: any;
   email?: string;
   password?: string;
-  name?: boolean;
+  username?: string;
   created_at?: Date
   update_at?: Date
 }

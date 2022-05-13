@@ -9,6 +9,7 @@ import { NonComplianceService } from "../../../../../../_services/non-compliance
   styleUrls: ["./identify-nc.component.css"],
 })
 export class IdentifyNCComponent implements OnInit {
+   
   images1 = [
     "imagem1",
     "imagem2",
@@ -33,7 +34,7 @@ export class IdentifyNCComponent implements OnInit {
     "imagem4",
     "imagem5",
   ];
-  ncID = "001/2022";
+  ncID = this.nonComplicanceService.nc.code;
 
   constructor(
     public nonComplicanceService: NonComplianceService,
@@ -53,7 +54,6 @@ export class IdentifyNCComponent implements OnInit {
   }
 
    ngOnInit(): void{
-    let user =  this.tokenService.getUser();
-    this.emissor= user['username']
+    
   }
 }

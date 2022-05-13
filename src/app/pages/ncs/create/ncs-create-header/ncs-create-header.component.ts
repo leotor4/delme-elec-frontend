@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { MessageService } from "primeng/api";
+import { DialogService } from "primeng/dynamicdialog";
 
 import { CustomerService } from "src/app/_services/customer.service";
 import { InstructionsService } from "src/app/_services/instructions.service";
@@ -9,11 +10,13 @@ import { ProcedureService } from "src/app/_services/procedure.service";
 import { ProviderService } from "src/app/_services/provider.service";
 import { SectorService } from "src/app/_services/sector.service";
 import { UpdateDateService } from "src/app/_services/update-date.service";
+import { CancelDialogComponent } from "./cancel-dialog/cancel-dialog.component";
 
 @Component({
   selector: "app-ncs-create-header",
   templateUrl: "./ncs-create-header.component.html",
   styleUrls: ["./ncs-create-header.component.css"],
+  providers: [DialogService],
 })
 export class NcsCreateHeaderComponent implements OnInit {
   constructor(
@@ -25,7 +28,7 @@ export class NcsCreateHeaderComponent implements OnInit {
     public placeService: PlaceService,
     public procedureService: ProcedureService,
     private messageService: MessageService,
-    public instructionService: InstructionsService
+    public instructionService: InstructionsService,public dialogService: DialogService,
   ) {}
 
   ngOnInit(): void {
@@ -67,7 +70,25 @@ export class NcsCreateHeaderComponent implements OnInit {
   }
 
   salvarNc() {
-    this.nonComplianceService.post(this.messageService);
+    this.nonComplianceService.put().subscribe({
+      next: data => {
+        this.messageService.add({
+          key: "myKey1",
+          severity: "success",
+          summary: "Não conformidade salva com sucesso.",
+          life: 3000,
+        });
+      },
+      error: err => {
+        this.messageService.add({
+          key: "myKey1",
+          severity: "error",
+          summary: "Houve um problema ao salvar não conformidade.",
+          life: 3000,
+        });
+        
+      }
+    });
   }
 
   popularData() {
@@ -79,5 +100,15 @@ export class NcsCreateHeaderComponent implements OnInit {
     this.nonComplianceService.nc.data_fechamento = late
       .toISOString()
       .slice(0, 10);
+  }
+
+  openCancelDialog(){
+    let ref = this.dialogService.open(CancelDialogComponent, {
+      data: {
+      },
+      header: "Cancelar Não conformidade",
+      width: "425px",
+    })
+
   }
 }
