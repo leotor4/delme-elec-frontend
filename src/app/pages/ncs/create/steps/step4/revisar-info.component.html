@@ -5,7 +5,7 @@
         <h1 class="mr-3">Não Conformidade</h1>
         <p-chip>
           <i class="bi bi-ticket-perforated mr-2"></i>
-          {{ ncID }}
+          {{ this.nonComplicanceService.nc?.code || "XXXX.XX" }}
         </p-chip>
       </div>
       <p>
