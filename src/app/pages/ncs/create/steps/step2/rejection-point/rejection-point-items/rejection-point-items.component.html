@@ -18,9 +18,10 @@
           class="p-autocomplete"
           [style]="{ width: '100%' }"
           [inputStyle]="{ width: '100%' }"
-          [suggestions]="results"
-          (completeMethod)="search($event)"
-          (onSelect)="onSelected()"
+          [suggestions]="resultsIt"
+          (ngModelChange)="onChange()"
+          (completeMethod)="searchIt($event)"
+          (onSelect)="onSelectedIt()"
           field="description"
           [(ngModel)]="nonComplianceService.autoCompleteItValue"
           placeholder="Busque por nome, número ou descrição"
@@ -65,11 +66,19 @@
   </div>
 
   <div class="d-flex justify-content-center mt-3">
-    <a type="button" class="btn btn-dark" href="http://localhost:3333/instructions/files/1">Visualizar Documento</a>
+    <button
+      class="btn btn-dark"
+      (click)="visualizarIt()"
+    >
+      Visualizar Documento
+    </button>
   </div>
 </div>
 
-<div class="d-flex flex-wrap justify-content-between row-inputs" >
+<div
+  class="d-flex flex-wrap justify-content-between row-inputs"
+  *ngIf="returnNfScreen()"
+>
   <div class="d-flex flex-column inputs-sm my-auto">
     <label for="amountTotal">Número do Lote</label>
     <input
@@ -94,8 +103,6 @@
   </div>
 </div>
 
-
-
 <div *ngIf="returnPrScreen()">
   <div class="row">
     <div class="col-8">
@@ -104,9 +111,10 @@
         <p-autoComplete
           [(ngModel)]="nonComplianceService.autoCompletePrValue"
           class="p-autocomplete"
-          [suggestions]="results"
-          (onSelect)="onSelected()"
-          (completeMethod)="search($event)"
+          [suggestions]="resultsPr"
+          (onSelect)="onSelectedPr()"
+          (ngModelChange)="onChange()"
+          (completeMethod)="searchPr($event)"
           [style]="{ width: '100%' }"
           [inputStyle]="{ width: '100%' }"
           field="description"

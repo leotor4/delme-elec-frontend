@@ -26,7 +26,6 @@ export class ItDialogComponent implements OnInit {
   onchange(event: any) {
     this.file = event.target.files[0];
 
-    console.log(this.file);
   }
   save() {
     let instrucao = new Instruction();

@@ -1,7 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-
 import { Contact } from "../models/contact.model";
 import { Customer } from "../models/customer";
 import { Instruction } from "../models/instruction";
@@ -34,8 +33,6 @@ export class NonComplianceService {
   public fileAcoes: any = [];
 
   //passo 2
-  public quantNc = "";
-  public quantTotal = "";
   public fileProduct: any = [];
   public fileControle: any = [];
   public instructions: Instruction[];
@@ -71,7 +68,11 @@ export class NonComplianceService {
   }
 
   avancarPasso2(): boolean {
-    return !(!!this.quantNc && !!this.quantTotal && !!this.selectedProduct);
+    return !(
+      !!this.nc.quant_nc &&
+      !!this.nc.quant_total &&
+      !!this.selectedProduct
+    );
   }
 
   uploadFiles(formData: any) {
@@ -97,33 +98,44 @@ export class NonComplianceService {
     this.uploadFiles(formData);
 
     formData.append("data", JSON.stringify(this.nc));
-    console.log(this.nc.contacts);
 
-    this.http.post(this.apiUrl, formData).subscribe((response) => {
-      console.log(response);
-    });
+    return this.http.post(this.apiUrl, formData)
+  }
+
+  put() {
+    let formData = new FormData();
+    this.uploadFiles(formData);
+    console.log("ID:" + this.nc.id)
+    formData.append("data", JSON.stringify(this.nc));
+
+    return this.http.put(this.apiUrl+ "/" + this.nc.id, formData)
+  }
+  
+  
+  abrirNc(){
+    let formData = new FormData();
+    formData.append('data',"{}")
+    return this.http.post(this.apiUrl, formData)
   }
 
   get(): Observable<NonCompliance[]> {
     return this.http.get<NonCompliance[]>(this.apiUrl);
   }
 
-  getById(id:number): Observable<NonCompliance> {
-    return this.http.get<NonCompliance>(this.apiUrl + '/' + id);
+  getById(id: number): Observable<NonCompliance> {
+    return this.http.get<NonCompliance>(this.apiUrl + "/" + id);
   }
 
-
-  archived(id:number): Observable<any> {
-    alert(this.apiUrl + '/arquivar/' + id)
-    return this.http.put<any>(this.apiUrl + '/arquivar/' + id, {});
+  archived(id: number): Observable<any> {
+    alert(this.apiUrl + "/arquivar/" + id);
+    return this.http.put<any>(this.apiUrl + "/arquivar/" + id, {});
   }
 
-  delete(id:number): Observable<any> {
-    return this.http.put<any>(this.apiUrl + '/delete/' + id, {});
- 
-}
+  delete(id: number): Observable<any> {
+    return this.http.put<any>(this.apiUrl + "/delete/" + id, {});
+  }
 
- hasProduct(): boolean {
+  hasProduct(): boolean {
     if (this.nc.product != null) return true;
     return false;
   }

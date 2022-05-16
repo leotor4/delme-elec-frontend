@@ -3,9 +3,10 @@ import { NgModule } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import {InputTextModule} from 'primeng/inputtext';
-
+import {ToastModule} from 'primeng/toast';
 import { NcsListRoutingModule } from './ncs-list-routing.module';
 import { NcsListComponent } from './ncs-list.component';
+
 
 @NgModule({
   declarations: [
@@ -15,8 +16,10 @@ import { NcsListComponent } from './ncs-list.component';
     CommonModule,
     NcsListRoutingModule,
     TableModule,
-    ButtonModule,
+    ButtonModule,ToastModule,
     InputTextModule
   ]
 })
+
+
 export class NcsListModule { }

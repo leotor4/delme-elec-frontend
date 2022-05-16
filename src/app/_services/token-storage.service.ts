@@ -31,17 +31,21 @@ export class TokenStorageService {
   }
 
   public saveUser(user: any): void {
+   
     localStorage.removeItem(USER_KEY);
     localStorage.setItem(USER_KEY, JSON.stringify(user));
   }
 
   public getUser(): any {
-    const user = window.sessionStorage.getItem(USER_KEY);
+    const user = localStorage.getItem(USER_KEY);
+    
     if (user) {
       return JSON.parse(user);
     }
     return {};
   }
+
+  
 
   public exist(key : string): boolean {
     return ! (localStorage.getItem(key) === null || localStorage.getItem(key) === '');

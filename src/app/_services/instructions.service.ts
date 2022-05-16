@@ -22,6 +22,6 @@ export class InstructionsService {
   }
 
   downloadFile(id:number){
-    return this.http.get(this.apiUrl + "/files/"+ id);
+    return this.http.get<any>(this.apiUrl + "/files/"+ id);
   }
 }

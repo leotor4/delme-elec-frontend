@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { MenuItem } from "primeng/api";
+import { Router } from "@angular/router";
+import { MenuItem, MessageService } from "primeng/api";
 import { NonComplianceService } from "src/app/_services/non-compliance.service";
 
 @Component({
@@ -11,7 +12,7 @@ export class NcsCreateStepperComponent implements OnInit {
   items: MenuItem[];
   stepPosition: number = 0;
   lastStepLabel = "Avançar";
-  constructor(public nonComplianceService: NonComplianceService) {}
+  constructor(private route:Router,public nonComplianceService: NonComplianceService,private messageService: MessageService,) {}
 
   disableButton(): boolean {
     switch (this.stepPosition) {
@@ -39,7 +40,11 @@ export class NcsCreateStepperComponent implements OnInit {
   }
   getNextPageBtnLabel() {
     let isLastStep = this.stepPosition === this.items.length - 1;
-    let labelName = isLastStep ? "Criar nova NC" : "Avançar";
+    let labelName = isLastStep ? "Concluir" : "Avançar";
+    
+    
+   
+      
     return labelName;
   }
   getNextPageBtnIcon() {
@@ -47,12 +52,38 @@ export class NcsCreateStepperComponent implements OnInit {
     let iconClass = isLastStep ? "pi pi-upload" : "pi pi-arrow-right";
     return iconClass;
   }
-  isFirstStep() {
+  isFirstStep() { 
     return this.stepPosition === 0 ? true : false;
   }
+  isLastStep() { 
+    return this.stepPosition === this.items.length-1 ? true : false;
+  }
+  
   nextStep() {
-    if (this.stepPosition >= this.items.length - 1) return;
-    this.stepPosition++;
+    if (this.isLastStep()) this.nonComplianceService.nc.status = "running"
+      this.nonComplianceService.put().subscribe({
+        next: data => {
+          this.messageService.add({
+            key: "myKey1",
+            severity: "success",
+            summary: this.isLastStep()?"Não conformidade concluida com sucesso.":"Passo " + (this.stepPosition + 1) + " salvo com sucesso." ,
+            life: 3000,
+          });
+          
+          if (!this.isLastStep()) this.stepPosition++
+            
+        },
+        error: err => {
+          this.messageService.add({
+            key: "myKey1",
+            severity: "error",
+            summary: "Houve um problema ao salvar dados do passo " + this.stepPosition + ".",
+            life: 3000,
+          });
+          console.log(err)
+        }
+      });
+    
   }
   backStep() {
     if (this.stepPosition <= 0) return;
@@ -62,4 +93,5 @@ export class NcsCreateStepperComponent implements OnInit {
   changeStepByPosition(event: any) {
     this.stepPosition = event;
   }
+
 }
