@@ -15,7 +15,7 @@ export class ViewProductsAndPointsComponent implements OnInit {
   }
 
   getPercent(){
-    return (this.aboutSrvc.nc?.quant_nc*100) / this.aboutSrvc.nc?.quant_total
+    return Math.round((this.aboutSrvc.nc?.quant_nc*100) / this.aboutSrvc.nc?.quant_total)
   }
 
 }
