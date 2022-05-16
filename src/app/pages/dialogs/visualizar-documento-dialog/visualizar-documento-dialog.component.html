@@ -1,5 +1,6 @@
 
-  <pdf-viewer
+
+    <pdf-viewer 
       [src]="src"
       [rotation]="0"
       [original-size]="false"
@@ -13,4 +14,7 @@
       [autoresize]="true"
       [show-borders]="false"
       style="width: 100%; height: 600px;"
+      *ngIf="isPdf()"
     ></pdf-viewer>
+
+    <img [src]="src" alt="" *ngIf="!isPdf()">

@@ -125,6 +125,7 @@ export class RejectionPointItemsComponent implements OnInit {
           {
             data: {
               base64: data.data,
+              type:"pdf",
             },
             header: "Visualizar Instrução",
             width: "1000px",

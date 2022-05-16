@@ -65,8 +65,8 @@ export class NcsCreateHeaderComponent implements OnInit {
     this.nonComplianceService.get().subscribe((data: any) => {
       this.nonComplianceService.ncs = data.noncompliances;
     });
-
-    this.popularData();
+    
+    if(this.nonComplianceService.nc.status == "open") this.popularData();
   }
 
   salvarNc() {
