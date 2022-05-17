@@ -26,6 +26,7 @@
           (click)="nextStep()"
           [disabled]="disableButton()"
           class="btn btn-dark btn-sm"
+          [routerLink]="getLink()"
         >
           {{ getNextPageBtnLabel() }}
           <i [class]="getNextPageBtnIcon()"></i>

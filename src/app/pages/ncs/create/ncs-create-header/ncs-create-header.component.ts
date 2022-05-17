@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+ import { Component, OnInit } from "@angular/core";
 import { MessageService } from "primeng/api";
 import { DialogService } from "primeng/dynamicdialog";
 
@@ -11,6 +11,7 @@ import { ProviderService } from "src/app/_services/provider.service";
 import { SectorService } from "src/app/_services/sector.service";
 import { UpdateDateService } from "src/app/_services/update-date.service";
 import { CancelDialogComponent } from "./cancel-dialog/cancel-dialog.component";
+ import {NonCompliance} from "../../../../models/non-compliance";
 
 @Component({
   selector: "app-ncs-create-header",
@@ -78,6 +79,7 @@ export class NcsCreateHeaderComponent implements OnInit {
           summary: "Não conformidade salva com sucesso.",
           life: 3000,
         });
+        this.nonComplianceService.nc = new NonCompliance()
       },
       error: err => {
         this.messageService.add({
