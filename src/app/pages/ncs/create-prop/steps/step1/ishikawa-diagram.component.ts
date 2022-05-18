@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {DialogService} from 'primeng/dynamicdialog';
 import {IshikawaDialogComponent} from "./ishikawa-dialog/ishikawa-dialog.component";
 import {ProposalService} from "../../proposal.service";
+import Quill from 'quill';
 
 @Component({
   selector: 'app-ishikawa-diagram',
