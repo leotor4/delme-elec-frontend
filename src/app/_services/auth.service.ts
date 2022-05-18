@@ -28,7 +28,7 @@ export class AuthService {
     //return this.http.post(AUTH_API + 'signup', {
     return this.http.post(AUTH_API + 'users', {
       email,
-      username:email,
+      username:username,
       password
     }, httpOptions);
   }

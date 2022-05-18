@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from "@angular/core";
+import {NonComplianceService} from "../../../../../_services/non-compliance.service";
 
 @Component({
   selector: "app-step4",
@@ -11,7 +12,7 @@ export class RevisarInfoComponent implements OnInit {
   unselectedClass = "btn btn-outline-dark";
   selectedClass = "btn btn-dark";
   @Output() changeStepPosition: EventEmitter<number> = new EventEmitter();
-  constructor() {}
+  constructor(public nonComplicanceService: NonComplianceService) {}
 
   goToStepById(position: number) {
     this.changeStepPosition.emit(position);

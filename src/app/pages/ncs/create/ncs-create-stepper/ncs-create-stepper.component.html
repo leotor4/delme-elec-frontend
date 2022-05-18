@@ -1,3 +1,4 @@
+
 <div class="stepper-content">
   <div class="stepper-buttons">
     <div class="p-0">
@@ -34,17 +35,37 @@
   </div>
   <div class="content-create-nc">
     <div *ngIf="stepPosition === 0">
-      <app-identificar-nc></app-identificar-nc>
+      <app-identificacao-da-nc></app-identificacao-da-nc>
+      <div class="d-flex">
+        <div class="col-6">
+          <app-parceiro></app-parceiro>
+        </div>
+        <div >
+          <app-product></app-product>
+        </div>
+      </div>
+      <div class="pt-3 pb-3">
+        <p-divider></p-divider>
+      </div>
+      <div class="row">
+        <div class="col">
+          <app-checkpoint ></app-checkpoint>
+        </div>
+        <div class="col">
+          <app-rejection-point ></app-rejection-point>
+        </div>
+      </div>
     </div>
     <div *ngIf="stepPosition === 1">
-      <app-step2></app-step2>
-    </div>
-    <div *ngIf="stepPosition === 2">
+      <app-descricao-nc class="mt-3"></app-descricao-nc>
+      <div class="pt-3 pb-3">
+        <p-divider></p-divider>
+      </div>
       <app-step3></app-step3>
     </div>
-    <div *ngIf="stepPosition === 3">
+    <div *ngIf="stepPosition === 2">
       <app-step4
-        (changeStepPosition)="changeStepByPosition($event)"
+              (changeStepPosition)="changeStepByPosition($event)"
       ></app-step4>
     </div>
   </div>

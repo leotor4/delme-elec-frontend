@@ -4,8 +4,10 @@ import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import {InputTextModule} from 'primeng/inputtext';
 import {PaginatorModule} from 'primeng/paginator';
+import {ToastModule} from 'primeng/toast';
 import { NcsListRoutingModule } from './ncs-list-routing.module';
 import { NcsListComponent } from './ncs-list.component';
+
 
 @NgModule({
   declarations: [
@@ -17,7 +19,11 @@ import { NcsListComponent } from './ncs-list.component';
     TableModule,
     ButtonModule,
     InputTextModule,
-    PaginatorModule
+    PaginatorModule,
+    ToastModule,
+    InputTextModule
   ]
 })
+
+
 export class NcsListModule { }

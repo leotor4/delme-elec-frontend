@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {AboutService} from "../about.service";
 
 @Component({
   selector: 'app-about-header',
@@ -6,8 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
-  constructor() { }
+  item = '';
+  constructor(public aboutSrvc: AboutService) { }
 
   ngOnInit(): void {
   }

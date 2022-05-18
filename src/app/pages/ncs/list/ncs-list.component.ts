@@ -1,17 +1,20 @@
 import { Router } from '@angular/router';
 import { TokenStorageService } from './../../../_services/token-storage.service';
+import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FilterMatchMode, PrimeNGConfig } from 'primeng/api';
+import { FilterMatchMode, MessageService, PrimeNGConfig } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { NonComplianceService } from "src/app/_services/non-compliance.service";
-import { Nc } from 'src/app/models/nc.model';
 
-import { NcsService } from '../ncs.service';
 
 @Component({
   selector: 'app-ncs-list',
   templateUrl: './ncs-list.component.html',
-  styleUrls: ['./ncs-list.component.css']
+ 
+  styleUrls: ['./ncs-list.component.css'],
+  providers:[
+    MessageService
+  ],
 })
 export class NcsListComponent implements OnInit {
 
@@ -22,12 +25,34 @@ export class NcsListComponent implements OnInit {
   totalRecords = 0
   rows = 5;
 
+  openNc(){
+    this.ncsService.abrirNc().subscribe(
+      {
+        next: (response:any) => {
+          this.ncsService.nc.code = response['nonCompliance']['code']
+          this.ncsService.nc.issuer = response['nonCompliance']['emissor']
+          this.ncsService.nc.id = response['nonCompliance']['id']
+          this.ncsService.nc.status = response['nonCompliance']['status']
+          this.router.navigate(['ncs/create'])
+        },
+        error: err => {
+          this.messageService.add({
+            key: "myKey2",
+            severity: "error",
+            summary: "Houve um problema ao criar não conformidade.",
+            life: 3000,
+          });
+        }
+      }
+    )
+  }
 
-  constructor(private ncsService : NonComplianceService, private tokenService : TokenStorageService, 
-    private router : Router, private config: PrimeNGConfig, ) { }
+
+  constructor(private router:Router,private ncsService : NonComplianceService, private config: PrimeNGConfig,public messageService:MessageService) { }
 
   ngOnInit(): void {
     this.ncsService.get().subscribe((data: any) => {
+      
       this.ncsService.ncs = data.noncompliances;
 
       for (let i = 0; i < this.ncsService.ncs.length; i++) {

@@ -88,3 +88,6 @@
   margin-top: 8px;
   height: 35px;
 }
+:host ::ng-deep .ql-toolbar.ql-snow {
+  display: none;
+}

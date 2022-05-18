@@ -7,15 +7,14 @@
 }
 .image-box {
   background: #fff;
+  border-radius: 8px;
   margin-inline: 8px;
   margin-bottom: 8px;
 }
 .image-box img{
- 
-  
   min-width: 40%;
-  min-height: 40%;  
-  padding: 48px;
+  min-height: 40%;
+  padding: 15px;
   object-fit: cover;
   
 }

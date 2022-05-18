@@ -1,10 +1,11 @@
 <div class="content">
-  <div *ngIf="!nonComplianceService.hasSelectedProduct">
+  <div *ngIf="!nonComplianceService.hasProduct()">
     <h3>Ponto de Rejeição</h3>
     <app-waiting-product></app-waiting-product>
   </div>
 
-  <div *ngIf="nonComplianceService.hasSelectedProduct" class="mt-3">
+  <div *ngIf="nonComplianceService.hasProduct()" class="mt-3 reject-point">
+    
     <app-rejection-point-items></app-rejection-point-items>
   </div>
 </div>

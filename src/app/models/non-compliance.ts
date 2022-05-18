@@ -1,3 +1,4 @@
+
 import { Attachment } from "./attachment";
 import { Contact } from "./contact.model";
 import { Customer } from "./customer";
@@ -6,11 +7,15 @@ import { Procedure } from "./procedure";
 import { Product } from "./product.model";
 import { Provider } from "./provider";
 import { Sector } from "./sector";
+import { User } from "./user.model";
 
 export class NonCompliance {
   id?: number;
   code: string;
   partnerId?: number;
+  sector?: Sector;
+  provider?: Provider;
+  customer?: Customer;
   attachments: Attachment[] = [];
   contacts: Contact[] = [];
   product: Product;
@@ -25,8 +30,8 @@ export class NonCompliance {
   text_area_acoes?: string = "";
   quant_nc: number = 0;
   quant_total: number = 0;
-  instruction: Instruction;
-  procedure: Procedure;
+  instruction?: Instruction;
+  procedure?: Procedure;
   tipo_controle?: string = "";
   text_area_reject_point?: String = "";
   num_ordem_compra?: String = "";
@@ -34,9 +39,7 @@ export class NonCompliance {
   num_op?: String = "";
   num_nota?: String = "";
   radio_value: string = "val1";
-  sector?: Sector;
-  provider?: Provider;
-  customer?: Customer;
   status? : string;
   system_status?:string
+  issuer?:User
 }

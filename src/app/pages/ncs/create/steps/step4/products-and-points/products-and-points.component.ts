@@ -12,7 +12,7 @@ export class ProductsAndPointsComponent implements OnInit {
   constructor(public nonComplicanceService: NonComplianceService) {}
 
   ngOnInit(): void {
-    this.percent = Math.floor(
+    this.percent = Math.round(
       (this.nonComplicanceService.nc.quant_nc /
         this.nonComplicanceService.nc.quant_total) *
         100

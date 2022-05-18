@@ -1,10 +1,25 @@
 <div class="cabecalho">
   <h1>Não Conformidade</h1>
   <p>
-    Preencha o campo abaixo com a descrição da NC e anexe evidências, sejam elas
-    fotográficas ou documentais.
+    Informe abaixo os detalhes da não conformidade
   </p>
 </div>
+<div class="d-flex  justify-content-evenly mb-2">
+  <p-radioButton
+          name="ncType"
+          label="Não conformidade real"
+          value="val1"
+          [(ngModel)]="nonComplicanceService.nc.radio_value"
+  ></p-radioButton>
+  <p-radioButton
+          name="ncType"
+          label="Não conformidade Potencial / Oportunidade de Melhoria"
+          class="pt-2"
+          value="val2"
+          [(ngModel)]="nonComplicanceService.nc.radio_value"
+  ></p-radioButton>
+</div>
+
 
 <div class="d-flex row">
   <div class="col col-editor">
@@ -25,7 +40,7 @@
       >
         <input
           type="file"
-          accept=".pdf,image/jpeg,image/png"
+          accept=".pdf,image/jpeg,image/png,xlsx,xls"
           class="input-attachment"
           (change)="onUpload($event, 'evidenciasNc')"
           multiple
@@ -82,7 +97,7 @@
       >
         <input
           type="file"
-          accept=".pdf,image/jpeg,image/png"
+          accept=".pdf,image/jpeg,image/png,xlsx,xls"
           class="input-attachment"
           (change)="onUpload($event, 'evidenciasAcoes')"
           multiple

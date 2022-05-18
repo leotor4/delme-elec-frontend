@@ -1,3 +1,4 @@
+<p-toast></p-toast>
 <div class="cabecalho">
     <h1 class="mr-3">Plano de Ações</h1>
     <p>
@@ -23,7 +24,6 @@
                          [options]="responsible"
                          [(ngModel)]="selectedResp"
                          placeholder="Selecione ou busque..."
-                         [showClear]="true"
             ></p-dropdown>
         </div>
 
@@ -56,7 +56,7 @@
     </div>
 </div>
 <div class="card">
-    <p-table [value]="actions">
+    <p-table [value]="propService.actions">
         <ng-template pTemplate="header">
             <tr>
                 <th>Descrição</th>
@@ -78,7 +78,7 @@
                             type="button"
                             icon="pi pi-pencil"
                             class="p-button-secondary p-button-text"
-
+                            (click)="editAction(action)"
                     ></button>
                     <button
                             pButton

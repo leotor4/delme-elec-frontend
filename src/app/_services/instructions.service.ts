@@ -20,4 +20,8 @@ export class InstructionsService {
   get(): Observable<Instruction[]> {
     return this.http.get<Instruction[]>(this.apiUrl);
   }
+
+  downloadFile(id:number){
+    return this.http.get<any>(this.apiUrl + "/files/"+ id);
+  }
 }

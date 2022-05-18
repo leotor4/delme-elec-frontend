@@ -3,13 +3,13 @@
     font-weight: 500;
     margin-bottom: 0px;
     margin-top: 0px;
-
 }
 
 .cabecalho p {
     font-size: 14px;
     color: gray;
 }
+
 
 .autoComplete-item h4 {
     font-size: 14px;
@@ -77,6 +77,7 @@ label {
 
 .row-inputs input{
     width: 270px;
+   
 }
 
 .p-autocomplete {
@@ -96,6 +97,8 @@ label {
     color: gray;
 
 }
+
+
 
 
 

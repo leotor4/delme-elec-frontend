@@ -1,6 +1,7 @@
-import { NodeWithI18n } from "@angular/compiler";
 import { Component, OnInit } from "@angular/core";
-import { MessageService } from "primeng/api/messageservice";
+import { MessageService } from "primeng/api";
+import { DialogService } from "primeng/dynamicdialog";
+
 import { CustomerService } from "src/app/_services/customer.service";
 import { InstructionsService } from "src/app/_services/instructions.service";
 import { NonComplianceService } from "src/app/_services/non-compliance.service";
@@ -9,11 +10,13 @@ import { ProcedureService } from "src/app/_services/procedure.service";
 import { ProviderService } from "src/app/_services/provider.service";
 import { SectorService } from "src/app/_services/sector.service";
 import { UpdateDateService } from "src/app/_services/update-date.service";
+import { CancelDialogComponent } from "./cancel-dialog/cancel-dialog.component";
 
 @Component({
   selector: "app-ncs-create-header",
   templateUrl: "./ncs-create-header.component.html",
   styleUrls: ["./ncs-create-header.component.css"],
+  providers: [DialogService],
 })
 export class NcsCreateHeaderComponent implements OnInit {
   constructor(
@@ -24,7 +27,8 @@ export class NcsCreateHeaderComponent implements OnInit {
     public providerService: ProviderService,
     public placeService: PlaceService,
     public procedureService: ProcedureService,
-    public instructionService: InstructionsService
+    private messageService: MessageService,
+    public instructionService: InstructionsService,public dialogService: DialogService,
   ) {}
 
   ngOnInit(): void {
@@ -49,23 +53,42 @@ export class NcsCreateHeaderComponent implements OnInit {
     });
 
     this.procedureService.get().subscribe((data: any) => {
+      console.log(data.procedures);
       this.nonComplianceService.procedures = data.procedures;
     });
 
     this.instructionService.get().subscribe((data: any) => {
+      console.log(data.instructions);
       this.nonComplianceService.instructions = data.instructions;
     });
 
     this.nonComplianceService.get().subscribe((data: any) => {
       this.nonComplianceService.ncs = data.noncompliances;
-      console.log(this.nonComplianceService.ncs[3]);
     });
-
-    this.popularData();
+    
+    if(this.nonComplianceService.nc.status == "open") this.popularData();
   }
 
-  teste() {
-    this.nonComplianceService.post();
+  salvarNc() {
+    this.nonComplianceService.put().subscribe({
+      next: data => {
+        this.messageService.add({
+          key: "myKey1",
+          severity: "success",
+          summary: "Não conformidade salva com sucesso.",
+          life: 3000,
+        });
+      },
+      error: err => {
+        this.messageService.add({
+          key: "myKey1",
+          severity: "error",
+          summary: "Houve um problema ao salvar não conformidade.",
+          life: 3000,
+        });
+        
+      }
+    });
   }
 
   popularData() {
@@ -79,21 +102,13 @@ export class NcsCreateHeaderComponent implements OnInit {
       .slice(0, 10);
   }
 
-  // sucess() {
-  //   this.messageService.add({
-  //     key: "myKey1",
-  //     severity: "success",
-  //     summary: "Não conformidade salva com sucesso.",
-  //     life: 3000,
-  //   });
-  // }
+  openCancelDialog(){
+    let ref = this.dialogService.open(CancelDialogComponent, {
+      data: {
+      },
+      header: "Cancelar Não conformidade",
+      width: "425px",
+    })
 
-  // fail() {
-  //   this.messageService.add({
-  //     key: "myKey1",
-  //     severity: "error",
-  //     summary: "Houve um problema ao salvar não conformidade.",
-  //     life: 3000,
-  //   });
-  // }
+  }
 }

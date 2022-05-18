@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import {Contact} from "../../../models/contact.model";
 
 @Injectable({
   providedIn: 'root'
@@ -23,4 +24,11 @@ export class ProposalService {
     editor7: ""
 
   }
+  step2= {
+    textAreas:  ["", "", "", "", ""],
+    selectedValue: ""
+  }
+  actions: any[] = []
+  contacts: Contact[] = []
+
 }

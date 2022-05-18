@@ -1,5 +1,5 @@
 <div class="card">
-    <p-table [value]="this.contactsList">
+    <p-table [value]="this.aboutSrvc.nc?.contacts||[]">
         <ng-template pTemplate="header">
             <tr>
                 <th>Nome</th>

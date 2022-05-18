@@ -11,10 +11,6 @@
   margin-left: -15px;
 }
 
-.cabecalho{
-  min-width: 400px;
-}
-
 .cabecalho h1 {
   font-size: 25px;
   font-weight: 500;
@@ -22,7 +18,7 @@
   margin-top: 0px;
 }
 .cabecalho p {
-  font-size: 15px;
+  font-size: 14px;
   color: gray;
 }
 
@@ -172,9 +168,7 @@ min-width: 200px;
   margin-top: 0px;
   background-color: white;
   border-radius: 7px;
-  height: 220px;
   padding: 13px;
-  overflow: auto;
 
 }
 

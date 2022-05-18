@@ -10,7 +10,7 @@
         <div>
           <span class="info-titulo">Número</span>
           <br />
-          <span class="info-dados">{{ncID}}</span>
+          <span class="info-dados">{{aboutSrvc.nc?.code||""}}</span>
         </div>
       </div>
       <div class="contato-info d-flex flex-row">
@@ -19,7 +19,7 @@
           <span class="info-titulo">Data de Abertura</span>
           <br />
           <span class="info-dados">
-            {{"00/00/0000"}}
+            {{parseDate(aboutSrvc.nc?.data_abertura||"")||"00/00/0000"}}
           </span>
         </div>
       </div>
@@ -28,7 +28,7 @@
         <div>
           <span class="info-titulo">Data de Fechamento</span>
           <br/>
-          <span class="info-dados">{{"00/00/0000"}}</span>
+          <span class="info-dados">{{parseDate(aboutSrvc.nc?.data_fechamento||"")||"00/00/0000"}}</span>
         </div>
       </div>
     </div>
@@ -76,11 +76,12 @@
           <h2 class="mr-2">Razão Social</h2>
           <p-chip>
             <i class="bi bi-ticket-perforated mr-2"></i>
-            {{ "00000000" }}
+            {{ (aboutSrvc.nc?.customer?.code||aboutSrvc.nc?.provider?.code)||"00000000" }}
           </p-chip>
         </div>
         <p>
-          {{"Dado não preenchido"}}
+          {{(aboutSrvc.nc?.customer?.corporate_name||aboutSrvc.nc?.provider?.corporate_name||aboutSrvc.nc?.sector?.name)
+        ||"Dado não preenchido"}}
         </p>
       </div>
     </div>
@@ -95,7 +96,8 @@
               <span class="info-titulo">Nome</span>
               <br />
               <span class="info-dados">
-                {{"Dado não preenchido"}}
+                {{(aboutSrvc.nc?.customer?.responsible_name||aboutSrvc.nc?.provider?.responsible_name||aboutSrvc.nc?.sector?.responsible_name)
+              ||"Dado não preenchido"}}
               </span>
             </div>
           </div>
@@ -105,7 +107,8 @@
               <span class="info-titulo">Telefone</span>
               <br />
               <span class="info-dados">
-                {{"(00) 00000-0000"}}
+                {{(aboutSrvc.nc?.customer?.responsible_phone||aboutSrvc.nc?.provider?.responsible_phone||aboutSrvc.nc?.sector?.responsible_phone)
+              ||"(00) 00000-0000"}}
               </span>
             </div>
           </div>
@@ -115,7 +118,8 @@
               <span class="info-titulo">E-mail</span>
               <br />
               <span class="info-dados">
-                {{"Dado não preenchido"}}
+                {{(aboutSrvc.nc?.customer?.responsible_email||aboutSrvc.nc?.provider?.responsible_email||aboutSrvc.nc?.sector?.responsible_email)
+              ||"Dado não preenchido"}}
               </span>
             </div>
           </div>
@@ -130,7 +134,7 @@
       <i class="bi bi-file-earmark-text"></i>
       Descrição da Não Conformidade
     </h2>
-    <p-editor [style]="{'height':'144px'}" [readonly]="true">
+    <p-editor [style]="{'height':'144px', border: '1px solid #dddddd' }" [readonly]="true" [ngModel]="aboutSrvc.nc?.text_area_nc">
       <ng-template pTemplate="header">
       </ng-template>
     </p-editor>
@@ -141,7 +145,7 @@
       <i class="pi pi-camera"></i>
       Evidencias fotográficas
     </h2>
-    <p-carousel [value]="this.images1" [numVisible]="3" [numScroll]="3" [showIndicators]="false">
+    <p-carousel [value]="this.aboutSrvc.nc?.attachments?.filter(isType1) || []" [numVisible]="3" [numScroll]="3" [showIndicators]="false">
       <ng-template let-file pTemplate="item" >
         <i class="bi bi-file-earmark fs-1"></i>
         <p>{{file.name||"file.txt"}}</p>
@@ -155,7 +159,7 @@
       <i class="bi bi-geo"></i>
       Descrição de Ações Imediatas
     </h2>
-    <p-editor [style]="{'height':'144px'}" [readonly]="true">
+    <p-editor [style]="{'height':'144px', border: '1px solid #dddddd' }" [readonly]="true" [ngModel]="aboutSrvc.nc?.text_area_acoes">
       <ng-template pTemplate="header" hidden>
       </ng-template>
     </p-editor>
@@ -166,10 +170,10 @@
       <i class="pi pi-camera"></i>
       Evidencias fotográficas
     </h2>
-    <p-carousel [value]="this.images2" [numVisible]="3" [numScroll]="3" [showIndicators]="false">
+    <p-carousel [value]="this.aboutSrvc.nc?.attachments?.filter(isType2) || []" [numVisible]="3" [numScroll]="3" [showIndicators]="false">
       <ng-template let-file pTemplate="item">
-          <i class="bi bi-file-earmark fs-1"></i>
-          <p>{{file.name||"file.txt"}}</p>
+        <i class="bi bi-file-earmark fs-1"></i>
+        <p>{{file.name||"file.txt"}}</p>
       </ng-template>
     </p-carousel>
   </div>
