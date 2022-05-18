@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { TokenStorageService } from './../../../_services/token-storage.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FilterMatchMode, PrimeNGConfig } from 'primeng/api';
 import { Table } from 'primeng/table';
@@ -17,21 +19,23 @@ export class NcsListComponent implements OnInit {
   listNcs: any[] = [];
   cols: any[];
   first = 0;
+  totalRecords = 0
   rows = 5;
 
 
-  constructor(private ncsService : NonComplianceService, private config: PrimeNGConfig) { }
+  constructor(private ncsService : NonComplianceService, private tokenService : TokenStorageService, 
+    private router : Router, private config: PrimeNGConfig, ) { }
 
   ngOnInit(): void {
-
-    
     this.ncsService.get().subscribe((data: any) => {
-      console.log(data.noncompliances)
       this.ncsService.ncs = data.noncompliances;
-      
+
       for (let i = 0; i < this.ncsService.ncs.length; i++) {
         
         let nc = this.ncsService.ncs[i]
+
+        if (nc.system_status == 'deleted' || nc.system_status == 'archived') { continue }
+
         let strParceiro
         
         switch (nc.tipos_parceiro_item?.toUpperCase()) {
@@ -89,6 +93,7 @@ export class NcsListComponent implements OnInit {
             FilterMatchMode.DATE_AFTER
         ]
       }
+      this.totalRecords = this.listNcs.length
     });
   }
 
@@ -122,7 +127,6 @@ export class NcsListComponent implements OnInit {
   archived(idNc: number) {
     this.ncsService.archived(idNc).subscribe((data: any) => {
       
-      console.log(data)
       window.location.reload();
     });
   }
@@ -130,8 +134,16 @@ export class NcsListComponent implements OnInit {
   delete(idNc: number) {
     this.ncsService.delete(idNc).subscribe((data: any) => {
       
-      console.log(data)
       window.location.reload();
     });  
+  }
+
+  edit(idNc : number, status : string) {
+    if (status.toUpperCase() == 'ABERTA') {
+      this.router.navigate(["/ncs/create/"]);
+    } else {
+      this.router.navigate(["/ncs/about/", idNc]);
+    }
+    
   }
 }

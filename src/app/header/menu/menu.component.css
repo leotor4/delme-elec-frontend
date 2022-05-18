@@ -1,6 +1,6 @@
 .designation {
   font-size: 0.8rem;
-  color: lightgrey;
+  color: white;
 }
 
 .nomeUser {
@@ -14,3 +14,29 @@
   height: 50px;
   border-radius: 50%;
 }
+
+
+
+::ng-deep .p-menuitem-text {
+    color:white !important;
+    
+}
+
+::ng-deep .p-menuitem-icon {
+  color:white !important;
+  
+}
+
+::ng-deep .p-menubar{
+  background-color: #00344D !important;
+}
+
+::ng-deep .p-menuitem {
+  background-color: #00344D !important;
+  margin-left: 10px;
+}
+
+::ng-deep .p-menuitem-link:hover{
+  background-color: lightgrey !important;
+}
+

@@ -15,7 +15,7 @@ body {
 
 .left {
   left: 0;
-  background-color: gray;
+  background-color: #0098CD;
   color: white;
   width: 100%;
 }
@@ -28,13 +28,24 @@ body {
 .centered-left {
   position: absolute;
   left: 1%;
-  top: 50%;
+  top: 40%;
   text-align: left;
 }
 
 .welcomeText {
-  font-size: 50px;
+  font-weight: lighter;
+  font-size: 40px;
+  margin-left: 50px;
+  margin-bottom: 50px;
 }
+
+.systemTitle {
+  font-weight: bold;
+  font-size: 60px;
+  margin-left: 50px;
+  margin-bottom: 50px;
+}
+
 
 .centered-right {
   position: absolute;

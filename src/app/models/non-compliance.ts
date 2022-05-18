@@ -38,4 +38,5 @@ export class NonCompliance {
   provider?: Provider;
   customer?: Customer;
   status? : string;
+  system_status?:string
 }

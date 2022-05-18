@@ -1,0 +1,16 @@
+.btn-primary-color {
+    color: white !important;
+    background-color: #00344D !important;
+    font-size: 15px;
+}
+
+.title {
+    margin-top: 10px;
+    font-size: 25px;
+    font-weight: bold
+}
+
+.subtitle {
+    font-size: 18px;
+    font-weight: lighter
+}

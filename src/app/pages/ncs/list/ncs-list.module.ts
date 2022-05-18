@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import {InputTextModule} from 'primeng/inputtext';
-
+import {PaginatorModule} from 'primeng/paginator';
 import { NcsListRoutingModule } from './ncs-list-routing.module';
 import { NcsListComponent } from './ncs-list.component';
 
@@ -16,7 +16,8 @@ import { NcsListComponent } from './ncs-list.component';
     NcsListRoutingModule,
     TableModule,
     ButtonModule,
-    InputTextModule
+    InputTextModule,
+    PaginatorModule
   ]
 })
 export class NcsListModule { }

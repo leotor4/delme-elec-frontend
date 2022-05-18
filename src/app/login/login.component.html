@@ -1,9 +1,9 @@
 <div style="margin-top: 100px;">
   <div class="split left">
     <div class="centered-left">
-      <h2 class="welcomeText">Boas vindas ao </h2>
-      <h1 class="welcomeText">Sistema Gestor de </h1>
-      <h1 class="welcomeText">Não Conformidades da Electroson</h1>
+      <h3 class="welcomeText">Boas vindas ao </h3>
+      <h1 class="systemTitle">Sistema Gestor de Não</h1>
+      <h1 class="systemTitle">Conformidades da Electroson</h1>
     </div>
   </div>
   <div class="split right">
@@ -16,7 +16,7 @@
     class="centered-right">
 
       <div class="form-group">
-        <img src="../assets/images/logo1.jpg" alt="Electroson" class="img-thumbnail">
+        <img src="../assets/images/logo2.png" alt="Electroson">
       </div>
 
       <div class="alert-danger" *ngIf="email.errors && f.submitted">
@@ -76,13 +76,13 @@
         <label class="loginFormText" for="exampleCheck1">Lembrar credenciais</label>
       </div>
       <div class="form-group">
-        <button type="submit" class="btn btn-dark btn-home">Entrar</button>
+        <button type="submit" class="form-control btn btn-dark btn-home" style="background-color: #00344D;">Entrar</button>
       </div>
 
 
 
       <div class="form-group">
-        <button class="btn btn-outline-dark btn-home" (click)="open(mymodal)">Novo no sistema? Cadastre-se!</button>
+        <a class="btn-home" style="float: right; color: #B48C28;" (click)="open(mymodal)">Novo no sistema? Cadastre-se!</a> 
 
         <ng-template #mymodal let-modal>
           <div class="modal-header">
