@@ -36,10 +36,10 @@
         </ng-template>
         <ng-template pTemplate="body" let-doc>
             <tr>
-                <td>{{ doc.name }}</td>
-                <td>{{ doc.date }}</td>
-                <td>{{ doc.annexBy }}</td>
-                <td>{{ doc.price }}</td>
+                <td>{{ doc.attachment.name }}</td>
+                <td>{{ doc.createdAt }}</td>
+                <td>{{ doc.user }}</td>
+                <td>{{ doc.value }}</td>
                 <td>
                     <button
                             pButton
@@ -88,7 +88,7 @@
     <div class="editar-campo">
         <label for="name">Valor</label>
         <input
-                currencyMask [(ngModel)]="doc.price" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+                currencyMask [(ngModel)]="doc.value" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
         />
         <div class="mt-3">
             <label>Anexar Documento</label>
@@ -121,7 +121,7 @@
                         <i class="pi pi-replay"></i>
                     </button>
                     <p>
-                        {{ doc.name }}
+                        {{ doc.attachment?.name }}
                     </p>
                 </div>
             </div>
@@ -135,7 +135,7 @@
                     type="button"
                     class="btn btn-dark"
                     (click)="save()"
-                    [disabled]="doc.name==''||doc.price==''"
+                    [disabled]="doc.attachment?.name==''||doc.value==''"
             >
                 Registrar Custo Incorrido <i class="bi bi-check2"></i>
             </button>

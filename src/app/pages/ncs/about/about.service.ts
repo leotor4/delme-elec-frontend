@@ -18,4 +18,8 @@ export class AboutService {
         })
     }
 
+    updateNC(){
+        this.ncsService.updates
+    }
+
 }

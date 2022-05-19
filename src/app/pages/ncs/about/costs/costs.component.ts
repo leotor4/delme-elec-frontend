@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ConfirmationService, MessageService} from "primeng/api";
 import {Attachment} from "../../../../models/attachment";
+import {Cost} from "../../../../models/Cost";
 
 @Component({
   selector: 'app-costs',
@@ -9,9 +10,9 @@ import {Attachment} from "../../../../models/attachment";
 })
 export class CostsComponent implements OnInit {
   id=0
-  documents: any[] = [];
+  documents: Cost[] = [];
   addDocumentDialog: boolean=false;
-  doc = {id: 0, name: "", date: "", annexBy: "test", price: ""};
+  doc = new Cost();
   fileChosen: boolean;
 
   constructor(private confirmationService: ConfirmationService, private messageService: MessageService) { }
@@ -42,13 +43,13 @@ export class CostsComponent implements OnInit {
 
   clearFile() {
     this.fileChosen=false
-    this.doc.name=""
+    this.doc.attachment.name=""
   }
 
   onUpload(event: any) {
     const target = event.target as HTMLInputElement;
     if (target.files && target.files.length > 0) {
-      this.doc.name = target.files[0].name;
+      this.doc.attachment.name = target.files[0].name;
       this.fileChosen=true
     }
 
@@ -58,14 +59,12 @@ export class CostsComponent implements OnInit {
   save() {
     this.doc.id=this.id
     this.id++
-    let date = new Date(Date.now());
-    this.doc.date = date.toLocaleDateString()
-    this.doc.price=parseInt(this.doc.price).toLocaleString('pt-BR', {
+    this.doc.value=parseInt(this.doc.value).toLocaleString('pt-BR', {
       style: 'currency',
       currency: 'BRL',
     });
     this.documents.push({...this.doc})
-    this.doc = {id: 0, name: "", date: "", annexBy: "test", price: ""}
+    this.doc = new Cost()
     this.addDocumentDialog=false
     this.fileChosen=false
   }
