@@ -1,0 +1,23 @@
+.header-create-nc {
+    display: flex;
+    justify-content: space-between;
+    height: 80px;
+    align-items: flex-end;
+    padding-bottom: 15px;
+}
+.text-box {
+    display: flex;
+    margin-left: 10px;
+    align-items: center;
+}
+.text-box p {
+    margin: auto 0;
+    font-weight: 500;
+    font-size: 24px;
+    white-space: nowrap;
+}
+@media screen and (max-width: 1000px) {
+    .text-box {
+        display: none;
+    }
+}
