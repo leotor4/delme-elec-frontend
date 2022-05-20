@@ -41,6 +41,12 @@ const routes: Routes = [
             import("../pages/ncs/create-prop/create-prop.module").then(
                 (m) => m.CreatePropModule
             ),
+      },{
+        path: "sgq",
+        loadChildren: () =>
+            import("../pages/ncs/sgq-evaluation/sgq.module").then(
+                (m) => m.SgqModule
+            ),
       },
     ],
   },

@@ -18,8 +18,9 @@
             <label class="form-check-label ml-1">Matéria prima de má qualidade</label>
         </div>
         <p class="my-3 fw-bold fs-6">Acrescente e detalhe abaixo outras informações pertinentes:</p>
-        <p-editor [style]="{'height':'210px'}" [(ngModel)]="this.propService.step1.editor1">
+        <p-editor [style]="{'height':'210px'}" [(ngModel)]="this.propService.step1.editor1" [modules]="{counter: {container: '#counter',unit: 'character'}}">
         </p-editor>
+        <div id="counter" class="text-end">0</div>
     </div>
     <div *ngIf="stepPosition==2">
         <h1 class="mb-3">
@@ -40,8 +41,9 @@
             <label class="form-check-label ml-1">Não atingimento de metas</label>
         </div>
         <p class="my-3 fw-bold fs-6">Acrescente e detalhe abaixo outras informações pertinentes:</p>
-        <p-editor [style]="{'height':'210px'}" [(ngModel)]="this.propService.step1.editor2">
+        <p-editor [style]="{'height':'210px'}" [(ngModel)]="this.propService.step1.editor2" [modules]="{counter: {container: '#counter1',unit: 'character'}}">
         </p-editor>
+        <div id="counter1" class="text-end">0</div>
     </div>
     <div *ngIf="stepPosition==3">
         <h1 class="mb-3">
@@ -49,8 +51,9 @@
         </h1>
         <p>Quando há ausência de métodos formais ou estes são inadequados, incompletos, incorretos ou não foram divulgados adequadamente. Também se aplica quando: há falta de inspeção, ausência ou falha em sistemas automatizados, má gestão como um todo.</p>
 
-        <p-editor [style]="{'height':'210px'}" [(ngModel)]="this.propService.step1.editor3">
+        <p-editor [style]="{'height':'210px'}" [(ngModel)]="this.propService.step1.editor3" [modules]="{counter: {container: '#counter3',unit: 'character'}}">
         </p-editor>
+        <div id="counter3" class="text-end">0</div>
         <div class="d-flex mt-4">
             <div class="d-flex flex-column col-6">
                 <label>IT - Instrução de Trabalho</label>
@@ -111,16 +114,18 @@
             <p-checkbox [(ngModel)]="this.propService.step1.checkbox7" value="Executar treinamento"></p-checkbox>
             <label class="form-check-label ml-1">Executar treinamento</label>
         </div>
-        <p-editor [style]="{'height':'210px'}" [(ngModel)]="this.propService.step1.editor4">
+        <p-editor [style]="{'height':'210px'}" [(ngModel)]="this.propService.step1.editor4" [modules]="{counter: {container: '#counter4',unit: 'character'}}">
         </p-editor>
+        <div id="counter4" class="text-end">0</div>
     </div>
     <div *ngIf="stepPosition==5">
         <h1 class="mb-3">
             Meio Ambiente
         </h1>
         <p class="mb-3">Quando o problema está relacionado a condições ambientais (poluição, temperatura, ruido, luminosidade, etc) ou a condições de infraestrutura (espaço físico, mobiliário, etc).</p>
-        <p-editor [style]="{'height':'210px'}" [(ngModel)]="this.propService.step1.editor5">
+        <p-editor [style]="{'height':'210px'}" [(ngModel)]="this.propService.step1.editor5" [modules]="{counter: {container: '#counter5',unit: 'character'}}">
         </p-editor>
+        <div id="counter5" class="text-end">0</div>
     </div>
     <div *ngIf="stepPosition==6">
         <h1 class="mb-3">
@@ -128,8 +133,9 @@
         </h1>
         <p>Quando há ausência, obsolescência, má regulagem, quebra ou outros problemas com os equipamentos, inclusive de informática. Se aplica também nas falhas de manuntenção corretiva ou preventiva destes equipamentos.</p>
 
-        <p-editor [style]="{'height':'210px'}" [(ngModel)]="this.propService.step1.editor6">
+        <p-editor [style]="{'height':'210px'}" [(ngModel)]="this.propService.step1.editor6" [modules]="{counter: {container: '#counter6',unit: 'character'}}">
         </p-editor>
+        <div id="counter6" class="text-end">0</div>
         <div class="d-flex mt-4">
             <div class="d-flex flex-column col-6">
                 <label>Máquinas</label>
@@ -161,8 +167,9 @@
             Efeito
         </h1>
         <p class="mb-3">Quando há ausência, obsolescência, má regulagem, quebra ou outros problemas com os equipamentos, inclusive de informática. Se aplica também nas falhas de manuntenção corretiva ou preventiva destes equipamentos.</p>
-        <p-editor [style]="{'height':'210px'}" [(ngModel)]="this.propService.step1.editor7">
+        <p-editor [style]="{'height':'210px'}" [(ngModel)]="this.propService.step1.editor7" [modules]="{counter: {container: '#counter7',unit: 'character'}}">
         </p-editor>
+        <div id="counter7" class="text-end">0</div>
     </div>
 </div>
 <div class="d-flex justify-content-between mt-5">

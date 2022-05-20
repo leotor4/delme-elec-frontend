@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NonCompliance } from 'src/app/models/non-compliance';
 import { NonComplianceService } from 'src/app/_services/non-compliance.service';
 import { ActivatedRoute } from '@angular/router';
 import {AboutService} from "./about.service";

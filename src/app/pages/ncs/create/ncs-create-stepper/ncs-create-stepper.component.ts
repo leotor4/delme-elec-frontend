@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { MenuItem, MessageService } from "primeng/api";
 import { NonComplianceService } from "src/app/_services/non-compliance.service";
+import {NonCompliance} from "../../../../models/non-compliance";
 
 @Component({
   selector: "app-ncs-create-stepper",
@@ -69,9 +70,9 @@ export class NcsCreateStepperComponent implements OnInit {
             summary: this.isLastStep()?"Não conformidade concluida com sucesso.":"Passo " + (this.stepPosition + 1) + " salvo com sucesso." ,
             life: 3000,
           });
-          
+
+          if(this.isLastStep()) this.nonComplianceService.nc= new NonCompliance()
           if (!this.isLastStep()) this.stepPosition++
-            
         },
         error: err => {
           this.messageService.add({
@@ -94,4 +95,9 @@ export class NcsCreateStepperComponent implements OnInit {
     this.stepPosition = event;
   }
 
+  getLink() {
+    if (this.isLastStep()){
+      return "/ncs"
+    } else return
+  }
 }

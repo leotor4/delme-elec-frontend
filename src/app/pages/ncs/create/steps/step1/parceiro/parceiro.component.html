@@ -30,9 +30,9 @@
   </div>
 </p-dialog>
 
-<div class="row">
+<div class="row mb-0">
   <div class="d-flex col">
-    <div class="cabecalho p-0">
+    <div class="cabecalho p-0 m-0">
       <h1>Dados do Parceiro</h1>
       <p>
         Identifique o parceiro responsável pelo produto nesta NC.
@@ -58,8 +58,8 @@
 
 
 
-<div class=" row-search d-flex">
-  <div class="dropdown col ml-0">
+<div class=" row-search d-flex mb-2 pl-0">
+  <div class="dropdown col ml-0 mt-0 px-0">
     <label>Tipo de Parceiro</label>
     <select
       [(ngModel)]="nonComplicanceService.nc.tipos_parceiro_item"
@@ -72,7 +72,7 @@
     </select>
   </div>
 
-  <div class="ml-0 col-search col-7">
+  <div class="ml-0 col-search col-7 px-0">
     <div class="d-flex justify-content-start" style="width: 100%">
       <p-autoComplete
         [(ngModel)]="nonComplicanceService.pesquisar"
@@ -124,8 +124,8 @@
   <app-waiting-product></app-waiting-product>
 </div>
 
-<div class="div-ident-parceiro pr-4" *ngIf="hasSelected()">
-  <div class="dados-parceiro razao-social">
+<div class="div-ident-parceiro pr-4 pb-0 " *ngIf="hasSelected()">
+  <div class="dados-parceiro razao-social py-0 py-1">
     <h1 *ngIf="!isInterno()">Razão Social</h1>
     <h1 *ngIf="isInterno()">Setor</h1>
     <p>
@@ -135,7 +135,7 @@
       {{ nonComplicanceService.nc.partner.name }}
     </p>
   </div>
-  <div class="dados-parceiro b-0">
+  <div class="dados-parceiro py-2">
     <div class="dados-contato ">
       <div class="d-flex justify-content-between">
         <h1>Dados do Contato</h1>

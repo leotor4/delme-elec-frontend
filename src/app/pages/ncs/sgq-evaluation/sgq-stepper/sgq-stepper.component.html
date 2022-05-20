@@ -1,0 +1,55 @@
+<div class="stepper-content">
+    <div class="stepper-buttons">
+        <div class="p-0">
+            <button
+                    type="button"
+                    class="btn btn-dark btn-sm"
+                    (click)="backStep()"
+                    [disabled]="isFirstStep()"
+            >
+                <i class="pi pi-arrow-left"></i>
+                Voltar
+            </button>
+        </div>
+        <div class="stepper">
+            <p-steps
+                    [model]="items"
+                    [readonly]="true"
+                    [activeIndex]="stepPosition"
+            ></p-steps>
+        </div>
+        <div class="d-flex justify-content-end p-0 last-button">
+            <div>
+                <button
+                        type="button"
+                        (click)="nextStep()"
+                        [disabled]="disableButton()"
+                        class="btn btn-dark btn-sm"
+                >
+                    {{ getNextPageBtnLabel() }}
+                    <i [class]="getNextPageBtnIcon()"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="content-create-nc">
+        <div *ngIf="stepPosition === 0">
+            <app-reoccurrence></app-reoccurrence>
+        </div>
+        <div *ngIf="stepPosition === 1">
+            <app-evidence></app-evidence>
+        </div>
+        <div *ngIf="stepPosition === 2">
+            <app-risks></app-risks>
+        </div>
+        <div *ngIf="stepPosition === 3">
+            <app-changes></app-changes>
+        </div>
+        <div *ngIf="stepPosition === 4">
+            <app-notifications></app-notifications>
+        </div>
+        <div *ngIf="stepPosition === 5">
+            <app-review-info-sgq></app-review-info-sgq>
+        </div>
+    </div>
+</div>

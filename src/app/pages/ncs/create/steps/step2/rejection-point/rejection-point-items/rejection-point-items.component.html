@@ -6,7 +6,9 @@
   <p-editor
     [style]="{ height: '210px' }"
     [(ngModel)]="nonComplianceService.nc.text_area_reject_point"
+    [modules]="{counter: {container: '#counterR',unit: 'character'}}"
   ></p-editor>
+  <div id="counterR" class="text-end">0</div>
 </div>
 
 <div *ngIf="returnOpScreen()">

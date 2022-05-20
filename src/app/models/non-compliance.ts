@@ -8,6 +8,7 @@ import { Product } from "./product.model";
 import { Provider } from "./provider";
 import { Sector } from "./sector";
 import { User } from "./user.model";
+import {Cost} from "./Cost";
 
 export class NonCompliance {
   id?: number;
@@ -17,6 +18,7 @@ export class NonCompliance {
   provider?: Provider;
   customer?: Customer;
   attachments: Attachment[] = [];
+  costs: Cost[] = [];
   contacts: Contact[] = [];
   product: Product;
   partner: any;
