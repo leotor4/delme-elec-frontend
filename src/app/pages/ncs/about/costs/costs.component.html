@@ -24,7 +24,7 @@
     Documentos Anexados
 </h2>
 <div class="card mt-3">
-    <p-table  [value]="documents">
+    <p-table  [value]="this.aboutSrvc.nc?.costs||[]">
         <ng-template pTemplate="header">
             <tr>
                 <th>Documento</th>
@@ -36,9 +36,9 @@
         </ng-template>
         <ng-template pTemplate="body" let-doc>
             <tr>
-                <td>{{ doc.attachment.name }}</td>
-                <td>{{ doc.createdAt }}</td>
-                <td>{{ doc.user }}</td>
+                <td>{{ doc.file_name }}</td>
+                <td>{{ parseDate(doc.created_at) }}</td>
+                <td>{{ doc.author?.username }}</td>
                 <td>{{ doc.value }}</td>
                 <td>
                     <button
@@ -121,7 +121,7 @@
                         <i class="pi pi-replay"></i>
                     </button>
                     <p>
-                        {{ doc.attachment?.name }}
+                        {{ file?.name }}
                     </p>
                 </div>
             </div>
@@ -135,7 +135,7 @@
                     type="button"
                     class="btn btn-dark"
                     (click)="save()"
-                    [disabled]="doc.attachment?.name==''||doc.value==''"
+                    [disabled]="file?.name==''||doc.value==''"
             >
                 Registrar Custo Incorrido <i class="bi bi-check2"></i>
             </button>

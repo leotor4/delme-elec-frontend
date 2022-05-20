@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ConfirmationService, MessageService} from "primeng/api";
-import {Attachment} from "../../../../models/attachment";
 import {Cost} from "../../../../models/Cost";
+import {AboutService} from "../about.service";
+import {TokenStorageService} from "../../../../_services/token-storage.service";
 
 @Component({
   selector: 'app-costs',
@@ -9,16 +10,15 @@ import {Cost} from "../../../../models/Cost";
   styleUrls: ['./costs.component.css'],
 })
 export class CostsComponent implements OnInit {
-  id=0
-  documents: Cost[] = [];
   addDocumentDialog: boolean=false;
   doc = new Cost();
   fileChosen: boolean;
+  file: any;
 
-  constructor(private confirmationService: ConfirmationService, private messageService: MessageService) { }
+  constructor(private confirmationService: ConfirmationService, private messageService: MessageService, public aboutSrvc: AboutService, private tokenSrvc: TokenStorageService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
+
   deleteAction(doc:any){
     this.confirmationService.confirm({
       message:
@@ -28,10 +28,9 @@ export class CostsComponent implements OnInit {
       header: "Excluir Documento",
       icon: "pi pi-exclamation-triangle",
       accept: () => {
-        this.documents=
-            this.documents.filter(
-                (val) => val.id !== doc.id
-            );
+        this.aboutSrvc.deleteCost(doc.id).subscribe(  ((value) => {
+          this.aboutSrvc.getNC(this.aboutSrvc!.nc!.id!)
+        }))
         this.messageService.add({
           severity: "info",
           summary: "Documento removida com sucesso",
@@ -43,13 +42,12 @@ export class CostsComponent implements OnInit {
 
   clearFile() {
     this.fileChosen=false
-    this.doc.attachment.name=""
   }
 
   onUpload(event: any) {
     const target = event.target as HTMLInputElement;
     if (target.files && target.files.length > 0) {
-      this.doc.attachment.name = target.files[0].name;
+      this.file = event.target.files[0];
       this.fileChosen=true
     }
 
@@ -57,15 +55,33 @@ export class CostsComponent implements OnInit {
 
 
   save() {
-    this.doc.id=this.id
-    this.id++
     this.doc.value=parseInt(this.doc.value).toLocaleString('pt-BR', {
       style: 'currency',
       currency: 'BRL',
     });
-    this.documents.push({...this.doc})
+    this.doc.nonCompliance_id = this.aboutSrvc!.nc!.id!
+    this.doc.userId= this.tokenSrvc.getUser().id
+
+
+    this.aboutSrvc.postCost(this.doc, this.file).subscribe(
+        (data) => {
+          this.aboutSrvc.getNC(this.aboutSrvc!.nc!.id!)
+        },
+        (err) => {
+          this.messageService.add({
+            severity: "error",
+            summary:  err,
+            life: 3000,
+          });
+        }
+    );
     this.doc = new Cost()
     this.addDocumentDialog=false
     this.fileChosen=false
+  }
+
+  parseDate(date:string){
+    let d = new Date(Date.parse(date))
+    return d.toLocaleDateString();
   }
 }
