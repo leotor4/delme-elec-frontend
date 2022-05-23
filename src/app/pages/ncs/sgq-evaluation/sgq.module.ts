@@ -21,6 +21,8 @@ import {ConfirmDialogModule} from "primeng/confirmdialog";
 import {FormsModule} from "@angular/forms";
 import {ConfirmationService, MessageService} from "primeng/api";
 import {AccordionModule} from "primeng/accordion";
+import { AddNcDialogComponent } from './steps/reoccurrence/add-nc-dialog/add-nc-dialog.component';
+import {DynamicDialogModule} from "primeng/dynamicdialog";
 
 @NgModule({
   declarations: [
@@ -33,6 +35,7 @@ import {AccordionModule} from "primeng/accordion";
       ChangesComponent,
       NotificationsComponent,
       ReviewInfoSGQComponent,
+      AddNcDialogComponent,
   ],
     imports: [
         CommonModule,
@@ -47,9 +50,10 @@ import {AccordionModule} from "primeng/accordion";
         ConfirmDialogModule,
         FormsModule,
         AccordionModule,
+        DynamicDialogModule,
 
     ],
-    entryComponents: [],
+    entryComponents: [AddNcDialogComponent],
     providers: [MessageService, ConfirmationService],
 })
 export class SgqModule { }
