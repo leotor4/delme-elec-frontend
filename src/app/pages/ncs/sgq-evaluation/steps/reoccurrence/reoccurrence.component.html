@@ -1,1 +1,55 @@
-<p>reoccurrence works!</p>
+<div class="d-flex flex-lg-row flex-column justify-content-between">
+    <div class="cabecalho">
+        <h1 class="mr-3">Reincidência</h1>
+        <p>
+            Informe se esta NC possui ligação com outra NC presente no sistema.
+        </p>
+    </div>
+    <div class="d-flex justify-content-end align-items-center mb-3">
+        <button class="btn btn-dark ml-3">
+            Adicionar NC Reincidente
+            <i class="bi bi-file-earmark-medical"></i>
+        </button>
+    </div>
+</div>
+
+<div class="card">
+    <p-table [value]="sgqServ.step1 ">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Número</th>
+                <th>Parceiro</th>
+                <th>Emissor</th>
+                <th>Estado</th>
+                <th>Data de Fechamento</th>
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-nc let-i="rowIndex">
+            <tr>
+                <td>{{ nc.code }}</td>
+                <td>{{ (nc.customer?.corporate_name||nc.provider?.corporate_name||nc.sector?.name)
+                ||"Dado não preenchido" }}</td>
+                <td>{{ nc.emissor.username }}</td>
+                <td>{{ nc.status }}</td>
+                <td>{{ parseDate(nc.data_fechamento||"")||"00/00/0000" }}</td>
+                <td>
+                    <button
+                            pButton
+                            type="button"
+                            icon="bi bi-info-circle"
+                            class="p-button-secondary p-button-text"
+                            (click)="details(nc)"
+                    ></button>
+                    <button
+                            pButton
+                            type="button"
+                            icon="bi bi-file-earmark-x"
+                            class="p-button-secondary p-button-text"
+                            (click)="delete(nc)"
+                    ></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

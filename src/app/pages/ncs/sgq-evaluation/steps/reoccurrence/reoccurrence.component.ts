@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {SgqService} from "../../sgq.service";
 
 @Component({
   selector: 'app-reoccurrence',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReoccurrenceComponent implements OnInit {
 
-  constructor() { }
+  constructor(public sgqServ: SgqService) { }
 
   ngOnInit(): void {
+    this.sgqServ.getAllNC()
   }
 
+    details(nc: any) {
+        
+    }
+
+  delete(nc: any) {
+    
+  }
+
+  parseDate(date:string){
+    let d = new Date(Date.parse(date))
+    return d.toLocaleDateString();
+  }
 }

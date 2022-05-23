@@ -1,1 +1,155 @@
-<p>review-info-sgq works!</p>
+<div class="d-flex flex-lg-row flex-column justify-content-between">
+    <div class="d-flex">
+        <div class="cabecalho">
+            <div class="d-flex align-items-center">
+                <h1 class="mr-3">Avaliação da Não Conformidade</h1>
+            </div>
+            <p>
+                Revise ou altere os dados da avaliação da NC. Se tudo estiver OK, submeta a avaliação desta NC.
+            </p>
+        </div>
+    </div>
+    <div class="d-flex justify-content-end align-items-center mb-3">
+        <button
+                [class]="isAllOpen ? selectedClass : unselectedClass"
+                class="mr-2 btn-sm"
+                (click)="isAllOpen = true"
+        >
+            <i class="bi bi-arrows-expand"></i>
+            Expandir Todos
+        </button>
+        <button
+                [class]="isAllOpen ? unselectedClass : selectedClass"
+                (click)="isAllOpen = false"
+                class="btn-sm"
+        >
+            <i class="bi bi-arrows-collapse"></i>
+            Colapsar Todos
+        </button>
+    </div>
+</div>
+<p-accordion [multiple]="true">
+    <p-accordionTab [selected]="isAllOpen">
+        <ng-template pTemplate="header">
+            <div class="d-flex justify-content-between accordion">
+                <p>
+                    <i class="bi bi-link-45deg"></i>
+                    Reincidência
+                </p>
+                <button class="btn btn-dark red" (click)="goToStepById(0)">
+                    <i class="bi bi-pencil mr-1"></i>
+                    Alterar
+                </button>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="content">
+            <div class="card">
+                <p-table [value]="sgqServ.step1 ">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>Número</th>
+                            <th>Parceiro</th>
+                            <th>Emissor</th>
+                            <th>Estado</th>
+                            <th>Data de Fechamento</th>
+                            <th></th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-nc let-i="rowIndex">
+                        <tr>
+                            <td>{{ nc.code }}</td>
+                            <td>{{ (nc.customer?.corporate_name||nc.provider?.corporate_name||nc.sector?.name)
+                            ||"Dado não preenchido" }}</td>
+                            <td>{{ nc.emissor.username }}</td>
+                            <td>{{ nc.status }}</td>
+                            <td>{{ parseDate(nc.data_fechamento||"")||"00/00/0000" }}</td>
+                            <td>
+                                <button
+                                        pButton
+                                        type="button"
+                                        icon="bi bi-info-circle"
+                                        class="p-button-secondary p-button-text"
+                                        (click)="details(nc)"
+                                ></button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </ng-template>
+    </p-accordionTab>
+    <p-accordionTab [selected]="isAllOpen">
+        <ng-template pTemplate="header">
+            <div class="d-flex justify-content-between accordion">
+                <p>
+                    <i class="pi pi-compass"></i>
+                    Riscos e Oportunidades
+                </p>
+                <button class="btn btn-dark red" (click)="goToStepById(0)">
+                    <i class="bi bi-pencil mr-1"></i>
+                    Alterar
+                </button>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="content">
+            <p-editor [ngModel]="this.sgqServ.step3Text" [style]="editorStyle" [readonly]="true">
+                <ng-template pTemplate="header">
+                </ng-template>
+            </p-editor>
+        </ng-template>
+    </p-accordionTab>
+    <p-accordionTab [selected]="isAllOpen">
+        <ng-template pTemplate="header">
+            <div class="d-flex justify-content-between accordion">
+                <p>
+                    <i class="bi bi-envelope-exclamation"></i>
+                    Mudanças
+                </p>
+                <button class="btn btn-dark red" (click)="goToStepById(0)">
+                    <i class="bi bi-pencil mr-1"></i>
+                    Alterar
+                </button>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="content">
+            <p-editor [ngModel]="this.sgqServ.step4Text" [style]="editorStyle" [readonly]="true">
+                <ng-template pTemplate="header">
+                </ng-template>
+            </p-editor>
+        </ng-template>
+    </p-accordionTab>
+    <p-accordionTab [selected]="isAllOpen">
+        <ng-template pTemplate="header">
+            <div class="d-flex justify-content-between accordion">
+                <p>
+                    <i class="bi bi-envelope"></i>
+                    Partes Interessadas
+                </p>
+                <button class="btn btn-dark red" (click)="goToStepById(0)">
+                    <i class="bi bi-pencil mr-1"></i>
+                    Alterar
+                </button>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="content">
+            <div class="card">
+                <p-table [value]="this.sgqServ.step5Contacts">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>Nome</th>
+                            <th>E-mail</th>
+                            <th>Tipo de Contato</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-contact let-i="rowIndex">
+                        <tr>
+                            <td>{{ contact.name }}</td>
+                            <td>{{ contact.email }}</td>
+                            <td>{{ contact.type }}</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </ng-template>
+    </p-accordionTab>
+</p-accordion>

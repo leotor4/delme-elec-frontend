@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {SgqService} from "../../sgq.service";
 
 @Component({
   selector: 'app-risks',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RisksComponent implements OnInit {
 
-  constructor() { }
+  constructor(public sgqServ: SgqService) { }
 
   ngOnInit(): void {
   }

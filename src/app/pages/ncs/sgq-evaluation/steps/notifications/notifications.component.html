@@ -1,1 +1,167 @@
-<p>notifications works!</p>
+<p-toast></p-toast>
+
+<div class="d-flex">
+    <div class="col-8">
+        <div class="cabecalho">
+            <h1>Emitir Notificações</h1>
+            <p>
+                Visualize e adicione contatos a serem notificados acerca do andamento desta NC. Por padrão, são adicionados contatos já incluidos nos passos anteriores.
+            </p>
+        </div>
+    </div>
+    <div class="col-4 d-flex justify-content-end align-items-center">
+        <button iconPos="right" class="btn btn-dark" (click)="showAddContacts()">
+            Adicionar Contato<i class="pi pi-plus"></i>
+        </button>
+    </div>
+</div>
+
+<div class="card">
+    <p-table [value]="this.sgqServ.step5Contacts">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>Tipo de Contato</th>
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-contact let-i="rowIndex">
+            <tr>
+                <td>{{ contact.name }}</td>
+                <td>{{ contact.email }}</td>
+                <td>{{ contact.type }}</td>
+                <td *ngIf="i >= 4">
+                    <button
+                            pButton
+                            type="button"
+                            icon="pi pi-pencil"
+                            class="p-button-secondary p-button-text"
+                            (click)="editContact(contact)"
+                    ></button>
+                    <button
+                            pButton
+                            type="button"
+                            icon="pi pi-trash"
+                            class="p-button-secondary p-button-text"
+                            (click)="deleteContact(contact)"
+                    ></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+<p-dialog [(visible)]="addContactsDialog" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="header">
+        <div>
+            <h2>Adicionar outros contatos</h2>
+            <h3>
+                Adicione contatos de partes interessadas que serão notificadas acerca do
+                andamento desta NC
+            </h3>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="content">
+        <div class="d-flex pb-2">
+            <div class="col-9 pl-0">
+                <p-autoComplete
+                        placeholder="Busque por nome ou e-mail..."
+                        [(ngModel)]="selectedContact"
+                        [suggestions]="results"
+                        (completeMethod)="search($event)"
+                        field="name"
+                        [style]="{ width: '100%' }"
+                        [inputStyle]="{ width: '100%' }"
+                        class="p-autocomplete"
+                        (onSelect)="checkContact($event)"
+                >
+                    <ng-template let-contact pTemplate="item">
+                        <div>
+                            <span class="auto-complete-title">{{ contact.name }}</span>
+                            <div class="d-flex text-start">
+                                <div>
+                                    <span class="auto-complete-label">E-MAIL</span><br />
+                                    <span class="auto-complete-item">{{ contact.email }}</span>
+                                </div>
+                                <div class="px-5">
+                                    <span class="auto-complete-label">TIPO DE CONTATO</span><br />
+                                    <span class="auto-complete-item">{{ contact.ctype }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </p-autoComplete>
+            </div>
+            <button
+                    type="button"
+                    class="btn btn-dark col-3"
+                    (click)="createNewContact()"
+            >
+                Criar Contato <i class="pi pi-user-plus"></i>
+            </button>
+        </div>
+        <div class="d-flex mt-3">
+            <i class="pi pi-users" style="font-size: 2rem"></i>
+            <h2>Contatos Selecionados</h2>
+        </div>
+        <div class="card">
+            <p-table [value]="selectedContacts">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Nome</th>
+                        <th>E-mail</th>
+                        <th>Tipo de Contato</th>
+                        <th></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-contact>
+                    <tr>
+                        <td>{{ contact.name }}</td>
+                        <td>{{ contact.email }}</td>
+                        <td>{{ contact.cType }}</td>
+                        <td>
+                            <button
+                                    pButton
+                                    type="button"
+                                    icon="pi pi-user-minus"
+                                    class="p-button-secondary p-button-text"
+                                    (click)="uncheckContact(contact)"
+                            ></button>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <div class="d-flex justify-content-end">
+            <button
+                    type="button"
+                    class="btn btn-outline-dark"
+                    (click)="hideAddContacts()"
+            >
+                Cancelar
+            </button>
+            <button
+                    type="button"
+                    class="btn btn-dark"
+                    [disabled]="selectedContacts.length == 0"
+                    (click)="saveSelection()"
+            >
+                Adicionar Contatos <i class="pi pi-plus"></i>
+            </button>
+        </div>
+    </ng-template>
+</p-dialog>
+
+<p-confirmDialog #cd [style]="{ width: '50vw' }">
+    <ng-template pTemplate="footer">
+        <button type="button" class="btn btn-outline-dark" (click)="cd.reject()">
+            Não, cancelar
+        </button>
+        <button type="button" class="btn btn-dark" (click)="cd.accept()">
+            Sim, excluir contato
+        </button>
+    </ng-template>
+</p-confirmDialog>

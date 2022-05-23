@@ -12,6 +12,15 @@ import { RisksComponent } from './steps/risks/risks.component';
 import { ChangesComponent } from './steps/changes/changes.component';
 import { NotificationsComponent } from './steps/notifications/notifications.component';
 import { ReviewInfoSGQComponent } from './steps/review-info-sgq/review-info-sgq.component';
+import {EditorModule} from "primeng/editor";
+import {ToastModule} from "primeng/toast";
+import {TableModule} from "primeng/table";
+import {DialogModule} from "primeng/dialog";
+import {AutoCompleteModule} from "primeng/autocomplete";
+import {ConfirmDialogModule} from "primeng/confirmdialog";
+import {FormsModule} from "@angular/forms";
+import {ConfirmationService, MessageService} from "primeng/api";
+import {AccordionModule} from "primeng/accordion";
 
 @NgModule({
   declarations: [
@@ -30,9 +39,17 @@ import { ReviewInfoSGQComponent } from './steps/review-info-sgq/review-info-sgq.
         SgqRoutingModule,
         StepsModule,
         ChipModule,
+        EditorModule,
+        ToastModule,
+        TableModule,
+        DialogModule,
+        AutoCompleteModule,
+        ConfirmDialogModule,
+        FormsModule,
+        AccordionModule,
 
     ],
     entryComponents: [],
-    providers: [],
+    providers: [MessageService, ConfirmationService],
 })
 export class SgqModule { }

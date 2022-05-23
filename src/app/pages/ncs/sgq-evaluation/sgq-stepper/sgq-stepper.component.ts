@@ -10,7 +10,7 @@ import {NonComplianceService} from "../../../../_services/non-compliance.service
 export class SgqStepperComponent implements OnInit {
 
   items: MenuItem[];
-  stepPosition: number = 0;
+  stepPosition: number = 5;
   lastStepLabel = "Avançar";
   constructor(public nonComplianceService: NonComplianceService) {}
 
