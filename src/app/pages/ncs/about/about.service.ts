@@ -37,8 +37,11 @@ export class AboutService {
         return this.http.delete(this.apiUrl + "costs/" + id);
     }
 
+    viewFile(id:number){
+        return this.http.get<any>(this.apiUrl  + "costs" + "/files/view/"+ id);
+    }
     downloadFile(id:number){
-        return this.http.get<any>(this.apiUrl  + "costs" + "/files/"+ id);
+        return this.http.get<any>(this.apiUrl  + "costs" + "/files/download/"+ id);
     }
 
 }

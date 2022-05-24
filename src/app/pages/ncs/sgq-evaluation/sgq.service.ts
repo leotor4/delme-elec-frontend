@@ -9,7 +9,7 @@ import {NonComplianceService} from "../../../_services/non-compliance.service";
 export class SgqService {
 
   constructor(private ncsService : NonComplianceService) { }
-
+  allNCs: any[] = []
   step1: any[] = []
 
   step2Text = ""
@@ -22,9 +22,7 @@ export class SgqService {
   step5Contacts: Contact[] = []
   getAllNC(){
     this.ncsService.get().subscribe((data: any) => {
-      data.noncompliances.forEach((element:any) => {
-        this.step1.push(element);
-      })
+      this.allNCs = data.noncompliances
     })
 
   }

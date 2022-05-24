@@ -23,6 +23,11 @@ import {ConfirmationService, MessageService} from "primeng/api";
 import {AccordionModule} from "primeng/accordion";
 import { AddNcDialogComponent } from './steps/reoccurrence/add-nc-dialog/add-nc-dialog.component';
 import {DynamicDialogModule} from "primeng/dynamicdialog";
+import {MessagesModule} from "primeng/messages";
+import {InputTextModule} from "primeng/inputtext";
+import { NcInfoComponent } from './steps/reoccurrence/nc-info/nc-info.component';
+import {TabViewModule} from "primeng/tabview";
+import { NcInforViewNcComponent } from './steps/reoccurrence/nc-info/nc-infor-view-nc/nc-infor-view-nc.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +41,8 @@ import {DynamicDialogModule} from "primeng/dynamicdialog";
       NotificationsComponent,
       ReviewInfoSGQComponent,
       AddNcDialogComponent,
+      NcInfoComponent,
+      NcInforViewNcComponent,
   ],
     imports: [
         CommonModule,
@@ -51,9 +58,12 @@ import {DynamicDialogModule} from "primeng/dynamicdialog";
         FormsModule,
         AccordionModule,
         DynamicDialogModule,
+        MessagesModule,
+        InputTextModule,
+        TabViewModule
 
     ],
-    entryComponents: [AddNcDialogComponent],
+    entryComponents: [AddNcDialogComponent, NcInfoComponent],
     providers: [MessageService, ConfirmationService],
 })
 export class SgqModule { }

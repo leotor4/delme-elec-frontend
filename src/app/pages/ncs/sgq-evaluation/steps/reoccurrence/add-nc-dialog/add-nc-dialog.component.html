@@ -16,14 +16,13 @@
 </div>
 
 <div class="mt-3 p-fluid">
-    <p-autoComplete
-            placeholder="Busque por produto, parceiro ou descrição da NC"
-            field="name"
-            [style]="{ width: '100%' }"
-            [inputStyle]="{ width: '100%' }"
-            class="p-autocomplete"
-    >
-    </p-autoComplete>
+    <span class="p-input-icon-left">
+    <i class="pi pi-search"></i>
+    <input type="text"
+           pInputText
+           placeholder="Busque por produto, parceiro ou descrição da NC..."
+           (input)="applyFilterGlobal($event, 'contains')"
+    ></span>
 </div>
 <div class="cabecalho mt-3">
     <h2 class="mr-3">
@@ -32,7 +31,20 @@
     </h2>
     <p>Sinalize as NCs que são reincidentes desta NC.</p>
     <div class="card">
-        <p-table [value]="sgqServ.step1" [(selection)]="selected">
+        <p-table #dt1 [value]="sgqServ.allNCs"
+                 [(selection)]="selected"
+                 [globalFilterFields]="[
+                 'code',
+                 'description',
+                 'customer.corporate_name',
+                 'provider.corporate_name',
+                 'sector.name',
+                 'status',
+                 'emissor.username',
+                 'product.name',
+                 'product.code',
+                 'product.description'
+                  ]">
             <ng-template pTemplate="header">
                 <tr>
                     <th>Número</th>

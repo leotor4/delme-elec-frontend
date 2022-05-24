@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {DynamicDialogConfig, DynamicDialogRef} from "primeng/dynamicdialog";
 import {SgqService} from "../../../sgq.service";
+import {Contact} from "../../../../../../models/contact.model";
+import {NonCompliance} from "../../../../../../models/non-compliance";
+import {Table} from "primeng/table";
 
 @Component({
   selector: 'app-add-nc-dialog',
@@ -8,6 +11,7 @@ import {SgqService} from "../../../sgq.service";
   styleUrls: ['./add-nc-dialog.component.css']
 })
 export class AddNcDialogComponent implements OnInit {
+  @ViewChild('dt1') dt: Table;
   ncCode = ""
   selected: any[]
   constructor(public ref: DynamicDialogRef,
@@ -16,15 +20,17 @@ export class AddNcDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.ncCode = this.config.data.nc
-    console.log(this.ncCode)
+    this.selected = this.config.data.selected
   }
 
   closeDialog() {
-    console.log(this.selected)
-    this.ref.close()
+    this.ref.close(this.selected)
   }
   parseDate(date:string){
     let d = new Date(Date.parse(date))
     return d.toLocaleDateString();
+  }
+  applyFilterGlobal($event: any, stringVal: any) {
+    this.dt!.filterGlobal(($event.target as HTMLInputElement).value, stringVal);
   }
 }
