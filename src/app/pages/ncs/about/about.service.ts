@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {NonComplianceService} from "../../../_services/non-compliance.service";
 import {NonCompliance} from "../../../models/non-compliance";
 import { HttpClient } from "@angular/common/http";
-import {Observable} from "rxjs";
+
 import {Cost} from "../../../models/Cost";
 
 @Injectable({

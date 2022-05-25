@@ -4,6 +4,7 @@ import {DialogService} from "primeng/dynamicdialog";
 import {AddNcDialogComponent} from "./add-nc-dialog/add-nc-dialog.component";
 import {ConfirmationService, MessageService} from "primeng/api";
 import {NcInfoComponent} from "./nc-info/nc-info.component";
+import {NonCompliance} from "../../../../../models/non-compliance";
 
 @Component({
   selector: 'app-reoccurrence',
@@ -25,10 +26,8 @@ export class ReoccurrenceComponent implements OnInit {
   delete(nc: any) {
     this.confirmationService.confirm({
       message:
-          "Você tem certeza que quer excluir o contato " +
-          nc.code +
-          " da lista?",
-      header: "Excluir Contato",
+          "Esta ação não poderá ser revertida!",
+      header: "Você tem certeza que quer desfazer a reincidência?",
       icon: "pi pi-exclamation-triangle",
       accept: () => {
         this.sgqServ.step1 =
@@ -70,6 +69,9 @@ export class ReoccurrenceComponent implements OnInit {
       width: '60vw',
     });
     ref.onClose.subscribe((answer: any[])=>{
+      if(answer){
+        this.delete(nc)
+      }
     })
   }
 }

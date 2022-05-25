@@ -28,6 +28,12 @@ import {InputTextModule} from "primeng/inputtext";
 import { NcInfoComponent } from './steps/reoccurrence/nc-info/nc-info.component';
 import {TabViewModule} from "primeng/tabview";
 import { NcInforViewNcComponent } from './steps/reoccurrence/nc-info/nc-infor-view-nc/nc-infor-view-nc.component';
+import {DividerModule} from "primeng/divider";
+import {CarouselModule} from "primeng/carousel";
+import { NcInfoSgqComponent } from './steps/reoccurrence/nc-info/nc-info-sgq/nc-info-sgq.component';
+import { NcInfoClosingComponent } from './steps/reoccurrence/nc-info/nc-info-closing/nc-info-closing.component';
+import { NcInfoActionPlanComponent } from './steps/reoccurrence/nc-info/nc-info-action-plan/nc-info-action-plan.component';
+import {InputTextareaModule} from "primeng/inputtextarea";
 
 @NgModule({
   declarations: [
@@ -43,6 +49,9 @@ import { NcInforViewNcComponent } from './steps/reoccurrence/nc-info/nc-infor-vi
       AddNcDialogComponent,
       NcInfoComponent,
       NcInforViewNcComponent,
+      NcInfoSgqComponent,
+      NcInfoClosingComponent,
+      NcInfoActionPlanComponent,
   ],
     imports: [
         CommonModule,
@@ -60,7 +69,10 @@ import { NcInforViewNcComponent } from './steps/reoccurrence/nc-info/nc-infor-vi
         DynamicDialogModule,
         MessagesModule,
         InputTextModule,
-        TabViewModule
+        TabViewModule,
+        DividerModule,
+        CarouselModule,
+        InputTextareaModule
 
     ],
     entryComponents: [AddNcDialogComponent, NcInfoComponent],

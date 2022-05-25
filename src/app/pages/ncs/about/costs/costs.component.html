@@ -54,6 +54,7 @@
                             icon="bi bi-download"
                             class="p-button-secondary p-button-text"
                             [href]="'http://localhost:3333/costs/files/download/'+doc.id"
+                            download
                     ></a>
                     <button
                             pButton
@@ -88,7 +89,7 @@
     </ng-template>
     <ng-template pTemplate="content">
     <div class="editar-campo">
-        <label for="name">Valor</label>
+        <label>Valor</label>
         <input
                 currencyMask [(ngModel)]="doc.value" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
         />

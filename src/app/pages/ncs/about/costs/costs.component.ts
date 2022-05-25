@@ -27,7 +27,6 @@ export class CostsComponent implements OnInit {
               private messageService: MessageService,
               public aboutSrvc: AboutService,
               private tokenSrvc: TokenStorageService,
-              public ncService:NonComplianceService,
               public dialogService: DialogService) { }
 
   ngOnInit(): void {}
@@ -124,13 +123,4 @@ export class CostsComponent implements OnInit {
     })
   }
 
-  baixarDocumento(id:number){
-    this.aboutSrvc.downloadFile(id).subscribe({
-      next:(data)=>{
-        console.log("success")
-      },error:(err)=>{
-        console.log(err)
-      }
-    })
-  }
 }
