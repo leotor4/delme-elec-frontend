@@ -49,7 +49,7 @@
             <app-notifications></app-notifications>
         </div>
         <div *ngIf="stepPosition === 5">
-            <app-review-info-sgq></app-review-info-sgq>
+            <app-review-info-sgq (changeStepPosition)="changeStepByPosition($event)"></app-review-info-sgq>
         </div>
     </div>
 </div>

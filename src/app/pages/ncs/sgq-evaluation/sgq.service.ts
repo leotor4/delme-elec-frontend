@@ -13,7 +13,7 @@ export class SgqService {
   step1: any[] = []
 
   step2Text = ""
-  step2File:File = new File([], "", undefined)
+  step2File: any = []
 
   step3Text = ""
 
