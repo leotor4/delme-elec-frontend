@@ -15,7 +15,7 @@ body {
 
 .left {
   left: 0;
-  background-color: #0098CD;
+  background-color: rgb(0, 91, 123);
   color: white;
   width: 100%;
 }
@@ -34,16 +34,16 @@ body {
 
 .welcomeText {
   font-weight: lighter;
-  font-size: 40px;
-  margin-left: 50px;
-  margin-bottom: 50px;
+  font-size: 3em;
+  margin-left: 1.7em;
+  margin-bottom: 1em;
 }
 
 .systemTitle {
   font-weight: bold;
-  font-size: 60px;
-  margin-left: 50px;
-  margin-bottom: 50px;
+  font-size: 5em;
+  margin-left: 1em;
+  margin-bottom: 0.7em;
 }
 
 

@@ -14,7 +14,8 @@ import { RegisterComponent } from './register/register.component';
 import { VisualizarDocumentoDialogComponent } from './pages/dialogs/visualizar-documento-dialog/visualizar-documento-dialog.component';
 import { PdfViewerModule } from "ng2-pdf-viewer";
 import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
-
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
     LoginComponent,
     RegisterComponent,
     BoardUserComponent,
-    VisualizarDocumentoDialogComponent,
+    VisualizarDocumentoDialogComponent
 
     
   ],
@@ -34,11 +35,12 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
     HttpClientModule,
     NgxExtendedPdfViewerModule,
     PdfViewerModule,
+    ToastModule
   ],
   providers: [
     authInterceptorProviders,
-    AuthGuardService,
-    { provide: ErrorHandler, useClass: GlobalErrorHandler },
+    AuthGuardService ,
+    MessageService 
   ],
   bootstrap: [AppComponent],
 })

@@ -1,10 +1,17 @@
 
 <p-menubar [model]="items">
   <ng-template pTemplate="start">
-    <img style="height: 50px; width: auto;" src="../assets/images/logo3.png" alt="Electroson">
+    <img class="logo" src="../assets/images/logo3.png" alt="Electroson">
   </ng-template>
   <ng-template pTemplate="end">
-    <img class="avatar" src="../assets/images/avatar.png" alt="Avatar" />
-    <span class="designation">Nome Sobrenome<br />Matrícula - Função</span>
+    <div style="display:flex">
+      <img class="avatar" src="../assets/images/avatar.png" alt="Avatar" />
+      <div style="display: flex; flex-direction:column;">
+        <span class="name-user">{{user?.username}}</span>
+        <span class="name-user">Matrícula - Função</span>
+        <!--<span class="designation">{{user.matricula}} - {{user.funcao}}</span>-->
+      </div>
+    </div>
   </ng-template>
 </p-menubar>
+

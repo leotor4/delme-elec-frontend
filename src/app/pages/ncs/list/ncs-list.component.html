@@ -7,11 +7,12 @@
     <input pInputText type="text" (input)="applyFilterGlobal($event, 'contains')" placeholder="Global Search" />
 </span>
 <span style="float:right">
-  <p-button label="Nova Não Conformidade"  (click)="openNc()" icon="pi pi-check" styleClass="p-button-sm p-button-secondary" icon="pi pi-plus" iconPos="right" ></p-button>
+  <button (click)="openNc()" class="btn btn-primary-color">Nova Não Conformidade <i class="bi bi-file-earmark-plus"></i></button>
+<!-- <p-button label="Nova Não Conformidade"  (click)="openNc()" icon="pi pi-check" styleClass="p-button-sm p-button-secondary" icon="pi pi-plus" iconPos="right" ></p-button> -->
 </span>
 
 <div style="margin-top: 10px;">
-<p-table  #dt [globalFilterFields]="['numero','parceiro','emissor', 'estado']" [value]="listNcs" [columns]="cols" [paginator]="true" [rows]="rows" [(first)]="first" [totalRecords]="totalRecords" [showCurrentPageReport]="true" responsiveLayout="scroll"
+<p-table  responsiveLayout="scroll" #dt [globalFilterFields]="['numero','parceiro','emissor', 'estado']" [value]="listNcs" [columns]="cols" [paginator]="true" [rows]="rows" [(first)]="first" [totalRecords]="totalRecords" [showCurrentPageReport]="true" responsiveLayout="scroll"
 currentPageReportTemplate="Exibindo de {first} a {last} de {totalRecords} registros" [rowsPerPageOptions]="[5,10,25,50]" [filterDelay]="0">
 
   <ng-template pTemplate="header">
@@ -74,7 +75,13 @@ currentPageReportTemplate="Exibindo de {first} a {last} de {totalRecords} regist
 
       <td>
         <span class="p-column-title">Estado</span>
-        {{Nc.estado}}
+        <span [ngSwitch]="Nc.estado" >
+          <span *ngSwitchCase="'open'"> Aberta</span>
+          <span *ngSwitchCase="'running'"> Em execução</span>
+          <span *ngSwitchCase="'late'"> Atrasada</span>
+          <span *ngSwitchCase="'deleted'"> Deletada</span>
+          <span *ngSwitchCase="'archived'"> Arquivada</span>
+        </span>
       </td>
 
       <td style="text-align: center">

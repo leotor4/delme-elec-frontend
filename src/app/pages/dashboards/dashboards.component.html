@@ -1,0 +1,41 @@
+
+
+
+
+<div style="margin-right: 10px;">
+    <div class="moldura-um">
+        <div class="moldura-dois">
+            <div class="conteudo">
+    
+                <div style="width:300px; margin-bottom: 50px;">
+                    <label>Setor</label>
+                    <select class="form-select" aria-label="Default select example" #mySelect
+                    (change)='onOptionsSelected(mySelect.value)'>
+                        <option value="0" selected>Todos os status</option>
+                        <option value="1">Cancelada</option>
+                        <option value="2">Em execução</option>
+                        <option value="3">Executada</option>
+                    
+                        
+                      </select>
+                </div>
+
+                <div style="width: 1300px; height: 500px;">
+                    <ngx-charts-bar-vertical-2d
+                    [scheme]="color"
+                    [results]="groupedBarDataTest"
+                    [gradient]="gradient"
+                    [xAxis]="xAxis"
+                    [yAxis]="yAxis"
+                    [legend]="legend"
+                    [showXAxisLabel]="showXAxisLabel"
+                    [showYAxisLabel]="showYAxisLabel"
+                    [xAxisLabel]="xAxisLabel"
+                    [yAxisLabel]="yAxisLabel"
+                    >
+                  </ngx-charts-bar-vertical-2d>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>

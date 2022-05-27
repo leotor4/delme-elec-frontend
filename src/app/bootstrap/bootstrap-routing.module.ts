@@ -15,6 +15,7 @@ const routes: Routes = [
             (m) => m.NcsListModule
           ),
       },
+
       {
         path: "create",
         loadChildren: () =>
@@ -22,6 +23,7 @@ const routes: Routes = [
             (m) => m.NcsCreateModule
           ),
       },
+
       {
         path: "import",
         loadChildren: () =>
@@ -29,21 +31,47 @@ const routes: Routes = [
             (m) => m.ImportJsonModule
           ),
       },
+
       {
         path: "about/:id",
         loadChildren: () =>
             import("../pages/ncs/about/about.module").then(
                 (m) => m.NcAboutModule
             ),
-      },{
+      },
+      
+      {
         path: "createProp",
         loadChildren: () =>
             import("../pages/ncs/create-prop/create-prop.module").then(
                 (m) => m.CreatePropModule
             ),
       },
+
     ],
   },
+  
+  {
+    path: "dashboards",
+    canActivate: [AuthGuardService],
+    children: [
+
+      {
+        path: "",
+        loadChildren: () =>
+          import("../pages/dashboards/dashboards.module").then(
+            (m) => m.DashboardsModule
+          ),
+      },
+      {
+        path: "bar-chart",
+        loadChildren: () =>
+          import("../pages/dashboards/bar-chart/bar-chart.module").then(
+            (m) => m.BarChartModule
+          ),
+      }
+    ]
+  }
 ];
 
 @NgModule({

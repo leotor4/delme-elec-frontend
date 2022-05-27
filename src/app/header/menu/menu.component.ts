@@ -1,3 +1,4 @@
+import { User } from './../../models/user.model';
 import { TokenStorageService } from '../../_services/token-storage.service';
 import { Component, OnInit } from '@angular/core';
 import {MenuItem} from 'primeng/api';
@@ -12,7 +13,8 @@ export class MenuComponent implements OnInit {
 
   items: MenuItem[];
   isLoggedIn = false;
-  username?: string;
+  
+  user: User;
 
   constructor(private tokenStorageService: TokenStorageService) { }
 
@@ -21,7 +23,7 @@ export class MenuComponent implements OnInit {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
     if (this.isLoggedIn) {
       const user = this.tokenStorageService.getUser();
-      this.username = user.username;
+      this.user = user;
 
       this.items = [
         {
@@ -30,6 +32,16 @@ export class MenuComponent implements OnInit {
               {label: 'Usuários', icon: 'pi pi-users'},
               {label: 'Ncs', icon: 'pi pi-list', routerLink:'/ncs'},
               {label: 'Importar Dados', icon: 'pi pi-upload'},
+              {
+                label: 'Dashboards', 
+                icon: 'pi pi-desktop',
+                items: [
+                  {label:'Bar Chart', icon: 'pi pi-chart-bar', routerLink:'/dashboards/bar-chart'},
+                  {label:'Grouped Bar Chart', icon: 'pi pi-chart-bar', routerLink:'/dashboards'}
+
+                ] 
+                
+              },
               {label: 'Sair', icon: 'pi pi-sign-out',
                 command: () => {
                   this.logout();

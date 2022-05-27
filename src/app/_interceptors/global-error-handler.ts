@@ -8,12 +8,10 @@ import { NotificationService } from '../_services/notification.service';
 @Injectable({providedIn: 'root'})
 export class GlobalErrorHandler implements ErrorHandler {
 
-    constructor(private injector: Injector) {}
+    constructor(private errorService: ErrorService, private logger: LoggingService,
+        private notifier: NotificationService) {}
 
     handleError(error: Error | HttpErrorResponse) {
-        const errorService = this.injector.get(ErrorService);
-        const logger = this.injector.get(LoggingService);
-        const notifier = this.injector.get(NotificationService);
 
         let message;
         let stackTrace;
@@ -21,19 +19,19 @@ export class GlobalErrorHandler implements ErrorHandler {
         if (error instanceof HttpErrorResponse) {
             // Server Error
             alert('server error')
-            message = errorService.getServerMessage(error.error);
-            stackTrace = errorService.getServerStack(error);
-            notifier.showError(message);
+            message = this.errorService.getServerMessage(error.error);
+            stackTrace = this.errorService.getServerStack(error);
+            this.notifier.showError(message);
         } else {
             // Client Error
             alert('client error')
-            message = errorService.getClientMessage(error);
-            stackTrace = errorService.getClientStack(error);
-            notifier.showError(message);
+            message = this.errorService.getClientMessage(error);
+            stackTrace = this.errorService.getClientStack(error);
+            this.notifier.showError(message);
         }
 
         // Always log errors
-        logger.logError(message, stackTrace);
+        this.logger.logError(message, stackTrace);
 
         console.error(error);
     }

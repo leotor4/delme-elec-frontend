@@ -1,9 +1,14 @@
+import { MessageService } from 'primeng/api';
+import { catchError } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { AuthService } from '../_services/auth.service';
 import { TokenStorageService } from '../_services/token-storage.service';
+import { ToastModule } from 'primeng/toast';
 import { AppComponent } from './../app.component';
+
 
 @Component({
   selector: 'app-login',
@@ -26,7 +31,7 @@ export class LoginComponent implements OnInit {
   roles: string[] = [];
 
   constructor(private authService: AuthService, private tokenStorage: TokenStorageService,
-    private modalService: NgbModal) { }
+    private modalService: NgbModal, private messageService: MessageService) { }
 
   ngOnInit(): void {
     if (this.tokenStorage.getToken()) {
@@ -37,17 +42,20 @@ export class LoginComponent implements OnInit {
 
   onSubmit(): void {
     const { email, password } = this.form;
-
-    this.authService.login(email, password).subscribe({
-      next: data => {
+    this.authService.login(email,password).subscribe(
+      data => {
         this.tokenStorage.saveToken(data.token.token);
         this.tokenStorage.saveUser(data.user);
         this.isLoggedIn = true;
         this.isLoginFailed = false;
         this.roles = this.tokenStorage.getUser().roles;
+      },
+      err => {
+        if (err.status == 400) {
+          this.addSingle('Credenciais Inválidas', 'error')
+        }
       }
-
-    });
+    )
   }
 
 
@@ -68,4 +76,15 @@ export class LoginComponent implements OnInit {
       return  `with: ${reason}`;
     }
   }
+
+
+   addSingle(msg:string, type:string) {
+        this.messageService.add({severity:type, summary:msg});
+    }
+
+
+
+    clear() {
+        this.messageService.clear();
+    }
 }

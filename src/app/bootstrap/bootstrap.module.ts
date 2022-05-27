@@ -5,7 +5,7 @@ import { BootstrapComponent } from './bootstrap.component';
 import { MenuComponent } from '../header/menu/menu.component';
 import {MenubarModule} from 'primeng/menubar';
 import {CardModule} from 'primeng/card';
-
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 
 @NgModule({
@@ -17,7 +17,8 @@ import {CardModule} from 'primeng/card';
     CommonModule,
     BootstrapRoutingModule,
     MenubarModule,
-    CardModule
+    CardModule,
+    NgxChartsModule
   ],
   exports: [
     BootstrapComponent

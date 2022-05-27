@@ -5,7 +5,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FilterMatchMode, MessageService, PrimeNGConfig } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { NonComplianceService } from "src/app/_services/non-compliance.service";
-
+import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-ncs-list',
@@ -58,8 +58,8 @@ export class NcsListComponent implements OnInit {
       for (let i = 0; i < this.ncsService.ncs.length; i++) {
         
         let nc = this.ncsService.ncs[i]
-
-        if (nc.system_status == 'deleted' || nc.system_status == 'archived') { continue }
+        console.log(nc.system_status)
+        if (nc.system_status == 'deleted' || nc.system_status == 'arquived') { continue }
 
         let strParceiro
         
@@ -151,20 +151,20 @@ export class NcsListComponent implements OnInit {
 
   archived(idNc: number) {
     this.ncsService.archived(idNc).subscribe((data: any) => {
-      
+
       window.location.reload();
+
     });
   }
 
   delete(idNc: number) {
     this.ncsService.delete(idNc).subscribe((data: any) => {
-      
       window.location.reload();
     });  
   }
 
   edit(idNc : number, status : string) {
-    if (status.toUpperCase() == 'ABERTA') {
+    if (status.toUpperCase() == 'OPEN') {
       this.router.navigate(["/ncs/create/"]);
     } else {
       this.router.navigate(["/ncs/about/", idNc]);

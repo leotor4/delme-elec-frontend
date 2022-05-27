@@ -1,0 +1,15 @@
+
+.moldura-dois {
+	width: 1400px; 
+	border:8px inset #5f6632;
+	padding:15px;
+	background: white;
+	}
+
+.moldura-um {
+	width: 1500px; /*404+8+8(bordas)+15+15(paddings)*/
+	border:20px inset #5d738b;
+	padding:25px;
+	background: transparent url(/bg-um.gif);
+    margin-top: 50px;
+	}
