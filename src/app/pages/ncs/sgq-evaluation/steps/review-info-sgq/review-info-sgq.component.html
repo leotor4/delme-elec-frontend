@@ -44,7 +44,7 @@
         </ng-template>
         <ng-template pTemplate="content">
             <div class="card">
-                <p-table [value]="sgqServ.step1 ">
+                <p-table [value]="sgqServ.sgq.recurrence||[]">
                     <ng-template pTemplate="header">
                         <tr>
                             <th>Número</th>
@@ -93,7 +93,7 @@
         </ng-template>
         <ng-template pTemplate="content">
             <div class="mb-5">
-                <p-editor [ngModel]="this.sgqServ.step2Text" [style]="editorStyle" [readonly]="true">
+                <p-editor [ngModel]="this.sgqServ.sgq.textArea1" [style]="editorStyle" [readonly]="true">
                     <ng-template pTemplate="header">
                     </ng-template>
                 </p-editor>
@@ -128,7 +128,7 @@
             </div>
         </ng-template>
         <ng-template pTemplate="content">
-            <p-editor [ngModel]="this.sgqServ.step3Text" [style]="editorStyle" [readonly]="true">
+            <p-editor [ngModel]="this.sgqServ.sgq.textArea2" [style]="editorStyle" [readonly]="true">
                 <ng-template pTemplate="header">
                 </ng-template>
             </p-editor>
@@ -148,7 +148,7 @@
             </div>
         </ng-template>
         <ng-template pTemplate="content">
-            <p-editor [ngModel]="this.sgqServ.step4Text" [style]="editorStyle" [readonly]="true">
+            <p-editor [ngModel]="this.sgqServ.sgq.textArea3" [style]="editorStyle" [readonly]="true">
                 <ng-template pTemplate="header">
                 </ng-template>
             </p-editor>
@@ -169,7 +169,7 @@
         </ng-template>
         <ng-template pTemplate="content">
             <div class="card">
-                <p-table [value]="this.sgqServ.step5Contacts">
+                <p-table [value]="[]">
                     <ng-template pTemplate="header">
                         <tr>
                             <th>Nome</th>

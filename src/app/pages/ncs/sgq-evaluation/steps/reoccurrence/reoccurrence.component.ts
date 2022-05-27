@@ -30,8 +30,8 @@ export class ReoccurrenceComponent implements OnInit {
       header: "Você tem certeza que quer desfazer a reincidência?",
       icon: "pi pi-exclamation-triangle",
       accept: () => {
-        this.sgqServ.step1 =
-            this.sgqServ.step1.filter(
+        this.sgqServ.sgq.recurrence =
+            this.sgqServ.sgq.recurrence?.filter(
                 (val) => val.id !== nc.id
             );
         this.messageService.add({
@@ -51,13 +51,13 @@ export class ReoccurrenceComponent implements OnInit {
   openDialog() {
     const ref = this.dialogService.open(AddNcDialogComponent, {
       data: {nc: "xxx.2022",
-        selected: this.sgqServ.step1
+        selected: this.sgqServ.sgq.recurrence
       },
       showHeader: false,
       width: '60vw',
     });
     ref.onClose.subscribe((answer: any[])=>{
-      this.sgqServ.step1 = answer
+      this.sgqServ.sgq.recurrence = answer
     })
   }
 

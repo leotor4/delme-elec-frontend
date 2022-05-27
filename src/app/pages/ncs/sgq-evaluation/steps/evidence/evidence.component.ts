@@ -23,7 +23,16 @@ export class EvidenceComponent implements OnInit {
     if (target.files && target.files.length > 0) {
       let files = target.files;
       this.sgqServ.step2File = files
+
+      for (let i = 0; i < target.files.length; i++) {
+        let att = new Attachment();
+        att.name = files[i].name;
+        att.type = files[i].name.split(".")[1];
+        att.path = "sgq-files";
+        this.sgqServ.sgq.attachments.push(att);
+      }
     }
+
   }
 
 }

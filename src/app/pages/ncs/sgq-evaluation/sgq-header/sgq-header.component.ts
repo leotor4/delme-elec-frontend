@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {SgqService} from "../sgq.service";
 
 @Component({
   selector: 'app-sgq-header',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SgqHeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(public sgqServ: SgqService) { }
 
   ngOnInit(): void {
   }
 
+  salvarSGQ() {
+    this.sgqServ.post().subscribe(next=>{
+      console.log(next)
+    })
+  }
 }
