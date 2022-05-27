@@ -16,6 +16,7 @@ export class IshikawaDiagramComponent implements OnInit {
     'width':'260px',
     'border': '2px solid #333333',
     'border-radius': '5px'
+    
   }
 
   constructor(public dialogService: DialogService, public propService: ProposalService) { }

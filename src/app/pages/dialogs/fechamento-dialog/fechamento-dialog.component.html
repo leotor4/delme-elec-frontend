@@ -1,0 +1,30 @@
+<span class="question">O plano de ação foi executado e de forma satisfatória?</span>
+
+<div class="d-flex flex-row mt-4 justify-content-between">
+    <div class="d-flex radio-div ">
+        <div class="mr-4">
+            <p-radioButton name="groupname" value="sim" [(ngModel)]="radioValue"></p-radioButton>
+        </div>
+        <div class="d-flex flex-column"><span class="confirm">Sim</span>
+        <span class="information">Encerrar esta RNC.</span>
+        </div>
+        </div>
+    
+    <div class="d-flex radio-div ">
+        <div class="mr-4">
+            <p-radioButton name="groupname" value="não" [(ngModel)]="radioValue"></p-radioButton>
+        </div>
+        <div class="d-flex flex-column">
+            <span class="confirm">Não</span>
+            <span class="information">Abri nova RNC fazendo referência a essa.</span>
+        </div>
+    </div>
+</div>
+
+<div class="mt-4"><span class="question">Deseja adicionar comentários?</span></div>
+<div class="mb-2"><span class="question-information">Isto é opcional.</span></div>
+<p-editor [style]="{ height: '200px' }" [(ngModel)]="editorValue" class="p-editor"></p-editor>
+<div class="d-flex flex-row justify-content-end button-bar mt-3">
+    <button class="btn btn-outline-warning mr-4" (click)="close()">Cancelar</button>
+    <button class="btn btn-primary">Fechar NC</button>
+</div>
