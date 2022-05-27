@@ -31,21 +31,21 @@ import { CurrencyMaskModule } from "ng2-currency-mask";
 
 
 @NgModule({
-  declarations: [
-    AboutComponent,
-    HeaderComponent,
-    ViewNCComponent,
-    ViewStakeholdersComponent,
-    ViewProductsAndPointsComponent,
-    ViewIdentifyNCComponent,
-    ProposalComponent,
-    CostsComponent,
-    SGQEvaluationComponent,
-    ClosingComponent,
-    TrakingComponent,
+    declarations: [
+        AboutComponent,
+        HeaderComponent,
+        ViewNCComponent,
+        ViewStakeholdersComponent,
+        ViewProductsAndPointsComponent,
+        ViewIdentifyNCComponent,
+        ProposalComponent,
+        CostsComponent,
+        SGQEvaluationComponent,
+        ClosingComponent,
+        TrakingComponent,
 
 
-  ],
+    ],
     imports: [
         CommonModule,
         NcAboutRoutingModule,
@@ -67,5 +67,8 @@ import { CurrencyMaskModule } from "ng2-currency-mask";
 
     ],
     providers: [MessageService, ConfirmationService],
+    exports: [
+        AboutComponent
+    ]
 })
 export class NcAboutModule { }

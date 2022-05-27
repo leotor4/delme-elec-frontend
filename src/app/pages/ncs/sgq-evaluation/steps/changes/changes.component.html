@@ -1,1 +1,15 @@
-<p>changes works!</p>
+<div class="cabecalho">
+    <h1 class="mr-3">Mudanças</h1>
+    <p>
+        Descreva as mudanças no SGQ observadas nesta NC.
+    </p>
+</div>
+
+<div class="mt-4">
+    <p-editor
+            [(ngModel)]="this.sgqServ.step4Text"
+            [style]="{ height: '50vh' }"
+            [modules]="{counter: {container: '#counterCh',unit: 'character'}}"
+    ></p-editor>
+    <div id="counterCh" class="text-end">0</div>
+</div>

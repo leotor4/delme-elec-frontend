@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {NonComplianceService} from "../../../_services/non-compliance.service";
 import {NonCompliance} from "../../../models/non-compliance";
 import { HttpClient } from "@angular/common/http";
-import {Observable} from "rxjs";
+
 import {Cost} from "../../../models/Cost";
 
 @Injectable({
@@ -37,8 +37,11 @@ export class AboutService {
         return this.http.delete(this.apiUrl + "costs/" + id);
     }
 
+    viewFile(id:number){
+        return this.http.get<any>(this.apiUrl  + "costs" + "/files/view/"+ id);
+    }
     downloadFile(id:number){
-        return this.http.get<any>(this.apiUrl  + "costs" + "/files/"+ id);
+        return this.http.get<any>(this.apiUrl  + "costs" + "/files/download/"+ id);
     }
 
 }

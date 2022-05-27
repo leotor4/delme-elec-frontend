@@ -1,1 +1,52 @@
-<p>evidence works!</p>
+<div class="cabecalho">
+    <h1 class="mr-3">Relato e Evidências da Solução do Problema</h1>
+    <p>
+        Comente sobre o processo e anexe evidências da solução do problema desta NC
+    </p>
+</div>
+
+<div class="d-flex flex-column flex-lg-row justify-content-between mt-4">
+    <div class="">
+        <p-editor
+                [style]="{ height: '210px', width: '700px' }"
+                [(ngModel)]="sgqServ.step2Text"
+                [modules]="{counter: {container: '#counterEv',unit: 'character'}}"
+        ></p-editor>
+        <div id="counterEv" class="text-end">0</div>
+    </div>
+
+    <div class="div-attachment">
+        <h1>Anexar relatório de custos</h1>
+        <div
+                class="white-background"
+                *ngIf="sgqServ.step2File.length == 0"
+        >
+            <input
+                    type="file"
+                    accept=".pdf,image/jpeg,image/png,xlsx,xls"
+                    class="input-attachment"
+                    (change)="onUpload($event)"
+                    multiple
+            />
+            <i class="pi pi-cloud-upload"></i>
+            <p>
+                Arraste e solte ou <strong>navegue para escolher</strong> um arquivo
+            </p>
+        </div>
+        <div
+                class="white-background-files"
+                *ngIf="sgqServ.step2File.length != 0"
+        >
+            <button
+                    type="button"
+                    (click)="clearFiles()"
+                    class="btn btn-light"
+            >
+                <i class="pi pi-replay"></i>
+            </button>
+            <p *ngFor="let files of sgqServ.step2File">
+                {{ files.name }}
+            </p>
+        </div>
+    </div>
+</div>

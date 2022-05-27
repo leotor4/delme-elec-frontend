@@ -1,0 +1,43 @@
+<p-accordion [multiple]="true">
+    <p-accordionTab [selected]="true">
+        <ng-template pTemplate="header">
+            <div class="d-flex justify-content-between accordion">
+                <p>
+                    <i class="bi bi-check2-circle"></i>
+                    Verificação de eficácia
+                </p>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="content">
+            <div class="">
+                <div class="form-check mx-3">
+                    <input class="form-check-input" type="radio" value="" onclick="return false;" checked/>
+                    <label class="form-check-label text-black fs-4">
+                        Sim
+                    </label>
+                    <br>
+                    <label class="form-check-label">
+                        Encerrar esta RNC.
+                    </label>
+
+                </div>
+            </div>
+        </ng-template>
+    </p-accordionTab>
+    <p-accordionTab [selected]="true">
+        <ng-template pTemplate="header">
+            <div class="d-flex justify-content-between accordion">
+                <p>
+                    <i class="bi bi-chat-right-text"></i>
+                    Comentários
+                </p>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="content">
+            <p-editor [style]="{'height':'144px', width:'100%', border: '0px' }" [readonly]="true" [ngModel]="">
+                <ng-template pTemplate="header">
+                </ng-template>
+            </p-editor>
+        </ng-template>
+    </p-accordionTab>
+</p-accordion>
