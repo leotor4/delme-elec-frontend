@@ -9,7 +9,7 @@ import { NonComplianceService } from "../../../../../../_services/non-compliance
   styleUrls: ["./identify-nc.component.css"],
 })
 export class IdentifyNCComponent implements OnInit {
-  
+
 
   constructor(
     public nonComplicanceService: NonComplianceService,

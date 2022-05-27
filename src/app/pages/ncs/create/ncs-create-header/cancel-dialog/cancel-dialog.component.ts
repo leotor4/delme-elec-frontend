@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { NonComplianceService } from 'src/app/_services/non-compliance.service';
+import {NonCompliance} from "../../../../../models/non-compliance";
 
 @Component({
   selector: 'app-cancel-dialog',
@@ -22,6 +23,7 @@ export class CancelDialogComponent implements OnInit {
       next: data => {
         this.route.navigate(['/ncs'])
         this.ref.close();
+        this.ncService.nc= new NonCompliance()
         this.messageService.add({
           key: "myKey1",
           severity: "success",

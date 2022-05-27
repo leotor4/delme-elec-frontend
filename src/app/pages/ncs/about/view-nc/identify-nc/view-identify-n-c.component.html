@@ -1,3 +1,4 @@
+<p-toast key="about-key"></p-toast>
 <div class="div-ident-parceiro d-flex mt-3 flex-column flex-lg-row">
   <div class="div-ident-parceiro">
     <h2>
@@ -45,7 +46,7 @@
         <div>
           <span class="info-titulo">Emissor</span>
           <br/>
-          <span class="info-dados">Elias</span>
+          <span class="info-dados">{{aboutSrvc.nc?.issuer?.username||"não preenchido"}}</span>
         </div>
       </div>
       <div class="contato-info d-flex flex-row">
@@ -147,8 +148,8 @@
     </h2>
     <p-carousel [value]="this.aboutSrvc.nc?.attachments?.filter(isType1) || []" [numVisible]="3" [numScroll]="3" [showIndicators]="false">
       <ng-template let-file pTemplate="item" >
-        <i class="bi bi-file-earmark fs-1"></i>
-        <p>{{file.name||"file.txt"}}</p>
+        <button (click)="visualizarDocumento(file.id,file.type)"><i class="bi bi-file-earmark fs-1"></i>
+          <p>{{file.name||"file.txt"}}</p></button>
       </ng-template>
     </p-carousel>
   </div>
@@ -172,8 +173,10 @@
     </h2>
     <p-carousel [value]="this.aboutSrvc.nc?.attachments?.filter(isType2) || []" [numVisible]="3" [numScroll]="3" [showIndicators]="false">
       <ng-template let-file pTemplate="item">
+        <button (click)="visualizarDocumento(file.id,file.type)">
         <i class="bi bi-file-earmark fs-1"></i>
         <p>{{file.name||"file.txt"}}</p>
+        </button>
       </ng-template>
     </p-carousel>
   </div>

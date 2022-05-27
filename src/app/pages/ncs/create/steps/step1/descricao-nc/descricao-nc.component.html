@@ -28,7 +28,9 @@
       [style]="{ height: '210px' }"
       [(ngModel)]="this.nonComplicanceService.nc.text_area_nc"
       class="p-editor"
+      [modules]="{counter: {container: '#counterDescNC',unit: 'character'}}"
     ></p-editor>
+    <div id="counterDescNC" class="text-end">0</div>
   </div>
   <div class="col-3 col-attachment">
     <label>Anexe evidências objetivas ou fotográficas</label>
@@ -85,7 +87,9 @@
     <p-editor
       [style]="{ height: '210px' }"
       [(ngModel)]="this.nonComplicanceService.nc.text_area_acoes"
+      [modules]="{counter: {container: '#counterACI',unit: 'character'}}"
     ></p-editor>
+    <div id="counterACI" class="text-end">0</div>
   </div>
   <div class="col-3 col-attachment">
     <label for="desc-area">Anexe evidências objetivas ou fotográficas</label>

@@ -127,7 +127,6 @@ export class NonComplianceService {
   }
 
   archived(id: number): Observable<any> {
-    alert(this.apiUrl + "/arquivar/" + id);
     return this.http.put<any>(this.apiUrl + "/arquivar/" + id, {});
   }
 
@@ -138,6 +137,10 @@ export class NonComplianceService {
   hasProduct(): boolean {
     if (this.nc.product != null) return true;
     return false;
+  }
+
+  downloadFile(id:number){
+    return this.http.get<any>(this.apiUrl + "/files/"+ id);
   }
 
   constructor(private http: HttpClient) {}

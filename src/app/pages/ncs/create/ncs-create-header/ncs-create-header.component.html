@@ -2,7 +2,7 @@
 <div class="header-create-nc">
   <div class="p-0">
     <div class="d-flex">
-      <button routerLink="/ncs" type="button" class="btn btn-dark">
+      <button type="button" class="btn btn-dark" (click)="salvarNc()" routerLink="/ncs">
         <i class="pi pi-home"></i>
         Início
       </button>
@@ -17,7 +17,7 @@
         Cancelar
         <i class="pi pi-times"></i>
       </button>
-      <button type="button" class="btn btn-dark mr-2" (click)="salvarNc()">
+      <button type="button" class="btn btn-dark mr-2" (click)="salvarNc()" routerLink="/ncs">
         Salvar
         <i class="pi pi-save"></i>
       </button>
