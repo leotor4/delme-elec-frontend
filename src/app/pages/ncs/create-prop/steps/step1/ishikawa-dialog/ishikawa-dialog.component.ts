@@ -9,10 +9,80 @@ import {ProposalService} from "../../../proposal.service";
 })
 export class IshikawaDialogComponent implements OnInit {
   stepPosition: number = 1;
+
+  machines:any[]
+  equipaments:any[]
+  instructions:any[]
+  procedures:any[]
+  nbrs:any[]
+  regulatoryNorms:any[]
   constructor(public ref: DynamicDialogRef,
               public config: DynamicDialogConfig,
-              public propService: ProposalService
+              public propService: ProposalService,
   ) { }
+
+  search(event:any,type:string){
+    var filtro = event.query;
+    
+    switch(type){
+      case 'machine':
+        this.machines = [];
+         this.propService.machines.forEach(element =>{
+      if(element.name.toLowerCase().includes(filtro.toLowerCase())){
+        this.machines.push(element)
+      }
+     
+    })
+     break;
+    case 'equipament':
+      this.equipaments = [];
+         this.propService.equipaments.forEach(element =>{
+      if(element.name.toLowerCase().includes(filtro.toLowerCase())){
+        this.equipaments.push(element)
+      }
+    })
+      break;
+      case 'instruction':
+      this.instructions = [];
+         this.propService.instructions.forEach(element =>{
+      if(element.description.toLowerCase().includes(filtro.toLowerCase())){
+        this.instructions.push(element)
+      }
+    })
+      break;
+
+      case 'procedure':
+      this.procedures = [];
+         this.propService.procedures.forEach(element =>{
+      if(element.description.toLowerCase().includes(filtro.toLowerCase())){
+        this.procedures.push(element)
+      }
+    })
+      break;
+
+      case 'nbr':
+      this.nbrs= [];
+         this.propService.nbrs.forEach(element =>{
+      if(element.description.toLowerCase().includes(filtro.toLowerCase())){
+        this.nbrs.push(element)
+      }
+    })
+      break;
+
+      case 'regulatory':
+      this.regulatoryNorms = [];
+         this.propService.regulatorys.forEach(element =>{
+      if(element.description.toLowerCase().includes(filtro.toLowerCase())){
+        this.regulatoryNorms.push(element)
+      }
+    })
+      break;
+    }
+    
+   
+  }
+
+ 
 
   ngOnInit(): void {
     this.stepPosition = this.config.data.page
@@ -39,7 +109,7 @@ export class IshikawaDialogComponent implements OnInit {
   }
 
   close() {
-    console.log(this.propService.step1)
+    
     this.ref.close();
   }
 }

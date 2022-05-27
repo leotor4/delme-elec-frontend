@@ -17,7 +17,7 @@
         <div class="d-flex">
             <div class="col">
                 <label>Matéria Prima</label>
-                <p-editor [ngModel]="'<p>'+this.propService.step1.checkbox1 + '</p><p>' + this.propService.step1.checkbox2 + '</p><p>' + this.propService.step1.checkbox3+ '</p>' + this.propService.step1.editor1" [style]="editorStyle" [readonly]="true" (click)="openDialog(1)">
+                <p-editor [ngModel]="'<p>'+this.propService.propSolution.lackMaterials + '</p><p>' + this.propService.propSolution.excessMaterials + '</p><p>' + this.propService.propSolution.lowQualityMaterials + '</p>' + '</p>' + this.propService.propSolution.materialDescription" [style]="editorStyle" [readonly]="true" (click)="openDialog(1)">
                     <ng-template pTemplate="header">
                     </ng-template>
                 </p-editor>
@@ -25,14 +25,14 @@
             </div>
             <div class="col">
                 <label>Medição</label>
-                <p-editor [ngModel]="'<p>'+this.propService.step1.checkbox4 + '</p><p>' + this.propService.step1.checkbox5 + '</p><p>' + this.propService.step1.checkbox6+ '</p>' + this.propService.step1.editor2" [style]="editorStyle" [readonly]="true" (click)="openDialog(2)">
+                <p-editor [ngModel]="'<p>'+this.propService.propSolution.lackParameters + '</p><p>' + this.propService.propSolution.excessParameters + '</p><p>' + this.propService.propSolution.nonAchievementGoals + '</p>' +  '</p>' + this.propService.propSolution.measurementDescription" [style]="editorStyle" [readonly]="true" (click)="openDialog(2)">
                     <ng-template pTemplate="header">
                     </ng-template>
                 </p-editor>
             </div>
             <div class="col">
                 <label>Método</label>
-                <p-editor [ngModel]="this.propService.step1.editor3" [style]="editorStyle" [readonly]="true" (click)="openDialog(3)">
+                <p-editor [ngModel]="this.propService.propSolution.methodDescription" [style]="editorStyle" [readonly]="true" (click)="openDialog(3)">
                     <ng-template pTemplate="header">
                     </ng-template>
                 </p-editor>
@@ -42,21 +42,21 @@
         <div class="d-flex">
             <div class="col">
                 <label>Mão de Obra</label>
-                <p-editor [ngModel]="'<p>'+this.propService.step1.checkbox7 + '</p>' + this.propService.step1.editor4" [style]="editorStyle" [readonly]="true" (click)="openDialog(4)">
+                <p-editor [ngModel]="'<p>'+this.propService.propSolution.runTraining + '</p>' + this.propService.propSolution.manPowerDescription" [style]="editorStyle" [readonly]="true" (click)="openDialog(4)">
                     <ng-template pTemplate="header">
                     </ng-template>
                 </p-editor>
             </div>
             <div class="col">
                 <label>Meio Ambiente</label>
-                <p-editor [ngModel]="this.propService.step1.editor5" [style]="editorStyle" [readonly]="true" (click)="openDialog(5)">
+                <p-editor [ngModel]="this.propService.propSolution.environmentDescription" [style]="editorStyle" [readonly]="true" (click)="openDialog(5)">
                     <ng-template pTemplate="header">
                     </ng-template>
                 </p-editor>
             </div>
             <div class="col">
                 <label>Máquina</label>
-                <p-editor [ngModel]="this.propService.step1.editor6" [style]="editorStyle" [readonly]="true" (click)="openDialog(6)">
+                <p-editor [ngModel]="this.propService.propSolution.machineDescription" [style]="editorStyle" [readonly]="true" (click)="openDialog(6)">
                     <ng-template pTemplate="header">
                     </ng-template>
                 </p-editor>
@@ -66,7 +66,7 @@
     </div>
     <div class="d-block mt-5">
         <label>Efeito</label>
-        <p-editor [ngModel]="this.propService.step1.editor7"
+        <p-editor [ngModel]="this.propService.propSolution.effectDescription"
                   [style]="{'height':'300px','width':'230px','border': '2px solid #333333','border-radius': '5px'}"
                   [readonly]="true"
 

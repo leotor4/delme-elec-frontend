@@ -3,6 +3,10 @@ import {ConfirmationService, MessageService} from "primeng/api";
 import {DialogService} from "primeng/dynamicdialog";
 import {ActionPlanDialogComponent} from "./action-plan-dialog/action-plan-dialog.component";
 import {ProposalService} from "../../proposal.service";
+import { User } from 'src/app/models/user.model';
+import { ActionPlan } from 'src/app/models/action-plan';
+import { ActionPlanService } from 'src/app/_services/action-plan.service';
+import { Action } from 'rxjs/internal/scheduler/Action';
 
 @Component({
   selector: 'app-action-plan',
@@ -12,57 +16,46 @@ import {ProposalService} from "../../proposal.service";
 })
 export class ActionPlanComponent implements OnInit {
 
-  responsible: string[] = [
-    "Elvira Jehu",
-    "Aigneis Camden",
-    "Mildrid Infield",
-    "Atlanta Hanleigh",
-    "Elie Dalli",
-    "Tilly Honoria",
-    "Arabel Smitt",
-    "Carolina Tound",
-    "Brana Yerkovich",
-    "Nerta Pitt"
-  ];
-  id = 0;
+ 
+  
   date: string;
-  selectedResp: string;
+  selectedResp: User;
   statuses: string[] = ["Pendente", "Em andamento", "Finalizada"];
   selectedStatus: string;
   name: string;
 
-  constructor(private confirmationService: ConfirmationService, private messageService: MessageService, public dialogService: DialogService, public propService: ProposalService) { }
+  constructor(private actionService:ActionPlanService,private confirmationService: ConfirmationService, private messageService: MessageService, public dialogService: DialogService, public propService: ProposalService) { }
 
   ngOnInit(): void {
+    
   }
 
   addAction() {
-    let action = {
-      id: this.id,
-      name: this.name,
-      responsible: this.selectedResp,
-      deadline: this.date,
-      status: this.selectedStatus
-    }
-    this.propService.actions.push(action)
+    let actionPlan = new ActionPlan()
+    actionPlan.description = this.name
+    actionPlan.responsible = this.selectedResp
+    actionPlan.status = this.selectedStatus
+    actionPlan.term = this.date
+    this.propService.propSolution.actionPlan.push(actionPlan)
+
     this.name = ""
-    this.selectedResp = ""
-    this.date = ""
     this.selectedStatus = ""
-    this.id++
+    this.date = ""
   }
-  deleteAction(action:any){
+
+
+  deleteAction(action:ActionPlan){
     this.confirmationService.confirm({
       message:
           "Você tem certeza que quer excluir a ação " +
-          action.name+
+          action.description+
           " da lista?",
       header: "Excluir Ação",
       icon: "pi pi-exclamation-triangle",
       accept: () => {
-        this.propService.actions =
-            this.propService.actions.filter(
-                (val) => val.id !== action.id
+        this.propService.propSolution.actionPlan =
+            this.propService.propSolution.actionPlan.filter(
+                (val) => val.description !== action.description 
             );
         this.messageService.add({
           severity: "info",
@@ -81,10 +74,10 @@ export class ActionPlanComponent implements OnInit {
       height: '50%'
     });
 
-    ref.onClose.subscribe((action: any) => {
+    ref.onClose.subscribe((action: ActionPlan) => {
       if (action) {
-        let index = this.propService.actions.findIndex((item) => {
-          return item.id == action.id;
+        let index = this.propService.propSolution.actionPlan.findIndex((item) => {
+          return item.description == action.description;
         });
         this.propService.actions[index] = action;
       }

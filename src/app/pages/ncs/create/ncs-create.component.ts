@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { MenuItem } from "primeng/api";
+import { NonCompliance } from "src/app/models/non-compliance";
+import { NonComplianceService } from "src/app/_services/non-compliance.service";
 
 @Component({
   selector: "app-ncs-create",
@@ -9,7 +11,11 @@ import { MenuItem } from "primeng/api";
 })
 export class NcsCreateComponent implements OnInit {
   items: MenuItem[];
-  constructor(private router: Router) {}
+  constructor(private router: Router,public ncService:NonComplianceService) {}
+  
+  ngOnDestroy(): void {
+    this.ncService.nc = new NonCompliance()
+  }
 
   ngOnInit() {
     this.items = [

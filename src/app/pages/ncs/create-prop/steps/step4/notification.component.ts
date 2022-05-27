@@ -48,7 +48,7 @@ export class NotificationComponent implements OnInit, OnDestroy {
     });
     ref.onClose.subscribe((contact: Contact) => {
       if (contact) {
-        this.propService.contacts.push(contact);
+        this.propService.propSolution.contacts.push(contact);
         this.allContacts.push(contact);
       }
     });
@@ -65,10 +65,10 @@ export class NotificationComponent implements OnInit, OnDestroy {
     });
     ref.onClose.subscribe((contact: Contact) => {
       if (contact) {
-        let index = this.propService.contacts.findIndex((item) => {
+        let index = this.propService.propSolution.contacts.findIndex((item) => {
           return item.id == contact.id;
         });
-        this.propService.contacts[index] = contact;
+        this.propService.propSolution.contacts[index] = contact;
         index = this.allContacts.findIndex((item) => {
           return item.id == contact.id;
         });
@@ -86,8 +86,8 @@ export class NotificationComponent implements OnInit, OnDestroy {
       header: "Excluir Contato",
       icon: "pi pi-exclamation-triangle",
       accept: () => {
-        this.propService.contacts =
-          this.propService.contacts.filter(
+        this.propService.propSolution.contacts =
+          this.propService.propSolution.contacts.filter(
             (val) => val.id !== contact.id
           );
         this.messageService.add({
@@ -113,7 +113,7 @@ export class NotificationComponent implements OnInit, OnDestroy {
     let query = event.query;
     let contacts = this.allContacts.filter(
       (val) =>
-        this.propService.contacts.indexOf(val) < 0 &&
+        this.propService.propSolution.contacts.indexOf(val) < 0 &&
         this.selectedContacts.indexOf(val) < 0
     );
     contacts.forEach((contact) => {
@@ -140,15 +140,15 @@ export class NotificationComponent implements OnInit, OnDestroy {
 
   saveSelection() {
     this.addContactsDialog = false;
-    this.propService.contacts =
-      this.propService.contacts.concat(this.selectedContacts);
+    this.propService.propSolution.contacts =
+      this.propService.propSolution.contacts.concat(this.selectedContacts);
     this.selectedContacts = [];
   }
 
   getContacts() {
     this.contactsSrvc.get().subscribe((data: any) => {
       this.allContacts = data.contact;
-      this.propService.contacts =
+      this.propService.propSolution.contacts =
         this.allContacts.filter((val) => val.id! <= 4);
     });
   }

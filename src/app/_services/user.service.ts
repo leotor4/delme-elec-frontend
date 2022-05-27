@@ -26,7 +26,7 @@ export class UserService {
   }
 
   getAll(): Observable<any> {
-    return this.http.get('http://localhost:49716/users/list/');
+    return this.http.get('http://localhost:3333/users/list/');
 
   }
 }

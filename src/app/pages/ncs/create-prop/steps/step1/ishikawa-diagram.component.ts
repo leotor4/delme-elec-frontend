@@ -22,6 +22,11 @@ export class IshikawaDiagramComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    console.log("testando:" + this.propService.propSolution.lackMaterials)  
+  }
 
 
   openDialog(page:number) {
@@ -34,6 +39,7 @@ export class IshikawaDiagramComponent implements OnInit {
     ref.onClose.subscribe((answer: any[])=>{
       if(answer){
         this.text1= answer
+
       }
     })
   }

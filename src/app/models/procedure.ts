@@ -1,5 +1,5 @@
 export class Procedure {
-  id: string;
+  id: number;
   code: string;
   description: string;
   rev: string;

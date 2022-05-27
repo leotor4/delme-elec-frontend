@@ -25,6 +25,7 @@ import { MessageService } from 'primeng/api';
     BoardUserComponent,
     VisualizarDocumentoDialogComponent
 
+
     
   ],
   imports: [

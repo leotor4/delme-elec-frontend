@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {MenuItem} from "primeng/api";
+import { ActivatedRoute } from '@angular/router';
+import {MenuItem, MessageService} from "primeng/api";
+import { NonCompliance } from 'src/app/models/non-compliance';
+import { ProposalSolution } from 'src/app/models/proposal-solution';
 import {NonComplianceService} from "../../../../_services/non-compliance.service";
+import { ProposalService } from '../proposal.service';
 
 @Component({
   selector: 'app-create-prop-stepper',
@@ -9,17 +13,15 @@ import {NonComplianceService} from "../../../../_services/non-compliance.service
 })
 export class CreatePropStepperComponent implements OnInit {
   items: MenuItem[];
-  stepPosition: number = 0;
+  stepPosition: number = 3;
   lastStepLabel = "Avançar";
-  constructor(public nonComplianceService: NonComplianceService) {}
+  constructor(private route: ActivatedRoute,private ncService:NonComplianceService,private messageService: MessageService,public propService:ProposalService) {}
 
   disableButton(): boolean {
     switch (this.stepPosition) {
       case 0:
         return false;
-        // return this.nonComplianceService.avancarPasso1();
       case 1:
-        //return this.nonComplianceService.avancarPasso2();
         return false;
       case 2:
         return false;
@@ -54,7 +56,30 @@ export class CreatePropStepperComponent implements OnInit {
   }
   nextStep() {
     if (this.stepPosition >= this.items.length - 1) return;
-    this.stepPosition++;
+     let id = parseInt(this.route.snapshot.paramMap.get('id')||"")
+
+    
+    this.propService.popular()
+    this.propService.put().subscribe({
+       next:(data:any )=> {
+        this.messageService.add({
+          key: "create-prop-key",
+          severity: "success",
+          summary: "Passo " + this.stepPosition + " salvo com sucesso.",
+          life: 3000,
+        });
+        this.stepPosition++;
+      },
+      error:err =>{
+        this.messageService.add({
+          key: "create-prop-key",
+          severity: "error",
+          summary: "Houve um erro ao salvar passo " + this.stepPosition + "." ,
+          life: 3000,
+        });
+      }
+    })
+    
   }
   backStep() {
     if (this.stepPosition <= 0) return;

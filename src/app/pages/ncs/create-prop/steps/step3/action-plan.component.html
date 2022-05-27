@@ -21,7 +21,8 @@
         <div class="d-flex flex-column mr-lg-3 inputs-sm my-auto">
             <label>Responsável</label>
             <p-dropdown  class="p-input input"
-                         [options]="responsible"
+                         [options]="propService.users"
+                         optionLabel="username"
                          [(ngModel)]="selectedResp"
                          placeholder="Selecione ou busque..."
             ></p-dropdown>
@@ -56,7 +57,7 @@
     </div>
 </div>
 <div class="card">
-    <p-table [value]="propService.actions">
+    <p-table [value]="propService.propSolution.actionPlan">
         <ng-template pTemplate="header">
             <tr>
                 <th>Descrição</th>
@@ -68,9 +69,9 @@
         </ng-template>
         <ng-template pTemplate="body" let-action>
             <tr>
-                <td>{{ action.name }}</td>
-                <td>{{ action.responsible }}</td>
-                <td>{{ action.deadline.split("-")?.reverse()?.join("/") }}</td>
+                <td>{{ action.description }}</td>
+                <td>{{ action.responsible.username }}</td>
+                <td>{{ action.term.split("-")?.reverse()?.join("/") }}</td>
                 <td>{{ action.status }}</td>
                 <td>
                     <button
