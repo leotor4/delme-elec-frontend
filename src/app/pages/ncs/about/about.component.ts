@@ -11,7 +11,7 @@ import {AboutService} from "./about.service";
 export class AboutComponent implements OnInit {
 
   constructor(private ncsService : NonComplianceService, private route: ActivatedRoute, private aboutSrvc: AboutService) { }
-
+ 
   ngOnInit(): void {
     let id = parseInt(this.route.snapshot.paramMap.get('id')||"")
     this.aboutSrvc.getNC(id)

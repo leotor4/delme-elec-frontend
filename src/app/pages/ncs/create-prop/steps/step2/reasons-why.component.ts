@@ -11,6 +11,8 @@ export class ReasonsWhyComponent implements OnInit {
   showAllTextAreas: boolean = false;
   constructor(public propService: ProposalService) { }
 
+  
+
   ngOnInit(): void {
   }
   isFirstStep() {

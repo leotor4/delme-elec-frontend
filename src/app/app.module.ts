@@ -24,6 +24,7 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
     BoardUserComponent,
     VisualizarDocumentoDialogComponent,
 
+
     
   ],
   imports: [

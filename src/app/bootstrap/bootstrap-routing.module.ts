@@ -36,7 +36,7 @@ const routes: Routes = [
                 (m) => m.NcAboutModule
             ),
       },{
-        path: "createProp",
+        path: "createProp/:id",
         loadChildren: () =>
             import("../pages/ncs/create-prop/create-prop.module").then(
                 (m) => m.CreatePropModule

@@ -116,6 +116,14 @@ export class ImportJsonComponent implements OnInit {
       case "produtos":
         fs.saveAs("./assets/files/exemplo_produto.xls", "exemplo_produto.xlsx");
         break;
+
+      case "instrucao":
+        fs.saveAs("./assets/files/exemplo_produto.xls", "exemplo_produto.xlsx");
+        break;
+
+        case "procedure":
+        fs.saveAs("./assets/files/exemplo_produto.xls", "exemplo_produto.xlsx");
+        break;
     }
   }
 }

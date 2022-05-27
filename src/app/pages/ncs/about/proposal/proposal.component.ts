@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { AboutService } from '../about.service';
 
 @Component({
   selector: 'app-proposal',
@@ -7,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProposalComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private route: ActivatedRoute) { }
+  id:number
+  
   ngOnInit(): void {
+   this.id = parseInt(this.route.snapshot.paramMap.get('id')||"")
   }
 
 }

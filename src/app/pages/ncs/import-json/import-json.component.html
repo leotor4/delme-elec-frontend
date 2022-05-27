@@ -93,3 +93,22 @@
     ></p-button>
   </ng-template>
 </p-fileUpload>
+
+<h1>Importar Instruções</h1>
+<p-fileUpload (uploadHandler)="onUpload($event, 'instructions')" [customUpload]="true" accept=".xlsx, .xls"
+  chooseLabel="Escolher Arquivo" uploadLabel="Importar Arquivo Selecionado" [showCancelButton]="false"
+  invalidFileTypeMessageDetail="Formato de arquivo inválido, selecione apenas arquivos do tipo {0}">
+  <ng-template pTemplate="toolbar">
+    <p-button label="Baixar Arquivo de Exemplo" styleClass="p-button-link" (onClick)="downloadFile('instrucao')"></p-button>
+  </ng-template>
+</p-fileUpload>
+
+<h1>Importar Procedimentos</h1>
+<p-fileUpload (uploadHandler)="onUpload($event, 'procedures')" [customUpload]="true" accept=".xlsx, .xls"
+  chooseLabel="Escolher Arquivo" uploadLabel="Importar Arquivo Selecionado" [showCancelButton]="false"
+  invalidFileTypeMessageDetail="Formato de arquivo inválido, selecione apenas arquivos do tipo {0}">
+  <ng-template pTemplate="toolbar">
+    <p-button label="Baixar Arquivo de Exemplo" styleClass="p-button-link" (onClick)="downloadFile('procedure')">
+    </p-button>
+  </ng-template>
+</p-fileUpload>

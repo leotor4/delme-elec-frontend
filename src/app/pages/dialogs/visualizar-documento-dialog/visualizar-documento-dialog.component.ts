@@ -20,6 +20,7 @@ export class VisualizarDocumentoDialogComponent implements OnInit {
   ngOnInit(): void {
     this.data = this.config.data.base64;
     this.type = this.config.data.type;
+    
     if(this.isPdf()){
       this.src = "data:application/pdf;base64," + this.data;
     }else{
