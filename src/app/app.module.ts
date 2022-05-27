@@ -16,10 +16,10 @@ import { PdfViewerModule } from "ng2-pdf-viewer";
 import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
-import { FechamentoDialogComponent } from './pages/dialogs/fechamento-dialog/fechamento-dialog.component';
-import {RadioButtonModule} from 'primeng/radiobutton';
-import {DialogModule} from 'primeng/dialog'
-import {EditorModule} from 'primeng/editor';
+import {FechamentoDialogComponent} from "./pages/dialogs/fechamento-dialog/fechamento-dialog.component";
+import {RadioButtonModule} from "primeng/radiobutton";
+import {EditorModule} from "primeng/editor";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,9 +28,6 @@ import {EditorModule} from 'primeng/editor';
     BoardUserComponent,
     VisualizarDocumentoDialogComponent,
     FechamentoDialogComponent
-
-
-    
   ],
   imports: [
     BrowserModule,
@@ -40,8 +37,9 @@ import {EditorModule} from 'primeng/editor';
     HttpClientModule,
     NgxExtendedPdfViewerModule,
     PdfViewerModule,
-    DialogModule,RadioButtonModule,EditorModule,
-    ToastModule
+    ToastModule,
+    RadioButtonModule,
+    EditorModule
   ],
   providers: [
     authInterceptorProviders,
