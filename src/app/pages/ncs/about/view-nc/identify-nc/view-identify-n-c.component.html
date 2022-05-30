@@ -20,7 +20,8 @@
           <span class="info-titulo">Data de Abertura</span>
           <br />
           <span class="info-dados">
-            {{parseDate(aboutSrvc.nc?.data_abertura||"")||"00/00/0000"}}
+            {{formato_brasileiro(aboutSrvc.nc?.data_abertura)}}
+
           </span>
         </div>
       </div>
@@ -29,7 +30,10 @@
         <div>
           <span class="info-titulo">Data de Fechamento</span>
           <br/>
-          <span class="info-dados">{{parseDate(aboutSrvc.nc?.data_fechamento||"")||"00/00/0000"}}</span>
+          <span class="info-dados">
+            {{formato_brasileiro(aboutSrvc.nc?.data_fechamento)}}
+
+          </span>
         </div>
       </div>
     </div>

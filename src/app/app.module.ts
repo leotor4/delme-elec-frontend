@@ -19,6 +19,7 @@ import { MessageService } from 'primeng/api';
 import {FechamentoDialogComponent} from "./pages/dialogs/fechamento-dialog/fechamento-dialog.component";
 import {RadioButtonModule} from "primeng/radiobutton";
 import {EditorModule} from "primeng/editor";
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import {EditorModule} from "primeng/editor";
     PdfViewerModule,
     ToastModule,
     RadioButtonModule,
-    EditorModule
+    EditorModule,
+    ReactiveFormsModule
   ],
   providers: [
     authInterceptorProviders,

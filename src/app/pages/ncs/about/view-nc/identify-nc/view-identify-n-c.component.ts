@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { VisualizarDocumentoDialogComponent } from 'src/app/pages/dialogs/visualizar-documento-dialog/visualizar-documento-dialog.component';
+import { DateUtils } from 'src/app/utils/date-utils';
 import { NonComplianceService } from 'src/app/_services/non-compliance.service';
 import {AboutService} from "../../about.service";
 
@@ -17,16 +18,16 @@ export class ViewIdentifyNCComponent implements OnInit {
   images1= ["imagem1", "imagem2", "imagem3", "imagem4", "imagem5", "imagem1", "imagem2", "imagem3", "imagem4", "imagem5"];
   images2 = ["imagem1", "imagem2", "imagem3", "imagem4", "imagem5", "imagem1", "imagem2", "imagem3", "imagem4", "imagem5"];
   ncID = "001/2022";
-  dataAbertura = Date.parse(<string>this.aboutSrvc.nc?.data_fechamento);
+  dataAbertura = this.aboutSrvc.nc?.data_fechamento;
   constructor(public dialogService: DialogService,public messageService:MessageService,public aboutSrvc: AboutService,public ncService:NonComplianceService) { }
 
   ngOnInit(): void {
     
   }
 
-  parseDate(date:string){
-    let d = new Date(Date.parse(date))
-    return d.toLocaleDateString();
+  formato_brasileiro(data:Date | undefined | null): string {
+    const dataFormatada = data ? DateUtils.formato_brasileiro(data) : '00/00/0000';
+    return dataFormatada
   }
   isType1(element:any) {
     return element.path=="evidenciasNc";

@@ -1,3 +1,4 @@
+import { IdentificacaoNCDTO } from './../pages/ncs/create/steps/step1/identificacao-da-nc/identificacao-nc-dto';
 
 import { Attachment } from "./attachment";
 import { Contact } from "./contact.model";
@@ -9,6 +10,8 @@ import { Provider } from "./provider";
 import { Sector } from "./sector";
 import { User } from "./user.model";
 import {Cost} from "./Cost";
+import momentImported from 'moment'; 
+const moment = momentImported;
 
 export class NonCompliance {
   id?: number;
@@ -25,8 +28,8 @@ export class NonCompliance {
   tipos_nc_item?: string = "";
   tipos_auditoria_item?: string = "";
   tipos_local_item?: string = "";
-  data_abertura?: string = "";
-  data_fechamento?: string = "";
+  data_abertura?: Date;
+  data_fechamento?: Date;
   tipos_parceiro_item?: string = "";
   text_area_nc?: string = "";
   text_area_acoes?: string = "";
@@ -44,4 +47,23 @@ export class NonCompliance {
   status? : string;
   system_status?:string
   issuer?:User
+
+  constructor(init?: Partial<NonCompliance>) {
+    if (init) {
+      Object.assign(this, init);
+    }
+  }
+
+  public adicionar_campos(novos_campos:Partial<IdentificacaoNCDTO>) {
+    if (novos_campos) {
+      Object.assign(this, novos_campos);
+      
+      if (novos_campos.hasOwnProperty('data_abertura')) {
+        this.data_abertura = moment(novos_campos.data_abertura).toDate();
+      }
+      if (novos_campos.hasOwnProperty('data_fechamento')) {
+        this.data_fechamento = moment(novos_campos.data_fechamento).toDate();
+      }
+    }
+  }
 }

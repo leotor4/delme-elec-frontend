@@ -11,7 +11,10 @@ import { ProviderService } from "src/app/_services/provider.service";
 import { SectorService } from "src/app/_services/sector.service";
 import { UpdateDateService } from "src/app/_services/update-date.service";
 import { CancelDialogComponent } from "./cancel-dialog/cancel-dialog.component";
- import {NonCompliance} from "../../../../models/non-compliance";
+import { Router } from "@angular/router";
+
+import momentImported from 'moment'; 
+const moment = momentImported;
 
 @Component({
   selector: "app-ncs-create-header",
@@ -30,6 +33,7 @@ export class NcsCreateHeaderComponent implements OnInit {
     public procedureService: ProcedureService,
     private messageService: MessageService,
     public instructionService: InstructionsService,public dialogService: DialogService,
+    private router:Router
   ) {}
 
   ngOnInit(): void {
@@ -45,21 +49,19 @@ export class NcsCreateHeaderComponent implements OnInit {
       this.nonComplianceService.sectors = data.sectors;
     });
 
-    this.providerService.get().subscribe((data: any) => {
-      this.nonComplianceService.providers = data.providers;
-    });
-
     this.placeService.get().subscribe((data: any) => {
       this.nonComplianceService.places = data.places;
     });
 
+    this.providerService.get().subscribe((data: any) => {
+      this.nonComplianceService.providers = data.providers;
+    });
+
     this.procedureService.get().subscribe((data: any) => {
-      console.log(data.procedures);
       this.nonComplianceService.procedures = data.procedures;
     });
 
     this.instructionService.get().subscribe((data: any) => {
-      console.log(data.instructions);
       this.nonComplianceService.instructions = data.instructions;
     });
 
@@ -70,7 +72,7 @@ export class NcsCreateHeaderComponent implements OnInit {
     if(this.nonComplianceService.nc.status == "open") this.popularData();
   }
 
-  salvarNc() {
+  salvarNc(btnType:string) {
     this.nonComplianceService.put().subscribe({
       next: data => {
         this.messageService.add({
@@ -79,7 +81,12 @@ export class NcsCreateHeaderComponent implements OnInit {
           summary: "Não conformidade salva com sucesso.",
           life: 3000,
         });
-        this.nonComplianceService.nc = new NonCompliance()
+
+        if (btnType == 'home') {
+          this.router.navigate(["/ncs/"])
+          this.nonComplianceService.msgHome = 'As informações da NC que você criou foram salvas com sucesso'
+          this.nonComplianceService.typeMsgHome = 'success'
+        }
       },
       error: err => {
         this.messageService.add({
@@ -89,19 +96,18 @@ export class NcsCreateHeaderComponent implements OnInit {
           life: 3000,
         });
         
+        if (btnType == 'home') {
+          this.router.navigate(["/ncs/"])
+          this.nonComplianceService.msgHome = 'Houve um problema ao salvar as informações da NC que você acabou de criar'
+          this.nonComplianceService.typeMsgHome = 'error'
+        }
       }
     });
   }
 
   popularData() {
-    let now = new Date();
-    let late = new Date();
-    late.setDate(now.getDate() + 30);
-    this.nonComplianceService.nc.data_abertura = now.toISOString().slice(0, 10);
-
-    this.nonComplianceService.nc.data_fechamento = late
-      .toISOString()
-      .slice(0, 10);
+    this.nonComplianceService.nc.data_abertura = moment(new Date(), 'yyyy-MM-DD').toDate(); 
+    this.nonComplianceService.nc.data_fechamento = moment(new Date(), 'yyyy-MM-DD').add(30).toDate()
   }
 
   openCancelDialog(){

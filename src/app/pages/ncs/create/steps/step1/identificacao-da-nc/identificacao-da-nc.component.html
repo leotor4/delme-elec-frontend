@@ -1,81 +1,84 @@
-<div class="cabecalho">
-  <h1>Identificação da Não Conformidade</h1>
-  <p>Preencha os campos abaixo com as informações da NC</p>
-</div>
-
-<div class="row">
-  <div class="col">
-    <div class="dropdown">
-      <label for="">Tipo de NC</label>
-      <select [(ngModel)]="nonComplicanceService.nc.tipos_nc_item">
-        <option value="" disabled selected hidden>Selecione...</option>
-        <option *ngFor="let tiposNc of tiposNc">{{ tiposNc }}</option>
-      </select>
+<form [formGroup]="nonComplicanceService.formIdentificacaoNC">
+  <div class="cabecalho">
+    <h1>Identificação da Não Conformidade</h1>
+    <p>Preencha os campos abaixo com as informações da NC</p>
+  </div>
+  
+  <div class="row">
+    <div class="col">
+      <div class="dropdown">
+        <label for="">Tipo de NC</label>
+        <select formControlName="tipos_nc_item">
+          <option [ngValue]="null" disabled selected hidden>Selecione...</option>
+          <option *ngFor="let tiposNc of tiposNc">{{ tiposNc }}</option>
+        </select>
+      </div>
+    </div>
+  
+    <div class="col">
+      <div class="dropdown">
+        <label for="">Segmento de Auditoria</label>
+        <select formControlName="tipos_auditoria_item">
+          <option [ngValue]="null" disabled selected hidden>Selecione...</option>
+          <option *ngFor="let tiposAuditoria of tiposAuditoria">
+            {{ tiposAuditoria }}
+          </option>
+        </select>
+      </div>
+    </div>
+  
+    <div class="col">
+      <div class="dropdown">
+        <label for="">Local ou Setor Afetado</label>
+        <select formControlName="tipos_local_item">
+          <option [ngValue]="null" disabled selected hidden>Selecione...</option>
+          <option class="option-titulo" disabled>Setor</option>
+          <option *ngFor="let item of nonComplicanceService.sectors">
+            {{ item.name }}
+          </option>
+          <option class="option-titulo" disabled>Local</option>
+          <option *ngFor="let item of nonComplicanceService.places">
+            {{ item.name }}
+          </option>
+        </select>
+      </div>
     </div>
   </div>
-
-  <div class="col">
-    <div class="dropdown">
-      <label for="">Segmento de Auditoria</label>
-      <select [(ngModel)]="nonComplicanceService.nc.tipos_auditoria_item">
-        <option value="" disabled selected hidden>Selecione...</option>
-        <option *ngFor="let tiposAuditoria of tiposAuditoria">
-          {{ tiposAuditoria }}
-        </option>
-      </select>
+  
+  <div class="row">
+    <div class="col date-group">
+      <div><label for="date-input">Data de Abertura</label></div>
+      <span class="p-input-icon-left">
+        <i class="pi pi-calendar"></i>
+        <input
+          type="date"
+          pInputText
+          id="date-input"
+          formControlName="data_abertura"
+        />
+      </span>
+      <p>Altere a data caso a NC tenha acontecido antes deste cadastro.</p>
+    </div>
+  
+    <div class="col date-group">
+      <div><label for="date-input">Data de Fechamento</label></div>
+  
+      <span class="p-input-icon-left">
+        <i class="pi pi-calendar icone"></i>
+        <input
+          type="date"
+          pInputText
+          id="date-input"
+          formControlName="data_fechamento"
+        />
+      </span>
+      <p>
+        Programada automaticamente para 30 dias corridos após a data de abertura.
+      </p>
     </div>
   </div>
+</form>
 
-  <div class="col">
-    <div class="dropdown">
-      <label for="">Local ou Setor Afetado</label>
-      <select [(ngModel)]="nonComplicanceService.nc.tipos_local_item">
-        <option value="" disabled selected hidden>Selecione...</option>
-        <option class="option-titulo" disabled>Setor</option>
-        <option *ngFor="let item of nonComplicanceService.sectors">
-          {{ item.name }}
-        </option>
-        <option class="option-titulo" disabled>Local</option>
-        <option *ngFor="let item of nonComplicanceService.places">
-          {{ item.name }}
-        </option>
-      </select>
-    </div>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col date-group">
-    <div><label for="date-input">Data de Abertura</label></div>
-    <span class="p-input-icon-left">
-      <i class="pi pi-calendar"></i>
-      <input
-        type="date"
-        pInputText
-        id="date-input"
-        [(ngModel)]="nonComplicanceService.nc.data_abertura"
-      />
-    </span>
-    <p>Altere a data caso a NC tenha acontecido antes deste cadastro.</p>
-  </div>
-
-  <div class="col date-group">
-    <div><label for="date-input">Data de Fechamento</label></div>
-
-    <span class="p-input-icon-left">
-      <i class="pi pi-calendar icone"></i>
-      <input
-        type="date"
-        pInputText
-        id="date-input"
-        [(ngModel)]="nonComplicanceService.nc.data_fechamento"
-      />
-    </span>
-    <p>
-      Programada automaticamente para 30 dias corridos após a data de abertura.
-    </p>
-  </div>
-</div>
 
 <div class="pt-3 pb-3">
   <p-divider class=""></p-divider>
