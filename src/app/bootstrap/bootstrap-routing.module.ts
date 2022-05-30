@@ -25,6 +25,14 @@ const routes: Routes = [
       },
 
       {
+        path: "create/:id",
+        loadChildren: () =>
+          import("../pages/ncs/create/ncs-create.module").then(
+            (m) => m.NcsCreateModule
+          ),
+      },
+
+      {
         path: "import",
         loadChildren: () =>
           import("../pages/ncs/import-json/import-json.module").then(

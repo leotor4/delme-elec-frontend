@@ -11,7 +11,7 @@ import { IdentificarNcComponent } from "./steps/step1/identificar-nc/identificar
 import { DescricaoNcComponent } from "./steps/step1/descricao-nc/descricao-nc.component";
 import { IdentificacaoDaNcComponent } from "./steps/step1/identificacao-da-nc/identificacao-da-nc.component";
 import { ParceiroComponent } from "./steps/step1/parceiro/parceiro.component";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Step2Component } from "./steps/step2/step2.component";
 import { NcsCreateStepperComponent } from "./ncs-create-stepper/ncs-create-stepper.component";
 import { DividerModule } from "primeng/divider";
@@ -85,6 +85,7 @@ import { CancelDialogComponent } from './ncs-create-header/cancel-dialog/cancel-
         StepsModule,
         ButtonModule,
         FormsModule,
+        ReactiveFormsModule,
         DividerModule,
         InputTextModule,
         DropdownModule,

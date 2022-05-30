@@ -65,7 +65,7 @@
       [(ngModel)]="nonComplicanceService.nc.tipos_parceiro_item"
       (change)="onChange()"
     >
-      <option value="" disabled selected hidden>Selecione...</option>
+      <option [ngValue]="null" disabled selected hidden>Selecione...</option>
       <option *ngFor="let tiposAuditoria of tiposParceiro">
         {{ tiposAuditoria }}
       </option>

@@ -1,6 +1,8 @@
+import { IdentificacaoNCDTO } from './../pages/ncs/create/steps/step1/identificacao-da-nc/identificacao-nc-dto';
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { FormBuilder, FormGroup } from "@angular/forms";
+import { Observable } from 'rxjs';
 import { Contact } from "../models/contact.model";
 import { Customer } from "../models/customer";
 import { Instruction } from "../models/instruction";
@@ -11,6 +13,7 @@ import { Product } from "../models/product.model";
 import { Provider } from "../models/provider";
 import { Sector } from "../models/sector";
 import { UpdateDate } from "../models/update-date";
+import { ObjectUtils } from '../utils/object-utils';
 
 @Injectable({
   providedIn: "root",
@@ -19,10 +22,12 @@ export class NonComplianceService {
   apiUrl = "http://localhost:3333/noncompliances";
 
   public nc = new NonCompliance();
+
   public ncs: NonCompliance[] = [];
 
   //passo 1
   customers: Customer[];
+
   sectors: Sector[];
   providers: Provider[];
   places!: Place[];
@@ -50,6 +55,26 @@ export class NonComplianceService {
   allContacts: Contact[];
 
   hasSelectedProduct: boolean;
+
+
+  msgHome:string;
+  typeMsgHome:string
+
+  public formIdentificacaoNC: FormGroup;
+
+  constructor(private http: HttpClient, private fb: FormBuilder) {
+    this.criarFormularios();
+  }
+
+  private criarFormularios(): void {
+		this.formIdentificacaoNC = this.fb.group({
+			tipos_nc_item: [null],
+			tipos_auditoria_item: [null],
+			tipos_local_item: [null],
+			data_abertura: [null],
+      data_fechamento: [null],
+		});
+	}
 
   avancarPasso1(): boolean {
     return !(
@@ -105,9 +130,9 @@ export class NonComplianceService {
   put() {
     let formData = new FormData();
     this.uploadFiles(formData);
-    console.log("ID:" + this.nc.id)
-    formData.append("data", JSON.stringify(this.nc));
-
+    ObjectUtils.adicionar_campos<NonCompliance>(this.nc, this.formIdentificacaoNC.value);
+    formData.append('data', JSON.stringify(this.nc));
+    console.log(this.nc)
     return this.http.put(this.apiUrl+ "/" + this.nc.id, formData)
   }
   
@@ -142,6 +167,4 @@ export class NonComplianceService {
   downloadFile(id:number){
     return this.http.get<any>(this.apiUrl + "/files/"+ id);
   }
-
-  constructor(private http: HttpClient) {}
 }

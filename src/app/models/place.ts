@@ -1,5 +1,5 @@
 export interface Place {
   id: any;
-  codigo_pn?: String;
-  name?: String;
+  codigo_pn: string;
+  name: string;
 }

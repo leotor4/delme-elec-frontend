@@ -1,4 +1,4 @@
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TokenStorageService } from './../../../_services/token-storage.service';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -24,6 +24,8 @@ export class NcsListComponent implements OnInit {
   first = 0;
   totalRecords = 0
   rows = 5;
+  msg: string
+  msgType: string
 
   openNc(){
     this.ncsService.abrirNc().subscribe(
@@ -33,7 +35,7 @@ export class NcsListComponent implements OnInit {
           this.ncsService.nc.issuer = response['nonCompliance']['emissor']
           this.ncsService.nc.id = response['nonCompliance']['id']
           this.ncsService.nc.status = response['nonCompliance']['status']
-          this.router.navigate(['ncs/create'])
+          this.router.navigate(["/ncs/create/", this.ncsService.nc.id])
         },
         error: err => {
           this.messageService.add({
@@ -48,11 +50,22 @@ export class NcsListComponent implements OnInit {
   }
 
 
-  constructor(private router:Router,private ncsService : NonComplianceService, private config: PrimeNGConfig,public messageService:MessageService) { }
+  constructor(private router:Router,private ncsService : NonComplianceService, private route: ActivatedRoute, private config: PrimeNGConfig,public messageService:MessageService) { }
 
   ngOnInit(): void {
+    
+
     this.ncsService.get().subscribe((data: any) => {
       
+      if (this.ncsService.msgHome) {
+        this.messageService.add({
+          key: "myKey2",
+          severity: this.ncsService.typeMsgHome,
+          summary: this.ncsService.msgHome,
+          life: 3000,
+        });
+      }
+    
       this.ncsService.ncs = data.noncompliances;
 
       for (let i = 0; i < this.ncsService.ncs.length; i++) {
@@ -165,7 +178,7 @@ export class NcsListComponent implements OnInit {
 
   edit(idNc : number, status : string) {
     if (status.toUpperCase() == 'OPEN') {
-      this.router.navigate(["/ncs/create/"]);
+      this.router.navigate(["/ncs/create/", idNc]);
     } else {
       this.router.navigate(["/ncs/about/", idNc]);
     }

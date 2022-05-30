@@ -26,8 +26,6 @@ export class BoardUserComponent implements OnInit {
       .subscribe({
         next: (data) => {
           this.users = data.users;
-          console.log(typeof(data));
-          console.log(this.users)
         },
         error: (e) => console.error(e)
       });

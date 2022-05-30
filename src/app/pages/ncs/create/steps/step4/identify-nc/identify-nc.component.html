@@ -19,12 +19,7 @@
           <span class="info-titulo">Data de Abertura</span>
           <br />
           <span class="info-dados">
-            {{
-              this.nonComplicanceService.nc.data_abertura
-                ?.split("-")
-                ?.reverse()
-                ?.join("/") || "00/00/0000"
-            }}
+            {{formato_brasileiro(this.nonComplicanceService.nc.data_abertura)}}
           </span>
         </div>
       </div>
@@ -33,12 +28,7 @@
         <div>
           <span class="info-titulo">Data de Fechamento</span>
           <br />
-          <span class="info-dados">{{
-            this.nonComplicanceService.nc.data_fechamento
-              ?.split("-")
-              ?.reverse()
-              ?.join("/") || "00/00/0000"
-          }}</span>
+          <span class="info-dados">{{formato_brasileiro(this.nonComplicanceService.nc.data_fechamento)}}</span>
         </div>
       </div>
     </div>
