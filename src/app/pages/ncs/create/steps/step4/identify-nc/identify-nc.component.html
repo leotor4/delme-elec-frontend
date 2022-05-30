@@ -45,7 +45,7 @@
         <div>
           <span class="info-titulo">Emissor</span>
           <br />
-          <span class="info-dados">{{nonComplicanceService.nc.issuer!.username}}</span>
+          <span class="info-dados">{{nonComplicanceService.nc?.emissor?.username||""}}</span>
         </div>
       </div>
       <div class="contato-info d-flex flex-row">

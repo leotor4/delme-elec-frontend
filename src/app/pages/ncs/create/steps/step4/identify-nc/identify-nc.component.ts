@@ -30,7 +30,7 @@ export class IdentifyNCComponent implements OnInit {
   }
 
    ngOnInit(): void{
-    
+
   }
 
   formato_brasileiro(data:Date | undefined | null): string {

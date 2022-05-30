@@ -14,7 +14,8 @@ import { Provider } from "../models/provider";
 import { Sector } from "../models/sector";
 import { UpdateDate } from "../models/update-date";
 import { ObjectUtils } from '../utils/object-utils';
-import momentImported from 'moment'; 
+import momentImported from 'moment';
+import {TokenStorageService} from "./token-storage.service";
 const moment = momentImported;
 
 @Injectable({
@@ -64,7 +65,7 @@ export class NonComplianceService {
 
   public formIdentificacaoNC: FormGroup;
 
-  constructor(private http: HttpClient, private fb: FormBuilder) {
+  constructor(private http: HttpClient, private fb: FormBuilder, private user: TokenStorageService) {
     this.criarFormularios();
   }
 
@@ -142,6 +143,7 @@ export class NonComplianceService {
   abrirNc(){
     let formData = new FormData();
     formData.append('data',"{}")
+    this.nc.issuer = this.user.getUser()
     return this.http.post(this.apiUrl, formData)
   }
 

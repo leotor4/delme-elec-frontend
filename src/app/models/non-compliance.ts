@@ -47,6 +47,7 @@ export class NonCompliance {
   status? : string;
   system_status?:string
   issuer?:User
+  emissor?: User;
 
   constructor(init?: Partial<NonCompliance>) {
     if (init) {
