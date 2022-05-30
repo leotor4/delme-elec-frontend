@@ -64,6 +64,9 @@ export class NcsListComponent implements OnInit {
           summary: this.ncsService.msgHome,
           life: 3000,
         });
+
+        this.ncsService.msgHome = ""
+        this.ncsService.typeMsgHome = ""
       }
     
       this.ncsService.ncs = data.noncompliances;

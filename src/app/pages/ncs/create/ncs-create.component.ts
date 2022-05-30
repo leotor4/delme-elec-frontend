@@ -4,6 +4,8 @@ import { MenuItem, MessageService } from "primeng/api";
 import { NonCompliance } from "src/app/models/non-compliance";
 import { NonComplianceService } from "src/app/_services/non-compliance.service";
 import { IdentificacaoNCDTO } from './steps/step1/identificacao-da-nc/identificacao-nc-dto';
+import momentImported from 'moment'; 
+const moment = momentImported;
 
 
 
@@ -32,6 +34,7 @@ export class NcsCreateComponent implements OnInit {
           this.ncService.nc = new NonCompliance(response['nc'][0]);
           console.log(response['nc'][0]);
           console.log(this.ncService.nc);
+
           this.ncService.formIdentificacaoNC.patchValue(new IdentificacaoNCDTO(this.ncService.nc));
         },
         error: err => {

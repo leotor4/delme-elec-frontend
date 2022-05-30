@@ -14,6 +14,8 @@ import { Provider } from "../models/provider";
 import { Sector } from "../models/sector";
 import { UpdateDate } from "../models/update-date";
 import { ObjectUtils } from '../utils/object-utils';
+import momentImported from 'moment'; 
+const moment = momentImported;
 
 @Injectable({
   providedIn: "root",
@@ -71,8 +73,8 @@ export class NonComplianceService {
 			tipos_nc_item: [null],
 			tipos_auditoria_item: [null],
 			tipos_local_item: [null],
-			data_abertura: [null],
-      data_fechamento: [null],
+			data_abertura: [moment(new Date()).format('yyyy-MM-DD')],
+      data_fechamento: [moment(new Date()).add('d', 30).format('yyyy-MM-DD')],
 		});
 	}
 
