@@ -45,7 +45,7 @@ export class CostsComponent implements OnInit {
         }))
         this.messageService.add({
           severity: "info",
-          summary: "Documento removida com sucesso",
+          summary: "Documento removido com sucesso",
           life: 3000,
         });
       },
@@ -54,6 +54,7 @@ export class CostsComponent implements OnInit {
 
   clearFile() {
     this.fileChosen=false
+    this.file={}
   }
 
   onUpload(event: any) {
@@ -78,11 +79,16 @@ export class CostsComponent implements OnInit {
     this.aboutSrvc.postCost(this.doc, this.file).subscribe(
         (data) => {
           this.aboutSrvc.getNC(this.aboutSrvc!.nc!.id!)
+          this.messageService.add({
+            severity: "success",
+            summary: "Documento adicionado com sucesso",
+            life: 3000,
+          });
         },
         (err) => {
           this.messageService.add({
             severity: "error",
-            summary:  err,
+            summary:  err.name,
             life: 3000,
           });
         }
@@ -90,6 +96,7 @@ export class CostsComponent implements OnInit {
     this.doc = new Cost()
     this.addDocumentDialog=false
     this.fileChosen=false
+    this.file={}
   }
 
   parseDate(date:string){

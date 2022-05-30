@@ -19,7 +19,6 @@ import { CostsComponent } from './costs/costs.component';
 import {ButtonModule} from "primeng/button";
 import { SGQEvaluationComponent } from './sgq-evaluation/sgq-evaluation.component';
 import { ClosingComponent } from './closing/closing.component';
-import { TrakingComponent } from './traking/traking.component';
 import {ConfirmDialogModule} from "primeng/confirmdialog";
 import {ToastModule} from "primeng/toast";
 import {ConfirmationService, MessageService} from "primeng/api";
@@ -42,7 +41,6 @@ import { CurrencyMaskModule } from "ng2-currency-mask";
         CostsComponent,
         SGQEvaluationComponent,
         ClosingComponent,
-        TrakingComponent,
 
 
     ],

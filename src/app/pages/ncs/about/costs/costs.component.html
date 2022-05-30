@@ -106,6 +106,7 @@
                             accept=".pdf"
                             class="input-attachment"
                             (change)="onUpload($event)"
+                            required
                     />
                     <i class="pi pi-cloud-upload"></i>
                     <p>
@@ -138,7 +139,7 @@
                     type="button"
                     class="btn btn-dark"
                     (click)="save()"
-                    [disabled]="file?.name==''||doc.value==''"
+                    [disabled]="!fileChosen"
             >
                 Registrar Custo Incorrido <i class="bi bi-check2"></i>
             </button>
