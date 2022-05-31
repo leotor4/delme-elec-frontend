@@ -1,41 +1,297 @@
-<div class="d-flex flex-lg-row flex-column justify-content-between">
-    <div class="d-flex">
-        <div class="cabecalho">
-            <div class="d-flex align-items-center">
-                <h1 class="mr-3">Proposta de Solução</h1>
+
+    <div *ngIf="aboutService.hasProposal()">
+        <div class="d-flex flex-lg-row flex-column justify-content-between">
+            <div class="d-flex">
+                <div class="cabecalho">
+                    <div class="d-flex align-items-center">
+                        <h1 class="mr-3">Análise da Não Conformidade</h1>
+                    </div>
+                    <p>
+                        Revise ou altere os dados da análise da NC. Se tudo estiver OK, submeta a análise desta NC.
+                    </p>
+                </div>
             </div>
-            <p>
-                Elabore e visualize uma solução para esta NC.
-            </p>
+            <div class="d-flex justify-content-end align-items-center mb-3">
+                <button [class]="isAllOpen ? selectedClass : unselectedClass" class="mr-2 btn-sm" (click)="isAllOpen = true">
+                    <i class="bi bi-arrows-expand"></i>
+                    Expandir Todos
+                </button>
+                <button [class]="isAllOpen ? unselectedClass : selectedClass" (click)="isAllOpen = false" class="btn-sm">
+                    <i class="bi bi-arrows-collapse"></i>
+                    Colapsar Todos
+                </button>
+            </div>
+        </div>
+        <p-accordion [multiple]="true">
+            <p-accordionTab [selected]="isAllOpen">
+                <ng-template pTemplate="header">
+                    <div class="d-flex justify-content-between accordion">
+                        <p>
+                            <i class="bi bi-suit-diamond"></i>
+                            Diagrama de Ishikawa
+                        </p>
+                        
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="content">
+                    <div class="d-flex caixa-cinza pr-2 py-4 mt-4">
+                        <div>
+                            <div class="d-flex">
+                                <div class="col">
+                                    <label>Matéria Prima</label>
+                                    <p-editor
+                                        [ngModel]="'<p>'+this.aboutService.nc.proposalSolution.lackMaterials + '</p><p>' + this.aboutService.nc.proposalSolution.low_quality_materials + '</p>' + this.aboutService.nc.proposalSolution.material_description"
+                                        [style]="editorStyle" [readonly]="true">
+                                        <ng-template pTemplate="header">
+                                        </ng-template>
+                                    </p-editor>
+        
+                                </div>
+                                <div class="col">
+                                    <label>Medição</label>
+                                    <p-editor
+                                        [ngModel]="'<p>'+this.aboutService.nc.proposalSolution.lack_parameters + '</p><p>' + this.aboutService.nc.proposalSolution.excess_parameters + '</p><p>' + this.aboutService.nc.proposalSolution.non_achievement_goals+ '</p>' + this.aboutService.nc.proposalSolution.low_quality_materials + '</p>' + this.aboutService.nc.proposalSolution.measurement_description"
+                                        [style]="editorStyle" [readonly]="true">
+                                        <ng-template pTemplate="header">
+                                        </ng-template>
+                                    </p-editor>
+                                </div>
+                                <div class="col">
+                                    <label>Método</label>
+                                    <p-editor [ngModel]="this.aboutService.nc.proposalSolution.method_description"
+                                        [style]="editorStyle" [readonly]="true">
+                                        <ng-template pTemplate="header">
+                                        </ng-template>
+                                    </p-editor>
+                                </div>
+                            </div>
+                            <img src="../../../../../../assets/images/Espinha de Peixe.png" width="850" class="ml-5 mr-3">
+                            <div class="d-flex">
+                                <div class="col">
+                                    <label>Mão de Obra</label>
+                                    <p-editor
+                                        [ngModel]="'<p>'+this.aboutService.nc.proposalSolution.run_training + '</p>' + this.aboutService.nc.proposalSolution.man_power_description"
+                                        [style]="editorStyle" [readonly]="true">
+                                        <ng-template pTemplate="header">
+                                        </ng-template>
+                                    </p-editor>
+                                </div>
+                                <div class="col">
+                                    <label>Meio Ambiente</label>
+                                    <p-editor [ngModel]="this.aboutService.nc.proposalSolution.environment_description"
+                                        [style]="editorStyle" [readonly]="true">
+                                        <ng-template pTemplate="header">
+                                        </ng-template>
+                                    </p-editor>
+                                </div>
+                                <div class="col">
+                                    <label>Máquina</label>
+                                    <p-editor [ngModel]="this.aboutService.nc.proposalSolution.machine_description"
+                                        [style]="editorStyle" [readonly]="true">
+                                        <ng-template pTemplate="header">
+                                        </ng-template>
+                                    </p-editor>
+        
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-block mt-5">
+                            <label>Efeito</label>
+                            <p-editor [ngModel]="this.aboutService.nc.proposalSolution.effect_description"
+                                [style]="{'height':'300px','width':'230px','border': '2px solid #333333','border-radius': '5px'}"
+                                [readonly]="true">
+                                <ng-template pTemplate="header">
+                                </ng-template>
+                            </p-editor>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-accordionTab>
+            <p-accordionTab [selected]="isAllOpen">
+                <ng-template pTemplate="header">
+                    <div class="d-flex justify-content-between accordion">
+                        <p>
+                            <i class="bi bi-dice-5"></i>
+                            5 Porquês
+                        </p>
+                       
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="content">
+                    <div class="caixa-cinza p-2">
+                        <div class="d-flex justify-content-evenly">
+                            <p-chip>1</p-chip>
+                            <div>
+                                <textarea [(ngModel)]="aboutService.nc.proposalSolution.first_why" pInputTextarea cols="35"
+                                    rows="5" class="textarea">
+                                   </textarea>
+                                <div class="text-center form-check caixa-preta mx-3"
+                                    *ngIf="aboutService.nc.proposalSolution.root_cause=='cause1'">
+                                    <input class="form-check-input" type="checkbox" value="" onclick="return false;" checked />
+                                    <label class="form-check-label text-light">
+                                        Causa Raiz
+                                    </label>
+                                </div>
+                            </div>
+                            <p-chip>2</p-chip>
+                            <div>
+                                <textarea [(ngModel)]="aboutService.nc.proposalSolution.second_why" pInputTextarea cols="35"
+                                    rows="5" class="textarea">
+                                   </textarea>
+                                <div class="text-center form-check caixa-preta mx-3"
+                                    *ngIf="aboutService.nc.proposalSolution.rootCause=='cause2'">
+                                    <input class="form-check-input" type="checkbox" value="" onclick="return false;" checked />
+                                    <label class="form-check-label text-light">
+                                        Causa Raiz
+                                    </label>
+                                </div>
+                            </div>
+                            <p-chip>3</p-chip>
+                            <div>
+                                <textarea [(ngModel)]="aboutService.nc.proposalSolution.third_why" pInputTextarea cols="35"
+                                    rows="5" class="textarea">
+                                   </textarea>
+                                <div class="text-center form-check caixa-preta mx-3"
+                                    *ngIf="aboutService.nc.proposalSolution.rootCause=='cause3'">
+                                    <input class="form-check-input" type="checkbox" value="" onclick="return false;" checked />
+                                    <label class="form-check-label text-light">
+                                        Causa Raiz
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-evenly">
+                            <p-chip>4</p-chip>
+                            <div>
+                                <textarea [(ngModel)]="aboutService.nc.proposalSolution.quarter_why" pInputTextarea cols="55"
+                                    rows="5" class="textarea">
+                                   </textarea>
+                                <div class="text-center form-check caixa-preta mx-3"
+                                    *ngIf="aboutService.nc.proposalSolution.rootCause=='cause4'">
+                                    <input class="form-check-input" type="checkbox" value="" onclick="return false;" checked />
+                                    <label class="form-check-label text-light">
+                                        Causa Raiz
+                                    </label>
+                                </div>
+                            </div>
+                            <p-chip>5</p-chip>
+                            <div>
+                                <textarea [(ngModel)]="aboutService.nc.proposalSolution.fifth_why" pInputTextarea cols="55"
+                                    rows="5" class="textarea">
+                                   </textarea>
+                                <div class="text-center form-check caixa-preta mx-3"
+                                    *ngIf="aboutService.nc.proposalSolution.rootCause=='cause5'">
+                                    <input class="form-check-input" type="checkbox" value="" onclick="return false;" checked />
+                                    <label class="form-check-label text-light">
+                                        Causa Raiz
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-accordionTab>
+            <p-accordionTab [selected]="isAllOpen">
+                <ng-template pTemplate="header">
+                    <div class="d-flex justify-content-between accordion">
+                        <p>
+                            <i class="bi bi-geo"></i>
+                            Ações Corretivas
+                        </p>
+                       
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="content">
+                    <div class="card">
+                        <p-table [value]="aboutService.nc.actions">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th>Descrição</th>
+                                    <th>Responsável</th>
+                                    <th>Prazo</th>
+                                    <th>Status</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-action>
+                                <tr>
+                                    <td>{{ action.name }}</td>
+                                    <td>{{ action.responsible }}</td>
+                                    <td>{{ action.deadline.split("-")?.reverse()?.join("/") }}</td>
+                                    <td>{{ action.status }}</td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div>
+                </ng-template>
+            </p-accordionTab>
+            <p-accordionTab [selected]="isAllOpen">
+                <ng-template pTemplate="header">
+                    <div class="d-flex justify-content-between accordion">
+                        <p>
+                            <i class="bi bi-envelope"></i>
+                            Partes Interessadas
+                        </p>
+                      
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="content">
+                    <div class="card">
+                        <p-table [value]="aboutService.nc.contacts">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>E-mail</th>
+                                    <th>Tipo de Contato</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-contact let-i="rowIndex">
+                                <tr>
+                                    <td>{{ contact.name }}</td>
+                                    <td>{{ contact.email }}</td>
+                                    <td>{{ contact.type }}</td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div>
+                </ng-template>
+            </p-accordionTab>
+        </p-accordion>
+    </div>
+
+
+
+<div *ngIf="!aboutService.hasProposal()">
+    <div class="d-flex flex-lg-row flex-column justify-content-between">
+        <div class="d-flex">
+            <div class="cabecalho">
+                <div class="d-flex align-items-center">
+                    <h1 class="mr-3">Proposta de Solução</h1>
+                </div>
+                <p>
+                    Elabore e visualize uma solução para esta NC.
+                </p>
+            </div>
+        </div>
+        <div class="d-flex justify-content-end align-items-center mb-3">
+    
+            <a href="/ncs/createProp/{{id}}" role="button" class="btn btn-dark">
+                Criar Proposta
+                <i class="bi bi-file-earmark-medical"></i>
+            </a>
         </div>
     </div>
-    <div class="d-flex justify-content-end align-items-center mb-3">
-
-        <a
-                href="/ncs/createProp/{{id}}"  
-                role="button"
-                class="btn btn-dark"
-        >
+    <div class="image-box d-flex align-items-center justify-content-center mt-5">
+        <img src="../../../../../../../assets/images/Ilustrações2.svg" alt="" />
+    
+    </div>
+    <h2 class="text-center text-black">NC ainda sem solução proposta!</h2>
+    <h3 class="text-center text-black">A fase de solução deve ser completada para exibição de resultados.</h3>
+    <h5 class="text-center">Contate o responsável pela análise caso este não seja você.</h5>
+    
+    <div class="text-center">
+        <a href="/ncs/createProp/{{id}}" role="button" class="btn btn-dark">
             Criar Proposta
             <i class="bi bi-file-earmark-medical"></i>
         </a>
     </div>
-</div>
-<div class="image-box d-flex align-items-center justify-content-center mt-5">
-    <img src="../../../../../../../assets/images/Ilustrações2.svg" alt="" />
-
-</div>
-<h2 class="text-center text-black">NC ainda sem solução proposta!</h2>
-<h3 class="text-center text-black">A fase de  solução deve ser completada para exibição de resultados.</h3>
-<h5 class="text-center">Contate o responsável pela análise caso este não seja você.</h5>
-
-<div class="text-center">
-    <a
-            href="/ncs/createProp/{{id}}"  
-            role="button"
-            class="btn btn-dark"
-    >
-        Criar Proposta
-        <i class="bi bi-file-earmark-medical"></i>
-    </a>
 </div>

@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import {NonComplianceService} from "../../../_services/non-compliance.service";
 import {NonCompliance} from "../../../models/non-compliance";
+import {ProposalSolution} from "../../../models/proposal-solution";
 import { HttpClient } from "@angular/common/http";
 
 import {Cost} from "../../../models/Cost";
+
 
 @Injectable({
     providedIn: 'root'
@@ -13,12 +15,20 @@ export class AboutService {
     apiUrl = "http://localhost:3333/";
 
     nc: NonCompliance
+    proposalSolution:ProposalSolution
 
     constructor(private ncsService : NonComplianceService, private http: HttpClient) { }
+
+    hasProposal():boolean{
+        if(!this.nc)return false
+        if(this.nc.proposalSolution)return true
+        return false
+    }
 
     getNC(id:number){
         this.ncsService.getById(id).subscribe((data: any) => {
             this.nc = data.nc[0]
+           
         })
     }
 

@@ -40,19 +40,19 @@ export class ProposalService {
   }
 
   popular(){
-    this.propSolution.firstWhy = this.step2.textAreas[0]
-    this.propSolution.secondWhy = this.step2.textAreas[1]
-    this.propSolution.thirdWhy = this.step2.textAreas[2]
-    this.propSolution.quarterWhy = this.step2.textAreas[3]
-    this.propSolution.fifthWhy = this.step2.textAreas[4]
-    this.propSolution.rootCause = this.step2.selectedValue
+    this.propSolution.first_why = this.step2.textAreas[0]
+    this.propSolution.second_why = this.step2.textAreas[1]
+    this.propSolution.third_why = this.step2.textAreas[2]
+    this.propSolution.quarter_why = this.step2.textAreas[3]
+    this.propSolution.fifth_why = this.step2.textAreas[4]
+    this.propSolution.root_cause = this.step2.selectedValue
 
-    if(this.propSolution.machine)this.propSolution.machineId = this.propSolution.machine.id
-    if(this.propSolution.equipament)this.propSolution.equipamentId = this.propSolution.equipament.id
-    if(this.propSolution.procedure)this.propSolution.procedureId = this.propSolution.procedure.id
-    if(this.propSolution.instruction)this.propSolution.instructionId = this.propSolution.instruction.id
-    if(this.propSolution.nbr)this.propSolution.nbrId = this.propSolution.nbr.id
-    if(this.propSolution.regulatory)this.propSolution.regulatoryId = this.propSolution.regulatory.id
+    if(this.propSolution.machine)this.propSolution.machine_id = this.propSolution.machine.id
+    if(this.propSolution.equipament)this.propSolution.equipament_id = this.propSolution.equipament.id
+    if(this.propSolution.procedure)this.propSolution.procedure_id = this.propSolution.procedure.id
+    if(this.propSolution.instruction)this.propSolution.instruction_id = this.propSolution.instruction.id
+    if(this.propSolution.nbr)this.propSolution.nbr_id = this.propSolution.nbr.id
+    if(this.propSolution.regulatory)this.propSolution.regulatory_id = this.propSolution.regulatory.id
   }
 
   post(){
