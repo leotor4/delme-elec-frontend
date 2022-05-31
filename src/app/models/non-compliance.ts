@@ -11,6 +11,7 @@ import { Sector } from "./sector";
 import { User } from "./user.model";
 import {Cost} from "./Cost";
 import momentImported from 'moment'; 
+import { ProposalSolution } from './proposal-solution';
 const moment = momentImported;
 
 export class NonCompliance {
@@ -47,6 +48,7 @@ export class NonCompliance {
   status? : string;
   system_status?:string
   issuer?:User
+  proposalSolution?:ProposalSolution
 
   constructor(init?: Partial<NonCompliance>) {
     if (init) {

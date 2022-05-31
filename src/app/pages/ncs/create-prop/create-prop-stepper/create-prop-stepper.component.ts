@@ -13,7 +13,7 @@ import { ProposalService } from '../proposal.service';
 })
 export class CreatePropStepperComponent implements OnInit {
   items: MenuItem[];
-  stepPosition: number = 3;
+  stepPosition: number = 0;
   lastStepLabel = "Avançar";
   constructor(private route: ActivatedRoute,private ncService:NonComplianceService,private messageService: MessageService,public propService:ProposalService) {}
 

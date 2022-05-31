@@ -26,7 +26,7 @@ export class CreatePropComponent implements OnInit {
   ngOnInit(): void {
     let id = parseInt(this.route.snapshot.paramMap.get('id')||"")
     
-    this.propService.propSolution.nonComplianceId = id;
+    this.propService.propSolution.non_compliance_id = id;
 
     this.ncService.getById(id).subscribe({
       next:(data:any) =>{
