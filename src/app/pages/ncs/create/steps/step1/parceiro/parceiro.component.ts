@@ -28,9 +28,7 @@ export class ParceiroComponent implements OnInit {
   public parceiroIdent = false;
   public display = false;
 
-  public editarNomeItem = "";
-  public editarEmailItem = "";
-  public editarTelefoneItem = "";
+  
 
   search(event: any) {
     var filtro = event.query;
@@ -111,11 +109,11 @@ export class ParceiroComponent implements OnInit {
   onSelected() {
     this.nonComplicanceService.nc.partner =
       this.nonComplicanceService.pesquisar;
-    this.editarNomeItem =
+    this.nonComplicanceService.editarNomeItem =
       this.nonComplicanceService.nc.partner.responsible_name;
-    this.editarTelefoneItem =
+    this.nonComplicanceService.editarTelefoneItem =
       this.nonComplicanceService.nc.partner.responsible_phone;
-    this.editarEmailItem =
+    this.nonComplicanceService.editarEmailItem =
       this.nonComplicanceService.nc.partner.responsible_email;
   }
 
@@ -146,57 +144,63 @@ export class ParceiroComponent implements OnInit {
 
   editar() {
     this.nonComplicanceService.nc.partner.responsible_name =
-      this.editarNomeItem;
+      this.nonComplicanceService.editarNomeItem;
     this.nonComplicanceService.nc.partner.responsible_phone =
-      this.editarTelefoneItem;
+      this.nonComplicanceService.editarTelefoneItem;
     this.nonComplicanceService.nc.partner.responsible_email =
-      this.editarEmailItem;
+      this.nonComplicanceService.editarEmailItem;
 
     if (this.nonComplicanceService.nc.tipos_parceiro_item == "Cliente") {
       this.customerService.put(this.nonComplicanceService.nc.partner).subscribe(
-        (value) => {
+        {
+          next:(value) => {
           this.sucess();
           this.customerService.get().subscribe((data: any) => {
             this.nonComplicanceService.customers = data.customers;
           });
         },
-        (err) => {
+        error:(err) => {
           this.fail();
           this.customerService.get().subscribe((data: any) => {
             this.nonComplicanceService.customers = data.customers;
           });
+        }
         }
       );
     } else if (
       this.nonComplicanceService.nc.tipos_parceiro_item == "Fornecedor"
     ) {
       this.providerService.put(this.nonComplicanceService.nc.partner).subscribe(
-        (value) => {
+       {
+          next:(value) => {
           this.sucess();
           this.providerService.get().subscribe((data: any) => {
             this.nonComplicanceService.providers = data.providers;
           });
         },
-        (err) => {
+        error:(err) => {
           this.providerService.get().subscribe((data: any) => {
             this.nonComplicanceService.providers = data.providers;
           });
           this.fail();
         }
+       }
       );
     } else if (this.nonComplicanceService.nc.tipos_parceiro_item == "Interno") {
       this.sectorService.put(this.nonComplicanceService.nc.partner).subscribe(
-        (value) => {
+        {
+          next:(value) => {
           this.sucess();
-          this.sectorService.get().subscribe((data: any) => {
-            this.nonComplicanceService.sectors = data.sectors;
+          this.providerService.get().subscribe((data: any) => {
+            this.nonComplicanceService.providers = data.providers;
           });
         },
-        (err) => {
+        error:(err) => {
           this.providerService.get().subscribe((data: any) => {
-            this.nonComplicanceService.sectors = data.sectors;
+            this.nonComplicanceService.providers = data.providers;
           });
           this.fail();
+        }
         }
       );
     }
@@ -209,8 +213,7 @@ export class ParceiroComponent implements OnInit {
       summary: "Dados editados com sucesso.",
       life: 3000,
     });
-    this.nonComplicanceService.nc.partner = null;
-    this.nonComplicanceService.pesquisar = "";
+    
     this.hideDialog();
   }
 

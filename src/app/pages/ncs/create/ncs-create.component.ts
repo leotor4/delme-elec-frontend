@@ -22,6 +22,7 @@ export class NcsCreateComponent implements OnInit {
   
   ngOnDestroy(): void {
     this.ncService.nc = new NonCompliance()
+   
   }
 
   ngOnInit() {
@@ -33,8 +34,30 @@ export class NcsCreateComponent implements OnInit {
         next: (response:any) => {
           this.ncService.nc = new NonCompliance(response['nc'][0]);
           this.setDates(this.ncService.nc);
-          console.log(response['nc'][0]);
-          console.log(this.ncService.nc);
+           switch(this.ncService.nc.tipos_parceiro_item){
+           case "Cliente":
+           this.ncService.nc.partner = this.ncService.nc.customer
+             break;
+             case "Fornecedor":
+               this.ncService.nc.partner = this.ncService.nc.provider
+             break;
+             case "Interno":
+               this.ncService.nc.partner = this.ncService.nc.sector
+             break;
+         }
+        if(this.ncService.nc.partner){
+          this.ncService.editarEmailItem = this.ncService.nc.partner.responsible_email
+          this.ncService.editarNomeItem = this.ncService.nc.partner.responsible_name
+          this.ncService.editarTelefoneItem = this.ncService.nc.partner.responsible_phone
+         }
+
+         if(this.ncService.nc.procedure){
+           this.ncService.autoCompletePrValue = this.ncService.nc.procedure
+         }
+
+         if(this.ncService.nc.instruction){
+           this.ncService.autoCompleteItValue = this.ncService.nc.instruction
+         }
 
           this.ncService.formIdentificacaoNC.patchValue(new IdentificacaoNCDTO(this.ncService.nc));
         },

@@ -27,6 +27,17 @@ export class CheckpointComponent implements OnInit {
     "PR",
   ];
 
+  limparCampos(){
+    this.nonComplicanceService.nc.text_area_reject_point = ""
+    this.nonComplicanceService.nc.num_op = ""
+    this.nonComplicanceService.nc.num_lote = ""
+    this.nonComplicanceService.nc.num_nota = ""
+    this.nonComplicanceService.nc.instruction = undefined
+    this.nonComplicanceService.nc.procedure = undefined
+    this.nonComplicanceService.autoCompleteItValue = undefined
+    this.nonComplicanceService.autoCompletePrValue = undefined
+  }
+
   ngOnInit(): void {}
 
   clearFile() {
