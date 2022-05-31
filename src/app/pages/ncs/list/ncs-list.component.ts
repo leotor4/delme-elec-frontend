@@ -81,38 +81,10 @@ export class NcsListComponent implements OnInit {
       if (compliances?.length > 0) {
         this.listNcs = compliances.map(
           (item:NonCompliance) => {
-            console.log(item)
               return new NcsListDTO(item)
         })
+        this.listNcs = this.listNcs.filter(item => (item.system_status !== 'deleted' && item.system_status != 'arquived'));
       }
-
-      console.log(this.listNcs)
-
-      // for (let i = 0; i < this.ncsService.ncs.length; i++) {
-        
-      //   let nc = this.ncsService.ncs[i]
-      //   console.log('checa nc', nc)
-
-      //   if (nc.system_status == 'deleted' || nc.system_status == 'arquived') { continue }
-
-      //   let strParceiro
-        
-        
-
-      //   //let strEmissor: string = nc['emissor']['username']
-      //   var ncElementList = {
-      //     id : nc.id,
-      //     numero : nc.code,
-      //     parceiro : strParceiro,
-      //     emissor : 'admin',
-      //     estado : nc.status
-      //   };
-
-        
-
-      //   this.listNcs.push(ncElementList);
-
-      // }
 
 
       this.config.filterMatchModeOptions = {
@@ -174,24 +146,63 @@ export class NcsListComponent implements OnInit {
  
 
   archived(idNc: number) {
-    this.ncsService.archived(idNc).subscribe((data: any) => {
+    this.confirmationService.confirm({
+      message: 'Esta ação irá alterar o status da NC arquivada, deseja prosseguir com a operação?',
+      header: 'Arquivar NC',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.ncsService.delete(idNc).subscribe((data: any) => {
+          this.messageService.add({
+            key: "myKey2",
+            severity: 'success',
+            summary: 'Operação realizada!',
+            life: 5000,
+          });
+          window.location.reload();
 
-      window.location.reload();
+        });
+      },
 
-    });
+      reject:() => {
+        this.messageService.add({
+          key: "myKey2",
+          severity: 'info',
+          summary: 'Operação Cancelada',
+          life: 5000,
+        });
+        
+      }
+  });
   }
 
   delete(idNc: number) {
 
     this.confirmationService.confirm({
-      message: 'Are you sure that you want to proceed?',
-      header: 'Confirmation',
+      message: 'Esta ação irá alterar o status da NC para deletada, deseja prosseguir com a operação?',
+      header: 'Deletar NC',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         this.ncsService.delete(idNc).subscribe((data: any) => {
+          this.messageService.add({
+            key: "myKey2",
+            severity: 'success',
+            summary: 'Operação realizada!',
+            life: 5000,
+          });
           window.location.reload();
+
         });
       },
+
+      reject:() => {
+        this.messageService.add({
+          key: "myKey2",
+          severity: 'info',
+          summary: 'Operação Cancelada',
+          life: 5000,
+        });
+        
+      }
   });
       
   }
