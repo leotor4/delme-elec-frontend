@@ -1,13 +1,9 @@
-import { ObjectUtils } from './../../../utils/object-utils';
 import { NonCompliance } from 'src/app/models/non-compliance';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TokenStorageService } from './../../../_services/token-storage.service';
-import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FilterMatchMode, MessageService, PrimeNGConfig } from 'primeng/api';
+import { ConfirmationService, FilterMatchMode, MessageService, PrimeNGConfig } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { NonComplianceService } from "src/app/_services/non-compliance.service";
-import { ToastModule } from 'primeng/toast';
 import { NcsListDTO } from './ncs-list-dto';
 
 @Component({
@@ -16,7 +12,7 @@ import { NcsListDTO } from './ncs-list-dto';
  
   styleUrls: ['./ncs-list.component.css'],
   providers:[
-    MessageService
+    MessageService, ConfirmationService
   ],
 })
 export class NcsListComponent implements OnInit {
@@ -53,7 +49,10 @@ export class NcsListComponent implements OnInit {
   }
 
 
-  constructor(private router:Router,private ncsService : NonComplianceService, private route: ActivatedRoute, private config: PrimeNGConfig,public messageService:MessageService) { }
+  constructor(
+    private router:Router,private ncsService : NonComplianceService, private route: ActivatedRoute, 
+    private config: PrimeNGConfig,public messageService:MessageService,
+    private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
     
@@ -183,9 +182,18 @@ export class NcsListComponent implements OnInit {
   }
 
   delete(idNc: number) {
-    this.ncsService.delete(idNc).subscribe((data: any) => {
-      window.location.reload();
-    });  
+
+    this.confirmationService.confirm({
+      message: 'Are you sure that you want to proceed?',
+      header: 'Confirmation',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.ncsService.delete(idNc).subscribe((data: any) => {
+          window.location.reload();
+        });
+      },
+  });
+      
   }
 
   edit(idNc : number, status : string) {

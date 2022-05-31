@@ -9,6 +9,8 @@ import { NcsListRoutingModule } from './ncs-list-routing.module';
 import { NcsListComponent } from './ncs-list.component';
 import {TooltipModule} from 'primeng/tooltip';
 
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import {TooltipModule} from 'primeng/tooltip';
     PaginatorModule,
     ToastModule,
     InputTextModule,
-    TooltipModule
+    TooltipModule,
+    ConfirmDialogModule
   ]
 })
 
