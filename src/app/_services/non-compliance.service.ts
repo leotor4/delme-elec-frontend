@@ -33,7 +33,7 @@ export class NonComplianceService {
 
   sectors: Sector[];
   providers: Provider[];
-  places!: Place[];
+  places!: Array<string>;
   updates: UpdateDate;
 
   pesquisar: string = "";
@@ -64,6 +64,7 @@ export class NonComplianceService {
   typeMsgHome:string
 
   public formIdentificacaoNC: FormGroup;
+  public formParceiroNC: FormGroup;
 
   constructor(private http: HttpClient, private fb: FormBuilder, private user: TokenStorageService) {
     this.criarFormularios();
@@ -76,6 +77,11 @@ export class NonComplianceService {
 			tipos_local_item: [null],
 			data_abertura: [moment(new Date()).format('yyyy-MM-DD')],
       data_fechamento: [moment(new Date()).add('d', 30).format('yyyy-MM-DD')],
+		});
+
+    this.formParceiroNC = this.fb.group({
+			tipos_parceiro_item: [null],
+			
 		});
 	}
 

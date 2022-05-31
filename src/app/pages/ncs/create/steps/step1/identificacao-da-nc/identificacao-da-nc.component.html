@@ -29,16 +29,11 @@
   
     <div class="col">
       <div class="dropdown">
-        <label for="">Local ou Setor Afetado</label>
+        <label for="">Setor/Departamento Afetado</label>
         <select formControlName="tipos_local_item">
           <option [ngValue]="null" disabled selected hidden>Selecione...</option>
-          <option class="option-titulo" disabled>Setor</option>
-          <option *ngFor="let item of nonComplicanceService.sectors">
-            {{ item.name }}
-          </option>
-          <option class="option-titulo" disabled>Local</option>
           <option *ngFor="let item of nonComplicanceService.places">
-            {{ item.name }}
+            {{ item }}
           </option>
         </select>
       </div>
@@ -50,7 +45,7 @@
       <div><label for="date-input">Data de Abertura</label></div>
       <span class="p-input-icon-left">
         <i class="pi pi-calendar"></i>
-        <input
+        <input disabled
           type="date"
           pInputText
           id="date-input"
@@ -65,7 +60,7 @@
   
       <span class="p-input-icon-left">
         <i class="pi pi-calendar icone"></i>
-        <input
+        <input disabled
           type="date"
           pInputText
           id="date-input"

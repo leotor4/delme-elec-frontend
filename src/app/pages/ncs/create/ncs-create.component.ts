@@ -32,6 +32,7 @@ export class NcsCreateComponent implements OnInit {
       {
         next: (response:any) => {
           this.ncService.nc = new NonCompliance(response['nc'][0]);
+          this.setDates(this.ncService.nc);
           console.log(response['nc'][0]);
           console.log(this.ncService.nc);
 
@@ -54,5 +55,11 @@ export class NcsCreateComponent implements OnInit {
       { label: "Partes Interessadas" },
       { label: "Revisar Informações" },
     ];
+  }
+
+
+  setDates(nc:NonCompliance) {
+    nc.data_abertura = moment(new Date()).toDate()
+    nc.data_fechamento = moment(new Date()).add('d', 30).toDate()
   }
 }

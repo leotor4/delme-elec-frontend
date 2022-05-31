@@ -7,6 +7,7 @@ import {PaginatorModule} from 'primeng/paginator';
 import {ToastModule} from 'primeng/toast';
 import { NcsListRoutingModule } from './ncs-list-routing.module';
 import { NcsListComponent } from './ncs-list.component';
+import {TooltipModule} from 'primeng/tooltip';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { NcsListComponent } from './ncs-list.component';
     InputTextModule,
     PaginatorModule,
     ToastModule,
-    InputTextModule
+    InputTextModule,
+    TooltipModule
   ]
 })
 

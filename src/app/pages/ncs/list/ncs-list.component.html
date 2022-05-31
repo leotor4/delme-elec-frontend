@@ -53,29 +53,29 @@ currentPageReportTemplate="Exibindo de {first} a {last} de {totalRecords} regist
   </tr>
 
 </ng-template>
-  <ng-template pTemplate="body" let-Nc>
+  <ng-template pTemplate="body" let-ncListDTO>
 
 
 
     <tr class="p-selectable-row">
       <td>
           <span class="p-column-title">Número</span>
-          {{Nc.numero}}
+          {{ncListDTO.numero}}
       </td>
 
       <td>
           <span class="p-column-title">Parceiro</span>
-          {{Nc.parceiro}}
+          {{ncListDTO.parceiro}}
       </td>
 
       <td>
         <span class="p-column-title">Emissor</span>
-        {{Nc.emissor}}
+        {{ncListDTO.emissor}}
       </td>
 
       <td>
         <span class="p-column-title">Estado</span>
-        <span [ngSwitch]="Nc.estado" >
+        <span [ngSwitch]="ncListDTO.estado" >
           <span *ngSwitchCase="'open'"> Aberta</span>
           <span *ngSwitchCase="'running'"> Em execução</span>
           <span *ngSwitchCase="'late'"> Atrasada</span>
@@ -86,19 +86,19 @@ currentPageReportTemplate="Exibindo de {first} a {last} de {totalRecords} regist
       </td>
 
       <td style="text-align: center">
-          <a style="color: black;" type="button" routerLink="/ncs/about/{{Nc.id}}"><i class="bi bi-info-circle"></i></a>
+          <a style="color: black;" type="button" pTooltip="Ver informações da NC" routerLink="/ncs/about/{{ncListDTO.nc.id}}"><i class="bi bi-info-circle"></i></a>
       </td>
 
       <td style="text-align: center">
-        <a type="button" (click)="edit(Nc.id, Nc.estado)"><i class="bi bi-file-richtext"></i></a>
+        <a type="button" style="color: black;" (click)="edit(ncListDTO.nc.id, ncListDTO.estado)" pTooltip="Continuar o preenchimento da NC"><i class="bi bi-file-richtext"></i></a>
       </td>
 
       <td style="text-align: center">
-        <a type="button" (click)="delete(Nc.id)"><i class="bi bi-trash"></i></a>
+        <a type="button" style="color: black;" (click)="delete(ncListDTO.nc.id)" pTooltip="Alterar o status da NC para deletado"><i class="bi bi-trash"></i></a>
       </td>
 
       <td style="text-align: center">
-        <a type="button" (click)="archived(Nc.id)"><i class="bi bi-archive"></i></a>
+        <a type="button"  style="color: black;" (click)="archived(ncListDTO.nc.id)" pTooltip="Alterar o status da NC para arquivado"><i class="bi bi-archive"></i></a>
       </td>
 
   </tr>

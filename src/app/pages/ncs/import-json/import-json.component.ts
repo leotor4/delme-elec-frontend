@@ -11,6 +11,7 @@ import { SectorService } from "src/app/_services/sector.service";
 import { ProviderService } from "src/app/_services/provider.service";
 import { PlaceService } from "src/app/_services/place.service";
 import { NonComplianceService } from "src/app/_services/non-compliance.service";
+import { Place } from "src/app/models/place";
 
 @Component({
   selector: "app-provider",
@@ -87,7 +88,11 @@ export class ImportJsonComponent implements OnInit {
         break;
       case "place":
         this.placeService.get().subscribe((data: any) => {
-          this.nonComplianceService.places = data.places;
+          this.nonComplianceService.places = data.places.map(
+            (item:Place) =>
+              item.name
+            );
+          console.log('data places = ', this.nonComplianceService.places)
         });
         break;
     }

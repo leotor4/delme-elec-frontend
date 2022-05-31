@@ -1,3 +1,5 @@
+import { ObjectUtils } from './../../../utils/object-utils';
+import { NonCompliance } from 'src/app/models/non-compliance';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TokenStorageService } from './../../../_services/token-storage.service';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
@@ -6,6 +8,7 @@ import { FilterMatchMode, MessageService, PrimeNGConfig } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { NonComplianceService } from "src/app/_services/non-compliance.service";
 import { ToastModule } from 'primeng/toast';
+import { NcsListDTO } from './ncs-list-dto';
 
 @Component({
   selector: 'app-ncs-list',
@@ -19,7 +22,7 @@ import { ToastModule } from 'primeng/toast';
 export class NcsListComponent implements OnInit {
 
   @ViewChild('dt') dt: Table;
-  listNcs: any[] = [];
+  listNcs: Array<NcsListDTO> = [];
   cols: any[];
   first = 0;
   totalRecords = 0
@@ -69,45 +72,48 @@ export class NcsListComponent implements OnInit {
         this.ncsService.typeMsgHome = ""
       }
     
-      this.ncsService.ncs = data.noncompliances;
+      //this.listNcs.append(data.noncompliances);
 
-      for (let i = 0; i < this.ncsService.ncs.length; i++) {
-        
-        let nc = this.ncsService.ncs[i]
-        console.log(nc.system_status)
-        if (nc.system_status == 'deleted' || nc.system_status == 'arquived') { continue }
+      const compliances: Array<NonCompliance> = data.noncompliances
 
-        let strParceiro
-        
-        switch (nc.tipos_parceiro_item?.toUpperCase()) {
-          case 'INTERNO':
-            strParceiro = nc.sector?.name
-            break
-          case 'CLIENTE':
-            strParceiro = nc.customer?.responsible_name
-            break
-          case 'PROVIDER':
-            strParceiro = nc.provider?.responsible_name
-            break
-          default:
-            strParceiro = 'Teste'
-            break
-          
-        }
+      console.log(compliances)
 
-        var ncElementList = {
-          id : nc.id,
-          numero : nc.code,
-          parceiro : strParceiro,
-          emissor : 'a fazer',
-          estado : nc.status
-        };
 
-        
-
-        this.listNcs.push(ncElementList);
-
+      if (compliances?.length > 0) {
+        this.listNcs = compliances.map(
+          (item:NonCompliance) => {
+            console.log(item)
+              return new NcsListDTO(item)
+        })
       }
+
+      console.log(this.listNcs)
+
+      // for (let i = 0; i < this.ncsService.ncs.length; i++) {
+        
+      //   let nc = this.ncsService.ncs[i]
+      //   console.log('checa nc', nc)
+
+      //   if (nc.system_status == 'deleted' || nc.system_status == 'arquived') { continue }
+
+      //   let strParceiro
+        
+        
+
+      //   //let strEmissor: string = nc['emissor']['username']
+      //   var ncElementList = {
+      //     id : nc.id,
+      //     numero : nc.code,
+      //     parceiro : strParceiro,
+      //     emissor : 'admin',
+      //     estado : nc.status
+      //   };
+
+        
+
+      //   this.listNcs.push(ncElementList);
+
+      // }
 
 
       this.config.filterMatchModeOptions = {
@@ -137,6 +143,9 @@ export class NcsListComponent implements OnInit {
       this.totalRecords = this.listNcs.length
     });
   }
+
+
+  
 
   next() {
     this.first = this.first + this.rows;
@@ -187,4 +196,5 @@ export class NcsListComponent implements OnInit {
     }
     
   }
+  
 }

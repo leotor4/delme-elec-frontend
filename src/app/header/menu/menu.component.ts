@@ -31,7 +31,7 @@ export class MenuComponent implements OnInit {
           items: [
               {label: 'Usuários', icon: 'pi pi-users'},
               {label: 'Ncs', icon: 'pi pi-list', routerLink:'/ncs'},
-              {label: 'Importar Dados', icon: 'pi pi-upload'},
+              {label: 'Importar Dados', icon: 'pi pi-upload', routerLink:'/ncs/import'},
               {
                 label: 'Dashboards', 
                 icon: 'pi pi-desktop',

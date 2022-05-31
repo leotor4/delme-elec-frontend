@@ -1,3 +1,5 @@
+import { ObjectUtils } from './../../../../utils/object-utils';
+import { Place } from 'src/app/models/place';
  import { Component, OnInit } from "@angular/core";
 import { MessageService } from "primeng/api";
 import { DialogService } from "primeng/dynamicdialog";
@@ -11,7 +13,7 @@ import { ProviderService } from "src/app/_services/provider.service";
 import { SectorService } from "src/app/_services/sector.service";
 import { UpdateDateService } from "src/app/_services/update-date.service";
 import { CancelDialogComponent } from "./cancel-dialog/cancel-dialog.component";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 import momentImported from 'moment'; 
 const moment = momentImported;
@@ -23,6 +25,9 @@ const moment = momentImported;
   providers: [DialogService],
 })
 export class NcsCreateHeaderComponent implements OnInit {
+  
+  places:Array<string>[]
+
   constructor(
     public nonComplianceService: NonComplianceService,
     public customerService: CustomerService,
@@ -32,8 +37,10 @@ export class NcsCreateHeaderComponent implements OnInit {
     public placeService: PlaceService,
     public procedureService: ProcedureService,
     private messageService: MessageService,
-    public instructionService: InstructionsService,public dialogService: DialogService,
-    private router:Router
+    public instructionService: InstructionsService,
+    public dialogService: DialogService,
+    private router:Router,
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -49,9 +56,35 @@ export class NcsCreateHeaderComponent implements OnInit {
       this.nonComplianceService.sectors = data.sectors;
     });
 
-    this.placeService.get().subscribe((data: any) => {
-      this.nonComplianceService.places = data.places;
-    });
+    // this.placeService.get().subscribe((data: any) => {
+    //   this.nonComplianceService.places = data.places.map(
+    //     (item:Place) =>
+    //       item.name
+    //     );
+
+
+    //   console.log('data places = ', this.nonComplianceService.places)
+
+    // });
+
+
+    console.log(this.activatedRoute.snapshot.data);
+    var data = this.activatedRoute.snapshot.data
+    
+    const teste:Array<Place> = ObjectUtils.buscarValor(data, 'places.places', '')
+    console.log('teste', teste)
+    
+    this.nonComplianceService.places = teste.map(
+      (item:Place) =>
+        item.name
+      );
+
+    
+    
+     
+
+    console.log(this.nonComplianceService.places)
+
 
     this.providerService.get().subscribe((data: any) => {
       this.nonComplianceService.providers = data.providers;
