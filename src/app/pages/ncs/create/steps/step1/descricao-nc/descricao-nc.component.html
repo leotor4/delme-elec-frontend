@@ -32,13 +32,15 @@
     ></p-editor>
     <div id="counterDescNC" class="text-end">0</div>
   </div>
+
+  
   <div class="col-3 col-attachment">
     <label>Anexe evidências objetivas ou fotográficas</label>
     <div class="div-attachment">
       <h1>Envie seus documentos</h1>
       <div
         class="white-background"
-        *ngIf="nonComplicanceService.fileNc.length == 0"
+        *ngIf="returnFiles('evidenciasNc').length == 0"
       >
         <input
           type="file"
@@ -54,7 +56,7 @@
       </div>
       <div
         class="white-background-files"
-        *ngIf="returnFiles('evidenciasNc').length != 0"
+        *ngIf="returnFiles('evidenciasNc').length > 0"
       >
         <button
           type="button"
@@ -91,13 +93,16 @@
     ></p-editor>
     <div id="counterACI" class="text-end">0</div>
   </div>
+
+
+
   <div class="col-3 col-attachment">
     <label for="desc-area">Anexe evidências objetivas ou fotográficas</label>
     <div class="div-attachment">
       <h1>Envie seus documentos</h1>
       <div
         class="white-background"
-        *ngIf="nonComplicanceService.fileAcoes.length == 0"
+        *ngIf="returnFiles('evidenciasAcoes').length == 0"
       >
         <input
           type="file"
@@ -113,7 +118,7 @@
       </div>
       <div
         class="white-background-files"
-        *ngIf="returnFiles('evidenciasAcoes').length != 0"
+        *ngIf="returnFiles('evidenciasAcoes').length > 0"
       >
         <button
           type="button"

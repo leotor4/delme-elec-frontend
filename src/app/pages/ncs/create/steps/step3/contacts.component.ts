@@ -5,6 +5,7 @@ import { ContactsService } from "./contacts.service";
 import { DialogService } from "primeng/dynamicdialog";
 import { ContactDialogComponent } from "./contact-dialog/contact-dialog.component";
 import { NonComplianceService } from "src/app/_services/non-compliance.service";
+import {TokenStorageService} from "../../../../../_services/token-storage.service";
 
 @Component({
   selector: "app-step3",
@@ -12,7 +13,7 @@ import { NonComplianceService } from "src/app/_services/non-compliance.service";
   styleUrls: ["./contacts.component.css"],
   providers: [DialogService],
 })
-export class ContactsComponent implements OnInit, OnDestroy {
+export class ContactsComponent implements OnInit{
   addContactsDialog: boolean;
   selectedContacts: Contact[] = [];
   selectedContact: String;
@@ -23,12 +24,10 @@ export class ContactsComponent implements OnInit, OnDestroy {
     private messageService: MessageService,
     private contactsSrvc: ContactsService,
     public dialogService: DialogService,
-    public nonComplianceService: NonComplianceService
+    public nonComplianceService: NonComplianceService,
+    public tokenServ: TokenStorageService
   ) {}
 
-  ngOnDestroy(): void {
-    //salva dados no service
-  }
 
   ngOnInit(): void {
     this.getContacts();
@@ -146,8 +145,25 @@ export class ContactsComponent implements OnInit, OnDestroy {
   getContacts() {
     this.contactsSrvc.get().subscribe((data: any) => {
       this.nonComplianceService.allContacts = data.contact;
+      let user = this.tokenServ.getUser()
       this.nonComplianceService.nc.contacts =
-        this.nonComplianceService.allContacts.filter((val) => val.id! <= 4);
+        this.nonComplianceService.allContacts.filter((val) => val.email! === "email1@eletrosson.com.br" || val.email! === "email2@eletrosson.com.br" || val.email! === "email3@eletrosson.com.br"|| val.email == user.email);
+
+      let userContact = this.nonComplianceService.allContacts.filter((val) => val.email == user.email);
+      if(userContact.length<=0){
+        let contact = new Contact()
+        contact.email = user.email
+        contact.name = user.username
+        contact.type = "Emissor"
+        this.contactsSrvc.post(contact).subscribe(
+            (data) => {
+              this.nonComplianceService.allContacts.push(data.contact)
+              this.nonComplianceService.nc.contacts.push(data.contact)
+            }
+        )
+
+      }
+
     });
   }
 }

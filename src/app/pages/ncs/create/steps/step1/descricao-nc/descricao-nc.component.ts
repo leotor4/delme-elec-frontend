@@ -14,12 +14,14 @@ export class DescricaoNcComponent implements OnInit {
 
   uploadedFile: File;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    
+  }
 
   clearFileName(name: string) {
     for (var i = 0; i < this.nonComplicanceService.nc.attachments.length; i++) {
       if (this.nonComplicanceService.nc.attachments[i].path == name) {
-        this.nonComplicanceService.nc.attachments.splice(i);
+        this.nonComplicanceService.nc.attachments.splice(i,1);
       }
     }
 
@@ -52,11 +54,12 @@ export class DescricaoNcComponent implements OnInit {
   returnFiles(name: string): Attachment[] {
     let evidencias: Attachment[] = [];
     this.nonComplicanceService.nc.attachments.forEach((element) => {
+      
       if (element.path == name) {
         evidencias.push(element);
       }
     });
-
+    console.log(evidencias.length)
     return evidencias;
   }
 }

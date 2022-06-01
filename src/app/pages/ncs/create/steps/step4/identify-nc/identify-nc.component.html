@@ -53,7 +53,7 @@
         <div>
           <span class="info-titulo">Responsável</span>
           <br />
-          <span class="info-dados">Janaína</span>
+          <span class="info-dados">{{nonComplicanceService.nc?.emissor?.sector?.responsible_name||""}}</span>
         </div>
       </div>
       <div class="contato-info d-flex flex-row">
@@ -61,7 +61,7 @@
         <div>
           <span class="info-titulo">Departamento</span>
           <br />
-          <p class="info-dados">Rh</p>
+          <p class="info-dados">{{nonComplicanceService.nc?.emissor?.sector?.name||""}}</p>
         </div>
       </div>
     </div>

@@ -28,6 +28,10 @@ export class NonComplianceService {
 
   public ncs: NonCompliance[] = [];
 
+  public editarNomeItem = "";
+  public editarEmailItem = "";
+  public editarTelefoneItem = "";
+
   //passo 1
   customers: Customer[];
 
