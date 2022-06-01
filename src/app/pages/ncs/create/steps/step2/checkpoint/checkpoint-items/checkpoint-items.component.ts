@@ -30,7 +30,7 @@ export class CheckpointItemsComponent implements OnInit {
       }
     });
 
-    console.log(this.results);
+   
   }
 
   verificarExistencia(element: any, filtro: string): boolean {

@@ -32,8 +32,8 @@
         <label for="">Setor/Departamento Afetado</label>
         <select formControlName="tipos_local_item">
           <option [ngValue]="null" disabled selected hidden>Selecione...</option>
-          <option *ngFor="let item of nonComplicanceService.places">
-            {{ item }}
+          <option *ngFor="let item of nonComplicanceService.sectors">
+            {{ item.name }}
           </option>
         </select>
       </div>

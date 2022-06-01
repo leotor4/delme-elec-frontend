@@ -1,7 +1,7 @@
 import { IdentificacaoNCDTO } from './../pages/ncs/create/steps/step1/identificacao-da-nc/identificacao-nc-dto';
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Observable } from 'rxjs';
 import { Contact } from "../models/contact.model";
 import { Customer } from "../models/customer";
@@ -16,6 +16,7 @@ import { UpdateDate } from "../models/update-date";
 import { ObjectUtils } from '../utils/object-utils';
 import momentImported from 'moment';
 import {TokenStorageService} from "./token-storage.service";
+import { Attachment } from '../models/attachment';
 const moment = momentImported;
 
 @Injectable({
@@ -34,12 +35,10 @@ export class NonComplianceService {
 
   //passo 1
   customers: Customer[];
-
   sectors: Sector[];
   providers: Provider[];
   places!: Array<string>;
   updates: UpdateDate;
-
   pesquisar: string = "";
   public fileNc: any = [];
   public fileAcoes: any = [];
@@ -50,7 +49,6 @@ export class NonComplianceService {
   public instructions: Instruction[];
   public procedures: Procedure[];
   public selectedProduct: Product;
-
   public autoCompleteValue: string = "";
   public autoCompletePrValue: any;
   public autoCompleteItValue: any;
@@ -60,7 +58,6 @@ export class NonComplianceService {
 
   //passo 3
   allContacts: Contact[];
-
   hasSelectedProduct: boolean;
 
 
@@ -76,9 +73,9 @@ export class NonComplianceService {
 
   private criarFormularios(): void {
 		this.formIdentificacaoNC = this.fb.group({
-			tipos_nc_item: [null],
-			tipos_auditoria_item: [null],
-			tipos_local_item: [null],
+			tipos_nc_item: [null,Validators.required],
+			tipos_auditoria_item: [null,Validators.required],
+			tipos_local_item: [null,Validators.required],
 			data_abertura: [moment(new Date()).format('yyyy-MM-DD')],
       data_fechamento: [moment(new Date()).add('d', 30).format('yyyy-MM-DD')],
 		});
@@ -89,20 +86,59 @@ export class NonComplianceService {
 		});
 	}
 
+  validarCheckpoint():boolean{
+    if(this.nc.tipo_controle?.includes("OP")){
+      return (!!this.nc.num_op 
+        && !!this.nc.instruction);
+    }
+
+    if(this.nc.tipo_controle?.includes("NF-e")){
+      return (!!this.nc.num_lote 
+        && !!this.nc.num_ordem_compra 
+        && !!this.nc.num_nota
+        && (this.returnPontoControleFiles().length > 0)
+        );
+    }
+
+    if(this.nc.tipo_controle == "PV" || this.nc.tipo_controle == "PC" || this.nc.tipo_controle == "CC"){
+      return (!!this.nc.num_nota
+        && (this.returnPontoControleFiles().length > 0)
+        );
+    }
+
+      if(this.nc.tipo_controle == "PR"){
+      return (
+        (this.returnPontoControleFiles().length > 0)
+        && !!this.nc.procedure
+        );
+    }
+    return false;
+  }
+
+  returnPontoControleFiles(){
+    let files:Attachment[] = []
+    this.nc.attachments.forEach(element =>{
+      if(element.path == "pontoControle")
+        files.push(element)
+    })
+
+    return files;
+  }
+
+
+
+
   avancarPasso1(): boolean {
-    return !(
-      !!this.nc.tipos_nc_item &&
-      !!this.nc.tipos_auditoria_item &&
-      !!this.nc.tipos_local_item &&
-      !!this.nc.data_abertura &&
-      !!this.nc.data_fechamento &&
-      !!this.nc.tipos_parceiro_item &&
-      !!this.nc.text_area_nc &&
-      !!this.nc.text_area_acoes &&
-      !!this.nc.partner &&
-      this.fileNc.length > 0 &&
-      this.fileAcoes.length > 0
-    );
+    return !(this.formIdentificacaoNC.valid 
+      && this.nc.partner 
+      && this.nc.product
+      && this.nc.text_area_reject_point
+      && this.nc.tipo_controle
+      && this.nc.quant_nc
+      && this.nc.quant_total  
+      && this.validarCheckpoint()
+      
+      )
   }
 
   avancarPasso2(): boolean {

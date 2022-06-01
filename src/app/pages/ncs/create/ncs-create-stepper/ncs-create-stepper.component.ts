@@ -18,8 +18,7 @@ export class NcsCreateStepperComponent implements OnInit {
   disableButton(): boolean {
     switch (this.stepPosition) {
       case 0:
-        return false;
-      // return this.nonComplianceService.avancarPasso1();
+      return this.nonComplianceService.avancarPasso1();
       case 1:
         //return this.nonComplianceService.avancarPasso2();
         return false;

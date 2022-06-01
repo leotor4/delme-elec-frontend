@@ -9,6 +9,8 @@ export class IdentificacaoNCDTO {
   data_abertura?: string;
   data_fechamento?: string;
 
+  
+
   constructor(init?: Partial<NonCompliance>) {
     if (init) {
       Object.assign(this, init);

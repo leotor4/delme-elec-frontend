@@ -6,6 +6,7 @@ import { DialogService } from "primeng/dynamicdialog";
 import { ContactDialogComponent } from "./contact-dialog/contact-dialog.component";
 import { NonComplianceService } from "src/app/_services/non-compliance.service";
 import {TokenStorageService} from "../../../../../_services/token-storage.service";
+import { User } from "src/app/models/user.model";
 
 @Component({
   selector: "app-step3",
@@ -18,6 +19,7 @@ export class ContactsComponent implements OnInit{
   selectedContacts: Contact[] = [];
   selectedContact: String;
   results: Contact[];
+  contactUsers:User[] = []
 
   constructor(
     private confirmationService: ConfirmationService,
@@ -31,6 +33,20 @@ export class ContactsComponent implements OnInit{
 
   ngOnInit(): void {
     this.getContacts();
+    this.getContacts2();
+  }
+
+
+  getContacts2(){
+    this.contactsSrvc.get().subscribe({
+      next:(data)=>{
+        console.log(data.users)
+      },
+      error:(err)=>{}
+    })
+    let emissor = this.tokenServ.getUser()
+    
+    this.contactUsers.push(emissor)
   }
 
   createNewContact() {
