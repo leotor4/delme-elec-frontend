@@ -33,8 +33,8 @@ export class NcsCreateComponent implements OnInit {
         next: (response:any) => {
           this.ncService.nc = new NonCompliance(response['nc'][0]);
           this.setDates(this.ncService.nc);
-          console.log(response['nc'][0]);
-          console.log(this.ncService.nc);
+          console.log('Teste',response['nc'][0]);
+          console.log('Teste2', this.ncService.nc);
 
           this.ncService.formIdentificacaoNC.patchValue(new IdentificacaoNCDTO(this.ncService.nc));
         },
