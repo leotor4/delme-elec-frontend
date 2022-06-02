@@ -29,17 +29,17 @@
     </ng-template>
     <ng-template pTemplate="body" let-contact let-i="rowIndex">
       <tr>
-        <td>{{ contact.name }}</td>
+        <td>{{ contact.username }}</td>
         <td>{{ contact.email }}</td>
         <td>{{ contact.type }}</td>
         <td *ngIf="i >= 4">
-          <button
+<!--          <button
             pButton
             type="button"
             icon="pi pi-pencil"
             class="p-button-secondary p-button-text"
             (click)="editContact(contact)"
-          ></button>
+          ></button>-->
           <button
             pButton
             type="button"
@@ -65,7 +65,7 @@
   </ng-template>
   <ng-template pTemplate="content">
     <div class="d-flex pb-2">
-      <div class="col-9 pl-0">
+      <div class="col-10 pl-0">
         <p-autoComplete
           placeholder="Busque por nome ou e-mail..."
           [(ngModel)]="selectedContact"
@@ -79,7 +79,7 @@
         >
           <ng-template let-contact pTemplate="item">
             <div>
-              <span class="auto-complete-title">{{ contact.name }}</span>
+              <span class="auto-complete-title">{{ contact.username }}</span>
               <div class="d-flex text-start">
                 <div>
                   <span class="auto-complete-label">E-MAIL</span><br />
@@ -94,13 +94,13 @@
           </ng-template>
         </p-autoComplete>
       </div>
-      <button
+<!--      <button
         type="button"
         class="btn btn-dark col-3"
         (click)="createNewContact()"
       >
         Criar Contato <i class="pi pi-user-plus"></i>
-      </button>
+      </button>-->
     </div>
     <div class="d-flex mt-3">
       <i class="pi pi-users" style="font-size: 2rem"></i>

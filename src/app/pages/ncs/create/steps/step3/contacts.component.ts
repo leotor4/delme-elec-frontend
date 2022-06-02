@@ -7,6 +7,7 @@ import { ContactDialogComponent } from "./contact-dialog/contact-dialog.componen
 import { NonComplianceService } from "src/app/_services/non-compliance.service";
 import {TokenStorageService} from "../../../../../_services/token-storage.service";
 import { User } from "src/app/models/user.model";
+import {UserService} from "../../../../../_services/user.service";
 
 @Component({
   selector: "app-step3",
@@ -19,34 +20,19 @@ export class ContactsComponent implements OnInit{
   selectedContacts: Contact[] = [];
   selectedContact: String;
   results: Contact[];
-  contactUsers:User[] = []
 
   constructor(
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
-    private contactsSrvc: ContactsService,
     public dialogService: DialogService,
     public nonComplianceService: NonComplianceService,
-    public tokenServ: TokenStorageService
+    public tokenServ: TokenStorageService,
+    public userServ: UserService
   ) {}
 
 
   ngOnInit(): void {
     this.getContacts();
-    this.getContacts2();
-  }
-
-
-  getContacts2(){
-    this.contactsSrvc.get().subscribe({
-      next:(data)=>{
-        console.log(data.users)
-      },
-      error:(err)=>{}
-    })
-    let emissor = this.tokenServ.getUser()
-    
-    this.contactUsers.push(emissor)
   }
 
   createNewContact() {
@@ -159,27 +145,12 @@ export class ContactsComponent implements OnInit{
   }
 
   getContacts() {
-    this.contactsSrvc.get().subscribe((data: any) => {
-      this.nonComplianceService.allContacts = data.contact;
-      let user = this.tokenServ.getUser()
+    this.userServ.getAll().subscribe((data:any)=>{
+      this.nonComplianceService.allContacts = data.users;
       this.nonComplianceService.nc.contacts =
-        this.nonComplianceService.allContacts.filter((val) => val.email! === "email1@eletrosson.com.br" || val.email! === "email2@eletrosson.com.br" || val.email! === "email3@eletrosson.com.br"|| val.email == user.email);
+          this.nonComplianceService.allContacts.filter((val) => val.email! === "email1@eletrosson.com.br" || val.email! === "email2@eletrosson.com.br" || val.email! === "email3@eletrosson.com.br");
+      this.nonComplianceService.nc.contacts.push(this.tokenServ.getUser())
 
-      let userContact = this.nonComplianceService.allContacts.filter((val) => val.email == user.email);
-      if(userContact.length<=0){
-        let contact = new Contact()
-        contact.email = user.email
-        contact.name = user.username
-        contact.type = "Emissor"
-        this.contactsSrvc.post(contact).subscribe(
-            (data) => {
-              this.nonComplianceService.allContacts.push(data.contact)
-              this.nonComplianceService.nc.contacts.push(data.contact)
-            }
-        )
-
-      }
-
-    });
+    })
   }
 }

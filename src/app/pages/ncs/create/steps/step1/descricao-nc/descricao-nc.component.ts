@@ -59,7 +59,6 @@ export class DescricaoNcComponent implements OnInit {
         evidencias.push(element);
       }
     });
-    console.log(evidencias.length)
     return evidencias;
   }
 }
