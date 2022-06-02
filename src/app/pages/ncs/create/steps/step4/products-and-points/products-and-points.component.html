@@ -77,12 +77,30 @@
         <br />
         <p class="info-dados">
           {{
-            (this.nonComplicanceService.nc?.num_op || this.nonComplicanceService.nc?.num_nota)|| "Dado não preenchido"
+          (this.nonComplicanceService.nc?.num_op || this.nonComplicanceService.nc?.num_nota)|| "Dado não preenchido"
           }}
         </p>
       </div>
     </div>
   </div>
+  <div class="dados-parceiro razao-social item mt-3" *ngIf="returnFile('pontoControle').length>0">
+    <h2 class="mr-2 mb-5">
+      <i class="bi bi-paperclip"></i>
+      Anexos
+    </h2>
+    <p-carousel
+            [value]="returnFile('pontoControle')"
+            [numVisible]="3"
+            [numScroll]="3"
+            [showIndicators]="false"
+    >
+      <ng-template let-file pTemplate="item">
+        <i class="bi bi-file-earmark fs-1"></i>
+        <p>{{ file.name }}</p>
+      </ng-template>
+    </p-carousel>
+  </div>
+
 </div>
 <div class="div-ident-parceiro pr-4 mt-3">
   <h2>

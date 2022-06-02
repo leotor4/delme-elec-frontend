@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { NonComplianceService } from "../../../../../../_services/non-compliance.service";
+import {Attachment} from "../../../../../../models/attachment";
 
 @Component({
   selector: "app-products-and-points",
@@ -17,5 +18,15 @@ export class ProductsAndPointsComponent implements OnInit {
         this.nonComplicanceService.nc.quant_total) *
         100
     );
+  }
+
+  returnFile(name: string) {
+    let acoesFile: Attachment[] = [];
+    this.nonComplicanceService.nc.attachments.forEach((element) => {
+      if (element.path == name) {
+        acoesFile.push(element);
+      }
+    });
+    return acoesFile;
   }
 }
