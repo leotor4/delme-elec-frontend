@@ -60,6 +60,7 @@ export class NcsCreateComponent implements OnInit {
          }
 
           this.ncService.formIdentificacaoNC.patchValue(new IdentificacaoNCDTO(this.ncService.nc));
+          console.log(this.ncService.nc.tipos_local_item)
         },
         error: err => {
           this.messageService.add({

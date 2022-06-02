@@ -28,5 +28,11 @@ export class IdentificacaoDaNcComponent implements OnInit {
 
   public tiposAuditoria: Array<String> = ["Interna", "Externa"];
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    
+  }
+teste(){
+  console.log("consolelog" + this.nonComplicanceService.nc.tipos_local_item)
+}
+  
 }

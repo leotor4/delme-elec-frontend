@@ -20,7 +20,7 @@ export class IdentificacaoNCDTO {
       if (init.hasOwnProperty('data_fechamento') && this.data_fechamento) {
         this.data_fechamento = moment(init.data_fechamento).format('yyyy-MM-DD');
       }
-      console.log(this)
+      
     }
   }
 }

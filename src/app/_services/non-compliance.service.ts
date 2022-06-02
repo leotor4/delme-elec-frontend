@@ -96,29 +96,29 @@ export class NonComplianceService {
       return (!!this.nc.num_lote 
         && !!this.nc.num_ordem_compra 
         && !!this.nc.num_nota
-        && (this.returnPontoControleFiles().length > 0)
+        && (this.returnfiles("pontoControle").length > 0)
         );
     }
 
     if(this.nc.tipo_controle == "PV" || this.nc.tipo_controle == "PC" || this.nc.tipo_controle == "CC"){
       return (!!this.nc.num_nota
-        && (this.returnPontoControleFiles().length > 0)
+        && (this.returnfiles("pontoControle").length > 0)
         );
     }
 
       if(this.nc.tipo_controle == "PR"){
       return (
-        (this.returnPontoControleFiles().length > 0)
+        (this.returnfiles("pontoControle").length > 0)
         && !!this.nc.procedure
         );
     }
     return false;
   }
 
-  returnPontoControleFiles(){
+  returnfiles(name:string){
     let files:Attachment[] = []
     this.nc.attachments.forEach(element =>{
-      if(element.path == "pontoControle")
+      if(element.path == name)
         files.push(element)
     })
 
@@ -143,9 +143,11 @@ export class NonComplianceService {
 
   avancarPasso2(): boolean {
     return !(
-      !!this.nc.quant_nc &&
-      !!this.nc.quant_total &&
-      !!this.selectedProduct
+      !!this.nc.radio_value 
+      && !!this.nc.text_area_nc
+      && !!this.nc.text_area_acoes
+      && this.returnfiles("evidenciasAcoes").length>0
+      && this.returnfiles("evidenciasNc").length>0
     );
   }
 

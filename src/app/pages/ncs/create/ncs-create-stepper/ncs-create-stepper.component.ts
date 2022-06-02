@@ -20,8 +20,8 @@ export class NcsCreateStepperComponent implements OnInit {
       case 0:
       return this.nonComplianceService.avancarPasso1();
       case 1:
-        //return this.nonComplianceService.avancarPasso2();
-        return false;
+        return this.nonComplianceService.avancarPasso2();
+       
       case 2:
         return false;
       case 3:
