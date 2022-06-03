@@ -87,7 +87,7 @@ currentPageReportTemplate="Exibindo de {first} a {last} de {totalRecords} regist
       </td>
 
       <td style="text-align: center">
-          <a style="color: black;" type="button" pTooltip="Ver informações da NC" routerLink="/ncs/about/{{ncListDTO.nc.id}}"><i class="bi bi-info-circle"></i></a>
+          <a style="color: black;" type="button" pTooltip="Ver informações da NC" (click)="visualizarInformacoes(ncListDTO.nc.id, ncListDTO.estado)" ><i class="bi bi-info-circle"></i></a>
       </td>
 
       <td style="text-align: center">

@@ -211,9 +211,26 @@ export class NcsListComponent implements OnInit {
     if (status.toUpperCase() == 'OPEN') {
       this.router.navigate(["/ncs/create/", idNc]);
     } else {
+      this.messageService.add({
+        key: "myKey2",
+        severity: 'info',
+        summary: 'O processo de abertura desta nc já foi concluído',
+        life: 5000,
+      });
+    }    
+  }
+
+  visualizarInformacoes(idNc : number, status : string) {
+    if (status.toUpperCase() == 'RUNNING') {
       this.router.navigate(["/ncs/about/", idNc]);
-    }
-    
+    } else if (status.toUpperCase() == 'OPEN'){
+      this.messageService.add({
+        key: "myKey2",
+        severity: 'info',
+        summary: 'Conclua a abertura da NC para poder visualizar as informações',
+        life: 5000,
+      });
+    }    
   }
   
 }

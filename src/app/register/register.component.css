@@ -1,0 +1,290 @@
+/* * {
+    margin: 0;
+    box-sizing: border-box;
+  }
+  
+  .row {
+    display: -webkit-box;
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+  
+  .cabecalho h1 {
+    font-size: 25px;
+    font-weight: 500;
+    margin-bottom: 0px;
+    margin-top: 0px;
+  }
+  .cabecalho p {
+    font-size: 14px;
+    color: gray;
+  }
+  
+  label {
+    display: block;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 2px;
+  }
+  
+  
+  
+  
+  
+  .p-button-secondary {
+    background-color: rgb(51, 51, 51);
+    background: rgb(51, 51, 51);
+  }
+  
+  .dropdown p {
+    font-size: 14px;
+  }
+  
+  .dropdown select {
+    width: 200px;
+    min-width: 150px;
+    background-color: white;
+    border-radius: 5px;
+    border: 2px solid rgb(51, 51, 51);
+    font-size: 14px;
+    padding: 7px;
+    
+   
+   
+  }
+  
+  .dropdown{
+    margin-top: 10px;
+  }
+  
+  
+  .div-att button {
+    width: 200px;
+    font-size: 12px;
+  }
+  
+  .div-att p {
+    font-size: 11px;
+    color: gray;
+    width: 120px;
+  }
+  
+  .div-att i {
+    color: gray;
+    padding: 0%;
+  
+    width: 1%;
+  }
+  .p-inputtext {
+    border: 2px solid rgb(51, 51, 51);
+    border-color: black !important;
+    box-shadow: 0 0 0 0.02rem green !important;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+  }
+  
+  #div-att-col2{
+  min-width: 200px;
+  }
+  
+  #div-att-col2 p {
+    font-size: 11px;
+    color: gray;
+    margin: 0;
+  }
+  #div-att-col2 i {
+    margin-left: 3px;
+  }
+  
+  #div-att-col2 a {
+    width: 100%;
+    font-size: 14px;
+    padding-top: 7px;
+  }
+  
+  #div-att-col2 i {
+    margin-right: 3px;
+    font-size: 12px;
+    
+  }
+  
+  #search-input {
+    outline: none;
+    border: 2px solid rgb(51, 51, 51);
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    padding: 7px;
+  }
+  
+  
+  
+  .col-search {
+    display: flex;
+    align-items: flex-end;
+    margin-top: 10px;
+    
+  }
+  
+  .col-search i{
+    font-size: 15px;
+    margin-left: 4px;
+    
+  }
+  
+  .row-search{
+    margin-bottom: 15px;
+  }
+  
+  .div-ident-parceiro {
+    margin: 0;
+    width: 100%;
+    border: 2px solid rgb(51, 51, 51);
+    padding: 10px;
+    border-radius: 8px;
+    background-color: rgb(243, 243, 243);
+  }
+  
+  
+  
+  .background-white {
+    margin: 10px;
+    background-color: white;
+    border-radius: 7px;
+    height: 300px;
+    
+  }
+  
+  .div-ident-parceiro-titulo{
+    text-align: center;
+  }
+  
+  .dados-parceiro {
+    min-width: 230px;
+    margin: 10px;
+    margin-top: 0px;
+    background-color: white;
+    border-radius: 7px;
+    padding: 13px;
+  
+  }
+  
+  .titulo-parceiro{
+    font-size: 17px;
+    font-weight: bold;
+    margin-bottom: 0;
+    color: rgb(51, 51, 51);
+   
+  }
+  
+  .dados-contato h1{
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(51, 51, 51)
+  }
+  
+  .razao-social h1{
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(51, 51, 51)
+  
+  }
+  
+  
+  .dados-contato button{
+    width: 130px;
+    height: 30px;
+    font-size: 13px;
+  }
+  
+  .razao-social p {
+  font-size: 13px;
+  }
+  
+  .dados-contato i {
+    font-size: 11px;
+    margin-right: 8px;
+  }
+  
+  .info-titulo{
+    margin-bottom: 1px;
+  font-weight: bold;
+  color: rgb(103, 103, 103);
+  }
+  
+  .info-dados{
+    color: rgb(153, 153, 153);
+    ;
+  }
+  
+  .contato-info i{
+    font-size: 14px;
+    color: rgb(103, 103, 103);
+    margin-right: 10px;
+  }
+  
+  .contato-info{
+    margin-top: 8px;
+    height: 35px;
+  }
+  
+  .auto-complete-title{
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .auto-complete-label {
+    font-size: 11px;
+    color: gray;
+   
+  }
+  
+  .p-autocomplete{
+  width: 468px;
+  
+  border-radius: 5px;
+  border: 2px solid rgb(51, 51, 51);
+  height: 38px;
+  
+  
+  }
+  
+  .col-search button{
+    width: 120px;
+    min-width: 120px;
+    height: 38px;
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+  }
+  .editar-campo{
+    margin-top: 15px;
+  }
+  .editar-campo input{
+  width: 100%;
+  border: 2px solid rgb(51, 51, 51);
+  border-radius: 5px;
+  padding-left: 7px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 13px;
+  }
+  
+  .editar-buttons{
+    margin-top: 30px;
+  }
+  
+  .editar-buttons i{
+    font-size: 12px;
+    margin-left: 5px;
+  }
+  
+
+  .btn-primary-color {
+    color: white !important;
+    background-color: #00344D !important;
+    font-size: 15px;
+    margin-top: 10px;
+    float:right
+} */
