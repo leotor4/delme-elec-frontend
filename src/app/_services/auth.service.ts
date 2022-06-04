@@ -28,4 +28,14 @@ export class AuthService {
       password
     }, httpOptions);
   }
+
+
+  registerPassword(registerPassword:string, confirmPassword: string, hashUser:string) {
+
+    return this.http.post(AUTH_API + 'user/register/password', {
+      registerPassword,
+      confirmPassword,
+      hashUser
+    }, httpOptions);
+  }
 }

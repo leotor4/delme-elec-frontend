@@ -1,10 +1,10 @@
-<p-confirmDialog acceptLabel="sim" rejectLabel="não" [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text"></p-confirmDialog>
+<p-confirmDialog acceptLabel="sim" rejectLabel="não" [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
 <p class="title">Início</p>
 <p class="subtitle">Visualize ou crie não conformidades</p>
 
 <span class="p-input-icon-left">
     <i class="pi pi-search"></i>
-    <input pInputText type="text" (input)="applyFilterGlobal($event, 'contains')" placeholder="Global Search" />
+    <input pInputText type="text" (input)="applyFilterGlobal($event, 'contains')" placeholder="Filtro Global" />
 </span>
 <span style="float:right">
   <button (click)="openNc()" class="btn btn-primary-color">Nova Não Conformidade <i class="bi bi-file-earmark-plus"></i></button>
@@ -12,7 +12,7 @@
 </span>
 
 <div style="margin-top: 10px;">
-<p-table  responsiveLayout="scroll" #dt [globalFilterFields]="['numero','parceiro','emissor', 'estado']" [value]="listNcs" [columns]="cols" [paginator]="true" [rows]="rows" [(first)]="first" [totalRecords]="totalRecords" [showCurrentPageReport]="true" responsiveLayout="scroll"
+<p-table  responsiveLayout="scroll" #dt [globalFilterFields]="['numero','emissor', 'status']" [value]="listNcs" [columns]="cols" [paginator]="true" [rows]="rows" [(first)]="first" [totalRecords]="totalRecords" [showCurrentPageReport]="true" responsiveLayout="scroll"
 currentPageReportTemplate="Exibindo de {first} a {last} de {totalRecords} registros" [rowsPerPageOptions]="[5,10,25,50]" [filterDelay]="0">
 
   <ng-template pTemplate="header">
@@ -24,25 +24,19 @@ currentPageReportTemplate="Exibindo de {first} a {last} de {totalRecords} regist
             <p-columnFilter type="text" field="numero" display="menu" class="ml-auto"></p-columnFilter>
         </div>
       </th>
-      <th pSortableColumn="parceiro">
-          <div class="flex justify-content-between align-items-center">
-              Parceiro
-              <p-sortIcon field="parceiro"></p-sortIcon>
-              <p-columnFilter type="text" field="parceiro" display="menu" class="ml-auto"></p-columnFilter>
-          </div>
-      </th>
+      
       <th pSortableColumn="emissor">
         <div class="flex justify-content-between align-items-center">
             Emissor
             <p-sortIcon field="emissor"></p-sortIcon>
-            <p-columnFilter type="text" field="emissor" display="menu" class="ml-auto"></p-columnFilter>
+            <p-columnFilter type="text" field="emissor" field="name"display="menu" class="ml-auto"></p-columnFilter>
         </div>
       </th>
-      <th pSortableColumn="estado">
+      <th pSortableColumn="status">
           <div class="flex justify-content-between align-items-center">
-              Estado
+              Status
               <p-sortIcon field="estado"></p-sortIcon>
-              <p-columnFilter type="text" field="estado" display="menu" class="ml-auto"></p-columnFilter>
+              <p-columnFilter type="text" field="status" display="menu" class="ml-auto"></p-columnFilter>
           </div>
       </th>
 
@@ -63,10 +57,6 @@ currentPageReportTemplate="Exibindo de {first} a {last} de {totalRecords} regist
           {{ncListDTO.numero}}
       </td>
 
-      <td>
-          <span class="p-column-title">Parceiro</span>
-          {{ncListDTO.parceiro}}
-      </td>
 
       <td>
         <span class="p-column-title">Emissor</span>
@@ -74,8 +64,8 @@ currentPageReportTemplate="Exibindo de {first} a {last} de {totalRecords} regist
       </td>
 
       <td>
-        <span class="p-column-title">Estado</span>
-        <span [ngSwitch]="ncListDTO.estado" >
+        <span class="p-column-title">Status</span>
+        <span [ngSwitch]="ncListDTO.status" >
           <span *ngSwitchCase="'open'"> Aberta</span>
           <span *ngSwitchCase="'running'"> Em execução</span>
           <span *ngSwitchCase="'late'"> Atrasada</span>

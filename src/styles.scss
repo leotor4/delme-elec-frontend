@@ -14,11 +14,20 @@ body {
 
 .p-dialog-footer {
   .p-confirm-dialog-accept {
-    background: red;
+    background: #00344D;
     &:hover {
-      background: black;
+      background: rgb(0, 91, 123);
     }
   }
+
+  .p-confirm-dialog-reject {
+    background: #00344D;
+    &:hover {
+      background: rgb(0, 91, 123);
+    }
+  }
+
+
 }
 
 

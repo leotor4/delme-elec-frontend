@@ -22,8 +22,12 @@ export class LoginComponent implements OnInit {
 
   form: any = {
     email: '',
-    password: ''
+    password: '',
+    registerPassword:'',
+    confirmPassword: ''
   };
+
+  hashUser:string;
 
   isLoggedIn = false;
   isLoginFailed = false;
@@ -34,10 +38,9 @@ export class LoginComponent implements OnInit {
     private modalService: NgbModal, private messageService: MessageService) { }
 
   ngOnInit(): void {
-
     console.log(this.router.snapshot)
-    this.router.queryParams.subscribe(param => {
-      console.log(param)
+    this.router.queryParams.subscribe(param => {      
+      this.hashUser = param['hashUser']
     })
 
     if (this.tokenStorage.getToken()) {
@@ -47,21 +50,38 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
-    const { email, password } = this.form;
-    this.authService.login(email,password).subscribe(
-      data => {
-        this.tokenStorage.saveToken(data.token.token);
-        this.tokenStorage.saveUser(data.user);
-        this.isLoggedIn = true;
-        this.isLoginFailed = false;
-        this.roles = this.tokenStorage.getUser().roles;
-      },
-      err => {
-        if (err.status == 400) {
-          this.addSingle('Credenciais Inválidas', 'error')
+
+    if (!this.hashUser) {
+      const { email, password } = this.form;
+      this.authService.login(email,password).subscribe(
+        data => {
+          this.tokenStorage.saveToken(data.token.token);
+          this.tokenStorage.saveUser(data.user);
+          this.isLoggedIn = true;
+          this.isLoginFailed = false;
+          this.roles = this.tokenStorage.getUser().roles;
+        },
+        err => {
+          if (err.status == 400) {
+            this.addSingle('Credenciais Inválidas', 'error')
+          }
         }
-      }
-    )
+      )      
+    } else {
+
+      const { registerPassword, confirmPassword } = this.form;
+      this.authService.registerPassword(registerPassword,confirmPassword, this.hashUser).subscribe(
+        data => {
+         this.hashUser = '';
+        },
+        err => {
+          if (err.status == 400) {
+            this.addSingle('Credenciais Inválidas', 'error')
+          }
+        }
+      )       
+    }
+
   }
 
 

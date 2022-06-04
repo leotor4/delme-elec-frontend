@@ -5,7 +5,7 @@ export class NcsListDTO {
   numero: string = "";
   parceiro: string = "";
   emissor: string = "";
-  estado: string;
+  status: string;
   system_status:string
   nc: NonCompliance = new NonCompliance() ;
 
@@ -14,7 +14,7 @@ export class NcsListDTO {
         Object.assign(this.nc, init)
         this.numero = ObjectUtils.buscarValor(init, 'code', '')
         this.emissor = ObjectUtils.buscarValor(init, 'emissor.username', '')
-        this.estado = ObjectUtils.buscarValor(init, 'status', '')
+        this.status = ObjectUtils.buscarValor(init, 'status', '')
         this.system_status = ObjectUtils.buscarValor(init, 'system_status', '')
         this.parceiro = this.getParceiro()
         

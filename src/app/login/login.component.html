@@ -3,8 +3,8 @@
     <div class="centered-left">
       <h3 class="welcomeText">Boas vindas ao </h3>
       <div style="word-wrap: break-word;">
-        <h1 class="systemTitle">Sistema Gestor de Não</h1>
-        <h1 class="systemTitle">Conformidades da Electroson</h1>
+        <h1 class="systemTitle">Sistema de Gestão de</h1>
+        <h1 class="systemTitle">Não Conformidades </h1>
       </div>
     </div>
   </div>
@@ -21,22 +21,26 @@
         <img src="../assets/images/logo2.png" alt="Electroson">
       </div>
 
-      <div class="alert-danger" *ngIf="email.errors && f.submitted">
-          <div *ngIf="email.errors['required']">Digite seu e-mail</div>
-          <div *ngIf="email.errors['email']">
-            Digite um e-mail válido
-          </div>
-      </div>
+      <div  *ngIf="!hashUser">
+        <div  class="alert-danger" *ngIf=" email && email.errors && f.submitted">
+            <div *ngIf="email.errors['required']">Digite seu e-mail</div>
+            <div *ngIf="email.errors['email']">
+              Digite um e-mail válido
+            </div>
+        </div>
+    </div>
 
+    <div  *ngIf="!hashUser">
 
-      <div class="alert-danger" *ngIf="password.errors && f.submitted">
+      <div  class="alert-danger" *ngIf="password && password.errors && f.submitted">
         <div *ngIf="password.errors['required']">Digite sua senha</div>
       </div>
+    </div>
 
 
       
 
-      <div class="form-group">
+      <div *ngIf="!hashUser" class="form-group">
         <div
           class="alert alert-danger"
           role="alert"
@@ -46,12 +50,12 @@
         </div>
       </div>
 
-      <div class="alert alert-success" *ngIf="isLoggedIn">
+      <div class="alert alert-success" *ngIf="!hashUser && isLoggedIn">
         Logged in as {{ roles }}.
       </div>
      
 
-      <div class="form-group">
+      <div *ngIf="!hashUser" class="form-group">
         <label class="loginFormText" for="email">E-mail</label>
         <input
           type="email"
@@ -64,7 +68,7 @@
         />
       </div>
 
-      <div class="form-group">
+      <div *ngIf="!hashUser" class="form-group">
         <label class="loginFormText" for="password">Senha</label>
         <input
           type="password"
@@ -77,17 +81,17 @@
 
       </div>
 
-      <div class="form-check">
+      <div *ngIf="!hashUser" class="form-check">
         <input type="checkbox" class="form-check-input" id="exampleCheck1">
         <label class="loginFormText" for="exampleCheck1">Lembrar credenciais</label>
       </div>
-      <div class="form-group">
+      <div *ngIf="!hashUser" class="form-group">
         <button type="submit" class="form-control btn btn-dark btn-home" style="background-color: #00344D;">Entrar</button>
       </div>
 
 
 
-      <div class="form-group">
+      <div *ngIf="!hashUser" class="form-group">
         <a class="btn-home" style="float: right; color: #B48C28;" (click)="open(mymodal)">Novo no sistema? Cadastre-se!</a> 
 
         <ng-template #mymodal let-modal>
@@ -104,6 +108,34 @@
 
       </div>
 
+
+      <div *ngIf="hashUser" class="form-group">
+        <label class="loginFormText" for="registerPassword">Senha</label>
+        <input
+          type="password"
+          class="form-control"
+          name="registerPassword"
+          [(ngModel)]="form.registerPassword"
+          required
+          #password="ngModel"
+        />
+      </div>
+
+      <div *ngIf="hashUser" class="form-group">
+        <label class="loginFormText" for="confirmPassword">Confirme sua senha</label>
+        <input
+          type="password"
+          class="form-control"
+          name="confirmPassword"
+          [(ngModel)]="form.confirmPassword"
+          required
+          #password="ngModel"
+        />
+      </div>
+
+      <div *ngIf="hashUser" class="form-group">
+        <button type="submit" class="form-control btn btn-dark btn-home" style="background-color: #00344D;">Cadastrar Senha</button>
+      </div>
 
     </form>
     </div>

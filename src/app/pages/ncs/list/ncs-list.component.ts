@@ -24,8 +24,7 @@ export class NcsListComponent implements OnInit {
   first = 0;
   totalRecords = 0
   rows = 5;
-  msg: string
-  msgType: string
+
 
   openNc(){
 
@@ -63,21 +62,8 @@ export class NcsListComponent implements OnInit {
     private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
-    var teste:String = 'daniel'
-
     this.ncsService.get().subscribe((data: any) => {
       
-      if (this.ncsService.msgHome) {
-        this.messageService.add({
-          severity: this.ncsService.typeMsgHome,
-          summary: this.ncsService.msgHome,
-          life: 3000,
-        });
-
-        this.ncsService.msgHome = ""
-        this.ncsService.typeMsgHome = ""
-      }
-    
       //this.listNcs.append(data.noncompliances);
 
       const compliances: Array<NonCompliance> = data.noncompliances
@@ -92,7 +78,8 @@ export class NcsListComponent implements OnInit {
         })
         this.listNcs = this.listNcs.filter(item => (item.system_status !== 'deleted' && item.system_status != 'arquived'));
       }
-
+      
+      console.log(this.listNcs)
 
       this.config.filterMatchModeOptions = {
         text: [
