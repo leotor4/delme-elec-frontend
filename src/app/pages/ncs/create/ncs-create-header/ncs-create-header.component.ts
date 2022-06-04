@@ -109,7 +109,6 @@ export class NcsCreateHeaderComponent implements OnInit {
     this.nonComplianceService.put().subscribe({
       next: data => {
         this.messageService.add({
-          key: "myKey1",
           severity: "success",
           summary: "Não conformidade salva com sucesso.",
           life: 3000,
@@ -117,13 +116,10 @@ export class NcsCreateHeaderComponent implements OnInit {
 
         if (btnType == 'home') {
           this.router.navigate(["/ncs/"])
-          this.nonComplianceService.msgHome = 'As informações da NC que você criou foram salvas com sucesso'
-          this.nonComplianceService.typeMsgHome = 'success'
         }
       },
       error: err => {
         this.messageService.add({
-          key: "myKey1",
           severity: "error",
           summary: "Houve um problema ao salvar não conformidade.",
           life: 3000,

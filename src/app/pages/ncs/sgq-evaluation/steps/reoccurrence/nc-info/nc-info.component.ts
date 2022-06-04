@@ -12,7 +12,7 @@ import {MessageService} from "primeng/api";
   templateUrl: './nc-info.component.html',
   styleUrls: ['./nc-info.component.css'],
   providers:[
-    MessageService,DialogService
+    DialogService
   ]
 })
 export class NcInfoComponent implements OnInit {
@@ -53,7 +53,6 @@ export class NcInfoComponent implements OnInit {
         );
       },error:(err)=>{
         this.messageService.add({
-          key: "about-key",
           severity: "error",
           summary: "Houve um problema ao visualizar arquivo.",
           life: 3000,

@@ -1,14 +1,14 @@
-import { MessageService } from 'primeng/api';
-import { catchError } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from "@angular/router";
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
+import { catchError } from 'rxjs';
 
 import { AuthService } from '../_services/auth.service';
 import { TokenStorageService } from '../_services/token-storage.service';
-import { ToastModule } from 'primeng/toast';
 import { AppComponent } from './../app.component';
-
 
 @Component({
   selector: 'app-login',
@@ -30,10 +30,16 @@ export class LoginComponent implements OnInit {
   errorMessage = '';
   roles: string[] = [];
 
-  constructor(private authService: AuthService, private tokenStorage: TokenStorageService,
+  constructor(private router: ActivatedRoute, private authService: AuthService, private tokenStorage: TokenStorageService,
     private modalService: NgbModal, private messageService: MessageService) { }
 
   ngOnInit(): void {
+
+    console.log(this.router.snapshot)
+    this.router.queryParams.subscribe(param => {
+      console.log(param)
+    })
+
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
       this.roles = this.tokenStorage.getUser().roles;

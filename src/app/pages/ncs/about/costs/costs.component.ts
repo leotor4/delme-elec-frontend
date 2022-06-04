@@ -14,7 +14,7 @@ import {DialogService} from "primeng/dynamicdialog";
   templateUrl: './costs.component.html',
   styleUrls: ['./costs.component.css'],
   providers:[
-    MessageService,DialogService
+    DialogService
   ],
 })
 export class CostsComponent implements OnInit {
@@ -121,7 +121,6 @@ export class CostsComponent implements OnInit {
         );
       },error:(err)=>{
         this.messageService.add({
-          key: "about-key",
           severity: "error",
           summary: "Houve um problema ao visualizar arquivo.",
           life: 3000,

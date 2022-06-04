@@ -64,7 +64,6 @@ export class NcsCreateComponent implements OnInit {
         },
         error: err => {
           this.messageService.add({
-            key: "myKey2",
             severity: "error",
             summary: "Houve um problema ao consultar esta NC!",
             life: 3000,

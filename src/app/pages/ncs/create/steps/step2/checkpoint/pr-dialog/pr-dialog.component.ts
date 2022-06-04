@@ -53,7 +53,6 @@ export class PrDialogComponent implements OnInit {
 
   sucess() {
     this.messageService.add({
-      key: "myKey1",
       severity: "success",
       summary: "procedimento salva com sucesso",
       life: 3000,
@@ -63,7 +62,6 @@ export class PrDialogComponent implements OnInit {
 
   fail() {
     this.messageService.add({
-      key: "myKey1",
       severity: "error",
       summary: "Houve um problema ao salvar procedimento.",
       life: 3000,

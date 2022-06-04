@@ -134,7 +134,6 @@ export class RejectionPointItemsComponent implements OnInit {
       });
     } else {
       this.messageService.add({
-        key: "myKey1",
         severity: "info",
         summary: "Selecione uma instrução para poder visualizar.",
         life: 3000,

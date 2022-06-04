@@ -10,7 +10,7 @@ import {NonCompliance} from "../../../../../models/non-compliance";
   selector: 'app-reoccurrence',
   templateUrl: './reoccurrence.component.html',
   styleUrls: ['./reoccurrence.component.css'],
-  providers: [DialogService, ConfirmationService,MessageService]
+  providers: [DialogService, ConfirmationService]
 })
 export class ReoccurrenceComponent implements OnInit {
 

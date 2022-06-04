@@ -11,7 +11,7 @@ import {AboutService} from "../../about.service";
   templateUrl: './view-identify-n-c.component.html',
   styleUrls: ['./view-identify-n-c.component.css'],
   providers:[
-    MessageService,DialogService
+    DialogService
   ],
 })
 export class ViewIdentifyNCComponent implements OnInit {
@@ -53,7 +53,6 @@ export class ViewIdentifyNCComponent implements OnInit {
           );
         },error:(err)=>{
           this.messageService.add({
-            key: "about-key",
             severity: "error",
             summary: "Houve um problema ao visualizar arquivo.",
             life: 3000,

@@ -64,7 +64,6 @@ export class NcsCreateStepperComponent implements OnInit {
       this.nonComplianceService.put().subscribe({
         next: data => {
           this.messageService.add({
-            key: "myKey1",
             severity: "success",
             summary: this.isLastStep()?"Não conformidade concluida com sucesso.":"Passo " + (this.stepPosition + 1) + " salvo com sucesso." ,
             life: 3000,
@@ -75,7 +74,6 @@ export class NcsCreateStepperComponent implements OnInit {
         },
         error: err => {
           this.messageService.add({
-            key: "myKey1",
             severity: "error",
             summary: "Houve um problema ao salvar dados do passo " + this.stepPosition + ".",
             life: 3000,

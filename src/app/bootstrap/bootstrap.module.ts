@@ -6,6 +6,8 @@ import { MenuComponent } from '../header/menu/menu.component';
 import {MenubarModule} from 'primeng/menubar';
 import {CardModule} from 'primeng/card';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 
 
 @NgModule({
@@ -18,7 +20,12 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     BootstrapRoutingModule,
     MenubarModule,
     CardModule,
-    NgxChartsModule
+    NgxChartsModule,
+    ToastModule,
+
+  ],
+  providers: [
+    MessageService
   ],
   exports: [
     BootstrapComponent

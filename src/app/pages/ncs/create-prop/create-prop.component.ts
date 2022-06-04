@@ -40,7 +40,6 @@ export class CreatePropComponent implements OnInit {
       next:(data:any )=> {
         this.propService.propSolution.id = data['proposta']['id']
         this.messageService.add({
-          key: "create-prop-key",
           severity: "success",
           summary: "Proposta de solução criada com sucesso.",
           life: 3000,
@@ -48,7 +47,6 @@ export class CreatePropComponent implements OnInit {
       },
       error:err =>{
         this.messageService.add({
-          key: "create-prop-key",
           severity: "error",
           summary: "Houve um erro ao criar proposta de solução.",
           life: 3000,

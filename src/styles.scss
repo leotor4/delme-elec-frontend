@@ -12,3 +12,14 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+.p-dialog-footer {
+  .p-confirm-dialog-accept {
+    background: red;
+    &:hover {
+      background: black;
+    }
+  }
+}
+
+
+

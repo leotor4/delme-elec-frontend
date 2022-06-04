@@ -51,7 +51,6 @@ export class ItDialogComponent implements OnInit {
 
   sucess() {
     this.messageService.add({
-      key: "myKey1",
       severity: "success",
       summary: "Instrução salva com sucesso",
       life: 3000,
@@ -61,7 +60,6 @@ export class ItDialogComponent implements OnInit {
 
   fail() {
     this.messageService.add({
-      key: "myKey1",
       severity: "error",
       summary: "Houve um problema ao salvar instrução.",
       life: 3000,

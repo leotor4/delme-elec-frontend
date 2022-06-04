@@ -1,3 +1,4 @@
+import { ToastModule } from 'primeng/toast';
 import { HttpClientModule } from '@angular/common/http';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -10,10 +11,7 @@ import { MessageService } from 'primeng/api';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { EditorModule } from "primeng/editor";
 import { RadioButtonModule } from "primeng/radiobutton";
-import { ToastModule } from 'primeng/toast';
-
 import { authInterceptorProviders } from './_interceptors/auth.interceptor';
-import { GlobalErrorHandler } from './_interceptors/global-error-handler';
 import { AuthGuardService } from './_services/auth-guard.service';
 import { AppComponent } from './app.component';
 import { BoardUserComponent } from './board-user/board-user.component';
@@ -40,16 +38,15 @@ import { RegisterComponent } from './register/register.component';
     HttpClientModule,
     NgxExtendedPdfViewerModule,
     PdfViewerModule,
-    ToastModule,
     RadioButtonModule,
     EditorModule,
     ReactiveFormsModule,
-    AutoCompleteModule
+    AutoCompleteModule,
+    ToastModule
   ],
   providers: [
     authInterceptorProviders,
-    AuthGuardService ,
-    MessageService 
+    AuthGuardService 
   ],
   bootstrap: [AppComponent],
 })

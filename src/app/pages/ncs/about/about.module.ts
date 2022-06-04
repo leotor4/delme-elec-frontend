@@ -64,7 +64,7 @@ import { CurrencyMaskModule } from "ng2-currency-mask";
 
 
     ],
-    providers: [MessageService, ConfirmationService],
+    providers: [ConfirmationService],
     exports: [
         AboutComponent
     ]

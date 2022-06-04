@@ -71,6 +71,6 @@ import {AccordionModule} from "primeng/accordion";
         AccordionModule,
     ],
     entryComponents: [IshikawaDialogComponent, ActionPlanDialogComponent],
-    providers: [MessageService, ConfirmationService],
+    providers: [ConfirmationService],
 })
 export class CreatePropModule { }

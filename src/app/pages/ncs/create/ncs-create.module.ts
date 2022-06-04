@@ -105,7 +105,7 @@ import { CancelDialogComponent } from './ncs-create-header/cancel-dialog/cancel-
       PdfViewerModule,
     ],
     entryComponents: [ContactDialogComponent],
-    providers: [MessageService, ConfirmationService],
+    providers: [ConfirmationService],
     exports: [
         ContactsComponent
     ]

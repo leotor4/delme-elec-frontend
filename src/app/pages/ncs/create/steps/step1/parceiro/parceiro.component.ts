@@ -208,7 +208,6 @@ export class ParceiroComponent implements OnInit {
 
   sucess() {
     this.messageService.add({
-      key: "myKey1",
       severity: "success",
       summary: "Dados editados com sucesso.",
       life: 3000,
@@ -219,7 +218,6 @@ export class ParceiroComponent implements OnInit {
 
   fail() {
     this.messageService.add({
-      key: "myKey1",
       severity: "error",
       summary: "Houve um problema ao editar os dados.",
       life: 3000,

@@ -63,7 +63,6 @@ export class CreatePropStepperComponent implements OnInit {
     this.propService.put().subscribe({
        next:(data:any )=> {
         this.messageService.add({
-          key: "create-prop-key",
           severity: "success",
           summary: "Passo " + this.stepPosition + " salvo com sucesso.",
           life: 3000,
@@ -72,7 +71,6 @@ export class CreatePropStepperComponent implements OnInit {
       },
       error:err =>{
         this.messageService.add({
-          key: "create-prop-key",
           severity: "error",
           summary: "Houve um erro ao salvar passo " + this.stepPosition + "." ,
           life: 3000,

@@ -25,7 +25,6 @@ export class CancelDialogComponent implements OnInit {
         this.ref.close();
         this.ncService.nc= new NonCompliance()
         this.messageService.add({
-          key: "myKey1",
           severity: "success",
           summary: "Não conformidade cancelada com sucesso.",
           life: 3000,
@@ -33,7 +32,6 @@ export class CancelDialogComponent implements OnInit {
       },
       error: err => {
         this.messageService.add({
-          key: "myKey1",
           severity: "error",
           summary: "Houve um problema ao cancelar não conformidade.",
           life: 3000,

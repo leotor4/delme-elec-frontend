@@ -1,9 +1,10 @@
-import { NonCompliance } from 'src/app/models/non-compliance';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmationService, FilterMatchMode, MessageService, PrimeNGConfig } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { NonComplianceService } from "src/app/_services/non-compliance.service";
+import { NonCompliance } from 'src/app/models/non-compliance';
+
 import { NcsListDTO } from './ncs-list-dto';
 
 @Component({
@@ -12,7 +13,7 @@ import { NcsListDTO } from './ncs-list-dto';
  
   styleUrls: ['./ncs-list.component.css'],
   providers:[
-    MessageService, ConfirmationService
+     ConfirmationService
   ],
 })
 export class NcsListComponent implements OnInit {
@@ -27,18 +28,25 @@ export class NcsListComponent implements OnInit {
   msgType: string
 
   openNc(){
+
     this.ncsService.abrirNc().subscribe(
       {
         next: (response:any) => {
+          this.messageService.add({
+            severity: "success",
+            summary: "NC criada com sucesso",
+            life: 3000,
+          });
+          
           this.ncsService.nc.code = response['nonCompliance']['code']
           this.ncsService.nc.issuer = response['nonCompliance']['emissor']
           this.ncsService.nc.id = response['nonCompliance']['id']
           this.ncsService.nc.status = response['nonCompliance']['status']
+          
           this.router.navigate(["/ncs/create/", this.ncsService.nc.id])
         },
         error: err => {
           this.messageService.add({
-            key: "myKey2",
             severity: "error",
             summary: "Houve um problema ao criar não conformidade.",
             life: 3000,
@@ -55,13 +63,12 @@ export class NcsListComponent implements OnInit {
     private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
-    
+    var teste:String = 'daniel'
 
     this.ncsService.get().subscribe((data: any) => {
       
       if (this.ncsService.msgHome) {
         this.messageService.add({
-          key: "myKey2",
           severity: this.ncsService.typeMsgHome,
           summary: this.ncsService.msgHome,
           life: 3000,
@@ -153,7 +160,6 @@ export class NcsListComponent implements OnInit {
       accept: () => {
         this.ncsService.delete(idNc).subscribe((data: any) => {
           this.messageService.add({
-            key: "myKey2",
             severity: 'success',
             summary: 'Operação realizada!',
             life: 5000,
@@ -165,7 +171,6 @@ export class NcsListComponent implements OnInit {
 
       reject:() => {
         this.messageService.add({
-          key: "myKey2",
           severity: 'info',
           summary: 'Operação Cancelada',
           life: 5000,
@@ -184,7 +189,6 @@ export class NcsListComponent implements OnInit {
       accept: () => {
         this.ncsService.delete(idNc).subscribe((data: any) => {
           this.messageService.add({
-            key: "myKey2",
             severity: 'success',
             summary: 'Operação realizada!',
             life: 5000,
@@ -196,7 +200,6 @@ export class NcsListComponent implements OnInit {
 
       reject:() => {
         this.messageService.add({
-          key: "myKey2",
           severity: 'info',
           summary: 'Operação Cancelada',
           life: 5000,
@@ -212,7 +215,6 @@ export class NcsListComponent implements OnInit {
       this.router.navigate(["/ncs/create/", idNc]);
     } else {
       this.messageService.add({
-        key: "myKey2",
         severity: 'info',
         summary: 'O processo de abertura desta nc já foi concluído',
         life: 5000,
@@ -225,7 +227,6 @@ export class NcsListComponent implements OnInit {
       this.router.navigate(["/ncs/about/", idNc]);
     } else if (status.toUpperCase() == 'OPEN'){
       this.messageService.add({
-        key: "myKey2",
         severity: 'info',
         summary: 'Conclua a abertura da NC para poder visualizar as informações',
         life: 5000,

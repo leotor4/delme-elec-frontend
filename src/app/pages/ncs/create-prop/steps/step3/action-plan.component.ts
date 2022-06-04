@@ -12,7 +12,7 @@ import { Action } from 'rxjs/internal/scheduler/Action';
   selector: 'app-action-plan',
   templateUrl: './action-plan.component.html',
   styleUrls: ['./action-plan.component.css'],
-  providers: [DialogService, MessageService]
+  providers: [DialogService]
 })
 export class ActionPlanComponent implements OnInit {
 

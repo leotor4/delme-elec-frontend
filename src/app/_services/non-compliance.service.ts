@@ -1,8 +1,10 @@
-import { IdentificacaoNCDTO } from './../pages/ncs/create/steps/step1/identificacao-da-nc/identificacao-nc-dto';
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import momentImported from 'moment';
 import { Observable } from 'rxjs';
+
+import { Attachment } from '../models/attachment';
 import { Contact } from "../models/contact.model";
 import { Customer } from "../models/customer";
 import { Instruction } from "../models/instruction";
@@ -14,9 +16,9 @@ import { Provider } from "../models/provider";
 import { Sector } from "../models/sector";
 import { UpdateDate } from "../models/update-date";
 import { ObjectUtils } from '../utils/object-utils';
-import momentImported from 'moment';
-import {TokenStorageService} from "./token-storage.service";
-import { Attachment } from '../models/attachment';
+import { IdentificacaoNCDTO } from './../pages/ncs/create/steps/step1/identificacao-da-nc/identificacao-nc-dto';
+import { TokenStorageService } from "./token-storage.service";
+
 const moment = momentImported;
 
 @Injectable({
@@ -218,5 +220,9 @@ export class NonComplianceService {
 
   downloadFile(id:number){
     return this.http.get<any>(this.apiUrl + "/files/"+ id);
+  }
+
+  testeError() {
+    return this.http.get<any>(this.apiUrl + "/teste");
   }
 }

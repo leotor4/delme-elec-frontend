@@ -17,7 +17,6 @@ import { Place } from "src/app/models/place";
   selector: "app-provider",
   templateUrl: "./import-json.component.html",
   styleUrls: ["./import-json.component.css"],
-  providers: [MessageService],
 })
 export class ImportJsonComponent implements OnInit {
   uploadedFile: File;

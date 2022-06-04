@@ -76,6 +76,6 @@ import {InputTextareaModule} from "primeng/inputtextarea";
 
     ],
     entryComponents: [AddNcDialogComponent, NcInfoComponent],
-    providers: [MessageService, ConfirmationService],
+    providers: [ ConfirmationService],
 })
 export class SgqModule { }
