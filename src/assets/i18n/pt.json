@@ -5,6 +5,38 @@
         "pt": "Português"
     },
     "primeng": {
+        "startsWith": "Começa com",
+        "contains": "Contém",
+        "notContains": "Não contém",
+        "endsWith": "Termina com",
+        "equals": "Igual",
+        "notEquals": "Diferente de",
+        "noFilter": "Sem Filtro",
+        "lt": "Menor que",
+        "lte": "Menor que ou igual a",
+        "gt": "Maior que",
+        "gte": "Maior que ou igual a",
+        "is": "Igual a",
+        "isNot": "Diferente de",
+        "before": "Anterior",
+        "after": "Próximo",
+        "dateIs": "Date igual a",
+        "dateIsNot": "Date diferente de",
+        "dateBefore": "Data anterior a",
+        "dateAfter": "Data depois de",
+        "clear": "Limpar",
+        "apply": "Aplicar",
+        "matchAll": "Buscar Todos",
+        "matchAny": "Buscar algum",
+        "addRule": "Adicionar Regra",
+        "removeRule": "Remover Regra",
+        "accept": "Sim",
+        "reject": "Não",
+        "choose": "Selecione",
+        "upload": "Carregar",
+        "cancel": "Cancelar",
+        "dayNames": ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"],
+        "dayNamesShort": ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"],
         "dayNamesMin": [
             "Dom",
             "Seg",
@@ -28,24 +60,23 @@
             "Novembro",
             "Dezembero"
         ],
+        "monthNamesShort": ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun","Jul", "Ago", "Set", "Out", "Nov", "Dez"],
+        "dateFormat": "dd/mm/yy",
+        "firstDayOfWeek": 1,
+        "today": "Hoje",
+        "weekHeader": "Sem",
+        "weak": "Semana",
+        "medium": "Medium",
+        "strong": "Strong",
+        "passwordPrompt": "Enter a password",
         "emptyMessage": "Nenhum resultado encontrado",
-        "emptyFilterMessage": "Nenhum resultado encontrado - Filtro",
-        "choose": "Selecione",
-        "upload": "Carregar",
-        "cancel": "Cancelar",
-        "startsWith": "Começa com",
-        "contains": "Contém",
-        "notContains": "Não contém",
-        "endsWith": "Termina com",
-        "equals": "Igual",
-        "notEquals": "Diferente de",
-        "clear": "Limpar",
-        "apply": "Aplicar",
-        "matchAll": "Filtrar em todos",
-        "matchAny": "Filtrar algum",
-        "addRule": "Adicionar Regra",
-        "removeRule": "Remover Regra",
-        "accept": "sim",
-        "reject": "não"
+        "emptyFilterMessage": "Nenhum resultado encontrado - Filtro"
     }
 }
+
+
+
+
+
+
+

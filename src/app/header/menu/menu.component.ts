@@ -1,8 +1,9 @@
-import { User } from './../../models/user.model';
-import { TokenStorageService } from '../../_services/token-storage.service';
 import { Component, OnInit } from '@angular/core';
-import {MenuItem} from 'primeng/api';
+import { TranslateService } from '@ngx-translate/core';
+import { MenuItem } from 'primeng/api';
 
+import { TokenStorageService } from '../../_services/token-storage.service';
+import { User } from './../../models/user.model';
 
 @Component({
   selector: 'app-menu',
@@ -16,7 +17,7 @@ export class MenuComponent implements OnInit {
   
   user: User;
 
-  constructor(private tokenStorageService: TokenStorageService) { }
+  constructor(private tokenStorageService: TokenStorageService, public translate: TranslateService) { }
 
   ngOnInit(): void {
 
@@ -60,4 +61,7 @@ export class MenuComponent implements OnInit {
     this.tokenStorageService.signOut();
   }
 
+  changeLanguage(language:string) {
+    this.translate.use(language);
+  }
 }
