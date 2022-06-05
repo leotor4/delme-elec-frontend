@@ -1,11 +1,11 @@
-import momentImported from 'moment'; 
 import { NonCompliance } from 'src/app/models/non-compliance';
+import momentImported from 'moment'; 
 const moment = momentImported;
 
 export class IdentificacaoNCDTO {
   tipos_nc_item?: string = "";
   tipos_auditoria_item?: string = "";
-  tipos_local_item?: string = "";
+  tipos_local_item: String = "";
   data_abertura?: string;
   data_fechamento?: string;
 
@@ -21,6 +21,10 @@ export class IdentificacaoNCDTO {
         this.data_fechamento = moment(init.data_fechamento).format('yyyy-MM-DD');
       }
       
+
+      if (!this.tipos_local_item && init.sector?.name) {
+        this.tipos_local_item = init.sector.name
+      }
     }
   }
 }

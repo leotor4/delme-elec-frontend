@@ -12,7 +12,10 @@
 </span>
 
 <div style="margin-top: 10px;">
-<p-table  responsiveLayout="scroll" #dt [globalFilterFields]="['numero','emissor', 'status']" [value]="listNcs" [columns]="cols" [paginator]="true" [rows]="rows" [(first)]="first" [totalRecords]="totalRecords" [showCurrentPageReport]="true" responsiveLayout="scroll"
+<p-table  responsiveLayout="scroll" #dt 
+[globalFilterFields]="['numero','emissor', 'status', 'tipos_nc_item', 'tipos_auditoria_item', 'prazo','tipos_local_item', 'data_abertura']" 
+[value]="listNcs" [columns]="cols" [paginator]="true" [rows]="rows" [(first)]="first" [totalRecords]="totalRecords" 
+[showCurrentPageReport]="true" responsiveLayout="scroll" 
 currentPageReportTemplate="Exibindo de {first} a {last} de {totalRecords} registros" [rowsPerPageOptions]="[5,10,25,50]" [filterDelay]="0">
 
   <ng-template pTemplate="header">
@@ -29,18 +32,61 @@ currentPageReportTemplate="Exibindo de {first} a {last} de {totalRecords} regist
         <div class="flex justify-content-between align-items-center">
             Emissor
             <p-sortIcon field="emissor"></p-sortIcon>
-            <p-columnFilter type="text" field="emissor" field="name"display="menu" class="ml-auto"></p-columnFilter>
+            <p-columnFilter type="text" field="emissor" display="menu" class="ml-auto"></p-columnFilter>
         </div>
       </th>
+
+      <th pSortableColumn="tipos_nc_item">
+        <div class="flex justify-content-between align-items-center">
+            Tipo de NC
+            <p-sortIcon field="tipos_nc_item"></p-sortIcon>
+            <p-columnFilter type="text" field="tipos_nc_item" display="menu" class="ml-auto"></p-columnFilter>
+        </div>
+      </th>
+
+      <th pSortableColumn="tipos_auditoria_item">
+        <div class="flex justify-content-between align-items-center">
+            Segmento de Auditoria
+            <p-sortIcon field="tipos_auditoria_item"></p-sortIcon>
+            <p-columnFilter type="text" field="tipos_auditoria_item" display="menu" class="ml-auto"></p-columnFilter>
+        </div>
+      </th>
+
+
+      <th pSortableColumn="tipos_local_item">
+        <div class="flex justify-content-between align-items-center">
+            Setor Afetado
+            <p-sortIcon field="tipos_local_item"></p-sortIcon>
+            <p-columnFilter type="text" field="tipos_local_item" display="menu" class="ml-auto"></p-columnFilter>
+        </div>
+      </th>
+
       <th pSortableColumn="status">
           <div class="flex justify-content-between align-items-center">
               Status
-              <p-sortIcon field="estado"></p-sortIcon>
+              <p-sortIcon field="status"></p-sortIcon>
               <p-columnFilter type="text" field="status" display="menu" class="ml-auto"></p-columnFilter>
           </div>
       </th>
 
-      <th style="width: 1rem"></th>
+
+      <th pSortableColumn="data_abertura">
+        <div class="flex justify-content-between align-items-center">
+            Data de Abertura
+            <p-sortIcon field="data_abertura"></p-sortIcon>
+            <p-columnFilter type="date" field="data_abertura" display="menu" class="ml-auto"></p-columnFilter>
+        </div>
+      </th>
+
+
+      <th pSortableColumn="prazo">
+        <div class="flex justify-content-between align-items-center">
+            Prazo
+            <p-sortIcon field="prazo"></p-sortIcon>
+            <p-columnFilter type="numeric" field="prazo" display="menu" class="ml-auto"></p-columnFilter>
+        </div>
+    </th>
+
       <th style="width: 1rem"></th>
       <th style="width: 1rem"></th>
       <th style="width: 1rem"></th>
@@ -64,6 +110,21 @@ currentPageReportTemplate="Exibindo de {first} a {last} de {totalRecords} regist
       </td>
 
       <td>
+          <span class="p-column-title">Tipo de NC</span>
+          {{ncListDTO.tipos_nc_item}}
+      </td>
+
+      <td>
+          <span class="p-column-title">Segmento de Auditoria</span>
+          {{ncListDTO.tipos_auditoria_item}}
+      </td>
+
+      <td>
+          <span class="p-column-title">Setor Afetado</span>
+          {{ncListDTO.tipos_local_item}}
+      </td>
+
+      <td>
         <span class="p-column-title">Status</span>
         <span [ngSwitch]="ncListDTO.status" >
           <span *ngSwitchCase="'open'"> Aberta</span>
@@ -75,20 +136,26 @@ currentPageReportTemplate="Exibindo de {first} a {last} de {totalRecords} regist
         </span>
       </td>
 
-      <td style="text-align: center">
-          <a style="color: black;" type="button" pTooltip="Ver informações da NC" (click)="visualizarInformacoes(ncListDTO.nc.id, ncListDTO.estado)" ><i class="bi bi-info-circle"></i></a>
+      <td>
+        <span class="p-column-title">Data de Abertura</span>
+        {{ncListDTO.data_abertura | date: 'MM/dd/yyyy'}}
+      </td>
+
+      <td>
+        <span class="p-column-title">Prazo</span>
+        {{ncListDTO.prazo}}
       </td>
 
       <td style="text-align: center">
-        <a type="button" style="color: black;" (click)="edit(ncListDTO.nc.id, ncListDTO.estado)" pTooltip="Continuar o preenchimento da NC"><i class="bi bi-file-richtext"></i></a>
+          <a style="color: black;" type="button" pTooltip="Ver informações da NC" (click)="visualizarInformacoes(ncListDTO.nc.id, ncListDTO.status)" ><i class="bi bi-info-circle"></i></a>
       </td>
 
       <td style="text-align: center">
-        <a type="button" style="color: black;" (click)="delete(ncListDTO.nc.id)" pTooltip="Alterar o status da NC para deletado"><i class="bi bi-trash"></i></a>
+        <a type="button" style="color: black;" (click)="edit(ncListDTO.nc.id, ncListDTO.status)" pTooltip="Editar NC"><i class="bi bi-file-richtext"></i></a>
       </td>
 
       <td style="text-align: center">
-        <a type="button"  style="color: black;" (click)="archived(ncListDTO.nc.id)" pTooltip="Alterar o status da NC para arquivado"><i class="bi bi-archive"></i></a>
+        <a type="button" style="color: black;" (click)="cancelNc(ncListDTO.nc)" pTooltip="Cancelar NC"><i class="pi pi-times"></i></a>
       </td>
 
   </tr>

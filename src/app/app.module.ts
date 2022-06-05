@@ -1,5 +1,5 @@
 import { ToastModule } from 'primeng/toast';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -20,6 +20,14 @@ import { LoginComponent } from './login/login.component';
 import { FechamentoDialogComponent } from "./pages/dialogs/fechamento-dialog/fechamento-dialog.component";
 import { VisualizarDocumentoDialogComponent } from './pages/dialogs/visualizar-documento-dialog/visualizar-documento-dialog.component';
 import { RegisterComponent } from './register/register.component';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+
+// AoT requires an exported function for factories
+export function HttpLoaderFactory(httpClient: HttpClient) {
+  return new TranslateHttpLoader(httpClient);
+}
 
 @NgModule({
   declarations: [
@@ -42,7 +50,14 @@ import { RegisterComponent } from './register/register.component';
     EditorModule,
     ReactiveFormsModule,
     AutoCompleteModule,
-    ToastModule
+    ToastModule,
+    TranslateModule.forRoot({
+      loader: {
+          provide: TranslateLoader,
+          useFactory: HttpLoaderFactory,
+          deps: [HttpClient]
+      }
+    })
   ],
   providers: [
     authInterceptorProviders,

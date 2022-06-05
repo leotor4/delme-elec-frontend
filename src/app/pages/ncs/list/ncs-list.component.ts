@@ -137,52 +137,40 @@ export class NcsListComponent implements OnInit {
     this.dt!.filterGlobal(($event.target as HTMLInputElement).value, stringVal);
   }
 
- 
 
-  archived(idNc: number) {
-    this.confirmationService.confirm({
-      message: 'Esta ação irá alterar o status da NC arquivada, deseja prosseguir com a operação?',
-      header: 'Arquivar NC',
-      icon: 'pi pi-exclamation-triangle',
-      accept: () => {
-        this.ncsService.delete(idNc).subscribe((data: any) => {
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Operação realizada!',
-            life: 5000,
-          });
-          window.location.reload();
 
-        });
-      },
+  cancelNc(nc: NonCompliance) {
 
-      reject:() => {
-        this.messageService.add({
-          severity: 'info',
-          summary: 'Operação Cancelada',
-          life: 5000,
-        });
-        
-      }
-  });
-  }
-
-  delete(idNc: number) {
 
     this.confirmationService.confirm({
       message: 'Esta ação irá alterar o status da NC para deletada, deseja prosseguir com a operação?',
-      header: 'Deletar NC',
+      header: 'Cancelar NC',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.ncsService.delete(idNc).subscribe((data: any) => {
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Operação realizada!',
-            life: 5000,
-          });
-          window.location.reload();
+        
+        nc.status = "canceled"
+        this.ncsService.nc = nc
+        this.ncsService.put().subscribe({
+          next: data => {
+            this.messageService.add({
+              severity: "success",
+              summary: "Não conformidade cancelada com sucesso.",
+              life: 3000,
+            });
 
+            window.location.reload()
+          },
+          error: err => {
+            this.messageService.add({
+              severity: "error",
+              summary: "Houve um problema ao cancelar não conformidade.",
+              life: 3000,
+            });
+            
+          }
         });
+
+
       },
 
       reject:() => {

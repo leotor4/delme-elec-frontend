@@ -28,22 +28,24 @@ export class NcsCreateComponent implements OnInit {
   ngOnInit() {
     this.ncService.formIdentificacaoNC.reset();
     let id = parseInt(this.route.snapshot.paramMap.get('id')||"")
-    
     this.ncService.getById(id).subscribe(
       {
         next: (response:any) => {
           this.ncService.nc = new NonCompliance(response['nc'][0]);
           this.setDates(this.ncService.nc);
-           switch(this.ncService.nc.tipos_parceiro_item){
-           case "Cliente":
-           this.ncService.nc.partner = this.ncService.nc.customer
-             break;
-             case "Fornecedor":
-               this.ncService.nc.partner = this.ncService.nc.provider
-             break;
-             case "Interno":
-               this.ncService.nc.partner = this.ncService.nc.sector
-             break;
+          
+          console.log(this.ncService.nc)
+          
+          switch(this.ncService.nc.tipos_parceiro_item){
+          case "Cliente":
+          this.ncService.nc.partner = this.ncService.nc.customer
+            break;
+            case "Fornecedor":
+              this.ncService.nc.partner = this.ncService.nc.provider
+            break;
+            case "Interno":
+              this.ncService.nc.partner = this.ncService.nc.sector
+            break;
          }
         if(this.ncService.nc.partner){
           this.ncService.editarEmailItem = this.ncService.nc.partner.responsible_email

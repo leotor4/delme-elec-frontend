@@ -188,7 +188,7 @@ export class NonComplianceService {
     console.log(this.nc)
     return this.http.put(this.apiUrl+ "/" + this.nc.id, formData)
   }
-  
+
   
   abrirNc(){
     let formData = new FormData();

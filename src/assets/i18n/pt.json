@@ -1,0 +1,51 @@
+{
+    "demo": {
+        "greetings": "Olá!",
+        "en": "Inglês",
+        "pt": "Português"
+    },
+    "primeng": {
+        "dayNamesMin": [
+            "Dom",
+            "Seg",
+            "Ter",
+            "Qua",
+            "Qui",
+            "Sex",
+            "Sab"
+        ],
+        "monthNames": [
+            "Janeiro",
+            "Fevereiro",
+            "Março",
+            "Abril",
+            "Maio",
+            "Junho",
+            "Julho",
+            "Augosto",
+            "Setembro",
+            "Outubro",
+            "Novembro",
+            "Dezembero"
+        ],
+        "emptyMessage": "Nenhum resultado encontrado",
+        "emptyFilterMessage": "Nenhum resultado encontrado - Filtro",
+        "choose": "Selecione",
+        "upload": "Carregar",
+        "cancel": "Cancelar",
+        "startsWith": "Começa com",
+        "contains": "Contém",
+        "notContains": "Não contém",
+        "endsWith": "Termina com",
+        "equals": "Igual",
+        "notEquals": "Diferente de",
+        "clear": "Limpar",
+        "apply": "Aplicar",
+        "matchAll": "Filtrar em todos",
+        "matchAny": "Filtrar algum",
+        "addRule": "Adicionar Regra",
+        "removeRule": "Remover Regra",
+        "accept": "sim",
+        "reject": "não"
+    }
+}
