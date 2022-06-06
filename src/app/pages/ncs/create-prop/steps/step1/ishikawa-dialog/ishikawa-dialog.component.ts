@@ -21,6 +21,13 @@ export class IshikawaDialogComponent implements OnInit {
               public propService: ProposalService,
   ) { }
 
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    console.log(this.propService.propSolution.material_description)
+    
+  }
+
   search(event:any,type:string){
     var filtro = event.query;
     

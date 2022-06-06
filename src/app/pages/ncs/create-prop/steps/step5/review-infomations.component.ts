@@ -24,6 +24,7 @@ export class ReviewInfomationsComponent implements OnInit {
     this.changeStepPosition.emit(position);
   }
   ngOnInit(): void {
+    
   }
 
 }

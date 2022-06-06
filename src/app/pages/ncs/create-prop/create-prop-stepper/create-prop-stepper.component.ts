@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {MenuItem, MessageService} from "primeng/api";
-import { NonCompliance } from 'src/app/models/non-compliance';
-import { ProposalSolution } from 'src/app/models/proposal-solution';
 import {NonComplianceService} from "../../../../_services/non-compliance.service";
 import { ProposalService } from '../proposal.service';
 
@@ -15,7 +13,10 @@ export class CreatePropStepperComponent implements OnInit {
   items: MenuItem[];
   stepPosition: number = 0;
   lastStepLabel = "Avançar";
-  constructor(private route: ActivatedRoute,private ncService:NonComplianceService,private messageService: MessageService,public propService:ProposalService) {}
+  constructor(private route: ActivatedRoute,
+    private ncService:NonComplianceService,
+    private messageService: MessageService,
+    public propService:ProposalService) {}
 
   disableButton(): boolean {
     switch (this.stepPosition) {
@@ -34,11 +35,10 @@ export class CreatePropStepperComponent implements OnInit {
 
   ngOnInit() {
     this.items = [
-      { label: "Diagrama de Ishikawa" },
-      { label: "5 Porquês" },
-      { label: "Plano de Ações" },
-      { label: "Emitir Notificações" },
-      { label: "Revisar Informações" },
+      { label: "Diagrama de Ishikawa e 5 Porquês" },
+      { label: "PLano de Ação e Emitir Notificação" },
+      { label: "Revisão" },
+     
     ];
   }
   getNextPageBtnLabel() {

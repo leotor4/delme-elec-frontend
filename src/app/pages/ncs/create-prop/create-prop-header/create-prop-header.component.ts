@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import {MessageService} from "primeng/api";
+import { ProposalService } from '../proposal.service';
 
 @Component({
   selector: 'app-create-prop-header',
@@ -6,10 +9,37 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create-prop-header.component.css']
 })
 export class CreatePropHeaderComponent implements OnInit {
+  id:number
+  constructor(
+    private route: ActivatedRoute,
+    private messageService: MessageService,
+    public propService:ProposalService,
+  ) { }
 
-  constructor() { }
+  saveProp(){
+
+    this.propService.popular()
+    this.propService.put().subscribe({
+       next:(data:any )=> {
+        this.messageService.add({
+          severity: "success",
+          summary: "Proposta de solução salva com sucesso.",
+          life: 3000,
+        });
+        
+      },
+      error:err =>{
+        this.messageService.add({
+          severity: "error",
+          summary: "Houve um erro ao salvar passo proposta de solução." ,
+          life: 3000,
+        });
+      }
+    })
+  }
 
   ngOnInit(): void {
+     this.id = parseInt(this.route.snapshot.paramMap.get('id')||"")
   }
 
 }

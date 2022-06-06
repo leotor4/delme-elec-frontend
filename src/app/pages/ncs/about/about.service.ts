@@ -20,6 +20,7 @@ export class AboutService {
     constructor(private ncsService : NonComplianceService, private http: HttpClient) { }
 
     hasProposal():boolean{
+       
         if(!this.nc)return false
         if(this.nc.proposalSolution)return true
         return false

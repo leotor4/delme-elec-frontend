@@ -26,8 +26,7 @@ export class ProposalComponent implements OnInit {
   
   ngOnInit(): void {
    this.id = parseInt(this.route.snapshot.paramMap.get('id')||"")
-   
-   
+
   }
 
 }

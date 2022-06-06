@@ -37,20 +37,11 @@
             <app-ishikawa-diagram></app-ishikawa-diagram>
         </div>
         <div *ngIf="stepPosition === 1">
-            <app-reasons-why></app-reasons-why>
-        </div>
-        <div *ngIf="stepPosition === 2">
             <app-action-plan></app-action-plan>
         </div>
-        <div *ngIf="stepPosition === 3">
-            <app-notification></app-notification>
-        </div>
-        <div *ngIf="stepPosition === 4">
-            <app-review-infomations
-                    (changeStepPosition)="changeStepByPosition($event)"
-            >
-
-            </app-review-infomations>
+        <div *ngIf="stepPosition === 2">
+            <app-review-infomations (changeStepPosition)="changeStepByPosition($event)">
+            </app-review-infomations>  
         </div>
     </div>
 </div>
