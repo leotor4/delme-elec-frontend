@@ -65,10 +65,10 @@ export class NcsListComponent implements OnInit {
     this.ncsService.get().subscribe((data: any) => {
       
       //this.listNcs.append(data.noncompliances);
-
+      console.log('data', data)
       const compliances: Array<NonCompliance> = data.noncompliances
 
-      console.log(compliances)
+      console.log('compliances',compliances)
 
 
       if (compliances?.length > 0) {
@@ -79,7 +79,7 @@ export class NcsListComponent implements OnInit {
         this.listNcs = this.listNcs.filter(item => (item.system_status !== 'deleted' && item.system_status != 'arquived'));
       }
       
-      console.log(this.listNcs)
+      console.log('DTO',this.listNcs)
 
       this.config.filterMatchModeOptions = {
         text: [

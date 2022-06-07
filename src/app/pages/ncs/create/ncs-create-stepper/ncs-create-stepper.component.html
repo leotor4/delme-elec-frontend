@@ -20,7 +20,8 @@
       ></p-steps>
     </div>
     <div class="d-flex justify-content-end p-0 last-button">
-      <div>
+        <div style="display: flex; flex-direction:row;">
+
         <button
           type="button"
           (click)="nextStep()"
@@ -30,10 +31,18 @@
           {{ getNextPageBtnLabel() }}
           <i [class]="getNextPageBtnIcon()"></i>
         </button>
+
+        <button *ngIf="stepPosition == 2" style="margin-left:15px;"
+          type="button"
+          (click)="generatePDF()"
+          class="btn btn-dark btn-sm"
+        >
+          Gerar PDF
+        </button>
       </div>
     </div>
   </div>
-  <div class="content-create-nc">
+  <div class="content-create-nc" id="pdfContent">
     <div *ngIf="stepPosition === 0">
       <app-identificacao-da-nc></app-identificacao-da-nc>
       <div class="d-flex">

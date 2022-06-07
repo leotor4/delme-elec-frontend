@@ -10,6 +10,7 @@ const TOKEN_HEADER_KEY = 'Authorization';
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
   constructor(private tokenService: TokenStorageService, private messageService : MessageService) { }
+  
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
     let authReq = req;
@@ -22,15 +23,36 @@ export class AuthInterceptor implements HttpInterceptor {
       retry(1),
       catchError((error: HttpErrorResponse) => {
         
-        this.messageService.add({
-          severity: "error",
-          summary: "maldito",
-          life: 3000,
-        });
+
+        if (error.status == 401) {
+          this.tokenService.signOut();
+          this.messageService.add({
+            severity: "error",
+            summary: "Faça login para acessar o sistema",
+            life: 3000,
+          });
+        } else if (error.status == 404) {
+          this.messageService.add({
+            severity: "error",
+            summary: "Página não encontrada",
+            life: 3000,
+          });
+        } else {
+          this.messageService.add({
+            severity: "error",
+            summary: "Ocorreu um erro no servidor!!",
+            life: 3000,
+          });
+        }
+
+        
         return throwError(() => error);      })
-    ); ;
+    ); 
   }
 }
+
+
+
 export const authInterceptorProviders = [
   { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
 ];

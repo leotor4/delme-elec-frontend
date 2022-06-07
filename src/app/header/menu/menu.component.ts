@@ -30,7 +30,6 @@ export class MenuComponent implements OnInit {
         {
           label: 'Electroson',
           items: [
-              {label: 'Usuários', icon: 'pi pi-users'},
               {label: 'Ncs', icon: 'pi pi-list', routerLink:'/ncs'},
               {label: 'Importar Dados', icon: 'pi pi-upload', routerLink:'/ncs/import'},
               {

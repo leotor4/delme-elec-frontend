@@ -12,6 +12,7 @@ export class IdentificacaoNCDTO {
   
 
   constructor(init?: Partial<NonCompliance>) {
+
     if (init) {
       Object.assign(this, init);
       if (init.hasOwnProperty('data_abertura') && this.data_abertura) {
@@ -20,11 +21,11 @@ export class IdentificacaoNCDTO {
       if (init.hasOwnProperty('data_fechamento') && this.data_fechamento) {
         this.data_fechamento = moment(init.data_fechamento).format('yyyy-MM-DD');
       }
-      
 
-      if (!this.tipos_local_item && init.sector?.name) {
-        this.tipos_local_item = init.sector.name
+      if (init.tipos_local_item) {
+        this.tipos_local_item = init.tipos_local_item
       }
+      
     }
   }
 }

@@ -3,6 +3,9 @@ import { Router } from "@angular/router";
 import { MenuItem, MessageService } from "primeng/api";
 import { NonComplianceService } from "src/app/_services/non-compliance.service";
 import {NonCompliance} from "../../../../models/non-compliance";
+import * as jspdf from 'jspdf';
+import html2canvas from 'html2canvas';
+
 
 @Component({
   selector: "app-ncs-create-stepper",
@@ -97,4 +100,46 @@ export class NcsCreateStepperComponent implements OnInit {
       return "/ncs"
     } else return
   }
+
+  generatePDF() {
+    let data = document.getElementById('pdfContent');
+    console.log(data)
+
+
+    
+
+    if (data) {
+      var w = data.offsetWidth;
+      var h = data.offsetHeight;
+      data.style.height="auto";
+
+      html2canvas(data, { }).then(canvas => {
+        if (data) {
+
+          let HTML_Width = w;
+          let HTML_Height = h + 1200;
+          let top_left_margin = 15;
+          let PDF_Width = HTML_Width + (top_left_margin * 2);
+          let PDF_Height = (PDF_Width * 1.5) + (top_left_margin * 2);
+          let canvas_image_width = HTML_Width;
+          let canvas_image_height = HTML_Height;
+          let totalPDFPages = Math.ceil(HTML_Height / PDF_Height) - 1;
+          totalPDFPages = totalPDFPages
+          canvas.getContext('2d');
+          let imgData = canvas.toDataURL("image/png", 1.0);
+          let pdf = new jspdf.jsPDF('p', 'pt', [PDF_Width, PDF_Height]);
+          pdf.addImage(imgData, 'PNG', top_left_margin, top_left_margin, canvas_image_width, canvas_image_height);
+          for (let i = 1; i <= totalPDFPages; i++) {
+            pdf.addPage([PDF_Width, PDF_Height], 'p');
+            pdf.addImage(imgData, 'PNG', top_left_margin, -(PDF_Height * i) + (top_left_margin * 4), canvas_image_width, canvas_image_height);
+          }
+          pdf.save("HTML-Document.pdf");
+      }
+      });
+     
+    }
+  }
+    
 }
+
+

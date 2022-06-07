@@ -14,7 +14,6 @@ export class AuthGuardService implements CanActivate {
 
         var isLoggedIn = !!this.tokenStorageService.getToken()
         if (!isLoggedIn) {
-            alert('You are not allowed to view this page. You are redirected to login Page');
 
             return false;
         }

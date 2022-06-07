@@ -23,6 +23,16 @@
   text-align: center;
 }
 
+
+.dados-identify {
+  min-width: 230px;
+  background-color: white;
+  border-radius: 7px;
+  height: 150px;
+  padding: 13px;
+  overflow: auto;
+}
+
 .dados-parceiro {
   min-width: 230px;
   margin: 10px;

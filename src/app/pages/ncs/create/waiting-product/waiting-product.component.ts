@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-waiting-product',
@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./waiting-product.component.css']
 })
 export class WaitingProductComponent implements OnInit {
+
+  @Input()
+  titleFigure:string;
 
   constructor() { }
 

@@ -82,3 +82,8 @@ span > .p-inputtext:enabled:focus {
 .option-titulo{
   font-weight: bold;
 }
+
+.input {
+  border-radius: 5px;
+  border: 2px solid rgb(51, 51, 51);
+}

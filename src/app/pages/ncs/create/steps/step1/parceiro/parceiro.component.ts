@@ -34,6 +34,7 @@ export class ParceiroComponent implements OnInit {
     var filtro = event.query;
     this.results = [];
 
+    debugger
     if (this.nonComplicanceService.nc.tipos_parceiro_item == "Cliente") {
       this.nonComplicanceService.customers.forEach((element) => {
         if (this.verificarExistencia(element, filtro)) {

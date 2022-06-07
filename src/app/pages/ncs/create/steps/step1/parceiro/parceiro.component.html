@@ -43,8 +43,8 @@
       <p>
         <i class="pi pi-history"> </i>Última atualização: {{ returnUpdateTime() }}
       </p>
-      <a
-              href="http://localhost:4200/ncs/import"
+      <a      target="_blank"
+              href="ncs/import"
               role="button"
               class="btn btn-dark"
       >
@@ -85,7 +85,7 @@
         placeholder="Busque por código SAP ou razão social..."
         field="name"
       >
-        <ng-template let-brand pTemplate="item">
+        <ng-template let-brand pTemplate="  ">
           <div>
             <span class="auto-complete-title">{{ brand.corporate_name }}</span>
             <div class="d-flex justify-content-between">
@@ -120,7 +120,7 @@
 </div>
 
 <div *ngIf="!hasSelected()">
-  <app-waiting-product></app-waiting-product>
+  <app-waiting-product titleFigure="Aguardando dados do parceiro"></app-waiting-product>
 </div>
 
 <div class="div-ident-parceiro pr-4 pb-0 " *ngIf="hasSelected()">

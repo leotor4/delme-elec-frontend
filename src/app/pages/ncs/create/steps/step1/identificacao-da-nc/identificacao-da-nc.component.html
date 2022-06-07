@@ -8,26 +8,57 @@
     <div class="col">
       <div class="dropdown">
         <label for="">Tipo de NC</label>
-        <select formControlName="tipos_nc_item">
+        <select id="selectTypeNc" (change)="checkAuditoria($event.target.value)" formControlName="tipos_nc_item">
           <option [ngValue]="null" disabled selected hidden>Selecione...</option>
-          <option *ngFor="let tiposNc of tiposNc">{{ tiposNc }}</option>
+          <option *ngFor="let tiposNc of tiposNc" value="{{ tiposNc }}">{{ tiposNc }}</option>
         </select>
       </div>
     </div>
-  
+
+
+
+
+
+
+
+
+    <div class="d-flex flex-column inputs-sm  col-5" >
+      <label for="tipos_auditoria_item">Segmento de Auditoria</label>
+      <input
+              formControlName="tipos_auditoria_item"
+              name="tipos_auditoria_item"
+              type="text"
+              pInputText
+              placeholder="Digite"
+              class="p-inputtext-sm input"
+              id="inputAuditoria"
+              disabled
+      />
+    </div>
+
+
+
+
+
+
+
+
+
+
     <div class="col">
       <div class="dropdown">
-        <label for="">Segmento de Auditoria</label>
-        <select formControlName="tipos_auditoria_item">
+        <label for="">Setor/Departamento Afetado</label>
+        <select formControlName="tipos_local_item">
           <option [ngValue]="null" disabled selected hidden>Selecione...</option>
-          <option *ngFor="let tiposAuditoria of tiposAuditoria">
-            {{ tiposAuditoria }}
+          <option *ngFor="let item of nonComplicanceService.sectors" [attr.selected]="nonComplicanceService.nc.tipos_local_item==item.name ? true : null">
+            {{ item.name }}
           </option>
         </select>
       </div>
     </div>
+  </div>
   
-    <div class="col">
+    <!-- <div class="col">
       <div class="dropdown">
         <label for="">Setor/Departamento Afetado</label>
         <select formControlName="tipos_local_item">
@@ -38,7 +69,7 @@
         </select>
       </div>
     </div>
-  </div>
+  </div> -->
   
   <div class="row">
     <div class="col date-group">

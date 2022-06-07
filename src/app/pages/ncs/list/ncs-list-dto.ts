@@ -21,12 +21,15 @@ export class NcsListDTO {
   constructor(init?: Partial<NonCompliance>) {
     if (init) {
         Object.assign(this.nc, init)
+
+        console.log('teste', init)
         this.numero = ObjectUtils.buscarValor(init, 'code', '')
         this.emissor = ObjectUtils.buscarValor(init, 'emissor.username', '')
         this.status = ObjectUtils.buscarValor(init, 'status', '')
         this.system_status = ObjectUtils.buscarValor(init, 'system_status', '')
         this.tipos_nc_item = ObjectUtils.buscarValor(init, 'tipos_nc_item', '')
         this.tipos_auditoria_item = ObjectUtils.buscarValor(init, 'tipos_auditoria_item', '')
+        this.tipos_local_item = ObjectUtils.buscarValor(init, 'tipos_local_item', '')
         
 
 
@@ -36,7 +39,6 @@ export class NcsListDTO {
           this.prazo = this.getPrazo(init.data_abertura, init.data_fechamento);
         }
 
-        this.tipos_local_item = ObjectUtils.buscarValor(init, 'sector.name', '')
         this.parceiro = this.getParceiro()
         
     }

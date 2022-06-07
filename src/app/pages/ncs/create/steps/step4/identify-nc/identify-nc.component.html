@@ -1,67 +1,72 @@
 <div class="div-ident-parceiro d-flex mt-3 flex-column flex-lg-row">
   <div class="div-ident-parceiro">
-    <h2>
-      <i class="bi bi-card-text"></i>
-      Dados de Identificação
-    </h2>
-    <div class="d-flex justify-content-between flex-column flex-lg-row">
-      <div class="contato-info d-flex flex-row">
-        <i class="bi bi-ticket-perforated mr-1"></i>
-        <div>
-          <span class="info-titulo">Número</span>
-          <br />
-          <span class="info-dados">{{ this.nonComplicanceService.nc?.code || "XXXX.XX"}}</span>
+    <div class="dados-identify">
+      <h2>
+        <i class="bi bi-card-text"></i>
+        Dados de Identificação
+      </h2>
+      <div class="d-flex justify-content-between flex-column flex-lg-row">
+        <div class="contato-info d-flex flex-row">
+          <i class="bi bi-ticket-perforated mr-1"></i>
+          <div>
+            <span class="info-titulo">Número</span>
+            <br />
+            <span class="info-dados">{{ this.nonComplicanceService.nc?.code || "XXXX.XX"}}</span>
+          </div>
         </div>
-      </div>
-      <div class="contato-info d-flex flex-row">
-        <i class="bi bi-calendar-week mr-1"></i>
-        <div>
-          <span class="info-titulo">Data de Abertura</span>
-          <br />
-          <span class="info-dados">
-            {{formato_brasileiro(this.nonComplicanceService.nc.data_abertura)}}
-          </span>
+        <div class="contato-info d-flex flex-row">
+          <i class="bi bi-calendar-week mr-1"></i>
+          <div>
+            <span class="info-titulo">Data de Abertura</span>
+            <br />
+            <span class="info-dados">
+              {{formato_brasileiro(this.nonComplicanceService.nc.data_abertura)}}
+            </span>
+          </div>
         </div>
-      </div>
-      <div class="contato-info d-flex flex-row">
-        <i class="bi bi-calendar-week mr-1"></i>
-        <div>
-          <span class="info-titulo">Data de Fechamento</span>
-          <br />
-          <span class="info-dados">{{formato_brasileiro(this.nonComplicanceService.nc.data_fechamento)}}</span>
+        <div class="contato-info d-flex flex-row">
+          <i class="bi bi-calendar-week mr-1"></i>
+          <div>
+            <span class="info-titulo">Prazo de Fechamento</span>
+            <br />
+            <span class="info-dados">{{formato_brasileiro(this.nonComplicanceService.nc.data_fechamento)}}</span>
+          </div>
         </div>
       </div>
     </div>
   </div>
   <p-divider class="test1" layout="vertical"></p-divider>
   <div class="div-ident-parceiro">
-    <h2>
-      <i class="bi bi-people mr-1"></i>
-      Dados de Emissão
-    </h2>
-    <div class="d-flex justify-content-between flex-column flex-lg-row">
-      <div class="contato-info d-flex flex-row">
-        <i class="bi bi-person-circle mr-1"></i>
-        <div>
-          <span class="info-titulo">Emissor</span>
-          <br />
-          <span class="info-dados">{{nonComplicanceService.nc?.emissor?.username||""}}</span>
+    <div class="dados-identify">
+
+      <h2>
+        <i class="bi bi-people mr-1"></i>
+        Dados de Emissão
+      </h2>
+      <div class="d-flex justify-content-between flex-column flex-lg-row">
+        <div class="contato-info d-flex flex-row">
+          <i class="bi bi-person-circle mr-1"></i>
+          <div>
+            <span class="info-titulo">Emissor</span>
+            <br />
+            <span class="info-dados">{{nonComplicanceService.nc?.emissor?.username||""}}</span>
+          </div>
         </div>
-      </div>
-      <div class="contato-info d-flex flex-row">
-        <i class="bi bi-person-circle mr-1"></i>
-        <div>
-          <span class="info-titulo">Responsável</span>
-          <br />
-          <span class="info-dados">{{nonComplicanceService.nc?.emissor?.sector?.responsible_name||""}}</span>
+        <div class="contato-info d-flex flex-row">
+          <i class="bi bi-person-circle mr-1"></i>
+          <div>
+            <span class="info-titulo">Responsável</span>
+            <br />
+            <span class="info-dados">{{nonComplicanceService.nc?.emissor?.sector?.responsible_name||""}}</span>
+          </div>
         </div>
-      </div>
-      <div class="contato-info d-flex flex-row">
-        <i class="bi bi-geo-alt mr-1"></i>
-        <div>
-          <span class="info-titulo">Departamento</span>
-          <br />
-          <p class="info-dados">{{nonComplicanceService.nc?.emissor?.sector?.name||""}}</p>
+        <div class="contato-info d-flex flex-row">
+          <i class="bi bi-geo-alt mr-1"></i>
+          <div>
+            <span class="info-titulo">Departamento</span>
+            <br />
+            <p class="info-dados">{{nonComplicanceService.nc?.emissor?.sector?.name||""}}</p>
+          </div>
         </div>
       </div>
     </div>
@@ -141,7 +146,7 @@
   <div class="dados-parceiro razao-social item">
     <h2 class="mr-2">
       <i class="bi bi-file-earmark-text"></i>
-      Descrição da Não Conformidade
+      Descrição 
     </h2>
     <p-editor
       [(ngModel)]="this.nonComplicanceService.nc.text_area_nc"
@@ -174,7 +179,7 @@
   <div class="dados-parceiro razao-social item">
     <h2 class="mr-2">
       <i class="bi bi-geo"></i>
-      Descrição de Ações Imediatas
+      Ações Imediatas
     </h2>
     <p-editor
       [(ngModel)]="this.nonComplicanceService.nc.text_area_acoes"

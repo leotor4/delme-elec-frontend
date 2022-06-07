@@ -27,14 +27,20 @@ export class NcsCreateComponent implements OnInit {
 
   ngOnInit() {
     this.ncService.formIdentificacaoNC.reset();
+    this.ncService.autoCompleteValue = ''
+    this.ncService.autoCompleteItValue = ''
+    this.ncService.autoCompletePrValue = ''
+    this.ncService.pesquisar = ''
+    
     let id = parseInt(this.route.snapshot.paramMap.get('id')||"")
     this.ncService.getById(id).subscribe(
       {
         next: (response:any) => {
+          console.log(response)
           this.ncService.nc = new NonCompliance(response['nc'][0]);
           this.setDates(this.ncService.nc);
           
-          console.log(this.ncService.nc)
+          console.log('nc teste', this.ncService.nc)
           
           switch(this.ncService.nc.tipos_parceiro_item){
           case "Cliente":
@@ -61,8 +67,10 @@ export class NcsCreateComponent implements OnInit {
            this.ncService.autoCompleteItValue = this.ncService.nc.instruction
          }
 
+
           this.ncService.formIdentificacaoNC.patchValue(new IdentificacaoNCDTO(this.ncService.nc));
-          console.log(this.ncService.nc.tipos_local_item)
+          console.log('local item',this.ncService.nc.tipos_local_item)
+          console.log(this.ncService.formIdentificacaoNC.value)
         },
         error: err => {
           this.messageService.add({

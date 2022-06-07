@@ -1,5 +1,5 @@
 <p-confirmDialog acceptLabel="sim" rejectLabel="não" [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
-<p class="title">InícioA</p>
+<p class="title">Início</p>
 <p class="subtitle">Visualize ou crie não conformidades</p>
 
 <span class="p-input-icon-left">
@@ -13,7 +13,7 @@
 
 <div style="margin-top: 10px;">
 <p-table  responsiveLayout="scroll" #dt 
-[globalFilterFields]="['numero','emissor', 'status', 'tipos_nc_item', 'tipos_auditoria_item', 'prazo','tipos_local_item', 'data_abertura']" 
+[globalFilterFields]="['numero','emissor', 'status', 'tipos_nc_item', 'prazo','tipos_local_item', 'data_abertura']" 
 [value]="listNcs" [columns]="cols" [paginator]="true" [rows]="rows" [(first)]="first" [totalRecords]="totalRecords" 
 [showCurrentPageReport]="true" responsiveLayout="scroll" 
 currentPageReportTemplate="Exibindo de {first} a {last} de {totalRecords} registros" [rowsPerPageOptions]="[5,10,25,50]" [filterDelay]="0">
@@ -41,14 +41,6 @@ currentPageReportTemplate="Exibindo de {first} a {last} de {totalRecords} regist
             Tipo de NC
             <p-sortIcon field="tipos_nc_item"></p-sortIcon>
             <p-columnFilter type="text" field="tipos_nc_item" display="menu" class="ml-auto"></p-columnFilter>
-        </div>
-      </th>
-
-      <th pSortableColumn="tipos_auditoria_item">
-        <div class="flex justify-content-between align-items-center">
-            Segmento de Auditoria
-            <p-sortIcon field="tipos_auditoria_item"></p-sortIcon>
-            <p-columnFilter type="text" field="tipos_auditoria_item" display="menu" class="ml-auto"></p-columnFilter>
         </div>
       </th>
 
@@ -112,11 +104,6 @@ currentPageReportTemplate="Exibindo de {first} a {last} de {totalRecords} regist
       <td>
           <span class="p-column-title">Tipo de NC</span>
           {{ncListDTO.tipos_nc_item}}
-      </td>
-
-      <td>
-          <span class="p-column-title">Segmento de Auditoria</span>
-          {{ncListDTO.tipos_auditoria_item}}
       </td>
 
       <td>
