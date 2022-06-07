@@ -148,7 +148,10 @@ export class ContactsComponent implements OnInit{
     this.userServ.getAll().subscribe((data:any)=>{
       this.nonComplianceService.allContacts = data.users;
       this.nonComplianceService.nc.contacts =
-          this.nonComplianceService.allContacts.filter((val) => val.email! === "email1@eletrosson.com.br" || val.email! === "email2@eletrosson.com.br" || val.email! === "email3@eletrosson.com.br");
+          this.nonComplianceService.allContacts.filter((val) => val.email! === "presidencia@eletrosson.com.br"
+              || val.email! === this.nonComplianceService.nc.emissor?.sector?.responsible_email
+              || val.email! === this.nonComplianceService.nc.sector?.responsible_email
+              || val.email! === "EmailSGQ@eletrosson.com.br");
       this.nonComplianceService.nc.contacts.push(this.tokenServ.getUser())
 
     })

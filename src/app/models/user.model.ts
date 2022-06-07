@@ -7,7 +7,7 @@ export class User {
   username?: string;
   matricula?: string;
   funcao?: string;
-  setor?:Sector;
+  sector?:Sector;
   created_at?: Date
   update_at?: Date
 }
