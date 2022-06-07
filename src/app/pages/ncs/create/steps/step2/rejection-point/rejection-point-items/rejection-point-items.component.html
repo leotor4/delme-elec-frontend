@@ -30,18 +30,18 @@
         >
           <ng-template let-brand pTemplate="item">
             <div>
-              <div class="d-flex justify-content-between">
-                <div>
+              <div class="d-flex">
+                <div class="mr-2">
                   <span class="auto-complete-label">CÓDIGO</span><br />
                   <span class="auto-complete-item">{{ brand.code }}</span>
                 </div>
-                <div>
+                <div class="mr-2">
                   <span class="auto-complete-label">DESCRIÇÃO</span><br />
                   <span class="auto-complete-item">{{
                     brand.description
                   }}</span>
                 </div>
-                <div>
+                <div class="mr-2">
                   <span class="auto-complete-label">REVISÃO</span><br />
                   <span class="auto-complete-item">{{ brand.rev }}</span>
                 </div>
@@ -51,7 +51,7 @@
         </p-autoComplete>
       </div>
     </div>
-    <div class="col-4 att-button">
+    <!--<div class="col-4 att-button">
       <div>
         <p><i class="pi pi-history"></i> ultima atualização:</p>
         <button
@@ -65,7 +65,7 @@
         </button>
       </div>
     </div>
-  </div>
+  </div>-->
 
   <div *ngIf="false" class="d-flex justify-content-center mt-3">
     <button

@@ -1,7 +1,7 @@
 
 <button class="btn btn-dark inicio">Inicio</button>
 
-<h1>Importar Clientes</h1>
+<h1 class="mt-4">Importar Clientes</h1>
 <p-fileUpload
   (uploadHandler)="onUpload($event, 'customer')"
   [customUpload]="true"
@@ -20,7 +20,7 @@
   </ng-template>
 </p-fileUpload>
 
-<h1>Importar Fornecedores</h1>
+<h1 class="mt-3">Importar Fornecedores</h1>
 <p-fileUpload
   (uploadHandler)="onUpload($event, 'provider')"
   [customUpload]="true"
@@ -39,7 +39,7 @@
   </ng-template>
 </p-fileUpload>
 
-<h1>Importar Produtos</h1>
+<h1 class="mt-3">Importar Produtos</h1>
 <p-fileUpload
   (uploadHandler)="onUpload($event, 'product')"
   [customUpload]="true"
@@ -58,7 +58,7 @@
   </ng-template>
 </p-fileUpload>
 
-<h1>Importar Setores</h1>
+<h1 class="mt-3">Importar Setores</h1>
 <p-fileUpload
   (uploadHandler)="onUpload($event, 'sector')"
   [customUpload]="true"
@@ -77,7 +77,7 @@
   </ng-template>
 </p-fileUpload>
 
-<h1>Importar Locais</h1>
+<!--<h1>Importar Locais</h1>
 <p-fileUpload
   (uploadHandler)="onUpload($event, 'place')"
   [customUpload]="true"
@@ -94,9 +94,9 @@
       (onClick)="downloadFile('local')"
     ></p-button>
   </ng-template>
-</p-fileUpload>
+</p-fileUpload>-->
 
-<h1>Importar Instruções</h1>
+<h1 class="mt-3">Importar Instruções</h1>
 <p-fileUpload (uploadHandler)="onUpload($event, 'instructions')" [customUpload]="true" accept=".xlsx, .xls"
   chooseLabel="Escolher Arquivo" uploadLabel="Importar Arquivo Selecionado" [showCancelButton]="false"
   invalidFileTypeMessageDetail="Formato de arquivo inválido, selecione apenas arquivos do tipo {0}">
@@ -105,7 +105,7 @@
   </ng-template>
 </p-fileUpload>
 
-<h1>Importar Procedimentos</h1>
+<h1 class="mt-3">Importar Procedimentos</h1>
 <p-fileUpload (uploadHandler)="onUpload($event, 'procedures')" [customUpload]="true" accept=".xlsx, .xls"
   chooseLabel="Escolher Arquivo" uploadLabel="Importar Arquivo Selecionado" [showCancelButton]="false"
   invalidFileTypeMessageDetail="Formato de arquivo inválido, selecione apenas arquivos do tipo {0}">

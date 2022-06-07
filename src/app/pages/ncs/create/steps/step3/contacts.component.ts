@@ -152,7 +152,7 @@ export class ContactsComponent implements OnInit{
               || val.email! === this.nonComplianceService.nc.emissor?.sector?.responsible_email
               || val.email! === this.nonComplianceService.nc.sector?.responsible_email
               || val.email! === "manuela.starowsta@electrosonteleco.com.br");
-      this.nonComplianceService.nc.contacts.push(this.tokenServ.getUser())
+      this.nonComplianceService.nc.contacts.push(this.nonComplianceService.nc.emissor!)
 
     })
   }
