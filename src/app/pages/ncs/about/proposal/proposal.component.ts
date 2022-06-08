@@ -29,4 +29,10 @@ export class ProposalComponent implements OnInit {
 
   }
 
+  dataParse(date:any){
+    let newDate = new Date(date)
+    let formatedDate = newDate.toLocaleString("pt-Br").split(" ")[0]
+    return formatedDate
+  }
+
 }

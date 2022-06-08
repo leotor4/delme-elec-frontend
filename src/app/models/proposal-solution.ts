@@ -37,7 +37,7 @@ export class ProposalSolution {
     root_cause:string;
     non_compliance_id:number;
      machine = new Machine()
-     actionPlan:ActionPlan[] = []
+     actionPlans:ActionPlan[] = []
      contacts:Contact[] = []
   equipament = new Equipament()
   instruction = new Instruction()

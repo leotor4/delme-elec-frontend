@@ -36,7 +36,7 @@ export class ActionPlanComponent implements OnInit {
     actionPlan.responsible = this.selectedResp
     actionPlan.status = this.selectedStatus
     actionPlan.term = this.date
-    this.propService.propSolution.actionPlan.push(actionPlan)
+    this.propService.propSolution.actionPlans.push(actionPlan)
 
     this.name = ""
     this.selectedStatus = ""
@@ -53,8 +53,8 @@ export class ActionPlanComponent implements OnInit {
       header: "Excluir Ação",
       icon: "pi pi-exclamation-triangle",
       accept: () => {
-        this.propService.propSolution.actionPlan =
-            this.propService.propSolution.actionPlan.filter(
+        this.propService.propSolution.actionPlans =
+            this.propService.propSolution.actionPlans.filter(
                 (val) => val.description !== action.description 
             );
         this.messageService.add({
@@ -76,7 +76,7 @@ export class ActionPlanComponent implements OnInit {
 
     ref.onClose.subscribe((action: ActionPlan) => {
       if (action) {
-        let index = this.propService.propSolution.actionPlan.findIndex((item) => {
+        let index = this.propService.propSolution.actionPlans.findIndex((item) => {
           return item.description == action.description;
         });
         this.propService.actions[index] = action;

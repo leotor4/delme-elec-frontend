@@ -139,7 +139,7 @@
                                     rows="5" class="textarea">
                                    </textarea>
                                 <div class="text-center form-check caixa-preta mx-3"
-                                    *ngIf="aboutService.nc.proposalSolution.rootCause=='cause2'">
+                                    *ngIf="aboutService.nc.proposalSolution.root_cause=='cause2'">
                                     <input class="form-check-input" type="checkbox" value="" onclick="return false;" checked />
                                     <label class="form-check-label text-light">
                                         Causa Raiz
@@ -152,7 +152,7 @@
                                     rows="5" class="textarea">
                                    </textarea>
                                 <div class="text-center form-check caixa-preta mx-3"
-                                    *ngIf="aboutService.nc.proposalSolution.rootCause=='cause3'">
+                                    *ngIf="aboutService.nc.proposalSolution.root_cause=='cause3'">
                                     <input class="form-check-input" type="checkbox" value="" onclick="return false;" checked />
                                     <label class="form-check-label text-light">
                                         Causa Raiz
@@ -167,7 +167,7 @@
                                     rows="5" class="textarea">
                                    </textarea>
                                 <div class="text-center form-check caixa-preta mx-3"
-                                    *ngIf="aboutService.nc.proposalSolution.rootCause=='cause4'">
+                                    *ngIf="aboutService.nc.proposalSolution.root_cause=='cause4'">
                                     <input class="form-check-input" type="checkbox" value="" onclick="return false;" checked />
                                     <label class="form-check-label text-light">
                                         Causa Raiz
@@ -180,7 +180,7 @@
                                     rows="5" class="textarea">
                                    </textarea>
                                 <div class="text-center form-check caixa-preta mx-3"
-                                    *ngIf="aboutService.nc.proposalSolution.rootCause=='cause5'">
+                                    *ngIf="aboutService.nc.proposalSolution.root_cause=='cause5'">
                                     <input class="form-check-input" type="checkbox" value="" onclick="return false;" checked />
                                     <label class="form-check-label text-light">
                                         Causa Raiz
@@ -203,7 +203,7 @@
                 </ng-template>
                 <ng-template pTemplate="content">
                     <div class="card">
-                        <p-table [value]="aboutService.nc.actions">
+                        <p-table [value]="aboutService.nc.proposalSolution.actionPlans">
                             <ng-template pTemplate="header">
                                 <tr>
                                     <th>Descrição</th>
@@ -214,9 +214,9 @@
                             </ng-template>
                             <ng-template pTemplate="body" let-action>
                                 <tr>
-                                    <td>{{ action.name }}</td>
-                                    <td>{{ action.responsible }}</td>
-                                    <td>{{ action.deadline.split("-")?.reverse()?.join("/") }}</td>
+                                    <td>{{ action.description }}</td>
+                                    <td>{{ action.responsible.username }}</td>
+                                   <td>{{dataParse(action.term)}}</td>
                                     <td>{{ action.status }}</td>
                                 </tr>
                             </ng-template>
@@ -246,7 +246,7 @@
                             </ng-template>
                             <ng-template pTemplate="body" let-contact let-i="rowIndex">
                                 <tr>
-                                    <td>{{ contact.username }}</td>
+                                    <td>{{ contact['username'] }}</td>
                                     <td>{{ contact.email }}</td>
                                     <td>{{ contact.type }}</td>
                                 </tr>

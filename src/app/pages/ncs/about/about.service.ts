@@ -20,7 +20,6 @@ export class AboutService {
     constructor(private ncsService : NonComplianceService, private http: HttpClient) { }
 
     hasProposal():boolean{
-       
         if(!this.nc)return false
         if(this.nc.proposalSolution)return true
         return false
@@ -29,7 +28,8 @@ export class AboutService {
     getNC(id:number){
         this.ncsService.getById(id).subscribe((data: any) => {
             this.nc = data.nc[0]
-           
+            console.log(this.nc.proposalSolution?.root_cause)
+
         })
     }
 
