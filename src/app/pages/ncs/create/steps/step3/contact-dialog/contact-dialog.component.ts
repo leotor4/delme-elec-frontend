@@ -78,8 +78,6 @@ export class ContactDialogComponent implements OnInit {
   getContacts() {
     this.contactsSrvc.get().subscribe((data: any) => {
       this.nonComplianceService.allContacts = data.contact;
-      this.nonComplianceService.nc.contacts =
-        this.nonComplianceService.allContacts.filter((val) => val.id! <= 4);
     });
   }
 }

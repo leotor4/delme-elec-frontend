@@ -24,10 +24,10 @@ export class ContactsComponent implements OnInit{
   constructor(
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
+    private contactsSrvc: ContactsService,
     public dialogService: DialogService,
     public nonComplianceService: NonComplianceService,
-    public tokenServ: TokenStorageService,
-    public userServ: UserService
+    public tokenServ: TokenStorageService
   ) {}
 
 
@@ -108,22 +108,15 @@ export class ContactsComponent implements OnInit{
   }
 
   search(event: any) {
-    let filtered: Contact[] = [];
     let query = event.query;
     let contacts = this.nonComplianceService.allContacts.filter(
       (val) =>
-        this.nonComplianceService.nc.contacts.indexOf(val) < 0 &&
+        this.nonComplianceService.nc.contacts.indexOf(val) <= 0 &&
         this.selectedContacts.indexOf(val) < 0
     );
-    contacts.forEach((contact) => {
-      if (
-        contact.name?.toLowerCase().indexOf(query.toLowerCase()) == 0 ||
-        contact.email?.toLowerCase().indexOf(query.toLowerCase()) == 0
-      ) {
-        filtered.push(contact);
-      }
-    });
-    this.results = filtered;
+    const regex = new RegExp(`^${query}`, "i");
+    this.results = contacts.sort().filter((v) => regex.test(<string>v.name));
+    this.results = this.results.concat(contacts.sort().filter((v) => regex.test(<string>v.email)));
   }
 
   checkContact(contact: Contact) {
@@ -145,15 +138,81 @@ export class ContactsComponent implements OnInit{
   }
 
   getContacts() {
-    this.userServ.getAll().subscribe((data:any)=>{
-      this.nonComplianceService.allContacts = data.users;
-      this.nonComplianceService.nc.contacts =
-          this.nonComplianceService.allContacts.filter((val) => val.email! === "cafareli@electrosonteleco.com.br"
-              || val.email! === this.nonComplianceService.nc.emissor?.sector?.responsible_email
-              || val.email! === this.nonComplianceService.nc.sector?.responsible_email
-              || val.email! === "manuela.starowsta@electrosonteleco.com.br");
-      this.nonComplianceService.nc.contacts.push(this.nonComplianceService.nc.emissor!)
 
-    })
+    this.contactsSrvc.get().subscribe((data: any) => {
+      this.nonComplianceService.allContacts = data.contact;
+      if(this.nonComplianceService.nc.contacts.length===0){
+        let user = this.tokenServ.getUser()
+        this.nonComplianceService.nc.contacts =
+            this.nonComplianceService.allContacts.filter((val) => val.email! === "cafareli@electrosonteleco.com.br"
+                || val.email! === this.nonComplianceService.nc.emissor?.sector?.responsible_email
+                || val.email! === this.nonComplianceService.nc.sector?.responsible_email
+                || val.email! === "manuela.starowsta@electrosonteleco.com.br"|| val.email! === user.email);
+
+        let userContact = this.nonComplianceService.allContacts.filter((val) => val.email === user.email);
+        if (userContact.length <= 0) {
+          let contact = new Contact()
+          contact.email = user.email
+          contact.name = user.username
+          contact.type = "Interno"
+          this.contactsSrvc.post(contact).subscribe(
+              (data) => {
+                this.nonComplianceService.allContacts.push(data.contact)
+                this.nonComplianceService.nc.contacts.push(data.contact)
+              }
+          )
+
+        }
+        if (!this.nonComplianceService.allContacts.some(e => e.email === 'cafareli@electrosonteleco.com.br')) {
+          console.log("asdasdasdsa")
+          let contact = new Contact()
+          contact.email = 'cafareli@electrosonteleco.com.br'
+          contact.name = "Presidencia"
+          contact.type = "Interno"
+          this.contactsSrvc.post(contact).subscribe(
+              (data) => {
+                this.nonComplianceService.allContacts.push(data.contact)
+                this.nonComplianceService.nc.contacts.push(data.contact)
+              }
+          )
+        }
+        if (!this.nonComplianceService.allContacts.some(e => e.email === 'manuela.starowsta@electrosonteleco.com.br')) {
+          let contact = new Contact()
+          contact.email = 'manuela.starowsta@electrosonteleco.com.br'
+          contact.name = "Manuela Starowsta"
+          contact.type = "Interno"
+          this.contactsSrvc.post(contact).subscribe(
+              (data) => {
+                this.nonComplianceService.allContacts.push(data.contact)
+                this.nonComplianceService.nc.contacts.push(data.contact)
+              }
+          )
+        }
+        if (!this.nonComplianceService.allContacts.some(e => e.email === this.nonComplianceService.nc.emissor?.sector?.responsible_email) && this.nonComplianceService.nc.emissor?.sector?.responsible_email) {
+          let contact = new Contact()
+          contact.email = this.nonComplianceService.nc.emissor.sector.responsible_email
+          contact.name = this.nonComplianceService.nc.emissor.sector.responsible_name
+          contact.type = "Interno"
+          this.contactsSrvc.post(contact).subscribe(
+              (data) => {
+                this.nonComplianceService.allContacts.push(data.contact)
+                this.nonComplianceService.nc.contacts.push(data.contact)
+              }
+          )
+        }
+        if (!this.nonComplianceService.allContacts.some(e => e.email === this.nonComplianceService.nc.sector?.responsible_email) && this.nonComplianceService.nc.sector?.responsible_email) {
+          let contact = new Contact()
+          contact.email = this.nonComplianceService.nc.sector?.responsible_email
+          contact.name = this.nonComplianceService.nc.sector?.responsible_name
+          contact.type = "Interno"
+          this.contactsSrvc.post(contact).subscribe(
+              (data) => {
+                this.nonComplianceService.allContacts.push(data.contact)
+                this.nonComplianceService.nc.contacts.push(data.contact)
+              }
+          )
+        }
+      }
+    });
   }
 }
