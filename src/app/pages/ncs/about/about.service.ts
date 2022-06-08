@@ -28,8 +28,7 @@ export class AboutService {
     getNC(id:number){
         this.ncsService.getById(id).subscribe((data: any) => {
             this.nc = data.nc[0]
-            console.log(this.nc.proposalSolution?.root_cause)
-
+            console.log(this.nc.proposalSolution?.actionPlans)
         })
     }
 

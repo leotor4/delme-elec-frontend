@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {DynamicDialogConfig, DynamicDialogRef} from "primeng/dynamicdialog";
+import {ProposalService} from "../../../proposal.service";
 
 @Component({
   selector: 'app-action-plan-dialog',
@@ -9,28 +10,19 @@ import {DynamicDialogConfig, DynamicDialogRef} from "primeng/dynamicdialog";
 export class ActionPlanDialogComponent implements OnInit {
   action: any
   date: string;
-  responsible: string[] = [
-    "Elvira Jehu",
-    "Aigneis Camden",
-    "Mildrid Infield",
-    "Atlanta Hanleigh",
-    "Elie Dalli",
-    "Tilly Honoria",
-    "Arabel Smitt",
-    "Carolina Tound",
-    "Brana Yerkovich",
-    "Nerta Pitt"
-  ];
+ 
   selectedResp: string;
   statuses: string[] = ["A Fazer", "Fazendo", "Concluido", "Cancelado", "Atrasado", "Postergado"];
   selectedStatus: string;
   name: string;
-  constructor(public ref: DynamicDialogRef, public config: DynamicDialogConfig) {
+  constructor(public ref: DynamicDialogRef, public config: DynamicDialogConfig,public propService:ProposalService) {
     this.action = this.config.data
     this.date= this.action.deadline
+  
   }
 
   ngOnInit(): void {
+    console.log(this.action.responsible)
   }
   close(){
     this.ref.close()

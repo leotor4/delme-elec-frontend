@@ -28,6 +28,13 @@ export class IshikawaDialogComponent implements OnInit {
     
   }
 
+  returnTextButton():string{
+    if (this.isLastStep())
+      return "Fechar"
+
+    return "Avançar"
+  }
+
   search(event:any,type:string){
     var filtro = event.query;
     
@@ -104,7 +111,7 @@ export class IshikawaDialogComponent implements OnInit {
   }
 
   nextStep() {
-    if (this.stepPosition >= 7) return;
+    if (this.stepPosition >= 7) this.ref.close();
     this.stepPosition++;
     this.isLastStep()
   }

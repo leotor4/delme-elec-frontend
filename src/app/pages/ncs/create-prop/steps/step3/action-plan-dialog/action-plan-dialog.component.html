@@ -1,7 +1,7 @@
 <div class="d-flex flex-column mr-lg-3 inputs-sm  mt-3">
     <label>Descrição</label>
     <input
-            [(ngModel)]="action.name"
+            [(ngModel)]="action.description"
             name="amountNC"
             type="text"
             pInputText
@@ -16,7 +16,7 @@
             pInputText
             id="date-input"
             class="p-input text-sm input"
-            [(ngModel)]="action.deadline"
+            [(ngModel)]="action.term"
     />
 </div>
 <div class="d-flex flex-column flex-lg-row">
@@ -27,12 +27,9 @@
             <option *ngFor="let status of statuses">{{ status }}</option>
         </select>
     </div>
-    <div class="d-flex flex-column pl-0 inputs-sm col-6">
+    <div class="d-flex flex-column inputs-sm">
         <label>Responsável</label>
-        <select class="form-select input" [(ngModel)]="action.responsible">
-            <option disabled selected hidden>{{action.responsible}}</option>
-            <option *ngFor="let responsible of responsible">{{ responsible }}</option>
-        </select>
+        <p-dropdown class="p-input input" [options]="propService.users" optionLabel="username" [(ngModel)]="action.responsible"></p-dropdown>
     </div>
 </div>
 <div class="d-flex justify-content-end mt-5">

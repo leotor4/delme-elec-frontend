@@ -6,7 +6,7 @@ import {ProposalService} from "../../proposal.service";
 import { User } from 'src/app/models/user.model';
 import { ActionPlan } from 'src/app/models/action-plan';
 import { ActionPlanService } from 'src/app/_services/action-plan.service';
-import { Action } from 'rxjs/internal/scheduler/Action';
+
 
 @Component({
   selector: 'app-action-plan',
@@ -20,7 +20,7 @@ export class ActionPlanComponent implements OnInit {
   
   date: string;
   selectedResp: User;
-  statuses: string[] = ["Pendente", "Em andamento", "Finalizada"];
+  statuses: string[] = ["A Fazer", "Fazendo", "Concluido", "Cancelado", "Atrasado", "Postergado"];
   selectedStatus: string;
   name: string;
 
@@ -79,7 +79,7 @@ export class ActionPlanComponent implements OnInit {
         let index = this.propService.propSolution.actionPlans.findIndex((item) => {
           return item.description == action.description;
         });
-        this.propService.actions[index] = action;
+        this.propService.propSolution.actionPlans[index] = action;
       }
     });
   }

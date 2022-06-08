@@ -36,9 +36,8 @@ export class CreatePropStepperComponent implements OnInit {
   ngOnInit() {
     this.items = [
       { label: "Diagrama de Ishikawa e 5 Porquês" },
-      { label: "PLano de Ação e Emitir Notificação" },
+      { label: "Plano de Ação e Emitir Notificação" },
       { label: "Revisão" },
-     
     ];
   }
   getNextPageBtnLabel() {
@@ -46,14 +45,17 @@ export class CreatePropStepperComponent implements OnInit {
     let labelName = isLastStep ? "Submeter Análise" : "Avançar";
     return labelName;
   }
+
   getNextPageBtnIcon() {
     let isLastStep = this.stepPosition === this.items.length - 1;
     let iconClass = isLastStep ? "bi bi-file-earmark-plus" : "pi pi-arrow-right";
     return iconClass;
   }
+
   isFirstStep() {
     return this.stepPosition === 0 ? true : false;
   }
+
   nextStep() {
     if (this.stepPosition >= this.items.length - 1) return;
      let id = parseInt(this.route.snapshot.paramMap.get('id')||"")
@@ -79,11 +81,13 @@ export class CreatePropStepperComponent implements OnInit {
     })
     
   }
+
   backStep() {
     if (this.stepPosition <= 0) return;
     this.stepPosition--;
     this.isFirstStep();
   }
+  
   changeStepByPosition(event: any) {
     this.stepPosition = event;
   }

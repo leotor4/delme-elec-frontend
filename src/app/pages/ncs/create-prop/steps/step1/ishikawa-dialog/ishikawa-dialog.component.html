@@ -211,11 +211,11 @@
         <button
                 type="button"
                 class="btn btn-dark"
-                [disabled]="isLastStep()"
+                
                 (click)="nextStep()"
         >
-            Avançar
-            <i class="bi bi-arrow-right"></i>
+            {{returnTextButton()}}
+            <i *ngIf="!isLastStep()" class="bi bi-arrow-right"></i>
         </button>
     </div>
 </div>

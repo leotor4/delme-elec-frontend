@@ -48,7 +48,7 @@
                     <div class="d-flex">
                         <div class="col">
                             <label>Matéria Prima</label>
-                            <p-editor [ngModel]="'<p>'+this.propService.propSolution.lackMaterials + '</p><p>' + this.propService.propSolution.lowQualityMaterials + '</p>' + this.propService.propSolution.materialDescription" [style]="editorStyle" [readonly]="true" >
+                            <p-editor [ngModel]="'<p>'+this.propService.propSolution.lack_materials + '</p><p>' + this.propService.propSolution.low_quality_materials + '</p>' + this.propService.propSolution.material_description" [style]="editorStyle" [readonly]="true" >
                                 <ng-template pTemplate="header">
                                 </ng-template>
                             </p-editor>
@@ -56,14 +56,14 @@
                         </div>
                         <div class="col">
                             <label>Medição</label>
-                            <p-editor [ngModel]="'<p>'+this.propService.propSolution.lackParameters + '</p><p>' + this.propService.propSolution.excessParameters + '</p><p>' + this.propService.propSolution.nonAchievementGoals+ '</p>' + this.propService.propSolution.lowQualityMaterials + '</p>' + this.propService.propSolution.measurementDescription" [style]="editorStyle" [readonly]="true">
+                            <p-editor [ngModel]="'<p>'+this.propService.propSolution.lack_parameters + '</p><p>' + this.propService.propSolution.excess_parameters + '</p><p>' + this.propService.propSolution.non_achievement_goals+ '</p>' + this.propService.propSolution.low_quality_materials + '</p>' + this.propService.propSolution.measurement_description" [style]="editorStyle" [readonly]="true">
                                 <ng-template pTemplate="header">
                                 </ng-template>
                             </p-editor>
                         </div>
                         <div class="col">
                             <label>Método</label>
-                            <p-editor [ngModel]="this.propService.propSolution.methodDescription" [style]="editorStyle" [readonly]="true">
+                            <p-editor [ngModel]="this.propService.propSolution.method_description" [style]="editorStyle" [readonly]="true">
                                 <ng-template pTemplate="header">
                                 </ng-template>
                             </p-editor>
@@ -73,21 +73,21 @@
                     <div class="d-flex">
                         <div class="col">
                             <label>Mão de Obra</label>
-                            <p-editor [ngModel]="'<p>'+this.propService.propSolution.runTraining + '</p>' + this.propService.propSolution.manPowerDescription" [style]="editorStyle" [readonly]="true">
+                            <p-editor [ngModel]="'<p>'+this.propService.propSolution.run_training + '</p>' + this.propService.propSolution.man_power_description" [style]="editorStyle" [readonly]="true">
                                 <ng-template pTemplate="header">
                                 </ng-template>
                             </p-editor>
                         </div>
                         <div class="col">
                             <label>Meio Ambiente</label>
-                            <p-editor [ngModel]="this.propService.propSolution.environmentDescription"[style]="editorStyle" [readonly]="true">
+                            <p-editor [ngModel]="this.propService.propSolution.environment_description"[style]="editorStyle" [readonly]="true">
                                 <ng-template pTemplate="header">
                                 </ng-template>
                             </p-editor>
                         </div>
                         <div class="col">
                             <label>Máquina</label>
-                            <p-editor [ngModel]="this.propService.propSolution.machineDescription"[style]="editorStyle" [readonly]="true">
+                            <p-editor [ngModel]="this.propService.propSolution.machine_description"[style]="editorStyle" [readonly]="true">
                                 <ng-template pTemplate="header">
                                 </ng-template>
                             </p-editor>
@@ -97,7 +97,7 @@
                 </div>
                 <div class="d-block mt-5">
                     <label>Efeito</label>
-                    <p-editor [ngModel]="this.propService.propSolution.effectDescription"
+                    <p-editor [ngModel]="this.propService.propSolution.effect_description"
                               [style]="{'height':'300px','width':'230px','border': '2px solid #333333','border-radius': '5px'}"
                               [readonly]="true">
                         <ng-template pTemplate="header">
@@ -126,9 +126,9 @@
                     <p-chip>1</p-chip>
                     <div>
 8
-                       <textarea  [(ngModel)]="propService.propSolution.firstWhy" pInputTextarea cols="35" rows="5" class="textarea">
+                       <textarea  [(ngModel)]="propService.propSolution.first_why" pInputTextarea cols="35" rows="5" class="textarea">
                        </textarea>
-                        <div class="text-center form-check caixa-preta mx-3" *ngIf="propService.propSolution.rootCause=='cause1'">
+                        <div class="text-center form-check caixa-preta mx-3" *ngIf="propService.propSolution.root_cause=='cause1'">
                             <input class="form-check-input" type="checkbox" value="" onclick="return false;" checked/>
                             <label class="form-check-label text-light">
                                 Causa Raiz
@@ -137,9 +137,9 @@
                     </div>
                     <p-chip>2</p-chip>
                     <div>
-                       <textarea  [(ngModel)]="propService.propSolution.secondWhy" pInputTextarea cols="35" rows="5" class="textarea">
+                       <textarea  [(ngModel)]="propService.propSolution.second_why" pInputTextarea cols="35" rows="5" class="textarea">
                        </textarea>
-                        <div class="text-center form-check caixa-preta mx-3" *ngIf="propService.propSolution.rootCause=='cause2'">
+                        <div class="text-center form-check caixa-preta mx-3" *ngIf="propService.propSolution.root_cause=='cause2'">
                             <input class="form-check-input" type="checkbox" value="" onclick="return false;" checked/>
                             <label class="form-check-label text-light">
                                 Causa Raiz
@@ -148,9 +148,9 @@
                     </div>
                     <p-chip>3</p-chip>
                     <div>
-                       <textarea  [(ngModel)]="propService.propSolution.thirdWhy" pInputTextarea cols="35" rows="5" class="textarea">
+                       <textarea  [(ngModel)]="propService.propSolution.third_why" pInputTextarea cols="35" rows="5" class="textarea">
                        </textarea>
-                        <div class="text-center form-check caixa-preta mx-3" *ngIf="propService.propSolution.rootCause=='cause3'">
+                        <div class="text-center form-check caixa-preta mx-3" *ngIf="propService.propSolution.root_cause=='cause3'">
                             <input class="form-check-input" type="checkbox" value="" onclick="return false;" checked/>
                             <label class="form-check-label text-light">
                                 Causa Raiz
@@ -161,9 +161,9 @@
                 <div class="d-flex justify-content-evenly">
                     <p-chip>4</p-chip>
                     <div>
-                       <textarea  [(ngModel)]="propService.propSolution.quarterWhy" pInputTextarea cols="55" rows="5" class="textarea">
+                       <textarea  [(ngModel)]="propService.propSolution.quarter_why" pInputTextarea cols="55" rows="5" class="textarea">
                        </textarea>
-                        <div class="text-center form-check caixa-preta mx-3" *ngIf="propService.propSolution.rootCause=='cause4'">
+                        <div class="text-center form-check caixa-preta mx-3" *ngIf="propService.propSolution.root_cause=='cause4'">
                             <input class="form-check-input" type="checkbox" value="" onclick="return false;" checked/>
                             <label class="form-check-label text-light">
                                 Causa Raiz
@@ -172,9 +172,9 @@
                     </div>
                     <p-chip>5</p-chip>
                     <div>
-                       <textarea  [(ngModel)]="propService.propSolution.fifthWhy" pInputTextarea cols="55" rows="5" class="textarea">
+                       <textarea  [(ngModel)]="propService.propSolution.fifth_why" pInputTextarea cols="55" rows="5" class="textarea">
                        </textarea>
-                        <div class="text-center form-check caixa-preta mx-3" *ngIf="propService.propSolution.rootCause=='cause5'">
+                        <div class="text-center form-check caixa-preta mx-3" *ngIf="propService.propSolution.root_cause=='cause5'">
                             <input class="form-check-input" type="checkbox" value="" onclick="return false;" checked/>
                             <label class="form-check-label text-light">
                                 Causa Raiz
@@ -200,7 +200,7 @@
         </ng-template>
         <ng-template pTemplate="content">
             <div class="card">
-                <p-table [value]="propService.actions">
+                <p-table [value]="propService.propSolution.actionPlans">
                     <ng-template pTemplate="header">
                         <tr>
                             <th>Descrição</th>
@@ -211,9 +211,9 @@
                     </ng-template>
                     <ng-template pTemplate="body" let-action>
                         <tr>
-                            <td>{{ action.name }}</td>
-                            <td>{{ action.responsible }}</td>
-                            <td>{{ action.deadline.split("-")?.reverse()?.join("/") }}</td>
+                            <td>{{ action.description }}</td>
+                            <td>{{ action.responsible.username}}</td>
+                            <td>{{ dataParse(action.term)}}</td>
                             <td>{{ action.status }}</td>
                         </tr>
                     </ng-template>

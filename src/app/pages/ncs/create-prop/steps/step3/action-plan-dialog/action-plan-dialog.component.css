@@ -2,10 +2,13 @@ label {
     font-size: 13px;
     font-weight: bold;
 }
-.input{
+
+
+.input {
     border-radius: 5px;
     border: 2px solid rgb(51, 51, 51);
 }
+
 .inputs-sm {
     position: relative;
     top: -12px;
