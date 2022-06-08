@@ -39,11 +39,11 @@ export class NonCompliance {
   instruction?: Instruction;
   procedure?: Procedure;
   tipo_controle?: string = "";
-  text_area_reject_point?: String = "";
-  num_ordem_compra?: String = "";
-  num_lote?: String = "";
-  num_op?: String = "";
-  num_nota?: String = "";
+  text_area_reject_point?: string = "";
+  num_ordem_compra?: string = "";
+  num_lote?: string = "";
+  num_op?: string = "";
+  num_nota?: string = "";
   radio_value: string = "val1";
   status? : string;
   system_status?:string

@@ -1,5 +1,5 @@
 <div class="card">
-    <p-table [value]="this.nonComplicanceService.allContacts">
+    <p-table [value]="this.nonComplicanceService.nc.contacts">
         <ng-template pTemplate="header">
             <tr>
                 <th>Nome</th>
@@ -9,7 +9,7 @@
         </ng-template>
         <ng-template pTemplate="body" let-contact let-i="rowIndex">
             <tr>
-                <td>{{ contact.username }}</td>
+                <td>{{ contact.name }}</td>
                 <td>{{ contact.email }}</td>
                 <td>{{ contact.type }}</td>
             </tr>

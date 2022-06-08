@@ -134,6 +134,8 @@ export class NcsCreateStepperComponent implements OnInit {
             pdf.addImage(imgData, 'PNG', top_left_margin, -(PDF_Height * i) + (top_left_margin * 4), canvas_image_width, canvas_image_height);
           }
           pdf.save("HTML-Document.pdf");
+          // @ts-ignore
+          window.open(pdf.output('bloburl', { filename: "HTML-Document.pdf" }), '_blank');
       }
       });
      

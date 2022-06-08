@@ -71,14 +71,10 @@ export class RejectionPointItemsComponent implements OnInit {
   }
 
   verificarExistencia(element: any, filtro: string): boolean {
-    if (
-      element.code.toUpperCase().includes(filtro.toUpperCase()) ||
-      element.rev.toUpperCase().includes(filtro.toUpperCase()) ||
-      element.description.toUpperCase().includes(filtro.toUpperCase())
-    ) {
-      return true;
-    }
-    return false;
+    return element.code?.toUpperCase().includes(filtro?.toUpperCase()) ||
+        element.rev?.toUpperCase().includes(filtro?.toUpperCase()) ||
+        element.description?.toUpperCase().includes(filtro?.toUpperCase());
+
   }
 
   returnOpScreen() {
