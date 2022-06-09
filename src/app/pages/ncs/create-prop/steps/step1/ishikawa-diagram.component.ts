@@ -22,7 +22,6 @@ export class IshikawaDiagramComponent implements OnInit {
   constructor(public dialogService: DialogService, public propService: ProposalService) { }
 
   ngOnInit(): void {
-    
   }
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.

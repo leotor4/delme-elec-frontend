@@ -10,6 +10,7 @@ import { Procedure } from 'src/app/models/procedure';
 import { ProposalSolution } from 'src/app/models/proposal-solution';
 import { RegulatoryNorm } from 'src/app/models/regulatory-norm';
 import { User } from 'src/app/models/user.model';
+import {NonComplianceService} from "../../../_services/non-compliance.service";
 
 
 @Injectable({
@@ -27,11 +28,13 @@ export class ProposalService {
   users:User[] = []
   actions: ActionPlan[] = []
 
+
   apiUrl = "http://localhost:3333/proposal";
+  ncProp:NonCompliance;
 
  
 
-  constructor(private http: HttpClient) { }
+  constructor(private ncsService : NonComplianceService, private http: HttpClient) { }
   
  
   step2= {

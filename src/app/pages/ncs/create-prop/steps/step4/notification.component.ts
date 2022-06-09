@@ -6,6 +6,7 @@ import { DialogService } from "primeng/dynamicdialog";
 import {ContactsService} from "../../../create/steps/step3/contacts.service";
 import {ContactDialogComponent} from "../../../create/steps/step3/contact-dialog/contact-dialog.component";
 import {ProposalService} from "../../proposal.service";
+import {AboutService} from "../../../about/about.service";
 
 @Component({
   selector: "app-notification",
@@ -25,7 +26,8 @@ export class NotificationComponent implements OnInit, OnDestroy {
     private messageService: MessageService,
     private contactsSrvc: ContactsService,
     public dialogService: DialogService,
-    public propService: ProposalService
+    public propService: ProposalService,
+    public aboutSrvc: AboutService
   ) {}
 
   ngOnDestroy(): void {
@@ -33,7 +35,7 @@ export class NotificationComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-  
+    this.getContacts()
   }
 
   createNewContact() {
@@ -147,9 +149,8 @@ export class NotificationComponent implements OnInit, OnDestroy {
 
   getContacts() {
     this.contactsSrvc.get().subscribe((data: any) => {
-      this.allContacts = data.contact;
-      this.propService.propSolution.contacts =
-        this.allContacts.filter((val) => val.id! <= 4);
+      this.allContacts = data.contact
+      this.propService.propSolution.contacts = this.propService.ncProp.contacts
     });
   }
 }

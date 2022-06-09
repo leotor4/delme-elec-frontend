@@ -33,8 +33,8 @@ export class CreatePropComponent implements OnInit {
     this.ncService.getById(id).subscribe({
       next:(data:any) =>{
 
-        //this.propService.ncProp = data.nc[0]
-        
+        this.propService.ncProp = data.nc[0]
+        console.log(this.propService.ncProp)
       }
     })
 

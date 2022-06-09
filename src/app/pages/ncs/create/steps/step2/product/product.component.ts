@@ -35,11 +35,19 @@ export class ProductComponent implements OnInit {
     });
   }
   getFilteredList(event: any) {
-    let query = event.query;
-    const regex = new RegExp(`^${query}`, "i");
-    this.results = this.products.sort().filter((v) => regex.test(v.name));
-    this.results = this.results.concat(this.products.sort().filter((v) => regex.test(v.description)));
-    this.results = this.results.concat(this.products.sort().filter((v) => regex.test(v.code)));
+    var filtro = event.query;
+    this.results = [];
+
+    this.products.forEach((element) => {
+      if (this.verificarExistencia(element, filtro)) {
+        this.results.push(element);
+      }
+    });
+  }
+  verificarExistencia(element: Product, filtro: string): boolean {
+    return element.name?.toUpperCase().includes(filtro.toUpperCase()) ||
+        element.code?.toUpperCase().includes(filtro.toUpperCase()) ||
+        element.description.toUpperCase().includes(filtro.toUpperCase());
   }
 
   checkProduct(Product: Product) {

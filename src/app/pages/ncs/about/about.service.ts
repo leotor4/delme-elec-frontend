@@ -28,7 +28,7 @@ export class AboutService {
     getNC(id:number){
         this.ncsService.getById(id).subscribe((data: any) => {
             this.nc = data.nc[0]
-            console.log(this.nc.proposalSolution?.actionPlans)
+            console.log(this.nc)
         })
     }
 

@@ -6,6 +6,8 @@ import {ProposalService} from "../../proposal.service";
 import { User } from 'src/app/models/user.model';
 import { ActionPlan } from 'src/app/models/action-plan';
 import { ActionPlanService } from 'src/app/_services/action-plan.service';
+import {ContactsService} from "../../../create/steps/step3/contacts.service";
+import {Contact} from "../../../../../models/contact.model";
 
 
 @Component({
@@ -23,11 +25,19 @@ export class ActionPlanComponent implements OnInit {
   statuses: string[] = ["A Fazer", "Fazendo", "Concluido", "Cancelado", "Atrasado", "Postergado"];
   selectedStatus: string;
   name: string;
+  contacts: Contact[]
 
-  constructor(private actionService:ActionPlanService,private confirmationService: ConfirmationService, private messageService: MessageService, public dialogService: DialogService, public propService: ProposalService) { }
+  constructor(private actionService:ActionPlanService,private confirmationService: ConfirmationService, private messageService: MessageService, public dialogService: DialogService, public propService: ProposalService, private contactsSrvc: ContactsService) { }
 
   ngOnInit(): void {
-    
+    this.getAllContacts()
+
+  }
+
+  getAllContacts() {
+    this.contactsSrvc.get().subscribe((data: any) => {
+       this.contacts = data.contact
+    })
   }
 
   addAction() {
@@ -36,8 +46,20 @@ export class ActionPlanComponent implements OnInit {
     actionPlan.responsible = this.selectedResp
     actionPlan.status = this.selectedStatus
     actionPlan.term = this.date
-    this.propService.propSolution.actionPlans.push(actionPlan)
+    if(!this.contacts.some(e => e.email === this.selectedResp.email)){
+      let contact = new Contact()
+      contact.email = this.selectedResp.email
+      contact.name = this.selectedResp.username
+      contact.type = this.selectedResp.sector?.name
+      this.contactsSrvc.post(contact).subscribe(
+          (data) => {
+            this.contacts.push(data.contact)
+            this.propService.propSolution.contacts.push(data.contact)
 
+          }
+      )
+    }
+    this.propService.propSolution.actionPlans.push(actionPlan)
     this.name = ""
     this.selectedStatus = ""
     this.date = ""

@@ -138,15 +138,15 @@ export class ContactsComponent implements OnInit{
   }
 
   getContacts() {
-
+    let afectedsector = this.nonComplianceService.sectors.find(i => i.name === this.nonComplianceService.nc.tipos_local_item)
     this.contactsSrvc.get().subscribe((data: any) => {
       this.nonComplianceService.allContacts = data.contact;
       if(this.nonComplianceService.nc.contacts.length===0){
         let user = this.tokenServ.getUser()
         this.nonComplianceService.nc.contacts =
-            this.nonComplianceService.allContacts.filter((val) => val.email! === "cafareli@electrosonteleco.com.br"
+            this.nonComplianceService.allContacts.filter((val) => val.email! === "efrain@electrosonteleco.com.br"
+                || val.email! === afectedsector!.responsible_email
                 || val.email! === this.nonComplianceService.nc.emissor?.sector?.responsible_email
-                || val.email! === this.nonComplianceService.nc.sector?.responsible_email
                 || val.email! === "manuela.starowsta@electrosonteleco.com.br"|| val.email! === user.email);
 
         let userContact = this.nonComplianceService.allContacts.filter((val) => val.email === user.email);
@@ -154,7 +154,7 @@ export class ContactsComponent implements OnInit{
           let contact = new Contact()
           contact.email = user.email
           contact.name = user.username
-          contact.type = "Interno"
+          contact.type = this.nonComplianceService.nc.emissor?.sector?.name
           this.contactsSrvc.post(contact).subscribe(
               (data) => {
                 this.nonComplianceService.allContacts.push(data.contact)
@@ -163,12 +163,11 @@ export class ContactsComponent implements OnInit{
           )
 
         }
-        if (!this.nonComplianceService.allContacts.some(e => e.email === 'cafareli@electrosonteleco.com.br')) {
-          console.log("asdasdasdsa")
+        if (!this.nonComplianceService.allContacts.some(e => e.email === 'efrain@electrosonteleco.com.br')) {
           let contact = new Contact()
-          contact.email = 'cafareli@electrosonteleco.com.br'
-          contact.name = "Presidencia"
-          contact.type = "Interno"
+          contact.email = 'efrain@electrosonteleco.com.br'
+          contact.name = "Efrain"
+          contact.type = "Presidencia"
           this.contactsSrvc.post(contact).subscribe(
               (data) => {
                 this.nonComplianceService.allContacts.push(data.contact)
@@ -180,7 +179,7 @@ export class ContactsComponent implements OnInit{
           let contact = new Contact()
           contact.email = 'manuela.starowsta@electrosonteleco.com.br'
           contact.name = "Manuela Starowsta"
-          contact.type = "Interno"
+          contact.type = "SGQ"
           this.contactsSrvc.post(contact).subscribe(
               (data) => {
                 this.nonComplianceService.allContacts.push(data.contact)
@@ -192,7 +191,7 @@ export class ContactsComponent implements OnInit{
           let contact = new Contact()
           contact.email = this.nonComplianceService.nc.emissor.sector.responsible_email
           contact.name = this.nonComplianceService.nc.emissor.sector.responsible_name
-          contact.type = "Interno"
+          contact.type = this.nonComplianceService.nc.emissor?.sector?.name
           this.contactsSrvc.post(contact).subscribe(
               (data) => {
                 this.nonComplianceService.allContacts.push(data.contact)
@@ -200,11 +199,12 @@ export class ContactsComponent implements OnInit{
               }
           )
         }
-        if (!this.nonComplianceService.allContacts.some(e => e.email === this.nonComplianceService.nc.sector?.responsible_email) && this.nonComplianceService.nc.sector?.responsible_email) {
+        if (!this.nonComplianceService.allContacts.some(e => e.email === afectedsector!.responsible_email)) {
           let contact = new Contact()
-          contact.email = this.nonComplianceService.nc.sector?.responsible_email
-          contact.name = this.nonComplianceService.nc.sector?.responsible_name
-          contact.type = "Interno"
+          contact.email = afectedsector!.responsible_email
+          contact.name = afectedsector!.responsible_name
+          contact.type = afectedsector!.name
+
           this.contactsSrvc.post(contact).subscribe(
               (data) => {
                 this.nonComplianceService.allContacts.push(data.contact)
