@@ -68,29 +68,29 @@
                             <img src="../../../../../../assets/images/Espinha de Peixe.png" width="850" class="ml-5 mr-3">
                             <div class="d-flex">
                                 <div class="col">
-                                    <label>Mão de Obra</label>
+                                   
                                     <p-editor
                                         [ngModel]="'<p>'+this.aboutService.nc.proposalSolution.run_training + '</p>' + this.aboutService.nc.proposalSolution.man_power_description"
                                         [style]="editorStyle" [readonly]="true">
                                         <ng-template pTemplate="header">
                                         </ng-template>
-                                    </p-editor>
+                                    </p-editor><label class="mt-1">Mão de Obra</label>
                                 </div>
                                 <div class="col">
-                                    <label>Meio Ambiente</label>
+                                    
                                     <p-editor [ngModel]="this.aboutService.nc.proposalSolution.environment_description"
                                         [style]="editorStyle" [readonly]="true">
                                         <ng-template pTemplate="header">
                                         </ng-template>
-                                    </p-editor>
+                                    </p-editor><label class="mt-1">Meio Ambiente</label>
                                 </div>
                                 <div class="col">
-                                    <label>Máquina</label>
+                                    
                                     <p-editor [ngModel]="this.aboutService.nc.proposalSolution.machine_description"
                                         [style]="editorStyle" [readonly]="true">
                                         <ng-template pTemplate="header">
                                         </ng-template>
-                                    </p-editor>
+                                    </p-editor><label class="mt-1">Máquina</label>
         
                                 </div>
                             </div>
@@ -119,13 +119,14 @@
                 </ng-template>
                 <ng-template pTemplate="content">
                     <div class="caixa-cinza p-2">
-                        <div class="d-flex justify-content-evenly">
-                            <p-chip>1</p-chip>
-                            <div>
+                        <div class="d-flex justify-content-evenly flex-wrap">
+                            
+                            <div class="d-flex flex-column why-box">
+                                <label for="">{{aboutService.nc.proposalSolution.first_why_label}}</label>
                                 <textarea [(ngModel)]="aboutService.nc.proposalSolution.first_why" pInputTextarea cols="35"
                                     rows="5" class="textarea">
                                    </textarea>
-                                <div class="text-center form-check caixa-preta mx-3"
+                                <div class="text-center form-check caixa-preta"
                                     *ngIf="aboutService.nc.proposalSolution.root_cause=='cause1'">
                                     <input class="form-check-input" type="checkbox" value="" onclick="return false;" checked />
                                     <label class="form-check-label text-light">
@@ -133,12 +134,13 @@
                                     </label>
                                 </div>
                             </div>
-                            <p-chip>2</p-chip>
-                            <div>
+                          
+                            <div class="d-flex flex-column why-box">
+                                <label for="">{{aboutService.nc.proposalSolution.second_why}}</label>
                                 <textarea [(ngModel)]="aboutService.nc.proposalSolution.second_why" pInputTextarea cols="35"
                                     rows="5" class="textarea">
                                    </textarea>
-                                <div class="text-center form-check caixa-preta mx-3"
+                                <div class="text-center form-check caixa-preta"
                                     *ngIf="aboutService.nc.proposalSolution.root_cause=='cause2'">
                                     <input class="form-check-input" type="checkbox" value="" onclick="return false;" checked />
                                     <label class="form-check-label text-light">
@@ -146,12 +148,13 @@
                                     </label>
                                 </div>
                             </div>
-                            <p-chip>3</p-chip>
-                            <div>
+                         
+                            <div class="d-flex flex-column why-box">
+                                <label for="">{{aboutService.nc.proposalSolution.second_why}}</label>
                                 <textarea [(ngModel)]="aboutService.nc.proposalSolution.third_why" pInputTextarea cols="35"
                                     rows="5" class="textarea">
                                    </textarea>
-                                <div class="text-center form-check caixa-preta mx-3"
+                                <div class="text-center form-check caixa-preta"
                                     *ngIf="aboutService.nc.proposalSolution.root_cause=='cause3'">
                                     <input class="form-check-input" type="checkbox" value="" onclick="return false;" checked />
                                     <label class="form-check-label text-light">
@@ -160,13 +163,14 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="d-flex justify-content-evenly">
-                            <p-chip>4</p-chip>
-                            <div>
+                        <div class="d-flex justify-content-evenly flex-wrap">
+                            
+                            <div class="d-flex flex-column why-box">
+                                <label for="">{{aboutService.nc.proposalSolution.third_why}}</label>
                                 <textarea [(ngModel)]="aboutService.nc.proposalSolution.quarter_why" pInputTextarea cols="55"
                                     rows="5" class="textarea">
                                    </textarea>
-                                <div class="text-center form-check caixa-preta mx-3"
+                                <div class="text-center form-check caixa-preta"
                                     *ngIf="aboutService.nc.proposalSolution.root_cause=='cause4'">
                                     <input class="form-check-input" type="checkbox" value="" onclick="return false;" checked />
                                     <label class="form-check-label text-light">
@@ -174,12 +178,13 @@
                                     </label>
                                 </div>
                             </div>
-                            <p-chip>5</p-chip>
-                            <div>
+                           
+                            <div class="d-flex flex-column why-box">
+                                <label for="">{{aboutService.nc.proposalSolution.quarter_why}}</label>
                                 <textarea [(ngModel)]="aboutService.nc.proposalSolution.fifth_why" pInputTextarea cols="55"
                                     rows="5" class="textarea">
                                    </textarea>
-                                <div class="text-center form-check caixa-preta mx-3"
+                                <div class="text-center form-check caixa-preta"
                                     *ngIf="aboutService.nc.proposalSolution.root_cause=='cause5'">
                                     <input class="form-check-input" type="checkbox" value="" onclick="return false;" checked />
                                     <label class="form-check-label text-light">

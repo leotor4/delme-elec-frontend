@@ -28,3 +28,13 @@ h2 {
     font-size: 13px;
     font-weight: bold;
 }
+
+.why-input{
+    height: 26px;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    background-color: transparent;
+    outline: none;
+}
+

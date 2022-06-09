@@ -35,7 +35,7 @@ export class ProposalService {
   
  
   step2= {
-    textAreas:  ["", "", "", "", ""],
+    textAreas:  ["", "", "", "", "",""],
     selectedValue: ""
   }
 
@@ -45,6 +45,7 @@ export class ProposalService {
     this.propSolution.third_why = this.step2.textAreas[2]
     this.propSolution.quarter_why = this.step2.textAreas[3]
     this.propSolution.fifth_why = this.step2.textAreas[4]
+    this.propSolution.first_why_label = this.step2.textAreas[5]
     this.propSolution.root_cause = this.step2.selectedValue
 
     if(this.propSolution.machine)this.propSolution.machine_id = this.propSolution.machine.id

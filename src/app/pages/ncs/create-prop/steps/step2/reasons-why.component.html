@@ -16,7 +16,7 @@
         </button>
     </div>
 </div>
-<div *ngIf="!showAllTextAreas">
+<div *ngIf="false">
     <div class="d-flex justify-content-center">
         <div class="d-block">
             <div class="d-flex">
@@ -59,14 +59,18 @@
         </button>
     </div>
 </div>
-<div *ngIf="showAllTextAreas">
+<div *ngIf="true">
     <div class="d-flex justify-content-center">
         <div class="d-block p-2 caixa-cinza mb-3">
             <div class="d-flex">
                 <p-chip>
                     1
                 </p-chip>
-                <label class="ml-3">Porquê lorem ?</label>
+                <div class="d-flex align-items-center flex-row">
+                    <label class="">Porquê</label>
+                    <input class="ml-1 mr-1 why-input" type="text" [(ngModel)]="propService.step2.textAreas[5]">
+                    <label class="">?</label>
+                </div>
             </div>
             <textarea  [(ngModel)]="propService.step2.textAreas[0]" pInputTextarea cols="60" rows="5" class="textarea">
             </textarea>

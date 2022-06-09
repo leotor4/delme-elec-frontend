@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {MenuItem, MessageService} from "primeng/api";
 import {NonComplianceService} from "../../../../_services/non-compliance.service";
 import { ProposalService } from '../proposal.service';
@@ -16,7 +16,9 @@ export class CreatePropStepperComponent implements OnInit {
   constructor(private route: ActivatedRoute,
     private ncService:NonComplianceService,
     private messageService: MessageService,
+    private router:Router,
     public propService:ProposalService) {}
+  
 
   disableButton(): boolean {
     switch (this.stepPosition) {
@@ -57,7 +59,8 @@ export class CreatePropStepperComponent implements OnInit {
   }
 
   nextStep() {
-    if (this.stepPosition >= this.items.length - 1) return;
+    
+
      let id = parseInt(this.route.snapshot.paramMap.get('id')||"")
 
     
@@ -69,7 +72,10 @@ export class CreatePropStepperComponent implements OnInit {
           summary: "Passo " + this.stepPosition + " salvo com sucesso.",
           life: 3000,
         });
-        this.stepPosition++;
+        this.stepPosition >= this.items.length - 1?this.router.navigateByUrl('/ncs/about/' + id):this.stepPosition++
+        
+       
+
       },
       error:err =>{
         this.messageService.add({

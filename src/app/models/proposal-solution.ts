@@ -29,6 +29,7 @@ export class ProposalSolution {
     equipament_id:number;
     machine_id:number;
     effect_description:string= "";
+    first_why_label:string = "";
     first_why:string= "";
     second_why:string= "";
     third_why:string= "";

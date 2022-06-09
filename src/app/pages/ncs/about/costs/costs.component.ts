@@ -32,10 +32,11 @@ export class CostsComponent implements OnInit {
   ngOnInit(): void {}
 
   deleteAction(doc:any){
+    console.log(doc)
     this.confirmationService.confirm({
       message:
           "Você tem certeza que quer excluir o documento " +
-          doc.name+
+          doc.file_name+
           " da lista?",
       header: "Excluir Documento",
       icon: "pi pi-exclamation-triangle",
