@@ -67,8 +67,9 @@ export class IshikawaDialogComponent implements OnInit {
 
       case 'procedure':
       this.procedures = [];
+      console.log(this.propService.procedures)
          this.propService.procedures.forEach(element =>{
-      if(element.description.toLowerCase().includes(filtro.toLowerCase())){
+      if(element.description?.toLowerCase().includes(filtro.toLowerCase())||element.code?.toLowerCase().includes(filtro.toLowerCase())){
         this.procedures.push(element)
       }
     })

@@ -79,9 +79,9 @@ export class RejectionPointItemsComponent implements OnInit {
 
   returnOpScreen() {
     if (
-      this.nonComplianceService.nc.tipo_controle == "OP-PROD" ||
-      this.nonComplianceService.nc.tipo_controle == "OP-SA" ||
-      this.nonComplianceService.nc.tipo_controle == "OP-I"
+      this.nonComplianceService.nc.tipo_controle == "OP-PROD(ORDEM DE PRODUÇÃO PRODUTO ACABADO)" ||
+      this.nonComplianceService.nc.tipo_controle == "OP-SA(ORDEM DE PRODUÇÃO PRODUTO SEMIACABADO)" ||
+      this.nonComplianceService.nc.tipo_controle == "OP-I(ORDEM DE PRODUÇÃO CORTE)"
     ) {
       return true;
     } else {
@@ -90,7 +90,7 @@ export class RejectionPointItemsComponent implements OnInit {
   }
 
   returnNfScreen() {
-    if (this.nonComplianceService.nc.tipo_controle == "NF-e") {
+    if (this.nonComplianceService.nc.tipo_controle == "NF-e(NOTA FISCAL ELETRÔNICA)") {
       return true;
     } else {
       return false;
@@ -98,7 +98,7 @@ export class RejectionPointItemsComponent implements OnInit {
   }
 
   returnPrScreen() {
-    if (this.nonComplianceService.nc.tipo_controle == "PR") {
+    if (this.nonComplianceService.nc.tipo_controle == "PC(PEDIDO DE COMPRA)") {
       return true;
     } else {
       return false;

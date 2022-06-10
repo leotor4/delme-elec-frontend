@@ -1,5 +1,5 @@
 <div *ngIf="returnOpScreen()">
-  <label for="NumOp">Número da OP</label>
+  <label for="NumOp">Número da OP *</label>
   <input
     [(ngModel)]="nonComplicanceService.nc.num_op"
     name="NumOp"
@@ -11,7 +11,7 @@
 </div>
 
 <div *ngIf="returnNfScreen()">
-  <label for="NumOp">Número da Nota</label>
+  <label for="NumOp">Número da Nota *</label>
   <input
     [(ngModel)]="nonComplicanceService.nc.num_nota"
     name="NumOp"
@@ -25,7 +25,7 @@
 
 
 <div class="input-box mt-3" *ngIf="returnPrScreen() || returnNfScreen()">
-  <label class="mb-2 mt-3">Anexar Documentos</label>
+  <label class="mb-2 mt-3">Anexar Documentos *</label>
   <div class="div-attachment">
     <h1>Envie seus documentos</h1>
     <div

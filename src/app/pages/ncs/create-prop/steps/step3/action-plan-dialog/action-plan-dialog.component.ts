@@ -12,7 +12,7 @@ export class ActionPlanDialogComponent implements OnInit {
   date: string;
  
   selectedResp: string;
-  statuses: string[] = ["A Fazer", "Fazendo", "Concluido", "Cancelado", "Atrasado", "Postergado"];
+  statuses: string[] = ["Pendente", "Atrasada", "Cancelado", "Concluido"];
   selectedStatus: string;
   name: string;
   constructor(public ref: DynamicDialogRef, public config: DynamicDialogConfig,public propService:ProposalService) {

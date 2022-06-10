@@ -22,7 +22,7 @@ export class ActionPlanComponent implements OnInit {
   
   date: string;
   selectedResp: User;
-  statuses: string[] = ["A Fazer", "Fazendo", "Concluido", "Cancelado", "Atrasado", "Postergado"];
+  statuses: string[] = ["Pendente", "Atrasada", "Cancelado", "Concluido"];
   selectedStatus: string;
   name: string;
   contacts: Contact[]

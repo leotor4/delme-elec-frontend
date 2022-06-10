@@ -118,16 +118,29 @@ export class ImportJsonComponent implements OnInit {
         );
         break;
       case "produtos":
-        fs.saveAs("./assets/files/exemplo_produto.xls", "exemplo_produto.xlsx");
+        fs.saveAs("./assets/files/exemplo_produto.xlsx", "exemplo_produto.xlsx");
         break;
 
       case "instrucao":
-        fs.saveAs("./assets/files/exemplo_produto.xls", "exemplo_instrução.xlsx");
+        fs.saveAs("./assets/files/exemplo_produto.xlsx", "exemplo_instrução.xlsx");
         break;
 
         case "procedure":
-        fs.saveAs("./assets/files/exemplo_produto.xls", "exemplo_procedimento.xlsx");
+        fs.saveAs("./assets/files/exemplo_produto.xlsx", "exemplo_procedimento.xlsx");
         break;
+        case "machine":
+        fs.saveAs("./assets/files/maquinas_exemplo.xlsx", "maquinas_exemplo.xlsx");
+        break;
+        case "equipament":
+        fs.saveAs("./assets/files/equipamentos_exemplo.xlsx", "equipamentos_exemplo.xlsx");
+        break;
+      case "regulatory":
+        fs.saveAs("./assets/files/nbr_exemplo.xlsx", "nbr_exemplo.xlsx");
+        break;
+      case "nbr":
+        fs.saveAs("./assets/files/nr_exemplo.xlsx", "nr_exemplo.xlsx");
+        break;
+
     }
   }
 }

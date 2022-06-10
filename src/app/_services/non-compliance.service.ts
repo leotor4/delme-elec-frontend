@@ -148,7 +148,6 @@ export class NonComplianceService {
       !!this.nc.radio_value 
       && !!this.nc.text_area_nc
       && !!this.nc.text_area_acoes
-      && this.returnfiles("evidenciasAcoes").length>0
       && this.returnfiles("evidenciasNc").length>0
     );
   }

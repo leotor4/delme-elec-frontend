@@ -9,22 +9,19 @@ import { NonComplianceService } from "src/app/_services/non-compliance.service";
 export class CheckpointComponent implements OnInit {
   selectedCity: any;
   fileName: string[] = [];
-  fileNameAcoes: ["marcelo"];
-
-  tipoControle = "";
 
   @Input("hasProduct") test: boolean;
   constructor(public nonComplicanceService: NonComplianceService) {}
 
   controleOptions = [
-    "OP-PROD",
-    "OP-SA",
-    "OP-I",
-    "NF-e",
-    "PC",
-    "PV",
-    "CC",
-    "PR",
+    "OP-PROD(ORDEM DE PRODUÇÃO PRODUTO ACABADO)",
+    "OP-SA(ORDEM DE PRODUÇÃO PRODUTO SEMIACABADO)",
+    "OP-I(ORDEM DE PRODUÇÃO CORTE)",
+    "NF-e(NOTA FISCAL ELETRÔNICA)",
+    "PC(PEDIDO DE COMPRA)",
+    "PV(PEDIDO DE VENDA)",
+    "CC(COTAÇÃO COMERCIAL)",
+    "PR(PROCEDIMENTO)",
   ];
 
   limparCampos(){

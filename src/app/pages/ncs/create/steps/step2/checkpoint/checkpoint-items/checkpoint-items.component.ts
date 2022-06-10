@@ -46,9 +46,9 @@ export class CheckpointItemsComponent implements OnInit {
 
   returnOpScreen() {
     if (
-      this.nonComplicanceService.nc.tipo_controle == "OP-PROD" ||
-      this.nonComplicanceService.nc.tipo_controle == "OP-SA" ||
-      this.nonComplicanceService.nc.tipo_controle == "OP-I"
+      this.nonComplicanceService.nc.tipo_controle == "OP-PROD(ORDEM DE PRODUÇÃO PRODUTO ACABADO)" ||
+      this.nonComplicanceService.nc.tipo_controle == "OP-SA(ORDEM DE PRODUÇÃO PRODUTO SEMIACABADO)" ||
+      this.nonComplicanceService.nc.tipo_controle == "OP-I(ORDEM DE PRODUÇÃO CORTE)"
     ) {
       return true;
     } else {
@@ -58,10 +58,10 @@ export class CheckpointItemsComponent implements OnInit {
 
   returnNfScreen() {
     if (
-      this.nonComplicanceService.nc.tipo_controle == "NF-e" ||
-      this.nonComplicanceService.nc.tipo_controle == "PC" ||
-      this.nonComplicanceService.nc.tipo_controle == "PV" ||
-      this.nonComplicanceService.nc.tipo_controle == "CC"
+      this.nonComplicanceService.nc.tipo_controle == "NF-e(NOTA FISCAL ELETRÔNICA)" ||
+      this.nonComplicanceService.nc.tipo_controle == "PC(PEDIDO DE COMPRA)" ||
+      this.nonComplicanceService.nc.tipo_controle == "PV(PEDIDO DE VENDA)" ||
+      this.nonComplicanceService.nc.tipo_controle == "CC(COTAÇÃO COMERCIAL)"
     ) {
       return true;
     } else {
@@ -70,7 +70,7 @@ export class CheckpointItemsComponent implements OnInit {
   }
 
   returnPrScreen() {
-    if (this.nonComplicanceService.nc.tipo_controle == "PR") {
+    if (this.nonComplicanceService.nc.tipo_controle == "PR(PROCEDIMENTO)") {
       return true;
     } else {
       return false;

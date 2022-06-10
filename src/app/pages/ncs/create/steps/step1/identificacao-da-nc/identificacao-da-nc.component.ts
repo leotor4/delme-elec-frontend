@@ -20,7 +20,7 @@ export class IdentificacaoDaNcComponent implements OnInit {
   public tiposNc: Array<String> = [
     "Auditoria Interna",
     "Auditoria Externa",
-    "Fornecedor",
+    "NC de Fornecedor",
     "NC de Processo",
     "NC de Cliente",
     "NC de Produto",
