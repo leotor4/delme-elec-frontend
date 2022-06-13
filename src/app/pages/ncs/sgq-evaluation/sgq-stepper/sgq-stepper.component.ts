@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {MenuItem} from "primeng/api";
+import {MenuItem, MessageService} from "primeng/api";
 import {NonComplianceService} from "../../../../_services/non-compliance.service";
+import {SgqService} from "../sgq.service";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-sgq-stepper',
@@ -12,20 +14,14 @@ export class SgqStepperComponent implements OnInit {
   items: MenuItem[];
   stepPosition: number = 0;
   lastStepLabel = "Avançar";
-  constructor(public nonComplianceService: NonComplianceService) {}
+  constructor(public sgqSrv: SgqService, private messageService: MessageService, private route: ActivatedRoute,  private router:Router) {}
 
   disableButton(): boolean {
     switch (this.stepPosition) {
       case 0:
-        return false;
-        // return this.nonComplianceService.avancarPasso1();
+        return this.sgqSrv.avancarPasso1();
       case 1:
-        //return this.nonComplianceService.avancarPasso2();
-        return false;
-      case 2:
-        return false;
-      case 3:
-        return false;
+        return this.sgqSrv.avancarPasso2();
       default:
         return false;
     }
@@ -33,11 +29,8 @@ export class SgqStepperComponent implements OnInit {
 
   ngOnInit() {
     this.items = [
-      { label: "Reincidência" },
-      { label: "Evidências" },
-      { label: "Riscos e Oportunidades" },
-      { label: "Mudanças" },
-      { label: "Emitir Notificações" },
+      { label: "Reincidências e evidências da NC" },
+      { label: "Análises e notificações" },
       { label: "Revisar Informações" }
     ];
   }
@@ -55,8 +48,29 @@ export class SgqStepperComponent implements OnInit {
     return this.stepPosition === 0 ? true : false;
   }
   nextStep() {
-    if (this.stepPosition >= this.items.length - 1) return;
-    this.stepPosition++;
+    let id = parseInt(this.route.snapshot.paramMap.get('id')||"")
+
+
+    this.sgqSrv.put().subscribe({
+      next:(data:any )=> {
+        this.messageService.add({
+          severity: "success",
+          summary: "Passo " + this.stepPosition + " salvo com sucesso.",
+          life: 3000,
+        });
+        this.stepPosition >= this.items.length - 1?this.router.navigateByUrl('/ncs/about/' + id):this.stepPosition++
+
+
+
+      },
+      error:err =>{
+        this.messageService.add({
+          severity: "error",
+          summary: "Houve um erro ao salvar passo " + this.stepPosition + "." ,
+          life: 3000,
+        });
+      }
+    })
   }
   backStep() {
     if (this.stepPosition <= 0) return;

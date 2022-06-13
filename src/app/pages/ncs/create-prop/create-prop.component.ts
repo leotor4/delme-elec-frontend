@@ -41,6 +41,7 @@ export class CreatePropComponent implements OnInit {
     this.propService.post().subscribe({
       next:(data:any )=> {
         this.propService.propSolution.id = data['proposta']['id']
+        console.log(data)
         this.messageService.add({
           severity: "success",
           summary: "Proposta de solução criada com sucesso.",

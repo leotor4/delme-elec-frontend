@@ -15,11 +15,15 @@ export class SgqService {
   sgq = new SgqEval();
   step2File: any = [];
   step5Contacts:any[] = []
+  nc: NonCompliance;
   constructor(private ncsService : NonComplianceService, private http: HttpClient) { }
 
   getAllNC(){
     this.ncsService.get().subscribe((data: any) => {
       this.allNCs = data.noncompliances
+      this.allNCs = this.allNCs.filter(element=>{
+        return element.id!=this.nc.id
+      })
     })
 
   }
@@ -31,7 +35,6 @@ export class SgqService {
   }
 
   post() {
-    this.sgq.nonCompliance_id = 2
     let formData = new FormData();
     this.uploadFiles(formData);
     console.log(this.sgq.recurrence)
@@ -41,7 +44,6 @@ export class SgqService {
   }
 
   put() {
-    this.sgq.nonCompliance_id = 1
     let formData = new FormData();
     this.uploadFiles(formData);
     console.log("ID:" + this.sgq.id)
@@ -51,9 +53,23 @@ export class SgqService {
   }
 
 
-  abrirSGQ(){
+  abrirSGQ(id: number){
     let formData = new FormData();
-    formData.append('data',"{}")
+    // @ts-ignore
+    formData.append('Ncid',id)
     return this.http.post(this.apiUrl, formData)
+  }
+
+  avancarPasso1(): boolean {
+    return !(this.sgq.textArea1
+        && this.step2File.length>0
+    )
+  }
+
+  avancarPasso2(): boolean {
+    return !(
+        this.sgq.textArea2
+        && this.sgq.textArea3
+    );
   }
 }

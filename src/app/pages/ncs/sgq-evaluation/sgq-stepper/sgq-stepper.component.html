@@ -35,20 +35,24 @@
     <div class="content-create-nc">
         <div *ngIf="stepPosition === 0">
             <app-reoccurrence></app-reoccurrence>
+            <div class="mt-5">
+                <app-evidence ></app-evidence>
+            </div>
         </div>
         <div *ngIf="stepPosition === 1">
-            <app-evidence></app-evidence>
-        </div>
-        <div *ngIf="stepPosition === 2">
-            <app-risks></app-risks>
-        </div>
-        <div *ngIf="stepPosition === 3">
-            <app-changes></app-changes>
-        </div>
-        <div *ngIf="stepPosition === 4">
+            <div class="d-flex">
+                <div class="mr-3">
+                <app-risks></app-risks>
+                </div>
+                <div class="ml-3">
+                <app-changes></app-changes>
+
+                </div>
+            </div>
+
             <app-notifications></app-notifications>
         </div>
-        <div *ngIf="stepPosition === 5">
+        <div *ngIf="stepPosition === 2">
             <app-review-info-sgq (changeStepPosition)="changeStepByPosition($event)"></app-review-info-sgq>
         </div>
     </div>

@@ -7,7 +7,7 @@
     </div>
     <div class="d-flex justify-content-end align-items-center mb-3">
         <button class="btn btn-dark ml-3" (click)="openDialog()">
-            Adicionar NC Reincidente
+            Selecionar NC Reincidente
             <i class="bi bi-file-earmark-medical"></i>
         </button>
     </div>
@@ -18,9 +18,11 @@
         <ng-template pTemplate="header">
             <tr>
                 <th>Número</th>
-                <th>Parceiro</th>
+                <th>Produto</th>
                 <th>Emissor</th>
-                <th>Estado</th>
+                <th>Tipo de NC</th>
+                <th>Setor Afetado</th>
+                <th>Status</th>
                 <th>Data de Fechamento</th>
                 <th></th>
             </tr>
@@ -28,10 +30,22 @@
         <ng-template pTemplate="body" let-nc let-i="rowIndex">
             <tr>
                 <td>{{ nc.code }}</td>
-                <td>{{ (nc.customer?.corporate_name||nc.provider?.corporate_name||nc.sector?.name)
-                ||"Dado não preenchido" }}</td>
+                <td>{{ nc.product?.name }}</td>
                 <td>{{ nc.emissor.username }}</td>
-                <td>{{ nc.status }}</td>
+                <td>{{ nc.tipos_nc_item }}</td>
+                <td>{{ nc.tipos_local_item }}</td>
+
+                <td>
+                    <span [ngSwitch]="nc.status" >
+                        <span *ngSwitchCase="'open'"> Aberta</span>
+                        <span *ngSwitchCase="'running'"> Em execução</span>
+                        <span *ngSwitchCase="'late'"> Atrasada</span>
+                        <span *ngSwitchCase="'deleted'"> Deletada</span>
+                        <span *ngSwitchCase="'archived'"> Arquivada</span>
+                        <span *ngSwitchCase="'canceled'"> Cancelada</span>
+                    </span>
+                </td>
+
                 <td>{{ parseDate(nc.data_fechamento||"")||"00/00/0000" }}</td>
                 <td>
                     <button

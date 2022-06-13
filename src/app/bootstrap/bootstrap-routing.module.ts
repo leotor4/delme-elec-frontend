@@ -55,7 +55,7 @@ const routes: Routes = [
                 (m) => m.CreatePropModule
             ),
       },{
-        path: "sgq",
+        path: "sgq/:id",
         loadChildren: () =>
             import("../pages/ncs/sgq-evaluation/sgq.module").then(
                 (m) => m.SgqModule

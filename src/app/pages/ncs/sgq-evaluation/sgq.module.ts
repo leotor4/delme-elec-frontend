@@ -35,6 +35,7 @@ import { NcInfoClosingComponent } from './steps/reoccurrence/nc-info/nc-info-clo
 import { NcInfoActionPlanComponent } from './steps/reoccurrence/nc-info/nc-info-action-plan/nc-info-action-plan.component';
 import {InputTextareaModule} from "primeng/inputtextarea";
 
+
 @NgModule({
   declarations: [
       SgqComponent,
