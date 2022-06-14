@@ -34,14 +34,14 @@ export class SgqComponent implements OnInit {
 
         this.messageService.add({
           severity: "success",
-          summary: "Proposta de solução criada com sucesso.",
+          summary: "Avaliação SGQ criada com sucesso.",
           life: 3000,
         });
       },
       error:err =>{
         this.messageService.add({
           severity: "error",
-          summary: "Houve um erro ao criar proposta de solução.",
+          summary: "Houve um erro ao criar Avaliação SGQ.",
           life: 3000,
         });
       }
