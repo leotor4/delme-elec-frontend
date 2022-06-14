@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { DialogService } from 'primeng/dynamicdialog';
 import { FechamentoDialogComponent } from 'src/app/pages/dialogs/fechamento-dialog/fechamento-dialog.component';
+import {AboutService} from "../about.service";
+import {Contact} from "../../../../models/contact.model";
+import {Closing} from "../../../../models/closing";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-closing',
@@ -8,17 +12,30 @@ import { FechamentoDialogComponent } from 'src/app/pages/dialogs/fechamento-dial
   styleUrls: ['./closing.component.css'],providers: [DialogService]
 })
 export class ClosingComponent implements OnInit {
-
-  constructor(private dialogService:DialogService) { }
+  isAllOpen = true;
+  unselectedClass = "btn btn-outline-dark";
+  selectedClass = "btn btn-dark";
+  constructor(private dialogService:DialogService,
+              public aboutSrv: AboutService,
+              private route: ActivatedRoute) { }
 
   ngOnInit(): void {
   }
 
   openDialog(){
-    this.dialogService.open(FechamentoDialogComponent,{
+    const ref = this.dialogService.open(FechamentoDialogComponent,{
+      data: {
+        id: this.aboutSrv.nc.id
+      },
       'header':"Verificação de Eficácia.",
       'width':'700px',
   })
+
+    ref.onClose.subscribe((data: Closing) => {
+      if (data) {
+        this.aboutSrv.getNC(parseInt(this.route.snapshot.paramMap.get('id')||""))
+      }
+    });
   }
 
 }

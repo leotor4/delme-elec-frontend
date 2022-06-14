@@ -14,3 +14,31 @@ h2 {
     font-size: 15px;
     color: gray;
 }
+
+.confirm{
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.question{
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.question-information {
+    color: gray;
+    font-size: 12px;
+}
+
+.button-bar button{
+    width: 130px;
+}
+
+.information{
+    font-size: 13px;
+}
+
+.radio-div{
+    display: flex;
+    align-items: center;
+}

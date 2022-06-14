@@ -48,7 +48,7 @@ export class NotificationsComponent implements OnInit {
     });
     ref.onClose.subscribe((contact: Contact) => {
       if (contact) {
-        this.sgqServ.step5Contacts.push(contact);
+        this.sgqServ.nc.contacts.push(contact);
         this.allContacts.push(contact);
       }
     });
@@ -65,10 +65,10 @@ export class NotificationsComponent implements OnInit {
     });
     ref.onClose.subscribe((contact: Contact) => {
       if (contact) {
-        let index = this.sgqServ.step5Contacts.findIndex((item) => {
+        let index = this.sgqServ.nc.contacts.findIndex((item) => {
           return item.id == contact.id;
         });
-        this.sgqServ.step5Contacts[index] = contact;
+        this.sgqServ.nc.contacts[index] = contact;
         index = this.allContacts.findIndex((item) => {
           return item.id == contact.id;
         });
@@ -86,8 +86,8 @@ export class NotificationsComponent implements OnInit {
       header: "Excluir Contato",
       icon: "pi pi-exclamation-triangle",
       accept: () => {
-        this.sgqServ.step5Contacts=
-            this.sgqServ.step5Contacts.filter(
+        this.sgqServ.nc.contacts=
+            this.sgqServ.nc.contacts.filter(
                 (val) => val.id !== contact.id
             );
         this.messageService.add({
@@ -113,7 +113,7 @@ export class NotificationsComponent implements OnInit {
     let query = event.query;
     let contacts = this.allContacts.filter(
         (val) =>
-            this.sgqServ.step5Contacts.indexOf(val) < 0 &&
+            this.sgqServ.nc.contacts.indexOf(val) < 0 &&
             this.selectedContacts.indexOf(val) < 0
     );
     contacts.forEach((contact) => {
@@ -140,16 +140,14 @@ export class NotificationsComponent implements OnInit {
 
   saveSelection() {
     this.addContactsDialog = false;
-    this.sgqServ.step5Contacts =
-        this.sgqServ.step5Contacts.concat(this.selectedContacts);
+    this.sgqServ.nc.contacts =
+        this.sgqServ.nc.contacts.concat(this.selectedContacts);
     this.selectedContacts = [];
   }
 
   getContacts() {
     this.contactsSrvc.get().subscribe((data: any) => {
       this.allContacts = data.contact;
-      this.sgqServ.step5Contacts =
-          this.allContacts.filter((val) => val.id! <= 4);
     });
   }
 }

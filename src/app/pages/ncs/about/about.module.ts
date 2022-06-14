@@ -26,6 +26,7 @@ import {DialogModule} from "primeng/dialog";
 import {FormsModule} from "@angular/forms";
 import {InputTextModule} from "primeng/inputtext";
 import { CurrencyMaskModule } from "ng2-currency-mask";
+import {RadioButtonModule} from "primeng/radiobutton";
 
 
 
@@ -60,7 +61,8 @@ import { CurrencyMaskModule } from "ng2-currency-mask";
         DialogModule,
         FormsModule,
         InputTextModule,
-        CurrencyMaskModule
+        CurrencyMaskModule,
+        RadioButtonModule
 
 
     ],

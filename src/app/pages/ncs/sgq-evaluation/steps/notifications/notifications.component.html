@@ -16,12 +16,12 @@
 </div>
 
 <div class="card">
-    <p-table [value]="this.sgqServ.step5Contacts">
+    <p-table [value]="this.sgqServ.nc.contacts">
         <ng-template pTemplate="header">
             <tr>
                 <th>Nome</th>
                 <th>E-mail</th>
-                <th>Tipo de Contato</th>
+                <th>Parceiro</th>
                 <th></th>
             </tr>
         </ng-template>
@@ -84,8 +84,8 @@
                                     <span class="auto-complete-item">{{ contact.email }}</span>
                                 </div>
                                 <div class="px-5">
-                                    <span class="auto-complete-label">TIPO DE CONTATO</span><br />
-                                    <span class="auto-complete-item">{{ contact.ctype }}</span>
+                                    <span class="auto-complete-label">PARCEIRO</span><br />
+                                    <span class="auto-complete-item">{{ contact.type }}</span>
                                 </div>
                             </div>
                         </div>
@@ -110,7 +110,7 @@
                     <tr>
                         <th>Nome</th>
                         <th>E-mail</th>
-                        <th>Tipo de Contato</th>
+                        <th>Parceiro</th>
                         <th></th>
                     </tr>
                 </ng-template>
@@ -118,7 +118,7 @@
                     <tr>
                         <td>{{ contact.name }}</td>
                         <td>{{ contact.email }}</td>
-                        <td>{{ contact.cType }}</td>
+                        <td>{{ contact.type }}</td>
                         <td>
                             <button
                                     pButton

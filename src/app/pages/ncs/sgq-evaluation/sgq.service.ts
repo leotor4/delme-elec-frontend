@@ -14,7 +14,6 @@ export class SgqService {
   allNCs: any[] = []
   sgq = new SgqEval();
   step2File: any = [];
-  step5Contacts:any[] = []
   nc: NonCompliance;
   constructor(private ncsService : NonComplianceService, private http: HttpClient) { }
 

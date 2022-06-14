@@ -12,6 +12,8 @@ import { User } from "./user.model";
 import {Cost} from "./Cost";
 import momentImported from 'moment'; 
 import { ProposalSolution } from './proposal-solution';
+import {SgqEval} from "./SgqEval";
+import {Closing} from "./closing";
 const moment = momentImported;
 
 export class NonCompliance {
@@ -25,6 +27,8 @@ export class NonCompliance {
   costs: Cost[] = [];
   contacts: Contact[] = [];
   product: Product;
+  sgqEvaluation: SgqEval;
+  closing: Closing;
   partner: any;
   tipos_nc_item?: string = "";
   tipos_auditoria_item?: string = "";
