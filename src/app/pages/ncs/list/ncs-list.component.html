@@ -13,7 +13,7 @@
 
 <div style="margin-top: 10px;">
 <p-table  responsiveLayout="scroll" #dt 
-[globalFilterFields]="['numero','emissor', 'status', 'tipos_nc_item', 'prazo','tipos_local_item', 'data_abertura']" 
+[globalFilterFields]="['numero','emissor', 'status', 'tipos_nc_item', 'prazo','tipos_local_item', 'data_abertura', 'dsc_produto']" 
 [value]="listNcs" [columns]="cols" [paginator]="true" [rows]="rows" [(first)]="first" [totalRecords]="totalRecords" 
 [showCurrentPageReport]="true" responsiveLayout="scroll" 
 currentPageReportTemplate="Exibindo de {first} a {last} de {totalRecords} registros" [rowsPerPageOptions]="[5,10,25,50]" [filterDelay]="0">
@@ -50,6 +50,14 @@ currentPageReportTemplate="Exibindo de {first} a {last} de {totalRecords} regist
             Setor Afetado
             <p-sortIcon field="tipos_local_item"></p-sortIcon>
             <p-columnFilter type="text" field="tipos_local_item" display="menu" class="ml-auto"></p-columnFilter>
+        </div>
+      </th>
+
+      <th pSortableColumn="dsc_produto">
+        <div class="flex justify-content-between align-items-center">
+            Produto
+            <p-sortIcon field="dsc_produto"></p-sortIcon>
+            <p-columnFilter type="text" field="dsc_produto" display="menu" class="ml-auto"></p-columnFilter>
         </div>
       </th>
 
@@ -110,6 +118,11 @@ currentPageReportTemplate="Exibindo de {first} a {last} de {totalRecords} regist
           <span class="p-column-title">Setor Afetado</span>
           {{ncListDTO.tipos_local_item}}
       </td>
+
+      <td>
+        <span class="p-column-title">Produto</span>
+        {{ncListDTO.dsc_produto}}
+    </td>
 
       <td>
         <span class="p-column-title">Status</span>

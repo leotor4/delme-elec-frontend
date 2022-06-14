@@ -72,7 +72,10 @@ export class NcsCreateStepperComponent implements OnInit {
             life: 3000,
           });
 
-          if(this.isLastStep()) this.nonComplianceService.nc= new NonCompliance()
+          if(this.isLastStep()) {
+            this.nonComplianceService.nc= new NonCompliance()
+            this.route.navigate(["/ncs/"]);
+          } 
           if (!this.isLastStep()) this.stepPosition++
         },
         error: err => {

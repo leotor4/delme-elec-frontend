@@ -152,6 +152,9 @@ export class NonComplianceService {
     );
   }
 
+
+
+
   uploadFiles(formData: any) {
     for (var i = 0; i < this.fileNc.length; i++) {
       formData.append("fileNc[]", this.fileNc[i], this.fileNc[i].name);

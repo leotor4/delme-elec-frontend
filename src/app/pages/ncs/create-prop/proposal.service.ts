@@ -70,5 +70,71 @@ export class ProposalService {
 
   
   
+  avancarPasso1Ishkawa(): boolean {
 
+    
+    return !(
+      this.propSolution.effect_description
+      && this.checkOneBoxIshikawa()
+      && this.checkWhies()
+      // && this.propSolution.second_why
+      // && this.propSolution.third_why
+      // && this.propSolution.root_cause
+      
+    )
+  }
+
+  checkWhies():boolean {
+    if (
+      this.step2.textAreas[0]
+      && this.step2.textAreas[1]
+      && this.step2.textAreas[2]
+      && this.step2.textAreas[5]
+      && this.step2.selectedValue
+    ) return true
+    else return false
+    
+  }
+
+  checkOneBoxIshikawa(): boolean {
+    var return_box_1: boolean = this.propSolution.low_quality_materials != ''
+      || this.propSolution.excess_materials != ''
+      || this.propSolution.lack_materials != ''
+      || (
+        this.propSolution.material_description != ''
+        && this.propSolution.material_description != null
+      )
+
+      var return_box_2: boolean = this.propSolution.non_achievement_goals != ''
+      || this.propSolution.excess_parameters != ''
+      || this.propSolution.lack_parameters != ''
+      || (
+        this.propSolution.measurement_description != ''
+        && this.propSolution.measurement_description != null
+      )
+
+
+      var return_box_3: boolean = this.propSolution.method_description != ''
+        && this.propSolution.method_description != null
+      
+
+      var return_box_4: boolean = this.propSolution.run_training != ''
+      || (
+        this.propSolution.man_power_description != ''
+        && this.propSolution.man_power_description != null
+      )
+
+      var return_box_5: boolean = this.propSolution.environment_description != ''
+      && this.propSolution.environment_description != null
+
+      var return_box_6: boolean = this.propSolution.machine_description != ''
+      && this.propSolution.machine_description != null
+
+      var umaBoxPreenchida = return_box_1 || return_box_2 || return_box_3 || return_box_4 || return_box_5 || return_box_6
+      return umaBoxPreenchida
+     
+     
+  }
 }
+
+

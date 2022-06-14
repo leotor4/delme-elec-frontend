@@ -181,10 +181,25 @@
         </div>
     </div>
     <div *ngIf="stepPosition==7">
+
+        <div>
+            <h2 class="mr-2">
+              <i class="bi bi-file-earmark-text"></i>
+              Descrição da Não Conformidade
+            </h2>
+            <p-editor [style]="{'height':'144px', border: '1px solid #dddddd' }" [readonly]="true" [ngModel]="propService.ncProp.text_area_nc">
+                <ng-template pTemplate="header">
+                </ng-template>
+            </p-editor>
+        </div>
+        <p-divider layout="vertical"></p-divider>
+
+
         <h1 class="mb-3">
             Efeito
         </h1>
         <p class="mb-3">Quando há ausência, obsolescência, má regulagem, quebra ou outros problemas com os equipamentos, inclusive de informática. Se aplica também nas falhas de manuntenção corretiva ou preventiva destes equipamentos.</p>
+        
         <p-editor [style]="{'height':'210px'}" [(ngModel)]="this.propService.propSolution.effect_description" [modules]="{counter: {container: '#counter7',unit: 'character'}}">
         </p-editor>
         <div id="counter7" class="text-end">0</div>

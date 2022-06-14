@@ -1,13 +1,13 @@
 <div class="content">
   <div *ngIf="!nonComplicanceService.hasProduct()">
-    <h3>Ponto de Controle</h3>
+    <h3>Ponto de Controle *</h3>
     <app-waiting-product titleFigure="Aguardando dados do ponto de controle"></app-waiting-product>
   </div>
   <div *ngIf="nonComplicanceService.hasProduct()">
     <div class="content">
       <div class="text-box">
         <div class="cabecalho">
-          <h1>Ponto de Controle</h1>
+          <h1>Ponto de Controle*</h1>
           <p>
             Selecione a opção desejada e o número referente. Visualize a
             documentação se necessário.

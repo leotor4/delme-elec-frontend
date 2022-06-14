@@ -23,7 +23,7 @@ export class CreatePropStepperComponent implements OnInit {
   disableButton(): boolean {
     switch (this.stepPosition) {
       case 0:
-        return false;
+        return this.propService.avancarPasso1Ishkawa();
       case 1:
         return false;
       case 2:

@@ -14,6 +14,7 @@ export class NcsListDTO {
   data_abertura:Date;
   data_fechamento:Date;
   tipos_local_item:string;
+  dsc_produto: string;
   prazo:number;
 
   nc: NonCompliance = new NonCompliance() ;
@@ -30,7 +31,7 @@ export class NcsListDTO {
         this.tipos_nc_item = ObjectUtils.buscarValor(init, 'tipos_nc_item', '')
         this.tipos_auditoria_item = ObjectUtils.buscarValor(init, 'tipos_auditoria_item', '')
         this.tipos_local_item = ObjectUtils.buscarValor(init, 'tipos_local_item', '')
-        
+        this.dsc_produto = ObjectUtils.buscarValor(init, 'product.description', '')
 
 
         if (init.data_abertura && init.data_fechamento) {

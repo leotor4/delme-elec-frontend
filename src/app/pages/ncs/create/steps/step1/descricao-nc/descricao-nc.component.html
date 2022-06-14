@@ -1,5 +1,7 @@
 <div class="cabecalho">
-  <h1>Não Conformidade</h1>
+  <p>Os campos marcados com asterisco (*) são de preenchimento
+    obrigatório</p>
+  <h1>Não Conformidade *</h1>
   <p>
     Informe abaixo os detalhes da não conformidade
   </p>
@@ -23,7 +25,7 @@
 
 <div class="d-flex row">
   <div class="col col-editor">
-    <label>Descreva a não conformidade</label>
+    <label>Descreva a não conformidade *</label>
     <p-editor
       [style]="{ height: '210px' }"
       [(ngModel)]="this.nonComplicanceService.nc.text_area_nc"
@@ -35,7 +37,7 @@
 
   
   <div class="col-3 col-attachment">
-    <label>Anexe evidências objetivas ou fotográficas</label>
+    <label>Anexe evidências objetivas ou fotográficas *</label>
     <div class="div-attachment">
       <h1>Envie seus documentos</h1>
       <div
@@ -85,7 +87,7 @@
 
 <div class="d-flex row">
   <div class="col col-editor">
-    <label for="desc-area">Descreve as ações imediatas</label>
+    <label for="desc-area">Descreve as ações imediatas *</label>
     <p-editor
       [style]="{ height: '210px' }"
       [(ngModel)]="this.nonComplicanceService.nc.text_area_acoes"
