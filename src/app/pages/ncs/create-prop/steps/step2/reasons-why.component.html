@@ -86,7 +86,7 @@
                     <label class="ml-3">Porquê {{propService.step2.textAreas[0]}} ?</label>
                 </div>
                 <div class="form-check">
-                    <p-radioButton name="cause" value="cause2" [(ngModel)]="propService.step2.selectedValue"></p-radioButton>
+                    <p-radioButton *ngIf="propService.step2.textAreas[1] else [disabled]" name="cause" value="cause2" [(ngModel)]="propService.step2.selectedValue"></p-radioButton>
                     <label class="form-check-label radio-label ml-1">Esta é a Causa Raiz</label>
                 </div>
             </div>
@@ -103,7 +103,7 @@
                     <label class="ml-3">Porquê {{propService.step2.textAreas[1]}} ?</label>
                 </div>
                 <div class="form-check">
-                    <p-radioButton name="cause" value="cause3" [(ngModel)]="propService.step2.selectedValue"></p-radioButton>
+                    <p-radioButton *ngIf="propService.step2.textAreas[2] else [disabled]" name="cause" value="cause3" [(ngModel)]="propService.step2.selectedValue"></p-radioButton>
                     <label class="form-check-label radio-label ml-1">Esta é a Causa Raiz</label>
                 </div>
             </div>
@@ -121,7 +121,7 @@
                 <label class="ml-3">Porquê {{propService.step2.textAreas[2]}} ?</label>
             </div>
             <div class="form-check">
-                <p-radioButton name="cause" value="cause4" [(ngModel)]="propService.step2.selectedValue"></p-radioButton>
+                <p-radioButton *ngIf="propService.step2.textAreas[3] else [disabled]" name="cause" value="cause4" [(ngModel)]="propService.step2.selectedValue"></p-radioButton>
                 <label class="form-check-label radio-label ml-1">Esta é a Causa Raiz</label>
             </div>
         </div>
@@ -137,7 +137,7 @@
                     <label class="ml-3">Porquê {{propService.step2.textAreas[3]}} ?</label>
                 </div>
                 <div class="form-check">
-                    <p-radioButton name="cause" value="cause5" [(ngModel)]="propService.step2.selectedValue"></p-radioButton>
+                    <p-radioButton *ngIf="propService.step2.textAreas[4] else [disabled]" name="cause" value="cause5" [(ngModel)]="propService.step2.selectedValue"></p-radioButton>
                     <label class="form-check-label radio-label ml-1">Esta é a Causa Raiz</label>
                 </div>
             </div>

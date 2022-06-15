@@ -76,7 +76,7 @@ export class NonComplianceService {
   private criarFormularios(): void {
 		this.formIdentificacaoNC = this.fb.group({
 			tipos_nc_item: [null,Validators.required],
-			tipos_auditoria_item: [null,Validators.required],
+			tipos_auditoria_item: [null],
 			tipos_local_item: [null,Validators.required],
 			data_abertura: [moment(new Date()).format('yyyy-MM-DD')],
       data_fechamento: [moment(new Date()).add('d', 30).format('yyyy-MM-DD')],
@@ -137,7 +137,8 @@ export class NonComplianceService {
       && this.nc.text_area_reject_point
       && this.nc.tipo_controle
       && this.nc.quant_nc
-      && this.nc.quant_total  
+      && this.nc.quant_total
+      && this.validarAuditoria()  
       && this.validarCheckpoint()
       
       )
@@ -152,6 +153,20 @@ export class NonComplianceService {
     );
   }
 
+
+  validarAuditoria():boolean {
+    debugger
+    if (this.formIdentificacaoNC.value['tipos_nc_item'] && this.formIdentificacaoNC.value['tipos_auditoria_item']) {
+      return true
+    } 
+
+    else if (this.formIdentificacaoNC.value['tipos_nc_item']) {
+      var isInternaOrExterna = this.formIdentificacaoNC.value['tipos_nc_item'] == 'Auditoria Interna' || this.formIdentificacaoNC.value['tipos_nc_item'] == 'Auditoria Externa'
+      if (!isInternaOrExterna) return true
+    } 
+
+    return false
+  }
 
 
 

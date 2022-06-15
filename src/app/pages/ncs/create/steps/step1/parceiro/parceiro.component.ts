@@ -34,7 +34,6 @@ export class ParceiroComponent implements OnInit {
     var filtro = event.query;
     this.results = [];
 
-    debugger
     if (this.nonComplicanceService.nc.tipos_parceiro_item == "Cliente") {
       this.nonComplicanceService.customers.forEach((element) => {
         if (this.verificarExistencia(element, filtro)) {
@@ -128,6 +127,32 @@ export class ParceiroComponent implements OnInit {
   onChange() {
     this.nonComplicanceService.pesquisar = "";
     this.nonComplicanceService.nc.partner = null;
+
+    if (this.nonComplicanceService.nc.tipos_parceiro_item == 'Interno') {
+      
+      this.nonComplicanceService.nc.partner = 'Interno'
+      this.nonComplicanceService.pesquisar = this.nonComplicanceService.formIdentificacaoNC.value['tipos_local_item']
+
+      this.nonComplicanceService.sectors.forEach((element) => {
+        if (this.verificarExistenciaInterno(element, this.nonComplicanceService.pesquisar)) {
+          
+          this.nonComplicanceService.nc.partner = element
+
+          if(element.responsible_name) {
+            this.nonComplicanceService.editarNomeItem = element.responsible_name
+          }
+
+          if(element.responsible_phone) {
+            this.nonComplicanceService.editarTelefoneItem = element.responsible_phone
+          }
+
+          if(element.responsible_email) {
+            this.nonComplicanceService.editarEmailItem = element.responsible_email
+          }
+          
+        }
+      });
+    }
   }
 
   onChangeAutoComplete() {

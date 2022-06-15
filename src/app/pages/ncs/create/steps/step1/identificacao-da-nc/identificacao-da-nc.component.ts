@@ -37,7 +37,6 @@ teste(){
   
 
   checkAuditoria(tipoNc:any) {
-    console.log(tipoNc, tipoNc == 'Auditoria Interna' || tipoNc == 'Auditoria Externa')
     var elementoAuditoria = document.getElementById('inputAuditoria')
     if(tipoNc == 'Auditoria Interna' || tipoNc == 'Auditoria Externa') {
       if(elementoAuditoria) {
@@ -47,7 +46,7 @@ teste(){
       if(elementoAuditoria) {
         elementoAuditoria.setAttribute('disabled','')
         this.nonComplicanceService.nc.tipos_auditoria_item = ''
-        this.nonComplicanceService.formIdentificacaoNC.setValue({
+        this.nonComplicanceService.formIdentificacaoNC.patchValue({
           tipos_auditoria_item : ''
         })
       }
