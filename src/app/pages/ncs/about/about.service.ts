@@ -28,7 +28,23 @@ export class AboutService {
     getNC(id:number){
         this.ncsService.getById(id).subscribe((data: any) => {
             this.nc = data.nc[0]
-            console.log(this.nc)
+            let proposal = this.nc.proposalSolution
+            if(proposal){
+                proposal.lack_materials = proposal.lack_materials??""
+                proposal.low_quality_materials = proposal.low_quality_materials??""
+                proposal.material_description = proposal.material_description??""
+                proposal.lack_parameters = proposal.lack_parameters??""
+                proposal.excess_parameters = proposal.excess_parameters??""
+                proposal.non_achievement_goals = proposal.non_achievement_goals??""
+                proposal.measurement_description = proposal.measurement_description??""
+                proposal.method_description = proposal.method_description??""
+                proposal.run_training = proposal.run_training??""
+                proposal.man_power_description = proposal.man_power_description??""
+                proposal.environment_description = proposal.environment_description??""
+                proposal.machine_description = proposal.machine_description??""
+                proposal.effect_description = proposal.effect_description??""
+            }
+            
         })
     }
 

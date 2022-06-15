@@ -25,6 +25,12 @@ export class ViewIdentifyNCComponent implements OnInit {
     
   }
 
+   returnTitle():string{
+    if(this.aboutSrvc.nc.tipos_parceiro_item == "Interno")
+      return "Dados do Setor"
+    return "Razão Social"
+  }
+
   formato_brasileiro(data:Date | undefined | null): string {
     const dataFormatada = data ? DateUtils.formato_brasileiro(data) : '00/00/0000';
     return dataFormatada

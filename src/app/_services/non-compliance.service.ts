@@ -90,8 +90,7 @@ export class NonComplianceService {
 
   validarCheckpoint():boolean{
     if(this.nc.tipo_controle?.includes("OP")){
-      return (!!this.nc.num_op 
-        && !!this.nc.instruction);
+      return (!!this.nc.num_op);
     }
 
     if(this.nc.tipo_controle?.includes("NF-e")){
@@ -115,6 +114,11 @@ export class NonComplianceService {
         );
     }
     return false;
+  }
+
+  closeNc(id:number){
+    
+     return this.http.put<any>(this.apiUrl + "/closeNc/" + id, {});
   }
 
   returnfiles(name:string){

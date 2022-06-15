@@ -19,6 +19,12 @@ export class IdentifyNCComponent implements OnInit {
 
   emissor = "";
 
+  returnTitle():string{
+    if(this.nonComplicanceService.nc.tipos_parceiro_item == "Interno")
+      return "Dados do Setor"
+    return "Razão Social"
+  }
+
   returnFile(name: string) {
     let acoesFile: Attachment[] = [];
     this.nonComplicanceService.nc.attachments.forEach((element) => {
