@@ -34,8 +34,6 @@ export class IshikawaDiagramComponent implements OnInit {
     const ref = this.dialogService.open(IshikawaDialogComponent, {
       data: {page: page},
       width: '901px',
-      closable: false,
-      showHeader: false
     });
     ref.onClose.subscribe((answer: any[])=>{
       if(answer){

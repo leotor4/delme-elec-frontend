@@ -30,6 +30,10 @@ import {NotificationComponent} from "./steps/step4/notification.component";
 import {ToastModule} from "primeng/toast";
 import {DialogModule} from "primeng/dialog";
 import {AccordionModule} from "primeng/accordion";
+import {DadosNCComponent} from "../../dialogs/dados-nc/dados-nc.component";
+import {NcAboutModule} from "../about/about.module";
+import {CarouselModule} from "primeng/carousel";
+import {DividerModule} from "primeng/divider";
 
 
 
@@ -46,7 +50,8 @@ import {AccordionModule} from "primeng/accordion";
       NotificationComponent,
       ReviewInfomationsComponent,
       IshikawaDialogComponent,
-      ActionPlanDialogComponent
+      ActionPlanDialogComponent,
+      DadosNCComponent
   ],
     imports: [
         CommonModule,
@@ -69,8 +74,11 @@ import {AccordionModule} from "primeng/accordion";
         ToastModule,
         DialogModule,
         AccordionModule,
+        NcAboutModule,
+        CarouselModule,
+        DividerModule,
     ],
-    entryComponents: [IshikawaDialogComponent, ActionPlanDialogComponent],
+    entryComponents: [IshikawaDialogComponent, ActionPlanDialogComponent, DadosNCComponent],
     providers: [ConfirmationService],
 })
 export class CreatePropModule { }
