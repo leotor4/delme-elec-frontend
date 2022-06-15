@@ -69,7 +69,7 @@ export class CreatePropStepperComponent implements OnInit {
        next:(data:any )=> {
         this.messageService.add({
           severity: "success",
-          summary: "Passo " + this.stepPosition + " salvo com sucesso.",
+          summary: "Passo " + (this.stepPosition + 1) + " salvo com sucesso.",
           life: 3000,
         });
         this.stepPosition >= this.items.length - 1?this.router.navigateByUrl('/ncs/about/' + id):this.stepPosition++
@@ -80,7 +80,7 @@ export class CreatePropStepperComponent implements OnInit {
       error:err =>{
         this.messageService.add({
           severity: "error",
-          summary: "Houve um erro ao salvar passo " + this.stepPosition + "." ,
+          summary: "Houve um erro ao salvar passo " + (this.stepPosition + 1) + "." ,
           life: 3000,
         });
       }

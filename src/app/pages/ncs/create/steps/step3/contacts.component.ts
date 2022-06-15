@@ -167,7 +167,7 @@ export class ContactsComponent implements OnInit{
           let contact = new Contact()
           contact.email = 'efrain@electrosonteleco.com.br'
           contact.name = "Efrain"
-          contact.type = "Presidencia"
+          contact.type = "Diretor Geral"
           this.contactsSrvc.post(contact).subscribe(
               (data) => {
                 this.nonComplianceService.allContacts.push(data.contact)
