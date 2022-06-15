@@ -1,10 +1,13 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {SgqService} from "../../sgq.service";
+import {NcInfoComponent} from "../reoccurrence/nc-info/nc-info.component";
+import {DialogService} from "primeng/dynamicdialog";
 
 @Component({
   selector: 'app-review-info-sgq',
   templateUrl: './review-info-sgq.component.html',
-  styleUrls: ['./review-info-sgq.component.css']
+  styleUrls: ['./review-info-sgq.component.css'],
+  providers: [DialogService]
 })
 export class ReviewInfoSGQComponent implements OnInit {
   ncID = "001/2022";
@@ -16,7 +19,7 @@ export class ReviewInfoSGQComponent implements OnInit {
     'border': '0px',
   }
   @Output() changeStepPosition: EventEmitter<number> = new EventEmitter();
-  constructor(public sgqServ: SgqService) { }
+  constructor(public dialogService: DialogService, public sgqServ: SgqService) { }
 
   ngOnInit(): void {
   }
@@ -31,6 +34,11 @@ export class ReviewInfoSGQComponent implements OnInit {
   }
 
   details(nc: any) {
-    
+    const ref = this.dialogService.open(NcInfoComponent, {
+      data: {nc: nc,
+      },
+      showHeader: false,
+      width: '60vw',
+    });
   }
 }

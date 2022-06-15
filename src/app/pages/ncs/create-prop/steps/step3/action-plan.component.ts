@@ -46,18 +46,8 @@ export class ActionPlanComponent implements OnInit {
     actionPlan.responsible = this.selectedResp
     actionPlan.status = this.selectedStatus
     actionPlan.term = this.date
-    if(!this.contacts.some(e => e.email === this.selectedResp.email)){
-      let contact = new Contact()
-      contact.email = this.selectedResp.email
-      contact.name = this.selectedResp.username
-      contact.type = this.selectedResp.sector?.name
-      this.contactsSrvc.post(contact).subscribe(
-          (data) => {
-            this.contacts.push(data.contact)
-            this.propService.propSolution.contacts.push(data.contact)
-
-          }
-      )
+    if(!this.propService.propSolution.contacts.some(e => e.email === this.selectedResp.email)){
+      this.propService.propSolution.contacts.push(this.selectedResp)
     }
     this.propService.propSolution.actionPlans.push(actionPlan)
     this.name = ""

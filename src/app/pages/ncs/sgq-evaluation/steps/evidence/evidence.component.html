@@ -9,7 +9,7 @@
     <div class="">
         <p-editor
                 [style]="{ height: '210px', width: '700px' }"
-                [(ngModel)]="sgqServ.sgq.textArea1"
+                [(ngModel)]="sgqServ.sgq.text_area1"
                 [modules]="{counter: {container: '#counterEv',unit: 'character'}}"
         ></p-editor>
         <div id="counterEv" class="text-end">0</div>
@@ -19,7 +19,7 @@
         <h1>Anexar relatório de custos</h1>
         <div
                 class="white-background"
-                *ngIf="sgqServ.step2File.length == 0"
+                *ngIf="sgqServ.sgq.attachments.length == 0"
         >
             <input
                     type="file"
@@ -35,7 +35,7 @@
         </div>
         <div
                 class="white-background-files"
-                *ngIf="sgqServ.step2File.length != 0"
+                *ngIf="sgqServ.sgq.attachments.length != 0"
         >
             <button
                     type="button"
@@ -44,7 +44,7 @@
             >
                 <i class="pi pi-replay"></i>
             </button>
-            <p *ngFor="let files of sgqServ.step2File">
+            <p *ngFor="let files of sgqServ.sgq.attachments">
                 {{ files.name }}
             </p>
         </div>

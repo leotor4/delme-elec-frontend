@@ -48,8 +48,10 @@
                     <ng-template pTemplate="header">
                         <tr>
                             <th>Número</th>
-                            <th>Parceiro</th>
                             <th>Emissor</th>
+                            <th>Tipo de NC</th>
+                            <th>Setor Afetado</th>
+                            <th>Produto</th>
                             <th>Status</th>
                             <th>Data de Fechamento</th>
                             <th></th>
@@ -57,11 +59,24 @@
                     </ng-template>
                     <ng-template pTemplate="body" let-nc let-i="rowIndex">
                         <tr>
+                        <tr>
                             <td>{{ nc.code }}</td>
-                            <td>{{ (nc.customer?.corporate_name||nc.provider?.corporate_name||nc.sector?.name)
-                            ||"Dado não preenchido" }}</td>
                             <td>{{ nc.emissor.username }}</td>
-                            <td>{{ nc.status }}</td>
+                            <td>{{ nc.tipos_nc_item }}</td>
+                            <td>{{ nc.tipos_local_item }}</td>
+                            <td>{{ nc.product?.name || nc.product?.description }}</td>
+
+                            <td>
+                    <span [ngSwitch]="nc.status" >
+                        <span *ngSwitchCase="'open'"> Aberta</span>
+                        <span *ngSwitchCase="'running'"> Em execução</span>
+                        <span *ngSwitchCase="'late'"> Atrasada</span>
+                        <span *ngSwitchCase="'deleted'"> Deletada</span>
+                        <span *ngSwitchCase="'archived'"> Arquivada</span>
+                        <span *ngSwitchCase="'canceled'"> Cancelada</span>
+                        <span *ngSwitchCase="'closed'"> Fechada</span>
+                    </span>
+                            </td>
                             <td>{{ parseDate(nc.data_fechamento||"")||"00/00/0000" }}</td>
                             <td>
                                 <button

@@ -7,8 +7,8 @@ export class SgqEval {
     attachments: Attachment[] = [];
     author?:User
     recurrence?: NonCompliance[] = []
-    textArea1: string;
-    textArea2: string;
-    textArea3: string;
+    text_area1: string;
+    text_area2: string;
+    text_area3: string;
     nonCompliance_id: number;
 }

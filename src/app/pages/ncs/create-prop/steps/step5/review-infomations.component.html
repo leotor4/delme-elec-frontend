@@ -212,7 +212,7 @@
                     <ng-template pTemplate="body" let-action>
                         <tr>
                             <td>{{ action.description }}</td>
-                            <td>{{ action.responsible.username}}</td>
+                            <td>{{ action.responsible.name}}</td>
                             <td>{{ dataParse(action.term)}}</td>
                             <td>{{ action.status }}</td>
                         </tr>
@@ -246,7 +246,7 @@
                     </ng-template>
                     <ng-template pTemplate="body" let-contact let-i="rowIndex">
                         <tr>
-                            <td>{{ contact.username }}</td>
+                            <td>{{ contact.name }}</td>
                             <td>{{ contact.email }}</td>
                             <td>{{ contact.type }}</td>
                         </tr>

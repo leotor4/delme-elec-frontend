@@ -24,28 +24,34 @@ export class SgqComponent implements OnInit {
       next:(data:any) =>{
 
         this.sgqSrv.nc = data.nc[0]
-        console.log(this.sgqSrv.nc)
+        if(!this.sgqSrv.nc.sgqEvaluation){
+          this.sgqSrv.abrirSGQ(id).subscribe({
+            next:(data:any )=> {
+              this.sgqSrv.sgq.id = data['sgq']['id']
+
+              this.messageService.add({
+                severity: "success",
+                summary: "Avaliação SGQ criada com sucesso.",
+                life: 3000,
+              });
+            },
+            error:err =>{
+              this.messageService.add({
+                severity: "error",
+                summary: "Houve um erro ao criar Avaliação SGQ.",
+                life: 3000,
+              });
+            }
+          })
+        } else{
+          this.sgqSrv.sgq = this.sgqSrv.nc.sgqEvaluation
+          console.log(this.sgqSrv.sgq )
+          console.log(this.sgqSrv.nc.sgqEvaluation)
+        }
       }
     })
 
-    this.sgqSrv.abrirSGQ(id).subscribe({
-      next:(data:any )=> {
-        this.sgqSrv.sgq.id = data['sgq']['id']
 
-        this.messageService.add({
-          severity: "success",
-          summary: "Avaliação SGQ criada com sucesso.",
-          life: 3000,
-        });
-      },
-      error:err =>{
-        this.messageService.add({
-          severity: "error",
-          summary: "Houve um erro ao criar Avaliação SGQ.",
-          life: 3000,
-        });
-      }
-    })
   }
 
 }

@@ -1,4 +1,4 @@
-<div class="d-flex flex-lg-row flex-column justify-content-between">
+<div class="d-flex flex-lg-row flex-column justify-content-between mt-3">
     <div class="d-flex">
         <div class="cabecalho">
             <div class="d-flex align-items-center">
@@ -192,8 +192,8 @@
                     </h2>
                     <p-carousel [value]="this.propSrvc.ncProp?.attachments?.filter(isType1) || []" [numVisible]="3" [numScroll]="3" [showIndicators]="false">
                         <ng-template let-file pTemplate="item" >
-                            <button><i class="bi bi-file-earmark fs-1"></i>
-                                <p>{{file.name||"file.txt"}}</p></button>
+                            <div><i class="bi bi-file-earmark fs-1"></i>
+                                <p>{{file.name||"file.txt"}}</p></div>
                         </ng-template>
                     </p-carousel>
                 </div>
@@ -217,10 +217,10 @@
                     </h2>
                     <p-carousel [value]="propSrvc.ncProp?.attachments?.filter(isType2) || []" [numVisible]="3" [numScroll]="3" [showIndicators]="false">
                         <ng-template let-file pTemplate="item">
-                            <button >
+                            <div >
                                 <i class="bi bi-file-earmark fs-1"></i>
                                 <p>{{file.name||"file.txt"}}</p>
-                            </button>
+                            </div>
                         </ng-template>
                     </p-carousel>
                 </div>

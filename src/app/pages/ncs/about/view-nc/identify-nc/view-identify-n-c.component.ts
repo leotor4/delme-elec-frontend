@@ -26,7 +26,7 @@ export class ViewIdentifyNCComponent implements OnInit {
   }
 
    returnTitle():string{
-    if(this.aboutSrvc.nc.tipos_parceiro_item == "Interno")
+    if(this.aboutSrvc.nc?.tipos_parceiro_item == "Interno")
       return "Dados do Setor"
     return "Razão Social"
   }
