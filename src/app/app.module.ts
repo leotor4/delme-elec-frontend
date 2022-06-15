@@ -36,7 +36,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     RegisterComponent,
     BoardUserComponent,
     VisualizarDocumentoDialogComponent,
-    FechamentoDialogComponent
+    FechamentoDialogComponent,
   ],
   imports: [
     BrowserModule,
