@@ -81,6 +81,11 @@ export class NcsListComponent implements OnInit {
     private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
+    this.startListNcs('all')
+  }
+
+
+  startListNcs(filterStatus : string) {
     this.ncsService.get().subscribe((data: any) => {
       
       //this.listNcs.append(data.noncompliances);
@@ -88,9 +93,6 @@ export class NcsListComponent implements OnInit {
       const compliances: Array<NonCompliance> = data.noncompliances
 
       console.log('compliances',compliances)
-
-
-      this.setDataCards(compliances)
 
       if (compliances?.length > 0) {
         this.listNcs = compliances.map(
@@ -125,11 +127,24 @@ export class NcsListComponent implements OnInit {
             FilterMatchMode.DATE_AFTER
         ]
       }
+      
+      if(filterStatus == 'open')
+        this.listNcs = this.listNcs.filter(item => (item.status == 'open'))
+      if(filterStatus == 'canceled')
+        this.listNcs = this.listNcs.filter(item => (item.status == 'canceled'))
+      if(filterStatus == 'running')
+        this.listNcs = this.listNcs.filter(item => (item.status == 'running'))
+      if(filterStatus == 'late')
+        this.listNcs = this.listNcs.filter(item => (item.status == 'late'))
+
+
+      this.setDataCards(compliances, filterStatus)
+
       this.totalRecords = this.listNcs.length
     });
   }
 
-  setDataCards(compliances: Array<NonCompliance>) {
+  setDataCards(compliances: Array<NonCompliance>, filterStatus:string) {
 
 
     this.dashboardService.getKpisList(compliances).subscribe((data:any) => {
@@ -138,7 +153,7 @@ export class NcsListComponent implements OnInit {
     });
 
 
-    this.dashboardService.getPiesValues(compliances).subscribe((data:any) => {
+    this.dashboardService.getPiesValues(compliances, filterStatus).subscribe((data:any) => {
       this.pieValues = data
       console.log(data)
     });
@@ -241,6 +256,30 @@ export class NcsListComponent implements OnInit {
         life: 5000,
       });
     }    
+  }
+
+
+  onSelectCard(event : any) {
+    console.log(event);
+    if (event['name'] == 'Total de NCs') {
+      this.startListNcs('all')
+    }
+
+    if (event['name'] == 'NCs abertas') {
+      this.startListNcs('open')
+    }
+
+    if (event['name'] == 'NCs atrasadas') {
+      this.startListNcs('late')
+    }
+
+    if (event['name'] == 'NCs canceladas') {
+      this.startListNcs('canceled')
+    }
+
+    if (event['name'] == 'NCs em execução') {
+      this.startListNcs('running')
+    }
   }
   
 }

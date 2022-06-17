@@ -4,7 +4,9 @@
   <ngx-charts-number-card
     [scheme]="colorScheme"
     [results]="cardValues"
-    [cardColor]="cardColor">
+    [cardColor]="cardColor"
+    (select)="onSelectCard($event)">
+    
   </ngx-charts-number-card>
 </div>
 

@@ -541,7 +541,7 @@ export class DashboardsService {
   }
 
 
-  getPiesValues(compliances: NonCompliance[]) {
+  getPiesValues(compliances: NonCompliance[], filterStatus : string) {
     var pieData: any[] = []
 
     var totalNcsRunning = 0
@@ -552,7 +552,6 @@ export class DashboardsService {
     for (let i = 0; i < compliances.length; i++) {
       var nc = compliances[i];
 
-      
 
         if(nc.status?.toLowerCase() == 'running') {
           totalNcsRunning = totalNcsRunning + 1
@@ -572,26 +571,38 @@ export class DashboardsService {
       
     } 
 
-    pieData.push({
-      "name" : "NCs em execução",
-      "value": totalNcsRunning
-    })
 
-    pieData.push({
-      "name" : "NCs canceladas",
-      "value": totalNcsCanceled
-    })
-
-    pieData.push({
-      "name" : "NCs atrasadas",
-      "value": totalNcsLate
-    })
+    if (filterStatus == 'all' || filterStatus == 'running') {
+      pieData.push({
+        "name" : "NCs em execução",
+        "value": totalNcsRunning
+      })
+    }
 
 
-    pieData.push({
-      "name" : "NCs abertas",
-      "value": totalNcsOpened
-    })
+    if (filterStatus == 'all' || filterStatus == 'canceled') {
+      pieData.push({
+        "name" : "NCs canceladas",
+        "value": totalNcsCanceled
+      })
+    }      
+    
+    if (filterStatus == 'all' || filterStatus == 'late') {
+      pieData.push({
+        "name" : "NCs atrasadas",
+        "value": totalNcsLate
+      })  
+    }
+    
+
+
+    if (filterStatus == 'all' || filterStatus == 'open') {
+      pieData.push({
+        "name" : "NCs abertas",
+        "value": totalNcsOpened
+      })
+    }
+
 
     return of(pieData)
 
