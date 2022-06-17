@@ -45,9 +45,9 @@ export class ProductComponent implements OnInit {
     });
   }
   verificarExistencia(element: Product, filtro: string): boolean {
-    return element.name?.toUpperCase().includes(filtro.toUpperCase()) ||
-        element.code?.toUpperCase().includes(filtro.toUpperCase()) ||
-        element.description.toUpperCase().includes(filtro.toUpperCase());
+    return element.name?.normalize('NFKD').replace(/[^\w]/g, '').toUpperCase().includes(filtro.toUpperCase()) ||
+        element.code?.normalize('NFKD').replace(/[^\w]/g, '').toUpperCase().includes(filtro.toUpperCase()) ||
+        element.description?.normalize('NFKD').replace(/[^\w]/g, '').toUpperCase().includes(filtro.toUpperCase());
   }
 
   checkProduct(Product: Product) {

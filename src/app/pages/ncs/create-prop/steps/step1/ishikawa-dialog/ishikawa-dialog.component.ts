@@ -42,7 +42,7 @@ export class IshikawaDialogComponent implements OnInit {
       case 'machine':
         this.machines = [];
          this.propService.machines.forEach(element =>{
-      if(element.name.toLowerCase().includes(filtro.toLowerCase())){
+      if(element.name.normalize('NFKD').replace(/[^\w]/g, '').toLowerCase().includes(filtro.toLowerCase())){
         this.machines.push(element)
       }
      
@@ -51,7 +51,7 @@ export class IshikawaDialogComponent implements OnInit {
     case 'equipament':
       this.equipaments = [];
          this.propService.equipaments.forEach(element =>{
-      if(element.name.toLowerCase().includes(filtro.toLowerCase())){
+      if(element.name.normalize('NFKD').replace(/[^\w]/g, '').toLowerCase().includes(filtro.toLowerCase())){
         this.equipaments.push(element)
       }
     })
@@ -59,7 +59,7 @@ export class IshikawaDialogComponent implements OnInit {
       case 'instruction':
       this.instructions = [];
          this.propService.instructions.forEach(element =>{
-      if(element.description.toLowerCase().includes(filtro.toLowerCase())){
+      if(element.description.normalize('NFKD').replace(/[^\w]/g, '').toLowerCase().includes(filtro.toLowerCase())){
         this.instructions.push(element)
       }
     })
@@ -69,7 +69,7 @@ export class IshikawaDialogComponent implements OnInit {
       this.procedures = [];
       console.log(this.propService.procedures)
          this.propService.procedures.forEach(element =>{
-      if(element.description?.toLowerCase().includes(filtro.toLowerCase())||element.code?.toLowerCase().includes(filtro.toLowerCase())){
+      if(element.description?.normalize('NFKD').replace(/[^\w]/g, '').toLowerCase().includes(filtro.toLowerCase())||element.code?.normalize('NFKD').replace(/[^\w]/g, '').toLowerCase().includes(filtro.toLowerCase())){
         this.procedures.push(element)
       }
     })
@@ -78,7 +78,7 @@ export class IshikawaDialogComponent implements OnInit {
       case 'nbr':
       this.nbrs= [];
          this.propService.nbrs.forEach(element =>{
-      if(element.description.toLowerCase().includes(filtro.toLowerCase())){
+      if(element.description.normalize('NFKD').replace(/[^\w]/g, '').toLowerCase().includes(filtro.toLowerCase())){
         this.nbrs.push(element)
       }
     })
@@ -87,7 +87,7 @@ export class IshikawaDialogComponent implements OnInit {
       case 'regulatory':
       this.regulatoryNorms = [];
          this.propService.regulatorys.forEach(element =>{
-      if(element.description.toLowerCase().includes(filtro.toLowerCase())){
+      if(element.description.normalize('NFKD').replace(/[^\w]/g, '').toLowerCase().includes(filtro.toLowerCase())){
         this.regulatoryNorms.push(element)
       }
     })
