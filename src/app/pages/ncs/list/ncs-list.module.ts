@@ -8,6 +8,7 @@ import {ToastModule} from 'primeng/toast';
 import { NcsListRoutingModule } from './ncs-list-routing.module';
 import { NcsListComponent } from './ncs-list.component';
 import {TooltipModule} from 'primeng/tooltip';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 
@@ -26,7 +27,8 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
     ToastModule,
     InputTextModule,
     TooltipModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    NgxChartsModule
   ]
 })
 

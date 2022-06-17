@@ -1,3 +1,5 @@
+
+
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmationService, FilterMatchMode, MessageService, PrimeNGConfig } from 'primeng/api';
@@ -6,6 +8,7 @@ import { NonComplianceService } from "src/app/_services/non-compliance.service";
 import { NonCompliance } from 'src/app/models/non-compliance';
 
 import { NcsListDTO } from './ncs-list-dto';
+import { DashboardsService } from '../../dashboards/dashboards.service';
 
 @Component({
   selector: 'app-ncs-list',
@@ -17,6 +20,22 @@ import { NcsListDTO } from './ncs-list-dto';
   ],
 })
 export class NcsListComponent implements OnInit {
+
+  cardValues: any[] = [];
+  colorPie = 'air'
+  view = [500,300]
+  pieValues: any[] = [];
+  gradient: boolean = true;
+  showLegend: boolean = true;
+  showLabels: boolean = true;
+  isDoughnut: boolean = false;
+  legendPosition: string = 'below';
+
+  colorScheme = {
+    domain: ['rgb(0, 91, 123)', 'rgb(0, 91, 123)', 'rgb(0, 91, 123)', 'rgb(0, 91, 123)', 'rgb(0, 91, 123)', 'rgb(0, 91, 123)']
+  };
+  cardColor: string = '#00344D';
+
 
   @ViewChild('dt') dt: Table;
   listNcs: Array<NcsListDTO> = [];
@@ -58,7 +77,7 @@ export class NcsListComponent implements OnInit {
 
   constructor(
     private router:Router,private ncsService : NonComplianceService, private route: ActivatedRoute, 
-    private config: PrimeNGConfig,public messageService:MessageService,
+    private config: PrimeNGConfig,public messageService:MessageService, private dashboardService :DashboardsService,
     private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
@@ -71,6 +90,8 @@ export class NcsListComponent implements OnInit {
       console.log('compliances',compliances)
 
 
+      this.setDataCards(compliances)
+
       if (compliances?.length > 0) {
         this.listNcs = compliances.map(
           (item:NonCompliance) => {
@@ -79,7 +100,6 @@ export class NcsListComponent implements OnInit {
         this.listNcs = this.listNcs.filter(item => (item.system_status !== 'deleted' && item.system_status != 'arquived'));
       }
       
-      console.log('DTO',this.listNcs)
 
       this.config.filterMatchModeOptions = {
         text: [
@@ -109,7 +129,21 @@ export class NcsListComponent implements OnInit {
     });
   }
 
+  setDataCards(compliances: Array<NonCompliance>) {
 
+
+    this.dashboardService.getKpisList(compliances).subscribe((data:any) => {
+      this.cardValues = data
+      console.log(data)
+    });
+
+
+    this.dashboardService.getPiesValues(compliances).subscribe((data:any) => {
+      this.pieValues = data
+      console.log(data)
+    });
+    
+  }
   
 
   next() {

@@ -1,6 +1,16 @@
 <p-confirmDialog acceptLabel="sim" rejectLabel="não" [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
+
+<div style="height : 200px;">
+  <ngx-charts-number-card
+    [scheme]="colorScheme"
+    [results]="cardValues"
+    [cardColor]="cardColor">
+  </ngx-charts-number-card>
+</div>
+
 <p class="title">Início</p>
 <p class="subtitle">Visualize ou crie não conformidades</p>
+
 
 <span class="p-input-icon-left">
     <i class="pi pi-search"></i>
@@ -163,4 +173,19 @@ currentPageReportTemplate="Exibindo de {first} a {last} de {totalRecords} regist
 
   </ng-template>
 </p-table>
+
+  <div>
+    <h2 style="margin-top: 25px;">NCs por Status</h2>
+    <ngx-charts-pie-chart
+      [view]="view" 
+      [scheme]="colorPie"
+      [results]="pieValues"
+      [gradient]="gradient"
+      [legend]="showLegend"
+      [legendPosition]="legendPosition"
+      [labels]="showLabels"
+      [doughnut]="isDoughnut"
+      >
+    </ngx-charts-pie-chart>
+  </div>
 </div>

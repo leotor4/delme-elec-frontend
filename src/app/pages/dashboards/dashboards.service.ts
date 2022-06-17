@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { of } from 'rxjs/internal/observable/of';
+import { NonCompliance } from 'src/app/models/non-compliance';
 
 
 
@@ -8,6 +9,7 @@ import { of } from 'rxjs/internal/observable/of';
   providedIn: 'root'
 })
 export class DashboardsService {
+  
 
   constructor() { }
 
@@ -471,4 +473,128 @@ export class DashboardsService {
 
     return of (barDataTest);
   }
+
+  getKpisList(compliances: NonCompliance[]) {
+    var kpiData: any[] = []
+
+    var currentYear = new Date().getFullYear()
+    var totalNcsYear = 0
+    var totalNcsRunning = 0
+    var totalNcsCanceled = 0
+    var totalNcsLate = 0
+    var totalNcsOpened = 0 
+
+    for (let i = 0; i < compliances.length; i++) {
+      var nc = compliances[i];
+
+      if (nc.code.split('/')[1] == currentYear.toString()) {
+        totalNcsYear = totalNcsYear + 1
+
+        if(nc.status?.toLowerCase() == 'running') {
+          totalNcsRunning = totalNcsRunning + 1
+        }
+
+        if(nc.status?.toLowerCase() == 'canceled') {
+          totalNcsCanceled = totalNcsCanceled + 1
+        }
+
+        if(nc.status?.toLowerCase() == 'late') {
+          totalNcsLate = totalNcsLate + 1
+        }
+
+        if(nc.status?.toLowerCase() == 'open') {
+          totalNcsOpened = totalNcsOpened + 1
+        }
+      }
+    } 
+
+
+
+    kpiData.push({
+      "name" : 'Total de NCs',
+      "value": totalNcsYear
+    })
+
+    kpiData.push({
+      "name" : "NCs abertas",
+      "value": totalNcsOpened
+    })
+
+    kpiData.push({
+      "name" : "NCs em execução",
+      "value": totalNcsRunning
+    })
+
+    kpiData.push({
+      "name" : "NCs canceladas",
+      "value": totalNcsCanceled
+    })
+
+    kpiData.push({
+      "name" : "NCs atrasadas",
+      "value": totalNcsLate
+    })
+
+
+    return of(kpiData)
+
+  }
+
+
+  getPiesValues(compliances: NonCompliance[]) {
+    var pieData: any[] = []
+
+    var totalNcsRunning = 0
+    var totalNcsCanceled = 0
+    var totalNcsLate = 0
+    var totalNcsOpened = 0
+ 
+    for (let i = 0; i < compliances.length; i++) {
+      var nc = compliances[i];
+
+      
+
+        if(nc.status?.toLowerCase() == 'running') {
+          totalNcsRunning = totalNcsRunning + 1
+        }
+
+        if(nc.status?.toLowerCase() == 'canceled') {
+          totalNcsCanceled = totalNcsCanceled + 1
+        }
+
+        if(nc.status?.toLowerCase() == 'late') {
+          totalNcsLate = totalNcsLate + 1
+        }
+
+        if(nc.status?.toLowerCase() == 'open') {
+          totalNcsOpened = totalNcsOpened + 1
+        }
+      
+    } 
+
+    pieData.push({
+      "name" : "NCs em execução",
+      "value": totalNcsRunning
+    })
+
+    pieData.push({
+      "name" : "NCs canceladas",
+      "value": totalNcsCanceled
+    })
+
+    pieData.push({
+      "name" : "NCs atrasadas",
+      "value": totalNcsLate
+    })
+
+
+    pieData.push({
+      "name" : "NCs abertas",
+      "value": totalNcsOpened
+    })
+
+    return of(pieData)
+
+  }
+  
 }
