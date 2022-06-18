@@ -147,7 +147,7 @@ export class ContactsComponent implements OnInit{
             this.nonComplianceService.allContacts.filter((val) => val.email! === "efrain@electrosonteleco.com.br"
                 || val.email! === afectedsector!.responsible_email
                 || val.email! === this.nonComplianceService.nc.emissor?.sector?.responsible_email
-                || val.email! === "manuela.starowsta@electrosonteleco.com.br"|| val.email! === user.email);
+                || val.email! === "manuela.starowsta@electrosonteleco.com.br"|| val.email! === user.email || val.email! === this.nonComplianceService.nc.customer?.responsible_email || val.email! === this.nonComplianceService.nc.provider?.responsible_email || val.email! === this.nonComplianceService.nc?.partner?.responsible_email);
 
         let userContact = this.nonComplianceService.allContacts.filter((val) => val.email === user.email);
         if (userContact.length <= 0) {
@@ -212,6 +212,13 @@ export class ContactsComponent implements OnInit{
               }
           )
         }
+
+        this.nonComplianceService.nc.contacts = this.nonComplianceService.nc.contacts.filter((value, index, self) =>
+                index === self.findIndex((conctact) => (
+                conctact.email === value.email
+                ))
+        )
+        console.log(this.nonComplianceService.nc.contacts)
       }
     });
   }

@@ -11,7 +11,7 @@ import { ProposalService } from '../proposal.service';
 })
 export class CreatePropStepperComponent implements OnInit {
   items: MenuItem[];
-  stepPosition: number = 1;
+  stepPosition: number = 0;
   lastStepLabel = "Avançar";
   constructor(private route: ActivatedRoute,
     private ncService:NonComplianceService,

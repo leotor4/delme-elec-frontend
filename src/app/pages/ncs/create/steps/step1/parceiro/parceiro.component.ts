@@ -75,11 +75,11 @@ export class ParceiroComponent implements OnInit {
 
   verificarExistencia(element: any, filtro: String): boolean {
     if (
-      element.corporate_name?.toUpperCase().includes(filtro.toUpperCase()) ||
-      element.code?.toUpperCase().includes(filtro.toUpperCase()) ||
-      element.responsible_name?.toUpperCase().includes(filtro.toUpperCase()) ||
-      element.responsible_email?.toUpperCase().includes(filtro.toUpperCase()) ||
-      element.responsible_phone?.toUpperCase().includes(filtro.toUpperCase())
+      element.corporate_name?.normalize('NFKD').replace(/[^\w]/g, '').toUpperCase().includes(filtro.toUpperCase()) ||
+      element.code?.normalize('NFKD').replace(/[^\w]/g, '').toUpperCase().includes(filtro.toUpperCase()) ||
+      element.responsible_name?.normalize('NFKD').replace(/[^\w]/g, '').toUpperCase().includes(filtro.toUpperCase()) ||
+      element.responsible_email?.normalize('NFKD').replace(/[^\w]/g, '').toUpperCase().includes(filtro.toUpperCase()) ||
+      element.responsible_phone?.normalize('NFKD').replace(/[^\w]/g, '').toUpperCase().includes(filtro.toUpperCase())
     ) {
       return true;
     } else {
@@ -89,8 +89,8 @@ export class ParceiroComponent implements OnInit {
 
   verificarExistenciaInterno(element: any, filtro: String): boolean {
     if (
-      element.name?.toUpperCase().includes(filtro.toUpperCase()) ||
-      element.code?.toUpperCase().includes(filtro.toUpperCase())
+      element.name?.normalize('NFKD').replace(/[^\w]/g, '').toUpperCase().includes(filtro.toUpperCase()) ||
+      element.code?.normalize('NFKD').replace(/[^\w]/g, '').toUpperCase().includes(filtro.toUpperCase())
     ) {
       return true;
     } else {

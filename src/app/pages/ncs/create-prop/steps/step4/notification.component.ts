@@ -120,8 +120,8 @@ export class NotificationComponent implements OnInit, OnDestroy {
     );
     contacts.forEach((contact) => {
       if (
-        contact.name?.toLowerCase().indexOf(query.toLowerCase()) == 0 ||
-        contact.email?.toLowerCase().indexOf(query.toLowerCase()) == 0
+        contact.name?.normalize('NFKD').replace(/[^\w]/g, '').toLowerCase().indexOf(query.toLowerCase()) == 0 ||
+        contact.email?.normalize('NFKD').replace(/[^\w]/g, '').toLowerCase().indexOf(query.toLowerCase()) == 0
       ) {
         filtered.push(contact);
       }

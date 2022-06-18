@@ -93,21 +93,19 @@ export class NonComplianceService {
       return (!!this.nc.num_op);
     }
 
-    if(this.nc.tipo_controle?.includes("NF-e")){
-      return (!!this.nc.num_lote 
-        && !!this.nc.num_ordem_compra 
-        && !!this.nc.num_nota
-        && (this.returnfiles("pontoControle").length > 0)
-        );
-    }
-
-    if(this.nc.tipo_controle == "PV" || this.nc.tipo_controle == "PC" || this.nc.tipo_controle == "CC"){
+    if(this.nc.tipo_controle?.includes("NF-e(NOTA FISCAL ELETRÔNICA)")){
       return (!!this.nc.num_nota
         && (this.returnfiles("pontoControle").length > 0)
         );
     }
 
-      if(this.nc.tipo_controle == "PR"){
+    if(this.nc.tipo_controle == "PV(PEDIDO DE VENDA)" || this.nc.tipo_controle == "PC(PEDIDO DE COMPRA)" || this.nc.tipo_controle == "CC(COTAÇÃO COMERCIAL)"){
+      return (!!this.nc.num_nota
+        && (this.returnfiles("pontoControle").length > 0)
+        );
+    }
+
+      if(this.nc.tipo_controle == "PR(PROCEDIMENTO)"){
       return (
         (this.returnfiles("pontoControle").length > 0)
         && !!this.nc.procedure
@@ -159,7 +157,6 @@ export class NonComplianceService {
 
 
   validarAuditoria():boolean {
-    debugger
     if (this.formIdentificacaoNC.value['tipos_nc_item'] && this.formIdentificacaoNC.value['tipos_auditoria_item']) {
       return true
     } 

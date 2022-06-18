@@ -8,11 +8,11 @@
       </p>
     </div>
   </div>
-  <!--<div class="col-4 d-flex justify-content-end align-items-center">
+  <div class="col-4 d-flex justify-content-end align-items-center">
     <button iconPos="right" class="btn btn-dark" (click)="showAddContacts()">
       Adicionar Contato<i class="pi pi-plus"></i>
     </button>
-  </div>-->
+  </div>
 </div>
 
 <div class="card">
@@ -154,13 +154,4 @@
   </ng-template>
 </p-dialog>
 
-<p-confirmDialog #cd [style]="{ width: '50vw' }">
-  <ng-template pTemplate="footer">
-    <button type="button" class="btn btn-outline-dark" (click)="cd.reject()">
-      Não, cancelar
-    </button>
-    <button type="button" class="btn btn-dark" (click)="cd.accept()">
-      Sim, excluir contato
-    </button>
-  </ng-template>
-</p-confirmDialog>
+
