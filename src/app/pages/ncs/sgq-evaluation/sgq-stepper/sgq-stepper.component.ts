@@ -36,7 +36,7 @@ export class SgqStepperComponent implements OnInit {
   }
   getNextPageBtnLabel() {
     let isLastStep = this.stepPosition === this.items.length - 1;
-    let labelName = isLastStep ? "Submeter Avaliação" : "Avançar";
+    let labelName = isLastStep ? "Concluir Avaliação" : "Avançar";
     return labelName;
   }
   getNextPageBtnIcon() {

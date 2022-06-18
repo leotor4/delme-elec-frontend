@@ -132,55 +132,5 @@
     </div>
   </div>
 </div>
-<div class="div-ident-parceiro d-flex flex-column flex-lg-row mt-3">
-  <div class="dados-parceiro razao-social item ">
-    <h2 class="mr-2">
-      <i class="bi bi-file-earmark-text"></i>
-      Descrição da Não Conformidade
-    </h2>
-    <p-editor [style]="{'height':'144px', border: '1px solid #dddddd' }" [readonly]="true" [ngModel]="aboutSrvc.nc?.text_area_nc">
-      <ng-template pTemplate="header">
-      </ng-template>
-    </p-editor>
-  </div>
-  <p-divider layout="vertical"></p-divider>
-  <div class="dados-parceiro razao-social item">
-    <h2 class="mr-2 mb-5">
-      <i class="pi pi-camera"></i>
-      Evidencias fotográficas
-    </h2>
-    <p-carousel [value]="this.aboutSrvc.nc?.attachments?.filter(isType1) || []" [numVisible]="3" [numScroll]="3" [showIndicators]="false">
-      <ng-template let-file pTemplate="item" >
-        <button (click)="visualizarDocumento(file.id,file.type)"><i class="bi bi-file-earmark fs-1"></i>
-          <p>{{file.name||"file.txt"}}</p></button>
-      </ng-template>
-    </p-carousel>
-  </div>
-</div>
-<div class="div-ident-parceiro d-flex  mt-3">
-  <div class="dados-parceiro razao-social item">
-    <h2 class="mr-2">
-      <i class="bi bi-geo"></i>
-      Descrição de Ações Imediatas
-    </h2>
-    <p-editor [style]="{'height':'144px', border: '1px solid #dddddd' }" [readonly]="true" [ngModel]="aboutSrvc.nc?.text_area_acoes">
-      <ng-template pTemplate="header" hidden>
-      </ng-template>
-    </p-editor>
-  </div>
-  <p-divider layout="vertical"></p-divider>
-  <div class="dados-parceiro razao-social item">
-    <h2 class="mr-2 mb-5">
-      <i class="pi pi-camera"></i>
-      Evidencias fotográficas
-    </h2>
-    <p-carousel [value]="this.aboutSrvc.nc?.attachments?.filter(isType2) || []" [numVisible]="3" [numScroll]="3" [showIndicators]="false">
-      <ng-template let-file pTemplate="item">
-        <button (click)="visualizarDocumento(file.id,file.type)">
-        <i class="bi bi-file-earmark fs-1"></i>
-        <p>{{file.name||"file.txt"}}</p>
-        </button>
-      </ng-template>
-    </p-carousel>
-  </div>
-</div>
+
+

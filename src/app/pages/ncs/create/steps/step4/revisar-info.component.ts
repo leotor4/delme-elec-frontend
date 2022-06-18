@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from "@angular/core";
+import { Attachment } from "src/app/models/attachment";
 import {NonComplianceService} from "../../../../../_services/non-compliance.service";
 
 @Component({
@@ -18,4 +19,24 @@ export class RevisarInfoComponent implements OnInit {
     this.changeStepPosition.emit(position);
   }
   ngOnInit(): void {}
+
+  emissor = "";
+
+  returnTitle(): string {
+    if (this.nonComplicanceService.nc.tipos_parceiro_item == "Interno")
+      return "Dados do Setor";
+    return "Razão Social";
+  }
+
+  returnFile(name: string) {
+    let acoesFile: Attachment[] = [];
+    this.nonComplicanceService.nc.attachments.forEach((element) => {
+      if (element.path == name) {
+        acoesFile.push(element);
+      }
+    });
+    return acoesFile;
+  }
+
+
 }

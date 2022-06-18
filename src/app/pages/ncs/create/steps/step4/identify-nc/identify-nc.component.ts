@@ -10,8 +10,6 @@ import { DateUtils } from '../../../../../../utils/date-utils';
   styleUrls: ["./identify-nc.component.css"],
 })
 export class IdentifyNCComponent implements OnInit {
-
-
   constructor(
     public nonComplicanceService: NonComplianceService,
     public tokenService: TokenStorageService
@@ -19,10 +17,10 @@ export class IdentifyNCComponent implements OnInit {
 
   emissor = "";
 
-  returnTitle():string{
-    if(this.nonComplicanceService.nc.tipos_parceiro_item == "Interno")
-      return "Dados do Setor"
-    return "Razão Social"
+  returnTitle(): string {
+    if (this.nonComplicanceService.nc.tipos_parceiro_item == "Interno")
+      return "Dados do Setor";
+    return "Razão Social";
   }
 
   returnFile(name: string) {
@@ -35,12 +33,12 @@ export class IdentifyNCComponent implements OnInit {
     return acoesFile;
   }
 
-   ngOnInit(): void{
-
+  formato_brasileiro(data: Date | undefined | null): string {
+    const dataFormatada = data
+      ? DateUtils.formato_brasileiro(data)
+      : "00/00/0000";
+    return dataFormatada;
   }
 
-  formato_brasileiro(data:Date | undefined | null): string {
-    const dataFormatada = data ? DateUtils.formato_brasileiro(data) : '00/00/0000';
-    return dataFormatada
-  }
+  ngOnInit(): void {}
 }

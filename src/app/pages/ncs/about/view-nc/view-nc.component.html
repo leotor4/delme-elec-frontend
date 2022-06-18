@@ -1,75 +1,137 @@
 <div class="d-flex flex-lg-row flex-column justify-content-between">
-    <div class="d-flex">
-        <div class="cabecalho">
-            <div class="d-flex align-items-center">
-                <h1 class="mr-3">Informações da NC</h1>
-            </div>
-            <p>
-                Visualize os detalhes cadastrados nesta NC.
-            </p>
-        </div>
+  <div class="d-flex">
+    <div class="cabecalho">
+      <div class="d-flex align-items-center">
+        <h1 class="mr-3">Informações da NC</h1>
+      </div>
+      <p>Visualize os detalhes cadastrados nesta NC.</p>
     </div>
-    <div class="d-flex justify-content-end align-items-center mb-3">
-        <button
-                [class]="isAllOpen ? selectedClass : unselectedClass"
-                class="mr-2 btn-sm"
-                (click)="isAllOpen = true"
-        >
-            <i class="bi bi-arrows-expand"></i>
-            Expandir Todos
-        </button>
-        <button
-                [class]="isAllOpen ? unselectedClass : selectedClass"
-                (click)="isAllOpen = false"
-                class="btn-sm"
-        >
-            <i class="bi bi-arrows-collapse"></i>
-            Colapsar Todos
-        </button>
-        <button class="btn btn-dark btn ml-3">
-            Editar NC
-            <i class="bi bi-pencil-square"></i>
-        </button>
-    </div>
+  </div>
+  <div class="d-flex justify-content-end align-items-center mb-3">
+    <button
+      [class]="isAllOpen ? selectedClass : unselectedClass"
+      class="mr-2 btn-sm"
+      (click)="isAllOpen = true"
+    >
+      <i class="bi bi-arrows-expand"></i>
+      Expandir Todos
+    </button>
+    <button
+      [class]="isAllOpen ? unselectedClass : selectedClass"
+      (click)="isAllOpen = false"
+      class="btn-sm"
+    >
+      <i class="bi bi-arrows-collapse"></i>
+      Colapsar Todos
+    </button>
+    <button class="btn btn-dark btn ml-3">
+      Editar NC
+      <i class="bi bi-pencil-square"></i>
+    </button>
+  </div>
 </div>
 <p-accordion [multiple]="true">
-    <p-accordionTab [selected]="isAllOpen">
-        <ng-template pTemplate="header">
-            <div class="d-flex justify-content-between accordion">
-                <p>
-                    <i class="bi bi-file-earmark-text"></i>
-                    Identificação da NC
-                </p>
-            </div>
-        </ng-template>
-        <ng-template pTemplate="content">
-            <app-view-identify-nc></app-view-identify-nc>
-        </ng-template>
-    </p-accordionTab>
-    <p-accordionTab [selected]="isAllOpen">
-        <ng-template pTemplate="header">
-            <div class="d-flex justify-content-between accordion">
-                <p>
-                    <i class="bi bi-box-seam"></i>
-                    Produtos e Pontos
-                </p>
-            </div>
-        </ng-template>
-        <ng-template pTemplate="content">
-            <app-view-products-and-points></app-view-products-and-points>
-        </ng-template>
-    </p-accordionTab>
-    <p-accordionTab [selected]="isAllOpen">
-        <ng-template pTemplate="header">
-            <div class="d-flex justify-content-between accordion">
-                <p>
-                    <i class="bi bi-file-earmark-text"></i>
-                    Identificação da NC
-                </p>
-            </div>
-        </ng-template>
-        <ng-template pTemplate="content">
-            <app-view-stakeholders></app-view-stakeholders>
-        </ng-template>
-    </p-accordionTab>
+  <p-accordionTab [selected]="isAllOpen">
+    <ng-template pTemplate="header">
+      <div class="d-flex justify-content-between accordion">
+        <p>
+          <i class="bi bi-file-earmark-text"></i>
+          Dados da NC
+        </p>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="content">
+      <app-view-identify-nc></app-view-identify-nc>
+      <div class="mt-4"></div>
+      <app-view-products-and-points></app-view-products-and-points>
+    </ng-template>
+  </p-accordionTab>
+  <p-accordionTab [selected]="isAllOpen">
+    <ng-template pTemplate="header">
+      <div class="d-flex justify-content-between accordion">
+        <p>
+          <i class="bi bi-box-seam"></i>
+          Descrição
+        </p>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="content">
+      <div class="div-ident-parceiro d-flex flex-column flex-lg-row mt-3">
+        <div class="dados-parceiro razao-social item">
+          <h2 class="mr-2">
+            <i class="bi bi-file-earmark-text"></i>
+            Descrição da Não Conformidade
+          </h2>
+          <p-editor
+            [style]="{ height: '144px', border: '1px solid #dddddd' }"
+            [readonly]="true"
+            [ngModel]="aboutSrvc.nc?.text_area_nc"
+          >
+            <ng-template pTemplate="header"> </ng-template>
+          </p-editor>
+        </div>
+        <p-divider layout="vertical"></p-divider>
+        <div class="dados-parceiro razao-social item">
+          <h2 class="mr-2 mb-5">
+            <i class="pi pi-camera"></i>
+            Evidencias fotográficas
+          </h2>
+          <p-carousel
+            [value]="this.aboutSrvc.nc?.attachments?.filter(isType1) || []"
+            [numVisible]="3"
+            [numScroll]="3"
+            [showIndicators]="false"
+          >
+            <ng-template let-file pTemplate="item">
+              <button (click)="visualizarDocumento(file.id, file.type)">
+                <i class="bi bi-file-earmark fs-1"></i>
+                <p>{{ file.name || "file.txt" }}</p>
+              </button>
+            </ng-template>
+          </p-carousel>
+        </div>
+      </div>
+
+      <div class="div-ident-parceiro d-flex  mt-3">
+  <div class="dados-parceiro razao-social item">
+    <h2 class="mr-2">
+      <i class="bi bi-geo"></i>
+      Descrição de Ações Imediatas
+    </h2>
+    <p-editor [style]="{'height':'144px', border: '1px solid #dddddd' }" [readonly]="true" [ngModel]="aboutSrvc.nc?.text_area_acoes">
+      <ng-template pTemplate="header" hidden>
+      </ng-template>
+    </p-editor>
+  </div>
+  <p-divider layout="vertical"></p-divider>
+  <div class="dados-parceiro razao-social item">
+    <h2 class="mr-2 mb-5">
+      <i class="pi pi-camera"></i>
+      Evidencias fotográficas
+    </h2>
+    <p-carousel [value]="this.aboutSrvc.nc?.attachments?.filter(isType2) || []" [numVisible]="3" [numScroll]="3" [showIndicators]="false">
+      <ng-template let-file pTemplate="item">
+        <button (click)="visualizarDocumento(file.id,file.type)">
+        <i class="bi bi-file-earmark fs-1"></i>
+        <p>{{file.name||"file.txt"}}</p>
+        </button>
+      </ng-template>
+    </p-carousel>
+  </div>
+</div>
+    </ng-template>
+  </p-accordionTab>
+  <p-accordionTab [selected]="isAllOpen">
+    <ng-template pTemplate="header">
+      <div class="d-flex justify-content-between accordion">
+        <p>
+          <i class="bi bi-file-earmark-text"></i>
+            Notificações por E-mail
+        </p>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="content">
+      <app-view-stakeholders></app-view-stakeholders>
+    </ng-template>
+  </p-accordionTab>
 </p-accordion>

@@ -39,7 +39,7 @@
       <div class="d-flex justify-content-between accordion">
         <p>
           <i class="bi bi-file-earmark-text"></i>
-          Destino da NC
+          Dados da NC
         </p>
         <button class="btn btn-dark red" (click)="goToStepById(0)">
           <i class="bi bi-pencil mr-1"></i>
@@ -49,6 +49,8 @@
     </ng-template>
     <ng-template pTemplate="content">
       <app-identify-nc></app-identify-nc>
+      <div class="mt-3"></div>
+       <app-products-and-points></app-products-and-points>
     </ng-template>
   </p-accordionTab>
   <p-accordionTab [selected]="isAllOpen">
@@ -56,7 +58,7 @@
       <div class="d-flex justify-content-between accordion">
         <p>
           <i class="bi bi-box-seam"></i>
-          Produtos e Pontos
+          Descrição
         </p>
         <button class="btn btn-dark red" (click)="goToStepById(1)">
           <i class="bi bi-pencil mr-1"></i>
@@ -65,7 +67,72 @@
       </div>
     </ng-template>
     <ng-template pTemplate="content">
-      <app-products-and-points></app-products-and-points>
+     <div class="div-ident-parceiro d-flex flex-column flex-lg-row mt-3">
+  <div class="dados-parceiro razao-social item">
+    <h2 class="mr-2">
+      <i class="bi bi-file-earmark-text"></i>
+      Descrição 
+    </h2>
+    <p-editor
+      [(ngModel)]="this.nonComplicanceService.nc.text_area_nc"
+      [style]="{ height: '144px', border: '1px solid #dddddd' }"
+      [readonly]="true"
+    >
+      <ng-template pTemplate="header"> </ng-template>
+    </p-editor>
+  </div>
+  <p-divider layout="vertical"></p-divider>
+  <div class="dados-parceiro razao-social item">
+    <h2 class="mr-2 mb-5">
+      <i class="bi bi-paperclip"></i>
+      Evidências
+    </h2>
+    <p-carousel
+      [value]="returnFile('evidenciasNc')"
+      [numVisible]="3"
+      [numScroll]="3"
+      [showIndicators]="false"
+    >
+      <ng-template let-file pTemplate="item">
+        <i class="bi bi-file-earmark fs-1"></i>
+        <p>{{ file.name }}</p>
+      </ng-template>
+    </p-carousel>
+  </div>
+</div>
+<div class="div-ident-parceiro d-flex mt-3">
+  <div class="dados-parceiro razao-social item">
+    <h2 class="mr-2">
+      <i class="bi bi-geo"></i>
+      Ações Imediatas
+    </h2>
+    <p-editor
+      [(ngModel)]="this.nonComplicanceService.nc.text_area_acoes"
+      [style]="{ height: '144px', border: '1px solid #dddddd' }"
+      [readonly]="true"
+    >
+      <ng-template pTemplate="header" hidden> </ng-template>
+    </p-editor>
+  </div>
+  <p-divider layout="vertical"></p-divider>
+  <div class="dados-parceiro razao-social item">
+    <h2 class="mr-2 mb-5">
+      <i class="bi bi-paperclip"></i>
+      Evidências
+    </h2>
+    <p-carousel
+      [value]="returnFile('evidenciasAcoes')"
+      [numVisible]="3"
+      [numScroll]="3"
+      [showIndicators]="false"
+    >
+      <ng-template let-file pTemplate="item">
+        <i class="bi bi-file-earmark fs-1"></i>
+        <p>{{ file.name }}</p>
+      </ng-template>
+    </p-carousel>
+  </div>
+</div>
     </ng-template>
   </p-accordionTab>
   <p-accordionTab [selected]="isAllOpen">
