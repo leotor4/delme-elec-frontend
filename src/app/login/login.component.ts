@@ -70,16 +70,26 @@ export class LoginComponent implements OnInit {
     } else {
 
       const { registerPassword, confirmPassword } = this.form;
-      this.authService.registerPassword(registerPassword,confirmPassword, this.hashUser).subscribe(
-        data => {
-         this.hashUser = '';
-        },
-        err => {
-          if (err.status == 400) {
-            this.addSingle('Credenciais Inválidas', 'error')
+
+      if (registerPassword == confirmPassword) {
+        this.authService.registerPassword(registerPassword, this.hashUser).subscribe(
+          data => {
+           this.hashUser = '';
+          },
+          err => {
+            if (err.status == 400) {
+              this.addSingle('Credenciais Inválidas', 'error')
+            }
           }
-        }
-      )       
+        )       
+      } else {
+        this.messageService.add({
+          severity: 'info',
+          summary: 'Você digitou senhas divergentes.',
+          life: 5000,
+        });
+      }
+      
     }
 
   }

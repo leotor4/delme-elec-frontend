@@ -30,12 +30,11 @@ export class AuthService {
   }
 
 
-  registerPassword(registerPassword:string, confirmPassword: string, hashUser:string) {
+  registerPassword(password:string, hashUser:string) {
 
-    return this.http.post(AUTH_API + 'user/register/password', {
-      registerPassword,
-      confirmPassword,
-      hashUser
+    return this.http.post(AUTH_API + 'users/changePasswrod/', {
+      password: password,
+      token: hashUser
     }, httpOptions);
   }
 }
