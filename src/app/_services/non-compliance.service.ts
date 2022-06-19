@@ -204,7 +204,7 @@ export class NonComplianceService {
     ObjectUtils.adicionar_campos<NonCompliance>(this.nc, this.formIdentificacaoNC.value);
     formData.append('data', JSON.stringify(this.nc));
     console.log(this.nc)
-    return this.http.post(this.apiUrl+ "/" + this.nc.id, formData)
+    return this.http.put(this.apiUrl+ "/" + this.nc.id, formData)
   }
 
   
