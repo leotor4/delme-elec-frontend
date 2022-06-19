@@ -66,6 +66,7 @@ export class RegisterComponent implements OnInit {
   }
 
   sendMailForUser() {
+    this.userService.sendMailForRegisterUser(this.selectedUser)
     console.log('enviar email para ', this.selectedUser)
   }
 

@@ -29,12 +29,11 @@ export class UserService {
     return this.http.get('http://localhost:3333/users/list/');
   }
 
-  sandMailForRegisterUser(user: User): Observable<any> {
-    //TODO
-    ///possibleUser/sendMail
-    // return this.http.post('http://localhost:3333/send/mail/register/user/', {
-    //   user
-    // });
-    return new Observable<any>()
+  sendMailForRegisterUser(user: User): Observable<any> {
+
+    return this.http.put("http://localhost:3333/possibleUser/sendMail/", {
+      email:user.email,
+    })
+
   }
 }
