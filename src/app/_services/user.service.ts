@@ -30,8 +30,8 @@ export class UserService {
   }
 
   sendMailForRegisterUser(user: User): Observable<any> {
-
-    return this.http.post("http://localhost:3333/possibleUser/sendMail/", {
+    
+    return this.http.post("http://localhost:3333/users/sendMail/", {
       email:user.email,
     })
 

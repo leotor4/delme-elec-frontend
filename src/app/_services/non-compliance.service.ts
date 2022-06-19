@@ -90,7 +90,7 @@ export class NonComplianceService {
 
   validarCheckpoint():boolean{
     if(this.nc.tipo_controle?.includes("OP")){
-      return (!!this.nc.num_op);
+      return (!!this.nc.num_op) && !!this.nc.instruction;
     }
 
     if(this.nc.tipo_controle?.includes("NF-e(NOTA FISCAL ELETRÔNICA)")){
@@ -101,14 +101,12 @@ export class NonComplianceService {
 
     if(this.nc.tipo_controle == "PV(PEDIDO DE VENDA)" || this.nc.tipo_controle == "PC(PEDIDO DE COMPRA)" || this.nc.tipo_controle == "CC(COTAÇÃO COMERCIAL)"){
       return (!!this.nc.num_nota
-        && (this.returnfiles("pontoControle").length > 0)
         );
     }
 
       if(this.nc.tipo_controle == "PR(PROCEDIMENTO)"){
       return (
-        (this.returnfiles("pontoControle").length > 0)
-        && !!this.nc.procedure
+        !!this.nc.procedure
         );
     }
     return false;
