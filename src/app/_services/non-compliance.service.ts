@@ -140,7 +140,8 @@ export class NonComplianceService {
       && this.nc.tipo_controle
       && this.nc.quant_nc
       && this.nc.quant_total
-      && this.validarAuditoria()  
+      && this.nc.instruction
+      //&& this.validarAuditoria()  
       && this.validarCheckpoint()
       
       )
