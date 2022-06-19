@@ -66,7 +66,16 @@ export class RegisterComponent implements OnInit {
   }
 
   sendMailForUser() {
-    this.userService.sendMailForRegisterUser(this.selectedUser)
+    this.userService.sendMailForRegisterUser(this.selectedUser).subscribe(
+      {
+        next: (response:any) => {
+          console.log("deu certo")
+        },
+        error: err => {
+          console.log('deu rui,')
+        }
+      }
+    )
     console.log('enviar email para ', this.selectedUser)
   }
 
