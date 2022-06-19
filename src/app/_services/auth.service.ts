@@ -32,7 +32,7 @@ export class AuthService {
 
   registerPassword(password:string, hashUser:string) {
 
-    return this.http.post(AUTH_API + 'users/changePasswrod/', {
+    return this.http.post(AUTH_API + 'users/changePassword/', {
       password: password,
       token: hashUser
     }, httpOptions);
