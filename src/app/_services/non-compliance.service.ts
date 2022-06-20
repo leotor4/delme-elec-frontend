@@ -95,7 +95,7 @@ export class NonComplianceService {
 
     if(this.nc.tipo_controle?.includes("NF-e(NOTA FISCAL ELETRÔNICA)")){
       return (!!this.nc.num_nota
-        && (this.returnfiles("pontoControle").length > 0)
+        
         );
     }
 
@@ -201,7 +201,12 @@ export class NonComplianceService {
     this.uploadFiles(formData);
     ObjectUtils.adicionar_campos<NonCompliance>(this.nc, this.formIdentificacaoNC.value);
     formData.append('data', JSON.stringify(this.nc));
-    console.log(this.nc)
+    return this.http.put(this.apiUrl+ "/" + this.nc.id, formData)
+  }
+
+  saveNc() {
+    let formData = new FormData();
+    formData.append('data', JSON.stringify(this.nc));
     return this.http.put(this.apiUrl+ "/" + this.nc.id, formData)
   }
 

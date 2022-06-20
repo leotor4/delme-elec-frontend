@@ -4,6 +4,7 @@ import momentImported from 'moment';
 const moment = momentImported;
 
 export class NcsListDTO {
+  id : number;
   numero: string = "";
   parceiro: string = "";
   emissor: string = "";
@@ -23,7 +24,8 @@ export class NcsListDTO {
     if (init) {
         Object.assign(this.nc, init)
 
-        console.log('teste', init)
+        
+        this.id = ObjectUtils.buscarValor(init, 'id', '')
         this.numero = ObjectUtils.buscarValor(init, 'code', '')
         this.emissor = ObjectUtils.buscarValor(init, 'emissor.username', '')
         this.status = ObjectUtils.buscarValor(init, 'status', '')
@@ -37,7 +39,12 @@ export class NcsListDTO {
         if (init.data_abertura && init.data_fechamento) {
           this.data_abertura = new Date(init.data_abertura);
           this.data_fechamento = new Date(init.data_fechamento);
-          this.prazo = this.getPrazo(init.data_abertura, init.data_fechamento);
+
+
+          if (this.status != "canceled") {
+            this.prazo = this.getPrazo(init.data_abertura, init.data_fechamento);
+          }
+          
         }
 
         this.parceiro = this.getParceiro()

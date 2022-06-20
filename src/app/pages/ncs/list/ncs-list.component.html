@@ -25,18 +25,18 @@
 
 <div style="margin-top: 10px;">
 <p-table  responsiveLayout="scroll" #dt 
-[globalFilterFields]="['numero','emissor', 'status', 'tipos_nc_item', 'prazo','tipos_local_item', 'data_abertura', 'dsc_produto']" 
+[globalFilterFields]="['id','emissor', 'status', 'tipos_nc_item', 'prazo','tipos_local_item', 'data_abertura', 'dsc_produto']" 
 [value]="listNcs" [columns]="cols" [paginator]="true" [rows]="rows" [(first)]="first" [totalRecords]="totalRecords" 
 [showCurrentPageReport]="true" responsiveLayout="scroll" 
 currentPageReportTemplate="Exibindo de {first} a {last} de {totalRecords} registros" [rowsPerPageOptions]="[5,10,25,50]" [filterDelay]="0">
 
   <ng-template pTemplate="header">
     <tr>
-      <th pSortableColumn="numero">
+      <th pSortableColumn="id">
         <div class="flex justify-content-between align-items-center">
             Número
-            <p-sortIcon field="numero"></p-sortIcon>
-            <p-columnFilter type="text" field="numero" display="menu" class="ml-auto"></p-columnFilter>
+            <p-sortIcon field="id"></p-sortIcon>
+            <p-columnFilter type="number" field="id" display="menu" class="ml-auto"></p-columnFilter>
         </div>
       </th>
       
@@ -176,18 +176,37 @@ currentPageReportTemplate="Exibindo de {first} a {last} de {totalRecords} regist
   </ng-template>
 </p-table>
 
-  <div>
-    <h2 style="margin-top: 25px;">NCs por Status</h2>
-    <ngx-charts-pie-chart
-      [view]="view" 
-      [scheme]="colorPie"
-      [results]="pieValues"
-      [gradient]="gradient"
-      [legend]="showLegend"
-      [legendPosition]="legendPosition"
-      [labels]="showLabels"
-      [doughnut]="isDoughnut"
-      >
-    </ngx-charts-pie-chart>
+  <div style="display:flex">
+    <div style="display: flex; flex-direction:row;">
+      <h2 style="margin-top: 25px;">NCs por Status</h2>
+      <ngx-charts-pie-chart
+        [view]="view" 
+        [scheme]="gridColor"
+        [results]="pieValues"
+        [gradient]="gradient"
+        [legend]="showLegend"
+        [legendPosition]="legendPosition"
+        [labels]="showLabels"
+        [doughnut]="isDoughnut"
+        >
+      </ngx-charts-pie-chart>
+
+      <ngx-charts-line-chart
+        [view]="lineChartView"
+        [scheme]="gridColor"
+        [legend]="lineChartLegend"
+        [showXAxisLabel]="lineChartShowXAxisLabel"
+        [showYAxisLabel]="lineChartShowYAxisLabel"
+        [xAxis]="lineChartXAxis"
+        [yAxis]="lineChartYAxis"
+        [xAxisLabel]="lineChartXAxisLabel"
+        [yAxisLabel]="lineChartYAxisLabel"
+        [timeline]="lineChartTimeline"
+        [results]="multi"
+        [legendPosition]="legendPosition"
+
+        >
+      </ngx-charts-line-chart>
+    </div>
   </div>
 </div>

@@ -22,19 +22,107 @@ import { DashboardsService } from '../../dashboards/dashboards.service';
 export class NcsListComponent implements OnInit {
 
   cardValues: any[] = [];
-  colorPie = 'air'
+  gridColor = 'ocean'
   view = [500,300]
   pieValues: any[] = [];
   gradient: boolean = true;
   showLegend: boolean = true;
   showLabels: boolean = true;
   isDoughnut: boolean = false;
-  legendPosition: string = 'below';
+  legendPosition: string = 'right';
 
   colorScheme = {
     domain: ['rgb(0, 91, 123)', 'rgb(0, 91, 123)', 'rgb(0, 91, 123)', 'rgb(0, 91, 123)', 'rgb(0, 91, 123)', 'rgb(0, 91, 123)']
   };
   cardColor: string = '#00344D';
+
+
+
+
+
+  //********line chart************
+  multi:any[] = [
+    {
+      "name": "Germany",
+      "series": [
+        {
+          "name": "1990",
+          "value": 62000000
+        },
+        {
+          "name": "2010",
+          "value": 73000000
+        },
+        {
+          "name": "2011",
+          "value": 89400000
+        }
+      ]
+    },
+  
+    {
+      "name": "USA",
+      "series": [
+        {
+          "name": "1990",
+          "value": 250000000
+        },
+        {
+          "name": "2010",
+          "value": 309000000
+        },
+        {
+          "name": "2011",
+          "value": 311000000
+        }
+      ]
+    },
+  
+    {
+      "name": "France",
+      "series": [
+        {
+          "name": "1990",
+          "value": 58000000
+        },
+        {
+          "name": "2010",
+          "value": 50000020
+        },
+        {
+          "name": "2011",
+          "value": 58000000
+        }
+      ]
+    },
+    {
+      "name": "UK",
+      "series": [
+        {
+          "name": "1990",
+          "value": 57000000
+        },
+        {
+          "name": "2010",
+          "value": 62000000
+        }
+      ]
+    }
+  ];
+
+  lineChartView: any[] = [700, 300];
+
+  lineChartLegend: boolean = true;
+  lineChartShowLabels: boolean = true;
+  lineChartAnimations: boolean = true;
+  lineChartXAxis: boolean = true;
+  lineChartYAxis: boolean = true;
+  lineChartShowYAxisLabel: boolean = true;
+  lineChartShowXAxisLabel: boolean = true;
+  lineChartXAxisLabel: string = 'Year';
+  lineChartYAxisLabel: string = 'Population';
+  lineChartTimeline: boolean = true;
+  //********line chart************
 
 
   @ViewChild('dt') dt: Table;
@@ -188,38 +276,45 @@ export class NcsListComponent implements OnInit {
 
 
 
-  cancelNc(nc: NonCompliance) {
-
-
+  cancelNc(ncDto: NonCompliance) {
     this.confirmationService.confirm({
-      message: 'Esta ação irá alterar o status da NC para deletada, deseja prosseguir com a operação?',
+      message: 'Esta ação irá alterar o status da NC para cancelada, deseja prosseguir com a operação?',
       header: 'Cancelar NC',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         
-        nc.status = "canceled"
-        this.ncsService.nc = nc
-        this.ncsService.put().subscribe({
-          next: data => {
-            this.messageService.add({
-              severity: "success",
-              summary: "Não conformidade cancelada com sucesso.",
-              life: 3000,
-            });
+        if (ncDto.id) {
+          this.ncsService.getById(ncDto.id).subscribe(
+            {
+              next: (response:any) => {
+                this.ncsService.nc = new NonCompliance(response['nc'][0]);              
 
-            window.location.reload()
-          },
-          error: err => {
-            this.messageService.add({
-              severity: "error",
-              summary: "Houve um problema ao cancelar não conformidade.",
-              life: 3000,
-            });
-            
-          }
-        });
-
-
+                this.ncsService.nc.status = "canceled"
+          
+                this.ncsService.saveNc().subscribe({
+                  next: data => {
+                    this.messageService.add({
+                      severity: "success",
+                      summary: "Não conformidade cancelada com sucesso.",
+                      life: 3000,
+                    });
+        
+                    window.location.reload()
+                  },
+                  error: err => {
+                    this.messageService.add({
+                      severity: "error",
+                      summary: "Houve um problema ao cancelar não conformidade.",
+                      life: 3000,
+                    });
+                    
+                  }
+                });
+        
+              }
+            }
+          ) 
+        }
       },
 
       reject:() => {
