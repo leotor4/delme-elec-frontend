@@ -36,7 +36,7 @@ export class IshikawaDialogComponent implements OnInit {
   }
 
   search(event:any,type:string){
-    var filtro = event.query;
+    var filtro = event.query.normalize('NFKD').replace(/[^\w]/g, '');
     
     switch(type){
       case 'machine':

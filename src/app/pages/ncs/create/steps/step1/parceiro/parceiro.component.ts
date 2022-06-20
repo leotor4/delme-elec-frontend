@@ -31,7 +31,7 @@ export class ParceiroComponent implements OnInit {
   
 
   search(event: any) {
-    var filtro = event.query;
+    var filtro = event.query.normalize('NFKD').replace(/[^\w]/g, '');
     this.results = [];
 
     if (this.nonComplicanceService.nc.tipos_parceiro_item == "Cliente") {

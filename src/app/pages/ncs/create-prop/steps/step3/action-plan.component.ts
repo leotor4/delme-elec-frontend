@@ -57,6 +57,7 @@ export class ActionPlanComponent implements OnInit {
 
 
   deleteAction(action:ActionPlan){
+    let afectedsector = this.propService.sectors.find(i => i.name === this.propService.ncProp.tipos_local_item)
     this.confirmationService.confirm({
       message:
           "Você tem certeza que quer excluir a ação " +
@@ -69,6 +70,12 @@ export class ActionPlanComponent implements OnInit {
             this.propService.propSolution.actionPlans.filter(
                 (val) => val.description !== action.description 
             );
+        if(action.responsible?.email!= this.propService.ncProp.emissor?.email && action.responsible?.email!="efrain@electrosonteleco.com.br" && action.responsible?.email!="manuela.starowsta@electrosonteleco.com.br" && action.responsible?.email!=this.propService.ncProp.partner?.email&& action.responsible?.email!=afectedsector?.responsible_email){
+          this.propService.propSolution.contacts =
+              this.propService.propSolution.contacts.filter(
+                  (val) => val.email !== action.responsible?.email
+              );
+        }
         this.messageService.add({
           severity: "info",
           summary: "Ação removida com sucesso",

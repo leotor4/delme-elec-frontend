@@ -32,5 +32,12 @@ export class ReviewInfomationsComponent implements OnInit {
     let formatedDate = newDate.toLocaleString("pt-Br").split(" ")[0]
     return formatedDate
   }
+  returnString(obj: any) {
+    let str = ''
+    if (obj?.code) str += obj.code + " ";
+    if (obj?.description) str += obj.description + " ";
+    if (obj?.rev) str += obj.rev + " ";
+    return str
+  }
 
 }

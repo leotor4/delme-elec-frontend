@@ -108,7 +108,7 @@ export class ContactsComponent implements OnInit{
   }
 
   search(event: any) {
-    let query = event.query;
+    let query = event.query.normalize('NFKD').replace(/[^\w]/g, '');
     let contacts = this.nonComplianceService.allContacts.filter(
       (val) =>
         this.nonComplianceService.nc.contacts.indexOf(val) <= 0 &&
@@ -141,7 +141,6 @@ export class ContactsComponent implements OnInit{
     let afectedsector = this.nonComplianceService.sectors.find(i => i.name === this.nonComplianceService.nc.tipos_local_item)
     this.contactsSrvc.get().subscribe((data: any) => {
       this.nonComplianceService.allContacts = data.contact;
-      if(this.nonComplianceService.nc.contacts.length===0){
         let user = this.tokenServ.getUser()
         this.nonComplianceService.nc.contacts =
             this.nonComplianceService.allContacts.filter((val) => val.email! === "efrain@electrosonteleco.com.br"
@@ -219,7 +218,6 @@ export class ContactsComponent implements OnInit{
                 ))
         )
         console.log(this.nonComplianceService.nc.contacts)
-      }
     });
   }
 }

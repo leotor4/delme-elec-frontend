@@ -45,6 +45,7 @@ export class CreatePropHeaderComponent implements OnInit {
 
   ngOnInit(): void {
      this.id = parseInt(this.route.snapshot.paramMap.get('id')||"")
+    this.propService.getSectors()
   }
 
   openDados(){

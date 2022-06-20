@@ -135,7 +135,10 @@
 
 <div class="div-ident-parceiro pr-4 pb-0 " *ngIf="hasSelected()">
   <div class="dados-parceiro razao-social py-0 py-1">
-    <h1 *ngIf="!isInterno()">Razão Social</h1>
+    <div *ngIf="!isInterno()" class="d-flex justify-content-between">
+    <h1 >Razão Social</h1>
+      <p-chip [label]="nonComplicanceService.nc.partner.code" icon="bi bi-ticket-perforated"></p-chip>
+    </div>
     <h1 *ngIf="isInterno()">Setor</h1>
     <p>
       {{ nonComplicanceService.nc.partner.corporate_name }}

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {DialogService} from 'primeng/dynamicdialog';
 import {IshikawaDialogComponent} from "./ishikawa-dialog/ishikawa-dialog.component";
 import {ProposalService} from "../../proposal.service";
+import {Instruction} from "../../../../../models/instruction";
 
 @Component({
   selector: 'app-ishikawa-diagram',
@@ -41,5 +42,13 @@ export class IshikawaDiagramComponent implements OnInit {
 
       }
     })
+  }
+
+  returnString(obj: any) {
+    let str = ''
+    if (obj?.code) str += obj.code + " ";
+    if (obj?.description) str += obj.description + " ";
+    if (obj?.rev) str += obj.rev + " ";
+    return str
   }
 }

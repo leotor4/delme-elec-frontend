@@ -58,7 +58,7 @@
                                 </div>
                                 <div class="col">
                                     <label>Método</label>
-                                    <p-editor [ngModel]="this.aboutService.nc.proposalSolution.method_description"
+                                    <p-editor [ngModel]="this.aboutService.nc.proposalSolution.method_description+ '<p>' + returnString(this.aboutService.nc.proposalSolution.instruction) + '</p>'+ '<p>' + returnString(this.aboutService.nc.proposalSolution.procedure) + '</p>'+ '<p>' + returnString(this.aboutService.nc.proposalSolution.regulatory) + '</p>'+ '<p>' + returnString(this.aboutService.nc.proposalSolution.nbr) + '</p>'"
                                         [style]="editorStyle" [readonly]="true">
                                         <ng-template pTemplate="header">
                                         </ng-template>

@@ -11,6 +11,8 @@ import { ProposalSolution } from 'src/app/models/proposal-solution';
 import { RegulatoryNorm } from 'src/app/models/regulatory-norm';
 import { User } from 'src/app/models/user.model';
 import {NonComplianceService} from "../../../_services/non-compliance.service";
+import {Sector} from "../../../models/sector";
+import {SectorService} from "../../../_services/sector.service";
 
 
 @Injectable({
@@ -27,6 +29,7 @@ export class ProposalService {
   machines:Machine[]= []
   users:User[] = []
   actions: ActionPlan[] = []
+  sectors: Sector[]
 
 
   apiUrl = "http://localhost:3333/proposal";
@@ -34,7 +37,7 @@ export class ProposalService {
 
  
 
-  constructor(private ncsService : NonComplianceService, private http: HttpClient) { }
+  constructor(private ncsService : NonComplianceService, private http: HttpClient, public sectorService: SectorService,) { }
   
  
   step2= {
@@ -134,6 +137,11 @@ export class ProposalService {
       return umaBoxPreenchida
      
      
+  }
+  getSectors(){
+    this.sectorService.get().subscribe((data: any) => {
+      this.sectors = data.sectors;
+    });
   }
 }
 

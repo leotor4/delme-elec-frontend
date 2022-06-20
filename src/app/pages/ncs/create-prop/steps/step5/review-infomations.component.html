@@ -63,7 +63,7 @@
                         </div>
                         <div class="col">
                             <label>Método</label>
-                            <p-editor [ngModel]="this.propService.propSolution.method_description" [style]="editorStyle" [readonly]="true">
+                            <p-editor [ngModel]="this.propService.propSolution.method_description + '<p>' + returnString(this.propService.propSolution.instruction) + '</p>'+ '<p>' + returnString(this.propService.propSolution.procedure) + '</p>'+ '<p>' + returnString(this.propService.propSolution.regulatory) + '</p>'+ '<p>' + returnString(this.propService.propSolution.nbr) + '</p>'" [style]="editorStyle" [readonly]="true">
                                 <ng-template pTemplate="header">
                                 </ng-template>
                             </p-editor>

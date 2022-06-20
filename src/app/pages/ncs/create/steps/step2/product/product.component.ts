@@ -35,7 +35,7 @@ export class ProductComponent implements OnInit {
     });
   }
   getFilteredList(event: any) {
-    var filtro = event.query;
+    var filtro = event.query.normalize('NFKD').replace(/[^\w]/g, '');
     this.results = [];
 
     this.products.forEach((element) => {
