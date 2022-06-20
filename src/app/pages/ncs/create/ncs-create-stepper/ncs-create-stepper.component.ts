@@ -14,7 +14,7 @@ import html2canvas from 'html2canvas';
 })
 export class NcsCreateStepperComponent implements OnInit {
   items: MenuItem[];
-  stepPosition: number = 0;
+  stepPosition: number = 2;
   lastStepLabel = "Avançar";
   constructor(private route:Router,public nonComplianceService: NonComplianceService,private messageService: MessageService,) {}
 

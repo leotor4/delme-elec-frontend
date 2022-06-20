@@ -61,7 +61,7 @@ export class SgqService {
 
   avancarPasso1(): boolean {
     return !(this.sgq.text_area1
-        && (this.step2File.length>0||this.sgq.attachments.length>0)
+     
     )
   }
 

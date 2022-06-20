@@ -88,12 +88,12 @@
     </ng-template>
     <ng-template pTemplate="content">
     <div class="editar-campo">
-        <label>Valor</label>
+        <label>Valor Total *</label>
         <input
                 currencyMask [(ngModel)]="doc.value" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
         />
         <div class="mt-3">
-            <label>Anexar Documento</label>
+            <label>Anexar Documento *</label>
             <div class="div-attachment">
                 <h1>Anexar relatório de custos</h1>
                 <div

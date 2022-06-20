@@ -43,6 +43,7 @@ export class FechamentoDialogComponent implements OnInit {
                  this.cServ.post(this.closing).subscribe(
         {
           next:(data) => {
+            this.close()
           this.messageService.add({
             severity: "info",
             summary: "Fechamento criado com sucesso",
