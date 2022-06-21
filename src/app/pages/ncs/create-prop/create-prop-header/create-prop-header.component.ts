@@ -22,7 +22,6 @@ export class CreatePropHeaderComponent implements OnInit {
   ) { }
 
   saveProp(){
-
     this.propService.popular()
     this.propService.put().subscribe({
        next:(data:any )=> {

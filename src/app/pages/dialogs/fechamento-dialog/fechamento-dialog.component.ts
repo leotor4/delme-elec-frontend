@@ -20,7 +20,6 @@ export class FechamentoDialogComponent implements OnInit {
               public cServ: ClosingService,
               public config: DynamicDialogConfig,
               public ncService:NonComplianceService,
-            
               private messageService: MessageService
   ) {}
   close(){

@@ -1,7 +1,10 @@
 
     <div *ngIf="aboutService.hasProposal()">
+        <div class="d-flex flex-row justify-content-end edit-button mb-2"><button class="btn btn-dark btn-md" (click)="goPlaces()">Editar <i class="bi bi-pencil-fill ml-1"></i></button></div>
         <div class="d-flex flex-lg-row flex-column justify-content-between">
+            
             <div class="d-flex">
+                
                 <div class="cabecalho">
                     <div class="d-flex align-items-center">
                         <h1 class="mr-3">Análise da Proposta de Solução</h1>
@@ -10,6 +13,9 @@
                         Revise ou altere os dados da proposta de solução. Se tudo estiver OK, submeta a análise desta proposta de solução.
                     </p>
                 </div>
+            </div>
+            <div>
+                
             </div>
             <div class="d-flex justify-content-end align-items-center mb-3">
                 <button [class]="isAllOpen ? selectedClass : unselectedClass" class="mr-2 btn-sm" (click)="isAllOpen = true">

@@ -7,7 +7,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { PdfViewerModule } from "ng2-pdf-viewer";
 import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
-import { MessageService } from 'primeng/api';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { EditorModule } from "primeng/editor";
 import { RadioButtonModule } from "primeng/radiobutton";
