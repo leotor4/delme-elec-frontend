@@ -59,7 +59,7 @@
                 <label>IT - Instrução de Trabalho</label>
                 <p-autoComplete
                         placeholder="Busque..."
-                        field="description"
+                        field="name"
                         [suggestions]="instructions"
                         (completeMethod)="search($event,'instruction')"
                         [(ngModel)]="propService.propSolution.instruction"
@@ -94,7 +94,7 @@
                 <label>PR - Procedimento</label>
                 <p-autoComplete
                         placeholder="Busque..."
-                        field="description"
+                        field="name"
                         [suggestions]="procedures"
                         (completeMethod)="search($event,'procedure')"
                         [(ngModel)]="propService.propSolution.procedure"
@@ -129,7 +129,7 @@
                 <label>NR - Norma Regulamentadora</label>
                 <p-autoComplete
                         placeholder="Busque..."
-                        field="description"
+                        field="name"
                         [suggestions]="regulatoryNorms"
                         (completeMethod)="search($event,'regulatory')"
                         [(ngModel)]="propService.propSolution.regulatory"
@@ -159,7 +159,7 @@
                 <label>ISO - Norma NBR</label>
                 <p-autoComplete
                         placeholder="Busque..."
-                        field="description"
+                        field="name"
                         [suggestions]="nbrs"
                         (completeMethod)="search($event,'nbr')"
                         [(ngModel)]="propService.propSolution.nbr"
