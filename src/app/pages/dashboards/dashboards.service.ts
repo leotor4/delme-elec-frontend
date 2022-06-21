@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { of } from 'rxjs/internal/observable/of';
@@ -11,7 +12,7 @@ import { NonCompliance } from 'src/app/models/non-compliance';
 export class DashboardsService {
   
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
 
   getGroupedBarChartStatusSetor(val: string) :Observable<Array<any>> {
@@ -574,7 +575,7 @@ export class DashboardsService {
 
     if (filterStatus == 'all' || filterStatus == 'running') {
       pieData.push({
-        "name" : "NCs em execução",
+        "name" : "Execução",
         "value": totalNcsRunning
       })
     }
@@ -582,14 +583,14 @@ export class DashboardsService {
 
     if (filterStatus == 'all' || filterStatus == 'canceled') {
       pieData.push({
-        "name" : "NCs canceladas",
+        "name" : "Canceladas",
         "value": totalNcsCanceled
       })
     }      
     
     if (filterStatus == 'all' || filterStatus == 'late') {
       pieData.push({
-        "name" : "NCs atrasadas",
+        "name" : "Atrasadas",
         "value": totalNcsLate
       })  
     }
@@ -598,7 +599,7 @@ export class DashboardsService {
 
     if (filterStatus == 'all' || filterStatus == 'open') {
       pieData.push({
-        "name" : "NCs abertas",
+        "name" : "Abertas",
         "value": totalNcsOpened
       })
     }
@@ -606,6 +607,13 @@ export class DashboardsService {
 
     return of(pieData)
 
+  }
+
+
+
+  getTimeLineValues():Observable<any>  {
+    return this.http.get('assets/teste.json')
+    //return this.http.get('http://localhost:3333/dashboards/ncsByStatusAndMonths')
   }
   
 }

@@ -12,7 +12,7 @@
 
     <form *ngIf="!isLoggedIn"
     name="form"
-    (ngSubmit)="f.form.valid && onSubmit()"
+    (ngSubmit)="onSubmit()"
     #f="ngForm"
     novalidate
     class="centered-right">
@@ -140,5 +140,3 @@
     </form>
     </div>
 </div>
-
-

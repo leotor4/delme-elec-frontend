@@ -176,7 +176,7 @@ currentPageReportTemplate="Exibindo de {first} a {last} de {totalRecords} regist
   </ng-template>
 </p-table>
 
-  <div style="display:flex">
+  <div style="display:flex; margin-top: 50px;">
     <div style="display: flex; flex-direction:row;">
       <h2 style="margin-top: 25px;">NCs por Status</h2>
       <ngx-charts-pie-chart
@@ -188,6 +188,7 @@ currentPageReportTemplate="Exibindo de {first} a {last} de {totalRecords} regist
         [legendPosition]="legendPosition"
         [labels]="showLabels"
         [doughnut]="isDoughnut"
+        [legendTitle]="legendTitle"
         >
       </ngx-charts-pie-chart>
 
@@ -202,9 +203,9 @@ currentPageReportTemplate="Exibindo de {first} a {last} de {totalRecords} regist
         [xAxisLabel]="lineChartXAxisLabel"
         [yAxisLabel]="lineChartYAxisLabel"
         [timeline]="lineChartTimeline"
-        [results]="multi"
+        [results]="lineChartData"
         [legendPosition]="legendPosition"
-
+        [legendTitle]="legendTitle"
         >
       </ngx-charts-line-chart>
     </div>

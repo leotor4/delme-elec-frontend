@@ -29,7 +29,8 @@ export class NcsListComponent implements OnInit {
   showLegend: boolean = true;
   showLabels: boolean = true;
   isDoughnut: boolean = false;
-  legendPosition: string = 'right';
+  legendPosition: string = 'bottom';
+  legendTitle = "legenda"
 
   colorScheme = {
     domain: ['rgb(0, 91, 123)', 'rgb(0, 91, 123)', 'rgb(0, 91, 123)', 'rgb(0, 91, 123)', 'rgb(0, 91, 123)', 'rgb(0, 91, 123)']
@@ -37,78 +38,10 @@ export class NcsListComponent implements OnInit {
   cardColor: string = '#00344D';
 
 
-
-
+  lineChartData: any[] = [];
 
   //********line chart************
-  multi:any[] = [
-    {
-      "name": "Germany",
-      "series": [
-        {
-          "name": "1990",
-          "value": 62000000
-        },
-        {
-          "name": "2010",
-          "value": 73000000
-        },
-        {
-          "name": "2011",
-          "value": 89400000
-        }
-      ]
-    },
   
-    {
-      "name": "USA",
-      "series": [
-        {
-          "name": "1990",
-          "value": 250000000
-        },
-        {
-          "name": "2010",
-          "value": 309000000
-        },
-        {
-          "name": "2011",
-          "value": 311000000
-        }
-      ]
-    },
-  
-    {
-      "name": "France",
-      "series": [
-        {
-          "name": "1990",
-          "value": 58000000
-        },
-        {
-          "name": "2010",
-          "value": 50000020
-        },
-        {
-          "name": "2011",
-          "value": 58000000
-        }
-      ]
-    },
-    {
-      "name": "UK",
-      "series": [
-        {
-          "name": "1990",
-          "value": 57000000
-        },
-        {
-          "name": "2010",
-          "value": 62000000
-        }
-      ]
-    }
-  ];
 
   lineChartView: any[] = [700, 300];
 
@@ -119,8 +52,8 @@ export class NcsListComponent implements OnInit {
   lineChartYAxis: boolean = true;
   lineChartShowYAxisLabel: boolean = true;
   lineChartShowXAxisLabel: boolean = true;
-  lineChartXAxisLabel: string = 'Year';
-  lineChartYAxisLabel: string = 'Population';
+  lineChartXAxisLabel: string = 'Mês';
+  lineChartYAxisLabel: string = 'Qtd de NCs';
   lineChartTimeline: boolean = true;
   //********line chart************
 
@@ -169,6 +102,7 @@ export class NcsListComponent implements OnInit {
     private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
+    this.setDataLineChart()
     this.startListNcs('all')
   }
 
@@ -177,10 +111,8 @@ export class NcsListComponent implements OnInit {
     this.ncsService.get().subscribe((data: any) => {
       
       //this.listNcs.append(data.noncompliances);
-      console.log('data', data)
       const compliances: Array<NonCompliance> = data.noncompliances
 
-      console.log('compliances',compliances)
 
       if (compliances?.length > 0) {
         this.listNcs = compliances.map(
@@ -237,17 +169,45 @@ export class NcsListComponent implements OnInit {
 
     this.dashboardService.getKpisList(compliances).subscribe((data:any) => {
       this.cardValues = data
-      console.log(data)
     });
 
 
     this.dashboardService.getPiesValues(compliances, filterStatus).subscribe((data:any) => {
       this.pieValues = data
-      console.log(data)
     });
     
   }
   
+  parseMonthStrToNumber(strMonth : string) : string {
+    switch(strMonth) {
+      case 'january':
+        return '1';
+      case 'february':
+        return '2';
+      case 'march':
+        return '3';
+      case 'april':
+        return '4';
+      case 'may':
+        return '5';
+      case 'june':
+        return '6';
+      case 'july':
+        return '7';
+      case 'august':
+        return '8';
+      case 'september':
+        return '9';
+      case 'october':
+        return '10';
+      case 'november':
+        return '11';
+      case 'december':
+        return '12';
+      default:
+        return '0';
+    }
+  }
 
   next() {
     this.first = this.first + this.rows;
@@ -355,7 +315,6 @@ export class NcsListComponent implements OnInit {
 
 
   onSelectCard(event : any) {
-    console.log(event);
     if (event['name'] == 'Total de NCs') {
       this.startListNcs('all')
     }
@@ -377,4 +336,51 @@ export class NcsListComponent implements OnInit {
     }
   }
   
+
+
+  setDataLineChart() {
+    this.dashboardService.getTimeLineValues().subscribe((data:any)=> {
+       
+      var seriesOpen = []
+      var seriesClosed = []
+
+      var lineChartDataAux = []
+
+
+      if(data.open) {
+        for (var element of data.open) {
+
+
+          seriesOpen.push({
+            "value": element.count,
+            "name": this.parseMonthStrToNumber(element.month)
+          })
+        }
+        lineChartDataAux.push({
+          "name": "Abertas",
+          "series": seriesOpen
+        })
+
+
+
+      }
+      
+      if(data.close) {
+        for (var element of data.close) {
+          seriesClosed.push({
+            "value": element.count,
+            "name": this.parseMonthStrToNumber(element.month)
+          })
+        }
+        lineChartDataAux.push({
+          "name": "Encerradas",
+          "series": seriesClosed
+        })
+      }
+
+      
+      this.lineChartData = [...lineChartDataAux]
+
+    });
+  }
 }
