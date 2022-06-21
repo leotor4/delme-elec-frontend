@@ -15,7 +15,7 @@ export class EvidenceComponent implements OnInit {
   }
 
   clearFiles() {
-    this.sgqServ.step2File = [];
+    this.sgqServ.sgq.attachments = [];
   }
 
   onUpload(event: any) {

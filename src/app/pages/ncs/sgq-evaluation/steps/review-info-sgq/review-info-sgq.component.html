@@ -61,7 +61,7 @@
                         <tr>
                         <tr>
                             <td>{{ nc.code }}</td>
-                            <td>{{ nc.emissor.username }}</td>
+                            <td>{{ nc.emissor?.username }}</td>
                             <td>{{ nc.tipos_nc_item }}</td>
                             <td>{{ nc.tipos_local_item }}</td>
                             <td>{{ nc.product?.name || nc.product?.description }}</td>
@@ -108,14 +108,14 @@
         </ng-template>
         <ng-template pTemplate="content">
             <div class="mb-5">
-                <p-editor [ngModel]="this.sgqServ.sgq.textArea1" [style]="editorStyle" [readonly]="true">
+                <p-editor [ngModel]="this.sgqServ.sgq.text_area1" [style]="editorStyle" [readonly]="true">
                     <ng-template pTemplate="header">
                     </ng-template>
                 </p-editor>
             </div>
             <div class="mt-5 mb-3">
                 <p-carousel
-                        [value]="sgqServ.step2File"
+                        [value]="sgqServ.sgq.attachments"
                         [numVisible]="4"
                         [numScroll]="4"
                         [showIndicators]="false"
@@ -143,7 +143,7 @@
             </div>
         </ng-template>
         <ng-template pTemplate="content">
-            <p-editor [ngModel]="this.sgqServ.sgq.textArea2" [style]="editorStyle" [readonly]="true">
+            <p-editor [ngModel]="this.sgqServ.sgq.text_area2" [style]="editorStyle" [readonly]="true">
                 <ng-template pTemplate="header">
                 </ng-template>
             </p-editor>
@@ -163,7 +163,7 @@
             </div>
         </ng-template>
         <ng-template pTemplate="content">
-            <p-editor [ngModel]="this.sgqServ.sgq.textArea3" [style]="editorStyle" [readonly]="true">
+            <p-editor [ngModel]="this.sgqServ.sgq.text_area3" [style]="editorStyle" [readonly]="true">
                 <ng-template pTemplate="header">
                 </ng-template>
             </p-editor>
