@@ -37,6 +37,12 @@ export class AuthInterceptor implements HttpInterceptor {
             summary: "Página não encontrada",
             life: 3000,
           });
+        }  else if (error.status == 400) {
+          this.messageService.add({
+            severity: "error",
+            summary: "Credenciais Inválidas",
+            life: 3000,
+          });
         } else {
           this.messageService.add({
             severity: "error",

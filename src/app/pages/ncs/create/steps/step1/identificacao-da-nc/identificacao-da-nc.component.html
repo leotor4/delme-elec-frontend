@@ -10,7 +10,7 @@
     <div class="col">
       <div class="dropdown">
         <label for="">Tipo de NC *</label>
-        <select id="selectTypeNc" (change)="checkAuditoria($event.target.value)" formControlName="tipos_nc_item">
+        <select id="selectTypeNc" formControlName="tipos_nc_item">
           <option [ngValue]="null" disabled selected hidden>Selecione...</option>
           <option *ngFor="let tiposNc of tiposNc" value="{{ tiposNc }}">{{ tiposNc }}</option>
         </select>

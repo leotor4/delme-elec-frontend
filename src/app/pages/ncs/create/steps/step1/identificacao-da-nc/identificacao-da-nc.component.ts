@@ -32,7 +32,35 @@ export class IdentificacaoDaNcComponent implements OnInit {
   public tiposAuditoria: Array<String> = ["Interna", "Externa"];
 
   ngOnInit(): void {
-    
+   
+    this.nonComplicanceService.formIdentificacaoNC.get("tipos_nc_item")?.valueChanges.subscribe(
+      (item:string) => {
+        if(item == 'NC de Fornecedor') {
+          this.nonComplicanceService.nc.data_fechamento = moment(new Date()).add('d', 60).toDate()
+          this.nonComplicanceService.formIdentificacaoNC.get('data_fechamento')?.setValue(moment(this.nonComplicanceService.nc.data_fechamento).format('yyyy-MM-DD'))
+        } else {
+          this.nonComplicanceService.nc.data_fechamento = moment(new Date()).add('d', 30).toDate()
+          this.nonComplicanceService.formIdentificacaoNC.get('data_fechamento')?.setValue(moment(this.nonComplicanceService.nc.data_fechamento).format('yyyy-MM-DD'))
+        }
+
+        
+        var elementoAuditoria = document.getElementById('inputAuditoria')
+
+        if(item == 'Auditoria Interna' || item == 'Auditoria Externa') {
+          if(elementoAuditoria) {
+            elementoAuditoria.removeAttribute('disabled')
+          }
+        } else {
+          if(elementoAuditoria) {
+            elementoAuditoria.setAttribute('disabled','')
+            this.nonComplicanceService.nc.tipos_auditoria_item = ''
+            this.nonComplicanceService.formIdentificacaoNC.patchValue({
+              tipos_auditoria_item : ''
+            })
+          }
+        }
+      }
+    )
   }
 teste(){
   console.log("consolelog" + this.nonComplicanceService.nc.tipos_local_item)
@@ -57,9 +85,6 @@ teste(){
         console.log(data)
         alert('AAAA')
       });
-
-      
-
     }
 
     if(tipoNc == 'Auditoria Interna' || tipoNc == 'Auditoria Externa') {

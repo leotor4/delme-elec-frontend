@@ -133,9 +133,14 @@ export class ParceiroComponent implements OnInit {
       this.nonComplicanceService.nc.partner = 'Interno'
       this.nonComplicanceService.pesquisar = this.nonComplicanceService.formIdentificacaoNC.value['tipos_local_item']
 
-      this.nonComplicanceService.sectors.forEach((element) => {
-        if (this.verificarExistenciaInterno(element, this.nonComplicanceService.pesquisar)) {
+      console.log(this.nonComplicanceService.pesquisar)
+      
+
+      for(let element of this.nonComplicanceService.sectors) {    
+        if (element.name.toUpperCase() == this.nonComplicanceService.pesquisar.toUpperCase()) {
           
+          console.log(this.nonComplicanceService.pesquisar)
+          console.log(element)
           this.nonComplicanceService.nc.partner = element
 
           if(element.responsible_name) {
@@ -149,9 +154,9 @@ export class ParceiroComponent implements OnInit {
           if(element.responsible_email) {
             this.nonComplicanceService.editarEmailItem = element.responsible_email
           }
-          
+          break;
         }
-      });
+      };
     }
   }
 

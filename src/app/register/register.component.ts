@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../_services/auth.service';
 import { User } from '../models/user.model';
 import { UserService } from './../_services/user.service';
-import { FilterService } from "primeng/api";
+import { FilterService, MessageService } from "primeng/api";
 
 @Component({
   selector: 'app-register',
@@ -29,7 +29,7 @@ export class RegisterComponent implements OnInit {
   isSignUpFailed = false;
   errorMessage = '';
 
-  constructor(private authService: AuthService, private userService : UserService, private filterService: FilterService) {}
+  constructor(private authService: AuthService, private userService : UserService, private filterService: FilterService, private messageService: MessageService) {}
 
   ngOnInit(): void {
     
@@ -69,14 +69,21 @@ export class RegisterComponent implements OnInit {
     this.userService.sendMailForRegisterUser(this.selectedUser).subscribe(
       {
         next: (response:any) => {
-          console.log("deu certo")
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Você receberá um e-mail com as informações de acesso!',
+            life: 5000,
+          });
         },
         error: err => {
-          console.log('deu rui,')
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Não foi possível enviar as informações de acesso para o e-mail informado. Contate o admnistrador',
+            life: 5000,
+          });
         }
       }
     )
-    console.log('enviar email para ', this.selectedUser)
   }
 
 

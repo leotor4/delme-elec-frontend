@@ -51,7 +51,10 @@ export class LoginComponent implements OnInit {
 
   onSubmit(): void {
 
-    if (!this.hashUser) {
+    var isFormValid:boolean = this.validarCampos()
+
+    if (!this.hashUser && isFormValid) {
+
       const { email, password } = this.form;
       this.authService.login(email,password).subscribe(
         data => {
@@ -60,38 +63,61 @@ export class LoginComponent implements OnInit {
           this.isLoggedIn = true;
           this.isLoginFailed = false;
           this.roles = this.tokenStorage.getUser().roles;
-        },
-        err => {
-          if (err.status == 400) {
-            this.addSingle('Credenciais Inválidas', 'error')
-          }
         }
       )      
-    } else {
+    } else  if (isFormValid){
 
       const { registerPassword, confirmPassword } = this.form;
 
-      if (registerPassword == confirmPassword) {
         this.authService.registerPassword(registerPassword, this.hashUser).subscribe(
           data => {
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Senha cadastrada com sucesso!',
+              life: 5000,
+            });
            this.hashUser = '';
-          },
-          err => {
-            if (err.status == 400) {
-              this.addSingle('Credenciais Inválidas', 'error')
-            }
           }
         )       
-      } else {
-        this.messageService.add({
-          severity: 'info',
-          summary: 'Você digitou senhas divergentes.',
-          life: 5000,
-        });
-      }
-      
     }
 
+  }
+
+  validarCampos() {
+    if (!this.hashUser) {
+      const { email, password } = this.form;
+
+      if (!email || !password) {
+        this.messageService.add({
+          severity: 'info',
+          summary: 'Digite seu e-mail e sua senha',
+          life: 5000,
+        });
+        return false;
+      }
+    } else {
+      const { registerPassword, confirmPassword } = this.form;
+
+      if (!registerPassword || !confirmPassword) {
+        this.messageService.add({
+          severity: 'info',
+          summary: 'Preencha os campos com sua nova senha!',
+          life: 5000,
+        });
+        return false;
+      }
+
+      if (registerPassword != confirmPassword) {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Senhas não conferem!',
+          life: 5000,
+        });
+        return false;
+      }
+
+    } 
+    return true
   }
 
 

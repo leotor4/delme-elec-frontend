@@ -31,8 +31,12 @@ export class RejectionPointItemsComponent implements OnInit {
   resultsPr: any[];
 
   onSelectedIt() {
+    console.log(this.nonComplianceService.nc.instruction)
+    console.log(this.nonComplianceService.autoCompleteItValue)
+    
     this.nonComplianceService.nc.instruction =
       this.nonComplianceService.autoCompleteItValue;
+    console.log(this.nonComplianceService.nc.instruction)
   }
 
   onSelectedPr() {
@@ -45,6 +49,7 @@ export class RejectionPointItemsComponent implements OnInit {
     this.resultsIt = [];
     this.nonComplianceService.instructions.forEach((element) => {
       if (this.verificarExistencia(element, filtro)) {
+        element.descriptionAux = element.rev + " - " + element.description
         this.resultsIt.push(element);
       }
     });
