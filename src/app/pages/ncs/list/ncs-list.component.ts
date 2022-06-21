@@ -341,11 +341,13 @@ export class NcsListComponent implements OnInit {
   setDataLineChart() {
     this.dashboardService.getTimeLineValues().subscribe((data:any)=> {
        
+
       var seriesOpen = []
       var seriesClosed = []
 
       var lineChartDataAux = []
-
+      console.log(data)
+      
 
       if(data.open) {
         for (var element of data.open) {
@@ -365,8 +367,8 @@ export class NcsListComponent implements OnInit {
 
       }
       
-      if(data.close) {
-        for (var element of data.close) {
+      if(data.closed) {
+        for (var element of data.closed) {
           seriesClosed.push({
             "value": element.count,
             "name": this.parseMonthStrToNumber(element.month)
@@ -378,7 +380,6 @@ export class NcsListComponent implements OnInit {
         })
       }
 
-      
       this.lineChartData = [...lineChartDataAux]
 
     });
