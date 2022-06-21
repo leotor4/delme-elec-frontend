@@ -38,22 +38,10 @@ export class NcsListComponent implements OnInit {
   cardColor: string = '#00344D';
 
 
-
-  lineChartData: any[] = []
+  lineChartData: any[] = [];
 
   //********line chart************
-  multi:any[] = [
-    {
-      "name": "Germany",
-      "series": [
-        {
-          "value": 20,
-          "name": "6"
-        }
-      ]
-    },
-
-  ];
+  
 
   lineChartView: any[] = [700, 300];
 
@@ -64,8 +52,8 @@ export class NcsListComponent implements OnInit {
   lineChartYAxis: boolean = true;
   lineChartShowYAxisLabel: boolean = true;
   lineChartShowXAxisLabel: boolean = true;
-  lineChartXAxisLabel: string = 'Year';
-  lineChartYAxisLabel: string = 'Population';
+  lineChartXAxisLabel: string = 'Mês';
+  lineChartYAxisLabel: string = 'Qtd de NCs';
   lineChartTimeline: boolean = true;
   //********line chart************
 
@@ -352,20 +340,29 @@ export class NcsListComponent implements OnInit {
 
   setDataLineChart() {
     this.dashboardService.getTimeLineValues().subscribe((data:any)=> {
+       
       var seriesOpen = []
       var seriesClosed = []
-      
+
+      var lineChartDataAux = []
+
+
       if(data.open) {
         for (var element of data.open) {
+
+
           seriesOpen.push({
             "value": element.count,
             "name": this.parseMonthStrToNumber(element.month)
           })
         }
-        this.lineChartData.push({
+        lineChartDataAux.push({
           "name": "Abertas",
           "series": seriesOpen
         })
+
+
+
       }
       
       if(data.close) {
@@ -375,14 +372,15 @@ export class NcsListComponent implements OnInit {
             "name": this.parseMonthStrToNumber(element.month)
           })
         }
-        this.lineChartData.push({
+        lineChartDataAux.push({
           "name": "Encerradas",
           "series": seriesClosed
         })
       }
-    
-      console.log(this.lineChartData)
-      console.log(this.multi)
+
+      
+      this.lineChartData = [...lineChartDataAux]
+
     });
   }
 }
