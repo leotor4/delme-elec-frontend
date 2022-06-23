@@ -54,6 +54,11 @@ export class ActionPlanComponent implements OnInit {
     this.selectedStatus = ""
     this.date = ""
   }
+  dataParse(date: any) {
+    let newDate = new Date(date);
+    let formatedDate = newDate.toLocaleString("pt-Br").split(" ")[0];
+    return formatedDate;
+  }
 
 
   deleteAction(action:ActionPlan){
@@ -73,6 +78,10 @@ export class ActionPlanComponent implements OnInit {
         if(action.responsible?.email!= this.propService.ncProp.emissor?.email && action.responsible?.email!="efrain@electrosonteleco.com.br" && action.responsible?.email!="manuela.starowsta@electrosonteleco.com.br" && action.responsible?.email!=this.propService.ncProp.partner?.email&& action.responsible?.email!=afectedsector?.responsible_email){
           this.propService.propSolution.contacts =
               this.propService.propSolution.contacts.filter(
+                  (val) => val.email !== action.responsible?.email
+              );
+          this.propService.ncProp.contacts =
+              this.propService.ncProp.contacts.filter(
                   (val) => val.email !== action.responsible?.email
               );
         }
