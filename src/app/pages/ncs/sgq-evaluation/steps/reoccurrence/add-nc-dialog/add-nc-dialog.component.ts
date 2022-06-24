@@ -14,6 +14,7 @@ export class AddNcDialogComponent implements OnInit {
   @ViewChild('dt1') dt: Table;
   ncCode = ""
   selected: any[]
+  ncs: any[]
   constructor(public ref: DynamicDialogRef,
               public config: DynamicDialogConfig,
               public sgqServ: SgqService) { }
@@ -21,6 +22,11 @@ export class AddNcDialogComponent implements OnInit {
   ngOnInit(): void {
     this.ncCode = this.config.data.nc
     this.selected = this.config.data.selected
+    this.ncs = this.sgqServ.allNCs.filter(
+        (val) => {
+          return !(this.selected.some(e => e.id == val.id))
+        }
+    );
   }
 
   closeDialog() {

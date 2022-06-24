@@ -15,7 +15,7 @@
         <div id="counterEv" class="text-end">0</div>
     </div>
 
-    <div class="div-attachment">
+    <!--<div class="div-attachment">
         <h1>Anexar evidência da solução do problema</h1>
         <div
                 class="white-background"
@@ -23,10 +23,8 @@
         >
             <input
                     type="file"
-                    accept=".pdf,image/jpeg,image/png,xlsx,xls"
                     class="input-attachment"
                     (change)="onUpload($event)"
-                    
                     multiple
             />
            <div class="d-flex flex-column justify-content-center align-items-center teste">
@@ -35,6 +33,39 @@
                 Arraste e solte ou <strong>navegue para escolher</strong> um arquivo
             </p>
            </div>
+        </div>
+        <div
+                class="white-background-files"
+                *ngIf="sgqServ.sgq.attachments.length != 0"
+        >
+            <button
+                    type="button"
+                    (click)="clearFiles()"
+                    class="btn btn-light"
+            >
+                <i class="pi pi-replay"></i>
+            </button>
+            <p *ngFor="let files of sgqServ.sgq.attachments">
+                {{ files.name }}
+            </p>
+        </div>
+    </div>-->
+    <div class="div-attachment">
+        <h1>Envie seus documentos</h1>
+        <div
+                class="white-background"
+                *ngIf="sgqServ.sgq.attachments.length == 0"
+        >
+            <input
+                    type="file"
+                    class="input-attachment"
+                    (change)="onUpload($event)"
+                    multiple
+            />
+            <i class="pi pi-cloud-upload"></i>
+            <p>
+                Arraste e solte ou <strong>navegue para escolher</strong> um arquivo
+            </p>
         </div>
         <div
                 class="white-background-files"
