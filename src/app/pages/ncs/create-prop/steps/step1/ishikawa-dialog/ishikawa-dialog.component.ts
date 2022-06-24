@@ -16,6 +16,8 @@ export class IshikawaDialogComponent implements OnInit {
   procedures:any[]
   nbrs:any[]
   regulatoryNorms:any[]
+
+  
   constructor(public ref: DynamicDialogRef,
               public config: DynamicDialogConfig,
               public propService: ProposalService,
@@ -24,9 +26,11 @@ export class IshikawaDialogComponent implements OnInit {
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
-    console.log(this.propService.propSolution.material_description)
+    this.propService.popular()
+
     
   }
+  
 
   returnTextButton():string{
     if (this.isLastStep())
@@ -101,6 +105,7 @@ export class IshikawaDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.stepPosition = this.config.data.page
+    console.log(this.propService.propSolution.lack_materials);
   }
 
   isFirstStep() {

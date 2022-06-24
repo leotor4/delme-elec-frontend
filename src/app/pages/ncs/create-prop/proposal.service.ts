@@ -29,6 +29,7 @@ export class ProposalService {
   users: User[] = [];
   actions: ActionPlan[] = [];
   sectors: Sector[];
+  checkBoxes: string[] = [];
 
   apiUrl = "http://localhost:3333/proposal";
   ncProp: NonCompliance;
@@ -53,6 +54,14 @@ export class ProposalService {
     this.propSolution.first_why_label = this.step2.textAreas[5];
     this.propSolution.root_cause = this.step2.selectedValue;
 
+    this.propSolution.lack_materials = this.checkBoxes[0] ?? "";
+    this.propSolution.excess_materials = this.checkBoxes[1] ?? "";
+    this.propSolution.low_quality_materials = this.checkBoxes[2] ?? "";
+    this.propSolution.lack_parameters = this.checkBoxes[3] ?? "";
+    this.propSolution.excess_parameters = this.checkBoxes[4] ?? "";
+    this.propSolution.non_achievement_goals = this.checkBoxes[5] ?? "";
+    this.propSolution.run_training = this.checkBoxes[6] ?? "";
+
     if (this.propSolution.machine)
       this.propSolution.machine_id = this.propSolution.machine.id;
     if (this.propSolution.equipament)
@@ -69,9 +78,9 @@ export class ProposalService {
 
   popularForm() {
     if (this.propSolution) {
-      this.propSolution.lack_materials = this.propSolution.lack_materials ?? "";
       this.propSolution.low_quality_materials =
         this.propSolution.low_quality_materials ?? "";
+
       this.propSolution.material_description =
         this.propSolution.material_description ?? "";
       this.propSolution.lack_parameters =
@@ -93,6 +102,14 @@ export class ProposalService {
         this.propSolution.machine_description ?? "";
       this.propSolution.effect_description =
         this.propSolution.effect_description ?? "";
+
+      this.tratarDados(this.propSolution.lack_materials);
+      this.tratarDados(this.propSolution.excess_materials);
+      this.tratarDados(this.propSolution.low_quality_materials);
+      this.tratarDados(this.propSolution.lack_parameters);
+      this.tratarDados(this.propSolution.excess_parameters);
+      this.tratarDados(this.propSolution.non_achievement_goals);
+      this.tratarDados(this.propSolution.run_training);
     }
     this.step2.textAreas[0] = this.propSolution.first_why;
     this.step2.textAreas[1] = this.propSolution.second_why;
@@ -101,6 +118,13 @@ export class ProposalService {
     this.step2.textAreas[4] = this.propSolution.fifth_why;
     this.step2.textAreas[5] = this.propSolution.first_why_label;
     this.step2.selectedValue = this.propSolution.root_cause;
+  }
+
+  tratarDados(text: string) {
+    if (!text) return;
+    this.checkBoxes.push(
+      text.replace("{", "").replace("}", "").replace('"', "").replace('"', "")
+    );
   }
 
   post() {
