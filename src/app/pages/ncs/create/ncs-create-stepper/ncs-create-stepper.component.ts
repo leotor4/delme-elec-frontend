@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Route, Router } from "@angular/router";
 import { MenuItem, MessageService } from "primeng/api";
 import { NonComplianceService } from "src/app/_services/non-compliance.service";
 import {NonCompliance} from "../../../../models/non-compliance";
@@ -14,17 +14,22 @@ import html2canvas from 'html2canvas';
 })
 export class NcsCreateStepperComponent implements OnInit {
   items: MenuItem[];
-  stepPosition: number = 0;
+  stepPosition: number = 2;
   lastStepLabel = "Avançar";
-  constructor(private route:Router,public nonComplianceService: NonComplianceService,private messageService: MessageService,) {}
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    public nonComplianceService: NonComplianceService,
+    private messageService: MessageService
+  ) {}
 
   disableButton(): boolean {
     switch (this.stepPosition) {
       case 0:
-      return this.nonComplianceService.avancarPasso1();
+        return this.nonComplianceService.avancarPasso1();
       case 1:
         return this.nonComplianceService.avancarPasso2();
-       
+
       case 2:
         return false;
       case 3:
@@ -44,10 +49,7 @@ export class NcsCreateStepperComponent implements OnInit {
   getNextPageBtnLabel() {
     let isLastStep = this.stepPosition === this.items.length - 1;
     let labelName = isLastStep ? "Concluir" : "Avançar";
-    
-    
-   
-      
+
     return labelName;
   }
   getNextPageBtnIcon() {
@@ -55,39 +57,43 @@ export class NcsCreateStepperComponent implements OnInit {
     let iconClass = isLastStep ? "pi pi-upload" : "pi pi-arrow-right";
     return iconClass;
   }
-  isFirstStep() { 
+  isFirstStep() {
     return this.stepPosition === 0 ? true : false;
   }
-  isLastStep() { 
-    return this.stepPosition === this.items.length-1 ? true : false;
+  isLastStep() {
+    return this.stepPosition === this.items.length - 1 ? true : false;
   }
-  
-  nextStep() {
-    if (this.isLastStep()) this.nonComplianceService.nc.status = "running"
-      this.nonComplianceService.put().subscribe({
-        next: data => {
-          this.messageService.add({
-            severity: "success",
-            summary: this.isLastStep()?"Não conformidade concluida com sucesso.":"Passo " + (this.stepPosition + 1) + " salvo com sucesso." ,
-            life: 3000,
-          });
 
-          if(this.isLastStep()) {
-            this.nonComplianceService.nc= new NonCompliance()
-            this.route.navigate(["/ncs/"]);
-          } 
-          if (!this.isLastStep()) this.stepPosition++
-        },
-        error: err => {
-          this.messageService.add({
-            severity: "error",
-            summary: "Houve um problema ao salvar dados do passo " + this.stepPosition + ".",
-            life: 3000,
-          });
-          console.log(err)
+  nextStep() {
+    if (this.isLastStep()) this.nonComplianceService.nc.status = "running";
+    this.nonComplianceService.put().subscribe({
+      next: (data) => {
+        this.messageService.add({
+          severity: "success",
+          summary: this.isLastStep()
+            ? "Não conformidade concluida com sucesso."
+            : "Passo " + (this.stepPosition + 1) + " salvo com sucesso.",
+          life: 3000,
+        });
+
+        if (this.isLastStep()) {
+          this.nonComplianceService.nc = new NonCompliance();
+          this.router.navigate(["/ncs/"]);
         }
-      });
-    
+        if (!this.isLastStep()) this.stepPosition++;
+      },
+      error: (err) => {
+        this.messageService.add({
+          severity: "error",
+          summary:
+            "Houve um problema ao salvar dados do passo " +
+            this.stepPosition +
+            ".",
+          life: 3000,
+        });
+        console.log(err);
+      },
+    });
   }
   backStep() {
     if (this.stepPosition <= 0) return;
@@ -99,20 +105,15 @@ export class NcsCreateStepperComponent implements OnInit {
   }
 
   getLink() {
-    if (this.isLastStep()){
-      return "/ncs"
-    } else return
+    if (this.isLastStep()) {
+      return "/ncs";
+    } else return;
   }
 
   generatePDF() {
     let data = document.getElementById('pdfContent');
-    console.log(data)
-
-
-    
-
     if (data) {
-      var w = data.offsetWidth;
+      var w = data.offsetWidth*0.5;
       var h = data.offsetHeight;
       data.style.height="auto";
 
@@ -120,7 +121,7 @@ export class NcsCreateStepperComponent implements OnInit {
         if (data) {
 
           let HTML_Width = w;
-          let HTML_Height = h + 1200;
+          let HTML_Height = h *2;
           let top_left_margin = 15;
           let PDF_Width = HTML_Width + (top_left_margin * 2);
           let PDF_Height = (PDF_Width * 1.5) + (top_left_margin * 2);
@@ -141,10 +142,9 @@ export class NcsCreateStepperComponent implements OnInit {
           window.open(pdf.output('bloburl', { filename: "HTML-Document.pdf" }), '_blank');
       }
       });
-     
+
     }
   }
-    
 }
 
 

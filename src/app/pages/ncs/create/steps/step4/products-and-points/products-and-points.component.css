@@ -1,7 +1,9 @@
 * {
   margin: 0;
-  box-sizing: border-box;
+  box-sizing: border-box;box-sizing: border-box;
+  
 }
+
 
 .row {
   display: -webkit-box;
@@ -34,20 +36,20 @@
 }
 
 .titulo-parceiro {
-  font-size: 17px;
+  font-size: 18px;
   font-weight: bold;
   margin-bottom: 0;
   color: rgb(51, 51, 51);
 }
 
 .dados-contato h1 {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: bold;
   color: rgb(51, 51, 51);
 }
 
 .razao-social h1 {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: bold;
   color: rgb(51, 51, 51);
 }
@@ -59,21 +61,22 @@
 }
 
 .razao-social p {
-  font-size: 13px;
+  font-size: 16px;
 }
 
 .dados-contato i {
-  font-size: 11px;
+  font-size: 16px;
   margin-right: 8px;
 }
 
 .info-titulo {
+  font-size: large;
   margin-bottom: 1px;
   font-weight: bold;
   color: rgb(103, 103, 103);
 }
 
-.info-dados {
+.info-dados {font-size: large;
   color: rgb(153, 153, 153);
 }
 

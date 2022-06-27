@@ -3,14 +3,14 @@
 
 </app-about-header>
 
-<p-tabView>
+<p-tabView (onChange)="goCreateProp($event)">
     <p-tabPanel header="Informações da NC" leftIcon="bi bi-file-earmark-richtext">
         <div class="content-box">
             
             <app-view-nc></app-view-nc>
         </div>
     </p-tabPanel>
-    <p-tabPanel header="Proposta de Solução" leftIcon="bi bi-tools">
+    <p-tabPanel header="Proposta de Solução" leftIcon="bi bi-tools" >
         <div class="content-box">
             <app-proposal></app-proposal>
         </div>

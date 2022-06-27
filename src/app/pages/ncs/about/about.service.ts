@@ -31,6 +31,7 @@ export class AboutService {
             let proposal = this.nc.proposalSolution
             if(proposal){
                 proposal.lack_materials = proposal.lack_materials??""
+                proposal.excess_materials = proposal.excess_materials ?? "";
                 proposal.low_quality_materials = proposal.low_quality_materials??""
                 proposal.material_description = proposal.material_description??""
                 proposal.lack_parameters = proposal.lack_parameters??""

@@ -1,7 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 import { Attachment } from "src/app/models/attachment";
-import {NonComplianceService} from "../../../../../_services/non-compliance.service";
-
+import { NonComplianceService } from "../../../../../_services/non-compliance.service";
+import * as jspdf from "jspdf";
+import html2canvas from "html2canvas";
 @Component({
   selector: "app-step4",
   templateUrl: "./revisar-info.component.html",
@@ -18,7 +19,9 @@ export class RevisarInfoComponent implements OnInit {
   goToStepById(position: number) {
     this.changeStepPosition.emit(position);
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+   
+  }
 
   emissor = "";
 
@@ -37,6 +40,4 @@ export class RevisarInfoComponent implements OnInit {
     });
     return acoesFile;
   }
-
-
 }

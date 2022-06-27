@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { AuthGuardService } from "../_services/auth-guard.service";
-import {CreatePropModule} from "../pages/ncs/create-prop/create-prop.module";
+import { CreatePropModule } from "../pages/ncs/create-prop/create-prop.module";
 
 const routes: Routes = [
   {
@@ -43,33 +43,32 @@ const routes: Routes = [
       {
         path: "about/:id",
         loadChildren: () =>
-            import("../pages/ncs/about/about.module").then(
-                (m) => m.NcAboutModule
-            ),
+          import("../pages/ncs/about/about.module").then(
+            (m) => m.NcAboutModule
+          ),
       },
-      
+
       {
         path: "createProp/:id",
         loadChildren: () =>
-            import("../pages/ncs/create-prop/create-prop.module").then(
-                (m) => m.CreatePropModule
-            ),
-      },{
+          import("../pages/ncs/create-prop/create-prop.module").then(
+            (m) => m.CreatePropModule
+          ),
+      },
+      {
         path: "sgq/:id",
         loadChildren: () =>
-            import("../pages/ncs/sgq-evaluation/sgq.module").then(
-                (m) => m.SgqModule
-            ),
+          import("../pages/ncs/sgq-evaluation/sgq.module").then(
+            (m) => m.SgqModule
+          ),
       },
-
     ],
   },
-  
+
   {
     path: "dashboards",
     canActivate: [AuthGuardService],
     children: [
-
       {
         path: "",
         loadChildren: () =>
@@ -83,9 +82,9 @@ const routes: Routes = [
           import("../pages/dashboards/bar-chart/bar-chart.module").then(
             (m) => m.BarChartModule
           ),
-      }
-    ]
-  }
+      },
+    ],
+  },
 ];
 
 @NgModule({

@@ -78,9 +78,11 @@ export class ProposalService {
 
   popularForm() {
     if (this.propSolution) {
+      this.propSolution.lack_materials = this.propSolution.lack_materials ?? "";
       this.propSolution.low_quality_materials =
         this.propSolution.low_quality_materials ?? "";
-
+      this.propSolution.excess_materials =
+        this.propSolution.excess_materials ?? "";
       this.propSolution.material_description =
         this.propSolution.material_description ?? "";
       this.propSolution.lack_parameters =
