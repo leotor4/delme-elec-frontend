@@ -1,9 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { AboutService } from '../about.service';
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { AboutService } from "../about.service";
 import { Router } from "@angular/router";
-
-
 
 @Component({
   selector: "app-proposal",
@@ -30,10 +28,11 @@ export class ProposalComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = parseInt(this.route.snapshot.paramMap.get("id") || "");
+   
   }
 
   goPlaces() {
-    this.router.navigate(["/", "ncs","createProp",this.id]);
+    this.router.navigate(["/", "ncs", "createProp", this.id]);
   }
 
   dataParse(date: any) {

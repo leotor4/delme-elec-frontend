@@ -16,6 +16,7 @@ h2 {
 
 :host /deep/ .p-accordion .p-accordion-header:hover a {
   text-decoration: none;
+ 
 }
 .accordion {
   width: 100%;
@@ -62,7 +63,7 @@ h2 {
   margin-top: 0px;
   background-color: white;
   border-radius: 7px;
-  height: 220px;
+  height: 180px;
   padding: 13px;
   overflow: auto;
 }
@@ -139,3 +140,4 @@ h2 {
 h2{
   font-size:24px;
 }
+

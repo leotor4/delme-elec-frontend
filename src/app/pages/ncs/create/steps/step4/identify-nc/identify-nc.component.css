@@ -52,13 +52,13 @@
 }
 
 .dados-contato h1 {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: bold;
   color: rgb(51, 51, 51);
 }
 
 .razao-social h1 {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: bold;
   color: rgb(51, 51, 51);
 }
@@ -66,30 +66,32 @@
 .dados-contato button {
   width: 130px;
   height: 30px;
-  font-size: 13px;
+  font-size: 18px;
 }
 
 .razao-social p {
-  font-size: 13px;
+  font-size: 18px;
 }
 
 .dados-contato i {
-  font-size: 11px;
+  font-size: 15px;
   margin-right: 8px;
 }
 
 .info-titulo {
+  font-size: large;
   margin-bottom: 1px;
   font-weight: bold;
   color: rgb(103, 103, 103);
 }
 
 .info-dados {
+  font-size: large;
   color: rgb(153, 153, 153);
 }
 
 .contato-info i {
-  font-size: 14px;
+  font-size: 16px;
   color: rgb(103, 103, 103);
   margin-right: 10px;
 }

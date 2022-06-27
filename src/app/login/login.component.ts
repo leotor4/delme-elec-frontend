@@ -5,6 +5,7 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { catchError } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 import { AuthService } from '../_services/auth.service';
 import { TokenStorageService } from '../_services/token-storage.service';
@@ -16,7 +17,11 @@ import { AppComponent } from './../app.component';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  title = 'appBootstrap';
+  //title = 'appBootstrap';
+
+
+  title = environment.title;
+  apiURL = environment.apiURL;
 
   closeResult: string = ''
 
@@ -38,7 +43,10 @@ export class LoginComponent implements OnInit {
     private modalService: NgbModal, private messageService: MessageService) { }
 
   ngOnInit(): void {
-    console.log(this.router.snapshot)
+
+    alert(this.title);
+    alert(this.apiURL);
+
     this.router.queryParams.subscribe(param => {      
       this.hashUser = param['hashUser']
     })
