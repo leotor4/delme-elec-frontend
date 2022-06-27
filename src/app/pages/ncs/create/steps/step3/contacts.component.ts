@@ -162,11 +162,11 @@ export class ContactsComponent implements OnInit{
           )
 
         }
-        if (!this.nonComplianceService.allContacts.some(e => e.email === 'efrain@electrosonteleco.com.br')) {
+        if (!this.nonComplianceService.allContacts.some(e => e.email === 'efraim@electrosonteleco.com')) {
           let contact = new Contact()
           contact.email = 'efrain@electrosonteleco.com.br'
-          contact.name = "Efrain"
-          contact.type = "Diretor Geral"
+          contact.name = "Efraim"
+          contact.type = "Diretor de Operações"
           this.contactsSrvc.post(contact).subscribe(
               (data) => {
                 this.nonComplianceService.allContacts.push(data.contact)

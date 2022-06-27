@@ -1,5 +1,5 @@
 <div *ngIf="!nonComplianceService.hasProduct()" class="mt-1">
-  <app-waiting-product titleFigure="Aguardando dados do produto"></app-waiting-product>
+  <app-waiting-product titleFigure="Aguardando dados do produto" image="../../../../../../../assets/images/search-product.svg"></app-waiting-product>
 </div>
 <div *ngIf="nonComplianceService.hasProduct()">
   <div class="product-info mt-1">

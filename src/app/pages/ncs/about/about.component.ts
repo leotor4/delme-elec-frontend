@@ -17,4 +17,7 @@ export class AboutComponent implements OnInit {
     this.aboutSrvc.getNC(id)
   }
 
+    test() {
+        console.log("test")
+    }
 }
