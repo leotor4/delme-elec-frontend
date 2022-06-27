@@ -3,7 +3,6 @@ import {NonComplianceService} from "../../../_services/non-compliance.service";
 import {NonCompliance} from "../../../models/non-compliance";
 import {ProposalSolution} from "../../../models/proposal-solution";
 import { HttpClient } from "@angular/common/http";
-
 import {Cost} from "../../../models/Cost";
 
 

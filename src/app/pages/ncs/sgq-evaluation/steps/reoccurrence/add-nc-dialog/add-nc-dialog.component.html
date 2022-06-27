@@ -31,7 +31,7 @@
     </h2>
     <p>Sinalize as NCs que são reincidentes desta NC.</p>
     <div class="card">
-        <p-table #dt1 [value]="sgqServ.allNCs"
+        <p-table #dt1 [value]="ncs"
                  [(selection)]="selected"
                  [globalFilterFields]="[
                  'code',
