@@ -27,7 +27,7 @@ export class AboutComponent implements OnInit {
       this.router.navigate(["/", "ncs", "createProp", id]);
     }
     console.log(this.aboutSrvc.nc?.proposalSolution)
-    if (e["index"] == 3 && !(this.aboutSrvc.nc?.proposalSolution) && this.aboutSrvc.nc?.costs?.length>0) {
+    if (e["index"] == 3 && this.aboutSrvc.nc?.proposalSolution && this.aboutSrvc.nc?.costs?.length>0 && !this.aboutSrvc.nc?.sgqEvaluation) {
       this.router.navigate(["/", "ncs", "sgq", id]);
     }
   }
