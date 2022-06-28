@@ -14,3 +14,17 @@
     font-size: 18px;
     font-weight: lighter
 }
+
+
+::ng-deep text  {
+    font-size: 14px !important;
+}
+
+::ng-deep .legend-label  {
+    color:#565656 !important;   
+    font-weight: bold !important; 
+}
+
+/* ::ng-deep .legend-label:hover{
+    font-weight: bold !important;
+} */

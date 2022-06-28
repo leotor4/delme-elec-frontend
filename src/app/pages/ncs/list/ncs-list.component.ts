@@ -30,7 +30,7 @@ export class NcsListComponent implements OnInit {
   showLabels: boolean = true;
   isDoughnut: boolean = false;
   legendPosition: string = 'bottom';
-  legendTitle = "legenda"
+  legendTitle = "Legenda"
 
   colorScheme = {
     domain: ['rgb(0, 91, 123)', 'rgb(0, 91, 123)', 'rgb(0, 91, 123)', 'rgb(0, 91, 123)', 'rgb(0, 91, 123)', 'rgb(0, 91, 123)']
@@ -163,6 +163,7 @@ export class NcsListComponent implements OnInit {
       this.setDataCards(compliances, filterStatus)
 
       this.totalRecords = this.listNcs.length
+      
     });
   }
 
@@ -183,29 +184,29 @@ export class NcsListComponent implements OnInit {
   parseMonthStrToNumber(strMonth : string) : string {
     switch(strMonth) {
       case 'january':
-        return '1';
+        return 'jan';
       case 'february':
-        return '2';
+        return 'fev';
       case 'march':
-        return '3';
+        return 'mar';
       case 'april':
-        return '4';
+        return 'abr';
       case 'may':
-        return '5';
+        return 'mai';
       case 'june':
-        return '6';
+        return 'jun';
       case 'july':
-        return '7';
+        return 'jul';
       case 'august':
-        return '8';
+        return 'ago';
       case 'september':
-        return '9';
+        return 'set';
       case 'october':
-        return '10';
+        return 'out';
       case 'november':
-        return '11';
+        return 'nov';
       case 'december':
-        return '12';
+        return 'dez';
       default:
         return '0';
     }
@@ -337,13 +338,10 @@ export class NcsListComponent implements OnInit {
       this.startListNcs('running')
     }
   }
-  
 
 
   setDataLineChart() {
     this.dashboardService.getTimeLineValues().subscribe((data:any)=> {
-       
-
       var seriesOpen = []
       var seriesClosed = []
 
@@ -351,39 +349,53 @@ export class NcsListComponent implements OnInit {
       console.log(data)
       
 
-      if(data.open) {
-        for (var element of data.open) {
+      for (const key in data) {
 
+        if (data.hasOwnProperty(key)) {
+    
+          console.log(`${key}: ${data[key].Abertas}`);
 
-          seriesOpen.push({
-            "value": element.count,
-            "name": this.parseMonthStrToNumber(element.month)
+          var series = [
+            {
+              "name" : "Em elaboração",
+              "value" : `${data[key].Abertas}`,
+            },
+
+            {
+              "name" : "Finalizada",
+              "value" : `${data[key].Fechadas}`
+            },
+          ]
+
+          lineChartDataAux.push({
+            "name": this.parseMonthStrToNumber(`${key}`),
+            "series": series
           })
         }
-        lineChartDataAux.push({
-          "name": "Em elaboração",
-          "series": seriesOpen
-        })
-
-
-
-      }
-      
-      if(data.closed) {
-        for (var element of data.closed) {
-          seriesClosed.push({
-            "value": element.count,
-            "name": this.parseMonthStrToNumber(element.month)
-          })
-        }
-        lineChartDataAux.push({
-          "name": "Encerradas",
-          "series": seriesClosed
-        })
-      }
+    }
 
       this.lineChartData = [...lineChartDataAux]
 
     });
+    
   }
+
+
+
+  getFlag(status:string, value: number) {
+    var totalNcs = 0
+    console.log(this.pieValues)
+    for (var i = 0; i < this.pieValues.length; i++) {
+
+      totalNcs = totalNcs + this.pieValues[i].value
+    }
+
+    return ((value/totalNcs)*100).toFixed(2).toString() + '%'
+  }
+
+
+  onActivate(data:any): void {
+    console.log('Activate', JSON.parse(JSON.stringify(data)));
+  }
+  
 }
