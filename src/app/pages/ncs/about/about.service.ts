@@ -4,6 +4,7 @@ import {NonCompliance} from "../../../models/non-compliance";
 import {ProposalSolution} from "../../../models/proposal-solution";
 import { HttpClient } from "@angular/common/http";
 import {Cost} from "../../../models/Cost";
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -11,7 +12,7 @@ import {Cost} from "../../../models/Cost";
 })
 export class AboutService {
 
-    apiUrl = "http://localhost:3333/";
+    apiUrl = environment.apiURL;
 
     nc: NonCompliance
     proposalSolution:ProposalSolution

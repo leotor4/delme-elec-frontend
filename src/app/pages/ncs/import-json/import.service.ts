@@ -1,12 +1,13 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
+import { environment } from "src/environments/environment";
 
 @Injectable({
   providedIn: "root",
 })
 export class ImportService {
-  API_URL = "http://localhost:3333/";
+  API_URL = environment.apiURL;
   constructor(private http: HttpClient) {}
 
   post(json: any, type: string): Observable<any> {

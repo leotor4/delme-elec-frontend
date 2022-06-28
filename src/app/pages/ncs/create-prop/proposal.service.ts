@@ -13,6 +13,7 @@ import { User } from "src/app/models/user.model";
 import { NonComplianceService } from "../../../_services/non-compliance.service";
 import { Sector } from "../../../models/sector";
 import { SectorService } from "../../../_services/sector.service";
+import { environment } from "src/environments/environment";
 
 @Injectable({
   providedIn: "root",
@@ -31,7 +32,7 @@ export class ProposalService {
   sectors: Sector[];
   checkBoxes: string[] = [];
 
-  apiUrl = "http://localhost:3333/proposal";
+  apiUrl = environment.apiURL + "proposal";
   ncProp: NonCompliance;
 
   constructor(

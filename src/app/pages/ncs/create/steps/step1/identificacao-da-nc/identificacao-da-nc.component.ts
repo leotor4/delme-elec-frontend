@@ -83,7 +83,6 @@ teste(){
       this.setDtFechamentoFornecedor().subscribe((data:any) => {
         this.nonComplicanceService.formIdentificacaoNC.value['data_fechamento'] = data
         console.log(data)
-        alert('AAAA')
       });
     }
 
