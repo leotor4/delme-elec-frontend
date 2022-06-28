@@ -22,3 +22,16 @@ label {
     position: relative;
     top: -12px;
 }
+.flex {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.flex>div {
+    flex: 1 0 50%;
+}
+
+.flex>div:first-child {
+    flex: 0 1 100%;
+}

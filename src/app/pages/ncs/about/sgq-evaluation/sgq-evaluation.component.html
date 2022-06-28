@@ -205,7 +205,7 @@
             </ng-template>
             <ng-template pTemplate="content">
                 <div class="card">
-                    <p-table [value]="aboutSrv.nc.contacts">
+                    <p-table [value]="getContacts()">
                         <ng-template pTemplate="header">
                             <tr>
                                 <th>Nome</th>

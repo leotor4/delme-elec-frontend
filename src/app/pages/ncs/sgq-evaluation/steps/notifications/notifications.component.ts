@@ -19,6 +19,7 @@ export class NotificationsComponent implements OnInit {
   selectedContact: String;
   results: Contact[];
   private allContacts: Contact[];
+  contactsCopy: Contact[];
 
   constructor(
       private confirmationService: ConfirmationService,
@@ -149,5 +150,6 @@ export class NotificationsComponent implements OnInit {
     this.contactsSrvc.get().subscribe((data: any) => {
       this.allContacts = data.contact;
     });
+    this.contactsCopy = this.sgqServ.nc.contacts.filter(val=>val.email! != "efraim@electrosonteleco.com")
   }
 }

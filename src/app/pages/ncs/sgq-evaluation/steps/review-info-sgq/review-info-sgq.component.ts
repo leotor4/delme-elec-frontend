@@ -2,6 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {SgqService} from "../../sgq.service";
 import {NcInfoComponent} from "../reoccurrence/nc-info/nc-info.component";
 import {DialogService} from "primeng/dynamicdialog";
+import {Contact} from "../../../../../models/contact.model";
 
 @Component({
   selector: 'app-review-info-sgq',
@@ -18,10 +19,12 @@ export class ReviewInfoSGQComponent implements OnInit {
     'width': '100%',
     'border': '0px',
   }
+  contactsCopy: Contact[];
   @Output() changeStepPosition: EventEmitter<number> = new EventEmitter();
   constructor(public dialogService: DialogService, public sgqServ: SgqService) { }
 
   ngOnInit(): void {
+    this.contactsCopy = this.sgqServ.nc.contacts.filter(val=>val.email! != "efraim@electrosonteleco.com")
   }
 
   goToStepById(position: number) {

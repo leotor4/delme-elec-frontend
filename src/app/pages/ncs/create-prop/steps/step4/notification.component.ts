@@ -20,6 +20,7 @@ export class NotificationComponent implements OnInit, OnDestroy {
   selectedContact: String;
   results: Contact[];
   private allContacts: Contact[];
+  contactsCopy: Contact[];
 
   constructor(
     private confirmationService: ConfirmationService,
@@ -92,6 +93,14 @@ export class NotificationComponent implements OnInit, OnDestroy {
           this.propService.propSolution.contacts.filter(
             (val) => val.id !== contact.id
           );
+        this.propService.ncProp.contacts =
+            this.propService.ncProp.contacts.filter(
+                (val) => val.id !== contact.id
+            );
+        this.contactsCopy =
+            this.contactsCopy.filter(
+                (val) => val.id !== contact.id
+            );
         this.messageService.add({
           severity: "info",
           summary: "Contato Removido com sucesso",
@@ -131,6 +140,7 @@ export class NotificationComponent implements OnInit, OnDestroy {
 
   checkContact(contact: Contact) {
     this.selectedContacts.push(contact);
+    this.contactsCopy.push(contact);
     this.selectedContact = "";
   }
 
@@ -151,6 +161,7 @@ export class NotificationComponent implements OnInit, OnDestroy {
     this.contactsSrvc.get().subscribe((data: any) => {
       this.allContacts = data.contact
       this.propService.propSolution.contacts = this.propService.ncProp.contacts
+      this.contactsCopy = this.propService.propSolution.contacts.filter(val=>val.email! != "efraim@electrosonteleco.com")
     });
   }
 }

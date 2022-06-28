@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { AboutService } from "../about.service";
 import { Router } from "@angular/router";
+import {Contact} from "../../../../models/contact.model";
 
 @Component({
   selector: "app-proposal",
@@ -28,7 +29,6 @@ export class ProposalComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = parseInt(this.route.snapshot.paramMap.get("id") || "");
-   
   }
 
   goPlaces() {
@@ -46,5 +46,9 @@ export class ProposalComponent implements OnInit {
     if (obj?.description) str += obj.description + " ";
     if (obj?.rev) str += obj.rev + " ";
     return str;
+  }
+
+  getContacts(){
+    return this.aboutService.nc.contacts.filter(val=>val.email! != "efraim@electrosonteleco.com")
   }
 }
