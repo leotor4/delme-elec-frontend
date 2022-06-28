@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { User } from '../models/user.model';
 
 const API_URL = 'http://localhost:60566/api/test/';
@@ -26,12 +27,12 @@ export class UserService {
   }
 
   getAll(): Observable<any> {
-    return this.http.get('http://localhost:3333/users/list/');
+    return this.http.get(environment.apiURL + 'users/list/');
   }
 
   sendMailForRegisterUser(user: User): Observable<any> {
     
-    return this.http.post("http://localhost:3333/users/sendPasswordMail/", {
+    return this.http.post(environment.apiURL + "users/sendPasswordMail/", {
       email:user.email,
     })
 

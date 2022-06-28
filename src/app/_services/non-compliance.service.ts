@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import momentImported from 'moment';
 import { Observable } from 'rxjs';
+import { environment } from "src/environments/environment";
 
 import { Attachment } from '../models/attachment';
 import { Contact } from "../models/contact.model";
@@ -25,7 +26,7 @@ const moment = momentImported;
   providedIn: "root",
 })
 export class NonComplianceService {
-  apiUrl = "http://localhost:3333/noncompliances";
+  apiUrl = environment.apiURL + "noncompliances";
 
   public nc = new NonCompliance();
 
@@ -78,8 +79,10 @@ export class NonComplianceService {
 			tipos_nc_item: [null,Validators.required],
 			tipos_auditoria_item: [null],
 			tipos_local_item: [null,Validators.required],
-			data_abertura: [moment(new Date()).format('yyyy-MM-DD')],
-      data_fechamento: [moment(new Date()).add('d', 30).format('yyyy-MM-DD')],
+			data_abertura: [moment(new Date())],
+      data_fechamento: [moment(new Date()).add('d', 30)],
+      data_abertura_str: [moment(new Date()).format('yyyy-MM-DD')],
+      data_fechamento_str: [moment(new Date()).add('d', 30).format('yyyy-MM-DD')]
 		});
 
     this.formParceiroNC = this.fb.group({
@@ -197,10 +200,14 @@ export class NonComplianceService {
   }
 
   put() {
+
+
     let formData = new FormData();
     this.uploadFiles(formData);
     ObjectUtils.adicionar_campos<NonCompliance>(this.nc, this.formIdentificacaoNC.value);
     formData.append('data', JSON.stringify(this.nc));
+    alert(this.nc.data_fechamento)
+
     return this.http.put(this.apiUrl+ "/" + this.nc.id, formData)
   }
 

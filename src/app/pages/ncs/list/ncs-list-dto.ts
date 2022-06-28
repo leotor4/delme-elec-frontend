@@ -36,13 +36,14 @@ export class NcsListDTO {
         this.dsc_produto = ObjectUtils.buscarValor(init, 'product.description', '')
 
 
-        if (init.data_abertura && init.data_fechamento) {
-          this.data_abertura = new Date(init.data_abertura);
+        if (init.created_at && init.data_fechamento) {
+          
+          this.data_abertura = new Date(init.created_at);
           this.data_fechamento = new Date(init.data_fechamento);
 
 
           if (this.status != "canceled") {
-            this.prazo = this.getPrazo(init.data_abertura, init.data_fechamento);
+            this.prazo = this.getPrazo(init.created_at, init.data_fechamento);
           }
           
         }

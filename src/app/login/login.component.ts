@@ -44,9 +44,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
 
-    alert(this.title);
-    alert(this.apiURL);
-
     this.router.queryParams.subscribe(param => {      
       this.hashUser = param['hashUser']
     })

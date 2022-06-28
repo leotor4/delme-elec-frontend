@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { of } from 'rxjs/internal/observable/of';
 import { NonCompliance } from 'src/app/models/non-compliance';
+import { environment } from 'src/environments/environment';
 
 
 
@@ -517,7 +518,7 @@ export class DashboardsService {
     })
 
     kpiData.push({
-      "name" : "NCs abertas",
+      "name" : "NCs em elaboração",
       "value": totalNcsOpened
     })
 
@@ -575,7 +576,7 @@ export class DashboardsService {
 
     if (filterStatus == 'all' || filterStatus == 'running') {
       pieData.push({
-        "name" : "Execução",
+        "name" : "Em execução",
         "value": totalNcsRunning
       })
     }
@@ -599,7 +600,7 @@ export class DashboardsService {
 
     if (filterStatus == 'all' || filterStatus == 'open') {
       pieData.push({
-        "name" : "Abertas",
+        "name" : "Em elaboração",
         "value": totalNcsOpened
       })
     }
@@ -612,7 +613,7 @@ export class DashboardsService {
 
 
   getTimeLineValues():Observable<any>  {
-    return this.http.get('http://localhost:3333/dashboards/ncsByStatusAndMonths')
+    return this.http.get(environment.apiURL + 'dashboards/ncsByStatusAndMonths')
   }
   
 }
