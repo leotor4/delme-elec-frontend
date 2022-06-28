@@ -348,9 +348,12 @@ export class NcsListComponent implements OnInit {
       var lineChartDataAux = []
       console.log(data)
       
-
+      var cont = 0
       for (const key in data) {
-
+        cont = cont + 1
+        // if(cont > 6) {
+        //   break;
+        // }
         if (data.hasOwnProperty(key)) {
     
           console.log(`${key}: ${data[key].Abertas}`);
