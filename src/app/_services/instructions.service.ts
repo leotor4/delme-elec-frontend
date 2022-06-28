@@ -1,13 +1,14 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { environment } from "src/environments/environment";
 import { Instruction } from "../models/instruction";
 
 @Injectable({
   providedIn: "root",
 })
 export class InstructionsService {
-  apiUrl = "http://localhost:3333/instructions";
+  apiUrl = environment.apiURL + "instructions";
   constructor(private http: HttpClient) {}
 
   post(instruction: Instruction, file: any) {

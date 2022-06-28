@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import momentImported from 'moment';
 import { Observable } from 'rxjs';
+import { environment } from "src/environments/environment";
 
 import { Attachment } from '../models/attachment';
 import { Contact } from "../models/contact.model";
@@ -25,7 +26,7 @@ const moment = momentImported;
   providedIn: "root",
 })
 export class NonComplianceService {
-  apiUrl = "http://localhost:3333/noncompliances";
+  apiUrl = environment.apiURL + "noncompliances";
 
   public nc = new NonCompliance();
 

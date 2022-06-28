@@ -1,13 +1,14 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs/internal/Observable";
+import { environment } from "src/environments/environment";
 import { Procedure } from "../models/procedure";
 
 @Injectable({
   providedIn: "root",
 })
 export class ProcedureService {
-  apiUrl = "http://localhost:3333/procedures";
+  apiUrl = environment.apiURL + "procedures";
   constructor(private http: HttpClient) {}
 
   post(procedure: Procedure, file: any) {

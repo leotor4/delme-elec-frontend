@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { of } from 'rxjs/internal/observable/of';
 import { NonCompliance } from 'src/app/models/non-compliance';
+import { environment } from 'src/environments/environment';
 
 
 
@@ -612,7 +613,7 @@ export class DashboardsService {
 
 
   getTimeLineValues():Observable<any>  {
-    return this.http.get('http://localhost:3333/dashboards/ncsByStatusAndMonths')
+    return this.http.get(environment.apiURL + 'dashboards/ncsByStatusAndMonths')
   }
   
 }

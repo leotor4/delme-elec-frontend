@@ -10,7 +10,7 @@ import {SgqEval} from "../../../models/SgqEval";
 })
 export class SgqService {
 
-  apiUrl = "http://localhost:3333/sgq";
+  apiUrl = "http://localhost:/sgq";
   allNCs: any[] = []
   sgq = new SgqEval();
   step2File: any = [];
