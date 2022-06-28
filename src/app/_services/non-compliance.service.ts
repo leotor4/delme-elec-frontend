@@ -78,8 +78,10 @@ export class NonComplianceService {
 			tipos_nc_item: [null,Validators.required],
 			tipos_auditoria_item: [null],
 			tipos_local_item: [null,Validators.required],
-			data_abertura: [moment(new Date()).format('yyyy-MM-DD')],
-      data_fechamento: [moment(new Date()).add('d', 30).format('yyyy-MM-DD')],
+			data_abertura: [moment(new Date())],
+      data_fechamento: [moment(new Date()).add('d', 30)],
+      data_abertura_str: [moment(new Date()).format('yyyy-MM-DD')],
+      data_fechamento_str: [moment(new Date()).add('d', 30).format('yyyy-MM-DD')]
 		});
 
     this.formParceiroNC = this.fb.group({
@@ -197,10 +199,14 @@ export class NonComplianceService {
   }
 
   put() {
+
+
     let formData = new FormData();
     this.uploadFiles(formData);
     ObjectUtils.adicionar_campos<NonCompliance>(this.nc, this.formIdentificacaoNC.value);
     formData.append('data', JSON.stringify(this.nc));
+    alert(this.nc.data_fechamento)
+
     return this.http.put(this.apiUrl+ "/" + this.nc.id, formData)
   }
 

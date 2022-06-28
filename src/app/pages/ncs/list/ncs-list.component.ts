@@ -112,6 +112,7 @@ export class NcsListComponent implements OnInit {
       
       //this.listNcs.append(data.noncompliances);
       const compliances: Array<NonCompliance> = data.noncompliances
+      console.log(compliances)
 
 
       if (compliances?.length > 0) {
@@ -122,6 +123,7 @@ export class NcsListComponent implements OnInit {
         this.listNcs = this.listNcs.filter(item => (item.system_status !== 'deleted' && item.system_status != 'arquived'));
       }
       
+
 
       this.config.filterMatchModeOptions = {
         text: [
@@ -319,7 +321,7 @@ export class NcsListComponent implements OnInit {
       this.startListNcs('all')
     }
 
-    if (event['name'] == 'NCs abertas') {
+    if (event['name'] == 'NCs em elaboração') {
       this.startListNcs('open')
     }
 
@@ -359,7 +361,7 @@ export class NcsListComponent implements OnInit {
           })
         }
         lineChartDataAux.push({
-          "name": "Abertas",
+          "name": "Em elaboração",
           "series": seriesOpen
         })
 

@@ -517,7 +517,7 @@ export class DashboardsService {
     })
 
     kpiData.push({
-      "name" : "NCs abertas",
+      "name" : "NCs em elaboração",
       "value": totalNcsOpened
     })
 
@@ -575,7 +575,7 @@ export class DashboardsService {
 
     if (filterStatus == 'all' || filterStatus == 'running') {
       pieData.push({
-        "name" : "Execução",
+        "name" : "Em execução",
         "value": totalNcsRunning
       })
     }
@@ -599,7 +599,7 @@ export class DashboardsService {
 
     if (filterStatus == 'all' || filterStatus == 'open') {
       pieData.push({
-        "name" : "Abertas",
+        "name" : "Em elaboração",
         "value": totalNcsOpened
       })
     }

@@ -139,7 +139,7 @@ currentPageReportTemplate="Exibindo de {first} a {last} de {totalRecords} regist
       <td>
         <span class="p-column-title">Status</span>
         <span [ngSwitch]="ncListDTO.status" >
-          <span *ngSwitchCase="'open'"> Aberta</span>
+          <span *ngSwitchCase="'open'"> Em elaboração</span>
           <span *ngSwitchCase="'running'"> Em execução</span>
           <span *ngSwitchCase="'late'"> Atrasada</span>
           <span *ngSwitchCase="'deleted'"> Deletada</span>

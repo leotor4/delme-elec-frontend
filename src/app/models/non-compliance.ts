@@ -53,7 +53,8 @@ export class NonCompliance {
   system_status?:string
   issuer?:User
   emissor?: User;
-  proposalSolution?:ProposalSolution
+  proposalSolution?:ProposalSolution;
+  created_at?: Date;
 
   constructor(init?: Partial<NonCompliance>) {
     if (init) {

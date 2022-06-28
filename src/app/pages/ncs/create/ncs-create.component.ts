@@ -92,7 +92,11 @@ export class NcsCreateComponent implements OnInit {
 
 
   setDates(nc:NonCompliance) {
-    nc.data_abertura = moment(new Date()).toDate()
-    nc.data_fechamento = moment(new Date()).add('d', 30).toDate()
+    nc.data_abertura = moment().toDate()
+    nc.data_fechamento = moment().add('d', 30).toDate()
+
+    this.ncService.nc.data_abertura = moment().toDate()
+    this.ncService.nc.data_fechamento = moment().add('d', 30).toDate()
+
   }
 }
