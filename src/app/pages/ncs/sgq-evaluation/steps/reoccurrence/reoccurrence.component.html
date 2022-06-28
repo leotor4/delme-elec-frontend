@@ -37,13 +37,13 @@
 
                 <td>
                     <span [ngSwitch]="nc.status" >
-                        <span *ngSwitchCase="'open'"> Aberta</span>
-                        <span *ngSwitchCase="'running'"> Em execução</span>
-                        <span *ngSwitchCase="'late'"> Atrasada</span>
-                        <span *ngSwitchCase="'deleted'"> Deletada</span>
-                        <span *ngSwitchCase="'archived'"> Arquivada</span>
-                        <span *ngSwitchCase="'canceled'"> Cancelada</span>
-                        <span *ngSwitchCase="'closed'"> Fechada</span>
+                        <span *ngSwitchCase="'open'"> Em elaboração</span>
+            <span *ngSwitchCase="'running'"> Em execução</span>
+            <span *ngSwitchCase="'late'"> Atrasada</span>
+            <span *ngSwitchCase="'deleted'"> Deletada</span>
+            <span *ngSwitchCase="'archived'"> Arquivada</span>
+            <span *ngSwitchCase="'canceled'"> Cancelada</span>
+            <span *ngSwitchCase="'closed'"> Fechada</span>
                     </span>
                 </td>
 
