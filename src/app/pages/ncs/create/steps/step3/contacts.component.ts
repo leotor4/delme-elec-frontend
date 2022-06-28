@@ -143,7 +143,7 @@ export class ContactsComponent implements OnInit{
       this.nonComplianceService.allContacts = data.contact;
         let user = this.tokenServ.getUser()
         this.nonComplianceService.nc.contacts =
-            this.nonComplianceService.allContacts.filter((val) => val.email! === "efrain@electrosonteleco.com.br"
+            this.nonComplianceService.allContacts.filter((val) => val.email! === "efraim@electrosonteleco.com"
                 || val.email! === afectedsector!.responsible_email
                 || val.email! === this.nonComplianceService.nc.emissor?.sector?.responsible_email
                 || val.email! === "manuela.starowsta@electrosonteleco.com.br"|| val.email! === user.email || val.email! === this.nonComplianceService.nc.customer?.responsible_email || val.email! === this.nonComplianceService.nc.provider?.responsible_email || val.email! === this.nonComplianceService.nc?.partner?.responsible_email);
