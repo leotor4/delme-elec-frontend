@@ -36,6 +36,9 @@ export class SGQEvaluationComponent implements OnInit {
       width: '60vw',
     });
   }
+  getContacts(){
+    return this.aboutSrv.nc.contacts.filter(val=>val.email! != "efraim@electrosonteleco.com")
+  }
 
 
 }
