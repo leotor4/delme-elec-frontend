@@ -362,7 +362,7 @@ export class NcsListComponent implements OnInit {
             },
 
             {
-              "name" : "Finalizada",
+              "name" : "Fechada",
               "value" : `${data[key].Fechadas}`
             },
           ]
