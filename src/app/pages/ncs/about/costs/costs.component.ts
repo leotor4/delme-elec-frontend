@@ -8,6 +8,7 @@ import {
 } from "../../../dialogs/visualizar-documento-dialog/visualizar-documento-dialog.component";
 import {NonComplianceService} from "../../../../_services/non-compliance.service";
 import {DialogService} from "primeng/dynamicdialog";
+import {environment} from "../../../../../environments/environment";
 
 @Component({
   selector: 'app-costs',
@@ -129,5 +130,7 @@ export class CostsComponent implements OnInit {
       }
     })
   }
-
+  getUrl(){
+    return environment.apiURL + 'costs/files/download/' +this.doc.id
+  }
 }

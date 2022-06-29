@@ -148,16 +148,16 @@
     <div class="col att-button">
       <div>
         <p><i class="pi pi-history"></i> ultima atualização:</p>
-        <button
-          href="http://localhost:4200/ncs/import"
-          role="button"
-          class="btn btn-dark"
-          
-        >
-          Atualizar PRs
-          <i class="pi pi-download" id="icon-button"></i>
-        </button>
+        <a
+                pButton
+                type="button"
+                icon="pi pi-download"
+                label="Atualizar PRs"
+                class="p-button-secondary p-button-text"
+                [href]="getUrl()"
+        ></a>
       </div>
     </div>
   </div>
+</div>
 </div>
