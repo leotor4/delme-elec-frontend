@@ -1,3 +1,259 @@
+<div class="d-flex vh-100">
+  <div class="left-side me-2">
+    <div class="flex-fill">
+      <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
+          <p class="linha1">Boas vindas ao&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+          <p class="linha2">Sistema de gestão de não&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+          <p class="linha3">Conformidades da Electroson&nbsp;&nbsp;</p>
+      </div> 
+    </div>
+  </div>
+
+
+  <div class="flex-fill">
+    <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
+
+
+    <form *ngIf="!isLoggedIn"
+      name="form"
+      (ngSubmit)="onSubmit()"
+      #f="ngForm"
+      novalidate>
+  
+        <div class="form-group">
+          <img src="../assets/images/logo2.png" alt="Electroson">
+        </div>
+  
+       
+  
+        <div *ngIf="!hashUser" class="form-group ">
+          <label class="loginFormText" for="email">E-mail</label>
+          <input
+            type="email"
+            class="form-control"
+            name="email"
+            [(ngModel)]="form.email"
+            required
+            email
+            #email="ngModel"
+          />
+        </div>
+  
+        <div *ngIf="!hashUser" class="form-group">
+          <label class="loginFormText" for="password">Senha</label>
+          <input
+            type="password"
+            class="form-control"
+            name="password"
+            [(ngModel)]="form.password"
+            required
+            #password="ngModel"
+          />
+  
+        </div>
+  
+        <div *ngIf="!hashUser" class="form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+          <label class="loginFormText" for="exampleCheck1">Lembrar credenciais</label>
+        </div>
+        <div *ngIf="!hashUser" class="form-group">
+          <button type="submit" class="form-control btn btn-dark btn-home" style="background-color: #00344D;">Entrar</button>
+        </div>
+  
+  
+  
+        <div *ngIf="!hashUser" class="form-group">
+          <a class="btn-home" style="float: right; color: #B48C28;" (click)="open(mymodal)">Novo no sistema? Cadastre-se!</a> 
+  
+          <ng-template #mymodal let-modal>
+            <div class="modal-header">
+              <h4 class="modal-title" id="modal-basic-title">Cadastrar Usuário</h4>
+              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <app-register></app-register>
+            </div>
+          </ng-template>
+  
+        </div>
+  
+  
+        <div *ngIf="hashUser" class="form-group">
+          <label class="loginFormText" for="registerPassword">Senha</label>
+          <input
+            type="password"
+            class="form-control"
+            name="registerPassword"
+            [(ngModel)]="form.registerPassword"
+            required
+            #password="ngModel"
+          />
+        </div>
+  
+        <div *ngIf="hashUser" class="form-group">
+          <label class="loginFormText" for="confirmPassword">Confirme sua senha</label>
+          <input
+            type="password"
+            class="form-control"
+            name="confirmPassword"
+            [(ngModel)]="form.confirmPassword"
+            required
+            #password="ngModel"
+          />
+        </div>
+  
+        <div *ngIf="hashUser" class="form-group">
+          <button type="submit" class="form-control btn btn-dark btn-home" style="background-color: #00344D;">Cadastrar Senha</button>
+        </div>
+  
+      </form>
+      </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+<!-- 
+<div class="row">
+
+    <div class="left-side col-lg-7 col-md-7 col-sm-4 col-xs-3">
+
+      <div class="titleSystem">
+          <h1 class="linha1">Boas vindas ao </h1>
+          <h1 class="linha2">Sistema de Gestão de Não</h1>
+          <h1 class="linha3">Conformidades da Electroson</h1>
+      </div>
+
+    </div>
+
+    <div class="right-side col-lg-5 col-md-5 col-sm-8 col-xs-9">
+
+
+      <form *ngIf="!isLoggedIn"
+      name="form"
+      (ngSubmit)="onSubmit()"
+      #f="ngForm"
+      novalidate>
+  
+        <div class="form-group">
+          <img src="../assets/images/logo2.png" alt="Electroson">
+        </div>
+  
+       
+  
+        <div *ngIf="!hashUser" class="form-group ">
+          <label class="loginFormText" for="email">E-mail</label>
+          <input
+            type="email"
+            class="form-control"
+            name="email"
+            [(ngModel)]="form.email"
+            required
+            email
+            #email="ngModel"
+          />
+        </div>
+  
+        <div *ngIf="!hashUser" class="form-group">
+          <label class="loginFormText" for="password">Senha</label>
+          <input
+            type="password"
+            class="form-control"
+            name="password"
+            [(ngModel)]="form.password"
+            required
+            #password="ngModel"
+          />
+  
+        </div>
+  
+        <div *ngIf="!hashUser" class="form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+          <label class="loginFormText" for="exampleCheck1">Lembrar credenciais</label>
+        </div>
+        <div *ngIf="!hashUser" class="form-group">
+          <button type="submit" class="form-control btn btn-dark btn-home" style="background-color: #00344D;">Entrar</button>
+        </div>
+  
+  
+  
+        <div *ngIf="!hashUser" class="form-group">
+          <a class="btn-home" style="float: right; color: #B48C28;" (click)="open(mymodal)">Novo no sistema? Cadastre-se!</a> 
+  
+          <ng-template #mymodal let-modal>
+            <div class="modal-header">
+              <h4 class="modal-title" id="modal-basic-title">Cadastrar Usuário</h4>
+              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <app-register></app-register>
+            </div>
+          </ng-template>
+  
+        </div>
+  
+  
+        <div *ngIf="hashUser" class="form-group">
+          <label class="loginFormText" for="registerPassword">Senha</label>
+          <input
+            type="password"
+            class="form-control"
+            name="registerPassword"
+            [(ngModel)]="form.registerPassword"
+            required
+            #password="ngModel"
+          />
+        </div>
+  
+        <div *ngIf="hashUser" class="form-group">
+          <label class="loginFormText" for="confirmPassword">Confirme sua senha</label>
+          <input
+            type="password"
+            class="form-control"
+            name="confirmPassword"
+            [(ngModel)]="form.confirmPassword"
+            required
+            #password="ngModel"
+          />
+        </div>
+  
+        <div *ngIf="hashUser" class="form-group">
+          <button type="submit" class="form-control btn btn-dark btn-home" style="background-color: #00344D;">Cadastrar Senha</button>
+        </div>
+  
+      </form>
+
+    </div>
+
+</div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+
 <div style="margin-top: 100px;">
   <div class="split left">
     <div class="centered-left">
@@ -139,4 +395,4 @@
 
     </form>
     </div>
-</div>
+</div> -->

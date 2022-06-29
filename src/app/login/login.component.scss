@@ -1,0 +1,327 @@
+/* body {
+  font-family: Arial;
+  color: white;
+}
+
+.split {
+  height: 100%;
+  width: 40%;
+  position: fixed;
+  z-index: auto;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.left {
+  left: 0;
+  background-color: rgb(0, 91, 123);
+  color: white;
+  width: 100%;
+}
+
+.right {
+  right: 0;
+  background-color: white;
+}
+
+.centered-left {
+  position: absolute;
+  left: 1%;
+  top: 40%;
+  text-align: left;
+}
+
+.welcomeText {
+  font-weight: lighter;
+  font-size: 3em;
+  margin-bottom: 1em;
+}
+
+.systemTitle {
+  font-weight: bold;
+  font-size: 3em;
+  margin-bottom: 0.7em;
+}
+
+
+.centered-right {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.loginFormText {
+  font-size: 100%;
+  text-align: left;
+  color: black;
+}
+
+.btn-home {
+  margin-top: 5%;
+  min-width: 300px;
+} */
+
+
+
+
+
+
+/* 
+.leftside, .rightside {
+  height:50vh;
+  width: 100%;
+} */
+
+/* @media screen and (min-width:768px)
+{
+
+  .leftside, .rightside {
+    height:100vh;
+    font-family: Arial;
+    color: white;
+  }
+  
+}
+*/
+
+.left-side {
+  background-color: rgb(0, 91, 123);
+  color: white;
+  height:100vh;
+}
+  
+
+//   .linha1 {
+//     font-weight: lighter;
+//   }
+
+//   .linha2 {
+//     font-weight: bold;
+//   }
+
+//   .linha3 {
+//     font-weight: bold;
+//   }
+
+//   .titleSystem {
+
+//     position: absolute;
+//     left: 20%;
+//     top: 50%;
+//     transform: translate3d(-50%,-50%,0);
+
+//     .linha2 {
+//       z-index: 100;
+//       text-transform: uppercase; /* Forces CSS to treat this as text, not a texture, so no more blurry bugs */
+//     }
+
+    
+//   }
+
+
+
+// } 
+
+// @media screen and (max-width:1920px) {
+//   .left-side {
+
+//     .linha1 {
+//       width: 100%;
+//       font-size: 4em;
+//     }
+  
+//     .linha2 {
+//       width: 100%;
+//       font-size: 4em;
+//     }
+  
+//     .linha3 {
+//       width: 100%;
+//       font-size: 4em;
+//     }
+  
+
+//   } 
+// }
+
+
+
+
+
+
+
+
+// .container {
+//   position: relative;
+//   height: 100vh;
+//   background-color: green;
+
+// }
+
+// .container .cat-link {
+//   position: absolute;
+//   left: 50%;
+//   top: 50%;
+//   transform: translate3d(-50%,-50%,0);
+//   z-index: 100;
+//   text-transform: uppercase; /* Forces CSS to treat this as text, not a texture, so no more blurry bugs */
+//   background-color: white;
+// }
+
+// .color-block {
+// height: 250px;
+// width: 100%;
+// }
+
+
+
+.left-side {
+  background-color: rgb(0, 91, 123);
+  color: white;
+  
+  
+  // padding-right: 10rem;
+
+  .flex-fill{
+    margin-bottom: 5px;
+    padding-left: 15rem;
+    margin-right: 15rem;
+  }
+
+  .linha1 {
+      font-weight: lighter;
+      margin: 0;
+      padding: 0;
+      font-size:4rem;
+      margin-bottom: 4rem;
+
+  }
+  .linha2 {
+      font-weight: bold;
+      margin: 0;
+      padding: 0;
+      font-size:4rem;
+      margin-bottom: 4rem;
+
+  }
+  .linha3 {
+      font-weight: bold;
+      margin: 0;
+      padding: 0;
+      font-size:4rem;
+
+  }
+}
+
+
+
+@media screen and (max-width:1680px) {
+  .left-side {
+      
+    .flex-fill{
+      padding-left: 6rem;
+      margin-right: 6rem;
+    }
+  
+    .linha1 {
+        font-size:4rem;
+        margin-bottom: 3rem;
+  
+    }
+    .linha2 {
+        font-size:4rem;
+        margin-bottom: 3rem;
+  
+    }
+    .linha3 {
+        font-size:4rem;
+  
+    }
+  }
+}
+
+
+
+
+
+@media screen and (max-width:1440px) {
+  .left-side {
+      
+    .flex-fill{
+      padding-left: 6rem;
+      margin-right: 6rem;
+    }
+  
+    .linha1 {
+        font-size:3rem;
+        margin-bottom: 2rem;
+  
+    }
+    .linha2 {
+        font-size:3rem;
+        margin-bottom: 2rem;
+  
+    }
+    .linha3 {
+        font-size:3rem;
+  
+    }
+  }
+}
+
+
+
+@media screen and (max-width:1280px) {
+  .left-side {
+      
+    .flex-fill{
+      padding-left: 1rem;
+      margin-right: 1rem;
+    }
+  
+    .linha1 {
+        font-size:3rem;
+        margin-bottom: 2rem;
+  
+    }
+    .linha2 {
+        font-size:3rem;
+        margin-bottom: 2rem;
+  
+    }
+    .linha3 {
+        font-size:3rem;
+  
+    }
+  }
+}
+
+@media screen and (max-width:1024px) {
+  
+  .left-side {
+      
+    .flex-fill{
+      margin-bottom: 2px;
+      padding-left: 1rem;
+      margin-right: 1rem;
+    }
+  
+    .linha1 {
+        font-size:2rem;
+        margin-bottom: 1rem;
+  
+    }
+    .linha2 {
+        font-size:2rem;
+        margin-bottom: 1rem;
+  
+    }
+    .linha3 {
+        font-size:2rem;
+  
+    }
+  }
+  
+}
