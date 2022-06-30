@@ -103,7 +103,7 @@ export class RejectionPointItemsComponent implements OnInit {
   }
 
   returnPrScreen() {
-    if (this.nonComplianceService.nc.tipo_controle == "PC(PEDIDO DE COMPRA)") {
+    if (this.nonComplianceService.nc.tipo_controle == "PR(PROCEDIMENTO)") {
       return true;
     } else {
       return false;

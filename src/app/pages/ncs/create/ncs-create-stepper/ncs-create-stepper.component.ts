@@ -2,10 +2,9 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Route, Router } from "@angular/router";
 import { MenuItem, MessageService } from "primeng/api";
 import { NonComplianceService } from "src/app/_services/non-compliance.service";
-import {NonCompliance} from "../../../../models/non-compliance";
-import * as jspdf from 'jspdf';
-import html2canvas from 'html2canvas';
-
+import { NonCompliance } from "../../../../models/non-compliance";
+import * as jspdf from "jspdf";
+import html2canvas from "html2canvas";
 
 @Component({
   selector: "app-ncs-create-stepper",
@@ -18,11 +17,11 @@ export class NcsCreateStepperComponent implements OnInit {
   lastStepLabel = "Avançar";
   constructor(
     private router: Router,
-    private route: ActivatedRoute,
     public nonComplianceService: NonComplianceService,
     private messageService: MessageService
   ) {}
 
+  displayPdf = false;
   disableButton(): boolean {
     switch (this.stepPosition) {
       case 0:
@@ -110,41 +109,58 @@ export class NcsCreateStepperComponent implements OnInit {
     } else return;
   }
 
+  gerarPdf() {
+    this.displayPdf = true;
+    setTimeout(this.generatePDF, 1000);
+    setTimeout(() => {
+      this.displayPdf = false;
+    }, 1000);
+  }
+
   generatePDF() {
-    let data = document.getElementById('pdfContent');
+    let data = document.getElementById("pdfContent");
     if (data) {
-      var w = data.offsetWidth*0.5;
-      var h = data.offsetHeight;
-      data.style.height="auto";
+      var w = data.offsetWidth * 0.7;
+      var h = data.offsetHeight * 0.7;
 
-      html2canvas(data, { }).then(canvas => {
+      html2canvas(data, {}).then((canvas) => {
+        this.displayPdf = false;
         if (data) {
-
           let HTML_Width = w;
-          let HTML_Height = h *2;
+          let HTML_Height = h;
           let top_left_margin = 15;
-          let PDF_Width = HTML_Width + (top_left_margin * 2);
-          let PDF_Height = (PDF_Width * 1.5) + (top_left_margin * 2);
+          let PDF_Width = HTML_Width + top_left_margin * 2;
+          let PDF_Height = PDF_Width * 1.5 + top_left_margin * 2;
           let canvas_image_width = HTML_Width;
           let canvas_image_height = HTML_Height;
           let totalPDFPages = Math.ceil(HTML_Height / PDF_Height) - 1;
-          totalPDFPages = totalPDFPages
-          canvas.getContext('2d');
+          totalPDFPages = totalPDFPages;
+          canvas.getContext("2d");
           let imgData = canvas.toDataURL("image/png", 1.0);
-          let pdf = new jspdf.jsPDF('p', 'pt', [PDF_Width, PDF_Height]);
-          pdf.addImage(imgData, 'PNG', top_left_margin, top_left_margin, canvas_image_width, canvas_image_height);
+          let pdf = new jspdf.jsPDF("p", "pt", [PDF_Width, PDF_Height]);
+          pdf.addImage(
+            imgData,
+            "PNG",
+            top_left_margin,
+            top_left_margin,
+            canvas_image_width,
+            canvas_image_height
+          );
           for (let i = 1; i <= totalPDFPages; i++) {
-            pdf.addPage([PDF_Width, PDF_Height], 'p');
-            pdf.addImage(imgData, 'PNG', top_left_margin, -(PDF_Height * i) + (top_left_margin * 4), canvas_image_width, canvas_image_height);
+            pdf.addPage([PDF_Width, PDF_Height], "p");
+            pdf.addImage(
+              imgData,
+              "PNG",
+              top_left_margin,
+              -(PDF_Height * i) + top_left_margin * 4,
+              canvas_image_width,
+              canvas_image_height
+            );
           }
-          pdf.save("HTML-Document.pdf");
-          // @ts-ignore
-          window.open(pdf.output('bloburl', { filename: "HTML-Document.pdf" }), '_blank');
-      }
-      });
 
+          pdf.save("HTML-Document.pdf");
+        }
+      });
     }
   }
 }
-
-

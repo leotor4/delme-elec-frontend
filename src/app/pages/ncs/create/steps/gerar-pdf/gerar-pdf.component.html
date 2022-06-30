@@ -1,0 +1,107 @@
+<div id="pdfContent">
+  <div class="cabecalho-eletrosom d-flex">
+    <div class="logo d-flex align-items-center col-6">
+      <img src="../assets/images/logo2.png" alt="Electroson" />
+    </div>
+    <div
+      class="endereco d-flex flex-column justify-content-center align-items-end col-6"
+    >
+      <span class="mb-3"
+        ><i class="bi bi-geo-alt-fill"></i> Rod BR-277, 4500 CIC-Curitiba - PR
+        82305-200</span
+      >
+      <span><i class="bi bi-telephone-fill"></i> + 55 (41) 3593-1000</span>
+    </div>
+  </div>
+  <div class="d-flex flex-column cabecalho-info mt-4">
+    <div class="titulo d-flex justify-content-center align-items-center">
+      SISTEMA DE GESTÃO DE QUALIDADE
+    </div>
+    <div class="d-flex flex-row relatorio-dados">
+      <div
+        class="col-8 d-flex justify-content-center align-items-center border border-secondary"
+      >
+        RELATÓRIO DE NÃO CONFORMIDADE
+      </div>
+      <div
+        class="col-4 d-flex flex-column justify-content-between align-items-center border border-secondary p-3"
+      >
+        <span>PR-XXX-XXX</span>
+        <span>REVISÃO: XX</span>
+        <span>DATA: XX.XX.2021</span>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex flex-lg-row flex-column justify-content-between">
+    <div class="d-flex"></div>
+    <div class="d-flex justify-content-end align-items-center mb-3"></div>
+  </div>
+  <app-identify-nc></app-identify-nc>
+  <div class="mt-3"></div>
+  <app-products-and-points></app-products-and-points>
+
+  <div class="div-ident-parceiro d-flex flex-column flex-lg-row mt-3">
+    <div class="dados-parceiro razao-social item">
+      <h2 class="mr-2">
+        <i class="bi bi-file-earmark-text"></i>
+        Descrição
+      </h2>
+      <p-editor
+        [(ngModel)]="this.nonComplicanceService.nc.text_area_nc"
+        [style]="{ height: '100px', border: '1px solid #dddddd' }"
+        [readonly]="true"
+      >
+        <ng-template pTemplate="header"> </ng-template>
+      </p-editor>
+    </div>
+    <p-divider layout="vertical"></p-divider>
+    <div class="dados-parceiro razao-social item">
+      <h2 class="mr-2 mb-5">
+        <i class="bi bi-paperclip"></i>
+        Evidências
+      </h2>
+      <div class="d-flex flex-row flex-wrap">
+        <span *ngFor="let item of returnFile('evidenciasNc')">
+          {{ item.name }} /
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="div-ident-parceiro d-flex mt-3">
+    <div class="dados-parceiro razao-social item">
+      <h2 class="mr-2">
+        <i class="bi bi-geo"></i>
+        Ações Imediatas
+      </h2>
+      <p-editor
+        [(ngModel)]="this.nonComplicanceService.nc.text_area_acoes"
+        [style]="{ height: '100px', border: '1px solid #dddddd' }"
+        [readonly]="true"
+      >
+        <ng-template pTemplate="header" hidden> </ng-template>
+      </p-editor>
+    </div>
+    <p-divider layout="vertical"></p-divider>
+    <div class="dados-parceiro razao-social item">
+      <h2 class="mr-2 mb-5">
+        <i class="bi bi-paperclip"></i>
+        Evidências
+      </h2>
+      <span *ngFor="let item of returnFile('evidenciasAcoes')">
+        {{ item.name }} /
+      </span>
+    </div>
+  </div>
+  <div class="mt-3 mb-5">
+    <app-stakeholders></app-stakeholders>
+  </div>
+  <div class="d-flex flex-row align-items-center fotter">
+    <div class="d-flex flex-column justify-content-center p-2">
+      <span>Sempre conectados</span>
+      <span>www.ELECTROSONteleco.com.br</span>
+    </div>
+    <i class="bi bi-youtube"></i>
+    <i class="bi bi-linkedin"></i>
+    <i class="bi bi-twitter"></i>
+  </div>
+</div>

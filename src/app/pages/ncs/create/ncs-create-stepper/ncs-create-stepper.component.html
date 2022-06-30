@@ -1,4 +1,3 @@
-
 <div class="stepper-content">
   <div class="stepper-buttons">
     <div class="p-0">
@@ -20,8 +19,7 @@
       ></p-steps>
     </div>
     <div class="d-flex justify-content-end p-0 last-button">
-        <div style="display: flex; flex-direction:row;">
-
+      <div style="display: flex; flex-direction: row">
         <button
           type="button"
           (click)="nextStep()"
@@ -32,9 +30,11 @@
           <i [class]="getNextPageBtnIcon()"></i>
         </button>
 
-        <button *ngIf="stepPosition == 2" style="margin-left:15px;"
+        <button
+          *ngIf="stepPosition == 2"
+          style="margin-left: 15px"
           type="button"
-          (click)="generatePDF()"
+          (click)="gerarPdf()"
           class="btn btn-dark btn-sm"
         >
           Gerar PDF
@@ -42,7 +42,7 @@
       </div>
     </div>
   </div>
-  <div class="content-create-nc" id="pdfContent">
+  <div class="content-create-nc">
     <div *ngIf="stepPosition === 0">
       <app-identificacao-da-nc></app-identificacao-da-nc>
       <div class="d-flex flex-row flex-wrap">
@@ -58,10 +58,10 @@
       </div>
       <div class="row">
         <div class="col">
-          <app-checkpoint ></app-checkpoint>
+          <app-checkpoint></app-checkpoint>
         </div>
         <div class="col">
-          <app-rejection-point ></app-rejection-point>
+          <app-rejection-point></app-rejection-point>
         </div>
       </div>
     </div>
@@ -73,9 +73,17 @@
       <app-step3></app-step3>
     </div>
     <div *ngIf="stepPosition === 2">
-      <app-step4
-              (changeStepPosition)="changeStepByPosition($event)"
-      ></app-step4>
+      <div *ngIf="displayPdf">
+        <app-gerar-pdf
+          (changeStepPosition)="changeStepByPosition($event)"
+        ></app-gerar-pdf>
+      </div>
+
+      <div *ngIf="!displayPdf">
+        <app-step4
+          (changeStepPosition)="changeStepByPosition($event)"
+        ></app-step4>
+      </div>
     </div>
   </div>
 </div>
