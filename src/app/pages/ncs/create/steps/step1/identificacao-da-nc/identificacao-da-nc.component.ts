@@ -37,10 +37,12 @@ export class IdentificacaoDaNcComponent implements OnInit {
       (item:string) => {
         if(item == 'NC de Fornecedor') {
           this.nonComplicanceService.nc.data_fechamento = moment(new Date()).add('d', 60).toDate()
-          this.nonComplicanceService.formIdentificacaoNC.get('data_fechamento')?.setValue(moment(this.nonComplicanceService.nc.data_fechamento).format('yyyy-MM-DD'))
+          this.nonComplicanceService.formIdentificacaoNC.get('data_fechamento')?.setValue(moment(this.nonComplicanceService.nc.data_fechamento))
+          this.nonComplicanceService.formIdentificacaoNC.get('data_fechamento_str')?.setValue(moment(this.nonComplicanceService.nc.data_fechamento).format('yyyy-MM-DD'))
         } else {
           this.nonComplicanceService.nc.data_fechamento = moment(new Date()).add('d', 30).toDate()
-          this.nonComplicanceService.formIdentificacaoNC.get('data_fechamento')?.setValue(moment(this.nonComplicanceService.nc.data_fechamento).format('yyyy-MM-DD'))
+          this.nonComplicanceService.formIdentificacaoNC.get('data_fechamento')?.setValue(moment(this.nonComplicanceService.nc.data_fechamento))
+          this.nonComplicanceService.formIdentificacaoNC.get('data_fechamento_str')?.setValue(moment(this.nonComplicanceService.nc.data_fechamento).format('yyyy-MM-DD'))
         }
 
         
@@ -68,8 +70,9 @@ teste(){
   
 
   setDtFechamentoFornecedor () {
-    this.nonComplicanceService.nc.data_fechamento = moment(new Date()).add('d', 60).toDate()
-    return of([moment(new Date()).add('d', 60).format('yyyy-MM-DD')])
+    this.nonComplicanceService.nc.data_fechamento = moment().add('d', 60).toDate()
+    this.nonComplicanceService.formIdentificacaoNC.value['data_fechamento'] = this.nonComplicanceService.nc.data_fechamento
+    return of([moment().add('d', 60).format('yyyy-MM-DD')])
   }
 
   checkAuditoria(tipoNc:any) {
@@ -81,9 +84,7 @@ teste(){
     if(tipoNc == 'NC de Fornecedor') {
 
       this.setDtFechamentoFornecedor().subscribe((data:any) => {
-        this.nonComplicanceService.formIdentificacaoNC.value['data_fechamento'] = data
-        console.log(data)
-        alert('AAAA')
+        this.nonComplicanceService.formIdentificacaoNC.value['data_fechamento_str'] = data
       });
     }
 

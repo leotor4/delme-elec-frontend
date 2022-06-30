@@ -10,13 +10,14 @@
   border-radius: 8px;
   margin-inline: 8px;
   margin-bottom: 8px;
+  height: 140px;
 }
 .image-box img{
-  min-width: 40%;
-  min-height: 40%;
+  min-width: 20%;
+  min-height: 20%;
   padding: 15px;
   object-fit: cover;
-  
+  height: 140px;
 }
 h4 {
   margin: 8px;
@@ -29,6 +30,6 @@ h4 {
     padding: 10px;
   }
   .image-box img {
-    width: 100%;
+    width: 25%;
   }
 }

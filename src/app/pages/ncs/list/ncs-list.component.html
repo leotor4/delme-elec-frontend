@@ -1,14 +1,62 @@
 <p-confirmDialog acceptLabel="sim" rejectLabel="não" [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
 
-<div style="height : 200px;">
+<div style="height : 130px;">
   <ngx-charts-number-card
     [scheme]="colorScheme"
     [results]="cardValues"
     [cardColor]="cardColor"
     (select)="onSelectCard($event)">
-    
   </ngx-charts-number-card>
 </div>
+
+
+<div style="display:flex; margin-top: 50px;">
+  <div style="display: flex; flex-direction:row;">
+    <h2 style="margin-top: 25px;">NCs por Status</h2>
+    <ngx-charts-pie-chart
+      [view]="view" 
+      [scheme]="gridColor"
+      [results]="pieValues"
+      [gradient]="gradient"
+      [legend]="showLegend"
+      [legendPosition]="legendPosition"
+      [labels]="showLabels"
+      [doughnut]="isDoughnut"
+      [legendTitle]="legendTitle"
+      (activate)="onActivate($event)"
+      >
+
+
+      <ng-template #tooltipTemplate let-model="model">
+        <h3>
+          {{ getFlag(model.name, model.value) }}
+        </h3>
+        <h4>{{ model.name }}: {{ model.value }}</h4>
+      </ng-template>
+
+
+
+    </ngx-charts-pie-chart>
+
+    <ngx-charts-bar-vertical-2d
+      [view]="lineChartView"
+      [scheme]="gridColor"
+      [legend]="lineChartLegend"
+      [showXAxisLabel]="lineChartShowXAxisLabel"
+      [showYAxisLabel]="lineChartShowYAxisLabel"
+      [xAxis]="lineChartXAxis"
+      [yAxis]="lineChartYAxis"
+      [xAxisLabel]="lineChartXAxisLabel"
+      [yAxisLabel]="lineChartYAxisLabel"
+      [results]="lineChartData"
+      [legendPosition]="legendPosition"
+      [legendTitle]="legendTitle"
+      [barPadding]="0"      >
+    </ngx-charts-bar-vertical-2d>
+  </div>
+</div>
+
+
 
 <p class="title">Início</p>
 <p class="subtitle">Visualize ou crie não conformidades</p>
@@ -24,189 +72,157 @@
 </span>
 
 <div style="margin-top: 10px;">
-<p-table  responsiveLayout="scroll" #dt 
-[globalFilterFields]="['id','emissor', 'status', 'tipos_nc_item', 'prazo','tipos_local_item', 'data_abertura', 'dsc_produto']" 
-[value]="listNcs" [columns]="cols" [paginator]="true" [rows]="rows" [(first)]="first" [totalRecords]="totalRecords" 
-[showCurrentPageReport]="true" responsiveLayout="scroll" 
-currentPageReportTemplate="Exibindo de {first} a {last} de {totalRecords} registros" [rowsPerPageOptions]="[5,10,25,50]" [filterDelay]="0">
+  <p-table  responsiveLayout="scroll" #dt 
+  [globalFilterFields]="['id','emissor', 'status', 'tipos_nc_item', 'prazo','tipos_local_item', 'data_abertura', 'dsc_produto']" 
+  [value]="listNcs" [columns]="cols" [paginator]="true" [rows]="rows" [(first)]="first" [totalRecords]="totalRecords" 
+  [showCurrentPageReport]="true" responsiveLayout="scroll" 
+  currentPageReportTemplate="Exibindo de {first} a {last} de {totalRecords} registros" [rowsPerPageOptions]="[5,10,25,50]" [filterDelay]="0">
 
-  <ng-template pTemplate="header">
-    <tr>
-      <th pSortableColumn="id">
-        <div class="flex justify-content-between align-items-center">
-            Número
-            <p-sortIcon field="id"></p-sortIcon>
-            <p-columnFilter type="number" field="id" display="menu" class="ml-auto"></p-columnFilter>
-        </div>
-      </th>
-      
-      <th pSortableColumn="emissor">
-        <div class="flex justify-content-between align-items-center">
-            Emissor
-            <p-sortIcon field="emissor"></p-sortIcon>
-            <p-columnFilter type="text" field="emissor" display="menu" class="ml-auto"></p-columnFilter>
-        </div>
-      </th>
-
-      <th pSortableColumn="tipos_nc_item">
-        <div class="flex justify-content-between align-items-center">
-            Tipo de NC
-            <p-sortIcon field="tipos_nc_item"></p-sortIcon>
-            <p-columnFilter type="text" field="tipos_nc_item" display="menu" class="ml-auto"></p-columnFilter>
-        </div>
-      </th>
-
-
-      <th pSortableColumn="tipos_local_item">
-        <div class="flex justify-content-between align-items-center">
-            Setor Afetado
-            <p-sortIcon field="tipos_local_item"></p-sortIcon>
-            <p-columnFilter type="text" field="tipos_local_item" display="menu" class="ml-auto"></p-columnFilter>
-        </div>
-      </th>
-
-      <th pSortableColumn="dsc_produto">
-        <div class="flex justify-content-between align-items-center">
-            Produto
-            <p-sortIcon field="dsc_produto"></p-sortIcon>
-            <p-columnFilter type="text" field="dsc_produto" display="menu" class="ml-auto"></p-columnFilter>
-        </div>
-      </th>
-
-      <th pSortableColumn="status">
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="id">
           <div class="flex justify-content-between align-items-center">
-              Status
-              <p-sortIcon field="status"></p-sortIcon>
-              <p-columnFilter type="text" field="status" display="menu" class="ml-auto"></p-columnFilter>
+              Número<br>
+              <p-sortIcon field="id"></p-sortIcon>
+              <p-columnFilter type="number" field="id" display="menu" class="ml-auto"></p-columnFilter>
+          </div>
+        </th>
+        
+        <th pSortableColumn="emissor">
+          <div class="flex justify-content-between align-items-center">
+              Emissor<br>
+              <p-sortIcon field="emissor"></p-sortIcon>
+              <p-columnFilter type="text" field="emissor" display="menu" class="ml-auto"></p-columnFilter>
+          </div>
+        </th>
+
+        <th pSortableColumn="tipos_nc_item">
+          <div class="flex justify-content-between align-items-center" style="width:100px;">
+              Tipo de NC<br>
+              <p-sortIcon field="tipos_nc_item"></p-sortIcon>
+              <p-columnFilter type="text" field="tipos_nc_item" display="menu" class="ml-auto"></p-columnFilter>
+          </div>
+        </th>
+
+
+        <th pSortableColumn="tipos_local_item">
+          <div class="flex justify-content-between align-items-center" style="width:130px;">
+              Setor Afetado<br>
+              <p-sortIcon field="tipos_local_item"></p-sortIcon>
+              <p-columnFilter type="text" field="tipos_local_item" display="menu" class="ml-auto"></p-columnFilter>
+          </div>
+        </th>
+
+        <th pSortableColumn="dsc_produto">
+          <div class="flex justify-content-between align-items-center">
+              Produto<br>
+              <p-sortIcon field="dsc_produto"></p-sortIcon>
+              <p-columnFilter type="text" field="dsc_produto" display="menu" class="ml-auto"></p-columnFilter>
+          </div>
+        </th>
+
+        <th pSortableColumn="status">
+            <div class="flex justify-content-between align-items-center">
+                Status<br>
+                <p-sortIcon field="status"></p-sortIcon>
+                <p-columnFilter type="text" field="status" display="menu" class="ml-auto"></p-columnFilter>
+            </div>
+        </th>
+
+
+        <th pSortableColumn="data_abertura">
+          <div class="flex justify-content-between align-items-center" style="width:130px;">
+              Data de Abertura<br>
+              <p-sortIcon field="data_abertura"></p-sortIcon>
+              <p-columnFilter type="date" field="data_abertura" display="menu" class="ml-auto"></p-columnFilter>
+          </div>
+        </th>
+
+
+        <th pSortableColumn="prazo">
+          <div class="flex justify-content-between align-items-center" style="width:80px;">
+              Prazo<br>
+              <p-sortIcon field="prazo"></p-sortIcon>
+              <p-columnFilter type="numeric" field="prazo" display="menu" class="ml-auto"></p-columnFilter>
           </div>
       </th>
 
-
-      <th pSortableColumn="data_abertura">
-        <div class="flex justify-content-between align-items-center">
-            Data de Abertura
-            <p-sortIcon field="data_abertura"></p-sortIcon>
-            <p-columnFilter type="date" field="data_abertura" display="menu" class="ml-auto"></p-columnFilter>
-        </div>
-      </th>
-
-
-      <th pSortableColumn="prazo">
-        <div class="flex justify-content-between align-items-center">
-            Prazo
-            <p-sortIcon field="prazo"></p-sortIcon>
-            <p-columnFilter type="numeric" field="prazo" display="menu" class="ml-auto"></p-columnFilter>
-        </div>
-    </th>
-
-      <th style="width: 1rem"></th>
-      <th style="width: 1rem"></th>
-      <th style="width: 1rem"></th>
-  </tr>
-
-</ng-template>
-  <ng-template pTemplate="body" let-ncListDTO>
-
-
-
-    <tr class="p-selectable-row">
-      <td>
-          <span class="p-column-title">Número</span>
-          {{ncListDTO.numero}}
-      </td>
-
-
-      <td>
-        <span class="p-column-title">Emissor</span>
-        {{ncListDTO.emissor}}
-      </td>
-
-      <td>
-          <span class="p-column-title">Tipo de NC</span>
-          {{ncListDTO.tipos_nc_item}}
-      </td>
-
-      <td>
-          <span class="p-column-title">Setor Afetado</span>
-          {{ncListDTO.tipos_local_item}}
-      </td>
-
-      <td>
-        <span class="p-column-title">Produto</span>
-        {{ncListDTO.dsc_produto}}
-    </td>
-
-      <td>
-        <span class="p-column-title">Status</span>
-        <span [ngSwitch]="ncListDTO.status" >
-          <span *ngSwitchCase="'open'"> Aberta</span>
-          <span *ngSwitchCase="'running'"> Em execução</span>
-          <span *ngSwitchCase="'late'"> Atrasada</span>
-          <span *ngSwitchCase="'deleted'"> Deletada</span>
-          <span *ngSwitchCase="'archived'"> Arquivada</span>
-          <span *ngSwitchCase="'canceled'"> Cancelada</span>
-          <span *ngSwitchCase="'closed'"> Fechada</span>
-        </span>
-      </td>
-
-      <td>
-        <span class="p-column-title">Data de Abertura</span>
-        {{ncListDTO.data_abertura | date: 'dd/MM/yyyy'}}
-      </td>
-
-      <td>
-        <span class="p-column-title">Prazo</span>
-        {{ncListDTO.prazo}}
-      </td>
-
-      <td style="text-align: center">
-          <a style="color: black;" type="button" pTooltip="Ver informações da NC" (click)="visualizarInformacoes(ncListDTO.nc.id, ncListDTO.status)" ><i class="bi bi-info-circle"></i></a>
-      </td>
-
-      <td style="text-align: center">
-        <a type="button" style="color: black;" (click)="edit(ncListDTO.nc.id, ncListDTO.status)" pTooltip="Editar NC"><i class="bi bi-file-richtext"></i></a>
-      </td>
-
-      <td style="text-align: center">
-        <a type="button" style="color: black;" (click)="cancelNc(ncListDTO.nc)" pTooltip="Cancelar NC"><i class="pi pi-times"></i></a>
-      </td>
-
-  </tr>
+        <th style="width: 1rem"></th>
+        <th style="width: 1rem"></th>
+        <th style="width: 1rem"></th>
+    </tr>
 
   </ng-template>
-</p-table>
+    <ng-template pTemplate="body" let-ncListDTO>
 
-  <div style="display:flex; margin-top: 50px;">
-    <div style="display: flex; flex-direction:row;">
-      <h2 style="margin-top: 25px;">NCs por Status</h2>
-      <ngx-charts-pie-chart
-        [view]="view" 
-        [scheme]="gridColor"
-        [results]="pieValues"
-        [gradient]="gradient"
-        [legend]="showLegend"
-        [legendPosition]="legendPosition"
-        [labels]="showLabels"
-        [doughnut]="isDoughnut"
-        [legendTitle]="legendTitle"
-        >
-      </ngx-charts-pie-chart>
 
-      <ngx-charts-bar-vertical-2d
-        [view]="lineChartView"
-        [scheme]="gridColor"
-        [legend]="lineChartLegend"
-        [showXAxisLabel]="lineChartShowXAxisLabel"
-        [showYAxisLabel]="lineChartShowYAxisLabel"
-        [xAxis]="lineChartXAxis"
-        [yAxis]="lineChartYAxis"
-        [xAxisLabel]="lineChartXAxisLabel"
-        [yAxisLabel]="lineChartYAxisLabel"
-        [results]="lineChartData"
-        [legendPosition]="legendPosition"
-        [legendTitle]="legendTitle"
-        >
-      </ngx-charts-bar-vertical-2d>
-    </div>
-  </div>
+
+      <tr class="p-selectable-row">
+        <td>
+            <span class="p-column-title">Número</span>
+            {{ncListDTO.numero}}
+        </td>
+
+
+        <td>
+          <span class="p-column-title">Emissor</span>
+          {{ncListDTO.emissor}}
+        </td>
+
+        <td>
+            <span class="p-column-title">Tipo de NC</span>
+            {{ncListDTO.tipos_nc_item}}
+        </td>
+
+        <td>
+            <span class="p-column-title">Setor Afetado</span>
+            {{ncListDTO.tipos_local_item}}
+        </td>
+
+        <td>
+          <span class="p-column-title">Produto</span>
+          {{ncListDTO.dsc_produto}}
+      </td>
+
+        <td>
+          <span class="p-column-title">Status</span>
+          <span [ngSwitch]="ncListDTO.status" >
+            <span *ngSwitchCase="'open'"> Em elaboração</span>
+            <span *ngSwitchCase="'running'"> Em execução</span>
+            <span *ngSwitchCase="'late'"> Atrasada</span>
+            <span *ngSwitchCase="'deleted'"> Deletada</span>
+            <span *ngSwitchCase="'archived'"> Arquivada</span>
+            <span *ngSwitchCase="'canceled'"> Cancelada</span>
+            <span *ngSwitchCase="'closed'"> Fechada</span>
+          </span>
+        </td>
+
+        <td>
+          <span class="p-column-title">Data de Abertura</span>
+          {{ncListDTO.data_abertura | date: 'dd/MM/yyyy'}}
+        </td>
+
+        <td>
+          <span class="p-column-title">Prazo</span>
+          {{ncListDTO.prazo}}
+        </td>
+
+        <td style="text-align: center">
+            <a style="color: black;" type="button" pTooltip="Ver informações da NC" (click)="visualizarInformacoes(ncListDTO.nc.id, ncListDTO.status)" ><i class="bi bi-info-circle"></i></a>
+        </td>
+
+        <td style="text-align: center">
+          <a type="button" style="color: black;" (click)="edit(ncListDTO.nc.id, ncListDTO.status)" pTooltip="Editar NC"><i class="bi bi-file-richtext"></i></a>
+        </td>
+
+        <td style="text-align: center">
+          <a type="button" style="color: black;" (click)="cancelNc(ncListDTO.nc)" pTooltip="Cancelar NC"><i class="pi pi-times"></i></a>
+        </td>
+
+    </tr>
+
+    </ng-template>
+  </p-table>
+
+  
 </div>

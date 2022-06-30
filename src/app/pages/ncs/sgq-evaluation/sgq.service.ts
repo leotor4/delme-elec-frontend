@@ -4,13 +4,14 @@ import {Contact} from "../../../models/contact.model";
 import {NonComplianceService} from "../../../_services/non-compliance.service";
 import {HttpClient} from "@angular/common/http";
 import {SgqEval} from "../../../models/SgqEval";
+import {environment} from "../../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class SgqService {
 
-  apiUrl = "http://localhost:3333/sgq";
+  apiUrl = environment.apiURL+"sgq";
   allNCs: any[] = []
   sgq = new SgqEval();
   step2File: any = [];

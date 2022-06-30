@@ -7,6 +7,7 @@
     [style]="{ height: '210px' }"
     [(ngModel)]="nonComplianceService.nc.text_area_reject_point"
     [modules]="{counter: {container: '#counterR',unit: 'character'}}"
+    [readonly]="!nonComplianceService.hasProduct()"
   ></p-editor>
   <div id="counterR" class="text-end">0</div>
 </div>
@@ -144,5 +145,19 @@
         </p-autoComplete>
       </div>
     </div>
+    <div class="col att-button">
+      <div>
+        <p><i class="pi pi-history"></i> ultima atualização:</p>
+        <a
+                pButton
+                type="button"
+                icon="pi pi-download"
+                label="Atualizar PRs"
+                class="p-button-secondary p-button-text"
+                [href]="getUrl()"
+        ></a>
+      </div>
+    </div>
   </div>
+</div>
 </div>

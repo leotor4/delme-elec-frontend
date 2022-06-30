@@ -14,7 +14,7 @@ import { AppComponent } from './../app.component';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
   //title = 'appBootstrap';
@@ -43,9 +43,6 @@ export class LoginComponent implements OnInit {
     private modalService: NgbModal, private messageService: MessageService) { }
 
   ngOnInit(): void {
-
-    alert(this.title);
-    alert(this.apiURL);
 
     this.router.queryParams.subscribe(param => {      
       this.hashUser = param['hashUser']

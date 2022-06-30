@@ -6,6 +6,7 @@ import {
 } from "../../../../../dialogs/visualizar-documento-dialog/visualizar-documento-dialog.component";
 import {AboutService} from "../../../../about/about.service";
 import {MessageService} from "primeng/api";
+import {environment} from "../../../../../../../environments/environment";
 
 @Component({
   selector: 'app-nc-info',
@@ -59,5 +60,9 @@ export class NcInfoComponent implements OnInit {
         });
       }
     })
+  }
+
+  getUrl(){
+    return environment.apiURL
   }
 }

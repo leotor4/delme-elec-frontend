@@ -135,8 +135,8 @@ export class NcsCreateHeaderComponent implements OnInit {
   }
 
   popularData() {
-    this.nonComplianceService.nc.data_abertura = moment(new Date(), 'yyyy-MM-DD').toDate(); 
-    this.nonComplianceService.nc.data_fechamento = moment(new Date(), 'yyyy-MM-DD').add(30).toDate()
+    this.nonComplianceService.nc.data_abertura = moment(new Date()).toDate(); 
+    this.nonComplianceService.nc.data_fechamento = moment(new Date()).add(30).toDate()
   }
 
   openCancelDialog(){

@@ -1,9 +1,5 @@
 <div class="content">
-  <div *ngIf="!nonComplicanceService.hasProduct()">
-    <h3>Ponto de Controle *</h3>
-    <app-waiting-product titleFigure="Aguardando dados do ponto de controle"></app-waiting-product>
-  </div>
-  <div *ngIf="nonComplicanceService.hasProduct()">
+  <div>
     <div class="content">
       <div class="text-box">
         <div class="cabecalho">
@@ -15,7 +11,7 @@
         </div>
 
         <div class="dropdown">
-          <select (change)="limparCampos()" [(ngModel)]="nonComplicanceService.nc.tipo_controle">
+          <select (change)="limparCampos()" [(ngModel)]="nonComplicanceService.nc.tipo_controle" [disabled]="!nonComplicanceService.hasProduct()">
             <option value="" disabled selected hidden>Selecione...</option>
             <option *ngFor="let op of controleOptions">
               {{ op }}

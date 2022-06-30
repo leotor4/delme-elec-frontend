@@ -1,5 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ProposalService} from "../../proposal.service";
+import {Contact} from "../../../../../models/contact.model";
 
 @Component({
   selector: 'app-review-infomations',
@@ -18,13 +19,14 @@ export class ReviewInfomationsComponent implements OnInit {
     'border-radius': '5px'
   }
     @Output() changeStepPosition: EventEmitter<number> = new EventEmitter();
+  contactsCopy: Contact[];
   constructor(public propService: ProposalService) {}
 
   goToStepById(position: number) {
     this.changeStepPosition.emit(position);
   }
   ngOnInit(): void {
-    
+    this.contactsCopy = this.propService.propSolution.contacts.filter(val=>val.email! != "efraim@electrosonteleco.com")
   }
 
    dataParse(date:any){

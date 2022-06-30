@@ -1,10 +1,5 @@
 <div class="content">
-  <div *ngIf="!nonComplianceService.hasProduct()">
-    <h3>Ponto de Rejeição *</h3>
-    <app-waiting-product titleFigure="Aguardando dados do ponto de rejeição"></app-waiting-product>
-  </div>
-
-  <div *ngIf="nonComplianceService.hasProduct()" class="mt-3 reject-point">
+  <div class="mt-3 reject-point">
     
     <app-rejection-point-items></app-rejection-point-items>
   </div>

@@ -4,19 +4,20 @@
         Descreva o cronograma de atividades de ações corretivas da proposição.
     </p>
 </div>
-<div class="d-flex justify-content-between flex-column flex-lg-row mt-5">
+<div class="d-flex flex-column mr-lg-3 inputs-sm mt-5">
+    <label>Descrição da Ação</label>
+    <input
+            [(ngModel)]="name"
+            name="amountNC"
+            type="text"
+            pInputText
+            placeholder="Digite"
+            class="p-input text-sm input"
+            maxlength="500"
+    />
+</div>
+<div class="d-flex justify-content-between flex-column flex-lg-row mt-2">
     <div class="d-flex justify-content-between flex-column flex-lg-row">
-        <div class="d-flex flex-column mr-lg-3 inputs-sm my-auto">
-            <label>Descrição da Ação</label>
-            <input
-                    [(ngModel)]="name"
-                    name="amountNC"
-                    type="text"
-                    pInputText
-                    placeholder="Digite"
-                    class="p-input text-sm input"
-            />
-        </div>
         <div class="d-flex flex-column mr-lg-3 inputs-sm my-auto">
             <label>Responsável</label>
             <p-dropdown  class="p-input input"

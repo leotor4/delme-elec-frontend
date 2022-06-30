@@ -18,6 +18,7 @@ export class SGQEvaluationComponent implements OnInit {
   editorStyle = {
     'width': '100%',
     'border': '0px',
+    'font-size': '20px'
   }
   constructor(public dialogService: DialogService, private route: ActivatedRoute, public aboutSrv: AboutService) { }
 
@@ -35,6 +36,9 @@ export class SGQEvaluationComponent implements OnInit {
       showHeader: false,
       width: '60vw',
     });
+  }
+  getContacts(){
+    return this.aboutSrv.nc.contacts.filter(val=>val.email! != "efraim@electrosonteleco.com")
   }
 
 

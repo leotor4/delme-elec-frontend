@@ -11,6 +11,7 @@ import { InstructionsService } from "src/app/_services/instructions.service";
 import { NonComplianceService } from "src/app/_services/non-compliance.service";
 import { TokenStorageService } from "src/app/_services/token-storage.service";
 import { ItDialogComponent } from "../it-dialog/it-dialog.component";
+import {environment} from "../../../../../../../../environments/environment";
 
 @Component({
   selector: "app-rejection-point-items",
@@ -140,6 +141,9 @@ export class RejectionPointItemsComponent implements OnInit {
         life: 3000,
       });
     }
+  }
+  getUrl(){
+    return environment.apiURL + 'ncs/import"'
   }
 
   ngOnInit(): void {}
