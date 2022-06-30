@@ -8,12 +8,15 @@
         Caso não encontre o produto, atualize a base de cadastros.
       </p>
     </div>
-    <div class="button-box col-lg-4 mb-4 mb-lg-0 ml-4">
-      <p class="att">
-        <i class="pi pi-history"></i> ultima atualização:
-        {{ returnUpdateTime() }}
+    <div class="col-2" id="div-att-col2">
+      <p>
+        <i class="pi pi-history"> </i>Última atualização: {{ returnUpdateTime() }}
       </p>
-      <a target="_blank" href="ncs/import" role="button" class="btn btn-dark">
+      <a      target="_blank"
+              href="ncs/import"
+              role="button"
+              class="btn btn-dark"
+      >
         Atualizar Cadastros
         <i class="pi pi-download" id="icon-button"></i>
       </a>

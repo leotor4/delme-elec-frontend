@@ -29,4 +29,11 @@ export class ProductsAndPointsComponent implements OnInit {
     });
     return acoesFile;
   }
+  getPercent(){
+    if(!isNaN(this.percent)){
+      return this.percent + "%"
+    } else{
+      return "Não se Aplica"
+    }
+  }
 }

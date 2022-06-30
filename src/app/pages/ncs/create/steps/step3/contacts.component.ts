@@ -176,7 +176,7 @@ export class ContactsComponent implements OnInit{
         }
         if (!this.nonComplianceService.allContacts.some(e => e.email === 'manuela.starowsta@electrosonteleco.com.br')) {
           let contact = new Contact()
-          
+
           contact.email = 'manuela.starowsta@electrosonteleco.com.br'
           contact.name = "Manuela Starowsta"
           contact.type = "SGQ"

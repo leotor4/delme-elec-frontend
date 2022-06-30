@@ -27,6 +27,7 @@ export class ParceiroComponent implements OnInit {
   results: any[];
   public parceiroIdent = false;
   public display = false;
+  label= 'Busque por SAP, razão social ou contato...'
 
   
 
@@ -74,28 +75,18 @@ export class ParceiroComponent implements OnInit {
   }
 
   verificarExistencia(element: any, filtro: String): boolean {
-    if (
-      element.corporate_name?.normalize('NFKD').replace(/[^\w]/g, '').toUpperCase().includes(filtro.toUpperCase()) ||
-      element.code?.normalize('NFKD').replace(/[^\w]/g, '').toUpperCase().includes(filtro.toUpperCase()) ||
-      element.responsible_name?.normalize('NFKD').replace(/[^\w]/g, '').toUpperCase().includes(filtro.toUpperCase()) ||
-      element.responsible_email?.normalize('NFKD').replace(/[^\w]/g, '').toUpperCase().includes(filtro.toUpperCase()) ||
-      element.responsible_phone?.normalize('NFKD').replace(/[^\w]/g, '').toUpperCase().includes(filtro.toUpperCase())
-    ) {
-      return true;
-    } else {
-      return false;
-    }
+    return element.corporate_name?.normalize('NFKD').replace(/[^\w]/g, '').toUpperCase().includes(filtro?.toUpperCase()) ||
+        element.code?.normalize('NFKD').replace(/[^\w]/g, '').toUpperCase().includes(filtro?.toUpperCase()) ||
+        element.responsible_name?.normalize('NFKD').replace(/[^\w]/g, '').toUpperCase().includes(filtro?.toUpperCase()) ||
+        element.responsible_email?.normalize('NFKD').replace(/[^\w]/g, '').toUpperCase().includes(filtro?.toUpperCase()) ||
+        element.responsible_phone?.normalize('NFKD').replace(/[^\w]/g, '').toUpperCase().includes(filtro?.toUpperCase());
   }
 
   verificarExistenciaInterno(element: any, filtro: String): boolean {
-    if (
-      element.name?.normalize('NFKD').replace(/[^\w]/g, '').toUpperCase().includes(filtro.toUpperCase()) ||
-      element.code?.normalize('NFKD').replace(/[^\w]/g, '').toUpperCase().includes(filtro.toUpperCase())
-    ) {
-      return true;
-    } else {
-      return false;
-    }
+    return element.name?.normalize('NFKD').replace(/[^\w]/g, '').toUpperCase().includes(filtro.toUpperCase()) ||
+        element.code?.normalize('NFKD').replace(/[^\w]/g, '').toUpperCase().includes(filtro.toUpperCase()) ||
+        element.responsible_name?.normalize('NFKD').replace(/[^\w]/g, '').toUpperCase().includes(filtro.toUpperCase()) ||
+        element.responsible_email?.normalize('NFKD').replace(/[^\w]/g, '').toUpperCase().includes(filtro.toUpperCase());
   }
 
   isInterno(): boolean {
@@ -133,8 +124,8 @@ export class ParceiroComponent implements OnInit {
       this.nonComplicanceService.nc.partner = 'Interno'
       this.nonComplicanceService.pesquisar = this.nonComplicanceService.formIdentificacaoNC.value['tipos_local_item']
 
-      console.log(this.nonComplicanceService.pesquisar)
-      
+      console.log(this.nonComplicanceService.nc)
+      this.label= 'Busque por nome do setor ou responsável...'
 
       for(let element of this.nonComplicanceService.sectors) {    
         if (element.name.toUpperCase() == this.nonComplicanceService.pesquisar.toUpperCase()) {
@@ -156,8 +147,8 @@ export class ParceiroComponent implements OnInit {
           }
           break;
         }
-      };
-    }
+      }
+    } else this.label= 'Busque por SAP, razão social ou contato...'
   }
 
   onChangeAutoComplete() {

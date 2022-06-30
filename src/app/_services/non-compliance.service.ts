@@ -136,15 +136,30 @@ export class NonComplianceService {
   avancarPasso1(): boolean {
     return !(this.formIdentificacaoNC.valid 
       && this.nc.partner 
-      && this.nc.product
+      && this.validaProd()
       && this.nc.text_area_reject_point
       && this.nc.tipo_controle
-      && this.nc.quant_nc
-      && this.nc.quant_total
       //&& this.validarAuditoria()  
       && this.validarCheckpoint()
       
       )
+  }
+  validaProd(){
+    if(this.formIdentificacaoNC.value.tipos_nc_item=="NC de Produto"){
+      return this.nc.product
+          && this.nc.quant_nc
+          && this.nc.quant_total
+    } else {
+      return true
+    }
+  }
+
+   validaEvi() {
+    if(this.formIdentificacaoNC.value.tipos_nc_item=="Auditoria Interna"||this.formIdentificacaoNC.value.tipos_nc_item=="Auditoria Interna"){
+      return true
+    } else {
+      return this.returnfiles("evidenciasNc").length>0
+    }
   }
 
   avancarPasso2(): boolean {
@@ -152,7 +167,7 @@ export class NonComplianceService {
       !!this.nc.radio_value 
       && !!this.nc.text_area_nc
       && !!this.nc.text_area_acoes
-      && this.returnfiles("evidenciasNc").length>0
+      && this.validaEvi()
     );
   }
 
