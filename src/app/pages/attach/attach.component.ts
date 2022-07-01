@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Attachment } from 'src/app/models/attachment';
-import { NonComplianceService } from 'src/app/_services/non-compliance.service';
+import { Component, Input, OnInit } from "@angular/core";
+import { Attachment } from "src/app/models/attachment";
+import { NonComplianceService } from "src/app/_services/non-compliance.service";
 
 @Component({
   selector: "app-attach",
@@ -24,6 +24,17 @@ export class AttachComponent implements OnInit {
       this.nonComplicanceService.fileNc = [];
     } else if (name == "evidenciasAcoes") {
       this.nonComplicanceService.fileAcoes = [];
+    }
+  }
+
+  clearFileByName(name: string) {
+    for (var i = 0; i < this.nonComplicanceService.nc.attachments.length; i++) {
+      let attach = this.nonComplicanceService.nc.attachments[i];
+      console.log(name);
+      if (attach.path == this.item && attach.name == name) {
+        
+        this.nonComplicanceService.nc.attachments.splice(i, 1);
+      }
     }
   }
 

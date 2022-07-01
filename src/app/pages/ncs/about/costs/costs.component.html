@@ -52,7 +52,7 @@
                             type="button"
                             icon="bi bi-download"
                             class="p-button-secondary p-button-text"
-                            [href]="getUrl()"
+                            [href]="getUrl(doc.id)"
                             download
                     ></a>
                     <button
@@ -98,13 +98,14 @@
                 <h1>Anexar relatório de custos</h1>
                 <div
                         class="white-background"
-                        *ngIf="!fileChosen"
+                        *ngIf="!haveFiles()"
                 >
                     <input
                             type="file"
                            
                             class="input-attachment"
                             (change)="onUpload($event)"
+                            multiple
                             required
                     />
                     <i class="pi pi-cloud-upload"></i>
@@ -114,7 +115,7 @@
                 </div>
                 <div
                         class="white-background-files"
-                        *ngIf="fileChosen"
+                        *ngIf="haveFiles()"
                 >
                     <button
                             type="button"
@@ -123,9 +124,9 @@
                     >
                         <i class="pi pi-replay"></i>
                     </button>
-                    <p>
-                        {{ file?.name }}
-                    </p>
+                    <div *ngFor="let item of files" class="d-flex justify-content-center align-items-center files">
+                        {{ item.name }} <button (click)="clearById(item.name)"><i class="bi bi-x"></i></button>
+                    </div>
                 </div>
             </div>
         </div>

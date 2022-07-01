@@ -38,40 +38,7 @@
   
   <div class="col-3 col-attachment">
     <label>Anexe evidências objetivas ou fotográficas *</label>
-    <div class="div-attachment">
-      <h1>Envie seus documentos</h1>
-      <div
-        class="white-background"
-        *ngIf="returnFiles('evidenciasNc').length == 0"
-      >
-        <input
-          type="file"
-          accept=".pdf,image/jpeg,image/png,xlsx,xls"
-          class="input-attachment"
-          (change)="onUpload($event, 'evidenciasNc')"
-          multiple
-        />
-        <i class="pi pi-cloud-upload"></i>
-        <p>
-          Arraste e solte ou <strong>navegue para escolher</strong> um arquivo
-        </p>
-      </div>
-      <div
-        class="white-background-files"
-        *ngIf="returnFiles('evidenciasNc').length > 0"
-      >
-        <button
-          type="button"
-          (click)="clearFileName('evidenciasNc')"
-          class="btn btn-light"
-        >
-          <i class="pi pi-replay"></i>
-        </button>
-        <p *ngFor="let files of returnFiles('evidenciasNc')">
-          {{ files.name }}
-        </p>
-      </div>
-    </div>
+    <app-attach [item]="'evidenciasNc'"></app-attach>
   </div>
 </div>
 
@@ -100,39 +67,6 @@
 
   <div class="col-3 col-attachment">
     <label for="desc-area">Anexe evidências objetivas ou fotográficas</label>
-    <div class="div-attachment">
-      <h1>Envie seus documentos</h1>
-      <div
-        class="white-background"
-        *ngIf="returnFiles('evidenciasAcoes').length == 0"
-      >
-        <input
-          type="file"
-          accept=".pdf,image/jpeg,image/png,xlsx,xls"
-          class="input-attachment"
-          (change)="onUpload($event, 'evidenciasAcoes')"
-          multiple
-        />
-        <i class="pi pi-cloud-upload"></i>
-        <p>
-          Arraste e solte ou <strong>navegue para escolher</strong> um arquivo
-        </p>
-      </div>
-      <div
-        class="white-background-files"
-        *ngIf="returnFiles('evidenciasAcoes').length > 0"
-      >
-        <button
-          type="button"
-          (click)="clearFileName('evidenciasAcoes')"
-          class="btn btn-light"
-        >
-          <i class="pi pi-replay"></i>
-        </button>
-        <p *ngFor="let files of returnFiles('evidenciasAcoes')">
-          {{ files.name }}
-        </p>
-      </div>
-    </div>
+    <app-attach [item]="'evidenciasAcoes'"></app-attach>
   </div>
 </div>

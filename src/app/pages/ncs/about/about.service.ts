@@ -54,9 +54,13 @@ export class AboutService {
     }
 
     postCost(cost: Cost, file: any) {
+        
         let formData = new FormData();
         formData.append("data", JSON.stringify(cost));
-        formData.append("file", file);
+        for (var i = 0; i < file.length; i++) {
+          formData.append("files", file[i]);
+        }
+        
         return this.http.post(this.apiUrl + "costs", formData);
     }
     deleteCost(id: number) {
