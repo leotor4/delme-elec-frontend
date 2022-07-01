@@ -33,7 +33,7 @@ export class ProductsAndPointsComponent implements OnInit {
     if(!isNaN(this.percent)){
       return this.percent + "%"
     } else{
-      return "Não se Aplica"
+      return "0"
     }
   }
 }

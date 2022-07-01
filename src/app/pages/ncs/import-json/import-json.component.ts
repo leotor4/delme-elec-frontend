@@ -12,6 +12,7 @@ import { ProviderService } from "src/app/_services/provider.service";
 import { PlaceService } from "src/app/_services/place.service";
 import { NonComplianceService } from "src/app/_services/non-compliance.service";
 import { Place } from "src/app/models/place";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: "app-provider",
@@ -30,7 +31,8 @@ export class ImportJsonComponent implements OnInit {
     public sectorService: SectorService,
     public placeService: PlaceService,
     public nonComplianceService: NonComplianceService,
-    public providerService: ProviderService
+    public providerService: ProviderService,
+    public translate: TranslateService
   ) {}
 
   ngOnInit(): void {}
@@ -52,13 +54,13 @@ export class ImportJsonComponent implements OnInit {
             this.importService.postUpdateTime().subscribe();
             this.messageService.add({
               severity: "success",
-              summary: `Arquivo importado com sucesso`,
+              summary: this.translate.instant('import.success'),
             });
           },
           (error) => {
             this.messageService.add({
               severity: "error",
-              summary: `Erro ao importar arquivo`,
+              summary: this.translate.instant('import.fail'),
             });
           }
         );

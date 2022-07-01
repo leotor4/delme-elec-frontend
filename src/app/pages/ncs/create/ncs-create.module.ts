@@ -49,6 +49,7 @@ import { PrDialogComponent } from './steps/step2/checkpoint/pr-dialog/pr-dialog.
 import { PdfViewerModule } from "ng2-pdf-viewer";
 import { CancelDialogComponent } from './ncs-create-header/cancel-dialog/cancel-dialog.component';
 import { GerarPdfComponent } from './steps/gerar-pdf/gerar-pdf.component';
+import {TranslateModule} from "@ngx-translate/core";
 import { AttachComponent } from "../../attach/attach.component";
 
 
@@ -83,7 +84,7 @@ import { AttachComponent } from "../../attach/attach.component";
       CancelDialogComponent,
       GerarPdfComponent,
       AttachComponent
-      
+
    
      
     ],
@@ -110,7 +111,8 @@ import { AttachComponent } from "../../attach/attach.component";
         AccordionModule,
         ChipModule,
         CarouselModule,
-      PdfViewerModule,
+        PdfViewerModule,
+        TranslateModule,
     ],
     entryComponents: [ContactDialogComponent],
     providers: [ConfirmationService],

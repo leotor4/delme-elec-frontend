@@ -155,7 +155,7 @@ export class NonComplianceService {
   }
 
    validaEvi() {
-    if(this.formIdentificacaoNC.value.tipos_nc_item=="Auditoria Interna"||this.formIdentificacaoNC.value.tipos_nc_item=="Auditoria Interna"){
+    if(this.formIdentificacaoNC.value.tipos_nc_item=="Auditoria Interna"||this.formIdentificacaoNC.value.tipos_nc_item=="Auditoria Externa"){
       return true
     } else {
       return this.returnfiles("evidenciasNc").length>0

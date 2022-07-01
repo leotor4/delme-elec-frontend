@@ -1,21 +1,20 @@
 <div class="cabecalho">
-  <p>Os campos marcados com asterisco (*) são de preenchimento
-    obrigatório</p>
-  <h1>Descrição da NC *</h1>
+  <p>{{'global.requiredFields'| translate}}</p>
+  <h1>{{'newNC.step2.descNCTitle'| translate}}</h1>
   <p>
-    Informe abaixo os detalhes da não conformidade
+    {{'newNC.step2.descNCSubtitle'| translate}}
   </p>
 </div>
 <div class="d-flex  justify-content-evenly mb-2">
   <p-radioButton
           name="ncType"
-          label="Não conformidade real"
+          [label]="'newNC.step2.radioLabel1'| translate"
           value="val1"
           [(ngModel)]="nonComplicanceService.nc.radio_value"
   ></p-radioButton>
   <p-radioButton
           name="ncType"
-          label="Não conformidade Potencial / Oportunidade de Melhoria"
+          [label]="'newNC.step2.radioLabel2'| translate"
           class="pt-2"
           value="val2"
           [(ngModel)]="nonComplicanceService.nc.radio_value"
@@ -25,7 +24,7 @@
 
 <div class="d-flex row">
   <div class="col col-editor">
-    <label>Descreva a não conformidade *</label>
+    <label>{{'newNC.step2.ncText'| translate}}</label>
     <p-editor
       [style]="{ height: '210px' }"
       [(ngModel)]="this.nonComplicanceService.nc.text_area_nc"
@@ -37,7 +36,7 @@
 
   
   <div class="col-3 col-attachment">
-    <label>Anexe evidências objetivas ou fotográficas *</label>
+    <label>{{'global.fileInput.title'| translate}} *</label>
     <app-attach [item]="'evidenciasNc'"></app-attach>
   </div>
 </div>
@@ -45,16 +44,15 @@
 <div class="mt-4 mb-4"></div>
 
 <div class="cabecalho">
-  <h1>Ações Imediatas</h1>
+  <h1>{{'newNC.step2.actionsTitle'| translate}}</h1>
   <p>
-    Preencha o campo abaixo com ações imediatas e anexe evidências, sejam
-    fotográficas ou documentais.
+    {{'newNC.step2.actionsSubtitle'| translate}}
   </p>
 </div>
 
 <div class="d-flex row">
   <div class="col col-editor">
-    <label for="desc-area">Descreve as ações imediatas *</label>
+    <label for="desc-area">{{'newNC.step2.actionsText'| translate}} *</label>
     <p-editor
       [style]="{ height: '210px' }"
       [(ngModel)]="this.nonComplicanceService.nc.text_area_acoes"
@@ -66,7 +64,7 @@
 
 
   <div class="col-3 col-attachment">
-    <label for="desc-area">Anexe evidências objetivas ou fotográficas</label>
+    <label for="desc-area">{{'global.fileInput.title'| translate}}</label>
     <app-attach [item]="'evidenciasAcoes'"></app-attach>
   </div>
 </div>
