@@ -1,7 +1,8 @@
 {
-    "/*": {
-        "target": "http://172.17.16.102:3333",
-        "secure": false,
-        "logLevel": "debug"
-    }
+    "/*":  {
+    "context": ["/api", "/upload"],
+    "target": "http://localhost:5000",
+    "secure": false,
+    "logLevel": "debug"
+  }
 }

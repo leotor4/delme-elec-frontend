@@ -47,9 +47,10 @@ import { RejectionPointItemsComponent } from './steps/step2/rejection-point/reje
 import { ItDialogComponent } from './steps/step2/rejection-point/it-dialog/it-dialog.component';
 import { PrDialogComponent } from './steps/step2/checkpoint/pr-dialog/pr-dialog.component';
 import { PdfViewerModule } from "ng2-pdf-viewer";
-import{NgxExtendedPdfViewerModule} from 'ngx-extended-pdf-viewer';
 import { CancelDialogComponent } from './ncs-create-header/cancel-dialog/cancel-dialog.component';
 import { GerarPdfComponent } from './steps/gerar-pdf/gerar-pdf.component';
+
+
 
 
 
@@ -80,6 +81,9 @@ import { GerarPdfComponent } from './steps/gerar-pdf/gerar-pdf.component';
         PrDialogComponent,
       CancelDialogComponent,
       GerarPdfComponent,
+      
+   
+     
     ],
     imports: [
         CommonModule,

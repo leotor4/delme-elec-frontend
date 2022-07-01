@@ -1,0 +1,33 @@
+<div class="div-attachment">
+      <h1>Envie seus documentos</h1>
+      <div
+        class="white-background"
+        *ngIf="returnFiles(item).length == 0"
+      >
+        <input
+          type="file"
+          accept=".pdf,image/jpeg,image/png,xlsx,xls"
+          class="input-attachment"
+          (change)="onUpload($event, item)"
+          multiple
+        />
+        <i class="pi pi-cloud-upload"></i>
+        <p>
+          Arraste e solte ou <strong>navegue para escolher</strong> um arquivo
+        </p>
+      </div>
+      <div
+        class="white-background-files"
+        *ngIf="returnFiles(item).length > 0"
+      >
+        <button
+          type="button"
+          (click)="clearFileName(item)"
+          class="btn btn-light"
+        >
+          <i class="pi pi-replay"></i>
+        </button>
+        <p *ngFor="let files of returnFiles(item)">
+          {{ files.name }}
+        </p>
+      </div>
