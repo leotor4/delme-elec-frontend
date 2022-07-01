@@ -90,3 +90,27 @@ label {
   font-weight: bold;
   margin-bottom: 2px;
 }
+#div-att-col2{
+  min-width: 200px;
+}
+
+#div-att-col2 p {
+  font-size: 11px;
+  color: gray;
+  margin: 0;
+}
+#div-att-col2 i {
+  margin-left: 3px;
+}
+
+#div-att-col2 a {
+  width: 100%;
+  font-size: 14px;
+  padding-top: 7px;
+}
+
+#div-att-col2 i {
+  margin-right: 3px;
+  font-size: 12px;
+
+}

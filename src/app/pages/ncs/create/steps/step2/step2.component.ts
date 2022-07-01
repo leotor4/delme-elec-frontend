@@ -22,8 +22,8 @@ export class Step2Component implements OnInit {
   }
 
   hasProduct(): boolean {
-    if (this.nonComplianceService.nc.product != null) return true;
+    return this.nonComplianceService.nc.partner != null;
 
-    return false;
+
   }
 }

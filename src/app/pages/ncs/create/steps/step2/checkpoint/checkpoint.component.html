@@ -11,7 +11,7 @@
         </div>
 
         <div class="dropdown">
-          <select (change)="limparCampos()" [(ngModel)]="nonComplicanceService.nc.tipo_controle" [disabled]="!nonComplicanceService.hasProduct()">
+          <select (change)="limparCampos()" [(ngModel)]="nonComplicanceService.nc.tipo_controle" [disabled]="!nonComplicanceService.nc.partner">
             <option value="" disabled selected hidden>Selecione...</option>
             <option *ngFor="let op of controleOptions">
               {{ op }}
