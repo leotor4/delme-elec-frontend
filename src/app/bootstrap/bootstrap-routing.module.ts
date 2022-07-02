@@ -76,13 +76,7 @@ const routes: Routes = [
             (m) => m.DashboardsModule
           ),
       },
-      {
-        path: "bar-chart",
-        loadChildren: () =>
-          import("../pages/dashboards/bar-chart/bar-chart.module").then(
-            (m) => m.BarChartModule
-          ),
-      },
+  
     ],
   },
 ];

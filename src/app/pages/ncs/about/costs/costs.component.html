@@ -38,7 +38,7 @@
                 <td>{{ doc.file_name }}</td>
                 <td>{{ parseDate(doc.created_at) }}</td>
                 <td>{{ doc.author?.username }}</td>
-                <td>{{ doc.value }}</td>
+                <td>{{ format(doc.value) }}</td>
                 <td>
                     <!-- <button
                             pButton

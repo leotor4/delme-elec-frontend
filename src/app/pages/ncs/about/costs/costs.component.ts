@@ -28,6 +28,7 @@ export class CostsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    
     console.log(this.aboutSrvc.nc?.costs);
   }
 
@@ -58,7 +59,6 @@ export class CostsComponent implements OnInit {
   }
 
   haveFiles() {
-   
     if (this.files){
        if (this.files.length == 0) return false;
        return true;
@@ -76,13 +76,20 @@ export class CostsComponent implements OnInit {
     console.log(this.files);
   }
 
-  save() {
-    this.doc.value = parseInt(this.doc.value).toLocaleString("pt-BR", {
+  format(text:string){
+    return parseFloat(text).toLocaleString("pt-BR", {
       style: "currency",
       currency: "BRL",
     });
+  }
+
+  save() {
+    if(!this.doc.value){
+      this.doc.value = "0";
+    }
     this.doc.nonCompliance_id = this.aboutSrvc!.nc!.id!;
     this.doc.userId = this.tokenSrvc.getUser().id;
+    
 
     this.aboutSrvc.postCost(this.doc, this.files).subscribe(
       (data) => {
