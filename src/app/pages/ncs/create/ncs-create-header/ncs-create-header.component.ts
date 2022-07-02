@@ -15,7 +15,8 @@ import { UpdateDateService } from "src/app/_services/update-date.service";
 import { CancelDialogComponent } from "./cancel-dialog/cancel-dialog.component";
 import { ActivatedRoute, Router } from "@angular/router";
 
-import momentImported from 'moment'; 
+import momentImported from 'moment';
+import {TranslateService} from "@ngx-translate/core";
 const moment = momentImported;
 
 @Component({
@@ -40,7 +41,8 @@ export class NcsCreateHeaderComponent implements OnInit {
     public instructionService: InstructionsService,
     public dialogService: DialogService,
     private router:Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    public translate: TranslateService
   ) {}
 
   ngOnInit(): void {
@@ -67,24 +69,13 @@ export class NcsCreateHeaderComponent implements OnInit {
 
     // });
 
-
-    console.log(this.activatedRoute.snapshot.data);
-    var data = this.activatedRoute.snapshot.data
+    let data = this.activatedRoute.snapshot.data
     
     const teste:Array<Place> = ObjectUtils.buscarValor(data, 'places.places', '')
-    console.log('teste', teste)
     
     this.nonComplianceService.places = teste.map(
-      (item:Place) =>
-        item.name
-      );
-
-    
-    
-     
-
-    console.log(this.nonComplianceService.places)
-
+      (item:Place) => item.name
+    );
 
     this.providerService.get().subscribe((data: any) => {
       this.nonComplianceService.providers = data.providers;
@@ -110,7 +101,7 @@ export class NcsCreateHeaderComponent implements OnInit {
       next: data => {
         this.messageService.add({
           severity: "success",
-          summary: "Não conformidade salva com sucesso.",
+          summary: this.translate.instant("newNC.success"),
           life: 3000,
         });
 
@@ -121,13 +112,13 @@ export class NcsCreateHeaderComponent implements OnInit {
       error: err => {
         this.messageService.add({
           severity: "error",
-          summary: "Houve um problema ao salvar não conformidade.",
+          summary: this.translate.instant("newNC.fail"),
           life: 3000,
         });
         
         if (btnType == 'home') {
           this.router.navigate(["/ncs/"])
-          this.nonComplianceService.msgHome = 'Houve um problema ao salvar as informações da NC que você acabou de criar'
+          this.nonComplianceService.msgHome = this.translate.instant("newNC.failToSave")
           this.nonComplianceService.typeMsgHome = 'error'
         }
       }
@@ -143,7 +134,7 @@ export class NcsCreateHeaderComponent implements OnInit {
     let ref = this.dialogService.open(CancelDialogComponent, {
       data: {
       },
-      header: "Cancelar Não conformidade",
+      header: this.translate.instant("newNC.cancelNC"),
       width: "425px",
     })
 

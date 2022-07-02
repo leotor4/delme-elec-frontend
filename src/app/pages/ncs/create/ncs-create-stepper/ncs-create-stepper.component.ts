@@ -1,10 +1,11 @@
-import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute, Route, Router } from "@angular/router";
-import { MenuItem, MessageService } from "primeng/api";
-import { NonComplianceService } from "src/app/_services/non-compliance.service";
-import { NonCompliance } from "../../../../models/non-compliance";
+import {Component, OnInit} from "@angular/core";
+import {Router} from "@angular/router";
+import {MenuItem, MessageService} from "primeng/api";
+import {NonComplianceService} from "src/app/_services/non-compliance.service";
+import {NonCompliance} from "../../../../models/non-compliance";
 import * as jspdf from "jspdf";
 import html2canvas from "html2canvas";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: "app-ncs-create-stepper",
@@ -13,15 +14,16 @@ import html2canvas from "html2canvas";
 })
 export class NcsCreateStepperComponent implements OnInit {
   items: MenuItem[];
-  stepPosition: number = 0;
-  lastStepLabel = "Avançar";
+  stepPosition: number = 1;
+  displayPdf = false;
+
   constructor(
     private router: Router,
     public nonComplianceService: NonComplianceService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    public translate: TranslateService
   ) {}
 
-  displayPdf = false;
   disableButton(): boolean {
     switch (this.stepPosition) {
       case 0:
@@ -40,27 +42,25 @@ export class NcsCreateStepperComponent implements OnInit {
 
   ngOnInit() {
     this.items = [
-      { label: "Dados da NC" },
-      { label: "Descrição e Notificação da NC" },
-      { label: "Visualização e Emissão da NC" },
+      { label: this.translate.instant("newNC.stepper.step1Label") },
+      { label: this.translate.instant("newNC.stepper.step2Label") },
+      { label: this.translate.instant("newNC.stepper.step3Label") },
     ];
   }
   getNextPageBtnLabel() {
     let isLastStep = this.stepPosition === this.items.length - 1;
-    let labelName = isLastStep ? "Concluir" : "Avançar";
-
-    return labelName;
+    return isLastStep ? this.translate.instant("global.finish") : this.translate.instant("global.next");
   }
+
   getNextPageBtnIcon() {
     let isLastStep = this.stepPosition === this.items.length - 1;
-    let iconClass = isLastStep ? "pi pi-upload" : "pi pi-arrow-right";
-    return iconClass;
+    return isLastStep ? "pi pi-upload" : "pi pi-arrow-right";
   }
   isFirstStep() {
-    return this.stepPosition === 0 ? true : false;
+    return this.stepPosition === 0;
   }
   isLastStep() {
-    return this.stepPosition === this.items.length - 1 ? true : false;
+    return this.stepPosition === this.items.length - 1;
   }
 
   nextStep() {
@@ -70,8 +70,8 @@ export class NcsCreateStepperComponent implements OnInit {
         this.messageService.add({
           severity: "success",
           summary: this.isLastStep()
-            ? "Não conformidade concluida com sucesso."
-            : "Passo " + (this.stepPosition + 1) + " salvo com sucesso.",
+            ? this.translate.instant("newNC.finished")
+            : this.translate.instant("global.step") + (this.stepPosition + 1) + this.translate.instant("global.saved"),
           life: 3000,
         });
 
@@ -85,12 +85,11 @@ export class NcsCreateStepperComponent implements OnInit {
         this.messageService.add({
           severity: "error",
           summary:
-            "Houve um problema ao salvar dados do passo " +
+              this.translate.instant("global.error") +
             this.stepPosition +
             ".",
           life: 3000,
         });
-        console.log(err);
       },
     });
   }
@@ -120,8 +119,8 @@ export class NcsCreateStepperComponent implements OnInit {
   generatePDF() {
     let data = document.getElementById("pdfContent");
     if (data) {
-      var w = data.offsetWidth * 0.7;
-      var h = data.offsetHeight * 0.7;
+      let w = data.offsetWidth * 0.7;
+      let h = data.offsetHeight * 0.7;
 
       html2canvas(data, {}).then((canvas) => {
         this.displayPdf = false;

@@ -7,6 +7,7 @@ import {ContactsService} from "../../../create/steps/step3/contacts.service";
 import {ContactDialogComponent} from "../../../create/steps/step3/contact-dialog/contact-dialog.component";
 import {ProposalService} from "../../proposal.service";
 import {AboutService} from "../../../about/about.service";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: "app-notification",
@@ -14,7 +15,7 @@ import {AboutService} from "../../../about/about.service";
   styleUrls: ["./notification.component.css"],
   providers: [DialogService],
 })
-export class NotificationComponent implements OnInit, OnDestroy {
+export class NotificationComponent implements OnInit {
   addContactsDialog: boolean;
   selectedContacts: Contact[] = [];
   selectedContact: String;
@@ -28,12 +29,10 @@ export class NotificationComponent implements OnInit, OnDestroy {
     private contactsSrvc: ContactsService,
     public dialogService: DialogService,
     public propService: ProposalService,
-    public aboutSrvc: AboutService
+    public aboutSrvc: AboutService,
+    public translate: TranslateService
   ) {}
 
-  ngOnDestroy(): void {
-    //salva dados no service
-  }
 
   ngOnInit(): void {
     this.getContacts()
@@ -46,7 +45,7 @@ export class NotificationComponent implements OnInit, OnDestroy {
         contact: {},
         isEdit: false,
       },
-      header: "Criar Contato",
+      header: this.translate.instant('global.contacts.create'),
       width: "425px",
     });
     ref.onClose.subscribe((contact: Contact) => {
@@ -63,7 +62,7 @@ export class NotificationComponent implements OnInit, OnDestroy {
         contact: { ...contact },
         isEdit: true,
       },
-      header: "Editar Contato",
+      header: this.translate.instant('global.contacts.edit'),
       width: "425px",
     });
     ref.onClose.subscribe((contact: Contact) => {
@@ -83,10 +82,10 @@ export class NotificationComponent implements OnInit, OnDestroy {
   deleteContact(contact: Contact) {
     this.confirmationService.confirm({
       message:
-        "Você tem certeza que quer excluir o contato " +
+          this.translate.instant('global.contacts.message1') +
         contact.name +
-        " da lista?",
-      header: "Excluir Contato",
+          this.translate.instant('global.contacts.message2'),
+      header: this.translate.instant('global.contacts.delete'),
       icon: "pi pi-exclamation-triangle",
       accept: () => {
         this.propService.propSolution.contacts =
@@ -103,7 +102,7 @@ export class NotificationComponent implements OnInit, OnDestroy {
             );
         this.messageService.add({
           severity: "info",
-          summary: "Contato Removido com sucesso",
+          summary: this.translate.instant('global.contacts.successDel'),
           life: 3000,
         });
       },

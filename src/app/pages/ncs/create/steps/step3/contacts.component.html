@@ -3,16 +3,16 @@
 <div class="d-flex">
   <div class="col-8">
     <div class="cabecalho">
-      <h1>Contatos a serem notificados</h1>
+      <h1>{{'newNC.step2.contactsTitle'| translate}}</h1>
       <p>
-        Visualiza contatos que serão automaticamente notificados do progresso
-        dessa NC desta fase em diante.
+        {{'newNC.step2.contactsSubtitle'| translate}}
       </p>
     </div>
   </div>
   <div class="col-4 d-flex justify-content-end align-items-center">
     <button iconPos="right" class="btn btn-dark" (click)="showAddContacts()">
-      Adicionar Contato<i class="pi pi-plus"></i>
+      {{'global.contacts.addBtn'| translate}}
+      <i class="pi pi-plus"></i>
     </button>
   </div>
 </div>
@@ -21,9 +21,9 @@
   <p-table [value]="nonComplianceService.nc.contacts">
     <ng-template pTemplate="header">
       <tr>
-        <th>Nome</th>
-        <th>E-mail</th>
-        <th>Parceiro</th>
+        <th>{{'global.contacts.name'| translate}}</th>
+        <th>{{'global.contacts.email'| translate}}</th>
+        <th>{{'global.contacts.partner'| translate}}</th>
         <th></th>
       </tr>
     </ng-template>
@@ -56,10 +56,9 @@
 <p-dialog [(visible)]="addContactsDialog" [modal]="true" styleClass="p-fluid">
   <ng-template pTemplate="header">
     <div>
-      <h2>Adicionar outros contatos</h2>
+      <h2>{{'global.contacts.addTitle'| translate}}</h2>
       <h3>
-        Adicione contatos de partes interessadas que serão notificadas acerca do
-        andamento desta NC
+        {{'global.contacts.addSubTitle'| translate}}
       </h3>
     </div>
   </ng-template>
@@ -67,7 +66,7 @@
     <div class="d-flex pb-2">
       <div class="col-9 pl-0">
         <p-autoComplete
-          placeholder="Busque por nome ou e-mail..."
+          [placeholder]="'global.contacts.search'| translate"
           [(ngModel)]="selectedContact"
           [suggestions]="results"
           (completeMethod)="search($event)"
@@ -82,11 +81,15 @@
               <span class="auto-complete-title">{{ contact.name }}</span>
               <div class="d-flex text-start">
                 <div>
-                  <span class="auto-complete-label">E-MAIL</span><br />
+                  <span class="auto-complete-label">
+                    {{'global.contacts.emailUpper'| translate}}
+                  </span><br />
                   <span class="auto-complete-item">{{ contact.email }}</span>
                 </div>
                 <div class="px-5">
-                  <span class="auto-complete-label">PARCEIRO</span><br />
+                  <span class="auto-complete-label">
+                    {{'global.contacts.partnerUpper'| translate}}
+                  </span><br />
                   <span class="auto-complete-item">{{ contact.type }}</span>
                 </div>
               </div>
@@ -99,20 +102,20 @@
         class="btn btn-dark col-3"
         (click)="createNewContact()"
       >
-        Criar Contato <i class="pi pi-user-plus"></i>
+        {{'global.contacts.create'| translate}} <i class="pi pi-user-plus"></i>
       </button>
     </div>
     <div class="d-flex mt-3">
       <i class="pi pi-users" style="font-size: 2rem"></i>
-      <h2>Contatos Selecionados</h2>
+      <h2>{{'global.contacts.selected'| translate}}</h2>
     </div>
     <div class="card">
       <p-table [value]="selectedContacts">
         <ng-template pTemplate="header">
           <tr>
-            <th>Nome</th>
-            <th>E-mail</th>
-            <th>Parceiro</th>
+            <th>{{'global.contacts.name'| translate}}</th>
+            <th>{{'global.contacts.email'| translate}}</th>
+            <th>{{'global.contacts.partner'| translate}}</th>
             <th></th>
           </tr>
         </ng-template>
@@ -142,7 +145,7 @@
         class="btn btn-outline-dark"
         (click)="hideAddContacts()"
       >
-        Cancelar
+        {{'global.cancel'| translate}}
       </button>
       <button
         type="button"
@@ -150,7 +153,7 @@
         [disabled]="selectedContacts.length == 0"
         (click)="saveSelection()"
       >
-        Adicionar Contatos <i class="pi pi-plus"></i>
+        {{'global.contacts.save'| translate}} <i class="pi pi-plus"></i>
       </button>
     </div>
   </ng-template>
@@ -159,10 +162,10 @@
 <p-confirmDialog #cd [style]="{ width: '50vw' }">
   <ng-template pTemplate="footer">
     <button type="button" class="btn btn-outline-dark" (click)="cd.reject()">
-      Não, cancelar
+      {{'global.reject'| translate}}
     </button>
     <button type="button" class="btn btn-dark" (click)="cd.accept()">
-      Sim, excluir contato
+      {{'global.contacts.accept'| translate}}
     </button>
   </ng-template>
 </p-confirmDialog>

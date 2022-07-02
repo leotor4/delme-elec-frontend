@@ -1,76 +1,76 @@
 
-<button class="btn btn-dark inicio mt-3" routerLink="/ncs">Inicio</button>
+<button class="btn btn-dark inicio mt-3" routerLink="/ncs">{{'import.home'| translate}}</button>
 
-<h1 class="mt-4">Importar Clientes</h1>
+<h1 class="mt-4">{{'import.ImportClients'| translate}}</h1>
 <p-fileUpload
   (uploadHandler)="onUpload($event, 'customer')"
   [customUpload]="true"
   accept=".xlsx, .xls"
-  chooseLabel="Escolher Arquivo"
-  uploadLabel="Importar Arquivo Selecionado"
+  [chooseLabel]="'import.fileUpload.chooseLabel'| translate"
+  [uploadLabel]="'import.fileUpload.uploadLabel'| translate"
   [showCancelButton]="false"
-  invalidFileTypeMessageDetail="Formato de arquivo inválido, selecione apenas arquivos do tipo {0}"
+  [invalidFileTypeMessageDetail]="'import.fileUpload.invalidFileTypeMessageDetail'| translate"
 >
   <ng-template pTemplate="toolbar">
     <p-button
-      label="Baixar Arquivo de Exemplo"
+      [label]="'import.fileUpload.downloadExample'| translate"
       styleClass="p-button-link"
       (onClick)="downloadFile('clientes')"
     ></p-button>
   </ng-template>
 </p-fileUpload>
 
-<h1 class="mt-3">Importar Fornecedores</h1>
+<h1 class="mt-3">{{'import.ImportProviders'| translate}}</h1>
 <p-fileUpload
   (uploadHandler)="onUpload($event, 'provider')"
   [customUpload]="true"
   accept=".xlsx, .xls"
-  chooseLabel="Escolher Arquivo"
-  uploadLabel="Importar Arquivo Selecionado"
+  [chooseLabel]="'import.fileUpload.chooseLabel'| translate"
+  [uploadLabel]="'import.fileUpload.uploadLabel'| translate"
   [showCancelButton]="false"
-  invalidFileTypeMessageDetail="Formato de arquivo inválido, selecione apenas arquivos do tipo {0}"
+  [invalidFileTypeMessageDetail]="'import.fileUpload.invalidFileTypeMessageDetail'| translate"
 >
   <ng-template pTemplate="toolbar">
     <p-button
-      label="Baixar Arquivo de Exemplo"
+      [label]="'import.fileUpload.downloadExample'| translate"
       styleClass="p-button-link"
       (onClick)="downloadFile('fornecedores')"
     ></p-button>
   </ng-template>
 </p-fileUpload>
 
-<h1 class="mt-3">Importar Produtos</h1>
+<h1 class="mt-3">{{'import.ImportProducts'| translate}}</h1>
 <p-fileUpload
   (uploadHandler)="onUpload($event, 'product')"
   [customUpload]="true"
   accept=".xlsx, .xls"
-  chooseLabel="Escolher Arquivo"
-  uploadLabel="Importar Arquivo Selecionado"
+  [chooseLabel]="'import.fileUpload.chooseLabel'| translate"
+  [uploadLabel]="'import.fileUpload.uploadLabel'| translate"
   [showCancelButton]="false"
-  invalidFileTypeMessageDetail="Formato de arquivo inválido, selecione apenas arquivos do tipo {0}"
+  [invalidFileTypeMessageDetail]="'import.fileUpload.invalidFileTypeMessageDetail'| translate"
 >
   <ng-template pTemplate="toolbar">
     <p-button
-      label="Baixar Arquivo de Exemplo"
+      [label]="'import.fileUpload.downloadExample'| translate"
       styleClass="p-button-link"
       (onClick)="downloadFile('produtos')"
     ></p-button>
   </ng-template>
 </p-fileUpload>
 
-<h1 class="mt-3">Importar Setores</h1>
+<h1 class="mt-3">{{'import.ImportSectors'| translate}}</h1>
 <p-fileUpload
   (uploadHandler)="onUpload($event, 'sector')"
   [customUpload]="true"
   accept=".xlsx, .xls"
-  chooseLabel="Escolher Arquivo"
-  uploadLabel="Importar Arquivo Selecionado"
+  [chooseLabel]="'import.fileUpload.chooseLabel'| translate"
+  [uploadLabel]="'import.fileUpload.uploadLabel'| translate"
   [showCancelButton]="false"
-  invalidFileTypeMessageDetail="Formato de arquivo inválido, selecione apenas arquivos do tipo {0}"
+  [invalidFileTypeMessageDetail]="'import.fileUpload.invalidFileTypeMessageDetail'| translate"
 >
   <ng-template pTemplate="toolbar">
     <p-button
-      label="Baixar Arquivo de Exemplo"
+      [label]="'import.fileUpload.downloadExample'| translate"
       styleClass="p-button-link"
       (onClick)="downloadFile('setor')"
     ></p-button>
@@ -85,73 +85,79 @@
   chooseLabel="Escolher Arquivo"
   uploadLabel="Importar Arquivo Selecionado"
   [showCancelButton]="false"
-  invalidFileTypeMessageDetail="Formato de arquivo inválido, selecione apenas arquivos do tipo {0}"
+  [invalidFileTypeMessageDetail]="'import.p-fileUpload.invalidFileTypeMessageDetail'| translate"
 >
   <ng-template pTemplate="toolbar">
     <p-button
-      label="Baixar Arquivo de Exemplo"
+      [label]="'import.fileUpload.downloadExample'| translate"
       styleClass="p-button-link"
       (onClick)="downloadFile('local')"
     ></p-button>
   </ng-template>
 </p-fileUpload>-->
 
-<h1 class="mt-3">Importar Instruções</h1>
+<h1 class="mt-3">{{'import.ImportInstructions'| translate}}</h1>
 <p-fileUpload (uploadHandler)="onUpload($event, 'instructions')" [customUpload]="true" accept=".xlsx, .xls"
-  chooseLabel="Escolher Arquivo" uploadLabel="Importar Arquivo Selecionado" [showCancelButton]="false"
-  invalidFileTypeMessageDetail="Formato de arquivo inválido, selecione apenas arquivos do tipo {0}">
+  [chooseLabel]="'import.fileUpload.chooseLabel'| translate"
+  [uploadLabel]="'import.fileUpload.uploadLabel'| translate" [showCancelButton]="false"
+  [invalidFileTypeMessageDetail]="'import.fileUpload.invalidFileTypeMessageDetail'| translate">
   <ng-template pTemplate="toolbar">
-    <p-button label="Baixar Arquivo de Exemplo" styleClass="p-button-link" (onClick)="downloadFile('instrucao')"></p-button>
+    <p-button [label]="'import.fileUpload.downloadExample'| translate" styleClass="p-button-link" (onClick)="downloadFile('instrucao')"></p-button>
   </ng-template>
 </p-fileUpload>
 
-<h1 class="mt-3">Importar Procedimentos</h1>
+<h1 class="mt-3">{{'import.ImportProcedure'| translate}}</h1>
 <p-fileUpload (uploadHandler)="onUpload($event, 'procedures')" [customUpload]="true" accept=".xlsx, .xls"
-  chooseLabel="Escolher Arquivo" uploadLabel="Importar Arquivo Selecionado" [showCancelButton]="false"
-  invalidFileTypeMessageDetail="Formato de arquivo inválido, selecione apenas arquivos do tipo {0}">
+  [chooseLabel]="'import.fileUpload.chooseLabel'| translate"
+  [uploadLabel]="'import.fileUpload.uploadLabel'| translate" [showCancelButton]="false"
+  [invalidFileTypeMessageDetail]="'import.fileUpload.invalidFileTypeMessageDetail'| translate">
   <ng-template pTemplate="toolbar">
-    <p-button label="Baixar Arquivo de Exemplo" styleClass="p-button-link" (onClick)="downloadFile('procedure')">
+    <p-button [label]="'import.fileUpload.downloadExample'| translate" styleClass="p-button-link" (onClick)="downloadFile('procedure')">
     </p-button>
   </ng-template>
 </p-fileUpload>
 
-<h1 class="mt-3">Importar NRs - Normas Regulamentadoras</h1>
+<h1 class="mt-3">{{'import.ImportNRs'| translate}}</h1>
 <p-fileUpload (uploadHandler)="onUpload($event, 'regulatory')" [customUpload]="true" accept=".xlsx, .xls"
-              chooseLabel="Escolher Arquivo" uploadLabel="Importar Arquivo Selecionado" [showCancelButton]="false"
-              invalidFileTypeMessageDetail="Formato de arquivo inválido, selecione apenas arquivos do tipo {0}">
+              [chooseLabel]="'import.fileUpload.chooseLabel'| translate"
+  [uploadLabel]="'import.fileUpload.uploadLabel'| translate" [showCancelButton]="false"
+              [invalidFileTypeMessageDetail]="'import.fileUpload.invalidFileTypeMessageDetail'| translate">
   <ng-template pTemplate="toolbar">
-    <p-button label="Baixar Arquivo de Exemplo" styleClass="p-button-link" (onClick)="downloadFile('regulatory')">
+    <p-button [label]="'import.fileUpload.downloadExample'| translate" styleClass="p-button-link" (onClick)="downloadFile('regulatory')">
     </p-button>
   </ng-template>
 </p-fileUpload>
 
 
-<h1 class="mt-3">Importar ISOs - Normas NBR</h1>
+<h1 class="mt-3">{{'import.ImportISOs'| translate}}</h1>
 <p-fileUpload (uploadHandler)="onUpload($event, 'nbr')" [customUpload]="true" accept=".xlsx, .xls"
-              chooseLabel="Escolher Arquivo" uploadLabel="Importar Arquivo Selecionado" [showCancelButton]="false"
-              invalidFileTypeMessageDetail="Formato de arquivo inválido, selecione apenas arquivos do tipo {0}">
+              [chooseLabel]="'import.fileUpload.chooseLabel'| translate"
+  [uploadLabel]="'import.fileUpload.uploadLabel'| translate" [showCancelButton]="false"
+              [invalidFileTypeMessageDetail]="'import.fileUpload.invalidFileTypeMessageDetail'| translate">
   <ng-template pTemplate="toolbar">
-    <p-button label="Baixar Arquivo de Exemplo" styleClass="p-button-link" (onClick)="downloadFile('nbr')">
+    <p-button [label]="'import.fileUpload.downloadExample'| translate" styleClass="p-button-link" (onClick)="downloadFile('nbr')">
     </p-button>
   </ng-template>
 </p-fileUpload>
 
-<h1 class="mt-3">Importar Máquinas</h1>
+<h1 class="mt-3">{{'import.ImportMachines'| translate}}</h1>
 <p-fileUpload (uploadHandler)="onUpload($event, 'machine')" [customUpload]="true" accept=".xlsx, .xls"
-              chooseLabel="Escolher Arquivo" uploadLabel="Importar Arquivo Selecionado" [showCancelButton]="false"
-              invalidFileTypeMessageDetail="Formato de arquivo inválido, selecione apenas arquivos do tipo {0}">
+              [chooseLabel]="'import.fileUpload.chooseLabel'| translate"
+  [uploadLabel]="'import.fileUpload.uploadLabel'| translate" [showCancelButton]="false"
+              [invalidFileTypeMessageDetail]="'import.fileUpload.invalidFileTypeMessageDetail'| translate">
   <ng-template pTemplate="toolbar">
-    <p-button label="Baixar Arquivo de Exemplo" styleClass="p-button-link" (onClick)="downloadFile('machine')">
+    <p-button [label]="'import.fileUpload.downloadExample'| translate" styleClass="p-button-link" (onClick)="downloadFile('machine')">
     </p-button>
   </ng-template>
 </p-fileUpload>
 
-<h1 class="mt-3">Importar Equipamentos</h1>
+<h1 class="mt-3">{{'import.ImportEquipments'| translate}}</h1>
 <p-fileUpload (uploadHandler)="onUpload($event, 'equipament')" [customUpload]="true" accept=".xlsx, .xls"
-              chooseLabel="Escolher Arquivo" uploadLabel="Importar Arquivo Selecionado" [showCancelButton]="false"
-              invalidFileTypeMessageDetail="Formato de arquivo inválido, selecione apenas arquivos do tipo {0}">
+              [chooseLabel]="'import.fileUpload.chooseLabel'| translate"
+  [uploadLabel]="'import.fileUpload.uploadLabel'| translate" [showCancelButton]="false"
+              [invalidFileTypeMessageDetail]="'import.fileUpload.invalidFileTypeMessageDetail'| translate">
   <ng-template pTemplate="toolbar">
-    <p-button label="Baixar Arquivo de Exemplo" styleClass="p-button-link" (onClick)="downloadFile('equipament')">
+    <p-button [label]="'import.fileUpload.downloadExample'| translate" styleClass="p-button-link" (onClick)="downloadFile('equipament')">
     </p-button>
   </ng-template>
 </p-fileUpload>

@@ -8,7 +8,7 @@
         [disabled]="isFirstStep()"
       >
         <i class="pi pi-arrow-left"></i>
-        Voltar
+        {{'global.back'| translate}}
       </button>
     </div>
     <div class="stepper">
@@ -37,7 +37,7 @@
           (click)="gerarPdf()"
           class="btn btn-dark btn-sm"
         >
-          Gerar PDF
+          {{'newNC.stepper.generatePDF'| translate}}
         </button>
       </div>
     </div>
