@@ -2,11 +2,11 @@ import { Component, OnInit } from "@angular/core";
 import { ChartsService } from "src/app/_services/charts.service";
 
 @Component({
-  selector: "app-cost-sector",
-  templateUrl: "./cost-sector.component.html",
-  styleUrls: ["./cost-sector.component.css"],
+  selector: "app-nc-products",
+  templateUrl: "./nc-products.component.html",
+  styleUrls: ["./nc-products.component.css"],
 })
-export class CostSectorComponent implements OnInit {
+export class NcProductsComponent implements OnInit {
   constructor(public chartsService: ChartsService) {}
   display = true;
   ngOnInit(): void {
@@ -17,14 +17,15 @@ export class CostSectorComponent implements OnInit {
   onSelect(event: any) {}
   setor = "Todos";
   setores: string[] = [];
+  produtos: string[] = [];
+  quantProdutos: number[] = [];
   setoresAux: string[] = [];
   quantAnos: number[] = [];
   quantCusto: number[] = [];
 
+
+
   popular() {
-    this.setores.length = 0;
-    this.quantAnos.length = 0;
-    this.quantCusto.length = 0;
     this.chartsService.ncs.forEach((element) => {
       if (element.tipos_local_item) {
         if (element.tipos_local_item == this.setor || this.setor == "Todos") {

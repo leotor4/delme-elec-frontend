@@ -10,11 +10,14 @@ import { NcYearComponent } from "./charts/nc-year/nc-year.component";
 import * as PlotlyJS from "plotly.js-dist-min";
 import { PlotlyModule } from "angular-plotly.js";
 import { CostSectorComponent } from './charts/cost-sector/cost-sector.component';
+import { NcProductsComponent } from './charts/nc-products/nc-products.component';
+import { NcTypesComponent } from './charts/nc-types/nc-types.component';
+import { NcEmissorComponent } from './charts/nc-emissor/nc-emissor.component';
 
 PlotlyModule.plotlyjs = PlotlyJS;
 
 @NgModule({
-  declarations: [DashboardsComponent, NcStatusComponent, NcYearComponent, CostSectorComponent],
+  declarations: [DashboardsComponent, NcStatusComponent, NcYearComponent, CostSectorComponent, NcProductsComponent, NcTypesComponent, NcEmissorComponent],
   imports: [
     CommonModule,
     FormsModule,
