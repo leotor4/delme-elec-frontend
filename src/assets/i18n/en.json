@@ -4,6 +4,103 @@
         "en": "English",
         "fr": "French"
     },
+
+    "import": {
+        "home": "Inicio",
+        "fileUpload": {
+            "chooseLabel": "Escolher Arquivo",
+            "uploadLabel": "Importar Arquivo Selecionado",
+            "invalidFileTypeMessageDetail": "Formato de arquivo inválido, selecione apenas arquivos do tipo .xlsx, .xls",
+            "downloadExample": "Baixar Arquivo de Exemplo"
+        },
+        "ImportClients": "Importar Clientes",
+        "ImportProviders": "Importar Fornecedores",
+        "ImportProducts": "Importar Produtos",
+        "ImportSectors": "Importar Setores",
+        "ImportInstructions": "Importar Instruções",
+        "ImportProcedure": "Importar Procedimentos",
+        "ImportNRs": "Importar NRs - Normas Regulamentadoras",
+        "ImportISOs": "Importar ISOs - Normas NBR",
+        "ImportMachines": "Importar Máquinas",
+        "ImportEquipments": "Importar Equipamentos",
+        "success": "Arquivo importado com sucesso",
+        "fail": "Erro ao importar arquivo"
+    },
+
+
+
+    "global": {
+        "home": "Inicio",
+        "cancel": "Cancelar",
+        "save": "Salvar",
+        "back": "Voltar",
+        "next" : "Avançar",
+        "finish": "Concluir",
+        "saved": "salvo com sucesso.",
+        "step": "Passo ",
+        "reject": "Não, cancelar",
+        "error": "Houve um problema ao salvar dados do passo ",
+        "requiredFields": "Os campos marcados com asterisco (*) são de preenchimento obrigatório",
+        "fileInput": {
+            "title": "Anexe evidências objetivas ou fotográficas",
+            "subtitle": "Envie seus documentos",
+            "description": "Arraste e solte ou navegue para escolher um arquivo"
+        },
+        "contacts": {
+            "addBtn": "Adicionar Contato",
+            "name": "Nome",
+            "email": "E-mail",
+            "partner": "Parceiro",
+            "addTitle": "Adicionar outros contatos",
+            "addSubTitle": "Adicione contatos de partes interessadas que serão notificadas acerca do andamento desta NC",
+            "search": "Busque por nome ou e-mail...",
+            "emailUpper": "E-MAIL",
+            "partnerUpper": "PARCEIRO",
+            "create": "Criar Contato",
+            "edit": "Editar Contato",
+            "delete": "Excluir Contato",
+            "selected": "Contatos Selecionados",
+            "save": "Adicionar Contatos",
+            "accept": "Sim, excluir contato",
+            "message1": "Você tem certeza que quer excluir o contato ",
+            "message2": " da lista?",
+            "successDel": "Contato Removido com sucesso"
+            
+        }
+    },
+
+
+
+    "newNC": {
+        "header": "Nova Não Conformidade",
+        "success": "Não conformidade salva com sucesso.",
+        "fail": "Houve um problema ao salvar não conformidade.",
+        "failToSave": "Houve um problema ao salvar as informações da NC que você acabou de criar",
+        "cancelNC": "Cancelar Não conformidade",
+        "stepper": {
+            "generatePDF": "Gerar PDF",
+            "step1Label": "Dados da NC",
+            "step2Label": "Descrição e Notificação da NC",
+            "step3Label": "Visualização e Emissão da NC"
+        },
+        "finished": "Não conformidade concluida com sucesso.",
+        "step2": {
+            "descNCTitle": "Descrição da NC *",
+            "descNCSubtitle": "Informe abaixo os detalhes da não conformidade",
+            "radioLabel1": "Não conformidade real",
+            "radioLabel2": "Não conformidade Potencial / Oportunidade de Melhoria",
+            "ncText": "Descreva a não conformidade *",
+            "actionsTitle": "Ações Imediatas",
+            "actionsSubtitle": "Preencha o campo abaixo com ações imediatas e anexe evidências, sejam fotográficas ou documentais.",
+            "actionsText": "Descreva as ações imediatas ",
+            "contactsTitle": "Contatos a serem notificados",
+            "contactsSubtitle": "Visualiza contatos que serão automaticamente notificados do progresso dessa NC desta fase em diante."
+        }
+    },
+
+
+
+
     "primeng": {
         "startsWith": "Starts with",
         "contains": "Contains",
@@ -50,7 +147,9 @@
         "passwordPrompt": "Enter a password",
         "emptyMessage": "No results found",
         "emptyFilterMessage": "No results found"
-    }
+    },
+
+
 }
 
 
