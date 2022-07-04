@@ -4,7 +4,8 @@ import { MenuItem, MessageService } from "primeng/api";
 import { NonCompliance } from "src/app/models/non-compliance";
 import { NonComplianceService } from "src/app/_services/non-compliance.service";
 import { IdentificacaoNCDTO } from './steps/step1/identificacao-da-nc/identificacao-nc-dto';
-import momentImported from 'moment'; 
+import momentImported from 'moment';
+import {TranslateService} from "@ngx-translate/core";
 const moment = momentImported;
 
 
@@ -18,7 +19,8 @@ export class NcsCreateComponent implements OnInit {
   
 
   items: MenuItem[];
-  constructor(private router: Router,public ncService:NonComplianceService, private route: ActivatedRoute, private messageService:MessageService) {}
+  constructor(private router: Router,public ncService:NonComplianceService, private route: ActivatedRoute, private messageService:MessageService,
+              public translate: TranslateService) {}
   
   ngOnDestroy(): void {
     this.ncService.nc = new NonCompliance()
@@ -75,19 +77,12 @@ export class NcsCreateComponent implements OnInit {
         error: err => {
           this.messageService.add({
             severity: "error",
-            summary: "Houve um problema ao consultar esta NC!",
+            summary: this.translate.instant("newNC.error"),
             life: 3000,
           });
         }
       }
     )
-
-    this.items = [
-      { label: "Identificar não conformidade" },
-      { label: "Produtos e Pontos" },
-      { label: "Partes Interessadas" },
-      { label: "Revisar Informações" },
-    ];
   }
 
 

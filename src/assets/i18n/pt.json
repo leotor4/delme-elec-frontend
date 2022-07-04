@@ -4,100 +4,6 @@
         "en": "Inglês",
         "pt": "Português"
     },
-
-    "import": {
-        "home": "Inicio",
-        "fileUpload": {
-            "chooseLabel": "Escolher Arquivo",
-            "uploadLabel": "Importar Arquivo Selecionado",
-            "invalidFileTypeMessageDetail": "Formato de arquivo inválido, selecione apenas arquivos do tipo .xlsx, .xls",
-            "downloadExample": "Baixar Arquivo de Exemplo"
-        },
-        "ImportClients": "Importar Clientes",
-        "ImportProviders": "Importar Fornecedores",
-        "ImportProducts": "Importar Produtos",
-        "ImportSectors": "Importar Setores",
-        "ImportInstructions": "Importar Instruções",
-        "ImportProcedure": "Importar Procedimentos",
-        "ImportNRs": "Importar NRs - Normas Regulamentadoras",
-        "ImportISOs": "Importar ISOs - Normas NBR",
-        "ImportMachines": "Importar Máquinas",
-        "ImportEquipments": "Importar Equipamentos",
-        "success": "Arquivo importado com sucesso",
-        "fail": "Erro ao importar arquivo"
-    },
-
-
-    "global": {
-        "home": "Inicio",
-        "cancel": "Cancelar",
-        "save": "Salvar",
-        "back": "Voltar",
-        "next" : "Avançar",
-        "finish": "Concluir",
-        "saved": "salvo com sucesso.",
-        "step": "Passo ",
-        "reject": "Não, cancelar",
-        "error": "Houve um problema ao salvar dados do passo ",
-        "requiredFields": "Os campos marcados com asterisco (*) são de preenchimento obrigatório",
-        "fileInput": {
-            "title": "Anexe evidências objetivas ou fotográficas",
-            "subtitle": "Envie seus documentos",
-            "description": "Arraste e solte ou navegue para escolher um arquivo"
-        },
-        "contacts": {
-            "addBtn": "Adicionar Contato",
-            "name": "Nome",
-            "email": "E-mail",
-            "partner": "Parceiro",
-            "addTitle": "Adicionar outros contatos",
-            "addSubTitle": "Adicione contatos de partes interessadas que serão notificadas acerca do andamento desta NC",
-            "search": "Busque por nome ou e-mail...",
-            "emailUpper": "E-MAIL",
-            "partnerUpper": "PARCEIRO",
-            "create": "Criar Contato",
-            "edit": "Editar Contato",
-            "delete": "Excluir Contato",
-            "selected": "Contatos Selecionados",
-            "save": "Adicionar Contatos",
-            "accept": "Sim, excluir contato",
-            "message1": "Você tem certeza que quer excluir o contato ",
-            "message2": " da lista?",
-            "successDel": "Contato Removido com sucesso"
-            
-        }
-    },
-
-
-
-    "newNC": {
-        "header": "Nova Não Conformidade",
-        "success": "Não conformidade salva com sucesso.",
-        "fail": "Houve um problema ao salvar não conformidade.",
-        "failToSave": "Houve um problema ao salvar as informações da NC que você acabou de criar",
-        "cancelNC": "Cancelar Não conformidade",
-        "stepper": {
-            "generatePDF": "Gerar PDF",
-            "step1Label": "Dados da NC",
-            "step2Label": "Descrição e Notificação da NC",
-            "step3Label": "Visualização e Emissão da NC"
-        },
-        "finished": "Não conformidade concluida com sucesso.",
-        "step2": {
-            "descNCTitle": "Descrição da NC *",
-            "descNCSubtitle": "Informe abaixo os detalhes da não conformidade",
-            "radioLabel1": "Não conformidade real",
-            "radioLabel2": "Não conformidade Potencial / Oportunidade de Melhoria",
-            "ncText": "Descreva a não conformidade *",
-            "actionsTitle": "Ações Imediatas",
-            "actionsSubtitle": "Preencha o campo abaixo com ações imediatas e anexe evidências, sejam fotográficas ou documentais.",
-            "actionsText": "Descreva as ações imediatas ",
-            "contactsTitle": "Contatos a serem notificados",
-            "contactsSubtitle": "Visualiza contatos que serão automaticamente notificados do progresso dessa NC desta fase em diante."
-        }
-    },
-
-
     "primeng": {
         "startsWith": "Começa com",
         "contains": "Contém",
@@ -165,8 +71,132 @@
         "passwordPrompt": "Enter a password",
         "emptyMessage": "Nenhum resultado encontrado",
         "emptyFilterMessage": "Nenhum resultado encontrado - Filtro"
-    }
+    },
+    "import": {
+        "home": "Inicio",
+        "fileUpload": {
+            "chooseLabel": "Escolher Arquivo",
+            "uploadLabel": "Importar Arquivo Selecionado",
+            "invalidFileTypeMessageDetail": "Formato de arquivo inválido, selecione apenas arquivos do tipo .xlsx, .xls",
+            "downloadExample": "Baixar Arquivo de Exemplo"
+        },
+        "ImportClients": "Importar Clientes",
+        "ImportProviders": "Importar Fornecedores",
+        "ImportProducts": "Importar Produtos",
+        "ImportSectors": "Importar Setores",
+        "ImportInstructions": "Importar Instruções",
+        "ImportProcedure": "Importar Procedimentos",
+        "ImportNRs": "Importar NRs - Normas Regulamentadoras",
+        "ImportISOs": "Importar ISOs - Normas NBR",
+        "ImportMachines": "Importar Máquinas",
+        "ImportEquipments": "Importar Equipamentos",
+        "success": "Arquivo importado com sucesso",
+        "fail": "Erro ao importar arquivo"
+    },
+    "global": {
+        "home": "Inicio",
+        "cancel": "Cancelar",
+        "save": "Salvar",
+        "confirm": "Confirmar",
+        "yes": "Sim",
+        "no": "Não",
+        "back": "Voltar",
+        "next" : "Avançar",
+        "finish": "Concluir",
+        "saved": "salvo com sucesso.",
+        "step": "Passo ",
+        "reject": "Não, cancelar",
+        "select": "Selecione...",
+        "error": "Houve um problema ao salvar dados do passo ",
+        "requiredFields": "Os campos marcados com asterisco (*) são de preenchimento obrigatório",
+        "fileInput": {
+            "title": "Anexe evidências objetivas ou fotográficas",
+            "subtitle": "Envie seus documentos",
+            "description": "Arraste e solte ou navegue para escolher um arquivo"
+        },
+        "contacts": {
+            "addBtn": "Adicionar Contato",
+            "name": "Nome",
+            "email": "E-mail",
+            "partner": "Parceiro",
+            "addTitle": "Adicionar outros contatos",
+            "addSubTitle": "Adicione contatos de partes interessadas que serão notificadas acerca do andamento desta NC",
+            "search": "Busque por nome ou e-mail...",
+            "emailUpper": "E-MAIL",
+            "partnerUpper": "PARCEIRO",
+            "create": "Criar Contato",
+            "edit": "Editar Contato",
+            "delete": "Excluir Contato",
+            "selected": "Contatos Selecionados",
+            "save": "Adicionar Contatos",
+            "accept": "Sim, excluir contato",
+            "message1": "Você tem certeza que quer excluir o contato ",
+            "message2": " da lista?",
+            "successDel": "Contato removido com sucesso",
+            "successEdit": "Contato editado com sucesso",
+            "successCreate": "Contato criado com sucesso",
+            "invalidFields": "Campos inválidos",
+            "invalidName": " Por favor insira um nome.",
+            "invalidEmail": "Por favor insira um email válido.",
+            "invalidContactType": "Por favor insira o tipo de contato."
 
+        }
+    },
+    "newNC": {
+        "header": "Nova Não Conformidade",
+        "success": "Não conformidade salva com sucesso.",
+        "fail": "Houve um problema ao salvar não conformidade.",
+        "failToSave": "Houve um problema ao salvar as informações da NC que você acabou de criar",
+        "cancelNC": "Cancelar Não conformidade",
+        "error": "Houve um problema ao consultar esta NC!",
+        "stepper": {
+            "generatePDF": "Gerar PDF",
+            "step1Label": "Dados da NC",
+            "step2Label": "Descrição e Notificação da NC",
+            "step3Label": "Visualização e Emissão da NC"
+        },
+        "finished": "Não conformidade concluida com sucesso.",
+        "step2": {
+            "descNCTitle": "Descrição da NC *",
+            "descNCSubtitle": "Informe abaixo os detalhes da não conformidade",
+            "radioLabel1": "Não conformidade real",
+            "radioLabel2": "Não conformidade Potencial / Oportunidade de Melhoria",
+            "ncText": "Descreva a não conformidade *",
+            "actionsTitle": "Ações Imediatas",
+            "actionsSubtitle": "Preencha o campo abaixo com ações imediatas e anexe evidências, sejam fotográficas ou documentais.",
+            "actionsText": "Descreva as ações imediatas ",
+            "contactsTitle": "Contatos a serem notificados",
+            "contactsSubtitle": "Visualiza contatos que serão automaticamente notificados do progresso dessa NC desta fase em diante."
+        },
+        "step1": {
+            "identifyNC": {
+                "title": "Identificação da Não Conformidade",
+                "subtitle": "Preencha os campos abaixo com as informações da NC",
+                "type": "Tipo de NC *",
+                "segment": "Segmento de Auditoria",
+                "sector": "Setor/Local Afetado *",
+                "dateOpen": "Data de Abertura",
+                "dateOpenDesc": "Altere a data caso a NC tenha acontecido antes deste cadastro.",
+                "dateClose": "Data de Fechamento",
+                "dateCloseDesc": "Programada automaticamente para 30 dias corridos após a data de abertura."
+            }
+        }
+    },
+    "closeNC":{
+        "question": "O plano de ação foi executado e de forma satisfatória?",
+        "yesInfo": "Encerrar esta RNC.",
+        "noInfo": "Abrir nova RNC fazendo referência a essa.",
+        "question2": "Deseja adicionar comentários?",
+        "info": "Isto é opcional",
+        "confirm": "Fechar NC",
+        "success": "Fechamento criado com sucesso"
+    },
+    "cancelNC": {
+        "title": "Deseja cancelar esta não conformidade?",
+        "accept": "Sim, cancelar não conformidade",
+        "success": "Não conformidade cancelada com sucesso.",
+        "error": "Houve um problema ao cancelar não conformidade."
+    }
 }
 
 

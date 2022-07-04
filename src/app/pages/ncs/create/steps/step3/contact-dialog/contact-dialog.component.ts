@@ -4,6 +4,7 @@ import { Contact } from "../../../../../../models/contact.model";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { MessageService } from "primeng/api";
 import { NonComplianceService } from "src/app/_services/non-compliance.service";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: "app-contact-dialog",
@@ -19,7 +20,8 @@ export class ContactDialogComponent implements OnInit {
     private nonComplianceService: NonComplianceService,
     public ref: DynamicDialogRef,
     public config: DynamicDialogConfig,
-    private messageService: MessageService
+    private messageService: MessageService,
+  public translate: TranslateService
   ) {}
 
   ngOnInit(): void {
@@ -33,7 +35,7 @@ export class ContactDialogComponent implements OnInit {
         (data) => {
           this.messageService.add({
             severity: "info",
-            summary: "Contato editado com sucesso",
+            summary: this.translate.instant('global.contacts.successEdit'),
             life: 3000,
           });
           this.getContacts();
@@ -42,7 +44,7 @@ export class ContactDialogComponent implements OnInit {
         (error) => {
           this.messageService.add({
             severity: "error",
-            summary: "Campos inválidos",
+            summary: this.translate.instant('global.contacts.invalidFields'),
             life: 3000,
           });
           this.ref.close();
@@ -53,7 +55,7 @@ export class ContactDialogComponent implements OnInit {
         (data) => {
           this.messageService.add({
             severity: "info",
-            summary: "Contato criado com sucesso",
+            summary: this.translate.instant('global.contacts.successCreate'),
             life: 3000,
           });
           this.getContacts();
@@ -62,7 +64,7 @@ export class ContactDialogComponent implements OnInit {
         (error) => {
           this.messageService.add({
             severity: "error",
-            summary: "Campos inválidos",
+            summary: this.translate.instant('global.contacts.invalidFields'),
             life: 3000,
           });
           this.ref.close();

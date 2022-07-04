@@ -5,6 +5,7 @@ import {Closing} from "../../../models/closing";
 import {MessageService} from "primeng/api";
 import { AboutService } from '../../ncs/about/about.service';
 import { NonComplianceService } from 'src/app/_services/non-compliance.service';
+import {TranslateService} from "@ngx-translate/core";
 
 
 
@@ -20,7 +21,8 @@ export class FechamentoDialogComponent implements OnInit {
               public cServ: ClosingService,
               public config: DynamicDialogConfig,
               public ncService:NonComplianceService,
-              private messageService: MessageService
+              private messageService: MessageService,
+              public translate: TranslateService
   ) {}
   close(){
     this.ref.close()
@@ -45,7 +47,7 @@ export class FechamentoDialogComponent implements OnInit {
             this.close()
           this.messageService.add({
             severity: "info",
-            summary: "Fechamento criado com sucesso",
+            summary: this.translate.instant('closeNC.success'),
             life: 3000,
           });
           

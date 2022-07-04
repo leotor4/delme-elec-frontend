@@ -1,17 +1,16 @@
 <form [formGroup]="nonComplicanceService.formIdentificacaoNC">
   <div class="cabecalho">
-    <p>Os campos marcados com asterisco (*) são de preenchimento
-      obrigatório</p>
-    <h1>Identificação da Não Conformidade</h1>
-    <p>Preencha os campos abaixo com as informações da NC</p>
+    <p>{{'global.requiredFields'| translate}}</p>
+    <h1>{{'newNC.step1.identifyNC.title'| translate}}</h1>
+    <p>{{'newNC.step1.identifyNC.subtitle'| translate}}</p>
   </div>
   
   <div class="row">
     <div class="col">
       <div class="dropdown">
-        <label for="">Tipo de NC *</label>
+        <label for="">{{'newNC.step1.identifyNC.type'| translate}}</label>
         <select id="selectTypeNc" formControlName="tipos_nc_item">
-          <option [ngValue]="null" disabled selected hidden>Selecione...</option>
+          <option [ngValue]="null" disabled selected hidden>{{'global.select'| translate}}</option>
           <option *ngFor="let tiposNc of tiposNc" value="{{ tiposNc }}">{{ tiposNc }}</option>
         </select>
       </div>
@@ -25,7 +24,7 @@
 
 
     <div class="d-flex flex-column inputs-sm  col-5" >
-      <label for="tipos_auditoria_item">Segmento de Auditoria</label>
+      <label for="tipos_auditoria_item">{{'newNC.step1.identifyNC.segment'| translate}}</label>
       <input
               formControlName="tipos_auditoria_item"
               name="tipos_auditoria_item"
@@ -49,9 +48,9 @@
 
     <div class="col">
       <div class="dropdown">
-        <label for="">Setor/Local Afetado *</label>
+        <label for="">{{'newNC.step1.identifyNC.sector'| translate}}</label>
         <select formControlName="tipos_local_item">
-          <option [ngValue]="null" disabled selected hidden>Selecione...</option>
+          <option [ngValue]="null" disabled selected hidden>{{'global.select'| translate}}</option>
           <option *ngFor="let item of nonComplicanceService.sectors" [attr.selected]="nonComplicanceService.nc.tipos_local_item==item.name ? true : null">
             {{ item.name }}
           </option>
@@ -75,7 +74,7 @@
   
   <div class="row">
     <div class="col date-group">
-      <div><label for="date-input">Data de Abertura</label></div>
+      <div><label for="date-input">{{'newNC.step1.identifyNC.dateOpen'| translate}}</label></div>
       <span class="p-input-icon-left">
         <i class="pi pi-calendar"></i>
         <input disabled
@@ -85,11 +84,11 @@
           formControlName="data_abertura_str"
         />
       </span>
-      <p>Altere a data caso a NC tenha acontecido antes deste cadastro.</p>
+      <p>{{'newNC.step1.identifyNC.dateOpenDesc'| translate}}</p>
     </div>
   
     <div class="col date-group">
-      <div><label for="date-input">Data de Fechamento</label></div>
+      <div><label for="date-input">{{'newNC.step1.identifyNC.dateClose'| translate}}</label></div>
   
       <span class="p-input-icon-left">
         <i class="pi pi-calendar icone"></i>
@@ -101,7 +100,7 @@
         />
       </span>
       <p>
-        Programada automaticamente para 30 dias corridos após a data de abertura.
+        {{'newNC.step1.identifyNC.dateCloseDesc'| translate}}
       </p>
     </div>
   </div>
