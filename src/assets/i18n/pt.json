@@ -101,6 +101,7 @@
         "yes": "Sim",
         "no": "Não",
         "back": "Voltar",
+        "type": "Digite",
         "next" : "Avançar",
         "finish": "Concluir",
         "saved": "salvo com sucesso.",
@@ -111,6 +112,7 @@
         "requiredFields": "Os campos marcados com asterisco (*) são de preenchimento obrigatório",
         "fileInput": {
             "title": "Anexe evidências objetivas ou fotográficas",
+            "title2": "Anexar Documentos",
             "subtitle": "Envie seus documentos",
             "description": "Arraste e solte ou navegue para escolher um arquivo"
         },
@@ -179,6 +181,66 @@
                 "dateOpenDesc": "Altere a data caso a NC tenha acontecido antes deste cadastro.",
                 "dateClose": "Data de Fechamento",
                 "dateCloseDesc": "Programada automaticamente para 30 dias corridos após a data de abertura."
+            },
+            "ncType": {
+                "type1": "Auditoria Interna",
+                "type2": "Auditoria Externa",
+                "type3": "NC de Fornecedor",
+                "type4": "NC de Processo",
+                "type5": "NC de Cliente",
+                "type6": "NC de Produto"
+            },
+            "lastUpdate": "Última atualização: ",
+            "updateBtn": "Atualizar Cadastros",
+            "today": "Hoje",
+            "days": " dias.",
+            "ago": "Há ",
+            "product": {
+                "title": "Dados do Produto *",
+                "subtitle1": "Identifique o produto desta NC.",
+                "subtitle2": "Caso não encontre o produto, atualize a base de cadastros.",
+                "searchPlaceholder": "Busque por nome, descrição ou código SAP",
+                "amountNC": "Quantidade de NC *",
+                "amount": "Quantidade Total *"
+            },
+            "partner": {
+                "editTitle": "Editar Contato do Parceiro",
+                "editSubtitle": "Preencha os campos abaixo.",
+                "title": "Dados do Parceiro *",
+                "subtitle1": "Identifique o parceiro responsável pelo produto nesta NC.",
+                "subtitle2": "Caso não encontre o parceiro, atualize a base de cadastros.",
+                "partnerType": "Tipo de Parceiro *",
+                "type1": "Interno",
+                "type2": "Cliente",
+                "type3": "Fornecedor",
+                "label1": "Busque por SAP, razão social ou contato...",
+                "label2": "Busque por nome do setor ou responsável...",
+                "phone": "Telefone",
+                "phoneUpper": "TELEFONE",
+                "sectorUpper": "SETOR",
+                "codeUpper": "CÓDIGO",
+                "respNameUpper": "NOME DO RESP.",
+                "nameUpper": "NOME",
+                "sector": "Setor",
+                "contactTitle": "Dados do Contato",
+                "corporateName": "Razão Socia",
+                "success": "Dados editados com sucesso.",
+                "fail": "Houve um problema ao editar os dados."
+            },
+            "checkpoint": {
+                "title": "Ponto de Controle*",
+                "subtitle": "Selecione a opção desejada e o número referente. Visualize a documentação se necessário.",
+                "type1": "OP-PROD(ORDEM DE PRODUÇÃO PRODUTO ACABADO)",
+                "type2": "OP-SA(ORDEM DE PRODUÇÃO PRODUTO SEMIACABADO)",
+                "type3": "OP-I(ORDEM DE PRODUÇÃO CORTE)",
+                "type4": "NF-e(NOTA FISCAL ELETRÔNICA)",
+                "type5": "PC(PEDIDO DE COMPRA)",
+                "type6": "PV(PEDIDO DE VENDA)",
+                "type7": "CC(COTAÇÃO COMERCIAL)",
+                "type8": "PR(PROCEDIMENTO)",
+                "op": "Número da OP *",
+                "numb": "Número da Nota *",
+                "createIT": "Criar Instrução"
             }
         }
     },

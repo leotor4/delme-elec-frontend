@@ -17,25 +17,25 @@
     </div>
     <div class="d-flex my-3 product-box p-3 ">
       <div class="d-flex flex-column inputs-sm mt-3 col-6">
-        <label for="amountNC">Quantidade de NC *</label>
+        <label for="amountNC">{{'newNC.step1.amountNC'| translate}}</label>
         <input
                 [(ngModel)]="nonComplianceService.nc.quant_nc"
                 name="amountNC"
                 type="number"
                 pInputText
-                placeholder="Digite"
-                class="p-inputtext-sm input"
+                [placeholder]="'global.type'| translate"
+                class="p-input text-sm input"
         />
       </div>
       <div class="d-flex flex-column inputs-sm mt-3 col-6">
-        <label for="amountTotal">Quantidade Total *</label>
+        <label for="amountTotal">{{'newNC.step1.amount'| translate}}</label>
         <input
                 [(ngModel)]="nonComplianceService.nc.quant_total"
                 name="amountTotal"
                 type="number"
                 pInputText
-                placeholder="Digite"
-                class="p-inputtext-sm input"
+                [placeholder]="'global.type'| translate"
+                class="p-input text-sm input"
         />
       </div>
     </div>

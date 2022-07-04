@@ -4,6 +4,7 @@ import { UpdateDate } from "src/app/models/update-date";
 import { NonComplianceService } from "src/app/_services/non-compliance.service";
 import { ProductService } from "src/app/_services/product.service";
 import { UpdateDateService } from "src/app/_services/update-date.service";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: "app-product",
@@ -19,7 +20,8 @@ export class ProductComponent implements OnInit {
   constructor(
     private productService: ProductService,
     public updateService: UpdateDateService,
-    public nonComplicanceService: NonComplianceService
+    public nonComplicanceService: NonComplianceService,
+    public translate: TranslateService
   ) {}
 
   ngOnInit(): void {
@@ -63,9 +65,9 @@ export class ProductComponent implements OnInit {
       var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
       var round_day = Math.floor(Difference_In_Days);
       if (round_day < 1) {
-        return "Hoje";
+        return this.translate.instant("newNC.today");
       } else {
-        return "Há " + round_day + " dias.";
+        return this.translate.instant("newNC.ago") + round_day + this.translate.instant("newNC.days");
       }
     }
     return "";

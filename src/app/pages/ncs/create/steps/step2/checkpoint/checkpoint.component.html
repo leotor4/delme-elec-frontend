@@ -3,16 +3,15 @@
     <div class="content">
       <div class="text-box">
         <div class="cabecalho">
-          <h1>Ponto de Controle*</h1>
+          <h1>{{'newNC.step1.checkpoint.title'| translate}}</h1>
           <p>
-            Selecione a opção desejada e o número referente. Visualize a
-            documentação se necessário.
+            {{'newNC.step1.checkpoint.subtitle'| translate}}
           </p>
         </div>
 
         <div class="dropdown">
           <select (change)="limparCampos()" [(ngModel)]="nonComplicanceService.nc.tipo_controle" [disabled]="!nonComplicanceService.nc.partner">
-            <option value="" disabled selected hidden>Selecione...</option>
+            <option value="" disabled selected hidden>{{'global.select'| translate}}</option>
             <option *ngFor="let op of controleOptions">
               {{ op }}
             </option>

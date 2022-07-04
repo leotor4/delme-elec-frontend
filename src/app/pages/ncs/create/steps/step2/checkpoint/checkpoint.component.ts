@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { NonComplianceService } from "src/app/_services/non-compliance.service";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: "app-checkpoint",
@@ -11,17 +12,18 @@ export class CheckpointComponent implements OnInit {
   fileName: string[] = [];
 
   @Input("hasProduct") test: boolean;
-  constructor(public nonComplicanceService: NonComplianceService) {}
+  constructor(public nonComplicanceService: NonComplianceService,
+              public translate: TranslateService) {}
 
   controleOptions = [
-    "OP-PROD(ORDEM DE PRODUÇÃO PRODUTO ACABADO)",
-    "OP-SA(ORDEM DE PRODUÇÃO PRODUTO SEMIACABADO)",
-    "OP-I(ORDEM DE PRODUÇÃO CORTE)",
-    "NF-e(NOTA FISCAL ELETRÔNICA)",
-    "PC(PEDIDO DE COMPRA)",
-    "PV(PEDIDO DE VENDA)",
-    "CC(COTAÇÃO COMERCIAL)",
-    "PR(PROCEDIMENTO)",
+    this.translate.instant("newNC.step1.checkpoint.type1"),
+    this.translate.instant("newNC.step1.checkpoint.type2"),
+    this.translate.instant("newNC.step1.checkpoint.type3"),
+    this.translate.instant("newNC.step1.checkpoint.type4"),
+    this.translate.instant("newNC.step1.checkpoint.type5"),
+    this.translate.instant("newNC.step1.checkpoint.type6"),
+    this.translate.instant("newNC.step1.checkpoint.type7"),
+    this.translate.instant("newNC.step1.checkpoint.type8"),
   ];
 
   limparCampos(){
