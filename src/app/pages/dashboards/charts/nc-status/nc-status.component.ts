@@ -41,13 +41,7 @@ export class NcStatusComponent implements OnInit {
   ];
 
   popularSetores() {
-    this.chartsService.ncs.forEach((element) => {
-      if (element.tipos_local_item) {
-        if (this.setores.indexOf(element.tipos_local_item) == -1) {
-          this.setores.push(element.tipos_local_item);
-        }
-      }
-    });
+    this.setores = Object.assign([], this.chartsService.sectors);
 
     this.setores.push("Todos");
 

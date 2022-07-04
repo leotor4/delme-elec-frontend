@@ -9,11 +9,10 @@ import { ChartsService } from "src/app/_services/charts.service";
 })
 export class NcYearComponent implements OnInit {
   constructor(public chartsService: ChartsService) {}
-
+  @Input() size: number[] = [];
 
   ngOnInit(): void {
     this.popular();
-    
   }
 
   onSelect(event: any) {}
@@ -51,7 +50,6 @@ export class NcYearComponent implements OnInit {
         }
       }
     });
-
   }
 
   graph = {
@@ -74,7 +72,6 @@ export class NcYearComponent implements OnInit {
     layout: {
       width: 900,
       height: 500,
-      title: "Número de Ncs x Custo Total",
     },
   };
 }

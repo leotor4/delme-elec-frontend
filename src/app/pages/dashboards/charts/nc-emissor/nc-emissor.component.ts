@@ -10,11 +10,23 @@ export class NcEmissorComponent implements OnInit {
   @Input() size: number[] = [];
   constructor(public chartsService: ChartsService) {}
   ngOnInit(): void {
+    this.tipos = Object.assign([], this.chartsService.sectors);
     this.popular();
-    
   }
 
   single: any[] = [];
+  tipos: string[] = [];
+  tiposNc: string[] = [
+    "Auditoria Interna",
+    "Auditoria Externa",
+    "NC de Fornecedor",
+    "NC de Processo",
+    "NC de Cliente",
+    "NC de Produto",
+    "Todos",
+  ];
+  tiposNcAtual = "Todos";
+  quant: number[] = [];
 
   ordenar() {
     this.single.sort(function (a, b) {
@@ -22,16 +34,20 @@ export class NcEmissorComponent implements OnInit {
     });
   }
 
-  tipos: string[] = [];
-  quant: number[] = [];
-
   popular() {
+    for (var i = 0; i < this.tipos.length; i++) {
+      this.quant.push(0);
+    }
     this.chartsService.ncs.forEach((element) => {
-      if (element.emissor) {
-        let emissor = element.emissor;
-        let index = this.tipos.indexOf(emissor.username!);
+      if (
+        element.emissor &&
+        (element.tipos_nc_item == this.tiposNcAtual ||
+          this.tiposNcAtual == "Todos")
+      ) {
+        let setor = element.emissor.sector!.name;
+        let index = this.tipos.indexOf(setor);
         if (index == -1) {
-          this.tipos.push(emissor.username!);
+          this.tipos.push(setor);
           this.quant.push(1);
         } else {
           this.quant[index]++;
@@ -58,4 +74,5 @@ export class NcEmissorComponent implements OnInit {
   showYAxisLabel = true;
   xAxisLabel = "";
   yAxisLabel = "";
+  title = "Departamento Emissor x Quantidade de Ncs";
 }

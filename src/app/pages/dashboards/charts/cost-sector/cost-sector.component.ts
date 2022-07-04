@@ -25,37 +25,41 @@ export class CostSectorComponent implements OnInit {
     this.setores.length = 0;
     this.quantAnos.length = 0;
     this.quantCusto.length = 0;
+    this.chartsService.sectors.forEach((element) => {
+      if (element == this.setor || this.setor == "Todos") {
+        this.setores.push(element);
+        this.quantAnos.push(0);
+        this.quantCusto.push(0);
+      }
+    });
     this.chartsService.ncs.forEach((element) => {
       if (element.tipos_local_item) {
-        if (element.tipos_local_item == this.setor || this.setor == "Todos") {
-          let setor = element.tipos_local_item;
+        let setor = element.tipos_local_item;
 
-          let index = this.setores.indexOf(setor);
+        let index = this.setores.indexOf(setor);
 
-          if (index == -1) {
-            this.setores.push(setor);
-            this.quantAnos.push(1);
-            this.quantCusto.push(0);
-          } else {
-            this.quantAnos[index]++;
-          }
+        if (index > -1) {
+          this.quantAnos[index]++;
+        } else {
+        }
 
-          if (element.costs) {
-            index = this.setores.indexOf(setor);
-            let custos = element.costs;
-            let somatorio = 0;
-            custos.forEach((element) => {
-              let value = parseFloat(element.value);
-              if (value) {
-                somatorio += value;
-              }
-            });
-            index = this.setores.indexOf(setor);
-            this.quantCusto[index] += somatorio;
-          }
+        if (element.costs) {
+          index = this.setores.indexOf(setor);
+          let custos = element.costs;
+          let somatorio = 0;
+          custos.forEach((element) => {
+            let value = parseFloat(element.value);
+            if (value) {
+              somatorio += value;
+            }
+          });
+          index = this.setores.indexOf(setor);
+          this.quantCusto[index] += somatorio;
         }
       }
     });
+
+    console.log(this.setores);
 
     this.display = false;
     setTimeout(() => {
@@ -64,16 +68,8 @@ export class CostSectorComponent implements OnInit {
   }
 
   popularSetores() {
-    this.chartsService.ncs.forEach((element) => {
-      if (element.tipos_local_item) {
-        if (this.setoresAux.indexOf(element.tipos_local_item) == -1) {
-          this.setoresAux.push(element.tipos_local_item);
-        }
-      }
-    });
-
+    this.setoresAux = Object.assign([], this.chartsService.sectors);
     this.setoresAux.push("Todos");
-
     this.setor = "Todos";
   }
 

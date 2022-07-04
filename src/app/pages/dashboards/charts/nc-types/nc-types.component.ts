@@ -9,7 +9,10 @@ import { ChartsService } from "src/app/_services/charts.service";
 export class NcTypesComponent implements OnInit {
   constructor(public chartsService: ChartsService) {}
   @Input() size: number[] = [];
+  setor: any;
+  setores: string[] = [];
   ngOnInit(): void {
+    this.popularSetores()
     this.popular();
   }
 
@@ -18,24 +21,48 @@ export class NcTypesComponent implements OnInit {
   quant: number[] = [];
 
   popular() {
-    this.chartsService.ncs.forEach((element) => {
-      if (element.tipos_nc_item) {
-        let index = this.tipos.indexOf(element.tipos_nc_item);
-        if (index == -1) {
-          this.tipos.push(element.tipos_nc_item);
-          this.quant.push(1);
-        } else {
-          this.quant[index]++;
+    this.single = [
+      {
+        name: "Auditoria Interna",
+        value: 0,
+      },
+      {
+        name: "Auditoria Externa",
+        value: 0,
+      },
+      {
+        name: "NC de Fornecedor",
+        value: 0,
+      },
+      {
+        name: "NC de Processo",
+        value: 0,
+      },
+      {
+        name: "NC de Produto",
+        value: 0,
+      },
+    ];
+
+    this.chartsService.ncs.forEach((nc) => {
+      if (nc.tipos_local_item == this.setor || this.setor == "Todos") {
+        if (nc.tipos_nc_item) {
+          this.single.forEach((element) => {
+            if (element["name"] == nc.tipos_nc_item) {
+              element["value"] += 1;
+            }
+          });
         }
       }
     });
+  }
 
-    for (var i = 0; i < this.tipos.length; i++) {
-      this.single.push({
-        name: this.tipos[i],
-        value: this.quant[i],
-      });
-    }
+  popularSetores() {
+   this.setores = Object.assign([],this.chartsService.sectors)
+
+    this.setores.push("Todos");
+
+    this.setor = "Todos";
   }
 
   // options
