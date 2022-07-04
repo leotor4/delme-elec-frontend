@@ -12,7 +12,6 @@
 
 <div style="display:flex; margin-top: 50px;">
   <div style="display: flex; flex-direction:row;">
-    <h2 style="margin-top: 25px;">NCs por Status</h2>
     <ngx-charts-pie-chart
       [view]="view" 
       [scheme]="gridColor"
@@ -81,7 +80,7 @@
     <ng-template pTemplate="header">
       <tr>
         <th pSortableColumn="id">
-          <div class="flex justify-content-between align-items-center">
+          <div class="flex justify-content-between align-items-center" style="width:95px;">
               Número<br>
               <p-sortIcon field="id"></p-sortIcon>
               <p-columnFilter type="number" field="id" display="menu" class="ml-auto"></p-columnFilter>
@@ -89,7 +88,7 @@
         </th>
         
         <th pSortableColumn="emissor">
-          <div class="flex justify-content-between align-items-center">
+          <div class="flex justify-content-between align-items-center" style="width:95px;">
               Emissor<br>
               <p-sortIcon field="emissor"></p-sortIcon>
               <p-columnFilter type="text" field="emissor" display="menu" class="ml-auto"></p-columnFilter>
@@ -106,7 +105,7 @@
 
 
         <th pSortableColumn="tipos_local_item">
-          <div class="flex justify-content-between align-items-center" style="width:130px;">
+          <div class="flex justify-content-between align-items-center" style="width:110px;">
               Setor Afetado<br>
               <p-sortIcon field="tipos_local_item"></p-sortIcon>
               <p-columnFilter type="text" field="tipos_local_item" display="menu" class="ml-auto"></p-columnFilter>
