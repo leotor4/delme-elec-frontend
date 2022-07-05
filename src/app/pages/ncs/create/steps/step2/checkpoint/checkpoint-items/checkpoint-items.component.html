@@ -1,23 +1,23 @@
 <div *ngIf="returnOpScreen()">
-  <label for="NumOp">Número da OP *</label>
+  <label for="NumOp">{{'newNC.step1.checkpoint.op'| translate}}</label>
   <input
     [(ngModel)]="nonComplicanceService.nc.num_op"
     name="NumOp"
     type="text"
     pInputText
-    placeholder="Digite"
+    [placeholder]="'global.type'| translate"
     class="p-inputtext-sm input"
   />
 </div>
 
 <div *ngIf="returnNfScreen()">
-  <label for="NumOp">Número da Nota *</label>
+  <label for="NumOp">{{'newNC.step1.checkpoint.numb'| translate}}</label>
   <input
     [(ngModel)]="nonComplicanceService.nc.num_nota"
     name="NumOp"
     type="text"
     pInputText
-    placeholder="Digite"
+    [placeholder]="'global.type'| translate"
     class="p-inputtext-sm input"
   />
 </div>
@@ -25,9 +25,9 @@
 
 
 <div class="input-box mt-3" *ngIf="returnPrScreen() || returnNfScreen()">
-  <label class="mb-2 mt-3">Anexar Documentos </label>
+  <label class="mb-2 mt-3">{{'global.fileInput.title2'| translate}} </label>
   <div class="div-attachment">
-    <h1>Envie seus documentos</h1>
+    <h1>{{'global.fileInput.subtitle'| translate}}</h1>
     <div
       class="white-background"
       *ngIf="nonComplicanceService.fileControle.length == 0"
@@ -40,7 +40,7 @@
       />
       <i class="pi pi-cloud-upload"></i>
       <p>
-        Arraste e solte ou <strong>navegue para escolher</strong> um arquivo
+        {{'global.fileInput.description'| translate}}
       </p>
     </div>
     <div

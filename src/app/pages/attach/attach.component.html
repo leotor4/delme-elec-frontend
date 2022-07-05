@@ -1,5 +1,5 @@
 <div class="div-attachment">
-  <h1>Envie seus documentos</h1>
+  <h1>{{'global.fileInput.subtitle'| translate}}</h1>
   <div class="white-background" *ngIf="returnFiles(item).length == 0">
     <input
       type="file"
@@ -9,7 +9,7 @@
       multiple
     />
     <i class="pi pi-cloud-upload"></i>
-    <p>Arraste e solte ou <strong>navegue para escolher</strong> um arquivo</p>
+    <p>{{'global.fileInput.description'| translate}}</p>
   </div>
   <div class="white-background-files " *ngIf="returnFiles(item).length > 0">
     <div *ngFor="let files of returnFiles(item)" class="d-flex justify-content-center align-items-center files mt-3">

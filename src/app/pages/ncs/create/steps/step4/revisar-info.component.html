@@ -2,15 +2,14 @@
   <div class="d-flex">
     <div class="cabecalho">
       <div class="d-flex align-items-center">
-        <h1 class="mr-3">Não Conformidade</h1>
+        <h1 class="mr-3">{{'newNC.review.title'| translate}}</h1>
         <p-chip>
           <i class="bi bi-ticket-perforated mr-2"></i>
           {{ this.nonComplicanceService.nc?.code || "XXXX.XX" }}
         </p-chip>
       </div>
       <p>
-        Revise ou altere os dados da NC. Se tudo estiver OK, confirme a criação
-        desta NC
+        {{'newNC.review.subtitle'| translate}}
       </p>
     </div>
   </div>
@@ -21,7 +20,7 @@
       (click)="isAllOpen = true"
     >
       <i class="bi bi-arrows-expand"></i>
-      Expandir Todos
+      {{'global.expand'| translate}}
     </button>
     <button
       [class]="isAllOpen ? unselectedClass : selectedClass"
@@ -29,7 +28,7 @@
       class="btn-sm"
     >
       <i class="bi bi-arrows-collapse"></i>
-      Colapsar Todos
+      {{'global.colapse'| translate}}
     </button>
   </div>
 </div>
@@ -39,11 +38,11 @@
       <div class="d-flex justify-content-between accordion">
         <p>
           <i class="bi bi-file-earmark-text"></i>
-          Dados da NC
+          {{'global.ncData'| translate}}
         </p>
         <button class="btn btn-dark red" (click)="goToStepById(0)">
           <i class="bi bi-pencil mr-1"></i>
-          Alterar
+          {{'global.edit'| translate}}
         </button>
       </div>
     </ng-template>
@@ -58,11 +57,11 @@
       <div class="d-flex justify-content-between accordion">
         <p>
           <i class="bi bi-box-seam"></i>
-          Descrição
+          {{'global.description'| translate}}
         </p>
         <button class="btn btn-dark red" (click)="goToStepById(1)">
           <i class="bi bi-pencil mr-1"></i>
-          Alterar
+          {{'global.edit'| translate}}
         </button>
       </div>
     </ng-template>
@@ -71,7 +70,7 @@
   <div class="dados-parceiro razao-social item">
     <h2 class="mr-2">
       <i class="bi bi-file-earmark-text"></i>
-      Descrição 
+      {{'global.description'| translate}}
     </h2>
     <p-editor
       [(ngModel)]="this.nonComplicanceService.nc.text_area_nc"
@@ -85,7 +84,7 @@
   <div class="dados-parceiro razao-social item">
     <h2 class="mr-2 mb-5">
       <i class="bi bi-paperclip"></i>
-      Evidências
+      {{'newNC.review.evidence'| translate}}
     </h2>
     <p-carousel
       [value]="returnFile('evidenciasNc')"
@@ -104,7 +103,7 @@
   <div class="dados-parceiro razao-social item">
     <h2 class="mr-2">
       <i class="bi bi-geo"></i>
-      Ações Imediatas
+      {{'newNC.step2.actionsTitle'| translate}}
     </h2>
     <p-editor
       [(ngModel)]="this.nonComplicanceService.nc.text_area_acoes"
@@ -118,7 +117,7 @@
   <div class="dados-parceiro razao-social item">
     <h2 class="mr-2 mb-5">
       <i class="bi bi-paperclip"></i>
-      Evidências
+      {{'newNC.review.evidence'| translate}}
     </h2>
     <p-carousel
       [value]="returnFile('evidenciasAcoes')"
@@ -140,11 +139,11 @@
       <div class="d-flex justify-content-between accordion">
         <p>
           <i class="bi bi-file-earmark-text"></i>
-          Notificação por e-mail
+          {{'global.contacts.notifications'| translate}}
         </p>
         <button class="btn btn-dark red" (click)="goToStepById(2)">
           <i class="bi bi-pencil mr-1"></i>
-          Alterar
+          {{'global.edit'| translate}}
         </button>
       </div>
     </ng-template>

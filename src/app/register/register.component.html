@@ -1,6 +1,6 @@
 
 
-  <span>Digite seu e-mail:</span>
+  <span>{{'register.typeYourEmail'| translate}}</span>
   <br>
   <p-autoComplete
   [(ngModel)]="selectedUser"
@@ -12,17 +12,17 @@
   [style]="{ width: '100%' }"
   [inputStyle]="{ width: '100%' }"
   class="p-autocomplete"
-  placeholder="Busque pelo seu e-mail"
+  [placeholder]="'register.searchYourEmail'| translate"
   >
   <ng-template let-user pTemplate="item">
     <div>
       <div class="d-flex justify-content-between">
         <div>
-          <span class="auto-complete-label">Nome</span><br />
+          <span class="auto-complete-label">{{'global.contacts.name'| translate}}</span><br />
           <span class="auto-complete-item">{{ user.username }}</span>
         </div> 
         <div>
-          <span class="auto-complete-label">E-MAIL</span><br />
+          <span class="auto-complete-label">{{'global.contacts.emailUpper'| translate}}</span><br />
           <span class="auto-complete-item">{{ user.email }}</span>
         </div> 
 
@@ -31,12 +31,7 @@
   </ng-template>
 
 </p-autoComplete>
-<button (click)="sendMailForUser()" class="btn btn-primary-color">Cadastrar </button>
-  
-
-
-
-
+<button (click)="sendMailForUser()" class="btn btn-primary-color">{{'register.signUp'| translate}} </button>
 
   <!-- <form
   *ngIf="!isSuccessful"

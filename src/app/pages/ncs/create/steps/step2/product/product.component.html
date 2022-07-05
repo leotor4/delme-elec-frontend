@@ -1,23 +1,25 @@
 <div class="header">
   <div class="row m-0">
     <div class="cabecalho text-box p-0 col-lg-7 mr-3">
-      <h1>Dados do Produto *</h1>
+      <h1>{{'newNC.step1.product.title'| translate}} *</h1>
       <p>
-        Identifique o produto desta NC.
+        {{'newNC.step1.product.subtitle1'| translate}}
         <br />
-        Caso não encontre o produto, atualize a base de cadastros.
+        {{'newNC.step1.product.subtitle2'| translate}}
       </p>
     </div>
     <div class="col-2" id="div-att-col2">
       <p>
-        <i class="pi pi-history"> </i>Última atualização: {{ returnUpdateTime() }}
+        <i class="pi pi-history"> </i>
+        {{'newNC.step1.lastUpdate'| translate}}
+        {{ returnUpdateTime() }}
       </p>
       <a      target="_blank"
               href="ncs/import"
               role="button"
               class="btn btn-dark"
       >
-        Atualizar Cadastros
+        {{'newNC.step1.updateBtn'| translate}}
         <i class="pi pi-download" id="icon-button"></i>
       </a>
     </div>
@@ -31,7 +33,7 @@
     class="p-autocomplete"
     [style]="{ width: '100%' }"
     [inputStyle]="{ width: '100%' }"
-    placeholder="Busque por nome, descrição ou código SAP"
+    [placeholder]="'newNC.step1.product.searchPlaceholder'| translate"
     field="name"
     (onSelect)="checkProduct($event)"
     (input)="uncheckProduct()"

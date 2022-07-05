@@ -12,6 +12,7 @@ import { NonComplianceService } from "src/app/_services/non-compliance.service";
 import { TokenStorageService } from "src/app/_services/token-storage.service";
 import { ItDialogComponent } from "../it-dialog/it-dialog.component";
 import {environment} from "../../../../../../../../environments/environment";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: "app-rejection-point-items",
@@ -25,7 +26,8 @@ export class RejectionPointItemsComponent implements OnInit {
     public dialogService: DialogService,
     public itService: InstructionsService,
     public tokenService: TokenStorageService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    public translate: TranslateService
   ) {}
 
   resultsIt: any[];
@@ -37,7 +39,6 @@ export class RejectionPointItemsComponent implements OnInit {
     
     this.nonComplianceService.nc.instruction =
       this.nonComplianceService.autoCompleteItValue;
-    console.log(this.nonComplianceService.nc.instruction)
   }
 
   onSelectedPr() {
@@ -46,7 +47,7 @@ export class RejectionPointItemsComponent implements OnInit {
   }
 
   searchIt(event: any) {
-    var filtro = event.query;
+    let filtro = event.query;
     this.resultsIt = [];
     this.nonComplianceService.instructions.forEach((element) => {
       if (this.verificarExistencia(element, filtro)) {
@@ -57,7 +58,7 @@ export class RejectionPointItemsComponent implements OnInit {
   }
 
   searchPr(event: any) {
-    var filtro = event.query;
+    let filtro = event.query;
     this.resultsPr = [];
     this.nonComplianceService.procedures.forEach((element) => {
       if (this.verificarExistencia(element, filtro)) {
@@ -84,41 +85,27 @@ export class RejectionPointItemsComponent implements OnInit {
   }
 
   returnOpScreen() {
-    if (
-      this.nonComplianceService.nc.tipo_controle == "OP-PROD(ORDEM DE PRODUÇÃO PRODUTO ACABADO)" ||
-      this.nonComplianceService.nc.tipo_controle == "OP-SA(ORDEM DE PRODUÇÃO PRODUTO SEMIACABADO)" ||
-      this.nonComplianceService.nc.tipo_controle == "OP-I(ORDEM DE PRODUÇÃO CORTE)"
-    ) {
-      return true;
-    } else {
-      return false;
-    }
+    return this.nonComplianceService.nc.tipo_controle == this.translate.instant("newNC.step1.checkpoint.type1") ||
+        this.nonComplianceService.nc.tipo_controle == this.translate.instant("newNC.step1.checkpoint.type2") ||
+        this.nonComplianceService.nc.tipo_controle == this.translate.instant("newNC.step1.checkpoint.type3");
   }
 
   returnNfScreen() {
-    if (this.nonComplianceService.nc.tipo_controle == "NF-e(NOTA FISCAL ELETRÔNICA)") {
-      return true;
-    } else {
-      return false;
-    }
+    return this.nonComplianceService.nc.tipo_controle == this.translate.instant("newNC.step1.checkpoint.type4");
   }
 
   returnPrScreen() {
-    if (this.nonComplianceService.nc.tipo_controle == "PR(PROCEDIMENTO)") {
-      return true;
-    } else {
-      return false;
-    }
+    return this.nonComplianceService.nc.tipo_controle == this.translate.instant("newNC.step1.checkpoint.type8");
   }
 
-  openDialog() {
+/*  openDialog() {
     const ref = this.dialogService.open(ItDialogComponent, {
       header: "Criar Instrução",
       width: "425px",
     });
-  }
+  }*/
 
-  visualizarIt() {
+  /*visualizarIt() {
     let instruction = this.nonComplianceService.nc.instruction;
     if (instruction) {
       this.itService.downloadFile(instruction.id).subscribe((data) => {
@@ -141,7 +128,7 @@ export class RejectionPointItemsComponent implements OnInit {
         life: 3000,
       });
     }
-  }
+  }*/
   getUrl(){
     return environment.apiURL + 'ncs/import"'
   }

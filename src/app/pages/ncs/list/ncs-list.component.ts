@@ -46,7 +46,7 @@ export class NcsListComponent implements OnInit {
 
   //********line chart************
 
-  lineChartView: any[] = [700, 300];
+  lineChartView: any[] = [810, 300];
 
   lineChartLegend: boolean = true;
   lineChartShowLabels: boolean = true;

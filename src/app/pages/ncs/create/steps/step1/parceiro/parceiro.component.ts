@@ -6,6 +6,7 @@ import { NonComplianceService } from "src/app/_services/non-compliance.service";
 import { ProviderService } from "src/app/_services/provider.service";
 import { SectorService } from "src/app/_services/sector.service";
 import { UpdateDateService } from "src/app/_services/update-date.service";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: "app-parceiro",
@@ -19,15 +20,14 @@ export class ParceiroComponent implements OnInit {
     public updateService: UpdateDateService,
     public nonComplicanceService: NonComplianceService,
     public sectorService: SectorService,
-
+    public translate: TranslateService,
     private messageService: MessageService
   ) {}
 
-  public tiposParceiro: Array<String> = ["Interno", "Cliente", "Fornecedor"];
+  public tiposParceiro: Array<String> = [this.translate.instant("newNC.step1.partner.type1"), this.translate.instant("newNC.step1.partner.type2"), this.translate.instant("newNC.step1.partner.type3")];
   results: any[];
-  public parceiroIdent = false;
   public display = false;
-  label= 'Busque por SAP, razão social ou contato...'
+  label= this.translate.instant("newNC.step1.partner.label1")
 
   
 
@@ -35,21 +35,21 @@ export class ParceiroComponent implements OnInit {
     var filtro = event.query.normalize('NFKD').replace(/[^\w]/g, '');
     this.results = [];
 
-    if (this.nonComplicanceService.nc.tipos_parceiro_item == "Cliente") {
+    if (this.nonComplicanceService.nc.tipos_parceiro_item == this.translate.instant("newNC.step1.partner.type2")) {
       this.nonComplicanceService.customers.forEach((element) => {
         if (this.verificarExistencia(element, filtro)) {
           this.results.push(element);
         }
       });
     } else if (
-      this.nonComplicanceService.nc.tipos_parceiro_item == "Fornecedor"
+      this.nonComplicanceService.nc.tipos_parceiro_item == this.translate.instant("newNC.step1.partner.type3")
     ) {
       this.nonComplicanceService.providers.forEach((element) => {
         if (this.verificarExistencia(element, filtro)) {
           this.results.push(element);
         }
       });
-    } else if (this.nonComplicanceService.nc.tipos_parceiro_item == "Interno") {
+    } else if (this.nonComplicanceService.nc.tipos_parceiro_item == this.translate.instant("newNC.step1.partner.type1")) {
       this.nonComplicanceService.sectors.forEach((element) => {
         if (this.verificarExistenciaInterno(element, filtro)) {
           this.results.push(element);
@@ -62,13 +62,13 @@ export class ParceiroComponent implements OnInit {
     if (this.nonComplicanceService.updates) {
       let dateAtt = new Date(this.nonComplicanceService.updates.update_time);
       let dateNow = new Date();
-      var Difference_In_Time = dateNow.getTime() - dateAtt.getTime();
-      var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
-      var round_day = Math.floor(Difference_In_Days);
+      let Difference_In_Time = dateNow.getTime() - dateAtt.getTime();
+      let Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+      let round_day = Math.floor(Difference_In_Days);
       if (round_day < 1) {
-        return "Hoje";
+        return this.translate.instant("newNC.step1.today");
       } else {
-        return "Há " + round_day + " dias.";
+        return this.translate.instant("newNC.step1.ago") + round_day + this.translate.instant("newNC.step1.days");
       }
     }
     return "";
@@ -90,11 +90,7 @@ export class ParceiroComponent implements OnInit {
   }
 
   isInterno(): boolean {
-    if (this.nonComplicanceService.nc.tipos_parceiro_item == "Interno") {
-      return true;
-    } else {
-      return false;
-    }
+    return this.nonComplicanceService.nc.tipos_parceiro_item == this.translate.instant("newNC.step1.partner.type1");
   }
 
   onSelected() {
@@ -109,29 +105,23 @@ export class ParceiroComponent implements OnInit {
   }
 
   hasSelected(): boolean {
-    if (this.nonComplicanceService.nc.partner != null) {
-      return true;
-    }
-    return false;
+    return this.nonComplicanceService.nc.partner != null;
   }
 
   onChange() {
     this.nonComplicanceService.pesquisar = "";
     this.nonComplicanceService.nc.partner = null;
 
-    if (this.nonComplicanceService.nc.tipos_parceiro_item == 'Interno') {
+    if (this.nonComplicanceService.nc.tipos_parceiro_item == this.translate.instant("newNC.step1.partner.type1")) {
       
-      this.nonComplicanceService.nc.partner = 'Interno'
+      this.nonComplicanceService.nc.partner = this.translate.instant("newNC.step1.partner.type1")
       this.nonComplicanceService.pesquisar = this.nonComplicanceService.formIdentificacaoNC.value['tipos_local_item']
 
-      console.log(this.nonComplicanceService.nc)
-      this.label= 'Busque por nome do setor ou responsável...'
+      this.label= this.translate.instant("newNC.step1.partner.label2")
 
       for(let element of this.nonComplicanceService.sectors) {    
         if (element.name.toUpperCase() == this.nonComplicanceService.pesquisar.toUpperCase()) {
           
-          console.log(this.nonComplicanceService.pesquisar)
-          console.log(element)
           this.nonComplicanceService.nc.partner = element
 
           if(element.responsible_name) {
@@ -148,7 +138,7 @@ export class ParceiroComponent implements OnInit {
           break;
         }
       }
-    } else this.label= 'Busque por SAP, razão social ou contato...'
+    } else this.label= this.translate.instant("newNC.step1.partner.label1")
   }
 
   onChangeAutoComplete() {
@@ -172,11 +162,11 @@ export class ParceiroComponent implements OnInit {
     this.nonComplicanceService.nc.partner.responsible_email =
       this.nonComplicanceService.editarEmailItem;
 
-    if (this.nonComplicanceService.nc.tipos_parceiro_item == "Cliente") {
+    if (this.nonComplicanceService.nc.tipos_parceiro_item == this.translate.instant("newNC.step1.partner.type2")) {
       this.customerService.put(this.nonComplicanceService.nc.partner).subscribe(
         {
           next:(value) => {
-          this.sucess();
+          this.success();
           this.customerService.get().subscribe((data: any) => {
             this.nonComplicanceService.customers = data.customers;
           });
@@ -190,12 +180,12 @@ export class ParceiroComponent implements OnInit {
         }
       );
     } else if (
-      this.nonComplicanceService.nc.tipos_parceiro_item == "Fornecedor"
+      this.nonComplicanceService.nc.tipos_parceiro_item == this.translate.instant("newNC.step1.partner.type3")
     ) {
       this.providerService.put(this.nonComplicanceService.nc.partner).subscribe(
        {
           next:(value) => {
-          this.sucess();
+          this.success();
           this.providerService.get().subscribe((data: any) => {
             this.nonComplicanceService.providers = data.providers;
           });
@@ -208,11 +198,11 @@ export class ParceiroComponent implements OnInit {
         }
        }
       );
-    } else if (this.nonComplicanceService.nc.tipos_parceiro_item == "Interno") {
+    } else if (this.nonComplicanceService.nc.tipos_parceiro_item == this.translate.instant("newNC.step1.partner.type1")) {
       this.sectorService.put(this.nonComplicanceService.nc.partner).subscribe(
         {
           next:(value) => {
-          this.sucess();
+          this.success();
           this.providerService.get().subscribe((data: any) => {
             this.nonComplicanceService.providers = data.providers;
           });
@@ -228,10 +218,10 @@ export class ParceiroComponent implements OnInit {
     }
   }
 
-  sucess() {
+  success() {
     this.messageService.add({
       severity: "success",
-      summary: "Dados editados com sucesso.",
+      summary: this.translate.instant("newNC.step1.partner.success"),
       life: 3000,
     });
     
@@ -241,7 +231,7 @@ export class ParceiroComponent implements OnInit {
   fail() {
     this.messageService.add({
       severity: "error",
-      summary: "Houve um problema ao editar os dados.",
+      summary: this.translate.instant("newNC.step1.partner.fail"),
       life: 3000,
     });
     this.nonComplicanceService.pesquisar = "";

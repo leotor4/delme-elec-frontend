@@ -4,6 +4,7 @@ import { MessageService } from 'primeng/api';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { NonComplianceService } from 'src/app/_services/non-compliance.service';
 import {NonCompliance} from "../../../../../models/non-compliance";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-cancel-dialog',
@@ -12,7 +13,11 @@ import {NonCompliance} from "../../../../../models/non-compliance";
 })
 export class CancelDialogComponent implements OnInit {
 
-  constructor(public ref: DynamicDialogRef,public ncService:NonComplianceService,private messageService:MessageService,private route:Router) { }
+  constructor(public ref: DynamicDialogRef,
+              public ncService:NonComplianceService,
+              private messageService:MessageService,
+              private route:Router,
+              public translate: TranslateService) { }
 
   ngOnInit(): void {
   }
@@ -26,14 +31,14 @@ export class CancelDialogComponent implements OnInit {
         this.ncService.nc= new NonCompliance()
         this.messageService.add({
           severity: "success",
-          summary: "Não conformidade cancelada com sucesso.",
+          summary: this.translate.instant("closeNC.success"),
           life: 3000,
         });
       },
       error: err => {
         this.messageService.add({
           severity: "error",
-          summary: "Houve um problema ao cancelar não conformidade.",
+          summary: this.translate.instant("closeNC.error"),
           life: 3000,
         });
         

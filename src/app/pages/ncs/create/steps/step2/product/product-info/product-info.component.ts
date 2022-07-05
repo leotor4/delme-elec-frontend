@@ -10,9 +10,7 @@ export class ProductInfoComponent implements OnInit {
   constructor(public nonComplianceService: NonComplianceService) {}
 
   hasProduct(): boolean {
-    if (this.nonComplianceService.nc.product != null) return true;
-
-    return false;
+    return this.nonComplianceService.nc.product != null;
   }
 
   ngOnInit(): void {

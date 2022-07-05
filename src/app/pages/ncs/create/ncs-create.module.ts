@@ -7,7 +7,6 @@ import { StepsModule } from "primeng/steps";
 import { ButtonModule } from "primeng/button";
 import { NcsCreateHeaderComponent } from "./ncs-create-header/ncs-create-header.component";
 import { ContactsComponent } from "./steps/step3/contacts.component";
-import { IdentificarNcComponent } from "./steps/step1/identificar-nc/identificar-nc.component";
 import { DescricaoNcComponent } from "./steps/step1/descricao-nc/descricao-nc.component";
 import { IdentificacaoDaNcComponent } from "./steps/step1/identificacao-da-nc/identificacao-da-nc.component";
 import { ParceiroComponent } from "./steps/step1/parceiro/parceiro.component";
@@ -61,7 +60,6 @@ import { AttachComponent } from "../../attach/attach.component";
         NcsCreateComponent,
         NcsCreateHeaderComponent,
         ContactsComponent,
-        IdentificarNcComponent,
         DescricaoNcComponent,
         IdentificacaoDaNcComponent,
         ParceiroComponent,

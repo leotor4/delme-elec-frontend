@@ -2,9 +2,9 @@
     <p-table [value]="this.nonComplicanceService.nc.contacts">
         <ng-template pTemplate="header">
             <tr>
-                <th>Nome</th>
-                <th>E-mail</th>
-                <th>Tipo de Contato</th>
+                <th>{{'global.contacts.name'| translate}}</th>
+                <th>{{'global.contacts.email'| translate}}</th>
+                <th>{{'global.contacts.partner'| translate}}</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-contact let-i="rowIndex">

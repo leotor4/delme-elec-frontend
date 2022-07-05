@@ -4,6 +4,7 @@ import { AuthService } from '../_services/auth.service';
 import { User } from '../models/user.model';
 import { UserService } from './../_services/user.service';
 import { FilterService, MessageService } from "primeng/api";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-register',
@@ -29,10 +30,14 @@ export class RegisterComponent implements OnInit {
   isSignUpFailed = false;
   errorMessage = '';
 
-  constructor(private authService: AuthService, private userService : UserService, private filterService: FilterService, private messageService: MessageService) {}
+  constructor(private authService: AuthService,
+              private userService : UserService,
+              private filterService: FilterService,
+              private messageService: MessageService,
+              public translate: TranslateService) {}
 
   ngOnInit(): void {
-    
+
     console.log('init register')
     this.userService.getAll().subscribe(
       {
@@ -71,14 +76,14 @@ export class RegisterComponent implements OnInit {
         next: (response:any) => {
           this.messageService.add({
             severity: 'success',
-            summary: 'Você receberá um e-mail com as informações de acesso!',
+            summary: this.translate.instant("register.success"),
             life: 5000,
           });
         },
         error: err => {
           this.messageService.add({
             severity: 'error',
-            summary: 'Não foi possível enviar as informações de acesso para o e-mail informado. Contate o admnistrador',
+            summary: this.translate.instant("register.error"),
             life: 5000,
           });
         }

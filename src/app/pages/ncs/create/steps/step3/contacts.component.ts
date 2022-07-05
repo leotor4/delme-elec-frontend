@@ -8,6 +8,7 @@ import { NonComplianceService } from "src/app/_services/non-compliance.service";
 import {TokenStorageService} from "../../../../../_services/token-storage.service";
 import { User } from "src/app/models/user.model";
 import {UserService} from "../../../../../_services/user.service";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: "app-step3",
@@ -27,7 +28,8 @@ export class ContactsComponent implements OnInit{
     private contactsSrvc: ContactsService,
     public dialogService: DialogService,
     public nonComplianceService: NonComplianceService,
-    public tokenServ: TokenStorageService
+    public tokenServ: TokenStorageService,
+    public translate: TranslateService
   ) {}
 
 
@@ -42,7 +44,7 @@ export class ContactsComponent implements OnInit{
         contact: {},
         isEdit: false,
       },
-      header: "Criar Contato",
+      header: this.translate.instant('global.contacts.create'),
       width: "425px",
     });
     ref.onClose.subscribe((contact: Contact) => {
@@ -59,7 +61,7 @@ export class ContactsComponent implements OnInit{
         contact: { ...contact },
         isEdit: true,
       },
-      header: "Editar Contato",
+      header: this.translate.instant('global.contacts.edit'),
       width: "425px",
     });
     ref.onClose.subscribe((contact: Contact) => {
@@ -79,10 +81,10 @@ export class ContactsComponent implements OnInit{
   deleteContact(contact: Contact) {
     this.confirmationService.confirm({
       message:
-        "Você tem certeza que quer excluir o contato " +
+          this.translate.instant('global.contacts.message1') +
         contact.name +
-        " da lista?",
-      header: "Excluir Contato",
+          this.translate.instant('global.contacts.message2'),
+      header: this.translate.instant('global.contacts.delete'),
       icon: "pi pi-exclamation-triangle",
       accept: () => {
         this.nonComplianceService.nc.contacts =
@@ -91,7 +93,7 @@ export class ContactsComponent implements OnInit{
           );
         this.messageService.add({
           severity: "info",
-          summary: "Contato Removido com sucesso",
+          summary: this.translate.instant('global.contacts.successDel'),
           life: 3000,
         });
       },
@@ -214,8 +216,8 @@ export class ContactsComponent implements OnInit{
         }
 
         this.nonComplianceService.nc.contacts = this.nonComplianceService.nc.contacts.filter((value, index, self) =>
-                index === self.findIndex((conctact) => (
-                conctact.email === value.email
+                index === self.findIndex((contact) => (
+                contact.email === value.email
                 ))
         )
         console.log(this.nonComplianceService.nc.contacts)

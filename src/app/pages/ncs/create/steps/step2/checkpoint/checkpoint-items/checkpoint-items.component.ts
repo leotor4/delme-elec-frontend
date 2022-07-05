@@ -1,9 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { DialogService } from "primeng/dynamicdialog";
 import { Attachment } from "src/app/models/attachment";
-import { Procedure } from "src/app/models/procedure";
 import { NonComplianceService } from "src/app/_services/non-compliance.service";
 import { PrDialogComponent } from "../pr-dialog/pr-dialog.component";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: "app-checkpoint-items",
@@ -14,7 +14,8 @@ import { PrDialogComponent } from "../pr-dialog/pr-dialog.component";
 export class CheckpointItemsComponent implements OnInit {
   constructor(
     public nonComplicanceService: NonComplianceService,
-    public dialogService: DialogService
+    public dialogService: DialogService,
+    public translate: TranslateService
   ) {}
 
   ngOnInit(): void {}
@@ -22,7 +23,7 @@ export class CheckpointItemsComponent implements OnInit {
   results: any;
 
   search(event: any) {
-    var filtro = event.query;
+    let filtro = event.query;
     this.results = [];
     this.nonComplicanceService.procedures.forEach((element) => {
       if (this.verificarExistencia(element, filtro)) {
@@ -34,47 +35,27 @@ export class CheckpointItemsComponent implements OnInit {
   }
 
   verificarExistencia(element: any, filtro: string): boolean {
-    if (
-      element.code.toUpperCase().includes(filtro.toUpperCase()) ||
-      element.rev.toUpperCase().includes(filtro.toUpperCase()) ||
-      element.description.toUpperCase().includes(filtro.toUpperCase())
-    ) {
-      return true;
-    }
-    return false;
+    return element.code.toUpperCase().includes(filtro.toUpperCase()) ||
+        element.rev.toUpperCase().includes(filtro.toUpperCase()) ||
+        element.description.toUpperCase().includes(filtro.toUpperCase());
+
   }
 
   returnOpScreen() {
-    if (
-      this.nonComplicanceService.nc.tipo_controle == "OP-PROD(ORDEM DE PRODUÇÃO PRODUTO ACABADO)" ||
-      this.nonComplicanceService.nc.tipo_controle == "OP-SA(ORDEM DE PRODUÇÃO PRODUTO SEMIACABADO)" ||
-      this.nonComplicanceService.nc.tipo_controle == "OP-I(ORDEM DE PRODUÇÃO CORTE)"
-    ) {
-      return true;
-    } else {
-      return false;
-    }
+    return this.nonComplicanceService.nc.tipo_controle == this.translate.instant("newNC.step1.checkpoint.type1") ||
+        this.nonComplicanceService.nc.tipo_controle == this.translate.instant("newNC.step1.checkpoint.type2") ||
+        this.nonComplicanceService.nc.tipo_controle == this.translate.instant("newNC.step1.checkpoint.type3");
   }
 
   returnNfScreen() {
-    if (
-      this.nonComplicanceService.nc.tipo_controle == "NF-e(NOTA FISCAL ELETRÔNICA)" ||
-      this.nonComplicanceService.nc.tipo_controle == "PC(PEDIDO DE COMPRA)" ||
-      this.nonComplicanceService.nc.tipo_controle == "PV(PEDIDO DE VENDA)" ||
-      this.nonComplicanceService.nc.tipo_controle == "CC(COTAÇÃO COMERCIAL)"
-    ) {
-      return true;
-    } else {
-      return false;
-    }
+    return this.nonComplicanceService.nc.tipo_controle == this.translate.instant("newNC.step1.checkpoint.type4") ||
+        this.nonComplicanceService.nc.tipo_controle == this.translate.instant("newNC.step1.checkpoint.type5") ||
+        this.nonComplicanceService.nc.tipo_controle == this.translate.instant("newNC.step1.checkpoint.type6") ||
+        this.nonComplicanceService.nc.tipo_controle == this.translate.instant("newNC.step1.checkpoint.type7");
   }
 
   returnPrScreen() {
-    if (this.nonComplicanceService.nc.tipo_controle == "PR(PROCEDIMENTO)") {
-      return true;
-    } else {
-      return false;
-    }
+    return this.nonComplicanceService.nc.tipo_controle == this.translate.instant("newNC.step1.checkpoint.type8");
   }
 
   onUpload(event: any, name: string) {
@@ -93,7 +74,7 @@ export class CheckpointItemsComponent implements OnInit {
   }
 
   clearFileName(name: string) {
-    for (var i = 0; i < this.nonComplicanceService.nc.attachments.length; i++) {
+    for (let i = 0; i < this.nonComplicanceService.nc.attachments.length; i++) {
       if (this.nonComplicanceService.nc.attachments[i].path == name) {
         this.nonComplicanceService.nc.attachments.splice(i);
       }
@@ -115,7 +96,7 @@ export class CheckpointItemsComponent implements OnInit {
 
   openDialog() {
     const ref = this.dialogService.open(PrDialogComponent, {
-      header: "Criar Instrução",
+      header: this.translate.instant("newNC.step1.checkpoint.createIT"),
       width: "425px",
     });
   }

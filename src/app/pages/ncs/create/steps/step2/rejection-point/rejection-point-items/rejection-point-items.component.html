@@ -1,7 +1,7 @@
 <div class="mb-3">
   <div class="cabecalho">
-    <h1>Ponto de Rejeição *</h1>
-    <p>Descreva o problema e porque esta NC esta sendo aberta.</p>
+    <h1>{{'newNC.step1.rejectionPoint.title'| translate}} *</h1>
+    <p>{{'newNC.step1.rejectionPoint.subtitle'| translate}}</p>
   </div>
   <p-editor
     [style]="{ height: '210px' }"
@@ -16,7 +16,7 @@
   <div class="row">
     <div class="col">
       <div class="p-fluid autoComplete">
-        <label class="">Instrução de Trabalho *</label>
+        <label class="">{{'newNC.step1.rejectionPoint.itTitle'| translate}}</label>
         <p-autoComplete
           class="p-autocomplete"
           [style]="{ width: '100%' }"
@@ -27,23 +27,23 @@
           (onSelect)="onSelectedIt()"
           field="name"
           [(ngModel)]="nonComplianceService.autoCompleteItValue"
-          placeholder="Busque por nome, número ou descrição"
+          [placeholder]="'newNC.step1.rejectionPoint.searchPlaceholder'| translate"
         >
           <ng-template let-brand pTemplate="item">
             <div>
               <div class="d-flex">
                 <div class="mr-2">
-                  <span class="auto-complete-label">CÓDIGO</span><br />
+                  <span class="auto-complete-label">{{'newNC.step1.partner.codeUpper'| translate}}</span><br />
                   <span class="auto-complete-item">{{ brand.code }}</span>
                 </div>
                 <div class="mr-2">
-                  <span class="auto-complete-label">DESCRIÇÃO</span><br />
+                  <span class="auto-complete-label">{{'newNC.step1.rejectionPoint.descriptionUpper'| translate}}</span><br />
                   <span class="auto-complete-item">{{
                     brand.description
                   }}</span>
                 </div>
                 <div class="mr-2">
-                  <span class="auto-complete-label">REVISÃO</span><br />
+                  <span class="auto-complete-label">{{'newNC.step1.rejectionPoint.revisionUpper'| translate}}</span><br />
                   <span class="auto-complete-item">{{ brand.rev }}</span>
                 </div>
               </div>
@@ -67,14 +67,14 @@
     </div>
   </div>-->
 
-  <div *ngIf="false" class="d-flex justify-content-center mt-3">
+  <!--<div *ngIf="false" class="d-flex justify-content-center mt-3">
     <button
       class="btn btn-dark"
       (click)="visualizarIt()"
     >
-      Visualizar Documento
+      {{'newNC.step1.rejectionPoint.viewDocument'| translate}}
     </button>
-  </div>
+  </div>-->
 </div>
 
 <div
@@ -82,25 +82,25 @@
   *ngIf="returnNfScreen()"
 >
   <div class="d-flex flex-column inputs-sm my-auto">
-    <label for="amountTotal">Número do Lote</label>
+    <label for="amountTotal">{{'newNC.step1.rejectionPoint.numBatch'| translate}}</label>
     <input
       [(ngModel)]="nonComplianceService.nc.num_lote"
       name="amountTotal"
       type="text"
       pInputText
-      placeholder="Digite"
-      class="p-inputtext-sm input"
+      [placeholder]="'global.type'| translate"
+      class="p-input text-sm input"
     />
   </div>
   <div class="d-flex flex-column inputs-sm my-auto">
-    <label for="amountTotal">Número da Ordem de Compra</label>
+    <label for="amountTotal">{{'newNC.step1.rejectionPoint.numOC'| translate}}</label>
     <input
       [(ngModel)]="nonComplianceService.nc.num_ordem_compra"
       name="amountTotal"
       type="text"
       pInputText
-      placeholder="Digite"
-      class="p-inputtext-sm input"
+      [placeholder]="'global.type'| translate"
+      class="p-input text-sm input"
     />
   </div>
 </div>
@@ -109,7 +109,7 @@
   <div class="row mt-3">
     <div class="col">
       <div class="p-fluid autoComplete">
-        <label class="">Selecionar PR</label>
+        <label class="">{{'newNC.step1.rejectionPoint.pr'| translate}}</label>
         <p-autoComplete
           [(ngModel)]="nonComplianceService.autoCompletePrValue"
           class="p-autocomplete"
@@ -120,23 +120,23 @@
           [style]="{ width: '100%' }"
           [inputStyle]="{ width: '100%' }"
           field="description"
-          placeholder="Busque por nome, número ou descrição"
+          [placeholder]="'newNC.step1.rejectionPoint.searchPlaceholder'| translate"
         >
           <ng-template let-brand pTemplate="item">
             <div>
               <div class="d-flex justify-content-between">
                 <div>
-                  <span class="auto-complete-label">CÓDIGO</span><br />
+                  <span class="auto-complete-label">{{'newNC.step1.partner.codeUpper'| translate}}</span><br />
                   <span class="auto-complete-item">{{ brand.code }}</span>
                 </div>
                 <div>
-                  <span class="auto-complete-label">DESCRIÇÃO</span><br />
+                  <span class="auto-complete-label">{{'newNC.step1.rejectionPoint.descriptionUpper'| translate}}</span><br />
                   <span class="auto-complete-item">{{
                     brand.description
                   }}</span>
                 </div>
                 <div>
-                  <span class="auto-complete-label">REVISÃO</span><br />
+                  <span class="auto-complete-label">{{'newNC.step1.rejectionPoint.revisionUpper'| translate}}</span><br />
                   <span class="auto-complete-item">{{ brand.rev }}</span>
                 </div>
               </div>
@@ -147,12 +147,12 @@
     </div>
     <div class="col att-button">
       <div>
-        <p><i class="pi pi-history"></i> ultima atualização:</p>
+        <p><i class="pi pi-history"></i> {{'newNC.step1.lastUpdate'| translate}}</p>
         <a
                 pButton
                 type="button"
                 icon="pi pi-download"
-                label="Atualizar PRs"
+                [label]="'newNC.step1.rejectionPoint.updatePr'| translate"
                 class="p-button-secondary p-button-text"
                 [href]="getUrl()"
         ></a>
