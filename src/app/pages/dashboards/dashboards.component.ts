@@ -13,9 +13,11 @@ export class DashboardsComponent implements OnInit {
   load1 = false;
   load2 = false;
   load3 = false;
+
   carregou(): boolean {
     return this.load1 && this.load2 && this.load3;
   }
+  
   ngOnInit(): void {
     this.chartsService.get().subscribe({
       next: (data: any) => {

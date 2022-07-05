@@ -12,7 +12,7 @@ export class NcTypesComponent implements OnInit {
   setor: any;
   setores: string[] = [];
   ngOnInit(): void {
-    this.popularSetores()
+    this.popularSetores();
     this.popular();
   }
 
@@ -58,7 +58,7 @@ export class NcTypesComponent implements OnInit {
   }
 
   popularSetores() {
-   this.setores = Object.assign([],this.chartsService.sectors)
+    this.setores = Object.assign([], this.chartsService.sectors);
 
     this.setores.push("Todos");
 
@@ -74,4 +74,5 @@ export class NcTypesComponent implements OnInit {
   showYAxisLabel = true;
   xAxisLabel = "";
   yAxisLabel = "";
+  gridColor = "ocean";
 }

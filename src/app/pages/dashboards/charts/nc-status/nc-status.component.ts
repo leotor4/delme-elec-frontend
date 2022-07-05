@@ -95,8 +95,6 @@ export class NcStatusComponent implements OnInit {
     });
   }
 
- 
-
   // options
   showXAxis = true;
   showYAxis = true;
@@ -106,6 +104,7 @@ export class NcStatusComponent implements OnInit {
   showYAxisLabel = true;
   xAxisLabel = "";
   yAxisLabel = "";
+  gridColor = "ocean";
 
   onSelect(event: any) {}
 }

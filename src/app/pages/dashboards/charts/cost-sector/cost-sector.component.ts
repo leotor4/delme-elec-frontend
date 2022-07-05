@@ -20,11 +20,13 @@ export class CostSectorComponent implements OnInit {
   setoresAux: string[] = [];
   quantAnos: number[] = [];
   quantCusto: number[] = [];
+  graph: any;
+  title = "Número de Ncs x Custo Total"
 
   popular() {
-    this.setores.length = 0;
-    this.quantAnos.length = 0;
-    this.quantCusto.length = 0;
+    this.setores = [];
+    this.quantAnos = [];
+    this.quantCusto = [];
     this.chartsService.sectors.forEach((element) => {
       if (element == this.setor || this.setor == "Todos") {
         this.setores.push(element);
@@ -59,12 +61,29 @@ export class CostSectorComponent implements OnInit {
       }
     });
 
-    console.log(this.setores);
-
-    this.display = false;
-    setTimeout(() => {
-      this.display = true;
-    }, 200);
+    this.graph = {
+      data: [
+        {
+          x: this.setores,
+          y: this.quantCusto,
+          type: "scatter",
+          name: "Custo",
+          marker: { color: "rgb(252,134,43)" },
+        },
+        {
+          x: this.setores,
+          y: this.quantAnos,
+          name: "Quantidade",
+          type: "bar",
+          marker: { color: "rgb(29,104,251)" },
+        },
+      ],
+      layout: {
+        width: 1600,
+        height: 500,
+        title: "",
+      },
+    };
   }
 
   popularSetores() {
@@ -72,28 +91,4 @@ export class CostSectorComponent implements OnInit {
     this.setoresAux.push("Todos");
     this.setor = "Todos";
   }
-
-  graph = {
-    data: [
-      {
-        x: this.setores,
-        y: this.quantCusto,
-        type: "scatter",
-        name: "Custo",
-        marker: { color: "rgb(252,134,43)" },
-      },
-      {
-        x: this.setores,
-        y: this.quantAnos,
-        name: "Quantidade",
-        type: "bar",
-        marker: { color: "rgb(41,113,182)" },
-      },
-    ],
-    layout: {
-      width: 900,
-      height: 500,
-      title: "Número de Ncs x Custo Total",
-    },
-  };
 }

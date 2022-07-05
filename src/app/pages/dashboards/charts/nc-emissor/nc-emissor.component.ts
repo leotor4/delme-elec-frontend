@@ -35,6 +35,9 @@ export class NcEmissorComponent implements OnInit {
   }
 
   popular() {
+    this.quant=[]
+    this.single=[]
+    
     for (var i = 0; i < this.tipos.length; i++) {
       this.quant.push(0);
     }

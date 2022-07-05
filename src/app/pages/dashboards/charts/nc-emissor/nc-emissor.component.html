@@ -2,11 +2,13 @@
   <div class="mb-3">
     <h2>{{ title }}</h2>
   </div>
-    <p-dropdown
+    <div class="d-flex justify-content-start mb-5" style="width:100%">
+      <p-dropdown
       [options]="tiposNc"
       [(ngModel)]="tiposNcAtual"
       (onChange)="popular()"
     ></p-dropdown>
+    </div>
   <ngx-charts-bar-vertical
     [view]="size"
     [results]="single"
@@ -18,6 +20,7 @@
     [showYAxisLabel]="showYAxisLabel"
     [xAxisLabel]="xAxisLabel"
     [yAxisLabel]="yAxisLabel"
+    [scheme]="'ocean'"
   >
   </ngx-charts-bar-vertical>
 </div>

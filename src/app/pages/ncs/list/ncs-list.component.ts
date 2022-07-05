@@ -11,37 +11,40 @@ import { NcsListDTO } from './ncs-list-dto';
 import { DashboardsService } from '../../dashboards/dashboards.service';
 
 @Component({
-  selector: 'app-ncs-list',
-  templateUrl: './ncs-list.component.html',
- 
-  styleUrls: ['./ncs-list.component.css'],
-  providers:[
-     ConfirmationService
-  ],
+  selector: "app-ncs-list",
+  templateUrl: "./ncs-list.component.html",
+
+  styleUrls: ["./ncs-list.component.css"],
+  providers: [ConfirmationService],
 })
 export class NcsListComponent implements OnInit {
-
   cardValues: any[] = [];
-  gridColor = 'ocean'
-  view = [500,300]
-  pieValues: any[] = [];
+  gridColor = "ocean";
   gradient: boolean = true;
+  view = [500, 300];
+  pieValues: any[] = [];
+
   showLegend: boolean = true;
   showLabels: boolean = true;
   isDoughnut: boolean = false;
-  legendPosition: string = 'bottom';
-  legendTitle = "Legenda"
+  legendPosition: string = "bottom";
+  legendTitle = "Legenda";
 
   colorScheme = {
-    domain: ['rgb(0, 91, 123)', 'rgb(0, 91, 123)', 'rgb(0, 91, 123)', 'rgb(0, 91, 123)', 'rgb(0, 91, 123)', 'rgb(0, 91, 123)']
+    domain: [
+      "rgb(0, 91, 123)",
+      "rgb(0, 91, 123)",
+      "rgb(0, 91, 123)",
+      "rgb(0, 91, 123)",
+      "rgb(0, 91, 123)",
+      "rgb(0, 91, 123)",
+    ],
   };
-  cardColor: string = '#00344D';
-
+  cardColor: string = "#00344D";
 
   lineChartData: any[] = [];
 
   //********line chart************
-  
 
   lineChartView: any[] = [700, 300];
 
@@ -52,163 +55,155 @@ export class NcsListComponent implements OnInit {
   lineChartYAxis: boolean = true;
   lineChartShowYAxisLabel: boolean = true;
   lineChartShowXAxisLabel: boolean = true;
-  lineChartXAxisLabel: string = 'Mês';
-  lineChartYAxisLabel: string = 'Qtd de NCs';
+  lineChartXAxisLabel: string = "Mês";
+  lineChartYAxisLabel: string = "Qtd de NCs";
   lineChartTimeline: boolean = true;
   //********line chart************
 
-
-  @ViewChild('dt') dt: Table;
+  @ViewChild("dt") dt: Table;
   listNcs: Array<NcsListDTO> = [];
   cols: any[];
   first = 0;
-  totalRecords = 0
+  totalRecords = 0;
   rows = 5;
 
+  openNc() {
+    this.ncsService.abrirNc().subscribe({
+      next: (response: any) => {
+        this.messageService.add({
+          severity: "success",
+          summary: "NC criada com sucesso",
+          life: 3000,
+        });
 
-  openNc(){
+        this.ncsService.nc.code = response["nonCompliance"]["code"];
+        this.ncsService.nc.issuer = response["nonCompliance"]["emissor"];
+        this.ncsService.nc.id = response["nonCompliance"]["id"];
+        this.ncsService.nc.status = response["nonCompliance"]["status"];
 
-    this.ncsService.abrirNc().subscribe(
-      {
-        next: (response:any) => {
-          this.messageService.add({
-            severity: "success",
-            summary: "NC criada com sucesso",
-            life: 3000,
-          });
-          
-          this.ncsService.nc.code = response['nonCompliance']['code']
-          this.ncsService.nc.issuer = response['nonCompliance']['emissor']
-          this.ncsService.nc.id = response['nonCompliance']['id']
-          this.ncsService.nc.status = response['nonCompliance']['status']
-          
-          this.router.navigate(["/ncs/create/", this.ncsService.nc.id])
-        },
-        error: err => {
-          this.messageService.add({
-            severity: "error",
-            summary: "Houve um problema ao criar não conformidade.",
-            life: 3000,
-          });
-        }
-      }
-    )
+        this.router.navigate(["/ncs/create/", this.ncsService.nc.id]);
+      },
+      error: (err) => {
+        this.messageService.add({
+          severity: "error",
+          summary: "Houve um problema ao criar não conformidade.",
+          life: 3000,
+        });
+      },
+    });
   }
-
 
   constructor(
-    private router:Router,private ncsService : NonComplianceService, private route: ActivatedRoute, 
-    private config: PrimeNGConfig,public messageService:MessageService, private dashboardService :DashboardsService,
-    private confirmationService: ConfirmationService) { }
+    private router: Router,
+    private ncsService: NonComplianceService,
+    private route: ActivatedRoute,
+    private config: PrimeNGConfig,
+    public messageService: MessageService,
+    private dashboardService: DashboardsService,
+    private confirmationService: ConfirmationService
+  ) {}
 
   ngOnInit(): void {
-    this.setDataLineChart()
-    this.startListNcs('all')
+    this.setDataLineChart();
+    this.startListNcs("all");
   }
 
-
-  startListNcs(filterStatus : string) {
+  startListNcs(filterStatus: string) {
     this.ncsService.get().subscribe((data: any) => {
-      
       //this.listNcs.append(data.noncompliances);
-      const compliances: Array<NonCompliance> = data.noncompliances
-      console.log(compliances)
-
+      const compliances: Array<NonCompliance> = data.noncompliances;
+      console.log(compliances);
 
       if (compliances?.length > 0) {
-        this.listNcs = compliances.map(
-          (item:NonCompliance) => {
-              return new NcsListDTO(item)
-        })
-        this.listNcs = this.listNcs.filter(item => (item.system_status !== 'deleted' && item.system_status != 'arquived'));
+        this.listNcs = compliances.map((item: NonCompliance) => {
+          return new NcsListDTO(item);
+        });
+        this.listNcs = this.listNcs.filter(
+          (item) =>
+            item.system_status !== "deleted" && item.system_status != "arquived"
+        );
       }
-      
-
 
       this.config.filterMatchModeOptions = {
         text: [
-            FilterMatchMode.STARTS_WITH,
-            FilterMatchMode.CONTAINS,
-            FilterMatchMode.NOT_CONTAINS,
-            FilterMatchMode.ENDS_WITH,
-            FilterMatchMode.EQUALS,
-            FilterMatchMode.NOT_EQUALS
+          FilterMatchMode.STARTS_WITH,
+          FilterMatchMode.CONTAINS,
+          FilterMatchMode.NOT_CONTAINS,
+          FilterMatchMode.ENDS_WITH,
+          FilterMatchMode.EQUALS,
+          FilterMatchMode.NOT_EQUALS,
         ],
         numeric: [
-            FilterMatchMode.EQUALS,
-            FilterMatchMode.NOT_EQUALS,
-            FilterMatchMode.LESS_THAN,
-            FilterMatchMode.LESS_THAN_OR_EQUAL_TO,
-            FilterMatchMode.GREATER_THAN,
-            FilterMatchMode.GREATER_THAN_OR_EQUAL_TO
+          FilterMatchMode.EQUALS,
+          FilterMatchMode.NOT_EQUALS,
+          FilterMatchMode.LESS_THAN,
+          FilterMatchMode.LESS_THAN_OR_EQUAL_TO,
+          FilterMatchMode.GREATER_THAN,
+          FilterMatchMode.GREATER_THAN_OR_EQUAL_TO,
         ],
         date: [
-            FilterMatchMode.DATE_IS,
-            FilterMatchMode.DATE_IS_NOT,
-            FilterMatchMode.DATE_BEFORE,
-            FilterMatchMode.DATE_AFTER
-        ]
-      }
-      
-      if(filterStatus == 'open')
-        this.listNcs = this.listNcs.filter(item => (item.status == 'open'))
-      if(filterStatus == 'canceled')
-        this.listNcs = this.listNcs.filter(item => (item.status == 'canceled'))
-      if(filterStatus == 'running')
-        this.listNcs = this.listNcs.filter(item => (item.status == 'running'))
-      if(filterStatus == 'late')
-        this.listNcs = this.listNcs.filter(item => (item.status == 'late'))
+          FilterMatchMode.DATE_IS,
+          FilterMatchMode.DATE_IS_NOT,
+          FilterMatchMode.DATE_BEFORE,
+          FilterMatchMode.DATE_AFTER,
+        ],
+      };
 
+      if (filterStatus == "open")
+        this.listNcs = this.listNcs.filter((item) => item.status == "open");
+      if (filterStatus == "canceled")
+        this.listNcs = this.listNcs.filter((item) => item.status == "canceled");
+      if (filterStatus == "running")
+        this.listNcs = this.listNcs.filter((item) => item.status == "running");
+      if (filterStatus == "late")
+        this.listNcs = this.listNcs.filter((item) => item.status == "late");
 
-      this.setDataCards(compliances, filterStatus)
+      this.setDataCards(compliances, filterStatus);
 
-      this.totalRecords = this.listNcs.length
-      
+      this.totalRecords = this.listNcs.length;
     });
   }
 
-  setDataCards(compliances: Array<NonCompliance>, filterStatus:string) {
-
-
-    this.dashboardService.getKpisList(compliances).subscribe((data:any) => {
-      this.cardValues = data
+  setDataCards(compliances: Array<NonCompliance>, filterStatus: string) {
+    this.dashboardService.getKpisList(compliances).subscribe((data: any) => {
+      this.cardValues = data;
     });
 
-
-    this.dashboardService.getPiesValues(compliances, filterStatus).subscribe((data:any) => {
-      this.pieValues = data
-    });
-    
+    this.dashboardService
+      .getPiesValues(compliances, filterStatus)
+      .subscribe((data: any) => {
+        this.pieValues = data;
+      });
   }
-  
-  parseMonthStrToNumber(strMonth : string) : string {
-    switch(strMonth) {
-      case 'january':
-        return 'jan';
-      case 'february':
-        return 'fev';
-      case 'march':
-        return 'mar';
-      case 'april':
-        return 'abr';
-      case 'may':
-        return 'mai';
-      case 'june':
-        return 'jun';
-      case 'july':
-        return 'jul';
-      case 'august':
-        return 'ago';
-      case 'september':
-        return 'set';
-      case 'october':
-        return 'out';
-      case 'november':
-        return 'nov';
-      case 'december':
-        return 'dez';
+
+  parseMonthStrToNumber(strMonth: string): string {
+    switch (strMonth) {
+      case "january":
+        return "jan";
+      case "february":
+        return "fev";
+      case "march":
+        return "mar";
+      case "april":
+        return "abr";
+      case "may":
+        return "mai";
+      case "june":
+        return "jun";
+      case "july":
+        return "jul";
+      case "august":
+        return "ago";
+      case "september":
+        return "set";
+      case "october":
+        return "out";
+      case "november":
+        return "nov";
+      case "december":
+        return "dez";
       default:
-        return '0';
+        return "0";
     }
   }
 
@@ -217,188 +212,170 @@ export class NcsListComponent implements OnInit {
   }
 
   prev() {
-      this.first = this.first - this.rows;
+    this.first = this.first - this.rows;
   }
 
   reset() {
-      this.first = 0;
+    this.first = 0;
   }
 
   isLastPage(): boolean {
-      return this.listNcs ? this.first === (this.listNcs.length - this.rows): true;
+    return this.listNcs ? this.first === this.listNcs.length - this.rows : true;
   }
 
   isFirstPage(): boolean {
-      return this.listNcs ? this.first === 0 : true;
+    return this.listNcs ? this.first === 0 : true;
   }
-
 
   applyFilterGlobal($event: any, stringVal: any) {
     this.dt!.filterGlobal(($event.target as HTMLInputElement).value, stringVal);
   }
 
-
-
   cancelNc(ncDto: NonCompliance) {
     this.confirmationService.confirm({
-      message: 'Esta ação irá alterar o status da NC para cancelada, deseja prosseguir com a operação?',
-      header: 'Cancelar NC',
-      icon: 'pi pi-exclamation-triangle',
+      message:
+        "Esta ação irá alterar o status da NC para cancelada, deseja prosseguir com a operação?",
+      header: "Cancelar NC",
+      icon: "pi pi-exclamation-triangle",
       accept: () => {
-        
         if (ncDto.id) {
-          this.ncsService.getById(ncDto.id).subscribe(
-            {
-              next: (response:any) => {
-                this.ncsService.nc = new NonCompliance(response['nc'][0]);              
+          this.ncsService.getById(ncDto.id).subscribe({
+            next: (response: any) => {
+              this.ncsService.nc = new NonCompliance(response["nc"][0]);
 
-                this.ncsService.nc.status = "canceled"
-          
-                this.ncsService.saveNc().subscribe({
-                  next: data => {
-                    this.messageService.add({
-                      severity: "success",
-                      summary: "Não conformidade cancelada com sucesso.",
-                      life: 3000,
-                    });
-        
-                    window.location.reload()
-                  },
-                  error: err => {
-                    this.messageService.add({
-                      severity: "error",
-                      summary: "Houve um problema ao cancelar não conformidade.",
-                      life: 3000,
-                    });
-                    
-                  }
-                });
-        
-              }
-            }
-          ) 
+              this.ncsService.nc.status = "canceled";
+
+              this.ncsService.saveNc().subscribe({
+                next: (data) => {
+                  this.messageService.add({
+                    severity: "success",
+                    summary: "Não conformidade cancelada com sucesso.",
+                    life: 3000,
+                  });
+
+                  window.location.reload();
+                },
+                error: (err) => {
+                  this.messageService.add({
+                    severity: "error",
+                    summary: "Houve um problema ao cancelar não conformidade.",
+                    life: 3000,
+                  });
+                },
+              });
+            },
+          });
         }
       },
 
-      reject:() => {
+      reject: () => {
         this.messageService.add({
-          severity: 'info',
-          summary: 'Operação Cancelada',
+          severity: "info",
+          summary: "Operação Cancelada",
           life: 5000,
         });
-        
-      }
-  });
-      
+      },
+    });
   }
 
-  edit(idNc : number, status : string) {
-    if (status.toUpperCase() == 'OPEN') {
+  edit(idNc: number, status: string) {
+    if (status.toUpperCase() == "OPEN") {
       this.router.navigate(["/ncs/create/", idNc]);
     } else {
       this.messageService.add({
-        severity: 'info',
-        summary: 'O processo de abertura desta nc já foi concluído',
+        severity: "info",
+        summary: "O processo de abertura desta nc já foi concluído",
         life: 5000,
       });
-    }    
+    }
   }
 
-  visualizarInformacoes(idNc : number, status : string) {
-    if (status.toUpperCase() == 'RUNNING') {
+  visualizarInformacoes(idNc: number, status: string) {
+    if (status.toUpperCase() == "RUNNING") {
       this.router.navigate(["/ncs/about/", idNc]);
-    } else if (status.toUpperCase() == 'OPEN'){
+    } else if (status.toUpperCase() == "OPEN") {
       this.messageService.add({
-        severity: 'info',
-        summary: 'Conclua a abertura da NC para poder visualizar as informações',
+        severity: "info",
+        summary:
+          "Conclua a abertura da NC para poder visualizar as informações",
         life: 5000,
       });
-    }    
-  }
-
-
-  onSelectCard(event : any) {
-    if (event['name'] == 'Total de NCs') {
-      this.startListNcs('all')
-    }
-
-    if (event['name'] == 'NCs em elaboração') {
-      this.startListNcs('open')
-    }
-
-    if (event['name'] == 'NCs atrasadas') {
-      this.startListNcs('late')
-    }
-
-    if (event['name'] == 'NCs canceladas') {
-      this.startListNcs('canceled')
-    }
-
-    if (event['name'] == 'NCs em execução') {
-      this.startListNcs('running')
     }
   }
 
+  onSelectCard(event: any) {
+    if (event["name"] == "Total de NCs") {
+      this.startListNcs("all");
+    }
+
+    if (event["name"] == "NCs em elaboração") {
+      this.startListNcs("open");
+    }
+
+    if (event["name"] == "NCs atrasadas") {
+      this.startListNcs("late");
+    }
+
+    if (event["name"] == "NCs canceladas") {
+      this.startListNcs("canceled");
+    }
+
+    if (event["name"] == "NCs em execução") {
+      this.startListNcs("running");
+    }
+  }
 
   setDataLineChart() {
-    this.dashboardService.getTimeLineValues().subscribe((data:any)=> {
-      var seriesOpen = []
-      var seriesClosed = []
+    this.dashboardService.getTimeLineValues().subscribe((data: any) => {
+      var seriesOpen = [];
+      var seriesClosed = [];
 
-      var lineChartDataAux = []
-      console.log(data)
-      
-      var cont = 0
+      var lineChartDataAux = [];
+      console.log(data);
+
+      var cont = 0;
       for (const key in data) {
-        cont = cont + 1
+        cont = cont + 1;
         // if(cont > 6) {
         //   break;
         // }
         if (data.hasOwnProperty(key)) {
-    
           console.log(`${key}: ${data[key].Abertas}`);
 
           var series = [
             {
-              "name" : "Em elaboração",
-              "value" : `${data[key].Abertas}`,
+              name: "Em elaboração",
+              value: `${data[key].Abertas}`,
             },
 
             {
-              "name" : "Fechada",
-              "value" : `${data[key].Fechadas}`
+              name: "Fechada",
+              value: `${data[key].Fechadas}`,
             },
-          ]
+          ];
 
           lineChartDataAux.push({
-            "name": this.parseMonthStrToNumber(`${key}`),
-            "series": series
-          })
+            name: this.parseMonthStrToNumber(`${key}`),
+            series: series,
+          });
         }
-    }
+      }
 
-      this.lineChartData = [...lineChartDataAux]
-
+      this.lineChartData = [...lineChartDataAux];
     });
-    
   }
 
-
-
-  getFlag(status:string, value: number) {
-    var totalNcs = 0
-    console.log(this.pieValues)
+  getFlag(status: string, value: number) {
+    var totalNcs = 0;
+    console.log(this.pieValues);
     for (var i = 0; i < this.pieValues.length; i++) {
-
-      totalNcs = totalNcs + this.pieValues[i].value
+      totalNcs = totalNcs + this.pieValues[i].value;
     }
 
-    return ((value/totalNcs)*100).toFixed(2).toString() + '%'
+    return ((value / totalNcs) * 100).toFixed(2).toString() + "%";
   }
 
-
-  onActivate(data:any): void {
-    console.log('Activate', JSON.parse(JSON.stringify(data)));
+  onActivate(data: any): void {
+    console.log("Activate", JSON.parse(JSON.stringify(data)));
   }
-  
 }

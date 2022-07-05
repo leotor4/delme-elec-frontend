@@ -1,13 +1,12 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { CostsComponent } from "src/app/pages/ncs/about/costs/costs.component";
 import { ChartsService } from "src/app/_services/charts.service";
 
 @Component({
-  selector: "app-nc-year",
-  templateUrl: "./nc-year.component.html",
-  styleUrls: ["./nc-year.component.css"],
+  selector: "app-nc-count",
+  templateUrl: "./nc-count.component.html",
+  styleUrls: ["./nc-count.component.css"],
 })
-export class NcYearComponent implements OnInit {
+export class NcCountComponent implements OnInit {
   constructor(public chartsService: ChartsService) {}
   @Input() size: number[] = [];
 
@@ -56,17 +55,10 @@ export class NcYearComponent implements OnInit {
     data: [
       {
         x: this.anos,
-        y: this.quantCusto,
-        type: "scatter",
-        name: "Custo",
-        marker: { color: "rgb(252,134,43)" },
-      },
-      {
-        x: this.anos,
         y: this.quantAnos,
-        name: "Quantidade",
-        type: "bar",
-        marker: { color: "rgb(29,104,251)" },
+        type: "scatter",
+        name: "Quantidade de ncs",
+        marker: { color: "rgb(252,134,43)" },
       },
     ],
     layout: {

@@ -14,11 +14,14 @@ import { NcProductsComponent } from './charts/nc-products/nc-products.component'
 import { NcTypesComponent } from './charts/nc-types/nc-types.component';
 import { NcEmissorComponent } from './charts/nc-emissor/nc-emissor.component';
 import { NcReceptorComponent } from './charts/nc-receptor/nc-receptor.component';
+import { NcReceptorEmissorComponent } from './charts/nc-receptor-emissor/nc-receptor-emissor.component';
+import { NcCountComponent } from './charts/nc-count/nc-count.component';
+import { NcActionplanComponent } from './charts/nc-actionplan/nc-actionplan.component';
 
 PlotlyModule.plotlyjs = PlotlyJS;
 
 @NgModule({
-  declarations: [DashboardsComponent, NcStatusComponent, NcYearComponent, CostSectorComponent, NcProductsComponent, NcTypesComponent, NcEmissorComponent, NcReceptorComponent],
+  declarations: [DashboardsComponent, NcStatusComponent, NcYearComponent, CostSectorComponent, NcProductsComponent, NcTypesComponent, NcEmissorComponent, NcReceptorComponent, NcReceptorEmissorComponent, NcCountComponent, NcActionplanComponent],
   imports: [
     CommonModule,
     FormsModule,
