@@ -66,9 +66,9 @@ export class ParceiroComponent implements OnInit {
       let Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
       let round_day = Math.floor(Difference_In_Days);
       if (round_day < 1) {
-        return this.translate.instant("newNC.today");
+        return this.translate.instant("newNC.step1.today");
       } else {
-        return this.translate.instant("newNC.ago") + round_day + this.translate.instant("newNC.days");
+        return this.translate.instant("newNC.step1.ago") + round_day + this.translate.instant("newNC.step1.days");
       }
     }
     return "";

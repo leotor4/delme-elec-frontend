@@ -216,8 +216,8 @@ export class ContactsComponent implements OnInit{
         }
 
         this.nonComplianceService.nc.contacts = this.nonComplianceService.nc.contacts.filter((value, index, self) =>
-                index === self.findIndex((conctact) => (
-                conctact.email === value.email
+                index === self.findIndex((contact) => (
+                contact.email === value.email
                 ))
         )
         console.log(this.nonComplianceService.nc.contacts)

@@ -3,13 +3,13 @@
     <div class="dados-identify">
       <h2>
         <i class="bi bi-card-text"></i>
-        Dados de Identificação
+        {{'newNC.review.identification'| translate}}
       </h2>
       <div class="d-flex justify-content-between flex-column flex-lg-row">
         <div class="contato-info d-flex flex-row">
           <i class="bi bi-ticket-perforated mr-1"></i>
           <div>
-            <span class="info-titulo">Número</span>
+            <span class="info-titulo">{{'global.number'| translate}}</span>
             <br />
             <span class="info-dados">{{ this.nonComplicanceService.nc?.code || "XXXX.XX"}}</span>
           </div>
@@ -17,7 +17,7 @@
         <div class="contato-info d-flex flex-row">
           <i class="bi bi-calendar-week mr-1"></i>
           <div>
-            <span class="info-titulo">Data de Abertura</span>
+            <span class="info-titulo">{{'newNC.step1.identifyNC.dateOpen'| translate}}</span>
             <br />
             <span class="info-dados">
               {{formato_brasileiro(this.nonComplicanceService.nc.data_abertura)}}
@@ -27,7 +27,7 @@
         <div class="contato-info d-flex flex-row">
           <i class="bi bi-calendar-week mr-1"></i>
           <div>
-            <span class="info-titulo">Prazo de Fechamento</span>
+            <span class="info-titulo">{{'newNC.step1.identifyNC.dateClose'| translate}}</span>
             <br />
             <span class="info-dados">{{formato_brasileiro(this.nonComplicanceService.nc.data_fechamento)}}</span>
           </div>
@@ -41,13 +41,13 @@
 
       <h2>
         <i class="bi bi-people mr-1"></i>
-        Dados de Emissão
+        {{'newNC.review.emission'| translate}}
       </h2>
       <div class="d-flex justify-content-between flex-column flex-lg-row">
         <div class="contato-info d-flex flex-row">
           <i class="bi bi-person-circle mr-1"></i>
           <div>
-            <span class="info-titulo">Emissor</span>
+            <span class="info-titulo">{{'newNC.review.issuer'| translate}}</span>
             <br />
             <span class="info-dados">{{nonComplicanceService.nc?.emissor?.username||""}}</span>
           </div>
@@ -55,7 +55,7 @@
         <div class="contato-info d-flex flex-row">
           <i class="bi bi-person-circle mr-1"></i>
           <div>
-            <span class="info-titulo">Responsável</span>
+            <span class="info-titulo">{{'newNC.review.responsible'| translate}}</span>
             <br />
             <span class="info-dados">{{nonComplicanceService.nc?.emissor?.sector?.responsible_name||""}}</span>
           </div>
@@ -63,7 +63,7 @@
         <div class="contato-info d-flex flex-row">
           <i class="bi bi-geo-alt mr-1"></i>
           <div>
-            <span class="info-titulo">Departamento</span>
+            <span class="info-titulo">{{'newNC.review.department'| translate}}</span>
             <br />
             <p class="info-dados">{{nonComplicanceService.nc?.emissor?.sector?.name||""}}</p>
           </div>
@@ -73,7 +73,7 @@
   </div>
 </div>
 <div class="div-ident-parceiro mt-3">
-  <h1 class="titulo-parceiro">Dados do Parceiro</h1>
+  <h1 class="titulo-parceiro">{{'newNC.step1.partner.title'| translate}}</h1>
   <div class="d-flex">
     <div class="item">
       <div class="dados-parceiro razao-social">
@@ -88,7 +88,7 @@
           {{
             this.nonComplicanceService.nc.partner?.corporate_name ||
               this.nonComplicanceService.nc.partner?.name ||
-              "Dado não preenchido"
+            'global.fileInput.empty'| translate
           }}
         </p>
       </div>
@@ -96,17 +96,17 @@
     <div class="item">
       <div class="dados-parceiro">
         <div class="dados-contato">
-          <h1>Dados do Contato</h1>
+          <h1>{{'newNC.step1.partner.contactTitle'| translate}}</h1>
           <div></div>
           <div class="contato-info d-flex flex-row">
             <i class="pi pi-user"></i>
             <div>
-              <span class="info-titulo">Nome</span>
+              <span class="info-titulo">{{'global.contacts.name'| translate}}</span>
               <br />
               <span class="info-dados">
                 {{
                   this.nonComplicanceService.nc.partner?.responsible_name ||
-                    "Dado não preenchido"
+                  'global.fileInput.empty'| translate
                 }}
               </span>
             </div>
@@ -114,7 +114,7 @@
           <div class="contato-info d-flex flex-row">
             <i class="pi pi-phone"></i>
             <div>
-              <span class="info-titulo">Telefone</span>
+              <span class="info-titulo">{{'newNC.step1.partner.phone'| translate}}</span>
               <br />
               <span class="info-dados">
                 {{
@@ -127,12 +127,12 @@
           <div class="contato-info d-flex flex-row">
             <i class="pi pi-at"></i>
             <div>
-              <span class="info-titulo">E-mail</span>
+              <span class="info-titulo">{{'global.contacts.email'| translate}}</span>
               <br />
               <span class="info-dados">
                 {{
                   this.nonComplicanceService.nc.partner?.responsible_email ||
-                    "Dado não preenchido"
+                  'global.fileInput.empty'| translate
                 }}
               </span>
             </div>

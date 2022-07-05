@@ -1,8 +1,8 @@
-import { Component, OnInit } from "@angular/core";
-import { Attachment } from "src/app/models/attachment";
-import { TokenStorageService } from "src/app/_services/token-storage.service";
-import { NonComplianceService } from "../../../../../../_services/non-compliance.service";
-import { DateUtils } from '../../../../../../utils/date-utils';
+import {Component, OnInit} from "@angular/core";
+import {Attachment} from "src/app/models/attachment";
+import {NonComplianceService} from "../../../../../../_services/non-compliance.service";
+import {DateUtils} from '../../../../../../utils/date-utils';
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: "app-identify-nc",
@@ -12,15 +12,15 @@ import { DateUtils } from '../../../../../../utils/date-utils';
 export class IdentifyNCComponent implements OnInit {
   constructor(
     public nonComplicanceService: NonComplianceService,
-    public tokenService: TokenStorageService
+    public translate: TranslateService
   ) {}
 
   emissor = "";
 
   returnTitle(): string {
-    if (this.nonComplicanceService.nc.tipos_parceiro_item == "Interno")
-      return "Dados do Setor";
-    return "Razão Social";
+    if (this.nonComplicanceService.nc.tipos_parceiro_item == this.translate.instant("newNC.step1.partner.type1"))
+      return this.translate.instant("newNC.review.sector");
+    return this.translate.instant("newNC.review.corporateName");
   }
 
   returnFile(name: string) {
@@ -34,10 +34,9 @@ export class IdentifyNCComponent implements OnInit {
   }
 
   formato_brasileiro(data: Date | undefined | null): string {
-    const dataFormatada = data
-      ? DateUtils.formato_brasileiro(data)
-      : "00/00/0000";
-    return dataFormatada;
+    return data
+        ? DateUtils.formato_brasileiro(data)
+        : "00/00/0000";
   }
 
   ngOnInit(): void {}

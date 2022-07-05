@@ -17,7 +17,7 @@
     </div>
     <div class="d-flex my-3 product-box p-3 ">
       <div class="d-flex flex-column inputs-sm mt-3 col-6">
-        <label for="amountNC">{{'newNC.step1.amountNC'| translate}}</label>
+        <label for="amountNC">{{'newNC.step1.product.amountNC'| translate}} *</label>
         <input
                 [(ngModel)]="nonComplianceService.nc.quant_nc"
                 name="amountNC"
@@ -28,7 +28,7 @@
         />
       </div>
       <div class="d-flex flex-column inputs-sm mt-3 col-6">
-        <label for="amountTotal">{{'newNC.step1.amount'| translate}}</label>
+        <label for="amountTotal">{{'newNC.step1.product.amount'| translate}} *</label>
         <input
                 [(ngModel)]="nonComplianceService.nc.quant_total"
                 name="amountTotal"

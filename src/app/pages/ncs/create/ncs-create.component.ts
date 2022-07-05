@@ -38,12 +38,9 @@ export class NcsCreateComponent implements OnInit {
     this.ncService.getById(id).subscribe(
       {
         next: (response:any) => {
-          console.log(response)
           this.ncService.nc = new NonCompliance(response['nc'][0]);
           this.setDates(this.ncService.nc);
-          
-          console.log('nc teste', this.ncService.nc)
-          
+
           switch(this.ncService.nc.tipos_parceiro_item){
           case "Cliente":
           this.ncService.nc.partner = this.ncService.nc.customer
@@ -71,8 +68,6 @@ export class NcsCreateComponent implements OnInit {
 
 
           this.ncService.formIdentificacaoNC.patchValue(new IdentificacaoNCDTO(this.ncService.nc));
-          console.log('local item',this.ncService.nc.tipos_local_item)
-          console.log(this.ncService.formIdentificacaoNC.value)
         },
         error: err => {
           this.messageService.add({

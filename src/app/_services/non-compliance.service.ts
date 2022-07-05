@@ -256,8 +256,8 @@ export class NonComplianceService {
   }
 
   hasProduct(): boolean {
-    if (this.nc.product != null) return true;
-    return false;
+    return this.nc.product != null;
+
   }
 
   downloadFile(id:number){

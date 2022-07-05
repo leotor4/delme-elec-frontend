@@ -2,9 +2,9 @@
   <div class="left-side me-2">
     <div class="flex-fill">
       <div class="d-flex flex-column min-vh-100 justify-content-center">
-          <p class="linha1">Boas vindas ao</p>
-          <p class="linha2">Sistema de Gestão de</p>
-          <p class="linha3">Não Conformidades</p>
+          <p class="linha1">{{'login.tittle1'| translate}}</p>
+          <p class="linha2">{{'login.tittle2'| translate}}</p>
+          <p class="linha3">{{'login.tittle3'| translate}}</p>
       </div> 
     </div>
   </div>
@@ -27,7 +27,7 @@
        
   
         <div *ngIf="!hashUser" class="form-group ">
-          <label class="loginFormText" for="email">E-mail</label>
+          <label class="loginFormText" for="email">{{'global.contacts.email'| translate}}</label>
           <input
             type="email"
             class="form-control"
@@ -40,7 +40,7 @@
         </div>
   
         <div *ngIf="!hashUser" class="form-group">
-          <label class="loginFormText" for="password">Senha</label>
+          <label class="loginFormText" for="password">{{'login.password'| translate}}</label>
           <input
             type="password"
             class="form-control"
@@ -54,20 +54,20 @@
   
         <div *ngIf="!hashUser" class="form-check">
           <input type="checkbox" class="form-check-input" id="exampleCheck1">
-          <label class="loginFormText" for="exampleCheck1">Lembrar credenciais</label>
+          <label class="loginFormText" for="exampleCheck1">{{'login.rememberMe'| translate}}</label>
         </div>
         <div *ngIf="!hashUser" class="form-group">
-          <button type="submit" class="form-control btn btn-dark btn-home" style="background-color: #00344D;">Entrar</button>
+          <button type="submit" class="form-control btn btn-dark btn-home" style="background-color: #00344D;">{{'login.signIn'| translate}}</button>
         </div>
   
   
   
         <div *ngIf="!hashUser" class="form-group">
-          <a class="btn-home" style="float: right; color: #B48C28;" (click)="open(mymodal)">Novo no sistema? Cadastre-se!</a> 
+          <a class="btn-home" style="float: right; color: #B48C28;" (click)="open(mymodal)">{{'login.signUp'| translate}}</a>
   
           <ng-template #mymodal let-modal>
             <div class="modal-header">
-              <h4 class="modal-title" id="modal-basic-title">Cadastrar Usuário</h4>
+              <h4 class="modal-title" id="modal-basic-title">{{'login.signUpBtn'| translate}}</h4>
               <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
                 <span aria-hidden="true">×</span>
               </button>
@@ -81,7 +81,7 @@
   
   
         <div *ngIf="hashUser" class="form-group">
-          <label class="loginFormText" for="registerPassword">Senha</label>
+          <label class="loginFormText" for="registerPassword">{{'login.password'| translate}}</label>
           <input
             type="password"
             class="form-control"
@@ -93,7 +93,7 @@
         </div>
   
         <div *ngIf="hashUser" class="form-group">
-          <label class="loginFormText" for="confirmPassword">Confirme sua senha</label>
+          <label class="loginFormText" for="confirmPassword">{{'login.confirmPassword'| translate}}</label>
           <input
             type="password"
             class="form-control"
@@ -105,7 +105,7 @@
         </div>
   
         <div *ngIf="hashUser" class="form-group">
-          <button type="submit" class="form-control btn btn-dark btn-home" style="background-color: #00344D;">Cadastrar Senha</button>
+          <button type="submit" class="form-control btn btn-dark btn-home" style="background-color: #00344D;">{{'login.registerPassword'| translate}}</button>
         </div>
   
       </form>

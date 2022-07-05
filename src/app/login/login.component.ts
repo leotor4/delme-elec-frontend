@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
 import { AuthService } from '../_services/auth.service';
 import { TokenStorageService } from '../_services/token-storage.service';
 import { AppComponent } from './../app.component';
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-login',
@@ -39,8 +40,12 @@ export class LoginComponent implements OnInit {
   errorMessage = '';
   roles: string[] = [];
 
-  constructor(private router: ActivatedRoute, private authService: AuthService, private tokenStorage: TokenStorageService,
-    private modalService: NgbModal, private messageService: MessageService) { }
+  constructor(private router: ActivatedRoute,
+              private authService: AuthService,
+              private tokenStorage: TokenStorageService,
+              private modalService: NgbModal,
+              private messageService: MessageService,
+              public translate: TranslateService) { }
 
   ngOnInit(): void {
 
@@ -78,7 +83,7 @@ export class LoginComponent implements OnInit {
           data => {
             this.messageService.add({
               severity: 'success',
-              summary: 'Senha cadastrada com sucesso!',
+              summary: this.translate.instant("login.success"),
               life: 5000,
             });
            this.hashUser = '';
@@ -95,7 +100,7 @@ export class LoginComponent implements OnInit {
       if (!email || !password) {
         this.messageService.add({
           severity: 'info',
-          summary: 'Digite seu e-mail e sua senha',
+          summary: this.translate.instant("login.error1"),
           life: 5000,
         });
         return false;
@@ -106,7 +111,7 @@ export class LoginComponent implements OnInit {
       if (!registerPassword || !confirmPassword) {
         this.messageService.add({
           severity: 'info',
-          summary: 'Preencha os campos com sua nova senha!',
+          summary: this.translate.instant("login.error2"),
           life: 5000,
         });
         return false;
@@ -115,7 +120,7 @@ export class LoginComponent implements OnInit {
       if (registerPassword != confirmPassword) {
         this.messageService.add({
           severity: 'error',
-          summary: 'Senhas não conferem!',
+          summary: this.translate.instant("login.error3"),
           life: 5000,
         });
         return false;

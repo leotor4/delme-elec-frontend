@@ -104,17 +104,26 @@
         "type": "Digite",
         "next" : "Avançar",
         "finish": "Concluir",
+        "number": "Número",
         "saved": "salvo com sucesso.",
         "step": "Passo ",
         "reject": "Não, cancelar",
         "select": "Selecione...",
         "error": "Houve um problema ao salvar dados do passo ",
         "requiredFields": "Os campos marcados com asterisco (*) são de preenchimento obrigatório",
+        "expand": "Expandir Todos",
+        "colapse": "Colapsar Todos",
+        "edit": "Alterar",
+        "ncData": "Dados da NC",
+        "description": "Descrição",
+        "dontApply": "Não se Aplica",
+        "empty": "Dado não preenchido",
         "fileInput": {
             "title": "Anexe evidências objetivas ou fotográficas",
             "title2": "Anexar Documentos",
             "subtitle": "Envie seus documentos",
-            "description": "Arraste e solte ou navegue para escolher um arquivo"
+            "description": "Arraste e solte ou navegue para escolher um arquivo",
+            "attachments": "Anexos"
         },
         "contacts": {
             "addBtn": "Adicionar Contato",
@@ -140,8 +149,8 @@
             "invalidFields": "Campos inválidos",
             "invalidName": " Por favor insira um nome.",
             "invalidEmail": "Por favor insira um email válido.",
-            "invalidContactType": "Por favor insira o tipo de contato."
-
+            "invalidContactType": "Por favor insira o tipo de contato.",
+            "notifications": "Notificação por e-mail"
         }
     },
     "newNC": {
@@ -179,7 +188,7 @@
                 "sector": "Setor/Local Afetado *",
                 "dateOpen": "Data de Abertura",
                 "dateOpenDesc": "Altere a data caso a NC tenha acontecido antes deste cadastro.",
-                "dateClose": "Data de Fechamento",
+                "dateClose": "Prazo de Fechamento",
                 "dateCloseDesc": "Programada automaticamente para 30 dias corridos após a data de abertura."
             },
             "ncType": {
@@ -196,12 +205,13 @@
             "days": " dias.",
             "ago": "Há ",
             "product": {
-                "title": "Dados do Produto *",
+                "title": "Dados do Produto",
                 "subtitle1": "Identifique o produto desta NC.",
-                "subtitle2": "Caso não encontre o produto, atualize a base de cadastros.",
+                "subtitle2": "Caso não encontre o produto, atualize a base de cadastros ou digite \"Não se aplica\".",
                 "searchPlaceholder": "Busque por nome, descrição ou código SAP",
-                "amountNC": "Quantidade de NC *",
-                "amount": "Quantidade Total *"
+                "amountNC": "Quantidade de NC",
+                "amount": "Quantidade Total",
+                "percent": "Percentual"
             },
             "partner": {
                 "editTitle": "Editar Contato do Parceiro",
@@ -241,8 +251,60 @@
                 "op": "Número da OP *",
                 "numb": "Número da Nota *",
                 "createIT": "Criar Instrução"
+            },
+            "rejectionPoint": {
+                "title": "Ponto de Rejeição",
+                "subtitle": "Descreva o problema e porque esta NC esta sendo aberta.",
+                "itTitle": "Instrução de Trabalho *",
+                "searchPlaceholder": "Busque por nome, número ou descrição",
+                "descriptionUpper": "DESCRIÇÃO",
+                "revisionUpper": "REVISÃO",
+                "viewDocument": "Visualizar Documento",
+                "numBatch": "Número do Lote",
+                "numOC": "Número da Ordem de Compra",
+                "pr": "Selecionar PR",
+                "updatePr": "Atualizar PRs",
+                "prCode": "Número PR",
+                "it": "IT"
             }
+        },
+        "review": {
+            "title": "Não Conformidade",
+            "subtitle": "Revise ou altere os dados da NC. Se tudo estiver OK, confirme a criação desta NC",
+            "evidence": "Evidências",
+            "checkpoint": "Ponto de Controle",
+            "identification": "Dados de Identificação",
+            "emission": "Dados de Emissão",
+            "issuer": "Emissor",
+            "responsible": "Responsável",
+            "department": "Departamento",
+            "corporateName": "Razão Social",
+            "sector": "Dados do Setor"
+
         }
+    },
+    "register": {
+        "typeYourEmail": "Digite seu e-mail:",
+        "searchYourEmail": "Busque pelo seu e-mail",
+        "signUp": "Cadastrar",
+        "success": "Você receberá um e-mail com as informações de acesso!",
+        "error": "Não foi possível enviar as informações de acesso para o e-mail informado. Contate o administrator"
+    },
+    "login":{
+        "tittle1": "Boas vindas ao",
+        "tittle2": "Sistema de Gestão de",
+        "tittle3": "Não Conformidades",
+        "password": "Senha",
+        "confirmPassword": "Confirme sua senha",
+        "registerPassword": "Cadastrar Senha",
+        "rememberMe": "Lembrar credenciais",
+        "signIn": "Entrar",
+        "signUp": "Novo no sistema? Cadastre-se!",
+        "signUpBtn": "Cadastrar Usuário",
+        "success": "Senha cadastrada com sucesso!",
+        "error1": "Digite seu e-mail e sua senha",
+        "error2": "Preencha os campos com sua nova senha!",
+        "error3": "Senhas não conferem!"
     },
     "closeNC":{
         "question": "O plano de ação foi executado e de forma satisfatória?",

@@ -17,21 +17,18 @@ export class IdentificacaoDaNcComponent implements OnInit {
   ) {}
 
   public tiposNc: Array<String> = [
-    this.translate.instant("newNC.ncType.type1"),
-    this.translate.instant("newNC.ncType.type2"),
-    this.translate.instant("newNC.ncType.type3"),
-    this.translate.instant("newNC.ncType.type4"),
-    this.translate.instant("newNC.ncType.type5"),
-    this.translate.instant("newNC.ncType.type6"),
+    this.translate.instant("newNC.step1.ncType.type1"),
+    this.translate.instant("newNC.step1.ncType.type2"),
+    this.translate.instant("newNC.step1.ncType.type3"),
+    this.translate.instant("newNC.step1.ncType.type4"),
+    this.translate.instant("newNC.step1.ncType.type5"),
+    this.translate.instant("newNC.step1.ncType.type6"),
   ];
-
-  public tiposAuditoria: Array<String> = ["Interna", "Externa"];
-
   ngOnInit(): void {
    
     this.nonComplicanceService.formIdentificacaoNC.get("tipos_nc_item")?.valueChanges.subscribe(
       (item:string) => {
-        if(item == this.translate.instant("newNC.ncType.type3")) {
+        if(item == this.translate.instant("newNC.step1.ncType.type3")) {
           this.nonComplicanceService.nc.data_fechamento = moment(new Date()).add('d', 60).toDate()
           this.nonComplicanceService.formIdentificacaoNC.get('data_fechamento')?.setValue(moment(this.nonComplicanceService.nc.data_fechamento))
           this.nonComplicanceService.formIdentificacaoNC.get('data_fechamento_str')?.setValue(moment(this.nonComplicanceService.nc.data_fechamento).format('yyyy-MM-DD'))
@@ -44,7 +41,7 @@ export class IdentificacaoDaNcComponent implements OnInit {
         
         var elementoAuditoria = document.getElementById('inputAuditoria')
 
-        if(item == this.translate.instant("newNC.ncType.type1") || item == this.translate.instant("newNC.ncType.type2")) {
+        if(item == this.translate.instant("newNC.step1.ncType.type1") || item == this.translate.instant("newNC.step1.ncType.type2")) {
           if(elementoAuditoria) {
             elementoAuditoria.removeAttribute('disabled')
           }
@@ -71,14 +68,14 @@ export class IdentificacaoDaNcComponent implements OnInit {
   checkAuditoria(tipoNc:any) {
     let elementoAuditoria = document.getElementById('inputAuditoria')
 
-    if(tipoNc == this.translate.instant("newNC.ncType.type3")) {
+    if(tipoNc == this.translate.instant("newNC.step1.ncType.type3")) {
 
       this.setDtFechamentoFornecedor().subscribe((data:any) => {
         this.nonComplicanceService.formIdentificacaoNC.value['data_fechamento_str'] = data
       });
     }
 
-    if(tipoNc == this.translate.instant("newNC.ncType.type1")  || tipoNc == this.translate.instant("newNC.ncType.type2") ) {
+    if(tipoNc == this.translate.instant("newNC.step1.ncType.type1")  || tipoNc == this.translate.instant("newNC.step1.ncType.type2") ) {
       if(elementoAuditoria) {
         elementoAuditoria.removeAttribute('disabled')
       }
