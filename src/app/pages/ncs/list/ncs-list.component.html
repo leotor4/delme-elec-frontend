@@ -1,18 +1,19 @@
 <p-confirmDialog acceptLabel="sim" rejectLabel="não" [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
 
-<div style="height : 130px;">
-  <ngx-charts-number-card
-    [scheme]="colorScheme"
-    [results]="cardValues"
-    [cardColor]="cardColor"
-    (select)="onSelectCard($event)">
-  </ngx-charts-number-card>
-</div>
+<!-- <div style="height : 130px;"> -->
+<div style="display:flex">
+  <div style="display: flex; flex-direction:column;">
+    <ngx-charts-number-card
+      [view]="viewCards"
+      [scheme]="colorScheme"
+      [results]="cardValues"
+      [cardColor]="cardColor"
+      (select)="onSelectCard($event)">
+    </ngx-charts-number-card>
 
-
-<div style="display:flex; margin-top: 50px;">
-  <div style="display: flex; flex-direction:row;">
-    <ngx-charts-pie-chart
+    <div style="display: flex; flex-direction:row;">
+      <ngx-charts-pie-chart
+      (window:resize)="onResizePizzaChart($event)"
       [view]="view" 
       [scheme]="gridColor"
       [results]="pieValues"
@@ -23,6 +24,7 @@
       [doughnut]="isDoughnut"
       [legendTitle]="legendTitle"
       (activate)="onActivate($event)"
+      
       >
 
 
@@ -37,26 +39,85 @@
 
     </ngx-charts-pie-chart>
 
-    <ngx-charts-bar-vertical-2d
-      [view]="lineChartView"
-      [scheme]="gridColor"
-      [legend]="lineChartLegend"
-      [showXAxisLabel]="lineChartShowXAxisLabel"
-      [showYAxisLabel]="lineChartShowYAxisLabel"
-      [xAxis]="lineChartXAxis"
-      [yAxis]="lineChartYAxis"
-      [xAxisLabel]="lineChartXAxisLabel"
-      [yAxisLabel]="lineChartYAxisLabel"
-      [results]="lineChartData"
-      [legendPosition]="legendPosition"
-      [legendTitle]="legendTitle"
-      [barPadding]="0"      >
-    </ngx-charts-bar-vertical-2d>
+
+    <div>
+      <ngx-charts-bar-vertical-2d
+        (window:resize)="onResizeBarChart($event)"
+        [view]="lineChartView"
+        [scheme]="gridColor"
+        [legend]="lineChartLegend"
+        [showXAxisLabel]="lineChartShowXAxisLabel"
+        [showYAxisLabel]="lineChartShowYAxisLabel"
+        [xAxis]="lineChartXAxis"
+        [yAxis]="lineChartYAxis"
+        [xAxisLabel]="lineChartXAxisLabel"
+        [yAxisLabel]="lineChartYAxisLabel"
+        [results]="lineChartData"
+        [legendPosition]="legendPosition"
+        [legendTitle]="legendTitle"
+        [barPadding]="0"      >
+      </ngx-charts-bar-vertical-2d>
+    </div>
+    </div>
   </div>
 </div>
 
+<!-- </div> -->
 
 
+<!-- <div style="display:flex; margin-top: 50px;">
+  <div style="display: flex; flex-direction:row;">
+    <ngx-charts-pie-chart
+      (window:resize)="onResizePizzaChart($event)"
+      [view]="view" 
+      [scheme]="gridColor"
+      [results]="pieValues"
+      [gradient]="gradient"
+      [legend]="showLegend"
+      [legendPosition]="legendPosition"
+      [labels]="showLabels"
+      [doughnut]="isDoughnut"
+      [legendTitle]="legendTitle"
+      (activate)="onActivate($event)"
+      
+      >
+
+
+      <ng-template #tooltipTemplate let-model="model">
+        <h3>
+          {{ getFlag(model.name, model.value) }}
+        </h3>
+        <h4>{{ model.name }}: {{ model.value }}</h4>
+      </ng-template>
+
+
+
+    </ngx-charts-pie-chart>
+
+
+    <div>
+      <ngx-charts-bar-vertical-2d
+        (window:resize)="onResizeBarChart($event)"
+        [view]="lineChartView"
+        [scheme]="gridColor"
+        [legend]="lineChartLegend"
+        [showXAxisLabel]="lineChartShowXAxisLabel"
+        [showYAxisLabel]="lineChartShowYAxisLabel"
+        [xAxis]="lineChartXAxis"
+        [yAxis]="lineChartYAxis"
+        [xAxisLabel]="lineChartXAxisLabel"
+        [yAxisLabel]="lineChartYAxisLabel"
+        [results]="lineChartData"
+        [legendPosition]="legendPosition"
+        [legendTitle]="legendTitle"
+        [barPadding]="0"      >
+      </ngx-charts-bar-vertical-2d>
+    </div>
+  </div>
+</div> -->
+
+
+<div id="div-table">
 <p class="title">Início</p>
 <p class="subtitle">Visualize ou crie não conformidades</p>
 
@@ -222,6 +283,6 @@
 
     </ng-template>
   </p-table>
-
+</div>
   
 </div>
