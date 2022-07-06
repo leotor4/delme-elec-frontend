@@ -1,64 +1,64 @@
 <div class="mt-4">
     <div *ngIf="stepPosition==1">
         <h1 class="mb-3">
-            Matéria prima
+            {{'about.proposalComponent.material'| translate}}
         </h1>
-        <p>Quando ocorre falta/excesso de insumos ou estes são de má qualidade.</p>
+        <p>{{'createProp.step1.material'| translate}}</p>
 
         <div class="form-check pl-0">
-            <p-checkbox [(ngModel)]="this.propService.checkBoxes" value="Falta de Insumos"></p-checkbox>
-            <label class="form-check-label ml-1">Falta de Insumos</label>
+            <p-checkbox [(ngModel)]="this.propService.checkBoxes" [value]="'createProp.step1.materialCheck1'| translate"></p-checkbox>
+            <label class="form-check-label ml-1">{{'createProp.step1.materialCheck1'| translate}}</label>
         </div>
         <div class="form-check pl-0">
-            <p-checkbox [(ngModel)]="propService.checkBoxes" value="Excesso de Insumos"></p-checkbox>
-            <label class="form-check-label ml-1">Excesso de Insumos</label>
+            <p-checkbox [(ngModel)]="propService.checkBoxes" [value]="'createProp.step1.materialCheck2'| translate"></p-checkbox>
+            <label class="form-check-label ml-1">{{'createProp.step1.materialCheck2'| translate}}</label>
         </div>
         <div class="form-check pl-0">
-            <p-checkbox [(ngModel)]="propService.checkBoxes" value="Matéria prima de má qualidade"></p-checkbox>
-            <label class="form-check-label ml-1">Matéria prima de má qualidade</label>
+            <p-checkbox [(ngModel)]="propService.checkBoxes" [value]="'createProp.step1.materialCheck3'| translate"></p-checkbox>
+            <label class="form-check-label ml-1">{{'createProp.step1.materialCheck3'| translate}}</label>
         </div>
-        <p class="my-3 fw-bold fs-6">Acrescente e detalhe abaixo outras informações pertinentes:</p>
+        <p class="my-3 fw-bold fs-6">{{'createProp.step1.moreInfo'| translate}}</p>
         <p-editor [style]="{'height':'210px'}" [(ngModel)]="this.propService.propSolution.material_description" [modules]="{counter: {container: '#counter',unit: 'character'}}">
         </p-editor>
         <div id="counter" class="text-end">0</div>
     </div>
     <div *ngIf="stepPosition==2">
         <h1 class="mb-3">
-            Medição
+            {{'about.proposalComponent.measure'| translate}}
         </h1>
-        <p>Quando há erros, falta ou excesso de parâmetros de inspeção, não atingimento de metas ou outras informações de medição.</p>
+        <p>{{'createProp.step1.measure'| translate}}</p>
 
         <div class="form-check pl-0">
-            <p-checkbox [(ngModel)]="propService.checkBoxes" value="Falta de Parâmetros"></p-checkbox>
-            <label class="form-check-label ml-1">Falta de Parâmetros</label>
+            <p-checkbox [(ngModel)]="propService.checkBoxes" [value]="'createProp.step1.measureCheck1'| translate"></p-checkbox>
+            <label class="form-check-label ml-1">{{'createProp.step1.measureCheck1'| translate}}</label>
         </div>
         <div class="form-check pl-0">
-            <p-checkbox [(ngModel)]="propService.checkBoxes" value="Excesso de Parâmetros"></p-checkbox>
-            <label class="form-check-label ml-1">Excesso de Parâmetros</label>
+            <p-checkbox [(ngModel)]="propService.checkBoxes" [value]="'createProp.step1.measureCheck2'| translate"></p-checkbox>
+            <label class="form-check-label ml-1">{{'createProp.step1.measureCheck2'| translate}}</label>
         </div>
         <div class="form-check pl-0">
-            <p-checkbox [(ngModel)]="propService.checkBoxes" value="Não atingimento de metas"></p-checkbox>
-            <label class="form-check-label ml-1">Não atingimento de metas</label>
+            <p-checkbox [(ngModel)]="propService.checkBoxes" [value]="'createProp.step1.measureCheck3'| translate"></p-checkbox>
+            <label class="form-check-label ml-1">{{'createProp.step1.measureCheck3'| translate}}</label>
         </div>
-        <p class="my-3 fw-bold fs-6">Acrescente e detalhe abaixo outras informações pertinentes:</p>
+        <p class="my-3 fw-bold fs-6">{{'createProp.step1.moreInfo'| translate}}</p>
         <p-editor [style]="{'height':'210px'}" [(ngModel)]="this.propService.propSolution.measurement_description" [modules]="{counter: {container: '#counter1',unit: 'character'}}">
         </p-editor>
         <div id="counter1" class="text-end">0</div>
     </div>
     <div *ngIf="stepPosition==3">
         <h1 class="mb-3">
-            Método
+            {{'about.proposalComponent.method'| translate}}
         </h1>
-        <p>Quando há ausência de métodos formais ou estes são inadequados, incompletos, incorretos ou não foram divulgados adequadamente. Também se aplica quando: há falta de inspeção, ausência ou falha em sistemas automatizados, má gestão como um todo.</p>
+        <p>{{'createProp.step1.method'| translate}}</p>
 
         <p-editor [style]="{'height':'210px'}" [(ngModel)]="this.propService.propSolution.method_description" [modules]="{counter: {container: '#counter3',unit: 'character'}}">
         </p-editor>
         <div id="counter3" class="text-end">0</div>
         <div class="d-flex mt-4">
             <div class="d-flex flex-column col-6">
-                <label>IT - Instrução de Trabalho</label>
+                <label>{{'createProp.step1.it'| translate}}</label>
                 <p-autoComplete
-                        placeholder="Busque..."
+                        [placeholder]="'createProp.step1.search'| translate"
                         field="name"
                         [suggestions]="instructions"
                         (completeMethod)="search($event,'instruction')"
@@ -72,17 +72,17 @@
                         <div>
                             <div class="d-flex">
                                 <div class="mr-2">
-                                    <span class="auto-complete-label">CÓDIGO</span><br />
+                                    <span class="auto-complete-label">{{'newNC.step1.partner.codeUpper'| translate}}</span><br />
                                     <span class="auto-complete-item">{{ brand.code }}</span>
                                 </div>
                                 <div class="mr-2">
-                                    <span class="auto-complete-label">DESCRIÇÃO</span><br />
+                                    <span class="auto-complete-label">{{'newNC.step1.rejectionPoint.descriptionUpper'| translate}}</span><br />
                                     <span class="auto-complete-item">{{
                                         brand.description
                                         }}</span>
                                 </div>
                                 <div class="mr-2">
-                                    <span class="auto-complete-label">REVISÃO</span><br />
+                                    <span class="auto-complete-label">{{'newNC.step1.rejectionPoint.revisionUpper'| translate}}</span><br />
                                     <span class="auto-complete-item">{{ brand.rev }}</span>
                                 </div>
                             </div>
@@ -91,9 +91,9 @@
 
             </div>
             <div class="ml-4 d-flex flex-column col-6">
-                <label>PR - Procedimento</label>
+                <label>{{'createProp.step1.pr'| translate}}</label>
                 <p-autoComplete
-                        placeholder="Busque..."
+                        [placeholder]="'createProp.step1.search'| translate"
                         field="name"
                         [suggestions]="procedures"
                         (completeMethod)="search($event,'procedure')"
@@ -106,17 +106,17 @@
                         <div>
                             <div class="d-flex">
                                 <div class="mr-2">
-                                    <span class="auto-complete-label">CÓDIGO</span><br />
+                                    <span class="auto-complete-label">{{'newNC.step1.partner.codeUpper'| translate}}</span><br />
                                     <span class="auto-complete-item">{{ brand.code }}</span>
                                 </div>
                                 <div class="mr-2">
-                                    <span class="auto-complete-label">DESCRIÇÃO</span><br />
+                                    <span class="auto-complete-label">{{'newNC.step1.rejectionPoint.descriptionUpper'| translate}}</span><br />
                                     <span class="auto-complete-item">{{
                                         brand.description
                                         }}</span>
                                 </div>
                                 <div class="mr-2">
-                                    <span class="auto-complete-label">REVISÃO</span><br />
+                                    <span class="auto-complete-label">{{'newNC.step1.rejectionPoint.revisionUpper'| translate}}</span><br />
                                     <span class="auto-complete-item">{{ brand.rev }}</span>
                                 </div>
                             </div>
@@ -126,9 +126,9 @@
         </div>
         <div class="d-flex mt-4">
             <div class="d-flex flex-column col-6">
-                <label>NR - Norma Regulamentadora</label>
+                <label>{{'createProp.step1.nr'| translate}}</label>
                 <p-autoComplete
-                        placeholder="Busque..."
+                        [placeholder]="'createProp.step1.search'| translate"
                         field="name"
                         [suggestions]="regulatoryNorms"
                         (completeMethod)="search($event,'regulatory')"
@@ -141,11 +141,11 @@
                         <div>
                             <div class="d-flex">
                                 <div class="mr-2">
-                                    <span class="auto-complete-label">CÓDIGO</span><br />
+                                    <span class="auto-complete-label">{{'newNC.step1.partner.codeUpper'| translate}}</span><br />
                                     <span class="auto-complete-item">{{ brand.code }}</span>
                                 </div>
                                 <div class="mr-2">
-                                    <span class="auto-complete-label">DESCRIÇÃO</span><br />
+                                    <span class="auto-complete-label">{{'newNC.step1.rejectionPoint.descriptionUpper'| translate}}</span><br />
                                     <span class="auto-complete-item">{{
                                         brand.description
                                         }}</span>
@@ -156,9 +156,9 @@
 
             </div>
             <div class="ml-4 d-flex flex-column col-6">
-                <label>ISO - Norma NBR</label>
+                <label>{{'createProp.step1.iso'| translate}}</label>
                 <p-autoComplete
-                        placeholder="Busque..."
+                        [placeholder]="'createProp.step1.search'| translate"
                         field="name"
                         [suggestions]="nbrs"
                         (completeMethod)="search($event,'nbr')"
@@ -171,11 +171,11 @@
                         <div>
                             <div class="d-flex">
                                 <div class="mr-2">
-                                    <span class="auto-complete-label">CÓDIGO</span><br />
+                                    <span class="auto-complete-label">{{'newNC.step1.partner.codeUpper'| translate}}</span><br />
                                     <span class="auto-complete-item">{{ brand.code }}</span>
                                 </div>
                                 <div class="mr-2">
-                                    <span class="auto-complete-label">DESCRIÇÃO</span><br />
+                                    <span class="auto-complete-label">{{'newNC.step1.rejectionPoint.descriptionUpper'| translate}}</span><br />
                                     <span class="auto-complete-item">{{
                                         brand.description
                                         }}</span>
@@ -188,12 +188,12 @@
     </div>
     <div *ngIf="stepPosition==4">
         <h1 class="mb-3">
-            Mão de Obra
+            {{'about.proposalComponent.labor'| translate}}
         </h1>
-        <p>Quando o colaborador desrespeita procedimentos, desconhece a maneira correta de executar o trabalho (falta de treinamento), ou o faz de maneira inadequada (com pressa, imprudência, etc) ou descompromissada (falta de responsabilidade, motivação, etc).</p>
+        <p>{{'createProp.step1.labor'| translate}}</p>
         <div class="form-check pl-0 my-2">
-            <p-checkbox [(ngModel)]="propService.checkBoxes" value="Executar treinamento"></p-checkbox>
-            <label class="form-check-label ml-1">Executar treinamento</label>
+            <p-checkbox [(ngModel)]="propService.checkBoxes" [value]="'createProp.step1.laborCheck'| translate"></p-checkbox>
+            <label class="form-check-label ml-1">{{'createProp.step1.laborCheck'| translate}}</label>
         </div>
         <p-editor [style]="{'height':'210px'}" [(ngModel)]="this.propService.propSolution.man_power_description" [modules]="{counter: {container: '#counter4',unit: 'character'}}">
         </p-editor>
@@ -201,27 +201,27 @@
     </div>
     <div *ngIf="stepPosition==5">
         <h1 class="mb-3">
-            Meio Ambiente
+            {{'about.proposalComponent.ambient'| translate}}
         </h1>
-        <p class="mb-3">Quando o problema está relacionado a condições ambientais (poluição, temperatura, ruido, luminosidade, etc) ou a condições de infraestrutura (espaço físico, mobiliário, etc).</p>
+        <p class="mb-3">{{'createProp.step1.ambient'| translate}}</p>
         <p-editor [style]="{'height':'210px'}" [(ngModel)]="this.propService.propSolution.environment_description" [modules]="{counter: {container: '#counter5',unit: 'character'}}">
         </p-editor>
         <div id="counter5" class="text-end">0</div>
     </div>
     <div *ngIf="stepPosition==6">
         <h1 class="mb-3">
-            Máquina
+            {{'about.proposalComponent.machine'| translate}}
         </h1>
-        <p>Quando há ausência, obsolescência, má regulagem, quebra ou outros problemas com os equipamentos, inclusive de informática. Se aplica também nas falhas de manuntenção corretiva ou preventiva destes equipamentos.</p>
+        <p>{{'createProp.step1.machine'| translate}}</p>
 
         <p-editor [style]="{'height':'210px'}" [(ngModel)]="this.propService.propSolution.machine_description" [modules]="{counter: {container: '#counter6',unit: 'character'}}">
         </p-editor>
         <div id="counter6" class="text-end">0</div>
         <div class="d-flex mt-4">
             <div class="d-flex flex-column col-6">
-                <label>Máquinas</label>
+                <label>{{'createProp.step1.machines'| translate}}</label>
                 <p-autoComplete
-                        placeholder="Busque..."
+                        [placeholder]="'createProp.step1.search'| translate"
                         [suggestions]="machines"
                         (completeMethod)="search($event,'machine')"
                         field="name"
@@ -234,9 +234,9 @@
 
             </div>
             <div class="ml-4 d-flex flex-column col-6">
-                <label>Equipamentos</label>
+                <label>{{'createProp.step1.equipments'| translate}}</label>
                 <p-autoComplete
-                        placeholder="Busque..."
+                        [placeholder]="'createProp.step1.search'| translate"
                         [suggestions]="equipaments"
                         (completeMethod)="search($event,'equipament')"
                         [(ngModel)]="propService.propSolution.equipament"
@@ -253,9 +253,9 @@
 
 
         <h1 class="mb-3">
-            Efeito
+            {{'about.proposalComponent.effect'| translate}}
         </h1>
-        <p class="mb-3">Quando há ausência, obsolescência, má regulagem, quebra ou outros problemas com os equipamentos, inclusive de informática. Se aplica também nas falhas de manuntenção corretiva ou preventiva destes equipamentos.</p>
+        <p class="mb-3">{{'createProp.step1.effect'| translate}}</p>
         
         <p-editor [style]="{'height':'210px'}" [(ngModel)]="this.propService.propSolution.effect_description" [modules]="{counter: {container: '#counter7',unit: 'character'}}">
         </p-editor>
@@ -266,7 +266,7 @@
         <div>
             <h2 class="mr-2">
               <i class="bi bi-file-earmark-text"></i>
-              Descrição da Não Conformidade
+                {{'about.ncView.description'| translate}}
             </h2>
             <p-editor [style]="{'height':'144px', border: '1px solid #dddddd' }" [readonly]="true" [ngModel]="propService.ncProp.text_area_nc">
                 <ng-template pTemplate="header">
@@ -281,7 +281,7 @@
             class="btn btn-outline-dark"
             (click)="close()"
     >
-        Retornar ao Diagrama
+        {{'createProp.step1.back'| translate}}
         <i class="bi bi-suit-diamond"></i>
     </button>
     <div class="d-flex">
@@ -291,7 +291,7 @@
                 (click)="backStep()"
         >
             <i class="bi bi-arrow-left"></i>
-            Voltar
+            {{'global.back'| translate}}
         </button>
         <div class="ml-2 mr-2"></div>
         <button

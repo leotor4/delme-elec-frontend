@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 import {MenuItem, MessageService} from "primeng/api";
 import {NonComplianceService} from "../../../../_services/non-compliance.service";
-import { ProposalService } from '../proposal.service';
+import {ProposalService} from '../proposal.service';
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-create-prop-stepper',
@@ -17,7 +18,8 @@ export class CreatePropStepperComponent implements OnInit {
     private ncService:NonComplianceService,
     private messageService: MessageService,
     private router:Router,
-    public propService:ProposalService) {}
+    public propService:ProposalService,
+              public translate: TranslateService) {}
   
 
   disableButton(): boolean {
@@ -37,15 +39,14 @@ export class CreatePropStepperComponent implements OnInit {
 
   ngOnInit() {
     this.items = [
-      { label: "Diagrama de Ishikawa e 5 Porquês" },
-      { label: "Plano de Ação e Emitir Notificação" },
-      { label: "Revisão" },
+      { label: this.translate.instant("createProp.label1") },
+      { label: this.translate.instant("createProp.label2") },
+      { label: this.translate.instant("createProp.label3") },
     ];
   }
   getNextPageBtnLabel() {
     let isLastStep = this.stepPosition === this.items.length - 1;
-    let labelName = isLastStep ? "Submeter Análise" : "Avançar";
-    return labelName;
+    return isLastStep ? this.translate.instant("global.finish") : this.translate.instant("global.next");
   }
 
   getNextPageBtnIcon() {
@@ -55,7 +56,7 @@ export class CreatePropStepperComponent implements OnInit {
   }
 
   isFirstStep() {
-    return this.stepPosition === 0 ? true : false;
+    return this.stepPosition === 0;
   }
 
   nextStep() {
@@ -70,7 +71,7 @@ export class CreatePropStepperComponent implements OnInit {
 
         this.messageService.add({
           severity: "success",
-          summary: "Passo " + (this.stepPosition + 1) + " salvo com sucesso.",
+          summary:  this.translate.instant("global.step") + (this.stepPosition + 1) + this.translate.instant("global.saved"),
           life: 3000,
         });
         this.stepPosition >= this.items.length - 1?this.router.navigateByUrl('/ncs/about/' + id):this.stepPosition++
@@ -78,7 +79,7 @@ export class CreatePropStepperComponent implements OnInit {
       error:err =>{
         this.messageService.add({
           severity: "error",
-          summary: "Houve um erro ao salvar passo " + (this.stepPosition + 1) + "." ,
+          summary: this.translate.instant("global.error") + (this.stepPosition + 1) + "." ,
           life: 3000,
         });
       }

@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ConfirmationService, MessageService} from "primeng/api";
 import {DialogService} from "primeng/dynamicdialog";
 import {ActionPlanDialogComponent} from "./action-plan-dialog/action-plan-dialog.component";
 import {ProposalService} from "../../proposal.service";
-import { User } from 'src/app/models/user.model';
-import { ActionPlan } from 'src/app/models/action-plan';
-import { ActionPlanService } from 'src/app/_services/action-plan.service';
+import {User} from 'src/app/models/user.model';
+import {ActionPlan} from 'src/app/models/action-plan';
+import {ActionPlanService} from 'src/app/_services/action-plan.service';
 import {ContactsService} from "../../../create/steps/step3/contacts.service";
 import {Contact} from "../../../../../models/contact.model";
+import {TranslateService} from "@ngx-translate/core";
 
 
 @Component({
@@ -22,12 +23,18 @@ export class ActionPlanComponent implements OnInit {
   
   date: string;
   selectedResp: User;
-  statuses: string[] = ["Em execução", "Atrasada", "Cancelada", "Concluida"];
+  statuses: string[] = [this.translate.instant("createProp.step2.status1"), this.translate.instant("createProp.step2.status2"), this.translate.instant("createProp.step2.status3"), this.translate.instant("createProp.step2.status4")];
   selectedStatus: string;
   name: string;
   contacts: Contact[]
 
-  constructor(private actionService:ActionPlanService,private confirmationService: ConfirmationService, private messageService: MessageService, public dialogService: DialogService, public propService: ProposalService, private contactsSrvc: ContactsService) { }
+  constructor(private actionService:ActionPlanService,
+              private confirmationService: ConfirmationService,
+              private messageService: MessageService,
+              public dialogService: DialogService,
+              public propService: ProposalService,
+              private contactsSrvc: ContactsService,
+              public translate: TranslateService) { }
 
   ngOnInit(): void {
     this.getAllContacts()
@@ -56,8 +63,7 @@ export class ActionPlanComponent implements OnInit {
   }
   dataParse(date: any) {
     let newDate = new Date(date);
-    let formatedDate = newDate.toLocaleString("pt-Br").split(" ")[0];
-    return formatedDate;
+    return newDate.toLocaleString("pt-Br").split(" ")[0];
   }
 
 
@@ -65,10 +71,10 @@ export class ActionPlanComponent implements OnInit {
     let afectedsector = this.propService.sectors.find(i => i.name === this.propService.ncProp.tipos_local_item)
     this.confirmationService.confirm({
       message:
-          "Você tem certeza que quer excluir a ação " +
+          this.translate.instant("createProp.step2.delActionMsg")  +
           action.description+
           " da lista?",
-      header: "Excluir Ação",
+      header: this.translate.instant("createProp.delActionTitle") ,
       icon: "pi pi-exclamation-triangle",
       accept: () => {
         this.propService.propSolution.actionPlans =
@@ -87,7 +93,7 @@ export class ActionPlanComponent implements OnInit {
         }
         this.messageService.add({
           severity: "info",
-          summary: "Ação removida com sucesso",
+          summary: this.translate.instant("createProp.step2.successDel") ,
           life: 3000,
         });
       },
@@ -97,7 +103,7 @@ export class ActionPlanComponent implements OnInit {
   editAction(action: any){
     const ref = this.dialogService.open(ActionPlanDialogComponent, {
       data: {...action},
-      header: 'Editar ação',
+      header: this.translate.instant("createProp.step2.EditAction") ,
       width: '30%',
       height: '50%'
     });

@@ -8,7 +8,6 @@ import {Contact} from "../../../../../models/contact.model";
   styleUrls: ['./review-infomations.component.css']
 })
 export class ReviewInfomationsComponent implements OnInit {
-  ncID = "001/2022";
   isAllOpen = true;
   unselectedClass = "btn btn-outline-dark";
   selectedClass = "btn btn-dark";

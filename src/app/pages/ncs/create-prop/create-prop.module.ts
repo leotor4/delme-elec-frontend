@@ -34,6 +34,7 @@ import {DadosNCComponent} from "../../dialogs/dados-nc/dados-nc.component";
 import {NcAboutModule} from "../about/about.module";
 import {CarouselModule} from "primeng/carousel";
 import {DividerModule} from "primeng/divider";
+import {TranslateModule} from "@ngx-translate/core";
 
 
 
@@ -77,6 +78,7 @@ import {DividerModule} from "primeng/divider";
         NcAboutModule,
         CarouselModule,
         DividerModule,
+        TranslateModule,
     ],
     entryComponents: [IshikawaDialogComponent, ActionPlanDialogComponent, DadosNCComponent],
     providers: [ConfirmationService],

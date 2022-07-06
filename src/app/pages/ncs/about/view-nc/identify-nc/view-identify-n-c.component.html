@@ -2,13 +2,13 @@
   <div class="div-ident-parceiro">
     <h2>
       <i class="bi bi-card-text"></i>
-      Dados de Identificação
+      {{'newNC.review.identification'| translate}}
     </h2>
     <div class="d-flex justify-content-between flex-column flex-lg-row">
       <div class="contato-info d-flex flex-row">
         <i class="bi bi-ticket-perforated mr-1"></i>
         <div>
-          <span class="info-titulo">Número</span>
+          <span class="info-titulo">{{'global.number'| translate}}</span>
           <br />
           <span class="info-dados">{{aboutSrvc.nc?.code||""}}</span>
         </div>
@@ -16,7 +16,7 @@
       <div class="contato-info d-flex flex-row">
         <i class="bi bi-calendar-week mr-1"></i>
         <div>
-          <span class="info-titulo">Data de Abertura</span>
+          <span class="info-titulo">{{'newNC.step1.identifyNC.dateOpen'| translate}}</span>
           <br />
           <span class="info-dados">
             {{formato_brasileiro(aboutSrvc.nc?.data_abertura)}}
@@ -27,7 +27,7 @@
       <div class="contato-info d-flex flex-row">
         <i class="bi bi-calendar-week mr-1"></i>
         <div>
-          <span class="info-titulo">Prazo de Fechamento</span>
+          <span class="info-titulo">{{'newNC.step1.identifyNC.dateClose'| translate}}</span>
           <br/>
           <span class="info-dados">
             {{formato_brasileiro(aboutSrvc.nc?.data_fechamento)}}
@@ -41,13 +41,13 @@
   <div class="div-ident-parceiro">
     <h2>
       <i class="bi bi-people mr-1"></i>
-      Dados de Emissão
+      {{'newNC.review.emission'| translate}}
     </h2>
     <div class="d-flex justify-content-between flex-column flex-lg-row">
       <div class="contato-info d-flex flex-row">
         <i class="bi bi-person-circle mr-1"></i>
         <div>
-          <span class="info-titulo">Emissor</span>
+          <span class="info-titulo">{{'newNC.review.issuer'| translate}}</span>
           <br/>
           <span class="info-dados">{{aboutSrvc.nc?.emissor?.username||"não preenchido"}}</span>
         </div>
@@ -55,7 +55,7 @@
       <div class="contato-info d-flex flex-row">
         <i class="bi bi-person-circle mr-1"></i>
         <div>
-          <span class="info-titulo">Responsável</span>
+          <span class="info-titulo">{{'newNC.review.responsible'| translate}}</span>
           <br/>
           <span class="info-dados">{{aboutSrvc.nc?.emissor?.sector?.responsible_name||"não preenchido"}}</span>
         </div>
@@ -63,7 +63,7 @@
       <div class="contato-info d-flex flex-row">
         <i class="bi bi-geo-alt mr-1"></i>
         <div>
-          <span class="info-titulo">Departamento</span>
+          <span class="info-titulo">{{'newNC.review.department'| translate}}</span>
           <br>
           <p class="info-dados">{{aboutSrvc.nc?.emissor?.sector?.name||"não preenchido"}}</p>
         </div>
@@ -72,7 +72,7 @@
   </div>
 </div>
 <div class="div-ident-parceiro mt-3">
-  <h1 class="titulo-parceiro">Dados do Parceiro</h1>
+  <h1 class="titulo-parceiro">{{'newNC.step1.partner.title'| translate}}</h1>
   <div class="d-flex flex-wrap">
     <div class="item">
       <div class="dados-parceiro razao-social">
@@ -85,30 +85,30 @@
         </div>
         <p>
           {{(aboutSrvc.nc?.customer?.corporate_name||aboutSrvc.nc?.provider?.corporate_name||aboutSrvc.nc?.sector?.name)
-        ||"Dado não preenchido"}}
+        ||'global.fileInput.empty'| translate}}
         </p>
       </div>
     </div>
     <div class="item">
       <div class="dados-parceiro">
         <div class="dados-contato">
-          <h1>Dados do Contato</h1>
+          <h1>{{'newNC.step1.partner.contactTitle'| translate}}</h1>
           <div></div>
           <div class="contato-info d-flex flex-row">
             <i class="pi pi-user"></i>
             <div>
-              <span class="info-titulo">Nome</span>
+              <span class="info-titulo">{{'global.contacts.name'| translate}}</span>
               <br />
               <span class="info-dados">
                 {{(aboutSrvc.nc?.customer?.responsible_name||aboutSrvc.nc?.provider?.responsible_name||aboutSrvc.nc?.sector?.responsible_name)
-              ||"Dado não preenchido"}}
+              ||'global.fileInput.empty'| translate}}
               </span>
             </div>
           </div>
           <div class="contato-info d-flex flex-row">
             <i class="pi pi-phone"></i>
             <div>
-              <span class="info-titulo">Telefone</span>
+              <span class="info-titulo">{{'newNC.step1.partner.phone'| translate}}</span>
               <br />
               <span class="info-dados">
                 {{(aboutSrvc.nc?.customer?.responsible_phone||aboutSrvc.nc?.provider?.responsible_phone||aboutSrvc.nc?.sector?.responsible_phone)
@@ -119,11 +119,11 @@
           <div class="contato-info d-flex flex-row">
             <i class="pi pi-at"></i>
             <div>
-              <span class="info-titulo">E-mail</span>
+              <span class="info-titulo">{{'global.contacts.email'| translate}}</span>
               <br />
               <span class="info-dados">
                 {{(aboutSrvc.nc?.customer?.responsible_email||aboutSrvc.nc?.provider?.responsible_email||aboutSrvc.nc?.sector?.responsible_email)
-              ||"Dado não preenchido"}}
+              ||'global.fileInput.empty'| translate}}
               </span>
             </div>
           </div>

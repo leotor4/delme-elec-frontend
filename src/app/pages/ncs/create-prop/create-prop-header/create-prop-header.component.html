@@ -3,10 +3,10 @@
         <div class="d-flex">
             <button routerLink="/ncs/about/{{id}}" type="button" class="btn btn-dark">
                 <i class="pi pi-home"></i>
-                Voltar Para Nc
+                {{'about.backToNC'| translate}}
             </button>
             <div class="text-box">
-                <p>Proposta de Solução</p>
+                <p>{{'about.proposal'| translate}}</p>
                 <p-chip class="ml-2">
                     <i class="bi bi-ticket-perforated mr-2"></i>
                     {{"001/2022"}}
@@ -17,15 +17,15 @@
     <div class="d-flex justify-content-end p-0">
         <div class="d-flex buttons">
             <button type="button" class="btn btn-outline-dark mr-2">
-                Cancelar
+                {{'global.cancel'| translate}}
                 <i class="pi pi-times"></i>
             </button>
             <button type="button" class="btn btn-dark mr-2" (click)="openDados()">
-                Dados da NC
+                {{'global.ncData'| translate}}
                 <i class="bi bi-file-earmark-medical"></i>
             </button>
             <button (click)="saveProp()" type="button" class="btn btn-dark mr-2">
-            Salvar
+                {{'global.save'| translate}}
             <i class="pi pi-save"></i>
         </button>
         </div>

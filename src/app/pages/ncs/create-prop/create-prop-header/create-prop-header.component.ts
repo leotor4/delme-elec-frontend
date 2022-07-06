@@ -3,8 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import {MessageService} from "primeng/api";
 import { ProposalService } from '../proposal.service';
 import {DialogService} from "primeng/dynamicdialog";
-import {IshikawaDialogComponent} from "../steps/step1/ishikawa-dialog/ishikawa-dialog.component";
 import {DadosNCComponent} from "../../../dialogs/dados-nc/dados-nc.component";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-create-prop-header',
@@ -18,7 +18,8 @@ export class CreatePropHeaderComponent implements OnInit {
     private route: ActivatedRoute,
     private messageService: MessageService,
     public propService:ProposalService,
-    public dialogService: DialogService
+    public dialogService: DialogService,
+    public translate: TranslateService
   ) { }
 
   saveProp(){
@@ -27,7 +28,7 @@ export class CreatePropHeaderComponent implements OnInit {
        next:(data:any )=> {
         this.messageService.add({
           severity: "success",
-          summary: "Proposta de solução salva com sucesso.",
+          summary: this.translate.instant("createProp.success2"),
           life: 3000,
         });
         
@@ -35,7 +36,7 @@ export class CreatePropHeaderComponent implements OnInit {
       error:err =>{
         this.messageService.add({
           severity: "error",
-          summary: "Houve um erro ao salvar passo proposta de solução." ,
+          summary: this.translate.instant("createProp.fail3"),
           life: 3000,
         });
       }

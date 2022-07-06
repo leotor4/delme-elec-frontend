@@ -220,7 +220,6 @@ export class ContactsComponent implements OnInit{
                 contact.email === value.email
                 ))
         )
-        console.log(this.nonComplianceService.nc.contacts)
     });
   }
 }

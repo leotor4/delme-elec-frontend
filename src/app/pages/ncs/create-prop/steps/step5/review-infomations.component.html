@@ -2,10 +2,10 @@
     <div class="d-flex">
         <div class="cabecalho">
             <div class="d-flex align-items-center">
-                <h1 class="mr-3">Análise da Não Conformidade</h1>
+                <h1 class="mr-3">{{'createProp.reviewTitle'| translate}}</h1>
             </div>
             <p>
-                Revise ou altere os dados da análise da NC. Se tudo estiver OK, submeta a análise desta NC.
+                {{'createProp.reviewSubtitle'| translate}}
             </p>
         </div>
     </div>
@@ -16,15 +16,14 @@
                 (click)="isAllOpen = true"
         >
             <i class="bi bi-arrows-expand"></i>
-            Expandir Todos
-        </button>
+            {{'global.expand'| translate}}        </button>
         <button
                 [class]="isAllOpen ? unselectedClass : selectedClass"
                 (click)="isAllOpen = false"
                 class="btn-sm"
         >
             <i class="bi bi-arrows-collapse"></i>
-            Colapsar Todos
+            {{'global.colapse'| translate}}
         </button>
     </div>
 </div>
@@ -34,11 +33,11 @@
             <div class="d-flex justify-content-between accordion">
                 <p>
                     <i class="bi bi-suit-diamond"></i>
-                    Diagrama de Ishikawa
+                    {{'about.proposalComponent.ishikawaDiagram'| translate}}
                 </p>
                 <button class="btn btn-dark red" (click)="goToStepById(0)">
                     <i class="bi bi-pencil mr-1"></i>
-                    Alterar
+                    {{'global.edit'| translate}}
                 </button>
             </div>
         </ng-template>
@@ -47,7 +46,7 @@
                 <div>
                     <div class="d-flex">
                         <div class="col">
-                            <label>Matéria Prima</label>
+                            <label>{{'about.proposalComponent.material'| translate}}</label>
                             <p-editor [ngModel]="'<p>'+this.propService.propSolution.lack_materials + '</p><p>' + this.propService.propSolution.low_quality_materials + '</p>' + this.propService.propSolution.material_description" [style]="editorStyle" [readonly]="true" >
                                 <ng-template pTemplate="header">
                                 </ng-template>
@@ -55,14 +54,14 @@
 
                         </div>
                         <div class="col">
-                            <label>Medição</label>
+                            <label>{{'about.proposalComponent.measure'| translate}}</label>
                             <p-editor [ngModel]="'<p>'+this.propService.propSolution.lack_parameters + '</p><p>' + this.propService.propSolution.excess_parameters + '</p><p>' + this.propService.propSolution.non_achievement_goals+ '</p>' + this.propService.propSolution.low_quality_materials + '</p>' + this.propService.propSolution.measurement_description" [style]="editorStyle" [readonly]="true">
                                 <ng-template pTemplate="header">
                                 </ng-template>
                             </p-editor>
                         </div>
                         <div class="col">
-                            <label>Método</label>
+                            <label>{{'about.proposalComponent.method'| translate}}</label>
                             <p-editor [ngModel]="this.propService.propSolution.method_description + '<p>' + returnString(this.propService.propSolution.instruction) + '</p>'+ '<p>' + returnString(this.propService.propSolution.procedure) + '</p>'+ '<p>' + returnString(this.propService.propSolution.regulatory) + '</p>'+ '<p>' + returnString(this.propService.propSolution.nbr) + '</p>'" [style]="editorStyle" [readonly]="true">
                                 <ng-template pTemplate="header">
                                 </ng-template>
@@ -72,22 +71,22 @@
                     <img src="../../../../../../assets/images/Espinha de Peixe.png" width="850" class="ml-5 mr-3">
                     <div class="d-flex">
                         <div class="col">
-                            <label>Mão de Obra</label>
+                            <label>{{'about.proposalComponent.labor'| translate}}</label>
                             <p-editor [ngModel]="'<p>'+this.propService.propSolution.run_training + '</p>' + this.propService.propSolution.man_power_description" [style]="editorStyle" [readonly]="true">
                                 <ng-template pTemplate="header">
                                 </ng-template>
                             </p-editor>
                         </div>
                         <div class="col">
-                            <label>Meio Ambiente</label>
+                            <label>{{'about.proposalComponent.ambient'| translate}}</label>
                             <p-editor [ngModel]="this.propService.propSolution.environment_description"[style]="editorStyle" [readonly]="true">
                                 <ng-template pTemplate="header">
                                 </ng-template>
                             </p-editor>
                         </div>
                         <div class="col">
-                            <label>Máquina</label>
-                            <p-editor [ngModel]="this.propService.propSolution.machine_description"[style]="editorStyle" [readonly]="true">
+                            <label>{{'about.proposalComponent.machine'| translate}}</label>
+                            <p-editor [ngModel]="this.propService.propSolution.machine_description" [style]="editorStyle" [readonly]="true">
                                 <ng-template pTemplate="header">
                                 </ng-template>
                             </p-editor>
@@ -96,7 +95,7 @@
                     </div>
                 </div>
                 <div class="d-block mt-5">
-                    <label>Efeito</label>
+                    <label>{{'about.proposalComponent.effect'| translate}}</label>
                     <p-editor [ngModel]="this.propService.propSolution.effect_description"
                               [style]="{'height':'300px','width':'230px','border': '2px solid #333333','border-radius': '5px'}"
                               [readonly]="true">
@@ -112,11 +111,11 @@
             <div class="d-flex justify-content-between accordion">
                 <p>
                     <i class="bi bi-dice-5"></i>
-                     5 Porquês
+                    {{'about.proposalComponent.5why'| translate}}
                 </p>
                 <button class="btn btn-dark red" (click)="goToStepById(1)">
                     <i class="bi bi-pencil mr-1"></i>
-                    Alterar
+                    {{'global.edit'| translate}}
                 </button>
             </div>
         </ng-template>
@@ -131,7 +130,7 @@
                         <div class="text-center form-check caixa-preta mx-3" *ngIf="propService.propSolution.root_cause=='cause1'">
                             <input class="form-check-input" type="checkbox" value="" onclick="return false;" checked/>
                             <label class="form-check-label text-light">
-                                Causa Raiz
+                                {{'about.proposalComponent.rootCause'| translate}}
                             </label>
                         </div>
                     </div>
@@ -142,7 +141,7 @@
                         <div class="text-center form-check caixa-preta mx-3" *ngIf="propService.propSolution.root_cause=='cause2'">
                             <input class="form-check-input" type="checkbox" value="" onclick="return false;" checked/>
                             <label class="form-check-label text-light">
-                                Causa Raiz
+                                {{'about.proposalComponent.rootCause'| translate}}
                             </label>
                         </div>
                     </div>
@@ -153,7 +152,7 @@
                         <div class="text-center form-check caixa-preta mx-3" *ngIf="propService.propSolution.root_cause=='cause3'">
                             <input class="form-check-input" type="checkbox" value="" onclick="return false;" checked/>
                             <label class="form-check-label text-light">
-                                Causa Raiz
+                                {{'about.proposalComponent.rootCause'| translate}}
                             </label>
                         </div>
                     </div>
@@ -166,7 +165,7 @@
                         <div class="text-center form-check caixa-preta mx-3" *ngIf="propService.propSolution.root_cause=='cause4'">
                             <input class="form-check-input" type="checkbox" value="" onclick="return false;" checked/>
                             <label class="form-check-label text-light">
-                                Causa Raiz
+                                {{'about.proposalComponent.rootCause'| translate}}
                             </label>
                         </div>
                     </div>
@@ -177,7 +176,7 @@
                         <div class="text-center form-check caixa-preta mx-3" *ngIf="propService.propSolution.root_cause=='cause5'">
                             <input class="form-check-input" type="checkbox" value="" onclick="return false;" checked/>
                             <label class="form-check-label text-light">
-                                Causa Raiz
+                                {{'about.proposalComponent.rootCause'| translate}}
                             </label>
                         </div>
                     </div>
@@ -190,11 +189,11 @@
             <div class="d-flex justify-content-between accordion">
                 <p>
                     <i class="bi bi-geo"></i>
-                    Plano de Ação
+                    {{'about.proposalComponent.actionPlan'| translate}}
                 </p>
                 <button class="btn btn-dark red" (click)="goToStepById(1)">
                     <i class="bi bi-pencil mr-1"></i>
-                    Alterar
+                    {{'global.edit'| translate}}
                 </button>
             </div>
         </ng-template>
@@ -203,10 +202,10 @@
                 <p-table [value]="propService.propSolution.actionPlans">
                     <ng-template pTemplate="header">
                         <tr>
-                            <th>Descrição</th>
-                            <th>Responsável</th>
-                            <th>Prazo</th>
-                            <th>Status</th>
+                            <th>{{'global.description'| translate}}</th>
+                            <th>{{'global.responsible'| translate}}</th>
+                            <th>{{'global.deadline'| translate}}</th>
+                            <th>{{'global.status'| translate}}</th>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body" let-action>
@@ -226,11 +225,11 @@
             <div class="d-flex justify-content-between accordion">
                 <p>
                     <i class="bi bi-envelope"></i>
-                    Notificação por e-mail
+                    {{'global.contacts.notifications'| translate}}
                 </p>
                 <button class="btn btn-dark red" (click)="goToStepById(3)">
                     <i class="bi bi-pencil mr-1"></i>
-                    Alterar
+                    {{'global.edit'| translate}}
                 </button>
             </div>
         </ng-template>
@@ -239,9 +238,9 @@
                 <p-table [value]="contactsCopy">
                     <ng-template pTemplate="header">
                         <tr>
-                            <th>Nome</th>
-                            <th>E-mail</th>
-                            <th>Tipo de Contato</th>
+                            <th>{{'global.contacts.name'| translate}}</th>
+                            <th>{{'global.contacts.email'| translate}}</th>
+                            <th>{{'global.contacts.partner'| translate}}</th>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body" let-contact let-i="rowIndex">
