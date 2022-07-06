@@ -27,6 +27,7 @@ import {FormsModule} from "@angular/forms";
 import {InputTextModule} from "primeng/inputtext";
 import { CurrencyMaskModule } from "ng2-currency-mask";
 import {RadioButtonModule} from "primeng/radiobutton";
+import {TranslateModule} from "@ngx-translate/core";
 
 
 
@@ -62,7 +63,8 @@ import {RadioButtonModule} from "primeng/radiobutton";
         FormsModule,
         InputTextModule,
         CurrencyMaskModule,
-        RadioButtonModule
+        RadioButtonModule,
+        TranslateModule
 
 
     ],

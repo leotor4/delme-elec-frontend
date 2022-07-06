@@ -73,7 +73,7 @@
         "emptyFilterMessage": "Nenhum resultado encontrado - Filtro"
     },
     "import": {
-        "home": "Inicio",
+        "home": "Início",
         "fileUpload": {
             "chooseLabel": "Escolher Arquivo",
             "uploadLabel": "Importar Arquivo Selecionado",
@@ -105,10 +105,14 @@
         "next" : "Avançar",
         "finish": "Concluir",
         "number": "Número",
+        "editBtn": "Editar",
         "saved": "salvo com sucesso.",
         "step": "Passo ",
         "reject": "Não, cancelar",
         "select": "Selecione...",
+        "deadline": "Prazo",
+        "status": "Status",
+        "responsible": "Responsável",
         "error": "Houve um problema ao salvar dados do passo ",
         "requiredFields": "Os campos marcados com asterisco (*) são de preenchimento obrigatório",
         "expand": "Expandir Todos",
@@ -118,6 +122,13 @@
         "description": "Descrição",
         "dontApply": "Não se Aplica",
         "empty": "Dado não preenchido",
+        "status1": "Aberta",
+        "status2": "Em execução",
+        "status3": "Atrasada",
+        "status4": "Deletada",
+        "status5": "Arquivada",
+        "status6": "Cancelada",
+        "status7": "Fechada",
         "fileInput": {
             "title": "Anexe evidências objetivas ou fotográficas",
             "title2": "Anexar Documentos",
@@ -313,13 +324,107 @@
         "question2": "Deseja adicionar comentários?",
         "info": "Isto é opcional",
         "confirm": "Fechar NC",
-        "success": "Fechamento criado com sucesso"
+        "success": "Fechamento criado com sucesso",
+        "comments": "Comentários"
     },
     "cancelNC": {
         "title": "Deseja cancelar esta não conformidade?",
         "accept": "Sim, cancelar não conformidade",
         "success": "Não conformidade cancelada com sucesso.",
         "error": "Houve um problema ao cancelar não conformidade."
+    },
+    "about": {
+        "viewNC": "Informações da NC",
+        "proposal": "Proposta de Solução",
+        "costs": "Custos Incorridos",
+        "sgqEval": "Avaliação SGQ",
+        "closing": "Fechamento",
+        "headerTitle": "Não Conformidade",
+        "export": "Exportar NC",
+        "closingComponent": {
+            "title": "Fechamento da NC",
+            "subtitle": "Realize o fechamento desta NC.",
+            "header": "Verificação de Eficácia.",
+            "requiredSteps": {
+                "title1": "Ainda faltam algumas fases!",
+                "title2": "Esta NC ainda não pode ser finalizada.",
+                "title3": "Verifique com o andamento desta NC e contate os responsáveis para a realização de suas tarefas para então finalizar esta NC."
+            },
+            "ready": {
+                "title1": "Esta NC pode ser finalizada!",
+                "title2": "Tudo pronto para o fechamento?"
+            },
+            "btn": "Fechar NC",
+            "verification": "Verificação da Eficácia"
+        },
+        "costsComponent": {
+            "title": "Custos Incorridos",
+            "subtitle": "Informe se houve custos incorridos nesta NC.",
+            "newCostBtn": "Novo Custo Incorrido",
+            "documents": {
+                "title": "Documentos Anexados",
+                "document": "Documento",
+                "date": "Data de Anexo",
+                "attachedBy": "Anexado Por",
+                "total": "Valor Total"
+            },
+            "acceptDel": "Sim, excluir!",
+            "newCostTitle": "Registrar Custo Incorrido",
+            "newCostSubtitle": "Informe o valor e anexe o relatório de custos ou documento para registrar um custo incorrido.",
+            "attachTitle": "Anexar Documento",
+            "attachSubtitle": "Anexar relatório de custos",
+            "save": "Registrar Custo Incorrido",
+            "successDel": "Documento removido com sucesso",
+            "delTitle": "Excluir Documento",
+            "delMessage1": "Você tem certeza que quer excluir o documento ",
+            "delMessage2": " da lista?",
+            "successSave": "Documento adicionado com sucesso"
+        },
+        "proposalComponent": {
+            "title": "Análise da Proposta de Solução",
+            "subtitle1": "Revise ou altere os dados da proposta de solução. Se tudo estiver OK, submeta a análise desta proposta de solução.",
+            "ishikawaDiagram": "Diagrama de Ishikawa",
+            "material": "Matéria Prima",
+            "measure": "Medição",
+            "method": "Método",
+            "labor": "Mão de Obra",
+            "ambient": "Meio Ambiente",
+            "machine": "Máquina",
+            "effect": "Efeito",
+            "5why": "5 Porquês",
+            "rootCause": "Causa Raiz",
+            "actionPlan": "Plano de Ação",
+            "subtitle2": "Elabore e visualize uma solução para esta NC.",
+            "createBtn": "Criar Proposta",
+            "ready1": "NC ainda sem solução proposta!",
+            "ready2": "A fase de solução deve ser completada para exibição de resultados.",
+            "ready3": "Contate o responsável pela análise caso este não seja você."
+        },
+        "sgqEvalComponent": {
+            "subtitle": "Vizualize a avaliação ou avalie esta NC.",
+            "requiredSteps": {
+                "title1": "Ainda falta uma fase!",
+                "title2": "Para avaliar esta NC, é necessário primeiro completar as ações do plano de ação.",
+                "title3": "Contate o responsável caso este não seja você."
+            },
+            "ready": {
+                "title1": "NC ainda não avaliada!",
+                "title2": "A fase de avaliação deve ser completada para a exibição de resultados.",
+                "title3": "Contate o responsável caso este não seja você."
+            },
+            "createBtn": "Iniciar Avaliação",
+            "editBtn": "Editar Avaliação",
+            "recurrence": {
+                "title": "Reincidência",
+                "type": "Tipo de NC ",
+                "sector": "Setor Afetado",
+                "product": "Produto"
+            },
+            "evidence": "Relato e Evidências da Solução do Problema",
+            "risks": "Riscos e Oportunidades",
+            "changes": "Mudanças",
+            "deadline": "Data de Fechamento"
+        }
     }
 }
 

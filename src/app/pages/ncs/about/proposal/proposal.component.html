@@ -7,10 +7,10 @@
                 
                 <div class="cabecalho">
                     <div class="d-flex align-items-center">
-                        <h1 class="mr-3">Análise da Proposta de Solução</h1>
+                        <h1 class="mr-3">{{'about.proposalComponent.title'| translate}}</h1>
                     </div>
                     <p>
-                        Revise ou altere os dados da proposta de solução. Se tudo estiver OK, submeta a análise desta proposta de solução.
+                        {{'about.proposalComponent.subtitle1'| translate}}
                     </p>
                 </div>
             </div>
@@ -20,11 +20,11 @@
             <div class="d-flex justify-content-end align-items-center mb-3">
                 <button [class]="isAllOpen ? selectedClass : unselectedClass" class="mr-2 btn-sm" (click)="isAllOpen = true">
                     <i class="bi bi-arrows-expand"></i>
-                    Expandir Todos
+                    {{'global.expand'| translate}}
                 </button>
                 <button [class]="isAllOpen ? unselectedClass : selectedClass" (click)="isAllOpen = false" class="btn-sm">
                     <i class="bi bi-arrows-collapse"></i>
-                    Colapsar Todos
+                    {{'global.colapse'| translate}}
                 </button>
             </div>
         </div>
@@ -34,7 +34,7 @@
                     <div class="d-flex justify-content-between accordion">
                         <p>
                             <i class="bi bi-suit-diamond"></i>
-                            Diagrama de Ishikawa
+                            {{'about.proposalComponent.ishikawaDiagram'| translate}}
                         </p>
                         
                     </div>
@@ -44,7 +44,7 @@
                         <div>
                             <div class="d-flex">
                                 <div class="col">
-                                    <label>Matéria Prima</label>
+                                    <label>{{'about.proposalComponent.material'| translate}}</label>
                                     <p-editor
                                         [ngModel]="'<p>'+this.aboutService.nc.proposalSolution.lack_materials + '</p><p>' + this.aboutService.nc.proposalSolution.low_quality_materials + '</p>' + this.aboutService.nc.proposalSolution.excess_materials + '</p>' + this.aboutService.nc.proposalSolution.material_description"
                                         [style]="editorStyle" [readonly]="true">
@@ -54,7 +54,7 @@
         
                                 </div>
                                 <div class="col">
-                                    <label>Medição</label>
+                                    <label>{{'about.proposalComponent.measure'| translate}}</label>
                                     <p-editor
                                         [ngModel]="'<p>'+this.aboutService.nc.proposalSolution.lack_parameters + '</p><p>' + this.aboutService.nc.proposalSolution.excess_parameters + '</p><p>' + this.aboutService.nc.proposalSolution.non_achievement_goals+ '</p>' + this.aboutService.nc.proposalSolution.low_quality_materials + '</p>' + this.aboutService.nc.proposalSolution.measurement_description"
                                         [style]="editorStyle" [readonly]="true">
@@ -63,7 +63,7 @@
                                     </p-editor>
                                 </div>
                                 <div class="col">
-                                    <label>Método</label>
+                                    <label>{{'about.proposalComponent.method'| translate}}</label>
                                     <p-editor [ngModel]="this.aboutService.nc.proposalSolution.method_description+ '<p>' + returnString(this.aboutService.nc.proposalSolution.instruction) + '</p>'+ '<p>' + returnString(this.aboutService.nc.proposalSolution.procedure) + '</p>'+ '<p>' + returnString(this.aboutService.nc.proposalSolution.regulatory) + '</p>'+ '<p>' + returnString(this.aboutService.nc.proposalSolution.nbr) + '</p>'"
                                         [style]="editorStyle" [readonly]="true">
                                         <ng-template pTemplate="header">
@@ -80,7 +80,7 @@
                                         [style]="editorStyle" [readonly]="true">
                                         <ng-template pTemplate="header">
                                         </ng-template>
-                                    </p-editor><label class="mt-1">Mão de Obra</label>
+                                    </p-editor><label class="mt-1">{{'about.proposalComponent.labor'| translate}}</label>
                                 </div>
                                 <div class="col">
                                     
@@ -88,7 +88,7 @@
                                         [style]="editorStyle" [readonly]="true">
                                         <ng-template pTemplate="header">
                                         </ng-template>
-                                    </p-editor><label class="mt-1">Meio Ambiente</label>
+                                    </p-editor><label class="mt-1">{{'about.proposalComponent.ambient'| translate}}</label>
                                 </div>
                                 <div class="col">
                                     
@@ -96,13 +96,13 @@
                                         [style]="editorStyle" [readonly]="true">
                                         <ng-template pTemplate="header">
                                         </ng-template>
-                                    </p-editor><label class="mt-1">Máquina</label>
+                                    </p-editor><label class="mt-1">{{'about.proposalComponent.machine'| translate}}</label>
         
                                 </div>
                             </div>
                         </div>
                         <div class="d-block mt-5">
-                            <label>Efeito</label>
+                            <label>{{'about.proposalComponent.effect'| translate}}</label>
                             <p-editor [ngModel]="this.aboutService.nc.proposalSolution.effect_description"
                                 [style]="{'height':'300px','width':'230px','border': '2px solid #333333','border-radius': '5px'}"
                                 [readonly]="true">
@@ -118,7 +118,7 @@
                     <div class="d-flex justify-content-between accordion">
                         <p>
                             <i class="bi bi-dice-5"></i>
-                            5 Porquês
+                            {{'about.proposalComponent.5why'| translate}}
                         </p>
                        
                     </div>
@@ -136,7 +136,7 @@
                                     *ngIf="aboutService.nc.proposalSolution.root_cause=='cause1'">
                                     <input class="form-check-input" type="checkbox" value="" onclick="return false;" checked />
                                     <label class="form-check-label text-light">
-                                        Causa Raiz
+                                        {{'about.proposalComponent.rootCause'| translate}}
                                     </label>
                                 </div>
                             </div>
@@ -150,7 +150,7 @@
                                     *ngIf="aboutService.nc.proposalSolution.root_cause=='cause2'">
                                     <input class="form-check-input" type="checkbox" value="" onclick="return false;" checked />
                                     <label class="form-check-label text-light">
-                                        Causa Raiz
+                                        {{'about.proposalComponent.rootCause'| translate}}
                                     </label>
                                 </div>
                             </div>
@@ -164,7 +164,7 @@
                                     *ngIf="aboutService.nc.proposalSolution.root_cause=='cause3'">
                                     <input class="form-check-input" type="checkbox" value="" onclick="return false;" checked />
                                     <label class="form-check-label text-light">
-                                        Causa Raiz
+                                        {{'about.proposalComponent.rootCause'| translate}}
                                     </label>
                                 </div>
                             </div>
@@ -180,7 +180,7 @@
                                     *ngIf="aboutService.nc.proposalSolution.root_cause=='cause4'">
                                     <input class="form-check-input" type="checkbox" value="" onclick="return false;" checked />
                                     <label class="form-check-label text-light">
-                                        Causa Raiz
+                                        {{'about.proposalComponent.rootCause'| translate}}
                                     </label>
                                 </div>
                             </div>
@@ -194,7 +194,7 @@
                                     *ngIf="aboutService.nc.proposalSolution.root_cause=='cause5'">
                                     <input class="form-check-input" type="checkbox" value="" onclick="return false;" checked />
                                     <label class="form-check-label text-light">
-                                        Causa Raiz
+                                        {{'about.proposalComponent.rootCause'| translate}}
                                     </label>
                                 </div>
                             </div>
@@ -207,7 +207,7 @@
                     <div class="d-flex justify-content-between accordion">
                         <p>
                             <i class="bi bi-geo"></i>
-                            Plano de Ação
+                            {{'about.proposalComponent.rootCause'| translate}}
                         </p>
                        
                     </div>
@@ -217,10 +217,10 @@
                         <p-table [value]="aboutService.nc.proposalSolution.actionPlans">
                             <ng-template pTemplate="header">
                                 <tr>
-                                    <th>Descrição</th>
-                                    <th>Responsável</th>
-                                    <th>Prazo</th>
-                                    <th>Status</th>
+                                    <th>{{'global.description'| translate}}</th>
+                                    <th>{{'global.responsible'| translate}}</th>
+                                    <th>{{'global.deadline'| translate}}</th>
+                                    <th>{{'global.status'| translate}}</th>
                                 </tr>
                             </ng-template>
                             <ng-template pTemplate="body" let-action>
@@ -240,7 +240,7 @@
                     <div class="d-flex justify-content-between accordion">
                         <p>
                             <i class="bi bi-envelope"></i>
-                            Notificação por e-mail
+                            {{'global.contacts.notifications'| translate}}
                         </p>
                       
                     </div>
@@ -250,9 +250,9 @@
                         <p-table [value]="getContacts()">
                             <ng-template pTemplate="header">
                                 <tr>
-                                    <th>Nome</th>
-                                    <th>E-mail</th>
-                                    <th>Tipo de Contato</th>
+                                    <th>{{'global.contacts.name'| translate}}</th>
+                                    <th>{{'global.contacts.email'| translate}}</th>
+                                    <th>{{'global.contacts.partner'| translate}}</th>
                                 </tr>
                             </ng-template>
                             <ng-template pTemplate="body" let-contact let-i="rowIndex">
@@ -276,10 +276,10 @@
         <div class="d-flex">
             <div class="cabecalho">
                 <div class="d-flex align-items-center">
-                    <h1 class="mr-3">Proposta de Solução</h1>
+                    <h1 class="mr-3">{{'about.proposal'| translate}}</h1>
                 </div>
                 <p>
-                    Elabore e visualize uma solução para esta NC.
+                    {{'about.proposalComponent.subtitle2'| translate}}
                 </p>
             </div>
         </div>
@@ -289,13 +289,13 @@
         <img src="../../../../../../../assets/images/Ilustrações2.svg" alt="" />
     
     </div>
-    <h2 class="text-center text-black">NC ainda sem solução proposta!</h2>
-    <h3 class="text-center text-black">A fase de solução deve ser completada para exibição de resultados.</h3>
-    <h5 class="text-center">Contate o responsável pela análise caso este não seja você.</h5>
+    <h2 class="text-center text-black">{{'about.proposalComponent.ready1'| translate}}</h2>
+    <h3 class="text-center text-black">{{'about.proposalComponent.ready2'| translate}}</h3>
+    <h5 class="text-center">{{'about.proposalComponent.ready3'| translate}}</h5>
     
     <div class="text-center">
         <a href="/ncs/createProp/{{id}}" role="button" class="btn btn-dark">
-            Criar Proposta
+            {{'about.proposalComponent.createBtn'| translate}}
             <i class="bi bi-file-earmark-medical"></i>
         </a>
     </div>
