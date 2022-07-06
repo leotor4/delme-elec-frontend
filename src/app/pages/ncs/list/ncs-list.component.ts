@@ -18,6 +18,7 @@ import { DashboardsService } from '../../dashboards/dashboards.service';
   providers: [ConfirmationService],
 })
 export class NcsListComponent implements OnInit {
+  viewCards = [1296,150]
   cardValues: any[] = [];
   gridColor = "ocean";
   gradient: boolean = true;
@@ -25,7 +26,7 @@ export class NcsListComponent implements OnInit {
   pieValues: any[] = [];
 
   showLegend: boolean = true;
-  showLabels: boolean = true;
+  showLabels: boolean = false;
   isDoughnut: boolean = false;
   legendPosition: string = "bottom";
   legendTitle = "Legenda";
@@ -46,7 +47,7 @@ export class NcsListComponent implements OnInit {
 
   //********line chart************
 
-  lineChartView: any[] = [810, 300];
+  lineChartView: any[] = [810, 350];
 
   lineChartLegend: boolean = true;
   lineChartShowLabels: boolean = true;
@@ -301,6 +302,17 @@ export class NcsListComponent implements OnInit {
         life: 5000,
       });
     }
+
+    setTimeout(this.setPositionTextCards, 500);
+    
+  }
+
+  setPositionTextCards() {
+    let textCards = document.getElementsByTagName("ngx-charts-number-card")[0].getElementsByTagName("text");
+    for (var i = 0; i < textCards.length; i++) {
+      var valueCard = textCards[i]
+      valueCard.setAttribute("y", "40")
+    }
   }
 
   onSelectCard(event: any) {
@@ -378,4 +390,44 @@ export class NcsListComponent implements OnInit {
   onActivate(data: any): void {
     console.log("Activate", JSON.parse(JSON.stringify(data)));
   }
+
+
+  onResizeBarChart(event:any) {
+    //this.lineChartView = [this.getWidthBarGraph(event.target.innerWidth), 350];
+    
+
+    let divTable = document.getElementById('div-table');
+    let width
+    if(divTable) {
+      width = divTable.offsetWidth;
+      
+      if (width * 0.7 < 1000) {
+        this.lineChartView = [width * 0.7, 350];
+        console.log('barra', width * 0.7)
+      }
+
+    }
+
+  }
+
+  onResizePizzaChart(event:any) {
+    
+
+    let divTable = document.getElementById('div-table');
+    let width
+    if(divTable) {
+      width = divTable.offsetWidth;
+      
+      if (width * 0.3 < 500) {
+        this.view = [width * 0.3, 350];
+        console.log('pizza', width * 0.3)
+
+      }  
+      
+    }
+
+  }
+
+
+  
 }

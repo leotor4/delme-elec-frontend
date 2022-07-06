@@ -18,7 +18,6 @@
 
 ::ng-deep text  {
     font-size: 25px !important;
-    y:0 !important;
 }
 
 ::ng-deep .legend-label  {
