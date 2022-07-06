@@ -35,6 +35,7 @@ export class DashboardsComponent implements OnInit {
 
     this.chartsService.getSector().subscribe({
       next: (data: any) => {
+        this.chartsService.sectors = []
         data.sectors.forEach((element: any) => {
           this.chartsService.sectors.push(element.name);
         });

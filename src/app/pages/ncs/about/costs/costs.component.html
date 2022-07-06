@@ -1,148 +1,153 @@
 <div class="d-flex flex-lg-row flex-column justify-content-between">
-    <div class="d-flex">
-        <div class="cabecalho">
-            <div class="d-flex align-items-center">
-                <h1 class="mr-3">Custos Incorridos</h1>
-            </div>
-            <p>
-                Informe se houve custos incorridos nesta NC.
-            </p>
-        </div>
+  <div class="d-flex">
+    <div class="cabecalho">
+      <div class="d-flex align-items-center">
+        <h1 class="mr-3">Custos Incorridos</h1>
+      </div>
+      <p>Informe se houve custos incorridos nesta NC.</p>
     </div>
-    <div class="d-flex justify-content-end align-items-center mb-3">
-
-        <button class="btn btn-dark ml-3"
-        (click)="addDocumentDialog=true">
-            Novo Custo Incorrido
-            <i class="bi bi-plus"></i>
-        </button>
-    </div>
+  </div>
+  <div class="d-flex justify-content-end align-items-center mb-3">
+    <button class="btn btn-dark ml-3" (click)="addDocumentDialog = true">
+      Novo Custo Incorrido
+      <i class="bi bi-plus"></i>
+    </button>
+  </div>
 </div>
 <h2 class="mr-4 text-black fs-5">
-    <i class="pi pi-copy"></i>
-    Documentos Anexados
+  <i class="pi pi-copy"></i>
+  Documentos Anexados
 </h2>
 <div class="card mt-3">
-    <p-table  [value]="this.aboutSrvc.nc?.costs||[]">
-        <ng-template pTemplate="header">
-            <tr>
-                <th>Documento</th>
-                <th>Data de Anexo</th>
-                <th>Anexado Por</th>
-                <th>Valor Total</th>
-                <th></th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-doc>
-            <tr>
-                <td>{{ doc.file_name }}</td>
-                <td>{{ parseDate(doc.created_at) }}</td>
-                <td>{{ doc.author?.username }}</td>
-                <td>{{ format(doc.value) }}</td>
-                <td>
-                    <!-- <button
+  <p-table [value]="this.aboutSrvc.nc?.costs || []">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Documento</th>
+        <th>Data de Anexo</th>
+        <th>Anexado Por</th>
+        <th>Valor Total</th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-doc>
+      <tr>
+        <td>{{ doc.file_name }}</td>
+        <td>{{ parseDate(doc.created_at) }}</td>
+        <td>{{ doc.author?.username }}</td>
+        <td>{{ format(doc.value) }}</td>
+        <td>
+          <!-- <button
                             pButton
                             type="button"
                             icon="bi bi-file-earmark-richtext"
                             class="p-button-secondary p-button-text"
                             (click)="visualizarDocumento(doc.id, 'pdf')"
                     ></button> -->
-                    <a
-                            pButton
-                            type="button"
-                            icon="bi bi-download"
-                            class="p-button-secondary p-button-text"
-                            [href]="getUrl(doc.id)"
-                            download
-                    ></a>
-                    <button
-                            pButton
-                            type="button"
-                            icon="pi pi-trash"
-                            class="p-button-secondary p-button-text"
-                            (click)="deleteAction(doc)"
-                    ></button>
-                </td>
-            </tr>
-        </ng-template>
-    </p-table>
+          <a
+            pButton
+            type="button"
+            icon="bi bi-download"
+            class="p-button-secondary p-button-text"
+            [href]="getUrl(doc.id)"
+            download
+          ></a>
+          <button
+            pButton
+            type="button"
+            icon="pi pi-trash"
+            class="p-button-secondary p-button-text"
+            (click)="deleteAction(doc)"
+          ></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
 </div>
 <p-confirmDialog #cd [style]="{ width: '50vw' }">
-    <ng-template pTemplate="footer">
-        <button type="button" class="btn btn-outline-dark" (click)="cd.reject()">
-            Não, cancelar
-        </button>
-        <button type="button" class="btn btn-dark" (click)="cd.accept()">
-            Sim, excluir!
-        </button>
-    </ng-template>
+  <ng-template pTemplate="footer">
+    <button type="button" class="btn btn-outline-dark" (click)="cd.reject()">
+      Não, cancelar
+    </button>
+    <button type="button" class="btn btn-dark" (click)="cd.accept()">
+      Sim, excluir!
+    </button>
+  </ng-template>
 </p-confirmDialog>
 <p-dialog [(visible)]="addDocumentDialog" [modal]="true" styleClass="p-fluid">
-    <ng-template pTemplate="header">
-        <div>
-            <h2>Registrar Custo Incorrido</h2>
-            <h3>
-                Informe o valor e anexe o relatório de custos ou documento para registrar um custo incorrido.
-            </h3>
-        </div>
-    </ng-template>
-    <ng-template pTemplate="content">
-    <div class="editar-campo">
-        <label>Valor Total *</label>
-        <input
-                currencyMask [(ngModel)]="doc.value" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
-        />
-        <div class="mt-3">
-            <label>Anexar Documento *</label>
-            <div class="div-attachment">
-                <h1>Anexar relatório de custos</h1>
-                <div
-                        class="white-background"
-                        *ngIf="!haveFiles()"
-                >
-                    <input
-                            type="file"
-                           
-                            class="input-attachment"
-                            (change)="onUpload($event)"
-                            multiple
-                            required
-                    />
-                    <i class="pi pi-cloud-upload"></i>
-                    <p>
-                        Arraste e solte ou <strong>navegue para escolher</strong> um arquivo
-                    </p>
-                </div>
-                <div
-                        class="white-background-files"
-                        *ngIf="haveFiles()"
-                >
-                    <button
-                            type="button"
-                            (click)="clearFile()"
-                            class="btn btn-light"
-                    >
-                        <i class="pi pi-replay"></i>
-                    </button>
-                    <div *ngFor="let item of files" class="d-flex justify-content-center align-items-center files">
-                        {{ item.name }} <button (click)="clearById(item.name)"><i class="bi bi-x"></i></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+  <ng-template pTemplate="header">
+    <div>
+      <h2>Registrar Custo Incorrido</h2>
+      <h3>
+        Informe o valor e anexe o relatório de custos ou documento para
+        registrar um custo incorrido.
+      </h3>
     </div>
-    </ng-template>
-    <ng-template pTemplate="footer">
-        <div class="">
-            <button
-                    type="button"
-                    class="btn btn-dark"
-                    (click)="save()"
-                    [disabled]="!fileChosen"
+  </ng-template>
+  <ng-template pTemplate="content">
+    <div class="editar-campo">
+      <label>Valor Total *</label>
+      <input
+        currencyMask
+        [(ngModel)]="doc.value"
+        [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+      />
+      <div class="mt-3">
+        <label>Anexar Documento *</label>
+        <div class="div-attachment">
+          <h1>Anexar relatório de custos</h1>
+          <div class="white-background" *ngIf="!haveFiles()">
+            <input
+              type="file"
+              class="input-attachment"
+              (change)="onUpload($event)"
+              multiple
+              required
+            />
+            <i class="pi pi-cloud-upload"></i>
+            <p>
+              Arraste e solte ou <strong>navegue para escolher</strong> um
+              arquivo
+            </p>
+          </div>
+          <div class="white-background-files" *ngIf="haveFiles()">
+            <div class="d-flex justify-content-start" style="width: 100%">
+              <label for="inputTag" style="cursor: pointer">
+                <i class="bi bi-plus" style="font-size: 30px"></i>
+                <input
+                  id="inputTag"
+                  type="file"
+                  accept=".pdf,image/jpeg,image/png,xlsx,xls"
+                  class=""
+                  (change)="onUpload($event)"
+                  style="display: none"
+                  multiple
+                />
+              </label>
+            </div>
+            <div
+              *ngFor="let item of files"
+              class="d-flex justify-content-center align-items-center files"
             >
-                Registrar Custo Incorrido <i class="bi bi-check2"></i>
-            </button>
+              {{ item.name }}
+              <button (click)="clearById(item.name)">
+                <i class="bi bi-x"></i>
+              </button>
+            </div>
+          </div>
         </div>
-    </ng-template>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <div class="">
+      <button
+        type="button"
+        class="btn btn-dark"
+        (click)="save()"
+        [disabled]="!fileChosen"
+      >
+        Registrar Custo Incorrido <i class="bi bi-check2"></i>
+      </button>
+    </div>
+  </ng-template>
 </p-dialog>

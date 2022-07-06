@@ -14,6 +14,7 @@ export class ChartsService {
   ncs: NonCompliance[] = [];
   products: Product[] = [];
   sectors: string[] = [];
+  isChart = true
 
   get(): Observable<NonCompliance[]> {
     return this.http.get<NonCompliance[]>(this.apiUrl + "noncompliances");

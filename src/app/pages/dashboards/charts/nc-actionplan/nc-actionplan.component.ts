@@ -12,7 +12,6 @@ export class NcActionplanComponent implements OnInit {
   ngOnInit(): void {
     this.tipos = Object.assign([], this.chartsService.sectors);
     this.popular();
-    console.log(this.graph);
   }
 
   single: any[] = [];
@@ -34,6 +33,7 @@ export class NcActionplanComponent implements OnInit {
   cancelado: number[] = [];
   execucao: number[] = [];
   concluido: number[] = [];
+  ncs: number[] = [];
 
   ordenar() {
     this.multi.sort(function (a, b) {
@@ -48,7 +48,7 @@ export class NcActionplanComponent implements OnInit {
     this.cancelado = [];
     this.execucao = [];
     this.concluido = [];
-
+    this.ncs = [];
     this.multi = [];
 
     for (var i = 0; i < this.tipos.length; i++) {
@@ -56,6 +56,7 @@ export class NcActionplanComponent implements OnInit {
       this.atrasado.push(0);
       this.execucao.push(0);
       this.concluido.push(0);
+      this.ncs.push(0);
     }
     this.chartsService.ncs.forEach((element) => {
       if (
@@ -65,6 +66,7 @@ export class NcActionplanComponent implements OnInit {
       ) {
         let planos = element.proposalSolution?.actionPlans;
         let index = this.tipos.indexOf(element.tipos_local_item);
+        this.ncs[index]++;
         planos?.forEach((element) => {
           switch (element.status) {
             case "Atrasada":
@@ -116,12 +118,15 @@ export class NcActionplanComponent implements OnInit {
           type: "bar",
           marker: { color: "rgb(175,255,255)" },
         },
+        {
+          x: this.tipos,
+          y: this.ncs,
+          name: "Número de ncs",
+          type: "scatter",
+          marker: { color: "rgb(252,134,43)" },
+        },
       ],
-      layout: {
-        width: 1600,
-        height: 500,
-        title: "",
-      },
+      layout: { autosize: true, title: "" },
     };
   }
 

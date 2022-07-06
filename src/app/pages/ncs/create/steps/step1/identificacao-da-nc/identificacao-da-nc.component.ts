@@ -2,8 +2,9 @@ import { of } from 'rxjs/internal/observable/of';
 import { Component, OnInit } from "@angular/core";
 import { NonComplianceService } from "src/app/_services/non-compliance.service";
 import momentImported from 'moment';
-import {TranslateService} from "@ngx-translate/core";
 const moment = momentImported;
+import {TranslateService} from "@ngx-translate/core";
+
 
 @Component({
   selector: "app-identificacao-da-nc",

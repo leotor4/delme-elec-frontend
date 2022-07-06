@@ -17,7 +17,7 @@ export class CostsComponent implements OnInit {
   addDocumentDialog: boolean = false;
   doc = new Cost();
   fileChosen: boolean;
-  files: any;
+  files: any[]=[];
 
   constructor(
     private confirmationService: ConfirmationService,
@@ -69,11 +69,14 @@ export class CostsComponent implements OnInit {
   onUpload(event: any) {
     const target = event.target as HTMLInputElement;
     if (target.files && target.files.length > 0) {
-      this.files = target.files;
+      for(var i = 0;i < target.files.length;i++){
+        this.files.push(target.files[i])
+      }
+     
       this.fileChosen = true;
     }
 
-    console.log(this.files);
+    
   }
 
   format(text:string){
@@ -111,7 +114,7 @@ export class CostsComponent implements OnInit {
     this.doc = new Cost();
     this.addDocumentDialog = false;
     this.fileChosen = false;
-    this.files = null;
+    this.files = [];
   }
 
   parseDate(date: string) {

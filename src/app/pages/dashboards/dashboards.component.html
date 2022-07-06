@@ -2,6 +2,18 @@
   class="d-flex flex-column justify-content-center align-items-center"
   *ngIf="carregou()"
 >
+
+<!-- 1 - (nc-status)
+2 - (nc-year)
+3 - (cost-sector)
+4 - (nc-products)
+5 - (nc-types)
+6 - (nc-emissor)
+7 - (nc-receptor)
+8 - (nc-receptor-emissor)
+9 - (nc-count) 
+10 - (nc-actionplan) -->
+
   <app-nc-receptor-emissor [size]="[1600, 400]"></app-nc-receptor-emissor>
   <app-nc-status [size]="[1600, 400]"></app-nc-status>
   <app-nc-year [size]="[1600, 400]"></app-nc-year>
@@ -10,5 +22,6 @@
   <app-nc-receptor [size]="[1600, 400]"></app-nc-receptor>
   <app-cost-sector [size]="[1600, 400]"></app-cost-sector>
   <app-nc-count [size]="[1600, 400]"></app-nc-count> 
-<app-nc-actionplan [size]="[1600, 400]"></app-nc-actionplan>
+  <app-nc-actionplan [size]="[1600, 400]"></app-nc-actionplan>
+  <app-nc-products [size]="[1600, 400]"></app-nc-products>
 </div>
