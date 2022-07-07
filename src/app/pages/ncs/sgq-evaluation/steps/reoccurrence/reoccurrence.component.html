@@ -15,13 +15,13 @@
   <p-table [value]="sgqServ.sgq.recurrence || []">
     <ng-template pTemplate="header">
       <tr>
-        <th>Número</th>
-        <th>Emissor</th>
-        <th>Tipo de NC</th>
-        <th>Setor Afetado</th>
-        <th>Produto</th>
-        <th>Status</th>
-        <th>Data de Fechamento</th>
+        <th>{{ "global.number" | translate }}</th>
+        <th>{{ "newNC.review.issuer" | translate }}</th>
+        <th>{{ "about.sgqEvalComponent.recurrence.type" | translate }}</th>
+        <th>{{ "about.sgqEvalComponent.recurrence.sector" | translate }}</th>
+        <th>{{ "about.sgqEvalComponent.recurrence.product" | translate }}</th>
+        <th>{{ "global.status" | translate }}</th>
+        <th>{{ "about.sgqEvalComponent.deadline" | translate }}</th>
         <th></th>
       </tr>
     </ng-template>
@@ -35,13 +35,27 @@
 
         <td>
           <span [ngSwitch]="nc.status">
-            <span *ngSwitchCase="'open'"> Em elaboração</span>
-            <span *ngSwitchCase="'running'"> Em execução</span>
-            <span *ngSwitchCase="'late'"> Atrasada</span>
-            <span *ngSwitchCase="'deleted'"> Deletada</span>
-            <span *ngSwitchCase="'archived'"> Arquivada</span>
-            <span *ngSwitchCase="'canceled'"> Cancelada</span>
-            <span *ngSwitchCase="'closed'"> Fechada</span>
+            <span *ngSwitchCase="'open'">
+              {{ "global.status1" | translate }}</span
+            >
+            <span *ngSwitchCase="'running'">{{
+              "global.status2" | translate
+            }}</span>
+            <span *ngSwitchCase="'late'">
+              {{ "global.status3" | translate }}</span
+            >
+            <span *ngSwitchCase="'deleted'">
+              {{ "global.status4" | translate }}</span
+            >
+            <span *ngSwitchCase="'archived'">
+              {{ "global.status5" | translate }}</span
+            >
+            <span *ngSwitchCase="'canceled'">
+              {{ "global.status6" | translate }}</span
+            >
+            <span *ngSwitchCase="'closed'">
+              {{ "global.status7" | translate }}</span
+            >
           </span>
         </td>
 
@@ -70,10 +84,10 @@
 <p-confirmDialog #cd [style]="{ width: '50vw' }">
   <ng-template pTemplate="footer">
     <button type="button" class="btn btn-outline-dark" (click)="cd.reject()">
-      Não, cancelar
+      {{ "global.reject" | translate }}
     </button>
     <button type="button" class="btn btn-dark" (click)="cd.accept()">
-      Sim, desfazer reincidência
+      {{ "global.yesUndoReocurrence" | translate }}
     </button>
   </ng-template>
 </p-confirmDialog>

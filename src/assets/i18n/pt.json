@@ -115,6 +115,7 @@
     "confirm": "Confirmar",
     "NCs": "Não Conformidades",
     "yes": "Sim",
+    "yesUndoReocurrence": "Sim, desfazer reincidência",
     "no": "Não",
     "back": "Voltar",
     "revision": "revisão",
@@ -169,6 +170,7 @@
       "search": "Busque por nome ou e-mail...",
       "emailUpper": "E-MAIL",
       "partnerUpper": "PARCEIRO",
+      "type": "Tipo de Contato",
       "create": "Criar Contato",
       "edit": "Editar Contato",
       "delete": "Excluir Contato",
@@ -515,6 +517,13 @@
     "reviewSubtitle": "Revise ou altere os dados da análise da NC. Se tudo estiver OK, submeta a análise desta NC."
   },
   "sgq": {
+    "actionCantReversed": "Esta ação não poderá ser revertida!",
+    "areYouSureReocurrence": "Você tem certeza que quer desfazer a reincidência?",
+    "errorOnSaveFile": "Houve um problema ao visualizar arquivo.",
+    "checkEffectiveness": "Verificação de eficácia",
+    "closeRNC": "Encerrar esta RNC.",
+    "comments": "Comentários",
+    "interestedParts": "Partes Interessadas",
     "steps": {
       "step1": {
         "stepTitle": "Reincidências e evidências da NC",
