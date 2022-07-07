@@ -16,9 +16,10 @@
 }
 
 
-::ng-deep text  {
+/* ::ng-deep text  {
     font-size: 25px !important;
-}
+} */
+
 
 ::ng-deep .legend-label  {
     color:#565656 !important;   
