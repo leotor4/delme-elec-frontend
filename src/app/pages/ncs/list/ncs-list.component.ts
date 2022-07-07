@@ -113,7 +113,6 @@ export class NcsListComponent implements OnInit {
     this.ncsService.get().subscribe((data: any) => {
       //this.listNcs.append(data.noncompliances);
       const compliances: Array<NonCompliance> = data.noncompliances;
-      console.log(compliances);
 
       if (compliances?.length > 0) {
         this.listNcs = compliances.map((item: NonCompliance) => {
@@ -160,6 +159,7 @@ export class NcsListComponent implements OnInit {
         this.listNcs = this.listNcs.filter((item) => item.status == "late");
 
       this.setDataCards(compliances, filterStatus);
+      setTimeout(this.setPositionTextCards, 200);
 
       this.totalRecords = this.listNcs.length;
     });
@@ -303,15 +303,68 @@ export class NcsListComponent implements OnInit {
       });
     }
 
-    setTimeout(this.setPositionTextCards, 500);
     
   }
 
   setPositionTextCards() {
     let textCards = document.getElementsByTagName("ngx-charts-number-card")[0].getElementsByTagName("text");
+    let foreignObjects = document.getElementsByTagName("ngx-charts-number-card")[0].getElementsByTagName("foreignObject");
+    
     for (var i = 0; i < textCards.length; i++) {
       var valueCard = textCards[i]
-      valueCard.setAttribute("y", "40")
+      var foreignObject = foreignObjects[i]
+      let labelCard = foreignObject.getElementsByTagName("p")[0]
+      
+      
+      let divTable = document.getElementById('div-table');
+      let width
+      
+      if(divTable) {
+        width = divTable.offsetWidth;
+        
+        if (width > 1150) {
+          valueCard.setAttribute("y", "40")
+          valueCard.setAttribute("style", "font-size : 25pt; fill:#D6DEE2;")
+          foreignObject.setAttribute("y", "72.5")
+          foreignObject.setAttribute("width", "200")
+          foreignObject.setAttribute("height", "57.5")
+          labelCard.setAttribute("style", "font-size : 15px; color:#D6DEE2;")
+        } else if (width > 1000 && width <= 1150) {
+          valueCard.setAttribute("y", "40")
+          valueCard.setAttribute("style", "font-size : 25pt; fill:#D6DEE2;")
+          foreignObject.setAttribute("y", "72.5")
+          foreignObject.setAttribute("width", "200")
+          foreignObject.setAttribute("height", "57.5")
+          labelCard.setAttribute("style", "font-size : 15px; color:#D6DEE2;")
+        } else if (width > 800 && width <= 1000) {
+          valueCard.setAttribute("y", "40")
+          valueCard.setAttribute("style", "font-size : 20pt; fill:#D6DEE2;")
+          foreignObject.setAttribute("y", "72.5")
+          foreignObject.setAttribute("width", "200")
+          foreignObject.setAttribute("height", "57.5")
+          labelCard.setAttribute("style", "font-size : 15px; color:#D6DEE2;")
+
+        } else if (width > 600 && width <= 800) {
+          valueCard.setAttribute("y", "6")
+          valueCard.setAttribute("style", "font-size : 15pt; fill:#D6DEE2;")
+          foreignObject.setAttribute("y", "28")
+          foreignObject.setAttribute("width", "200")
+          foreignObject.setAttribute("height", "57.5")
+          labelCard.setAttribute("style", "font-size : 15px; color:#D6DEE2;")
+        }  else if (width > 400 && width <= 600) {
+          valueCard.setAttribute("y", "6")
+          valueCard.setAttribute("style", "font-size : 15pt; fill:#D6DEE2;")
+          foreignObject.setAttribute("y", "22")
+          foreignObject.setAttribute("width", "200")
+          foreignObject.setAttribute("height", "57.5")
+          labelCard.setAttribute("style", "font-size : 10px; color:#D6DEE2;")
+        } 
+  
+      }
+  
+
+
+
     }
   }
 
@@ -343,7 +396,6 @@ export class NcsListComponent implements OnInit {
       var seriesClosed = [];
 
       var lineChartDataAux = [];
-      console.log(data);
 
       var cont = 0;
       for (const key in data) {
@@ -352,7 +404,6 @@ export class NcsListComponent implements OnInit {
         //   break;
         // }
         if (data.hasOwnProperty(key)) {
-          console.log(`${key}: ${data[key].Abertas}`);
 
           var series = [
             {
@@ -379,7 +430,6 @@ export class NcsListComponent implements OnInit {
 
   getFlag(status: string, value: number) {
     var totalNcs = 0;
-    console.log(this.pieValues);
     for (var i = 0; i < this.pieValues.length; i++) {
       totalNcs = totalNcs + this.pieValues[i].value;
     }
@@ -403,7 +453,6 @@ export class NcsListComponent implements OnInit {
       
       if (width * 0.7 < 1000) {
         this.lineChartView = [width * 0.7, 350];
-        console.log('barra', width * 0.7)
       }
 
     }
@@ -412,7 +461,6 @@ export class NcsListComponent implements OnInit {
 
   onResizePizzaChart(event:any) {
     
-
     let divTable = document.getElementById('div-table');
     let width
     if(divTable) {
@@ -420,14 +468,26 @@ export class NcsListComponent implements OnInit {
       
       if (width * 0.3 < 500) {
         this.view = [width * 0.3, 350];
-        console.log('pizza', width * 0.3)
-
-      }  
+     }  
       
     }
-
   }
 
 
+  onResizeCardChart(event:any) {
+    let divCards = document.getElementById('div-cards');
+    let divTable = document.getElementById('div-table');
+    let width
+    if(divTable) {
+      width = divTable.offsetWidth;
+      this.viewCards = [width,150]
+      
+    }
+
+    
+    setTimeout(this.setPositionTextCards, 500);
+  }
+
   
+
 }

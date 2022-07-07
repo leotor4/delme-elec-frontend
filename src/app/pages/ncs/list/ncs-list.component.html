@@ -1,15 +1,17 @@
 <p-confirmDialog acceptLabel="sim" rejectLabel="não" [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
 
-<!-- <div style="height : 130px;"> -->
+
 <div style="display:flex">
   <div style="display: flex; flex-direction:column;">
-    <ngx-charts-number-card
-      [view]="viewCards"
-      [scheme]="colorScheme"
-      [results]="cardValues"
-      [cardColor]="cardColor"
-      (select)="onSelectCard($event)">
-    </ngx-charts-number-card>
+      <ngx-charts-number-card
+        (window:resize)="onResizeCardChart($event)"
+        [view]="viewCards" 
+        [scheme]="colorScheme"
+        [results]="cardValues"
+        [cardColor]="cardColor"
+        (select)="onSelectCard($event)">
+      </ngx-charts-number-card>
+
 
     <div style="display: flex; flex-direction:row;">
       <ngx-charts-pie-chart
