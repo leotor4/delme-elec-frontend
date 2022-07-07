@@ -22,38 +22,41 @@ export class MenuComponent implements OnInit {
   ngOnInit(): void {
 
     this.isLoggedIn = !!this.tokenStorageService.getToken();
-    if (this.isLoggedIn) {
-      const user = this.tokenStorageService.getUser();
-      this.user = user;
+    this.translate.getTranslation("pt").subscribe((data)=>{
+      if (this.isLoggedIn) {
+        const user = this.tokenStorageService.getUser();
+        this.user = user;
 
-      this.items = [
-        {
-          label: 'Electroson Brasil',
-          items: [
-              {label: 'Não conformidades', icon: 'pi pi-list', routerLink:'/ncs'},
-              {label: 'Importar Dados', icon: 'pi pi-upload', routerLink:'/ncs/import'},
+        this.items = [
+          {
+            label: data.global.companyName,
+            items: [
+              {label: data.global.NCs, icon: 'pi pi-list', routerLink:'/ncs'},
+              {label: data.global.importData, icon: 'pi pi-upload', routerLink:'/ncs/import'},
               {
-                label: 'Dashboards', 
+                label: data.global.dashboards,
                 icon: 'pi pi-desktop',
                 items: [
-                  {label:'Bar Chart', icon: 'pi pi-chart-bar', routerLink:'/dashboards/bar-chart'},
-                  {label:'Grouped Bar Chart', icon: 'pi pi-chart-bar', routerLink:'/dashboards'}
+                  {label:data.global.barChart, icon: 'pi pi-chart-bar', routerLink:'/dashboards/bar-chart'},
+                  {label: data.global.groupedBarChart, icon: 'pi pi-chart-bar', routerLink:'/dashboards'}
 
-                ] 
-                
+                ]
+
               },
-              {label: 'Sair', icon: 'pi pi-sign-out',
+              {label: data.global.logout, icon: 'pi pi-sign-out',
                 command: () => {
                   this.logout();
                 }
               }
 
 
-          ]
-        }
+            ]
+          }
 
-      ];
-    }
+        ];
+      }
+    })
+
   }
 
   logout(): void {

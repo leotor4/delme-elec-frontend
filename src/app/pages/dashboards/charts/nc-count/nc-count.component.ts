@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { ChartsService } from "src/app/_services/charts.service";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: "app-nc-count",
@@ -7,7 +8,7 @@ import { ChartsService } from "src/app/_services/charts.service";
   styleUrls: ["./nc-count.component.css"],
 })
 export class NcCountComponent implements OnInit {
-  constructor(public chartsService: ChartsService) {}
+  constructor(public chartsService: ChartsService, public translate: TranslateService) {}
   @Input() size: number[] = [];
 
   ngOnInit(): void {
@@ -57,7 +58,7 @@ export class NcCountComponent implements OnInit {
         x: this.anos,
         y: this.quantAnos,
         type: "scatter",
-        name: "Quantidade de ncs",
+        name: this.translate.instant("charts.ncAmount"),
         marker: { color: "rgb(252,134,43)" },
       },
     ],

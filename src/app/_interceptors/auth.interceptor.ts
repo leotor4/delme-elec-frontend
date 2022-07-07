@@ -5,11 +5,14 @@ import { Injectable } from '@angular/core';
 import { catchError, Observable, retry, throwError } from 'rxjs';
 
 import { TokenStorageService } from '../_services/token-storage.service';
+import {TranslateService} from "@ngx-translate/core";
 
 const TOKEN_HEADER_KEY = 'Authorization';
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor(private tokenService: TokenStorageService, private messageService : MessageService) { }
+  constructor(private tokenService: TokenStorageService,
+              private messageService : MessageService,
+              public translate: TranslateService) { }
   
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
@@ -22,34 +25,35 @@ export class AuthInterceptor implements HttpInterceptor {
     return next.handle(authReq).pipe(
       retry(1),
       catchError((error: HttpErrorResponse) => {
-        
+        this.translate.getTranslation("pt").subscribe(data=>{
+          if (error.status == 401) {
+            this.tokenService.signOut();
+            this.messageService.add({
+              severity: "error",
+              summary: data.login.error4,
+              life: 3000,
+            });
+          } else if (error.status == 404) {
+            this.messageService.add({
+              severity: "error",
+              summary: data.login.error5,
+              life: 3000,
+            });
+          }  else if (error.status == 400) {
+            this.messageService.add({
+              severity: "error",
+              summary: data.login.error6,
+              life: 3000,
+            });
+          } else {
+            this.messageService.add({
+              severity: "error",
+              summary: data.login.error7,
+              life: 3000,
+            });
+          }
+        })
 
-        if (error.status == 401) {
-          this.tokenService.signOut();
-          this.messageService.add({
-            severity: "error",
-            summary: "Faça login para acessar o sistema",
-            life: 3000,
-          });
-        } else if (error.status == 404) {
-          this.messageService.add({
-            severity: "error",
-            summary: "Página não encontrada",
-            life: 3000,
-          });
-        }  else if (error.status == 400) {
-          this.messageService.add({
-            severity: "error",
-            summary: "Credenciais Inválidas",
-            life: 3000,
-          });
-        } else {
-          this.messageService.add({
-            severity: "error",
-            summary: "Ocorreu um erro no servidor!!",
-            life: 3000,
-          });
-        }
 
         
         return throwError(() => error);      })

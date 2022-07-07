@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ChartsService } from 'src/app/_services/charts.service';
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: "app-nc-receptor",
@@ -8,7 +9,7 @@ import { ChartsService } from 'src/app/_services/charts.service';
 })
 export class NcReceptorComponent implements OnInit {
   @Input() size: number[] = [];
-  constructor(public chartsService: ChartsService) {}
+  constructor(public chartsService: ChartsService, public translate: TranslateService) {}
   ngOnInit(): void {
     this.tipos = Object.assign([], this.chartsService.sectors);
     this.popular();
@@ -17,15 +18,15 @@ export class NcReceptorComponent implements OnInit {
   single: any[] = [];
   tipos: string[] = [];
   tiposNc: string[] = [
-    "Auditoria Interna",
-    "Auditoria Externa",
-    "NC de Fornecedor",
-    "NC de Processo",
-    "NC de Cliente",
-    "NC de Produto",
-    "Todos",
+    this.translate.instant("newNC.step1.ncType.type1"),
+    this.translate.instant("newNC.step1.ncType.type2"),
+    this.translate.instant("newNC.step1.ncType.type3"),
+    this.translate.instant("newNC.step1.ncType.type4"),
+    this.translate.instant("newNC.step1.ncType.type5"),
+    this.translate.instant("newNC.step1.ncType.type6"),
+    this.translate.instant("global.all"),
   ];
-  tiposNcAtual = "Todos";
+  tiposNcAtual = this.translate.instant("global.all");
   quant: number[] = [];
 
   ordenar() {
@@ -46,7 +47,7 @@ export class NcReceptorComponent implements OnInit {
       if (
         element.tipos_local_item &&
         (element.tipos_nc_item == this.tiposNcAtual ||
-          this.tiposNcAtual == "Todos")
+          this.tiposNcAtual == this.translate.instant("global.all"))
       ) {
         let setor = element.tipos_local_item;
         
@@ -79,5 +80,5 @@ export class NcReceptorComponent implements OnInit {
   showYAxisLabel = true;
   xAxisLabel = "";
   yAxisLabel = "";
-  title = "Departamento Receptor x Quantidade de Ncs";
+  title = this.translate.instant("charts.title6");
 }

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { CostsComponent } from "src/app/pages/ncs/about/costs/costs.component";
 import { ChartsService } from "src/app/_services/charts.service";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: "app-nc-year",
@@ -8,7 +9,7 @@ import { ChartsService } from "src/app/_services/charts.service";
   styleUrls: ["./nc-year.component.css"],
 })
 export class NcYearComponent implements OnInit {
-  constructor(public chartsService: ChartsService) {}
+  constructor(public chartsService: ChartsService, public translate: TranslateService) {}
   @Input() size: number[] = [];
 
   ngOnInit(): void {
@@ -58,13 +59,13 @@ export class NcYearComponent implements OnInit {
         x: this.anos,
         y: this.quantCusto,
         type: "scatter",
-        name: "Custo",
+        name: this.translate.instant("charts.cost2"),
         marker: { color: "rgb(252,134,43)" },
       },
       {
         x: this.anos,
         y: this.quantAnos,
-        name: "Quantidade",
+        name: this.translate.instant("charts.amount"),
         type: "bar",
         marker: { color: "rgb(29,104,251)" },
       },
