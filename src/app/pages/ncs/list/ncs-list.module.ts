@@ -11,25 +11,27 @@ import {TooltipModule} from 'primeng/tooltip';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {TranslateModule} from "@ngx-translate/core";
 
 
 @NgModule({
   declarations: [
     NcsListComponent
   ],
-  imports: [
-    CommonModule,
-    NcsListRoutingModule,
-    TableModule,
-    ButtonModule,
-    InputTextModule,
-    PaginatorModule,
-    ToastModule,
-    InputTextModule,
-    TooltipModule,
-    ConfirmDialogModule,
-    NgxChartsModule
-  ]
+    imports: [
+        CommonModule,
+        NcsListRoutingModule,
+        TableModule,
+        ButtonModule,
+        InputTextModule,
+        PaginatorModule,
+        ToastModule,
+        InputTextModule,
+        TooltipModule,
+        ConfirmDialogModule,
+        NgxChartsModule,
+        TranslateModule
+    ]
 })
 
 

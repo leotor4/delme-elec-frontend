@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { ChartsService } from "src/app/_services/charts.service";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: "app-nc-status",
@@ -7,7 +8,7 @@ import { ChartsService } from "src/app/_services/charts.service";
   styleUrls: ["./nc-status.component.css"],
 })
 export class NcStatusComponent implements OnInit {
-  constructor(public chartsService: ChartsService) {}
+  constructor(public chartsService: ChartsService, public translate: TranslateService) {}
   @Input() size: number[] = [];
   setor: any;
   setores: string[] = [];
@@ -19,23 +20,23 @@ export class NcStatusComponent implements OnInit {
 
   single: any[] = [
     {
-      name: "Aberto",
+      name: this.translate.instant("global.status1"),
       value: 0,
     },
     {
-      name: "Em execução",
+      name: this.translate.instant("global.status2"),
       value: 0,
     },
     {
-      name: "Cancelada",
+      name: this.translate.instant("global.status6"),
       value: 0,
     },
     {
-      name: "Atrasada",
+      name: this.translate.instant("global.status3"),
       value: 0,
     },
     {
-      name: "Encerrada",
+      name: this.translate.instant("global.status7"),
       value: 0,
     },
   ];
@@ -43,7 +44,7 @@ export class NcStatusComponent implements OnInit {
   popularSetores() {
     this.setores = Object.assign([], this.chartsService.sectors);
 
-    this.setores.push("Todos");
+    this.setores.unshift("Todos");
 
     this.setor = "Todos";
   }
@@ -51,28 +52,28 @@ export class NcStatusComponent implements OnInit {
   popular() {
     this.single = [
       {
-        name: "Aberto",
+        name: this.translate.instant("global.status1"),
         value: 0,
       },
       {
-        name: "Em execução",
+        name: this.translate.instant("global.status2"),
         value: 0,
       },
       {
-        name: "Cancelada",
+        name: this.translate.instant("global.status6"),
         value: 0,
       },
       {
-        name: "Atrasada",
+        name: this.translate.instant("global.status3"),
         value: 0,
       },
       {
-        name: "Encerrada",
+        name: this.translate.instant("global.status7"),
         value: 0,
       },
     ];
     this.chartsService.ncs.forEach((element) => {
-      if (element.tipos_local_item == this.setor || this.setor == "Todos") {
+      if (element.tipos_local_item == this.setor || this.setor == this.translate.instant("global.all")) {
         console.log("entrou");
         switch (element.status) {
           case "open":
@@ -102,8 +103,8 @@ export class NcStatusComponent implements OnInit {
   showLegend = true;
   showXAxisLabel = true;
   showYAxisLabel = true;
-  xAxisLabel = "";
-  yAxisLabel = "";
+  xAxisLabel = "Status da Nc";
+  yAxisLabel = "Quantidade de NCs";
   gridColor = "ocean";
 
   onSelect(event: any) {}

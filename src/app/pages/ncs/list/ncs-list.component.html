@@ -250,13 +250,13 @@
         <td>
           <span class="p-column-title">Status</span>
           <span [ngSwitch]="ncListDTO.status" >
-            <span *ngSwitchCase="'open'"> Em elaboração</span>
-            <span *ngSwitchCase="'running'"> Em execução</span>
-            <span *ngSwitchCase="'late'"> Atrasada</span>
-            <span *ngSwitchCase="'deleted'"> Deletada</span>
-            <span *ngSwitchCase="'archived'"> Arquivada</span>
-            <span *ngSwitchCase="'canceled'"> Cancelada</span>
-            <span *ngSwitchCase="'closed'"> Fechada</span>
+            <span *ngSwitchCase="'open'"> {{'global.status1'| translate}}</span>
+                        <span *ngSwitchCase="'running'">{{'global.status2'| translate}}</span>
+                        <span *ngSwitchCase="'late'"> {{'global.status3'| translate}}</span>
+                        <span *ngSwitchCase="'deleted'"> {{'global.status4'| translate}}</span>
+                        <span *ngSwitchCase="'archived'"> {{'global.status5'| translate}}</span>
+                        <span *ngSwitchCase="'canceled'"> {{'global.status6'| translate}}</span>
+                        <span *ngSwitchCase="'closed'"> {{'global.status7'| translate}}</span>
           </span>
         </td>
 

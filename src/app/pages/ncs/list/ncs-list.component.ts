@@ -9,6 +9,7 @@ import { NonCompliance } from 'src/app/models/non-compliance';
 
 import { NcsListDTO } from './ncs-list-dto';
 import { DashboardsService } from '../../dashboards/dashboards.service';
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: "app-ncs-list",
@@ -73,7 +74,7 @@ export class NcsListComponent implements OnInit {
       next: (response: any) => {
         this.messageService.add({
           severity: "success",
-          summary: "NC criada com sucesso",
+          summary: this.translate.instant("list.success"),
           life: 3000,
         });
 
@@ -87,7 +88,7 @@ export class NcsListComponent implements OnInit {
       error: (err) => {
         this.messageService.add({
           severity: "error",
-          summary: "Houve um problema ao criar não conformidade.",
+          summary: this.translate.instant("list.fail"),
           life: 3000,
         });
       },
@@ -101,7 +102,8 @@ export class NcsListComponent implements OnInit {
     private config: PrimeNGConfig,
     public messageService: MessageService,
     private dashboardService: DashboardsService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    public translate: TranslateService
   ) {}
 
   ngOnInit(): void {
@@ -178,31 +180,32 @@ export class NcsListComponent implements OnInit {
   }
 
   parseMonthStrToNumber(strMonth: string): string {
+
     switch (strMonth) {
       case "january":
-        return "jan";
+        return this.translate.instant("primeng.monthNamesShort")[0];
       case "february":
-        return "fev";
+        return this.translate.instant("primeng.monthNamesShort")[1];
       case "march":
-        return "mar";
+        return this.translate.instant("primeng.monthNamesShort")[2];
       case "april":
-        return "abr";
+        return this.translate.instant("primeng.monthNamesShort")[3];
       case "may":
-        return "mai";
+        return this.translate.instant("primeng.monthNamesShort")[4];
       case "june":
-        return "jun";
+        return this.translate.instant("primeng.monthNamesShort")[5];
       case "july":
-        return "jul";
+        return this.translate.instant("primeng.monthNamesShort")[6];
       case "august":
-        return "ago";
+        return this.translate.instant("primeng.monthNamesShort")[7];
       case "september":
-        return "set";
+        return this.translate.instant("primeng.monthNamesShort")[8];
       case "october":
-        return "out";
+        return this.translate.instant("primeng.monthNamesShort")[9];
       case "november":
-        return "nov";
+        return this.translate.instant("primeng.monthNamesShort")[10];
       case "december":
-        return "dez";
+        return this.translate.instant("primeng.monthNamesShort")[11];
       default:
         return "0";
     }
@@ -235,8 +238,8 @@ export class NcsListComponent implements OnInit {
   cancelNc(ncDto: NonCompliance) {
     this.confirmationService.confirm({
       message:
-        "Esta ação irá alterar o status da NC para cancelada, deseja prosseguir com a operação?",
-      header: "Cancelar NC",
+          this.translate.instant("list.cancelMsg"),
+      header: this.translate.instant("list.cancelTitle"),
       icon: "pi pi-exclamation-triangle",
       accept: () => {
         if (ncDto.id) {
@@ -250,7 +253,7 @@ export class NcsListComponent implements OnInit {
                 next: (data) => {
                   this.messageService.add({
                     severity: "success",
-                    summary: "Não conformidade cancelada com sucesso.",
+                    summary: this.translate.instant("cancelNC.success"),
                     life: 3000,
                   });
 
@@ -259,7 +262,7 @@ export class NcsListComponent implements OnInit {
                 error: (err) => {
                   this.messageService.add({
                     severity: "error",
-                    summary: "Houve um problema ao cancelar não conformidade.",
+                    summary: this.translate.instant("cancelNC.error"),
                     life: 3000,
                   });
                 },
@@ -272,7 +275,7 @@ export class NcsListComponent implements OnInit {
       reject: () => {
         this.messageService.add({
           severity: "info",
-          summary: "Operação Cancelada",
+          summary: this.translate.instant("list.cancel"),
           life: 5000,
         });
       },
@@ -285,7 +288,7 @@ export class NcsListComponent implements OnInit {
     } else {
       this.messageService.add({
         severity: "info",
-        summary: "O processo de abertura desta nc já foi concluído",
+        summary: this.translate.instant("list.openInfo"),
         life: 5000,
       });
     }
@@ -298,7 +301,7 @@ export class NcsListComponent implements OnInit {
       this.messageService.add({
         severity: "info",
         summary:
-          "Conclua a abertura da NC para poder visualizar as informações",
+            this.translate.instant("list.infoMsg"),
         life: 5000,
       });
     }
@@ -369,23 +372,23 @@ export class NcsListComponent implements OnInit {
   }
 
   onSelectCard(event: any) {
-    if (event["name"] == "Total de NCs") {
+    if (event["name"] == this.translate.instant("global.NCsTotal")) {
       this.startListNcs("all");
     }
 
-    if (event["name"] == "NCs em elaboração") {
+    if (event["name"] == this.translate.instant("global.ncStatus1")) {
       this.startListNcs("open");
     }
 
-    if (event["name"] == "NCs atrasadas") {
+    if (event["name"] == this.translate.instant("global.ncStatus4")) {
       this.startListNcs("late");
     }
 
-    if (event["name"] == "NCs canceladas") {
+    if (event["name"] == this.translate.instant("global.ncStatus3")) {
       this.startListNcs("canceled");
     }
 
-    if (event["name"] == "NCs em execução") {
+    if (event["name"] == this.translate.instant("global.ncStatus2")) {
       this.startListNcs("running");
     }
   }
@@ -407,12 +410,12 @@ export class NcsListComponent implements OnInit {
 
           var series = [
             {
-              name: "Em elaboração",
+              name: this.translate.instant("global.status1"),
               value: `${data[key].Abertas}`,
             },
 
             {
-              name: "Fechada",
+              name: this.translate.instant("global.status7"),
               value: `${data[key].Fechadas}`,
             },
           ];

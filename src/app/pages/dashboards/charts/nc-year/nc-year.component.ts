@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { CostsComponent } from "src/app/pages/ncs/about/costs/costs.component";
 import { ChartsService } from "src/app/_services/charts.service";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: "app-nc-year",
@@ -8,7 +9,7 @@ import { ChartsService } from "src/app/_services/charts.service";
   styleUrls: ["./nc-year.component.css"],
 })
 export class NcYearComponent implements OnInit {
-  constructor(public chartsService: ChartsService) {}
+  constructor(public chartsService: ChartsService, public translate: TranslateService) {}
   @Input() size: number[] = [];
 
   ngOnInit(): void {
@@ -20,6 +21,7 @@ export class NcYearComponent implements OnInit {
   anos: number[] = [];
   quantAnos: number[] = [];
   quantCusto: number[] = [];
+  graph: any;
 
   popular() {
     this.chartsService.ncs.forEach((element) => {
@@ -50,28 +52,34 @@ export class NcYearComponent implements OnInit {
         }
       }
     });
-  }
+    console.log(this.quantAnos);
+    this.graph = {
+      data: [
+        {
+          x: this.anos,
+          y: this.quantCusto,
+          type: "scatter",
+          name: "Custo",
+          marker: { color: "rgb(252,134,43)" },
+        },
+        {
+          x: this.anos,
+          y: this.quantAnos,
+          name: "Quantidade",
+          type: "bar",
+          marker: { color: "rgb(29,104,251)" },
+        },
+      ],
+      layout: {
+        width: this.size[0],
+        height: this.size[1],
+        xaxis: {
+          autotick: false,
+          title: "Ano",
+        },
 
-  graph = {
-    data: [
-      {
-        x: this.anos,
-        y: this.quantCusto,
-        type: "scatter",
-        name: "Custo",
-        marker: { color: "rgb(252,134,43)" },
+        yaxis: { title: "Quantidade e Custo de NC" },
       },
-      {
-        x: this.anos,
-        y: this.quantAnos,
-        name: "Quantidade",
-        type: "bar",
-        marker: { color: "rgb(29,104,251)" },
-      },
-    ],
-    layout: {
-      width: 1600,
-      height: 500,
-    },
-  };
+    };
+  }
 }

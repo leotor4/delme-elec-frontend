@@ -112,7 +112,7 @@ export class ParceiroComponent implements OnInit {
     this.nonComplicanceService.pesquisar = "";
     this.nonComplicanceService.nc.partner = null;
 
-    if (this.nonComplicanceService.nc.tipos_parceiro_item == this.translate.instant("newNC.step1.partner.type1")) {
+    /*if (this.nonComplicanceService.nc.tipos_parceiro_item == this.translate.instant("newNC.step1.partner.type1")) {
       
       this.nonComplicanceService.nc.partner = this.translate.instant("newNC.step1.partner.type1")
       this.nonComplicanceService.pesquisar = this.nonComplicanceService.formIdentificacaoNC.value['tipos_local_item']
@@ -138,7 +138,7 @@ export class ParceiroComponent implements OnInit {
           break;
         }
       }
-    } else this.label= this.translate.instant("newNC.step1.partner.label1")
+    } else */this.label= this.translate.instant("newNC.step1.partner.label1")
   }
 
   onChangeAutoComplete() {

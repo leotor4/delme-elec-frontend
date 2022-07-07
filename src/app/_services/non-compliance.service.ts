@@ -19,6 +19,7 @@ import { UpdateDate } from "../models/update-date";
 import { ObjectUtils } from '../utils/object-utils';
 import { IdentificacaoNCDTO } from './../pages/ncs/create/steps/step1/identificacao-da-nc/identificacao-nc-dto';
 import { TokenStorageService } from "./token-storage.service";
+import {TranslateService} from "@ngx-translate/core";
 
 const moment = momentImported;
 
@@ -70,7 +71,10 @@ export class NonComplianceService {
   public formIdentificacaoNC: FormGroup;
   public formParceiroNC: FormGroup;
 
-  constructor(private http: HttpClient, private fb: FormBuilder, private user: TokenStorageService) {
+  constructor(private http: HttpClient,
+              private fb: FormBuilder,
+              private user: TokenStorageService,
+              public translate: TranslateService) {
     this.criarFormularios();
   }
 
@@ -92,22 +96,22 @@ export class NonComplianceService {
 	}
 
   validarCheckpoint():boolean{
-    if(this.nc.tipo_controle?.includes("OP")){
+    if(this.nc.tipo_controle?.includes(this.translate.instant("newNC.step1.checkpoint.type1"))||this.nc.tipo_controle?.includes(this.translate.instant("newNC.step1.checkpoint.type2"))||this.nc.tipo_controle?.includes(this.translate.instant("newNC.step1.checkpoint.type3"))){
       return (!!this.nc.num_op) && !!this.nc.instruction;
     }
 
-    if(this.nc.tipo_controle?.includes("NF-e(NOTA FISCAL ELETRÔNICA)")){
+    if(this.nc.tipo_controle?.includes(this.translate.instant("newNC.step1.checkpoint.type4"))){
       return (!!this.nc.num_nota
         
         );
     }
 
-    if(this.nc.tipo_controle == "PV(PEDIDO DE VENDA)" || this.nc.tipo_controle == "PC(PEDIDO DE COMPRA)" || this.nc.tipo_controle == "CC(COTAÇÃO COMERCIAL)"){
+    if(this.nc.tipo_controle == this.translate.instant("newNC.step1.checkpoint.type6") || this.nc.tipo_controle == this.translate.instant("newNC.step1.checkpoint.type5") || this.nc.tipo_controle == this.translate.instant("newNC.step1.checkpoint.type37")){
       return (!!this.nc.num_nota
         );
     }
 
-      if(this.nc.tipo_controle == "PR(PROCEDIMENTO)"){
+      if(this.nc.tipo_controle == this.translate.instant("newNC.step1.checkpoint.type8")){
       return (
         !!this.nc.procedure
         );
@@ -145,7 +149,7 @@ export class NonComplianceService {
       )
   }
   validaProd(){
-    if(this.formIdentificacaoNC.value.tipos_nc_item=="NC de Produto"){
+    if(this.formIdentificacaoNC.value.tipos_nc_item==this.translate.instant("newNC.step1.ncType.type6")){
       return this.nc.product
           && this.nc.quant_nc
           && this.nc.quant_total
@@ -153,9 +157,12 @@ export class NonComplianceService {
       return true
     }
   }
-
+  isType1or2(){
+    return this.formIdentificacaoNC.value.tipos_nc_item==this.translate.instant("newNC.step1.ncType.type1")||
+        this.formIdentificacaoNC.value.tipos_nc_item==this.translate.instant("newNC.step1.ncType.type2")
+  }
    validaEvi() {
-    if(this.formIdentificacaoNC.value.tipos_nc_item=="Auditoria Interna"||this.formIdentificacaoNC.value.tipos_nc_item=="Auditoria Externa"){
+    if(this.isType1or2()){
       return true
     } else {
       return this.returnfiles("evidenciasNc").length>0
@@ -178,7 +185,7 @@ export class NonComplianceService {
     } 
 
     else if (this.formIdentificacaoNC.value['tipos_nc_item']) {
-      var isInternaOrExterna = this.formIdentificacaoNC.value['tipos_nc_item'] == 'Auditoria Interna' || this.formIdentificacaoNC.value['tipos_nc_item'] == 'Auditoria Externa'
+      var isInternaOrExterna = this.formIdentificacaoNC.value['tipos_nc_item'] == this.translate.instant("newNC.step1.ncType.type1") || this.formIdentificacaoNC.value['tipos_nc_item'] == this.translate.instant("newNC.step1.ncType.type2")
       if (!isInternaOrExterna) return true
     } 
 
