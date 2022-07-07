@@ -43,7 +43,7 @@ export class NcStatusComponent implements OnInit {
   popularSetores() {
     this.setores = Object.assign([], this.chartsService.sectors);
 
-    this.setores.push("Todos");
+    this.setores.unshift("Todos");
 
     this.setor = "Todos";
   }
@@ -102,8 +102,8 @@ export class NcStatusComponent implements OnInit {
   showLegend = true;
   showXAxisLabel = true;
   showYAxisLabel = true;
-  xAxisLabel = "";
-  yAxisLabel = "";
+  xAxisLabel = "Status da Nc";
+  yAxisLabel = "Quantidade de NCs";
   gridColor = "ocean";
 
   onSelect(event: any) {}

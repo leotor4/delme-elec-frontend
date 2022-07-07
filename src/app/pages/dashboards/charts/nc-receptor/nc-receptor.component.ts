@@ -17,13 +17,13 @@ export class NcReceptorComponent implements OnInit {
   single: any[] = [];
   tipos: string[] = [];
   tiposNc: string[] = [
+    "Todos",
     "Auditoria Interna",
     "Auditoria Externa",
     "NC de Fornecedor",
     "NC de Processo",
     "NC de Cliente",
     "NC de Produto",
-    "Todos",
   ];
   tiposNcAtual = "Todos";
   quant: number[] = [];
@@ -42,14 +42,13 @@ export class NcReceptorComponent implements OnInit {
       this.quant.push(0);
     }
     this.chartsService.ncs.forEach((element) => {
-    
       if (
         element.tipos_local_item &&
         (element.tipos_nc_item == this.tiposNcAtual ||
           this.tiposNcAtual == "Todos")
       ) {
         let setor = element.tipos_local_item;
-        
+
         let index = this.tipos.indexOf(setor);
         if (index == -1) {
           this.tipos.push(setor);
@@ -77,7 +76,7 @@ export class NcReceptorComponent implements OnInit {
   showLegend = true;
   showXAxisLabel = true;
   showYAxisLabel = true;
-  xAxisLabel = "";
-  yAxisLabel = "";
+  xAxisLabel = "Setores";
+  yAxisLabel = "Quantidade de NC";
   title = "Departamento Receptor x Quantidade de Ncs";
 }

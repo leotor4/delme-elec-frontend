@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { ChartsService } from "src/app/_services/charts.service";
 import momentImported from "moment";
 const moment = momentImported;
@@ -10,6 +10,7 @@ const moment = momentImported;
 })
 export class NcProductsComponent implements OnInit {
   constructor(public chartsService: ChartsService) {}
+  @Input() size: number[] = [];
   display = true;
   ngOnInit(): void {
     this.popularSetores();
@@ -47,7 +48,10 @@ export class NcProductsComponent implements OnInit {
     this.chartsService.ncs.forEach((element) => {
       let ncDate = new Date(element.data_abertura!);
       let ncMes = ncDate.getMonth();
-      if (ncDate.getFullYear() == date.getFullYear() && (this.setor == element.tipos_local_item || this.setor == "Todos")) {
+      if (
+        ncDate.getFullYear() == date.getFullYear() &&
+        (this.setor == element.tipos_local_item || this.setor == "Todos")
+      ) {
         this.quantMeses[ncMes]++;
 
         if (element.quant_nc) {
@@ -74,8 +78,10 @@ export class NcProductsComponent implements OnInit {
         },
       ],
       layout: {
-        width: 1600,
-        height: 500,
+        width: this.size[0],
+        height: this.size[1],
+        xaxis: { title: "Ano" },
+        yaxis: { title: "Quantidade de Produtos" },
         title: "",
       },
     };
@@ -83,7 +89,7 @@ export class NcProductsComponent implements OnInit {
 
   popularSetores() {
     this.setoresAux = Object.assign([], this.chartsService.sectors);
-    this.setoresAux.push("Todos");
+    this.setoresAux.unshift("Todos");
     this.setor = "Todos";
   }
 }

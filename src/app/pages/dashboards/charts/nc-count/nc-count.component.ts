@@ -64,6 +64,12 @@ export class NcCountComponent implements OnInit {
     layout: {
       width: 1600,
       height: 500,
+      xaxis: {
+        autotick: false,
+        title: "Ano",
+      },
+
+      yaxis: { title: "Quantidade de NC" },
     },
   };
 }

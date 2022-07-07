@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { ChartsService } from "src/app/_services/charts.service";
 
 @Component({
@@ -8,6 +8,7 @@ import { ChartsService } from "src/app/_services/charts.service";
 })
 export class CostSectorComponent implements OnInit {
   constructor(public chartsService: ChartsService) {}
+  @Input() size: number[] = [];
   display = true;
   ngOnInit(): void {
     this.popularSetores();
@@ -21,7 +22,7 @@ export class CostSectorComponent implements OnInit {
   quantAnos: number[] = [];
   quantCusto: number[] = [];
   graph: any;
-  title = "Número de Ncs x Custo Total"
+  title = "Número de Ncs x Custo Total";
 
   popular() {
     this.setores = [];
@@ -79,8 +80,14 @@ export class CostSectorComponent implements OnInit {
         },
       ],
       layout: {
-        width: 1600,
-        height: 500,
+        width: this.size[0],
+        height: this.size[1],
+        xaxis: {
+          autotick: false,
+          title: "Setor",
+        },
+
+        yaxis: { title: "Quantidade e Custo de NC" },
         title: "",
       },
     };
@@ -88,7 +95,7 @@ export class CostSectorComponent implements OnInit {
 
   popularSetores() {
     this.setoresAux = Object.assign([], this.chartsService.sectors);
-    this.setoresAux.push("Todos");
+    this.setoresAux.unshift("Todos");
     this.setor = "Todos";
   }
 }

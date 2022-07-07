@@ -17,13 +17,13 @@ export class NcEmissorComponent implements OnInit {
   single: any[] = [];
   tipos: string[] = [];
   tiposNc: string[] = [
+    "Todos",
     "Auditoria Interna",
     "Auditoria Externa",
     "NC de Fornecedor",
     "NC de Processo",
     "NC de Cliente",
     "NC de Produto",
-    "Todos",
   ];
   tiposNcAtual = "Todos";
   quant: number[] = [];
@@ -35,9 +35,9 @@ export class NcEmissorComponent implements OnInit {
   }
 
   popular() {
-    this.quant=[]
-    this.single=[]
-    
+    this.quant = [];
+    this.single = [];
+
     for (var i = 0; i < this.tipos.length; i++) {
       this.quant.push(0);
     }
@@ -75,7 +75,7 @@ export class NcEmissorComponent implements OnInit {
   showLegend = true;
   showXAxisLabel = true;
   showYAxisLabel = true;
-  xAxisLabel = "";
-  yAxisLabel = "";
+  xAxisLabel = "Setores";
+  yAxisLabel = "Quantidade de NC";
   title = "Departamento Emissor x Quantidade de Ncs";
 }

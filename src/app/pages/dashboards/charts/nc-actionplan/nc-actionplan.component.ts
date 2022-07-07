@@ -19,13 +19,13 @@ export class NcActionplanComponent implements OnInit {
   tipos: string[] = [];
   graph: any;
   tiposNc: string[] = [
+    "Todos",
     "Auditoria Interna",
     "Auditoria Externa",
     "NC de Fornecedor",
     "NC de Processo",
     "NC de Cliente",
     "NC de Produto",
-    "Todos",
   ];
   tiposNcAtual = "Todos";
 
@@ -126,7 +126,17 @@ export class NcActionplanComponent implements OnInit {
           marker: { color: "rgb(252,134,43)" },
         },
       ],
-      layout: { autosize: true, title: "" },
+      layout: {
+        width: this.size[0],
+        height: this.size[1],
+        title: "",
+        xaxis: {
+          autotick: false,
+          title: "Setores",
+        },
+
+        yaxis: { title: "Quantidade de Planos de Ação" },
+      },
     };
   }
 

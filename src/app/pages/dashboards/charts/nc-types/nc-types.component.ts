@@ -60,7 +60,7 @@ export class NcTypesComponent implements OnInit {
   popularSetores() {
     this.setores = Object.assign([], this.chartsService.sectors);
 
-    this.setores.push("Todos");
+    this.setores.unshift("Todos");
 
     this.setor = "Todos";
   }
@@ -72,7 +72,7 @@ export class NcTypesComponent implements OnInit {
   showLegend = true;
   showXAxisLabel = true;
   showYAxisLabel = true;
-  xAxisLabel = "";
-  yAxisLabel = "";
+  xAxisLabel = "Tipos de NC";
+  yAxisLabel = "Quantidade de NC";
   gridColor = "ocean";
 }

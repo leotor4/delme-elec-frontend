@@ -12,7 +12,6 @@ export class NcReceptorEmissorComponent implements OnInit {
   ngOnInit(): void {
     this.tipos = Object.assign([], this.chartsService.sectors);
     this.popular();
-    console.log(this.graph);
   }
 
   single: any[] = [];
@@ -20,13 +19,13 @@ export class NcReceptorEmissorComponent implements OnInit {
   tipos: string[] = [];
   graph: any;
   tiposNc: string[] = [
+    "Todos",
     "Auditoria Interna",
     "Auditoria Externa",
     "NC de Fornecedor",
     "NC de Processo",
     "NC de Cliente",
     "NC de Produto",
-    "Todos",
   ];
   tiposNcAtual = "Todos";
   quant: number[] = [];
@@ -99,6 +98,7 @@ export class NcReceptorEmissorComponent implements OnInit {
           y: this.quant,
           type: "bar",
           name: "Custo",
+
           marker: { color: "rgb(29,104,251)" },
         },
         {
@@ -110,10 +110,14 @@ export class NcReceptorEmissorComponent implements OnInit {
         },
       ],
       layout: {
-        width: 1600,
-        height: 500,
+        width: this.size[0],
+        height: this.size[1],
+        xaxis: { title: "Setores" },
+        yaxis: { title: "Custo" },
+        autosize: true,
         title: "",
       },
+      config: { responsive: true },
     };
   }
 
