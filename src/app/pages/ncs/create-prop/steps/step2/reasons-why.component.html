@@ -1,9 +1,9 @@
 
 <div class="d-flex flex-lg-row flex-column justify-content-between">
     <div class="cabecalho">
-        <h1 class="mr-3">5 Porquês</h1>
+        <h1 class="mr-3">{{'about.proposalComponent.5why'| translate}}</h1>
         <p>
-            Descreva a possivel causa do problema utilizando o método dos 5 porquês.
+            {{'createProp.step1.5why'| translate}}
         </p>
     </div>
     <div class="d-flex justify-content-end align-items-center mb-3" *ngIf="showAllTextAreas">
@@ -12,11 +12,11 @@
                 (click)="showAllTextAreas=false"
         >
             <i class="bi bi-arrow-left"></i>
-            Retornar aos Porquês
+            {{'createProp.step1.backWhy'| translate}}
         </button>
     </div>
 </div>
-<div *ngIf="false">
+<!--<div *ngIf="false">
     <div class="d-flex justify-content-center">
         <div class="d-block">
             <div class="d-flex">
@@ -58,8 +58,8 @@
             <i class="bi bi-arrow-right"></i>
         </button>
     </div>
-</div>
-<div *ngIf="true">
+</div>-->
+<div>
     <div class="d-flex justify-content-center">
         <div class="d-block p-2 caixa-cinza mb-3">
             <div class="d-flex">
@@ -67,8 +67,8 @@
                     1
                 </p-chip>
                 <div class="d-flex align-items-center flex-row">
-                    <label class="">Porquê</label>
-                    <input style="width:300px;" class="ml-1 mr-1" type="text" placeholder="Escreva o primeiro porquê" [(ngModel)]="propService.step2.textAreas[5]">
+                    <label class="">{{'createProp.step1.why'| translate}}</label>
+                    <input style="width:300px;" class="ml-1 mr-1" type="text" [placeholder]="'createProp.step1.firstWhy'| translate" [(ngModel)]="propService.step2.textAreas[5]">
                     <label class="">?</label>
                 </div>
             </div>
@@ -83,11 +83,11 @@
                     <p-chip>
                         2
                     </p-chip>
-                    <label class="ml-3">Porquê {{propService.step2.textAreas[0]}} ?</label>
+                    <label class="ml-3">{{'createProp.step1.why'| translate}} {{propService.step2.textAreas[0]}} ?</label>
                 </div>
                 <div class="form-check">
-                    <p-radioButton *ngIf="propService.step2.textAreas[1] else [disabled]" name="cause" value="cause2" [(ngModel)]="propService.step2.selectedValue"></p-radioButton>
-                    <label class="form-check-label radio-label ml-1">Esta é a Causa Raiz</label>
+                    <p-radioButton *ngIf="propService.step2.textAreas[1] " name="cause" value="cause2" [(ngModel)]="propService.step2.selectedValue"></p-radioButton>
+                    <label class="form-check-label radio-label ml-1">{{'createProp.step1.rootCause'| translate}}</label>
                 </div>
             </div>
 
@@ -100,11 +100,11 @@
                     <p-chip>
                         3
                     </p-chip>
-                    <label class="ml-3">Porquê {{propService.step2.textAreas[1]}} ?</label>
+                    <label class="ml-3">{{'createProp.step1.why'| translate}} {{propService.step2.textAreas[1]}} ?</label>
                 </div>
                 <div class="form-check">
-                    <p-radioButton *ngIf="propService.step2.textAreas[2] else [disabled]" name="cause" value="cause3" [(ngModel)]="propService.step2.selectedValue"></p-radioButton>
-                    <label class="form-check-label radio-label ml-1">Esta é a Causa Raiz</label>
+                    <p-radioButton *ngIf="propService.step2.textAreas[2] " name="cause" value="cause3" [(ngModel)]="propService.step2.selectedValue"></p-radioButton>
+                    <label class="form-check-label radio-label ml-1">{{'createProp.step1.rootCause'| translate}}</label>
                 </div>
             </div>
             <textarea  [(ngModel)]="propService.step2.textAreas[2]" pInputTextarea cols="60" rows="5" class="textarea">
@@ -118,11 +118,11 @@
                 <p-chip>
                     4
                 </p-chip>
-                <label class="ml-3">Porquê {{propService.step2.textAreas[2]}} ?</label>
+                <label class="ml-3">{{'createProp.step1.why'| translate}} {{propService.step2.textAreas[2]}} ?</label>
             </div>
             <div class="form-check">
-                <p-radioButton *ngIf="propService.step2.textAreas[3] else [disabled]" name="cause" value="cause4" [(ngModel)]="propService.step2.selectedValue"></p-radioButton>
-                <label class="form-check-label radio-label ml-1">Esta é a Causa Raiz</label>
+                <p-radioButton *ngIf="propService.step2.textAreas[3]" name="cause" value="cause4" [(ngModel)]="propService.step2.selectedValue"></p-radioButton>
+                <label class="form-check-label radio-label ml-1">{{'createProp.step1.rootCause'| translate}}</label>
             </div>
         </div>
             <textarea  [(ngModel)]="propService.step2.textAreas[3]" pInputTextarea cols="60" rows="5" class="textarea">
@@ -134,11 +134,11 @@
                     <p-chip>
                         5
                     </p-chip>
-                    <label class="ml-3">Porquê {{propService.step2.textAreas[3]}} ?</label>
+                    <label class="ml-3">{{'createProp.step1.why'| translate}} {{propService.step2.textAreas[3]}} ?</label>
                 </div>
                 <div class="form-check">
-                    <p-radioButton *ngIf="propService.step2.textAreas[4] else [disabled]" name="cause" value="cause5" [(ngModel)]="propService.step2.selectedValue"></p-radioButton>
-                    <label class="form-check-label radio-label ml-1">Esta é a Causa Raiz</label>
+                    <p-radioButton *ngIf="propService.step2.textAreas[4] " name="cause" value="cause5" [(ngModel)]="propService.step2.selectedValue"></p-radioButton>
+                    <label class="form-check-label radio-label ml-1">{{'createProp.step1.rootCause'| translate}}</label>
                 </div>
             </div>
             <textarea  [(ngModel)]="propService.step2.textAreas[4]" pInputTextarea cols="60" rows="5" class="textarea">

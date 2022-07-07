@@ -3,10 +3,10 @@
         <div class="d-flex">
             <div class="cabecalho">
                 <div class="d-flex align-items-center">
-                    <h1 class="mr-3">Avaliação SGQ</h1>
+                    <h1 class="mr-3">{{'about.sgqEval'| translate}}</h1>
                 </div>
                 <p>
-                    Vizualize a avaliação ou avalie esta NC.
+                    {{'about.sgqEvalComponent.subtitle'| translate}}
                 </p>
             </div>
         </div>
@@ -17,19 +17,19 @@
         <img *ngIf="aboutSrv.nc?.proposalSolution && aboutSrv.nc?.costs?.length>0" src="../../../../../../../assets/images/Illustration.svg" alt="" />
     </div>
     <div *ngIf="!(aboutSrv.nc?.proposalSolution && aboutSrv.nc?.costs?.length>0)" class="mt-3">
-        <h2 class="text-center text-black">Ainda falta uma fase!</h2>
-        <h3 class="text-center text-black">Para avaliar esta NC, é necessário primeiro completar as ações do plano de ação.</h3>
-        <h5 class="text-center">Contate o responsável caso este não seja você.</h5>
+        <h2 class="text-center text-black">{{'about.sgqEvalComponent.requiredSteps.title1'| translate}}</h2>
+        <h3 class="text-center text-black">{{'about.sgqEvalComponent.requiredSteps.title2'| translate}}</h3>
+        <h5 class="text-center">{{'about.sgqEvalComponent.requiredSteps.title3'| translate}}</h5>
     </div>
     <div *ngIf="aboutSrv.nc?.proposalSolution && aboutSrv.nc?.costs?.length>0" class="mt-3">
-        <h2 class="text-center text-black">NC ainda não avaliada!</h2>
-        <h3 class="text-center text-black">A fase de avaliação deve ser completada para a exibição de resultados.</h3>
-        <h5 class="text-center">Contate o responsável caso este não seja você.</h5>
+        <h2 class="text-center text-black">{{'about.sgqEvalComponent.ready.title1'| translate}}</h2>
+        <h3 class="text-center text-black">{{'about.sgqEvalComponent.ready.title2'| translate}}</h3>
+        <h5 class="text-center">{{'about.sgqEvalComponent.ready.title3'| translate}}</h5>
     </div>
 
     <div class="text-center">
         <button type="button" class="btn btn-dark" [disabled]="!(aboutSrv.nc?.proposalSolution && aboutSrv.nc?.costs?.length>0)" routerLink="../../sgq/{{id}}">
-            Iniciar Avaliação
+            {{'about.sgqEvalComponent.createBtn'| translate}}
             <i class="bi bi-file-earmark-medical"></i>
         </button>
     </div>
@@ -39,10 +39,10 @@
         <div class="d-flex">
             <div class="cabecalho">
                 <div class="d-flex align-items-center">
-                    <h1 class="mr-3">Avaliação SGQ</h1>
+                    <h1 class="mr-3">{{'about.sgqEval'| translate}}</h1>
                 </div>
                 <p>
-                    Vizualize a avaliação ou avalie esta NC.
+                    {{'about.sgqEvalComponent.subtitle'| translate}}
                 </p>
             </div>
         </div>
@@ -53,7 +53,7 @@
                     (click)="isAllOpen = true"
             >
                 <i class="bi bi-arrows-expand"></i>
-                Expandir Todos
+                {{'global.expand'| translate}}
             </button>
             <button
                     [class]="isAllOpen ? unselectedClass : selectedClass"
@@ -61,10 +61,10 @@
                     class="btn-sm"
             >
                 <i class="bi bi-arrows-collapse"></i>
-                Colapsar Todos
+                {{'global.colapse'| translate}}
             </button>
-            <button class="btn btn-dark btn ml-3" routerLink="../../sgq/{{id}}">
-                Editar Avaliação
+            <button class="btn btn-dark btn-sm ml-3" routerLink="../../sgq/{{id}}">
+                {{'about.sgqEvalComponent.editBtn'| translate}}
                 <i class="bi bi-pencil-square"></i>
             </button>
         </div>
@@ -75,7 +75,7 @@
                 <div class="d-flex justify-content-between accordion">
                     <p>
                         <i class="bi bi-link-45deg"></i>
-                        Reincidência
+                        {{'about.sgqEvalComponent.recurrence.title'| translate}}
                     </p>
                 </div>
             </ng-template>
@@ -84,13 +84,13 @@
                     <p-table [value]="aboutSrv.nc.sgqEvaluation.recurrence||[]">
                         <ng-template pTemplate="header">
                             <tr>
-                                <th>Número</th>
-                                <th>Emissor</th>
-                                <th>Tipo de NC</th>
-                                <th>Setor Afetado</th>
-                                <th>Produto</th>
-                                <th>Status</th>
-                                <th>Data de Fechamento</th>
+                                <th>{{'global.number'| translate}}</th>
+                                <th>{{'newNC.review.issuer'| translate}}</th>
+                                <th>{{'about.sgqEvalComponent.recurrence.type'| translate}}</th>
+                                <th>{{'about.sgqEvalComponent.recurrence.sector'| translate}}</th>
+                                <th>{{'about.sgqEvalComponent.recurrence.product'| translate}}</th>
+                                <th>{{'global.status'| translate}}</th>
+                                <th>{{'about.sgqEvalComponent.deadline'| translate}}</th>
                                 <th></th>
                             </tr>
                         </ng-template>
@@ -105,13 +105,13 @@
 
                                 <td>
                     <span [ngSwitch]="nc.status" >
-                        <span *ngSwitchCase="'open'"> Aberta</span>
-                        <span *ngSwitchCase="'running'"> Em execução</span>
-                        <span *ngSwitchCase="'late'"> Atrasada</span>
-                        <span *ngSwitchCase="'deleted'"> Deletada</span>
-                        <span *ngSwitchCase="'archived'"> Arquivada</span>
-                        <span *ngSwitchCase="'canceled'"> Cancelada</span>
-                        <span *ngSwitchCase="'closed'"> Fechada</span>
+                        <span *ngSwitchCase="'open'"> {{'global.status1'| translate}}</span>
+                        <span *ngSwitchCase="'running'">{{'global.status2'| translate}}</span>
+                        <span *ngSwitchCase="'late'"> {{'global.status3'| translate}}</span>
+                        <span *ngSwitchCase="'deleted'"> {{'global.status4'| translate}}</span>
+                        <span *ngSwitchCase="'archived'"> {{'global.status5'| translate}}</span>
+                        <span *ngSwitchCase="'canceled'"> {{'global.status6'| translate}}</span>
+                        <span *ngSwitchCase="'closed'"> {{'global.status7'| translate}}</span>
                     </span>
                                 </td>
                                 <td>{{ parseDate(nc.data_fechamento||"")||"00/00/0000" }}</td>
@@ -135,7 +135,7 @@
                 <div class="d-flex justify-content-between accordion">
                     <p>
                         <i class="pi pi-compass"></i>
-                        Relato e Evidências da Solução do Problema
+                        {{'about.sgqEvalComponent.evidence'| translate}}
                     </p>
                 </div>
             </ng-template>
@@ -167,7 +167,7 @@
                 <div class="d-flex justify-content-between accordion">
                     <p>
                         <i class="pi pi-compass"></i>
-                        Riscos e Oportunidades
+                        {{'about.sgqEvalComponent.risks'| translate}}
                     </p>
                 </div>
             </ng-template>
@@ -183,7 +183,7 @@
                 <div class="d-flex justify-content-between accordion">
                     <p>
                         <i class="bi bi-envelope-exclamation"></i>
-                        Mudanças
+                        {{'about.sgqEvalComponent.changes'| translate}}
                     </p>
                 </div>
             </ng-template>
@@ -199,7 +199,7 @@
                 <div class="d-flex justify-content-between accordion">
                     <p>
                         <i class="bi bi-envelope"></i>
-                        Notificação por e-mail
+                        {{'global.contacts.notifications'| translate}}
                     </p>
                 </div>
             </ng-template>
@@ -208,9 +208,9 @@
                     <p-table [value]="getContacts()">
                         <ng-template pTemplate="header">
                             <tr>
-                                <th>Nome</th>
-                                <th>E-mail</th>
-                                <th>Tipo de Contato</th>
+                                <th>{{'global.contacts.name'| translate}}</th>
+                                <th>{{'global.contacts.email'| translate}}</th>
+                                <th>{{'global.contacts.partner'| translate}}</th>
                             </tr>
                         </ng-template>
                         <ng-template pTemplate="body" let-contact let-i="rowIndex">
@@ -225,6 +225,4 @@
             </ng-template>
         </p-accordionTab>
     </p-accordion>
-
-
 </div>

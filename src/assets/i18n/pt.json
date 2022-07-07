@@ -54,7 +54,7 @@
             "Maio",
             "Junho",
             "Julho",
-            "Augosto",
+            "Agosto",
             "Setembro",
             "Outubro",
             "Novembro",
@@ -73,7 +73,7 @@
         "emptyFilterMessage": "Nenhum resultado encontrado - Filtro"
     },
     "import": {
-        "home": "Inicio",
+        "home": "Início",
         "fileUpload": {
             "chooseLabel": "Escolher Arquivo",
             "uploadLabel": "Importar Arquivo Selecionado",
@@ -94,21 +94,49 @@
         "fail": "Erro ao importar arquivo"
     },
     "global": {
+        "finishTest": "Concluir Avaliação",
+        "companyName": "Electroson Brasil",
+        "labUpper": "LABORATÓRIO",
+        "PCP": "PCP",
+        "purchasesUpper": "COMPRAS",
+        "all": "Todos",
+        "workplaceSecurityUpper": "SEGURANÇA DO TRABALHO",
+        "commercialUpper": "COMERCIAL",
+        "NCsTotal": "Total de NCs",
+        "ncStatus1": "NCs em elaboração",
+        "ncStatus2": "NCs em execução",
+        "ncStatus3": "NCs canceladas",
+        "ncStatus4": "NCs atrasadas",
+        "canceled": "Canceladas",
+        "late": "Atrasadas",
+        "SGQ": "SGQ",
         "home": "Inicio",
         "cancel": "Cancelar",
         "save": "Salvar",
         "confirm": "Confirmar",
+        "NCs": "Não Conformidades",
         "yes": "Sim",
         "no": "Não",
         "back": "Voltar",
+        "revision": "revisão",
+        "close": "Fechar",
+        "importData": "Importar Dados",
+        "barChart": "Bar Chart",
+        "groupedBarChart": "Grouped Bar Chart",
+        "dashboards": "Dashboards",
+        "logout": "Sair",
         "type": "Digite",
         "next" : "Avançar",
         "finish": "Concluir",
         "number": "Número",
+        "editBtn": "Editar",
         "saved": "salvo com sucesso.",
         "step": "Passo ",
         "reject": "Não, cancelar",
         "select": "Selecione...",
+        "deadline": "Prazo",
+        "status": "Status",
+        "responsible": "Responsável",
         "error": "Houve um problema ao salvar dados do passo ",
         "requiredFields": "Os campos marcados com asterisco (*) são de preenchimento obrigatório",
         "expand": "Expandir Todos",
@@ -118,6 +146,17 @@
         "description": "Descrição",
         "dontApply": "Não se Aplica",
         "empty": "Dado não preenchido",
+        "status1": "Em elaboração",
+        "status2": "Em execução",
+        "status3": "Atrasada",
+        "status4": "Deletada",
+        "status5": "Arquivada",
+        "status6": "Cancelada",
+        "status7": "Fechada",
+        "status8": "Concluido",
+        "status9": "Atrasado",
+        "status10": "Cancelado",
+        "": "Número de ncs",
         "fileInput": {
             "title": "Anexe evidências objetivas ou fotográficas",
             "title2": "Anexar Documentos",
@@ -130,6 +169,8 @@
             "name": "Nome",
             "email": "E-mail",
             "partner": "Parceiro",
+            "title": "Emitir Notificações",
+            "subtitle": "Visualize os contatos a serem notificados acerca do andamento desta NC. Por padrão, são adicionados contatos já incluidos nos passos anteriores.",
             "addTitle": "Adicionar outros contatos",
             "addSubTitle": "Adicione contatos de partes interessadas que serão notificadas acerca do andamento desta NC",
             "search": "Busque por nome ou e-mail...",
@@ -223,6 +264,9 @@
                 "type1": "Interno",
                 "type2": "Cliente",
                 "type3": "Fornecedor",
+                "type1Upper": "INTERNO",
+                "type2Upper": "CLIENTE",
+                "type3Upper": "FORNECEDOR",
                 "label1": "Busque por SAP, razão social ou contato...",
                 "label2": "Busque por nome do setor ou responsável...",
                 "phone": "Telefone",
@@ -304,7 +348,11 @@
         "success": "Senha cadastrada com sucesso!",
         "error1": "Digite seu e-mail e sua senha",
         "error2": "Preencha os campos com sua nova senha!",
-        "error3": "Senhas não conferem!"
+        "error3": "Senhas não conferem!",
+        "error4": "Faça login para acessar o sistema",
+        "error5": "Página não encontrada",
+        "error6": "Credenciais Inválidas",
+        "error7": "Ocorreu um erro no servidor!!"
     },
     "closeNC":{
         "question": "O plano de ação foi executado e de forma satisfatória?",
@@ -313,14 +361,227 @@
         "question2": "Deseja adicionar comentários?",
         "info": "Isto é opcional",
         "confirm": "Fechar NC",
-        "success": "Fechamento criado com sucesso"
+        "success": "Fechamento criado com sucesso",
+        "comments": "Comentários"
     },
     "cancelNC": {
         "title": "Deseja cancelar esta não conformidade?",
         "accept": "Sim, cancelar não conformidade",
         "success": "Não conformidade cancelada com sucesso.",
         "error": "Houve um problema ao cancelar não conformidade."
+    },
+    "about": {
+        "viewNC": "Informações da NC",
+        "proposal": "Proposta de Solução",
+        "costs": "Custos Incorridos",
+        "backToNC": "Voltar Para Nc",
+        "sgqEval": "Avaliação SGQ",
+        "closing": "Fechamento",
+        "headerTitle": "Não Conformidade",
+        "export": "Exportar NC",
+        "closingComponent": {
+            "title": "Fechamento da NC",
+            "subtitle": "Realize o fechamento desta NC.",
+            "header": "Verificação de Eficácia.",
+            "requiredSteps": {
+                "title1": "Ainda faltam algumas fases!",
+                "title2": "Esta NC ainda não pode ser finalizada.",
+                "title3": "Verifique com o andamento desta NC e contate os responsáveis para a realização de suas tarefas para então finalizar esta NC."
+            },
+            "ready": {
+                "title1": "Esta NC pode ser finalizada!",
+                "title2": "Tudo pronto para o fechamento?"
+            },
+            "btn": "Fechar NC",
+            "verification": "Verificação da Eficácia"
+        },
+        "costsComponent": {
+            "title": "Custos Incorridos",
+            "subtitle": "Informe se houve custos incorridos nesta NC.",
+            "newCostBtn": "Novo Custo Incorrido",
+            "documents": {
+                "title": "Documentos Anexados",
+                "document": "Documento",
+                "date": "Data de Anexo",
+                "attachedBy": "Anexado Por",
+                "total": "Valor Total"
+            },
+            "acceptDel": "Sim, excluir!",
+            "newCostTitle": "Registrar Custo Incorrido",
+            "newCostSubtitle": "Informe o valor e anexe o relatório de custos ou documento para registrar um custo incorrido.",
+            "attachTitle": "Anexar Documento",
+            "attachSubtitle": "Anexar relatório de custos",
+            "save": "Registrar Custo Incorrido",
+            "successDel": "Documento removido com sucesso",
+            "delTitle": "Excluir Documento",
+            "delMessage1": "Você tem certeza que quer excluir o documento ",
+            "delMessage2": " da lista?",
+            "successSave": "Documento adicionado com sucesso"
+        },
+        "proposalComponent": {
+            "title": "Análise da Proposta de Solução",
+            "subtitle1": "Revise ou altere os dados da proposta de solução. Se tudo estiver OK, submeta a análise desta proposta de solução.",
+            "ishikawaDiagram": "Diagrama de Ishikawa",
+            "material": "Matéria Prima",
+            "measure": "Medição",
+            "method": "Método",
+            "labor": "Mão de Obra",
+            "ambient": "Meio Ambiente",
+            "machine": "Máquina",
+            "effect": "Efeito",
+            "5why": "5 Porquês",
+            "rootCause": "Causa Raiz",
+            "actionPlan": "Plano de Ação",
+            "subtitle2": "Elabore e visualize uma solução para esta NC.",
+            "createBtn": "Criar Proposta",
+            "ready1": "NC ainda sem solução proposta!",
+            "ready2": "A fase de solução deve ser completada para exibição de resultados.",
+            "ready3": "Contate o responsável pela análise caso este não seja você."
+        },
+        "sgqEvalComponent": {
+            "subtitle": "Vizualize a avaliação ou avalie esta NC.",
+            "requiredSteps": {
+                "title1": "Ainda falta uma fase!",
+                "title2": "Para avaliar esta NC, é necessário primeiro completar as ações do plano de ação.",
+                "title3": "Contate o responsável caso este não seja você."
+            },
+            "ready": {
+                "title1": "NC ainda não avaliada!",
+                "title2": "A fase de avaliação deve ser completada para a exibição de resultados.",
+                "title3": "Contate o responsável caso este não seja você."
+            },
+            "createBtn": "Iniciar Avaliação",
+            "editBtn": "Editar Avaliação",
+            "recurrence": {
+                "title": "Reincidência",
+                "type": "Tipo de NC ",
+                "sector": "Setor Afetado",
+                "product": "Produto"
+            },
+            "evidence": "Relato e Evidências da Solução do Problema",
+            "risks": "Riscos e Oportunidades",
+            "changes": "Mudanças",
+            "deadline": "Data de Fechamento"
+        },
+        "ncView": {
+            "title": "Informações da NC",
+            "subtitle": "Visualize os detalhes cadastrados nesta NC.",
+            "editBtn": "Editar NC",
+            "description": "Descrição da Não Conformidade"
+        }
+    },
+    "createProp": {
+        "success": "Proposta de solução criada com sucesso.",
+        "success2": "Proposta de solução criada com sucesso.",
+        "fail1": "Houve um erro ao criar proposta de solução.",
+        "fail2": "Não conformidade não encontrada.",
+        "fail3": "Houve um erro ao salvar passo proposta de solução.",
+        "label1": "Diagrama de Ishikawa e 5 Porquês",
+        "label2": "Plano de Ação e Emitir Notificação",
+        "label3": "Revisão",
+        "search": "Selecione ou busque...",
+        "step1": {
+            "subtitle": "Descreva o problema referente aos respectivos campos de acordo com o Diagrama de Causa e Efeito - Ishikawa.",
+            "descBtn": "Visualizar Descrição da NC",
+            "moreInfo": "Acrescente e detalhe abaixo outras informações pertinentes:",
+            "material": "Quando ocorre falta/excesso de insumos ou estes são de má qualidade.",
+            "materialCheck1": "Falta de Insumos",
+            "materialCheck2": "Excesso de Insumos",
+            "materialCheck3": "Matéria prima de má qualidade",
+            "measure": "Quando há erros, falta ou excesso de parâmetros de inspeção, não atingimento de metas ou outras informações de medição.",
+            "measureCheck1": "Falta de Parâmetros",
+            "measureCheck2": "Excesso de Parâmetros",
+            "measureCheck3": "Não atingimento de metas",
+            "method": "Quando há ausência de métodos formais ou estes são inadequados, incompletos, incorretos ou não foram divulgados adequadamente. Também se aplica quando: há falta de inspeção, ausência ou falha em sistemas automatizados, má gestão como um todo.",
+            "it": "IT - Instrução de Trabalho",
+            "search": "Busque...",
+            "pr": "PR - Procedimento",
+            "nr": "NR - Norma Regulamentadora",
+            "iso": "ISO - Norma NBR",
+            "labor": "Quando o colaborador desrespeita procedimentos, desconhece a maneira correta de executar o trabalho (falta de treinamento), ou o faz de maneira inadequada (com pressa, imprudência, etc) ou descompromissada (falta de responsabilidade, motivação, etc).",
+            "laborCheck": "Executar treinamento",
+            "ambient": "Quando o problema está relacionado a condições ambientais (poluição, temperatura, ruido, luminosidade, etc) ou a condições de infraestrutura (espaço físico, mobiliário, etc).",
+            "machine": "Quando há ausência, obsolescência, má regulagem, quebra ou outros problemas com os equipamentos, inclusive de informática. Se aplica também nas falhas de manuntenção corretiva ou preventiva destes equipamentos",
+            "machines": "Máquinas",
+            "equipments": "Equipamentos",
+            "effect": "Quando há ausência, obsolescência, má regulagem, quebra ou outros problemas com os equipamentos, inclusive de informática. Se aplica também nas falhas de manuntenção corretiva ou preventiva destes equipamentos.",
+            "back": "Retornar ao Diagrama",
+            "5why": "Descreva a possivel causa do problema utilizando o método dos 5 porquês.",
+            "backWhy": "Retornar aos Porquês",
+            "why": "Porquê",
+            "rootCause": "Esta é a Causa Raiz",
+            "firstWhy": "Escreva o primeiro porquê"
+        },
+        "step2": {
+            "status1": "Em execução",
+            "status2": "Atrasada",
+            "status3": "Cancelada",
+            "status4": "Concluida",
+            "delActionMsg": "Você tem certeza que quer excluir a ação",
+            "delActionTitle": "Excluir Ação",
+            "successDel": "Ação removida com sucesso",
+            "EditAction": "Editar ação",
+            "actionPlanTitle": "Plano de Ações",
+            "actionPlanSubtitle": "Descreva o cronograma de atividades de ações corretivas da proposição.",
+            "addAction": "Adicionar Ação",
+            "description": "Descrição da Ação"
+        },
+        "reviewTitle": "Análise da Não Conformidade",
+        "reviewSubtitle": "Revise ou altere os dados da análise da NC. Se tudo estiver OK, submeta a análise desta NC."
+    },
+    "charts": {
+        "title1": "Número de Ncs x Custo Total",
+        "cost": "Custos",
+        "amount": "Quantidade",
+        "title2": "Departamento/Setor x Quantidade de NCs Recebida e Quantidade de NCs Emitida.",
+        "title3": "Evolução Anual do Número de NCS",
+        "ncAmount": "Quantidade de ncs",
+        "title4": "Departamento Emissor x Quantidade de Ncs",
+        "title5": "Número de Ncs x Custo Total",
+        "products": "Quantidade de Produtos",
+        "title6": "Departamento Receptor x Quantidade de Ncs",
+        "title7":  "Departamento/Setor x Quantidade de NCs Recebida e Quantidade de NCs Emitida.",
+        "cost2": "Custo",
+        "ncsReceived": "Ncs recebidas",
+        "ncsSent": "NCs emitidas",
+        "title8": "Tipos de Ncs",
+        "title9": "Status das Ncs",
+        "title10": "Número de Ncs x Custo Total"
+    },
+    "list": {
+        "sub": "Legenda",
+        "month": "Mês",
+        "ncsAmount": "Qtd de NCs",
+        "success": "NC criada com sucesso",
+        "fail": "Houve um problema ao criar não conformidade.",
+        "cancelNcMsg": "Esta ação irá alterar o status da NC para cancelada, deseja prosseguir com a operação?",
+        "cancelNcTitle": "Cancelar NC",
+        "cancel": "Operação Cancelada",
+        "openInfo": "O processo de abertura desta nc já foi concluído",
+        "infoMsg": "Conclua a abertura da NC para poder visualizar as informações",
+        "notFound": "Não foi possível obter o parceiro"
+    },
+    "sgq": {
+    "steps": {
+        "step1": {
+            "stepTitle": "Reincidências e evidências da NC",
+            "stepContentTitle1": "Reincidência",
+            "stepContentSubtitle1": "Informe se esta NC possui ligação com outra NC presente no sistema.",
+            "selectReocurrence": "Selecionar NC Reincidente",
+            "addReocurrence": "Adicionar NC Reincidente",
+            "addReocurrenceSubtitle": "Busque por NCs que reincidam a NC #",
+            "addReocurrenceInputPlaceholder": "Busque por produto, parceiro ou descrição da NC...",
+            "searchResults": "Resultados da busca",
+            "searchResultsLabel": "Sinalize as NCs que são reincidentes desta NC."
+        },
+        "step2": {
+            "stepTitle": "Análises e notificações"
+        },
+        "step3": {
+            "stepTitle": "Revisar Informações"
+        }
     }
+}
 }
 
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {DynamicDialogConfig, DynamicDialogRef} from "primeng/dynamicdialog";
 import {ProposalService} from "../../../proposal.service";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-ishikawa-dialog',
@@ -21,22 +22,19 @@ export class IshikawaDialogComponent implements OnInit {
   constructor(public ref: DynamicDialogRef,
               public config: DynamicDialogConfig,
               public propService: ProposalService,
+              public translate: TranslateService
   ) { }
 
   ngOnDestroy(): void {
-    //Called once, before the instance is destroyed.
-    //Add 'implements OnDestroy' to the class.
     this.propService.popular()
-
-    
   }
   
 
   returnTextButton():string{
     if (this.isLastStep())
-      return "Fechar"
+      return this.translate.instant("global.close")
 
-    return "Avançar"
+    return this.translate.instant("global.next")
   }
 
   search(event:any,type:string){
@@ -71,7 +69,6 @@ export class IshikawaDialogComponent implements OnInit {
 
       case 'procedure':
       this.procedures = [];
-      console.log(this.propService.procedures)
          this.propService.procedures.forEach(element =>{
       if(element.description?.normalize('NFKD').replace(/[^\w]/g, '').toLowerCase().includes(filtro.toLowerCase())||element.code?.normalize('NFKD').replace(/[^\w]/g, '').toLowerCase().includes(filtro.toLowerCase())){
         this.procedures.push(element)
@@ -101,11 +98,8 @@ export class IshikawaDialogComponent implements OnInit {
    
   }
 
- 
-
   ngOnInit(): void {
     this.stepPosition = this.config.data.page
-    console.log(this.propService.propSolution.lack_materials);
   }
 
   isFirstStep() {
@@ -129,7 +123,6 @@ export class IshikawaDialogComponent implements OnInit {
   }
 
   close() {
-    
     this.ref.close();
   }
 }

@@ -3,10 +3,10 @@
         <div class="d-flex">
             <div class="cabecalho">
                 <div class="d-flex align-items-center">
-                    <h1 class="mr-3">Fechamento da NC</h1>
+                    <h1 class="mr-3">{{'about.closingComponent.title'| translate}}</h1>
                 </div>
                 <p>
-                    Realize o fechamento desta NC.
+                    {{'about.closingComponent.subtitle'| translate}}
                 </p>
             </div>
         </div>
@@ -18,19 +18,19 @@
     </div>
 
     <div *ngIf="!aboutSrv.nc?.sgqEvaluation" class="mt-3">
-        <h2 class="text-center text-black">Ainda faltam algumas fases!</h2>
-        <h3 class="text-center text-black">Esta NC ainda não pode ser finalizada.</h3>
-        <h5 class="text-center">Verifique com o andamento desta NC e contate os responsáveis para a realização de suas tarefas para então finalizar esta NC.</h5>
+        <h2 class="text-center text-black">{{'about.closingComponent.requiredSteps.title1'| translate}}</h2>
+        <h3 class="text-center text-black">{{'about.closingComponent.requiredSteps.title2'| translate}}</h3>
+        <h5 class="text-center">{{'about.closingComponent.requiredSteps.title3'| translate}}</h5>
     </div>
     <div *ngIf="aboutSrv.nc?.sgqEvaluation" class="mt-3">
-        <h2 class="text-center text-black">Esta NC pode ser finalizada!</h2>
-        <h3 class="text-center text-black">Tudo pronto para o fechamento?</h3>
+        <h2 class="text-center text-black">{{'about.closingComponent.ready.title1'| translate}}</h2>
+        <h3 class="text-center text-black">{{'about.closingComponent.ready.title2'| translate}}</h3>
     </div>
 
 
     <div class="text-center">
         <button type="button" class="btn btn-dark" [disabled]="!aboutSrv.nc?.sgqEvaluation" (click)="openDialog()">
-            Fechar NC
+            {{'closeNC.confirm'| translate}}
             <i class="bi bi-file-earmark-check"></i>
         </button>
     </div>
@@ -40,21 +40,21 @@
         <div class="d-flex">
             <div class="cabecalho">
                 <div class="d-flex align-items-center">
-                    <h1 class="mr-3">Fechamento da NC</h1>
+                    <h1 class="mr-3">{{'about.closingComponent.title'| translate}}</h1>
                 </div>
                 <p>
-                    Realize o fechamento desta NC.
+                    {{'about.closingComponent.subtitle'| translate}}
                 </p>
             </div>
         </div>
         <div class="d-flex justify-content-end align-items-center mb-3">
             <button [class]="isAllOpen ? selectedClass : unselectedClass" class="mr-2 btn-sm" (click)="isAllOpen = true">
                 <i class="bi bi-arrows-expand"></i>
-                Expandir Todos
+                {{'global.expand'| translate}}
             </button>
             <button [class]="isAllOpen ? unselectedClass : selectedClass" (click)="isAllOpen = false" class="btn-sm">
                 <i class="bi bi-arrows-collapse"></i>
-                Colapsar Todos
+                {{'global.colapse'| translate}}
             </button>
         </div>
     </div>
@@ -64,7 +64,7 @@
                 <div class="d-flex justify-content-between accordion">
                     <p>
                         <i class="bi bi-check2-circle"></i>
-                        Verificação da Eficácia
+                        {{'about.closingComponent.verification'| translate}}
                     </p>
 
                 </div>
@@ -73,14 +73,14 @@
                 <div class="d-flex ml-5">
                     <input class="form-check-input" type="checkbox" value="" onclick="return false;" checked />
                     <div class="d-block" *ngIf="aboutSrv.nc.closing.is_satisfied">
-                        <span class="fw-bold fs-5">Sim</span>
+                        <span class="fw-bold fs-5">{{'global.yes'| translate}}</span>
                         <br>
-                        <span class="fs-6">Encerrar esta NC</span>
+                        <span class="fs-6">{{'closeNC.yesInfo'| translate}}</span>
                     </div>
                     <div class="d-block" *ngIf="!aboutSrv.nc.closing.is_satisfied">
-                        <span class="fw-bold fs-5">Não</span>
+                        <span class="fw-bold fs-5">{{'global.no'| translate}}</span>
                         <br>
-                        <span class="fs-6">Abrir nova RNC fazendo referência a essa</span>
+                        <span class="fs-6">{{'closeNC.noInfo'| translate}}</span>
                     </div>
                 </div>
             </ng-template>
@@ -90,7 +90,7 @@
                 <div class="d-flex justify-content-between accordion">
                     <p>
                         <i class="bi bi-chat-right-text"></i>
-                        Comentários
+                        {{'closeNC.comments'| translate}}
                     </p>
 
                 </div>

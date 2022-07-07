@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { DialogService } from 'primeng/dynamicdialog';
 import { FechamentoDialogComponent } from 'src/app/pages/dialogs/fechamento-dialog/fechamento-dialog.component';
 import {AboutService} from "../about.service";
-import {Contact} from "../../../../models/contact.model";
 import {Closing} from "../../../../models/closing";
 import {ActivatedRoute} from "@angular/router";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-closing',
@@ -17,7 +17,8 @@ export class ClosingComponent implements OnInit {
   selectedClass = "btn btn-dark";
   constructor(private dialogService:DialogService,
               public aboutSrv: AboutService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              public translate: TranslateService) { }
 
   ngOnInit(): void {
   }
@@ -27,7 +28,7 @@ export class ClosingComponent implements OnInit {
       data: {
         id: this.aboutSrv.nc.id
       },
-      'header':"Verificação de Eficácia.",
+      'header':this.translate.instant("about.closingComponent.header"),
       'width':'700px',
   })
 

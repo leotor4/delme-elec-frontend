@@ -8,29 +8,6 @@ import {AboutService} from "../../about.service";
   styleUrls: ['./view-stakeholders.component.css']
 })
 export class ViewStakeholdersComponent implements OnInit {
-    contactsList: Contact[] = [
-      {
-        "name": "Hurst Clayton",
-        "email": "hurstclayton@enersol.com",
-        "type": "test"
-      },
-      {
-        "name": "Nielsen Beard",
-        "email": "nielsenbeard@enersol.com",
-        "type": "test"
-      },
-      {
-        "name": "Sellers Lindsay",
-        "email": "sellerslindsay@enersol.com",
-        "type": "test"
-      },
-      {
-        "name": "Dunn Mitchell",
-        "email": "dunnmitchell@enersol.com",
-        "type": "test"
-      }
-
-    ];
 
   constructor(public aboutSrvc: AboutService) { }
 

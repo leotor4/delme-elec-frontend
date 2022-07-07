@@ -1,59 +1,60 @@
 <div class="stepper-content">
-    <div class="stepper-buttons">
-        <div class="p-0">
-            <button
-                    type="button"
-                    class="btn btn-dark btn-sm"
-                    (click)="backStep()"
-                    [disabled]="isFirstStep()"
-            >
-                <i class="pi pi-arrow-left"></i>
-                Voltar
-            </button>
-        </div>
-        <div class="stepper">
-            <p-steps
-                    [model]="items"
-                    [readonly]="true"
-                    [activeIndex]="stepPosition"
-            ></p-steps>
-        </div>
-        <div class="d-flex  justify-content-end p-0 last-button">
-            <div>
-                <button
-                        type="button"
-                        (click)="nextStep()"
-                        [disabled]="disableButton()"
-                        class="btn btn-dark btn-sm"
-                >
-                    {{ getNextPageBtnLabel() }}
-                    <i [class]="getNextPageBtnIcon()"></i>
-                </button>
-            </div>
-        </div>
+  <div class="stepper-buttons">
+    <div class="p-0">
+      <button
+        type="button"
+        class="btn btn-dark btn-sm"
+        (click)="backStep()"
+        [disabled]="isFirstStep()"
+      >
+        <i class="pi pi-arrow-left"></i>
+        {{ "global.back" | translate }}
+      </button>
     </div>
-    <div class="content-create-nc">
-        <div *ngIf="stepPosition === 0">
-            <app-reoccurrence></app-reoccurrence>
-            <div class="mt-5">
-                <app-evidence ></app-evidence>
-            </div>
-        </div>
-        <div *ngIf="stepPosition === 1">
-            <div class="d-flex">
-                <div class="mr-3">
-                <app-risks></app-risks>
-                </div>
-                <div class="ml-3">
-                <app-changes></app-changes>
-
-                </div>
-            </div>
-
-            <app-notifications></app-notifications>
-        </div>
-        <div *ngIf="stepPosition === 2">
-            <app-review-info-sgq (changeStepPosition)="changeStepByPosition($event)"></app-review-info-sgq>
-        </div>
+    <div class="stepper">
+      <p-steps
+        [model]="items"
+        [readonly]="true"
+        [activeIndex]="stepPosition"
+      ></p-steps>
     </div>
+    <div class="d-flex justify-content-end p-0 last-button">
+      <div>
+        <button
+          type="button"
+          (click)="nextStep()"
+          [disabled]="disableButton()"
+          class="btn btn-dark btn-sm"
+        >
+          {{ getNextPageBtnLabel() }}
+          <i [class]="getNextPageBtnIcon()"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="content-create-nc">
+    <div *ngIf="stepPosition === 0">
+      <app-reoccurrence></app-reoccurrence>
+      <div class="mt-5">
+        <app-evidence></app-evidence>
+      </div>
+    </div>
+    <div *ngIf="stepPosition === 1">
+      <div class="d-flex">
+        <div class="mr-3">
+          <app-risks></app-risks>
+        </div>
+        <div class="ml-3">
+          <app-changes></app-changes>
+        </div>
+      </div>
+
+      <app-notifications></app-notifications>
+    </div>
+    <div *ngIf="stepPosition === 2">
+      <app-review-info-sgq
+        (changeStepPosition)="changeStepByPosition($event)"
+      ></app-review-info-sgq>
+    </div>
+  </div>
 </div>

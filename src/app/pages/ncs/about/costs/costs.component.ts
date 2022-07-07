@@ -6,6 +6,7 @@ import { TokenStorageService } from "../../../../_services/token-storage.service
 import { VisualizarDocumentoDialogComponent } from "../../../dialogs/visualizar-documento-dialog/visualizar-documento-dialog.component";
 import { DialogService } from "primeng/dynamicdialog";
 import { environment } from "../../../../../environments/environment";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: "app-costs",
@@ -24,21 +25,19 @@ export class CostsComponent implements OnInit {
     private messageService: MessageService,
     public aboutSrvc: AboutService,
     private tokenSrvc: TokenStorageService,
-    public dialogService: DialogService
+    public dialogService: DialogService,
+    public translate: TranslateService
   ) {}
 
-  ngOnInit(): void {
-    
-    console.log(this.aboutSrvc.nc?.costs);
-  }
+  ngOnInit(): void {}
 
   deleteAction(doc: any) {
     this.confirmationService.confirm({
       message:
-        "Você tem certeza que quer excluir o documento " +
+          this.translate.instant("about.costsComponent.ncType.delMessage1") +
         doc.file_name +
-        " da lista?",
-      header: "Excluir Documento",
+          this.translate.instant("about.costsComponent.ncType.delMessage2"),
+      header: this.translate.instant("about.costsComponent.ncType.delTitle"),
       icon: "pi pi-exclamation-triangle",
       accept: () => {
         this.aboutSrvc.deleteCost(doc.id).subscribe((value) => {
@@ -46,7 +45,7 @@ export class CostsComponent implements OnInit {
         });
         this.messageService.add({
           severity: "info",
-          summary: "Documento removido com sucesso",
+          summary: this.translate.instant("about.costsComponent.ncType.successDel"),
           life: 3000,
         });
       },
@@ -60,8 +59,7 @@ export class CostsComponent implements OnInit {
 
   haveFiles() {
     if (this.files){
-       if (this.files.length == 0) return false;
-       return true;
+       return this.files.length != 0;
     } 
     return false;
   }
@@ -99,7 +97,7 @@ export class CostsComponent implements OnInit {
         this.aboutSrvc.getNC(this.aboutSrvc!.nc!.id!);
         this.messageService.add({
           severity: "success",
-          summary: "Documento adicionado com sucesso",
+          summary: this.translate.instant("about.costsComponent.ncType.successSave"),
           life: 3000,
         });
       },
@@ -122,7 +120,7 @@ export class CostsComponent implements OnInit {
     return d.toLocaleDateString();
   }
 
-  visualizarDocumento(id: number, type: string) {
+  /*visualizarDocumento(id: number, type: string) {
     this.aboutSrvc.viewFile(id).subscribe({
       next: (data) => {
         const ref = this.dialogService.open(
@@ -145,12 +143,12 @@ export class CostsComponent implements OnInit {
         });
       },
     });
-  }
+  }*/
 
   clearById(name: string) {
     let aux = this.files;
     this.files = [];
-    for (var i = 0; i < aux.length; i++) {
+    for (let i = 0; i < aux.length; i++) {
       if (!(aux[i].name == name)) {
       this.files.push(aux[i]);
       }

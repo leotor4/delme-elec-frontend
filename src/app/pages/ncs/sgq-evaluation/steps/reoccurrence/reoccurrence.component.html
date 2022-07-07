@@ -1,81 +1,79 @@
 <div class="d-flex flex-lg-row flex-column justify-content-between">
-    <div class="cabecalho">
-        <h1 class="mr-3">Reincidência</h1>
-        <p>
-            Informe se esta NC possui ligação com outra NC presente no sistema.
-        </p>
-    </div>
-    <div class="d-flex justify-content-end align-items-center mb-3">
-        <button class="btn btn-dark ml-3" (click)="openDialog()">
-            Selecionar NC Reincidente
-            <i class="bi bi-file-earmark-medical"></i>
-        </button>
-    </div>
+  <div class="cabecalho">
+    <h1 class="mr-3">{{ "sgq.steps.step1.stepContentTitle1" | translate }}</h1>
+    <p>{{ "sgq.steps.step1.stepContentSubtitle1" | translate }}</p>
+  </div>
+  <div class="d-flex justify-content-end align-items-center mb-3">
+    <button class="btn btn-dark ml-3" (click)="openDialog()">
+      {{ "sgq.steps.step1.selectReocurrence" | translate }}
+      <i class="bi bi-file-earmark-medical"></i>
+    </button>
+  </div>
 </div>
 
 <div class="card">
-    <p-table [value]="sgqServ.sgq.recurrence||[]">
-        <ng-template pTemplate="header">
-            <tr>
-                <th>Número</th>
-                <th>Emissor</th>
-                <th>Tipo de NC</th>
-                <th>Setor Afetado</th>
-                <th>Produto</th>
-                <th>Status</th>
-                <th>Data de Fechamento</th>
-                <th></th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-nc let-i="rowIndex">
-            <tr>
-                <td>{{ nc.code }}</td>
-                <td>{{ nc.emissor?.username }}</td>
-                <td>{{ nc.tipos_nc_item }}</td>
-                <td>{{ nc.tipos_local_item }}</td>
-                <td>{{ nc.product?.name || nc.product?.description }}</td>
+  <p-table [value]="sgqServ.sgq.recurrence || []">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Número</th>
+        <th>Emissor</th>
+        <th>Tipo de NC</th>
+        <th>Setor Afetado</th>
+        <th>Produto</th>
+        <th>Status</th>
+        <th>Data de Fechamento</th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-nc let-i="rowIndex">
+      <tr>
+        <td>{{ nc.code }}</td>
+        <td>{{ nc.emissor?.username }}</td>
+        <td>{{ nc.tipos_nc_item }}</td>
+        <td>{{ nc.tipos_local_item }}</td>
+        <td>{{ nc.product?.name || nc.product?.description }}</td>
 
-                <td>
-                    <span [ngSwitch]="nc.status" >
-                        <span *ngSwitchCase="'open'"> Em elaboração</span>
+        <td>
+          <span [ngSwitch]="nc.status">
+            <span *ngSwitchCase="'open'"> Em elaboração</span>
             <span *ngSwitchCase="'running'"> Em execução</span>
             <span *ngSwitchCase="'late'"> Atrasada</span>
             <span *ngSwitchCase="'deleted'"> Deletada</span>
             <span *ngSwitchCase="'archived'"> Arquivada</span>
             <span *ngSwitchCase="'canceled'"> Cancelada</span>
             <span *ngSwitchCase="'closed'"> Fechada</span>
-                    </span>
-                </td>
+          </span>
+        </td>
 
-                <td>{{ parseDate(nc.data_fechamento||"")||"00/00/0000" }}</td>
-                <td>
-                    <button
-                            pButton
-                            type="button"
-                            icon="bi bi-info-circle"
-                            class="p-button-secondary p-button-text"
-                            (click)="details(nc)"
-                    ></button>
-                    <button
-                            pButton
-                            type="button"
-                            icon="bi bi-file-earmark-x"
-                            class="p-button-secondary p-button-text"
-                            (click)="delete(nc)"
-                    ></button>
-                </td>
-            </tr>
-        </ng-template>
-    </p-table>
+        <td>{{ parseDate(nc.data_fechamento || "") || "00/00/0000" }}</td>
+        <td>
+          <button
+            pButton
+            type="button"
+            icon="bi bi-info-circle"
+            class="p-button-secondary p-button-text"
+            (click)="details(nc)"
+          ></button>
+          <button
+            pButton
+            type="button"
+            icon="bi bi-file-earmark-x"
+            class="p-button-secondary p-button-text"
+            (click)="delete(nc)"
+          ></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
 </div>
 
 <p-confirmDialog #cd [style]="{ width: '50vw' }">
-    <ng-template pTemplate="footer">
-        <button type="button" class="btn btn-outline-dark" (click)="cd.reject()">
-            Não, cancelar
-        </button>
-        <button type="button" class="btn btn-dark" (click)="cd.accept()">
-            Sim, desfazer reincidência
-        </button>
-    </ng-template>
+  <ng-template pTemplate="footer">
+    <button type="button" class="btn btn-outline-dark" (click)="cd.reject()">
+      Não, cancelar
+    </button>
+    <button type="button" class="btn btn-dark" (click)="cd.accept()">
+      Sim, desfazer reincidência
+    </button>
+  </ng-template>
 </p-confirmDialog>

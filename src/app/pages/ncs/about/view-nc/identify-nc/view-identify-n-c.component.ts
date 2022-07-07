@@ -5,6 +5,7 @@ import { VisualizarDocumentoDialogComponent } from 'src/app/pages/dialogs/visual
 import { DateUtils } from 'src/app/utils/date-utils';
 import { NonComplianceService } from 'src/app/_services/non-compliance.service';
 import {AboutService} from "../../about.service";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-view-identify-nc',
@@ -15,11 +16,11 @@ import {AboutService} from "../../about.service";
   ],
 })
 export class ViewIdentifyNCComponent implements OnInit {
-  images1= ["imagem1", "imagem2", "imagem3", "imagem4", "imagem5", "imagem1", "imagem2", "imagem3", "imagem4", "imagem5"];
-  images2 = ["imagem1", "imagem2", "imagem3", "imagem4", "imagem5", "imagem1", "imagem2", "imagem3", "imagem4", "imagem5"];
-  ncID = "001/2022";
-  dataAbertura = this.aboutSrvc.nc?.data_fechamento;
-  constructor(public dialogService: DialogService,public messageService:MessageService,public aboutSrvc: AboutService,public ncService:NonComplianceService) { }
+  constructor(public dialogService: DialogService,
+              public messageService:MessageService,
+              public aboutSrvc: AboutService,
+              public ncService:NonComplianceService,
+              public translate: TranslateService) { }
 
   ngOnInit(): void {
     
@@ -27,8 +28,8 @@ export class ViewIdentifyNCComponent implements OnInit {
 
    returnTitle():string{
     if(this.aboutSrvc.nc?.tipos_parceiro_item == "Interno")
-      return "Dados do Setor"
-    return "Razão Social"
+      return this.translate.instant("newNC.review.sector");
+     return this.translate.instant("newNC.review.corporateName");
   }
 
   formato_brasileiro(data:Date | undefined | null): string {

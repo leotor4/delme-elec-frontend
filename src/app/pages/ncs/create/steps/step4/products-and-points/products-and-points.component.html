@@ -45,7 +45,7 @@
       <div class="contato-info d-flex flex-row">
         <i class="bi bi-percent"></i>
         <div>
-          <span class="info-titulo">{{'newNC.step1.product.amountNC'| translate}}</span>
+          <span class="info-titulo">{{'newNC.step1.product.percent'| translate}}</span>
           <br />
           <span class="info-dados">{{ getPercent() }}</span>
         </div>
@@ -130,11 +130,11 @@
       <div>
         <span class="info-titulo">{{'newNC.step1.rejectionPoint.it'| translate}}</span>
         <br />
-        <span class="info-dados">{{ "Numero: " + this.nonComplicanceService.nc?.instruction?.code || "0" }}</span>
+        <span class="info-dados">{{ ('global.number'| translate) + ": " + this.nonComplicanceService.nc?.instruction?.code || "0" }}</span>
         <br />
-        <span class="info-dados">{{ "Descrição: " + this.nonComplicanceService.nc?.instruction?.description || "0" }}</span>
+        <span class="info-dados">{{ ('global.description'| translate) + ": " + this.nonComplicanceService.nc?.instruction?.description || "0" }}</span>
         <br />
-        <span class="info-dados">{{ "Revisão: " + this.nonComplicanceService.nc?.instruction?.rev || "0" }}</span>
+        <span class="info-dados">{{ ('global.revision'| translate) + ": " + this.nonComplicanceService.nc?.instruction?.rev || "0" }}</span>
       </div>
     </div>
     <div class="contato-info d-flex flex-row mb-5 mr-5" *ngIf="this.nonComplicanceService.nc?.procedure">

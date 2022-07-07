@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { ChartsService } from "src/app/_services/charts.service";
 import momentImported from "moment";
+import {TranslateService} from "@ngx-translate/core";
 const moment = momentImported;
 
 @Component({
@@ -9,8 +10,9 @@ const moment = momentImported;
   styleUrls: ["./nc-products.component.css"],
 })
 export class NcProductsComponent implements OnInit {
-  constructor(public chartsService: ChartsService) {}
+ 
   @Input() size: number[] = [];
+  constructor(public chartsService: ChartsService, public translate: TranslateService) {}
   display = true;
   ngOnInit(): void {
     this.popularSetores();
@@ -18,28 +20,15 @@ export class NcProductsComponent implements OnInit {
   }
 
   onSelect(event: any) {}
-  setor = "Todos";
+  setor = this.translate.instant("global.all");
   setoresAux: string[] = [];
-  meses: string[] = [
-    "Janeiro",
-    "Fevereiro",
-    "Março",
-    "Abril",
-    "Maio",
-    "Junho",
-    "Julho",
-    "Agosto",
-    "Setembro",
-    "Outubro",
-    "Novembro",
-    "Dezembro",
-  ];
+  meses: string[] = this.translate.instant("primeng.monthNames");
   mesesGrafico: string[] = [];
   mesesGraficoNum: number[] = [];
   quantMeses: number[] = [];
   quantProdutos: number[] = [];
   graph: any;
-  title = "Número de Ncs x Custo Total";
+  title = this.translate.instant("charts.title5");
 
   popular() {
     let date = new Date();
@@ -48,10 +37,7 @@ export class NcProductsComponent implements OnInit {
     this.chartsService.ncs.forEach((element) => {
       let ncDate = new Date(element.data_abertura!);
       let ncMes = ncDate.getMonth();
-      if (
-        ncDate.getFullYear() == date.getFullYear() &&
-        (this.setor == element.tipos_local_item || this.setor == "Todos")
-      ) {
+      if (ncDate.getFullYear() == date.getFullYear() && (this.setor == element.tipos_local_item || this.setor == this.translate.instant("global.all"))) {
         this.quantMeses[ncMes]++;
 
         if (element.quant_nc) {
@@ -66,13 +52,13 @@ export class NcProductsComponent implements OnInit {
           x: this.meses,
           y: this.quantProdutos,
           type: "bar",
-          name: "Quantidade de Produtos",
+          name: this.translate.instant("charts.products"),
           marker: { color: "rgb(29,104,251)" },
         },
         {
           x: this.meses,
           y: this.quantMeses,
-          name: "Quantidade de NCs",
+          name: this.translate.instant("charts.ncAmount"),
           type: "scatter",
           marker: { color: "rgb(252,134,43)" },
         },
@@ -89,7 +75,7 @@ export class NcProductsComponent implements OnInit {
 
   popularSetores() {
     this.setoresAux = Object.assign([], this.chartsService.sectors);
-    this.setoresAux.unshift("Todos");
-    this.setor = "Todos";
+    this.setoresAux.unshift(this.translate.instant("global.all"));
+    this.setor = this.translate.instant("global.all");
   }
 }

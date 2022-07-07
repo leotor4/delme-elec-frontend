@@ -1,17 +1,17 @@
 <div class="cabecalho">
-    <h1 class="mr-3">Plano de Ações</h1>
+    <h1 class="mr-3">{{'createProp.step2.actionPlanTitle'| translate}}</h1>
     <p>
-        Descreva o cronograma de atividades de ações corretivas da proposição.
+        {{'createProp.step2.actionPlanSubtitle'| translate}}
     </p>
 </div>
 <div class="d-flex flex-column mr-lg-3 inputs-sm mt-5">
-    <label>Descrição da Ação</label>
+    <label>{{'createProp.step2.description'| translate}}</label>
     <input
             [(ngModel)]="name"
             name="amountNC"
             type="text"
             pInputText
-            placeholder="Digite"
+            [placeholder]="'global.type'| translate"
             class="p-input text-sm input"
             maxlength="500"
     />
@@ -19,17 +19,17 @@
 <div class="d-flex justify-content-between flex-column flex-lg-row mt-2">
     <div class="d-flex justify-content-between flex-column flex-lg-row">
         <div class="d-flex flex-column mr-lg-3 inputs-sm my-auto">
-            <label>Responsável</label>
+            <label>{{'global.responsible'| translate}}</label>
             <p-dropdown  class="p-input input"
                          [options]="contacts"
                          optionLabel="name"
                          [(ngModel)]="selectedResp"
-                         placeholder="Selecione ou busque..."
+                         [placeholder]="'createProp.search'| translate"
             ></p-dropdown>
         </div>
 
         <div class="d-flex flex-column mr-lg-3 inputs-sm my-auto">
-            <label>Prazo</label>
+            <label>{{'global.deadline'| translate}}</label>
             <input
                     type="date"
                     pInputText
@@ -39,11 +39,11 @@
             />
         </div>
         <div class="d-flex flex-column mr-lg-3 inputs-sm my-auto">
-            <label>Status</label>
+            <label>{{'global.status'| translate}}</label>
             <p-dropdown class="p-input text-sm input"
                         [options]="statuses"
                         [(ngModel)]="selectedStatus"
-                        placeholder="Selecione ou busque..."
+                        [placeholder]="'createProp.search'| translate"
                         [showClear]="true"
             ></p-dropdown>
         </div>
@@ -51,7 +51,7 @@
     <div class="d-flex">
         <button class="btn btn-dark my-auto" (click)="addAction()"
                 [disabled]="!name||!date||!selectedResp||!selectedStatus">
-            Adicionar Ação
+            {{'createProp.step2.addAction'| translate}}
             <i class="bi bi-plus"></i>
         </button>
     </div>
@@ -60,10 +60,10 @@
     <p-table [value]="propService.propSolution.actionPlans">
         <ng-template pTemplate="header">
             <tr>
-                <th>Descrição</th>
-                <th>Responsável</th>
-                <th>Prazo</th>
-                <th>Status</th>
+                <th>{{'global.description'| translate}}</th>
+                <th>{{'global.responsible'| translate}}</th>
+                <th>{{'global.deadline'| translate}}</th>
+                <th>{{'global.status'| translate}}</th>
                 <th></th>
             </tr>
         </ng-template>
@@ -97,10 +97,10 @@
 <p-confirmDialog #cd [style]="{ width: '50vw' }">
     <ng-template pTemplate="footer">
         <button type="button" class="btn btn-outline-dark" (click)="cd.reject()">
-            Não, cancelar
+            {{'global.reject'| translate}}
         </button>
         <button type="button" class="btn btn-dark" (click)="cd.accept()">
-            Sim, excluir!
+            {{'about.costsComponent.acceptDel'| translate}}
         </button>
     </ng-template>
 </p-confirmDialog>

@@ -1,8 +1,6 @@
-import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
-import { AboutService } from "../about.service";
-import { Router } from "@angular/router";
-import {Contact} from "../../../../models/contact.model";
+import {Component, OnInit} from "@angular/core";
+import {ActivatedRoute, Router} from "@angular/router";
+import {AboutService} from "../about.service";
 
 @Component({
   selector: "app-proposal",
@@ -16,7 +14,6 @@ export class ProposalComponent implements OnInit {
     public aboutService: AboutService
   ) {}
   id: number;
-  ncID = "001/2022";
   isAllOpen = true;
   unselectedClass = "btn btn-outline-dark";
   selectedClass = "btn btn-dark";
@@ -37,8 +34,7 @@ export class ProposalComponent implements OnInit {
 
   dataParse(date: any) {
     let newDate = new Date(date);
-    let formatedDate = newDate.toLocaleString("pt-Br").split(" ")[0];
-    return formatedDate;
+    return newDate.toLocaleString("pt-Br").split(" ")[0];
   }
   returnString(obj: any) {
     let str = "";

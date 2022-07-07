@@ -14,6 +14,7 @@ import { RegulatoryNormService } from "src/app/_services/regulatory-norm.service
 import { UserService } from "src/app/_services/user.service";
 import { AboutService } from "../about/about.service";
 import { ProposalService } from "./proposal.service";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: "app-create-prop",
@@ -33,7 +34,8 @@ export class CreatePropComponent implements OnInit {
     public instructionService: InstructionsService,
     public procedureService: ProcedureService,
     public machineService: MachineService,
-    public nbrService: NbrNormService
+    public nbrService: NbrNormService,
+    public translate: TranslateService
   ) {}
 
   ngOnInit(): void {
@@ -54,14 +56,14 @@ export class CreatePropComponent implements OnInit {
                 this.propService.propSolution.id = data["proposta"]["id"];
                 this.messageService.add({
                   severity: "success",
-                  summary: "Proposta de solução criada com sucesso.",
+                  summary: this.translate.instant("createProp.success"),
                   life: 3000,
                 });
               },
               error: (err) => {
                 this.messageService.add({
                   severity: "error",
-                  summary: "Houve um erro ao criar proposta de solução.",
+                  summary: this.translate.instant("createProp.fail1"),
                   life: 3000,
                 });
               },
@@ -71,7 +73,7 @@ export class CreatePropComponent implements OnInit {
       },error:(err)=>{
          this.messageService.add({
            severity: "error",
-           summary: "Não conformidade não encontrada.",
+           summary: this.translate.instant("createProp.fail2"),
            life: 3000,
          });
       }

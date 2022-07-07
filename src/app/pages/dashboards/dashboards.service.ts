@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/internal/Observable';
 import { of } from 'rxjs/internal/observable/of';
 import { NonCompliance } from 'src/app/models/non-compliance';
 import { environment } from 'src/environments/environment';
+import {TranslateService} from "@ngx-translate/core";
 
 
 
@@ -13,7 +14,8 @@ import { environment } from 'src/environments/environment';
 export class DashboardsService {
   
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient
+              , public translate: TranslateService) { }
 
 
   getGroupedBarChartStatusSetor(val: string) :Observable<Array<any>> {
@@ -513,27 +515,27 @@ export class DashboardsService {
 
 
     kpiData.push({
-      "name" : 'Total de NCs',
+      "name" : this.translate.instant("global.NCsTotal"),
       "value": totalNcsYear
     })
 
     kpiData.push({
-      "name" : "NCs em elaboração",
+      "name" : this.translate.instant("global.ncStatus1"),
       "value": totalNcsOpened
     })
 
     kpiData.push({
-      "name" : "NCs em execução",
+      "name" : this.translate.instant("global.ncStatus2"),
       "value": totalNcsRunning
     })
 
     kpiData.push({
-      "name" : "NCs canceladas",
+      "name" : this.translate.instant("global.ncStatus3"),
       "value": totalNcsCanceled
     })
 
     kpiData.push({
-      "name" : "NCs atrasadas",
+      "name" : this.translate.instant("global.ncStatus4"),
       "value": totalNcsLate
     })
 
@@ -576,7 +578,7 @@ export class DashboardsService {
 
     if (filterStatus == 'all' || filterStatus == 'running') {
       pieData.push({
-        "name" : "Em execução",
+        "name" : this.translate.instant("global.status2"),
         "value": totalNcsRunning
       })
     }
@@ -584,14 +586,14 @@ export class DashboardsService {
 
     if (filterStatus == 'all' || filterStatus == 'canceled') {
       pieData.push({
-        "name" : "Canceladas",
+        "name" : this.translate.instant("global.canceled"),
         "value": totalNcsCanceled
       })
     }      
     
     if (filterStatus == 'all' || filterStatus == 'late') {
       pieData.push({
-        "name" : "Atrasadas",
+        "name" : this.translate.instant("global.late"),
         "value": totalNcsLate
       })  
     }
@@ -600,7 +602,7 @@ export class DashboardsService {
 
     if (filterStatus == 'all' || filterStatus == 'open') {
       pieData.push({
-        "name" : "Em elaboração",
+        "name" : this.translate.instant("global.status1"),
         "value": totalNcsOpened
       })
     }

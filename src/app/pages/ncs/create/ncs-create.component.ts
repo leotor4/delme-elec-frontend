@@ -42,13 +42,13 @@ export class NcsCreateComponent implements OnInit {
           this.setDates(this.ncService.nc);
 
           switch(this.ncService.nc.tipos_parceiro_item){
-          case "Cliente":
+          case this.translate.instant("newNC.step1.partner.type2"):
           this.ncService.nc.partner = this.ncService.nc.customer
             break;
-            case "Fornecedor":
+            case this.translate.instant("newNC.step1.partner.type3"):
               this.ncService.nc.partner = this.ncService.nc.provider
             break;
-            case "Interno":
+            case this.translate.instant("newNC.step1.partner.type1"):
               this.ncService.nc.partner = this.ncService.nc.sector
             break;
          }

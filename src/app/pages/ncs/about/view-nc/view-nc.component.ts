@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { MessageService } from 'primeng/api';
-import { DialogService } from 'primeng/dynamicdialog';
-import { VisualizarDocumentoDialogComponent } from 'src/app/pages/dialogs/visualizar-documento-dialog/visualizar-documento-dialog.component';
-import { DateUtils } from 'src/app/utils/date-utils';
-import { NonComplianceService } from 'src/app/_services/non-compliance.service';
-import { AboutService } from '../about.service';
+import {Component, OnInit} from '@angular/core';
+import {MessageService} from 'primeng/api';
+import {DialogService} from 'primeng/dynamicdialog';
+import {
+  VisualizarDocumentoDialogComponent
+} from 'src/app/pages/dialogs/visualizar-documento-dialog/visualizar-documento-dialog.component';
+import {DateUtils} from 'src/app/utils/date-utils';
+import {NonComplianceService} from 'src/app/_services/non-compliance.service';
+import {AboutService} from '../about.service';
 
 @Component({
   selector: "app-view-nc",
@@ -26,17 +28,11 @@ export class ViewNCComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  returnTitle(): string {
-    if (this.aboutSrvc.nc?.tipos_parceiro_item == "Interno")
-      return "Dados do Setor";
-    return "Razão Social";
-  }
 
   formato_brasileiro(data: Date | undefined | null): string {
-    const dataFormatada = data
-      ? DateUtils.formato_brasileiro(data)
-      : "00/00/0000";
-    return dataFormatada;
+    return data
+        ? DateUtils.formato_brasileiro(data)
+        : "00/00/0000";
   }
   isType1(element: any) {
     return element.path == "evidenciasNc";

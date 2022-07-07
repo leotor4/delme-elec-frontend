@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { ChartsService } from "src/app/_services/charts.service";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: "app-cost-sector",
@@ -7,8 +8,9 @@ import { ChartsService } from "src/app/_services/charts.service";
   styleUrls: ["./cost-sector.component.css"],
 })
 export class CostSectorComponent implements OnInit {
-  constructor(public chartsService: ChartsService) {}
+ 
   @Input() size: number[] = [];
+  constructor(public chartsService: ChartsService, public translate: TranslateService) {}
   display = true;
   ngOnInit(): void {
     this.popularSetores();
@@ -16,20 +18,20 @@ export class CostSectorComponent implements OnInit {
   }
 
   onSelect(event: any) {}
-  setor = "Todos";
+  setor = this.translate.instant("global.all");
   setores: string[] = [];
   setoresAux: string[] = [];
   quantAnos: number[] = [];
   quantCusto: number[] = [];
   graph: any;
-  title = "Número de Ncs x Custo Total";
+  title = this.translate.instant("charts.title1")
 
   popular() {
     this.setores = [];
     this.quantAnos = [];
     this.quantCusto = [];
     this.chartsService.sectors.forEach((element) => {
-      if (element == this.setor || this.setor == "Todos") {
+      if (element == this.setor || this.setor == this.translate.instant("global.all")) {
         this.setores.push(element);
         this.quantAnos.push(0);
         this.quantCusto.push(0);
@@ -68,13 +70,13 @@ export class CostSectorComponent implements OnInit {
           x: this.setores,
           y: this.quantCusto,
           type: "scatter",
-          name: "Custo",
+          name: this.translate.instant("charts.cost"),
           marker: { color: "rgb(252,134,43)" },
         },
         {
           x: this.setores,
           y: this.quantAnos,
-          name: "Quantidade",
+          name: this.translate.instant("charts.amount"),
           type: "bar",
           marker: { color: "rgb(29,104,251)" },
         },
@@ -97,5 +99,7 @@ export class CostSectorComponent implements OnInit {
     this.setoresAux = Object.assign([], this.chartsService.sectors);
     this.setoresAux.unshift("Todos");
     this.setor = "Todos";
+    this.setoresAux.push(this.translate.instant("global.all"));
+    this.setor = this.translate.instant("global.all");
   }
 }

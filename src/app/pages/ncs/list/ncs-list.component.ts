@@ -9,6 +9,7 @@ import { NonCompliance } from 'src/app/models/non-compliance';
 
 import { NcsListDTO } from './ncs-list-dto';
 import { DashboardsService } from '../../dashboards/dashboards.service';
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: "app-ncs-list",
@@ -73,7 +74,7 @@ export class NcsListComponent implements OnInit {
       next: (response: any) => {
         this.messageService.add({
           severity: "success",
-          summary: "NC criada com sucesso",
+          summary: this.translate.instant("list.success"),
           life: 3000,
         });
 
@@ -87,7 +88,7 @@ export class NcsListComponent implements OnInit {
       error: (err) => {
         this.messageService.add({
           severity: "error",
-          summary: "Houve um problema ao criar não conformidade.",
+          summary: this.translate.instant("list.fail"),
           life: 3000,
         });
       },
@@ -101,7 +102,8 @@ export class NcsListComponent implements OnInit {
     private config: PrimeNGConfig,
     public messageService: MessageService,
     private dashboardService: DashboardsService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    public translate: TranslateService
   ) {}
 
   ngOnInit(): void {
@@ -113,7 +115,6 @@ export class NcsListComponent implements OnInit {
     this.ncsService.get().subscribe((data: any) => {
       //this.listNcs.append(data.noncompliances);
       const compliances: Array<NonCompliance> = data.noncompliances;
-      console.log(compliances);
 
       if (compliances?.length > 0) {
         this.listNcs = compliances.map((item: NonCompliance) => {
@@ -160,6 +161,7 @@ export class NcsListComponent implements OnInit {
         this.listNcs = this.listNcs.filter((item) => item.status == "late");
 
       this.setDataCards(compliances, filterStatus);
+      setTimeout(this.setPositionTextCards, 200);
 
       this.totalRecords = this.listNcs.length;
     });
@@ -178,31 +180,32 @@ export class NcsListComponent implements OnInit {
   }
 
   parseMonthStrToNumber(strMonth: string): string {
+
     switch (strMonth) {
       case "january":
-        return "jan";
+        return this.translate.instant("primeng.monthNamesShort")[0];
       case "february":
-        return "fev";
+        return this.translate.instant("primeng.monthNamesShort")[1];
       case "march":
-        return "mar";
+        return this.translate.instant("primeng.monthNamesShort")[2];
       case "april":
-        return "abr";
+        return this.translate.instant("primeng.monthNamesShort")[3];
       case "may":
-        return "mai";
+        return this.translate.instant("primeng.monthNamesShort")[4];
       case "june":
-        return "jun";
+        return this.translate.instant("primeng.monthNamesShort")[5];
       case "july":
-        return "jul";
+        return this.translate.instant("primeng.monthNamesShort")[6];
       case "august":
-        return "ago";
+        return this.translate.instant("primeng.monthNamesShort")[7];
       case "september":
-        return "set";
+        return this.translate.instant("primeng.monthNamesShort")[8];
       case "october":
-        return "out";
+        return this.translate.instant("primeng.monthNamesShort")[9];
       case "november":
-        return "nov";
+        return this.translate.instant("primeng.monthNamesShort")[10];
       case "december":
-        return "dez";
+        return this.translate.instant("primeng.monthNamesShort")[11];
       default:
         return "0";
     }
@@ -235,8 +238,8 @@ export class NcsListComponent implements OnInit {
   cancelNc(ncDto: NonCompliance) {
     this.confirmationService.confirm({
       message:
-        "Esta ação irá alterar o status da NC para cancelada, deseja prosseguir com a operação?",
-      header: "Cancelar NC",
+          this.translate.instant("list.cancelMsg"),
+      header: this.translate.instant("list.cancelTitle"),
       icon: "pi pi-exclamation-triangle",
       accept: () => {
         if (ncDto.id) {
@@ -250,7 +253,7 @@ export class NcsListComponent implements OnInit {
                 next: (data) => {
                   this.messageService.add({
                     severity: "success",
-                    summary: "Não conformidade cancelada com sucesso.",
+                    summary: this.translate.instant("cancelNC.success"),
                     life: 3000,
                   });
 
@@ -259,7 +262,7 @@ export class NcsListComponent implements OnInit {
                 error: (err) => {
                   this.messageService.add({
                     severity: "error",
-                    summary: "Houve um problema ao cancelar não conformidade.",
+                    summary: this.translate.instant("cancelNC.error"),
                     life: 3000,
                   });
                 },
@@ -272,7 +275,7 @@ export class NcsListComponent implements OnInit {
       reject: () => {
         this.messageService.add({
           severity: "info",
-          summary: "Operação Cancelada",
+          summary: this.translate.instant("list.cancel"),
           life: 5000,
         });
       },
@@ -285,7 +288,7 @@ export class NcsListComponent implements OnInit {
     } else {
       this.messageService.add({
         severity: "info",
-        summary: "O processo de abertura desta nc já foi concluído",
+        summary: this.translate.instant("list.openInfo"),
         life: 5000,
       });
     }
@@ -298,41 +301,94 @@ export class NcsListComponent implements OnInit {
       this.messageService.add({
         severity: "info",
         summary:
-          "Conclua a abertura da NC para poder visualizar as informações",
+            this.translate.instant("list.infoMsg"),
         life: 5000,
       });
     }
 
-    setTimeout(this.setPositionTextCards, 500);
     
   }
 
   setPositionTextCards() {
     let textCards = document.getElementsByTagName("ngx-charts-number-card")[0].getElementsByTagName("text");
+    let foreignObjects = document.getElementsByTagName("ngx-charts-number-card")[0].getElementsByTagName("foreignObject");
+    
     for (var i = 0; i < textCards.length; i++) {
       var valueCard = textCards[i]
-      valueCard.setAttribute("y", "40")
+      var foreignObject = foreignObjects[i]
+      let labelCard = foreignObject.getElementsByTagName("p")[0]
+      
+      
+      let divTable = document.getElementById('div-table');
+      let width
+      
+      if(divTable) {
+        width = divTable.offsetWidth;
+        
+        if (width > 1150) {
+          valueCard.setAttribute("y", "40")
+          valueCard.setAttribute("style", "font-size : 25pt; fill:#D6DEE2;")
+          foreignObject.setAttribute("y", "72.5")
+          foreignObject.setAttribute("width", "200")
+          foreignObject.setAttribute("height", "57.5")
+          labelCard.setAttribute("style", "font-size : 15px; color:#D6DEE2;")
+        } else if (width > 1000 && width <= 1150) {
+          valueCard.setAttribute("y", "40")
+          valueCard.setAttribute("style", "font-size : 25pt; fill:#D6DEE2;")
+          foreignObject.setAttribute("y", "72.5")
+          foreignObject.setAttribute("width", "200")
+          foreignObject.setAttribute("height", "57.5")
+          labelCard.setAttribute("style", "font-size : 15px; color:#D6DEE2;")
+        } else if (width > 800 && width <= 1000) {
+          valueCard.setAttribute("y", "40")
+          valueCard.setAttribute("style", "font-size : 20pt; fill:#D6DEE2;")
+          foreignObject.setAttribute("y", "72.5")
+          foreignObject.setAttribute("width", "200")
+          foreignObject.setAttribute("height", "57.5")
+          labelCard.setAttribute("style", "font-size : 15px; color:#D6DEE2;")
+
+        } else if (width > 600 && width <= 800) {
+          valueCard.setAttribute("y", "6")
+          valueCard.setAttribute("style", "font-size : 15pt; fill:#D6DEE2;")
+          foreignObject.setAttribute("y", "28")
+          foreignObject.setAttribute("width", "200")
+          foreignObject.setAttribute("height", "57.5")
+          labelCard.setAttribute("style", "font-size : 15px; color:#D6DEE2;")
+        }  else if (width > 400 && width <= 600) {
+          valueCard.setAttribute("y", "6")
+          valueCard.setAttribute("style", "font-size : 15pt; fill:#D6DEE2;")
+          foreignObject.setAttribute("y", "22")
+          foreignObject.setAttribute("width", "200")
+          foreignObject.setAttribute("height", "57.5")
+          labelCard.setAttribute("style", "font-size : 10px; color:#D6DEE2;")
+        } 
+  
+      }
+  
+
+
+
     }
   }
 
   onSelectCard(event: any) {
-    if (event["name"] == "Total de NCs") {
+    if (event["name"] == this.translate.instant("global.NCsTotal")) {
       this.startListNcs("all");
     }
 
-    if (event["name"] == "NCs em elaboração") {
+    if (event["name"] == this.translate.instant("global.ncStatus1")) {
       this.startListNcs("open");
     }
 
-    if (event["name"] == "NCs atrasadas") {
+    if (event["name"] == this.translate.instant("global.ncStatus4")) {
       this.startListNcs("late");
     }
 
-    if (event["name"] == "NCs canceladas") {
+    if (event["name"] == this.translate.instant("global.ncStatus3")) {
       this.startListNcs("canceled");
     }
 
-    if (event["name"] == "NCs em execução") {
+    if (event["name"] == this.translate.instant("global.ncStatus2")) {
       this.startListNcs("running");
     }
   }
@@ -343,7 +399,6 @@ export class NcsListComponent implements OnInit {
       var seriesClosed = [];
 
       var lineChartDataAux = [];
-      console.log(data);
 
       var cont = 0;
       for (const key in data) {
@@ -352,16 +407,15 @@ export class NcsListComponent implements OnInit {
         //   break;
         // }
         if (data.hasOwnProperty(key)) {
-          console.log(`${key}: ${data[key].Abertas}`);
 
           var series = [
             {
-              name: "Em elaboração",
+              name: this.translate.instant("global.status1"),
               value: `${data[key].Abertas}`,
             },
 
             {
-              name: "Fechada",
+              name: this.translate.instant("global.status7"),
               value: `${data[key].Fechadas}`,
             },
           ];
@@ -379,7 +433,6 @@ export class NcsListComponent implements OnInit {
 
   getFlag(status: string, value: number) {
     var totalNcs = 0;
-    console.log(this.pieValues);
     for (var i = 0; i < this.pieValues.length; i++) {
       totalNcs = totalNcs + this.pieValues[i].value;
     }
@@ -403,7 +456,6 @@ export class NcsListComponent implements OnInit {
       
       if (width * 0.7 < 1000) {
         this.lineChartView = [width * 0.7, 350];
-        console.log('barra', width * 0.7)
       }
 
     }
@@ -412,7 +464,6 @@ export class NcsListComponent implements OnInit {
 
   onResizePizzaChart(event:any) {
     
-
     let divTable = document.getElementById('div-table');
     let width
     if(divTable) {
@@ -420,14 +471,26 @@ export class NcsListComponent implements OnInit {
       
       if (width * 0.3 < 500) {
         this.view = [width * 0.3, 350];
-        console.log('pizza', width * 0.3)
-
-      }  
+     }  
       
     }
-
   }
 
 
+  onResizeCardChart(event:any) {
+    let divCards = document.getElementById('div-cards');
+    let divTable = document.getElementById('div-table');
+    let width
+    if(divTable) {
+      width = divTable.offsetWidth;
+      this.viewCards = [width,150]
+      
+    }
+
+    
+    setTimeout(this.setPositionTextCards, 500);
+  }
+
   
+
 }

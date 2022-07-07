@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { ChartsService } from "src/app/_services/charts.service";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: "app-nc-actionplan",
@@ -8,7 +9,7 @@ import { ChartsService } from "src/app/_services/charts.service";
 })
 export class NcActionplanComponent implements OnInit {
   @Input() size: number[] = [];
-  constructor(public chartsService: ChartsService) {}
+  constructor(public chartsService: ChartsService, public translate: TranslateService) {}
   ngOnInit(): void {
     this.tipos = Object.assign([], this.chartsService.sectors);
     this.popular();
@@ -19,15 +20,16 @@ export class NcActionplanComponent implements OnInit {
   tipos: string[] = [];
   graph: any;
   tiposNc: string[] = [
-    "Todos",
-    "Auditoria Interna",
-    "Auditoria Externa",
-    "NC de Fornecedor",
-    "NC de Processo",
-    "NC de Cliente",
-    "NC de Produto",
+   
+    this.translate.instant("newNC.step1.ncType.type1"),
+    this.translate.instant("newNC.step1.ncType.type2"),
+    this.translate.instant("newNC.step1.ncType.type3"),
+    this.translate.instant("newNC.step1.ncType.type4"),
+    this.translate.instant("newNC.step1.ncType.type5"),
+    this.translate.instant("newNC.step1.ncType.type6"),
+    this.translate.instant("global.all"),
   ];
-  tiposNcAtual = "Todos";
+  tiposNcAtual = this.translate.instant("global.all");
 
   atrasado: number[] = [];
   cancelado: number[] = [];
@@ -51,7 +53,7 @@ export class NcActionplanComponent implements OnInit {
     this.ncs = [];
     this.multi = [];
 
-    for (var i = 0; i < this.tipos.length; i++) {
+    for (let i = 0; i < this.tipos.length; i++) {
       this.cancelado.push(0);
       this.atrasado.push(0);
       this.execucao.push(0);
@@ -62,23 +64,23 @@ export class NcActionplanComponent implements OnInit {
       if (
         element.tipos_local_item &&
         (element.tipos_nc_item == this.tiposNcAtual ||
-          this.tiposNcAtual == "Todos")
+          this.tiposNcAtual == this.translate.instant("global.all"))
       ) {
         let planos = element.proposalSolution?.actionPlans;
         let index = this.tipos.indexOf(element.tipos_local_item);
         this.ncs[index]++;
         planos?.forEach((element) => {
           switch (element.status) {
-            case "Atrasada":
+            case this.translate.instant("global.status3"):
               this.atrasado[index]++;
               break;
-            case "Em execução":
+            case this.translate.instant("global.status2"):
               this.execucao[index]++;
               break;
-            case "Concluida":
+            case this.translate.instant("createProp.step2.status4"):
               this.concluido[index]++;
               break;
-            case "Cancelada":
+            case this.translate.instant("global.status6"):
               this.cancelado[index]++;
               break;
           }
@@ -93,20 +95,20 @@ export class NcActionplanComponent implements OnInit {
           x: this.tipos,
           y: this.execucao,
           type: "bar",
-          name: "Em execução",
+          name: this.translate.instant("global.status2"),
           marker: { color: "rgb(29,104,251)" },
         },
         {
           x: this.tipos,
           y: this.concluido,
-          name: "Concluido",
+          name: this.translate.instant("global.status8"),
           type: "bar",
           marker: { color: "rgb(51,192,252)" },
         },
         {
           x: this.tipos,
           y: this.atrasado,
-          name: "Atrasado",
+          name: this.translate.instant("global.status9"),
           type: "bar",
           marker: { color: "rgb(74,255,254)" },
         },
@@ -114,14 +116,14 @@ export class NcActionplanComponent implements OnInit {
         {
           x: this.tipos,
           y: this.cancelado,
-          name: "Cancelado",
+          name: this.translate.instant("global.status10"),
           type: "bar",
           marker: { color: "rgb(175,255,255)" },
         },
         {
           x: this.tipos,
           y: this.ncs,
-          name: "Número de ncs",
+          name: this.translate.instant("global.ncAmount"),
           type: "scatter",
           marker: { color: "rgb(252,134,43)" },
         },
@@ -150,5 +152,5 @@ export class NcActionplanComponent implements OnInit {
   xAxisLabel = "";
   yAxisLabel = "";
   title =
-    "Departamento/Setor x Quantidade de NCs Recebida e Quantidade de NCs Emitida.";
+      this.translate.instant("charts.title2");
 }
