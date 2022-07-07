@@ -157,10 +157,12 @@ export class NonComplianceService {
       return true
     }
   }
-
+  isType1or2(){
+    return this.formIdentificacaoNC.value.tipos_nc_item==this.translate.instant("newNC.step1.ncType.type1")||
+        this.formIdentificacaoNC.value.tipos_nc_item==this.translate.instant("newNC.step1.ncType.type2")
+  }
    validaEvi() {
-    if(this.formIdentificacaoNC.value.tipos_nc_item==this.translate.instant("newNC.step1.ncType.type1")||
-        this.formIdentificacaoNC.value.tipos_nc_item==this.translate.instant("newNC.step1.ncType.type2")){
+    if(this.isType1or2()){
       return true
     } else {
       return this.returnfiles("evidenciasNc").length>0

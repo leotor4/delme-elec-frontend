@@ -61,4 +61,10 @@ export class DescricaoNcComponent implements OnInit {
     });
     return evidencias;
   }
+
+    isRequired() {
+        if(this.nonComplicanceService.isType1or2()){
+          return "*"
+        } else return ""
+    }
 }
