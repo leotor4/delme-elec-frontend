@@ -21,7 +21,6 @@ export class NotificationComponent implements OnInit {
   selectedContact: String;
   results: Contact[];
   private allContacts: Contact[];
-  contactsCopy: Contact[];
 
   constructor(
     private confirmationService: ConfirmationService,
@@ -96,8 +95,8 @@ export class NotificationComponent implements OnInit {
             this.propService.ncProp.contacts.filter(
                 (val) => val.id !== contact.id
             );
-        this.contactsCopy =
-            this.contactsCopy.filter(
+        this.propService.contacts =
+            this.propService.contacts.filter(
                 (val) => val.id !== contact.id
             );
         this.messageService.add({
@@ -139,7 +138,7 @@ export class NotificationComponent implements OnInit {
 
   checkContact(contact: Contact) {
     this.selectedContacts.push(contact);
-    this.contactsCopy.push(contact);
+    this.propService.contacts.push(contact);
     this.selectedContact = "";
   }
 
@@ -160,7 +159,7 @@ export class NotificationComponent implements OnInit {
     this.contactsSrvc.get().subscribe((data: any) => {
       this.allContacts = data.contact
       this.propService.propSolution.contacts = this.propService.ncProp.contacts
-      this.contactsCopy = this.propService.propSolution.contacts.filter(val=>val.email! != "efraim@electrosonteleco.com")
+      this.propService.contacts = this.propService.propSolution.contacts.filter(val=>val.email! != "efraim@electrosonteleco.com")
     });
   }
 }

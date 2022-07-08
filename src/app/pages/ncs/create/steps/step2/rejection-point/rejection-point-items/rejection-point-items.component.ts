@@ -130,7 +130,7 @@ export class RejectionPointItemsComponent implements OnInit {
     }
   }*/
   getUrl(){
-    return environment.apiURL + 'ncs/import"'
+    return environment.apiURL + 'ncs/import'
   }
 
   ngOnInit(): void {}

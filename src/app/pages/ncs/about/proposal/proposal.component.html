@@ -72,7 +72,7 @@
                                     </p-editor>
                                 </div>
                             </div>
-                            <img src="../../../../../../assets/images/Espinha de Peixe.png" width="850" class="ml-5 mr-3">
+                            <img src="../../../../../../assets/images/Espinha de Peixe.png" width="850" class="ml-5">
                             <div class="d-flex">
                                 <div class="col">
                                    
@@ -102,7 +102,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="d-block mt-5">
+                        <div class="d-flex flex-column justify-content-center">
                             <label>{{'about.proposalComponent.effect'| translate}}</label>
                             <p-editor [ngModel]="this.aboutService.nc.proposalSolution.effect_description"
                                 [style]="{'height':'300px','width':'230px','border': '2px solid #333333','border-radius': '5px'}"
@@ -126,8 +126,7 @@
                 </ng-template>
                 <ng-template pTemplate="content">
                     <div class="caixa-cinza p-2">
-                        <div class="d-flex justify-content-evenly flex-wrap">
-                            
+                        <div class="d-flex justify-content-evenly flex-wrap"> 
                             <div class="d-flex flex-column why-box">
                                 <label for="">{{aboutService.nc.proposalSolution.first_why_label}}</label>
                                 <textarea [(ngModel)]="aboutService.nc.proposalSolution.first_why" pInputTextarea cols="35"
