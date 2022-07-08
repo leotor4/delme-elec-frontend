@@ -1,212 +1,244 @@
 <p-accordion [multiple]="true">
-    <p-accordionTab [selected]="true">
-        <ng-template pTemplate="header">
-            <div class="d-flex justify-content-between accordion">
-                <p>
-                    <i class="bi bi-suit-diamond"></i>
-                    Diagrama de Ishikawa
-                </p>
+  <p-accordionTab [selected]="true">
+    <ng-template pTemplate="header">
+      <div class="d-flex justify-content-between accordion">
+        <p>
+          <i class="bi bi-suit-diamond"></i>
+          {{ "about.proposalComponent.ishikawaDiagram" | translate }}
+        </p>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="content">
+      <div class="d-flex caixa-cinza pr-2 py-4 mt-4">
+        <div>
+          <div class="d-flex">
+            <div class="col">
+              <label>{{
+                "about.proposalComponent.material" | translate
+              }}</label>
+              <p-editor [style]="editorStyle" [readonly]="true">
+                <ng-template pTemplate="header"> </ng-template>
+              </p-editor>
             </div>
-        </ng-template>
-        <ng-template pTemplate="content">
-            <div class="d-flex caixa-cinza pr-2 py-4 mt-4">
-                <div>
-                    <div class="d-flex">
-                        <div class="col">
-                            <label>Matéria Prima</label>
-                            <p-editor  [style]="editorStyle" [readonly]="true" >
-                                <ng-template pTemplate="header">
-                                </ng-template>
-                            </p-editor>
-
-                        </div>
-                        <div class="col">
-                            <label>Medição</label>
-                            <p-editor  [style]="editorStyle" [readonly]="true">
-                                <ng-template pTemplate="header">
-                                </ng-template>
-                            </p-editor>
-                        </div>
-                        <div class="col">
-                            <label>Método</label>
-                            <p-editor  [style]="editorStyle" [readonly]="true">
-                                <ng-template pTemplate="header">
-                                </ng-template>
-                            </p-editor>
-                        </div>
-                    </div>
-                    <img src="../../../../../../assets/images/Espinha de Peixe.png" width="680" class="ml-5 mr-3">
-                    <div class="d-flex">
-                        <div class="col">
-                            <label>Mão de Obra</label>
-                            <p-editor [style]="editorStyle" [readonly]="true">
-                                <ng-template pTemplate="header">
-                                </ng-template>
-                            </p-editor>
-                        </div>
-                        <div class="col">
-                            <label>Meio Ambiente</label>
-                            <p-editor  [style]="editorStyle" [readonly]="true">
-                                <ng-template pTemplate="header">
-                                </ng-template>
-                            </p-editor>
-                        </div>
-                        <div class="col">
-                            <label>Máquina</label>
-                            <p-editor [style]="editorStyle" [readonly]="true">
-                                <ng-template pTemplate="header">
-                                </ng-template>
-                            </p-editor>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="d-block mt-5">
-                    <label>Efeito</label>
-                    <p-editor
-                              [style]="{'height':'300px','width':'230px','border': '2px solid #333333','border-radius': '5px'}"
-                              [readonly]="true">
-                        <ng-template pTemplate="header">
-                        </ng-template>
-                    </p-editor>
-                </div>
+            <div class="col">
+              <label>{{ "about.proposalComponent.measure" | translate }}</label>
+              <p-editor [style]="editorStyle" [readonly]="true">
+                <ng-template pTemplate="header"> </ng-template>
+              </p-editor>
             </div>
-        </ng-template>
-    </p-accordionTab>
-    <p-accordionTab [selected]="true">
-        <ng-template pTemplate="header">
-            <div class="d-flex justify-content-between accordion">
-                <p>
-                    <i class="bi bi-dice-5"></i>
-                    5 Porquês
-                </p>
+            <div class="col">
+              <label>{{ "about.proposalComponent.method" | translate }}</label>
+              <p-editor [style]="editorStyle" [readonly]="true">
+                <ng-template pTemplate="header"> </ng-template>
+              </p-editor>
             </div>
-        </ng-template>
-        <ng-template pTemplate="content">
-            <div class="caixa-cinza p-2">
-                <div class="d-flex justify-content-evenly">
-                    <p-chip>1</p-chip>
-                    <div>
-
-                       <textarea  pInputTextarea cols="29" rows="5" class="textarea">
-                       </textarea>
-                        <div class="text-center form-check caixa-preta mx-3" *ngIf="true">
-                            <input class="form-check-input" type="checkbox" value="" onclick="return false;" checked/>
-                            <label class="form-check-label text-light">
-                                Causa Raiz
-                            </label>
-                        </div>
-                    </div>
-                    <p-chip>2</p-chip>
-                    <div>
-                       <textarea   pInputTextarea cols="29" rows="5" class="textarea">
-                       </textarea>
-                        <div class="text-center form-check caixa-preta mx-3" *ngIf="false">
-                            <input class="form-check-input" type="checkbox" value="" onclick="return false;" checked/>
-                            <label class="form-check-label text-light">
-                                Causa Raiz
-                            </label>
-                        </div>
-                    </div>
-                    <p-chip>3</p-chip>
-                    <div>
-                       <textarea   pInputTextarea cols="29" rows="5" class="textarea">
-                       </textarea>
-                        <div class="text-center form-check caixa-preta mx-3" *ngIf="false">
-                            <input class="form-check-input" type="checkbox" value="" onclick="return false;" checked/>
-                            <label class="form-check-label text-light">
-                                Causa Raiz
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="d-flex justify-content-evenly">
-                    <p-chip>4</p-chip>
-                    <div>
-                       <textarea   pInputTextarea cols="46" rows="5" class="textarea">
-                       </textarea>
-                        <div class="text-center form-check caixa-preta mx-3" *ngIf="false">
-                            <input class="form-check-input" type="checkbox" value="" onclick="return false;" checked/>
-                            <label class="form-check-label text-light">
-                                Causa Raiz
-                            </label>
-                        </div>
-                    </div>
-                    <p-chip>5</p-chip>
-                    <div>
-                       <textarea   pInputTextarea cols="46" rows="5" class="textarea">
-                       </textarea>
-                        <div class="text-center form-check caixa-preta mx-3" *ngIf="false">
-                            <input class="form-check-input" type="checkbox" value="" onclick="return false;" checked/>
-                            <label class="form-check-label text-light">
-                                Causa Raiz
-                            </label>
-                        </div>
-                    </div>
-                </div>
+          </div>
+          <img
+            src="../../../../../../assets/images/Espinha de Peixe.png"
+            width="680"
+            class="ml-5 mr-3"
+          />
+          <div class="d-flex">
+            <div class="col">
+              <label>{{ "about.proposalComponent.labor" | translate }}</label>
+              <p-editor [style]="editorStyle" [readonly]="true">
+                <ng-template pTemplate="header"> </ng-template>
+              </p-editor>
             </div>
-        </ng-template>
-    </p-accordionTab>
-    <p-accordionTab [selected]="true">
-        <ng-template pTemplate="header">
-            <div class="d-flex justify-content-between accordion">
-                <p>
-                    <i class="bi bi-geo"></i>
-                    Plano de Ação
-                </p>
+            <div class="col">
+              <label>{{ "about.proposalComponent.ambient" | translate }}</label>
+              <p-editor [style]="editorStyle" [readonly]="true">
+                <ng-template pTemplate="header"> </ng-template>
+              </p-editor>
             </div>
-        </ng-template>
-        <ng-template pTemplate="content">
-            <div class="card">
-                <p-table [value]="[]">
-                    <ng-template pTemplate="header">
-                        <tr>
-                            <th>Descrição</th>
-                            <th>Responsável</th>
-                            <th>Prazo</th>
-                            <th>Status</th>
-                        </tr>
-                    </ng-template>
-                    <ng-template pTemplate="body" let-action>
-                        <tr>
-                            <td>{{ action.name }}</td>
-                            <td>{{ action.responsible }}</td>
-                            <td>{{ action.deadline.split("-")?.reverse()?.join("/") }}</td>
-                            <td>{{ action.status }}</td>
-                        </tr>
-                    </ng-template>
-                </p-table>
+            <div class="col">
+              <label>{{ "about.proposalComponent.machine" | translate }}</label>
+              <p-editor [style]="editorStyle" [readonly]="true">
+                <ng-template pTemplate="header"> </ng-template>
+              </p-editor>
             </div>
-        </ng-template>
-    </p-accordionTab>
-    <p-accordionTab [selected]="true">
-        <ng-template pTemplate="header">
-            <div class="d-flex justify-content-between accordion">
-                <p>
-                    <i class="bi bi-envelope"></i>
-                    Notificação por e-mail
-                </p>
+          </div>
+        </div>
+        <div class="d-block mt-5">
+          <label>{{ "about.proposalComponent.effect" | translate }}</label>
+          <p-editor
+            [style]="{
+              height: '300px',
+              width: '230px',
+              border: '2px solid #333333',
+              'border-radius': '5px'
+            }"
+            [readonly]="true"
+          >
+            <ng-template pTemplate="header"> </ng-template>
+          </p-editor>
+        </div>
+      </div>
+    </ng-template>
+  </p-accordionTab>
+  <p-accordionTab [selected]="true">
+    <ng-template pTemplate="header">
+      <div class="d-flex justify-content-between accordion">
+        <p>
+          <i class="bi bi-dice-5"></i>
+          {{ "about.proposalComponent.5why" | translate }}
+        </p>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="content">
+      <div class="caixa-cinza p-2">
+        <div class="d-flex justify-content-evenly">
+          <p-chip>1</p-chip>
+          <div>
+            <textarea pInputTextarea cols="29" rows="5" class="textarea">
+            </textarea>
+            <div class="text-center form-check caixa-preta mx-3" *ngIf="true">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                onclick="return false;"
+                checked
+              />
+              <label class="form-check-label text-light">
+                {{ "about.proposalComponent.rootCause" | translate }}
+              </label>
             </div>
-        </ng-template>
-        <ng-template pTemplate="content">
-            <div class="card">
-                <p-table [value]="[]">
-                    <ng-template pTemplate="header">
-                        <tr>
-                            <th>Nome</th>
-                            <th>E-mail</th>
-                            <th>Tipo de Contato</th>
-                        </tr>
-                    </ng-template>
-                    <ng-template pTemplate="body" let-contact let-i="rowIndex">
-                        <tr>
-                            <td>{{ contact.name }}</td>
-                            <td>{{ contact.email }}</td>
-                            <td>{{ contact.type }}</td>
-                        </tr>
-                    </ng-template>
-                </p-table>
+          </div>
+          <p-chip>2</p-chip>
+          <div>
+            <textarea pInputTextarea cols="29" rows="5" class="textarea">
+            </textarea>
+            <div class="text-center form-check caixa-preta mx-3" *ngIf="false">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                onclick="return false;"
+                checked
+              />
+              <label class="form-check-label text-light">
+                {{ "about.proposalComponent.rootCause" | translate }}
+              </label>
             </div>
-        </ng-template>
-    </p-accordionTab>
+          </div>
+          <p-chip>3</p-chip>
+          <div>
+            <textarea pInputTextarea cols="29" rows="5" class="textarea">
+            </textarea>
+            <div class="text-center form-check caixa-preta mx-3" *ngIf="false">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                onclick="return false;"
+                checked
+              />
+              <label class="form-check-label text-light">
+                {{ "about.proposalComponent.rootCause" | translate }}
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-evenly">
+          <p-chip>4</p-chip>
+          <div>
+            <textarea pInputTextarea cols="46" rows="5" class="textarea">
+            </textarea>
+            <div class="text-center form-check caixa-preta mx-3" *ngIf="false">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                onclick="return false;"
+                checked
+              />
+              <label class="form-check-label text-light">
+                {{ "about.proposalComponent.rootCause" | translate }}
+              </label>
+            </div>
+          </div>
+          <p-chip>5</p-chip>
+          <div>
+            <textarea pInputTextarea cols="46" rows="5" class="textarea">
+            </textarea>
+            <div class="text-center form-check caixa-preta mx-3" *ngIf="false">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                onclick="return false;"
+                checked
+              />
+              <label class="form-check-label text-light">
+                {{ "about.proposalComponent.rootCause" | translate }}
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </p-accordionTab>
+  <p-accordionTab [selected]="true">
+    <ng-template pTemplate="header">
+      <div class="d-flex justify-content-between accordion">
+        <p>
+          <i class="bi bi-geo"></i>
+          {{ "about.proposalComponent.actionPlan" | translate }}
+        </p>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="content">
+      <div class="card">
+        <p-table [value]="[]">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>{{ "global.description" | translate }}</th>
+              <th>{{ "global.responsible" | translate }}</th>
+              <th>{{ "global.deadline" | translate }}</th>
+              <th>{{ "global.status" | translate }}</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-action>
+            <tr>
+              <td>{{ action.name }}</td>
+              <td>{{ action.responsible }}</td>
+              <td>{{ action.deadline.split("-")?.reverse()?.join("/") }}</td>
+              <td>{{ action.status }}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </ng-template>
+  </p-accordionTab>
+  <p-accordionTab [selected]="true">
+    <ng-template pTemplate="header">
+      <div class="d-flex justify-content-between accordion">
+        <p>
+          <i class="bi bi-envelope"></i>
+          {{ "global.contacts.notifications" | translate }}
+        </p>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="content">
+      <div class="card">
+        <p-table [value]="[]">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>{{ "global.contacts.name" | translate }}</th>
+              <th>{{ "global.contacts.email" | translate }}</th>
+              <th>{{ "global.contacts.type" | translate }}</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-contact let-i="rowIndex">
+            <tr>
+              <td>{{ contact.name }}</td>
+              <td>{{ contact.email }}</td>
+              <td>{{ contact.type }}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </ng-template>
+  </p-accordionTab>
 </p-accordion>

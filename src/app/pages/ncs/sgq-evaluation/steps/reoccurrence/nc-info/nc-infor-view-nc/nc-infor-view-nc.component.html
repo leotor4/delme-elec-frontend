@@ -1,372 +1,423 @@
 <p-accordion [multiple]="true">
-    <p-accordionTab [selected]="true">
-        <ng-template pTemplate="header">
-            <div class="d-flex justify-content-between accordion">
-                <p>
-                    <i class="bi bi-file-earmark-text"></i>
-                    Identificação da NC
-                </p>
+  <p-accordionTab [selected]="true">
+    <ng-template pTemplate="header">
+      <div class="d-flex justify-content-between accordion">
+        <p>
+          <i class="bi bi-file-earmark-text"></i>
+          Identificação da NC
+        </p>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="content">
+      <div class="div-ident-parceiro d-flex mt-3 flex-column flex-lg-row">
+        <div class="div-ident-parceiro">
+          <h2>
+            <i class="bi bi-card-text"></i>
+            Dados de Identificação
+          </h2>
+          <div class="d-flex justify-content-between flex-column flex-lg-row">
+            <div class="contato-info d-flex flex-row">
+              <i class="bi bi-ticket-perforated mr-1"></i>
+              <div>
+                <span class="info-titulo">Número</span>
+                <br />
+                <span class="info-dados">{{ nc?.code || "" }}</span>
+              </div>
             </div>
-        </ng-template>
-        <ng-template pTemplate="content">
-            <div class="div-ident-parceiro d-flex mt-3 flex-column flex-lg-row">
-                <div class="div-ident-parceiro">
-                    <h2>
-                        <i class="bi bi-card-text"></i>
-                        Dados de Identificação
-                    </h2>
-                    <div class="d-flex justify-content-between flex-column flex-lg-row">
-                        <div class="contato-info d-flex flex-row">
-                            <i class="bi bi-ticket-perforated mr-1"></i>
-                            <div>
-                                <span class="info-titulo">Número</span>
-                                <br />
-                                <span class="info-dados">{{nc?.code||""}}</span>
-                            </div>
-                        </div>
-                        <div class="contato-info d-flex flex-row">
-                            <i class="bi bi-calendar-week mr-1"></i>
-                            <div>
-                                <span class="info-titulo">Data de Abertura</span>
-                                <br />
-                                <span class="info-dados">
-            {{parseDate(nc.data_abertura)||"00/00/0000"}}
-          </span>
-                            </div>
-                        </div>
-                        <div class="contato-info d-flex flex-row">
-                            <i class="bi bi-calendar-week mr-1"></i>
-                            <div>
-                                <span class="info-titulo">Data de Fechamento</span>
-                                <br/>
-                                <span class="info-dados">{{parseDate(nc.data_fechamento)||"00/00/0000"}}</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <p-divider class="test1" layout="vertical"></p-divider>
-                <div class="div-ident-parceiro">
-                    <h2>
-                        <i class="bi bi-people mr-1"></i>
-                        Dados de Emissão
-                    </h2>
-                    <div class="d-flex justify-content-between flex-column flex-lg-row">
-                        <div class="contato-info d-flex flex-row">
-                            <i class="bi bi-person-circle mr-1"></i>
-                            <div>
-                                <span class="info-titulo">Emissor</span>
-                                <br/>
-                                <span class="info-dados">{{nc?.emissor?.username||"não preenchido"}}</span>
-                            </div>
-                        </div>
-                        <div class="contato-info d-flex flex-row">
-                            <i class="bi bi-person-circle mr-1"></i>
-                            <div>
-                                <span class="info-titulo">Responsável</span>
-                                <br/>
-                                <span class="info-dados">Janaína</span>
-                            </div>
-                        </div>
-                        <div class="contato-info d-flex flex-row">
-                            <i class="bi bi-geo-alt mr-1"></i>
-                            <div>
-                                <span class="info-titulo">Departamento</span>
-                                <br>
-                                <p class="info-dados">Rh</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="contato-info d-flex flex-row">
+              <i class="bi bi-calendar-week mr-1"></i>
+              <div>
+                <span class="info-titulo">Data de Abertura</span>
+                <br />
+                <span class="info-dados">
+                  {{ parseDate(nc.data_abertura) || "00/00/0000" }}
+                </span>
+              </div>
             </div>
-            <div class="div-ident-parceiro  mt-3">
-                <h1 class="titulo-parceiro">Dados do Parceiro</h1>
-                <div class="d-flex flex-column flex-lg-row">
-                    <div class="item">
-                        <div class="dados-parceiro razao-social">
-                            <div class="d-flex">
-                                <h2 class="mr-2">Razão Social</h2>
-                                <p-chip>
-                                    <i class="bi bi-ticket-perforated mr-2"></i>
-                                    {{ (nc?.customer?.code||nc?.provider?.code)||"00000000" }}
-                                </p-chip>
-                            </div>
-                            <p>
-                                {{(nc?.customer?.corporate_name||nc?.provider?.corporate_name||nc?.sector?.name)
-                            ||"Dado não preenchido"}}
-                            </p>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="dados-parceiro">
-                            <div class="dados-contato">
-                                <h1>Dados do Contato</h1>
-                                <div></div>
-                                <div class="contato-info d-flex flex-row">
-                                    <i class="pi pi-user"></i>
-                                    <div>
-                                        <span class="info-titulo">Nome</span>
-                                        <br />
-                                        <span class="info-dados">
-                {{(nc?.customer?.responsible_name||nc?.provider?.responsible_name||nc?.sector?.responsible_name)
-                                        ||"Dado não preenchido"}}
-              </span>
-                                    </div>
-                                </div>
-                                <div class="contato-info d-flex flex-row">
-                                    <i class="pi pi-phone"></i>
-                                    <div>
-                                        <span class="info-titulo">Telefone</span>
-                                        <br />
-                                        <span class="info-dados">
-                {{(nc?.customer?.responsible_phone||nc?.provider?.responsible_phone||nc?.sector?.responsible_phone)
-                                        ||"(00) 00000-0000"}}
-              </span>
-                                    </div>
-                                </div>
-                                <div class="contato-info d-flex flex-row">
-                                    <i class="pi pi-at"></i>
-                                    <div>
-                                        <span class="info-titulo">E-mail</span>
-                                        <br />
-                                        <span class="info-dados">
-                {{(nc?.customer?.responsible_email||nc?.provider?.responsible_email||nc?.sector?.responsible_email)
-                                        ||"Dado não preenchido"}}
-              </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="contato-info d-flex flex-row">
+              <i class="bi bi-calendar-week mr-1"></i>
+              <div>
+                <span class="info-titulo">Data de Fechamento</span>
+                <br />
+                <span class="info-dados">{{
+                  parseDate(nc.data_fechamento) || "00/00/0000"
+                }}</span>
+              </div>
             </div>
-            <div class="div-ident-parceiro d-flex flex-column flex-lg-row mt-3">
-                <div class="dados-parceiro razao-social item ">
-                    <h2 class="mr-2">
-                        <i class="bi bi-file-earmark-text"></i>
-                        Descrição da Não Conformidade
-                    </h2>
-                    <p-editor [style]="{'height':'144px', border: '1px solid #dddddd' }" [readonly]="true" [ngModel]="nc?.text_area_nc">
-                        <ng-template pTemplate="header">
-                        </ng-template>
-                    </p-editor>
-                </div>
-                <p-divider layout="vertical"></p-divider>
-                <div class="dados-parceiro razao-social item">
-                    <h2 class="mr-2 mb-5">
-                        <i class="pi pi-camera"></i>
-                        Evidencias fotográficas
-                    </h2>
-                    <p-carousel [value]="this.nc?.attachments?.filter(isType1) || []" [numVisible]="3" [numScroll]="3" [showIndicators]="false">
-                        <ng-template let-file pTemplate="item" >
-                            <button><i class="bi bi-file-earmark fs-1"></i>
-                                <p>{{file.name||"file.txt"}}</p></button>
-                        </ng-template>
-                    </p-carousel>
-                </div>
+          </div>
+        </div>
+        <p-divider class="test1" layout="vertical"></p-divider>
+        <div class="div-ident-parceiro">
+          <h2>
+            <i class="bi bi-people mr-1"></i>
+            Dados de Emissão
+          </h2>
+          <div class="d-flex justify-content-between flex-column flex-lg-row">
+            <div class="contato-info d-flex flex-row">
+              <i class="bi bi-person-circle mr-1"></i>
+              <div>
+                <span class="info-titulo">Emissor</span>
+                <br />
+                <span class="info-dados">{{
+                  nc?.emissor?.username || "não preenchido"
+                }}</span>
+              </div>
             </div>
-            <div class="div-ident-parceiro d-flex  mt-3">
-                <div class="dados-parceiro razao-social item">
-                    <h2 class="mr-2">
-                        <i class="bi bi-geo"></i>
-                        Descrição de Ações Imediatas
-                    </h2>
-                    <p-editor [style]="{'height':'144px', border: '1px solid #dddddd' }" [readonly]="true" [ngModel]="nc?.text_area_acoes">
-                        <ng-template pTemplate="header" hidden>
-                        </ng-template>
-                    </p-editor>
-                </div>
-                <p-divider layout="vertical"></p-divider>
-                <div class="dados-parceiro razao-social item">
-                    <h2 class="mr-2 mb-5">
-                        <i class="pi pi-camera"></i>
-                        Evidencias fotográficas
-                    </h2>
-                    <p-carousel [value]="this.nc?.attachments?.filter(isType2) || []" [numVisible]="3" [numScroll]="3" [showIndicators]="false">
-                        <ng-template let-file pTemplate="item">
-                            <button>
-                                <i class="bi bi-file-earmark fs-1"></i>
-                                <p>{{file.name||"file.txt"}}</p>
-                            </button>
-                        </ng-template>
-                    </p-carousel>
-                </div>
+            <div class="contato-info d-flex flex-row">
+              <i class="bi bi-person-circle mr-1"></i>
+              <div>
+                <span class="info-titulo">Responsável</span>
+                <br />
+                <span class="info-dados">Janaína</span>
+              </div>
             </div>
-        </ng-template>
-    </p-accordionTab>
-    <p-accordionTab [selected]="true">
-        <ng-template pTemplate="header">
-            <div class="d-flex justify-content-between accordion">
-                <p>
-                    <i class="bi bi-box-seam"></i>
-                    Produtos e Pontos
-                </p>
+            <div class="contato-info d-flex flex-row">
+              <i class="bi bi-geo-alt mr-1"></i>
+              <div>
+                <span class="info-titulo">Departamento</span>
+                <br />
+                <p class="info-dados">Rh</p>
+              </div>
             </div>
-        </ng-template>
-        <ng-template pTemplate="content">
-            <div class="div-ident-parceiro row">
-                <h1 class="titulo-parceiro">Dados do Produto</h1>
-                <div class="dados-parceiro col razao-social">
-                    <div class="d-flex">
-                        <h2 class="mr-2">
-                            {{nc?.product?.name||"Dado não preenchido"}}
-                        </h2>
-                        <p-chip>
-                            <i class="bi bi-ticket-perforated mr-2"></i>
-                            {{nc?.product?.code||"000000"}}
-                        </p-chip>
-                    </div>
-                    <p class="d-block">
-                        {{nc?.product?.description||"Dado não preenchido"}}
-                    </p>
+          </div>
+        </div>
+      </div>
+      <div class="div-ident-parceiro mt-3">
+        <h1 class="titulo-parceiro">Dados do Parceiro</h1>
+        <div class="d-flex flex-column flex-lg-row">
+          <div class="item">
+            <div class="dados-parceiro razao-social">
+              <div class="d-flex">
+                <h2 class="mr-2">Razão Social</h2>
+                <p-chip>
+                  <i class="bi bi-ticket-perforated mr-2"></i>
+                  {{ nc?.customer?.code || nc?.provider?.code || "00000000" }}
+                </p-chip>
+              </div>
+              <p>
+                {{
+                  nc?.customer?.corporate_name ||
+                    nc?.provider?.corporate_name ||
+                    nc?.sector?.name ||
+                    "Dado não preenchido"
+                }}
+              </p>
+            </div>
+          </div>
+          <div class="item">
+            <div class="dados-parceiro">
+              <div class="dados-contato">
+                <h1>Dados do Contato</h1>
+                <div></div>
+                <div class="contato-info d-flex flex-row">
+                  <i class="pi pi-user"></i>
+                  <div>
+                    <span class="info-titulo">Nome</span>
+                    <br />
+                    <span class="info-dados">
+                      {{
+                        nc?.customer?.responsible_name ||
+                          nc?.provider?.responsible_name ||
+                          nc?.sector?.responsible_name ||
+                          "Dado não preenchido"
+                      }}
+                    </span>
+                  </div>
                 </div>
-                <div class="dados-parceiro col">
-                    <div class="dados-contato">
-                        <div class="d-flex justify-content-between">
-                            <h2>Dados de NC</h2>
-                        </div>
-                        <div class="contato-info d-flex flex-row">
-                            <i class="bi bi-calculator"></i>
-                            <div>
-                                <span class="info-titulo">Quantidade Total</span>
-                                <br />
-                                <span class="info-dados">{{nc?.quant_total||""}}</span>
-                            </div>
-                        </div>
-                        <div class="contato-info d-flex flex-row">
-                            <i class="bi bi-calculator"></i>
-                            <div>
-                                <span class="info-titulo">Quantidade em Não Conformidade</span>
-                                <br />
-                                <span class="info-dados">{{nc?.quant_nc||""}}</span>
-                            </div>
-                        </div>
-                        <div class="contato-info d-flex flex-row">
-                            <i class="bi bi-percent"></i>
-                            <div>
-                                <span class="info-titulo">Percentual</span>
-                                <br />
-                                <span class="info-dados">{{((nc?.quant_nc*100) / nc?.quant_total)||"0"}}%</span>
-                            </div>
-                        </div>
-                    </div>
+                <div class="contato-info d-flex flex-row">
+                  <i class="pi pi-phone"></i>
+                  <div>
+                    <span class="info-titulo">Telefone</span>
+                    <br />
+                    <span class="info-dados">
+                      {{
+                        nc?.customer?.responsible_phone ||
+                          nc?.provider?.responsible_phone ||
+                          nc?.sector?.responsible_phone ||
+                          "(00) 00000-0000"
+                      }}
+                    </span>
+                  </div>
                 </div>
-            </div>
-            <div class="div-ident-parceiro mt-3">
-                <h2>
-                    <i class="bi bi-people"></i>
-                    Ponto de Controle
-                </h2>
-                <div class="d-flex">
-                    <div class="col-6 d-flex flex-row">
-                        <i class="pi pi-directions mr-1"></i>
-                        <div>
-        <span class="info-titulo">{{
-            nc?.tipo_controle || "Dado não preenchido"
-            }}</span>
-                        </div>
-                    </div>
-                    <div class="d-flex flex-row" *ngIf="nc?.tipo_controle!='PR'">
-                        <i class="bi bi-calculator mr-1"></i>
-                        <div >
-                            <span class="info-titulo">Número</span>
-                            <br />
-                            <p class="info-dados">
-                                {{
-                                (nc?.num_op || nc?.num_nota)|| "Dado não preenchido"
-                                }}
-                            </p>
-                        </div>
-                    </div>
+                <div class="contato-info d-flex flex-row">
+                  <i class="pi pi-at"></i>
+                  <div>
+                    <span class="info-titulo">E-mail</span>
+                    <br />
+                    <span class="info-dados">
+                      {{
+                        nc?.customer?.responsible_email ||
+                          nc?.provider?.responsible_email ||
+                          nc?.sector?.responsible_email ||
+                          "Dado não preenchido"
+                      }}
+                    </span>
+                  </div>
                 </div>
+              </div>
             </div>
-            <div class="div-ident-parceiro pr-4 mt-3">
-                <h2>
-                    <i class="bi bi-people"></i>
-                    Ponto de Rejeição
-                </h2>
-                <div class="d-flex dados-contato mb-3 ">
-                    <div class="contato-info d-flex flex-row mb-5 mr-5" *ngIf="nc?.num_lote">
-                        <i class="bi bi-123"></i>
-                        <div>
-                            <span class="info-titulo">Número do Lote</span>
-                            <br />
-                            <span class="info-dados">{{
-                                nc?.num_lote || "0"
-                                }}</span>
-                        </div>
-                    </div>
-                    <div class="contato-info d-flex flex-row mb-5 mr-5" *ngIf="nc?.num_ordem_compra">
-                        <i class="bi bi-123"></i>
-                        <div>
-                            <span class="info-titulo">Quantidade em Não Conformidade</span>
-                            <br />
-                            <span class="info-dados">{{
-                                nc?.num_ordem_compra || "0"
-                                }}</span>
-                        </div>
-                    </div>
-                    <div class="contato-info d-flex flex-row mb-5 mr-5" *ngIf="nc?.instruction?.code">
-                        <i class="bi bi-123"></i>
-                        <div>
-                            <span class="info-titulo">IT</span>
-                            <br />
-                            <span class="info-dados">{{ "Numero: " + nc?.instruction?.code || "0" }}</span>
-                            <br />
-                            <span class="info-dados">{{ "Descrição: " + nc?.instruction?.description || "0" }}</span>
-                            <br />
-                            <span class="info-dados">{{ "Revisão: " + nc?.instruction?.rev || "0" }}</span>
-                        </div>
-                    </div>
-                    <div class="contato-info d-flex flex-row mb-5 mr-5" *ngIf="nc?.procedure">
-                        <i class="bi bi-123"></i>
-                        <div>
-                            <span class="info-titulo">Número PR</span>
-                            <br />
-                            <span class="info-dados">{{ nc?.procedure?.code|| "0" }}</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="dados-parceiro col razao-social">
-                    <p-editor
-                            [ngModel]="nc?.text_area_reject_point"
-                            [style]="{ height: '100%', border: '0px solid #dddddd'}"
-                            [readonly]="true"
-                    >
-                        <ng-template pTemplate="header" hidden> </ng-template>
-                    </p-editor>
-                </div>
+          </div>
+        </div>
+      </div>
+      <div class="div-ident-parceiro d-flex flex-column flex-lg-row mt-3">
+        <div class="dados-parceiro razao-social item">
+          <h2 class="mr-2">
+            <i class="bi bi-file-earmark-text"></i>
+            Descrição da Não Conformidade
+          </h2>
+          <p-editor
+            [style]="{ height: '144px', border: '1px solid #dddddd' }"
+            [readonly]="true"
+            [ngModel]="nc?.text_area_nc"
+          >
+            <ng-template pTemplate="header"> </ng-template>
+          </p-editor>
+        </div>
+        <p-divider layout="vertical"></p-divider>
+        <div class="dados-parceiro razao-social item">
+          <h2 class="mr-2 mb-5">
+            <i class="pi pi-camera"></i>
+            Evidencias fotográficas
+          </h2>
+          <p-carousel
+            [value]="this.nc?.attachments?.filter(isType1) || []"
+            [numVisible]="3"
+            [numScroll]="3"
+            [showIndicators]="false"
+          >
+            <ng-template let-file pTemplate="item">
+              <button>
+                <i class="bi bi-file-earmark fs-1"></i>
+                <p>{{ file.name || "file.txt" }}</p>
+              </button>
+            </ng-template>
+          </p-carousel>
+        </div>
+      </div>
+      <div class="div-ident-parceiro d-flex mt-3">
+        <div class="dados-parceiro razao-social item">
+          <h2 class="mr-2">
+            <i class="bi bi-geo"></i>
+            Descrição de Ações Imediatas
+          </h2>
+          <p-editor
+            [style]="{ height: '144px', border: '1px solid #dddddd' }"
+            [readonly]="true"
+            [ngModel]="nc?.text_area_acoes"
+          >
+            <ng-template pTemplate="header" hidden> </ng-template>
+          </p-editor>
+        </div>
+        <p-divider layout="vertical"></p-divider>
+        <div class="dados-parceiro razao-social item">
+          <h2 class="mr-2 mb-5">
+            <i class="pi pi-camera"></i>
+            Evidencias fotográficas
+          </h2>
+          <p-carousel
+            [value]="this.nc?.attachments?.filter(isType2) || []"
+            [numVisible]="3"
+            [numScroll]="3"
+            [showIndicators]="false"
+          >
+            <ng-template let-file pTemplate="item">
+              <button>
+                <i class="bi bi-file-earmark fs-1"></i>
+                <p>{{ file.name || "file.txt" }}</p>
+              </button>
+            </ng-template>
+          </p-carousel>
+        </div>
+      </div>
+    </ng-template>
+  </p-accordionTab>
+  <p-accordionTab [selected]="true">
+    <ng-template pTemplate="header">
+      <div class="d-flex justify-content-between accordion">
+        <p>
+          <i class="bi bi-box-seam"></i>
+          Produtos e Pontos
+        </p>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="content">
+      <div class="div-ident-parceiro row">
+        <h1 class="titulo-parceiro">Dados do Produto</h1>
+        <div class="dados-parceiro col razao-social">
+          <div class="d-flex">
+            <h2 class="mr-2">
+              {{ nc?.product?.name || "Dado não preenchido" }}
+            </h2>
+            <p-chip>
+              <i class="bi bi-ticket-perforated mr-2"></i>
+              {{ nc?.product?.code || "000000" }}
+            </p-chip>
+          </div>
+          <p class="d-block">
+            {{ nc?.product?.description || "Dado não preenchido" }}
+          </p>
+        </div>
+        <div class="dados-parceiro col">
+          <div class="dados-contato">
+            <div class="d-flex justify-content-between">
+              <h2>Dados de NC</h2>
             </div>
-
-        </ng-template>
-    </p-accordionTab>
-    <p-accordionTab [selected]="true">
-        <ng-template pTemplate="header">
-            <div class="d-flex justify-content-between accordion">
-                <p>
-                    <i class="bi bi-file-earmark-text"></i>
-                    Identificação da NC
-                </p>
+            <div class="contato-info d-flex flex-row">
+              <i class="bi bi-calculator"></i>
+              <div>
+                <span class="info-titulo">Quantidade Total</span>
+                <br />
+                <span class="info-dados">{{ nc?.quant_total || "" }}</span>
+              </div>
             </div>
-        </ng-template>
-        <ng-template pTemplate="content">
-            <div class="card">
-                <p-table [value]="nc.contacts">
-                    <ng-template pTemplate="header">
-                        <tr>
-                            <th>Nome</th>
-                            <th>E-mail</th>
-                            <th>Tipo de Contato</th>
-                        </tr>
-                    </ng-template>
-                    <ng-template pTemplate="body" let-contact let-i="rowIndex">
-                        <tr>
-                            <td>{{ contact.name }}</td>
-                            <td>{{ contact.email }}</td>
-                            <td>{{ contact.type }}</td>
-                        </tr>
-                    </ng-template>
-                </p-table>
+            <div class="contato-info d-flex flex-row">
+              <i class="bi bi-calculator"></i>
+              <div>
+                <span class="info-titulo">Quantidade em Não Conformidade</span>
+                <br />
+                <span class="info-dados">{{ nc?.quant_nc || "" }}</span>
+              </div>
             </div>
-        </ng-template>
-    </p-accordionTab>
+            <div class="contato-info d-flex flex-row">
+              <i class="bi bi-percent"></i>
+              <div>
+                <span class="info-titulo">Percentual</span>
+                <br />
+                <span class="info-dados"
+                  >{{ (nc?.quant_nc * 100) / nc?.quant_total || "0" }}%</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="div-ident-parceiro mt-3">
+        <h2>
+          <i class="bi bi-people"></i>
+          Ponto de Controle
+        </h2>
+        <div class="d-flex">
+          <div class="col-6 d-flex flex-row">
+            <i class="pi pi-directions mr-1"></i>
+            <div>
+              <span class="info-titulo">{{
+                nc?.tipo_controle || "Dado não preenchido"
+              }}</span>
+            </div>
+          </div>
+          <div class="d-flex flex-row" *ngIf="nc?.tipo_controle != 'PR'">
+            <i class="bi bi-calculator mr-1"></i>
+            <div>
+              <span class="info-titulo">Número</span>
+              <br />
+              <p class="info-dados">
+                {{ nc?.num_op || nc?.num_nota || "Dado não preenchido" }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="div-ident-parceiro pr-4 mt-3">
+        <h2>
+          <i class="bi bi-people"></i>
+          Ponto de Rejeição
+        </h2>
+        <div class="d-flex dados-contato mb-3">
+          <div
+            class="contato-info d-flex flex-row mb-5 mr-5"
+            *ngIf="nc?.num_lote"
+          >
+            <i class="bi bi-123"></i>
+            <div>
+              <span class="info-titulo">Número do Lote</span>
+              <br />
+              <span class="info-dados">{{ nc?.num_lote || "0" }}</span>
+            </div>
+          </div>
+          <div
+            class="contato-info d-flex flex-row mb-5 mr-5"
+            *ngIf="nc?.num_ordem_compra"
+          >
+            <i class="bi bi-123"></i>
+            <div>
+              <span class="info-titulo">Quantidade em Não Conformidade</span>
+              <br />
+              <span class="info-dados">{{ nc?.num_ordem_compra || "0" }}</span>
+            </div>
+          </div>
+          <div
+            class="contato-info d-flex flex-row mb-5 mr-5"
+            *ngIf="nc?.instruction?.code"
+          >
+            <i class="bi bi-123"></i>
+            <div>
+              <span class="info-titulo">IT</span>
+              <br />
+              <span class="info-dados">{{
+                "Numero: " + nc?.instruction?.code || "0"
+              }}</span>
+              <br />
+              <span class="info-dados">{{
+                "Descrição: " + nc?.instruction?.description || "0"
+              }}</span>
+              <br />
+              <span class="info-dados">{{
+                "Revisão: " + nc?.instruction?.rev || "0"
+              }}</span>
+            </div>
+          </div>
+          <div
+            class="contato-info d-flex flex-row mb-5 mr-5"
+            *ngIf="nc?.procedure"
+          >
+            <i class="bi bi-123"></i>
+            <div>
+              <span class="info-titulo">Número PR</span>
+              <br />
+              <span class="info-dados">{{ nc?.procedure?.code || "0" }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="dados-parceiro col razao-social">
+          <p-editor
+            [ngModel]="nc?.text_area_reject_point"
+            [style]="{ height: '100%', border: '0px solid #dddddd' }"
+            [readonly]="true"
+          >
+            <ng-template pTemplate="header" hidden> </ng-template>
+          </p-editor>
+        </div>
+      </div>
+    </ng-template>
+  </p-accordionTab>
+  <p-accordionTab [selected]="true">
+    <ng-template pTemplate="header">
+      <div class="d-flex justify-content-between accordion">
+        <p>
+          <i class="bi bi-file-earmark-text"></i>
+          Identificação da NC
+        </p>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="content">
+      <div class="card">
+        <p-table [value]="nc.contacts">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>Nome</th>
+              <th>E-mail</th>
+              <th>Tipo de Contato</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-contact let-i="rowIndex">
+            <tr>
+              <td>{{ contact.name }}</td>
+              <td>{{ contact.email }}</td>
+              <td>{{ contact.type }}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </ng-template>
+  </p-accordionTab>
 </p-accordion>

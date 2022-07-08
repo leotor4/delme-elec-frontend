@@ -61,8 +61,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     })
   ],
   providers: [
-    authInterceptorProviders,
-    AuthGuardService 
+    authInterceptorProviders
   ],
   bootstrap: [AppComponent],
 })

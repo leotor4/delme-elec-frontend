@@ -9,6 +9,7 @@ import { NonCompliance } from 'src/app/models/non-compliance';
 
 import { NcsListDTO } from './ncs-list-dto';
 import { DashboardsService } from '../../dashboards/dashboards.service';
+import { TokenStorageService } from 'src/app/_services/token-storage.service';
 import {TranslateService} from "@ngx-translate/core";
 
 @Component({
@@ -64,6 +65,7 @@ export class NcsListComponent implements OnInit {
 
   @ViewChild("dt") dt: Table;
   listNcs: Array<NcsListDTO> = [];
+  listNcsObj : Array<NonCompliance> = [];
   cols: any[];
   first = 0;
   totalRecords = 0;
@@ -103,6 +105,7 @@ export class NcsListComponent implements OnInit {
     public messageService: MessageService,
     private dashboardService: DashboardsService,
     private confirmationService: ConfirmationService,
+    private tokenService : TokenStorageService,
     public translate: TranslateService
   ) {}
 
@@ -115,6 +118,7 @@ export class NcsListComponent implements OnInit {
     this.ncsService.get().subscribe((data: any) => {
       //this.listNcs.append(data.noncompliances);
       const compliances: Array<NonCompliance> = data.noncompliances;
+      this.listNcsObj = data.noncompliances
 
       if (compliances?.length > 0) {
         this.listNcs = compliances.map((item: NonCompliance) => {
@@ -283,15 +287,42 @@ export class NcsListComponent implements OnInit {
   }
 
   edit(idNc: number, status: string) {
-    if (status.toUpperCase() == "OPEN") {
-      this.router.navigate(["/ncs/create/", idNc]);
-    } else {
+    
+    if (status.toUpperCase() != "OPEN") {
       this.messageService.add({
         severity: "info",
         summary: this.translate.instant("list.openInfo"),
         life: 5000,
       });
     }
+    else {
+      var user = this.tokenService.getUser()
+      console.log(user)
+      
+      
+      var listNcsAux = this.listNcsObj.filter(
+        (item) =>
+          item.id == idNc 
+      );
+  
+      var nc = listNcsAux[0];
+  
+      console.log(nc.emissor)
+      
+      if (user['email'] == nc.emissor?.email || user['role_id'] == 3) {
+        if (status.toUpperCase() == "OPEN") {
+          this.router.navigate(["/ncs/create/", idNc]);
+        }
+      } else {
+        this.messageService.add({
+          severity: "warn",
+          summary: "Você não tem permissão para abrir esta Nc",
+          life: 5000,
+        });
+      }
+    } 
+
+    
   }
 
   visualizarInformacoes(idNc: number, status: string) {

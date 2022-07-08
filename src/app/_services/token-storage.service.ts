@@ -48,4 +48,5 @@ export class TokenStorageService {
   public exist(key : string): boolean {
     return ! (localStorage.getItem(key) === null || localStorage.getItem(key) === '');
   }
+
 }

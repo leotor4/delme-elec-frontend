@@ -235,7 +235,7 @@
         </ng-template>
         <ng-template pTemplate="content">
             <div class="card">
-                <p-table [value]="contactsCopy">
+                <p-table [value]="propService.contacts">
                     <ng-template pTemplate="header">
                         <tr>
                             <th>{{'global.contacts.name'| translate}}</th>
