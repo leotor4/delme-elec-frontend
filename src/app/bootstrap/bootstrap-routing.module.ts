@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { AuthGuardService } from "../_services/auth-guard.service";
 import { CreatePropModule } from "../pages/ncs/create-prop/create-prop.module";
+import { RoleGuardService } from "../_services/role-guard.service";
 
 const routes: Routes = [
   {

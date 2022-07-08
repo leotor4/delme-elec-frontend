@@ -1,3 +1,5 @@
+import { RoleGuardService } from './../../../_services/role-guard.service';
+import { TokenStorageService } from 'src/app/_services/token-storage.service';
 import { Component, OnInit } from '@angular/core';
 import { NonComplianceService } from 'src/app/_services/non-compliance.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -12,8 +14,10 @@ export class AboutComponent implements OnInit {
   constructor(
     private ncsService: NonComplianceService,
     private route: ActivatedRoute,
-    private aboutSrvc: AboutService,
-    private router: Router
+    public aboutSrvc: AboutService,
+    private router: Router,
+    private tokenService : TokenStorageService,
+    public roleService : RoleGuardService 
   ) {}
 
   ngOnInit(): void {
@@ -30,5 +34,16 @@ export class AboutComponent implements OnInit {
     if (e["index"] == 3 && this.aboutSrvc.nc?.proposalSolution && this.aboutSrvc.nc?.costs?.length>0 && !this.aboutSrvc.nc?.sgqEvaluation) {
       this.router.navigate(["/", "ncs", "sgq", id]);
     }
+  }
+
+
+  checkRoleProposal (): boolean {
+    var user = this.tokenService.getUser()
+    
+    if (user['email'] == this.aboutSrvc.nc.sector?.responsible_email || user['role_id'] == 3) {
+      return false;
+    } 
+
+    return true;
   }
 }
