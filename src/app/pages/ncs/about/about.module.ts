@@ -28,49 +28,48 @@ import {InputTextModule} from "primeng/inputtext";
 import { CurrencyMaskModule } from "ng2-currency-mask";
 import {RadioButtonModule} from "primeng/radiobutton";
 import {TranslateModule} from "@ngx-translate/core";
+import { FechamentoComponent } from './closing/fechamento/fechamento.component';
+
+
 
 
 
 @NgModule({
-    declarations: [
-        AboutComponent,
-        HeaderComponent,
-        ViewNCComponent,
-        ViewStakeholdersComponent,
-        ViewProductsAndPointsComponent,
-        ViewIdentifyNCComponent,
-        ProposalComponent,
-        CostsComponent,
-        SGQEvaluationComponent,
-        ClosingComponent,
+  declarations: [
+    AboutComponent,
+    HeaderComponent,
+    ViewNCComponent,
+    ViewStakeholdersComponent,
+    ViewProductsAndPointsComponent,
+    ViewIdentifyNCComponent,
+    ProposalComponent,
+    CostsComponent,
+    SGQEvaluationComponent,
+    ClosingComponent,
+    FechamentoComponent,
 
-
-    ],
-    imports: [
-        CommonModule,
-        NcAboutRoutingModule,
-        ChipModule,
-        TabViewModule,
-        AccordionModule,
-        EditorModule,
-        DividerModule,
-        CarouselModule,
-        TableModule,
-        ButtonModule,
-        ConfirmDialogModule,
-        ToastModule,
-        DialogModule,
-        FormsModule,
-        InputTextModule,
-        CurrencyMaskModule,
-        RadioButtonModule,
-        TranslateModule
-
-
-    ],
-    providers: [ConfirmationService],
-    exports: [
-        AboutComponent
-    ]
+  ],
+  imports: [
+    CommonModule,
+    NcAboutRoutingModule,
+    ChipModule,
+    TabViewModule,
+    AccordionModule,
+    EditorModule,
+    DividerModule,
+    CarouselModule,
+    TableModule,
+    ButtonModule,
+    ConfirmDialogModule,
+    ToastModule,
+    DialogModule,
+    FormsModule,
+    InputTextModule,
+    CurrencyMaskModule,
+    RadioButtonModule,
+    TranslateModule,
+  ],
+  providers: [ConfirmationService],
+  exports: [AboutComponent],
 })
-export class NcAboutModule { }
+export class NcAboutModule {}

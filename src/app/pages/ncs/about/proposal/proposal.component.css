@@ -61,6 +61,10 @@ h2 {
 .why-box{
     width: 300px;
 }
+
+.why-box label {
+    height: 15px;
+}
 .edit-button i{
     font-size: 14px;
     
