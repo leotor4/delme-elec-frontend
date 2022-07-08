@@ -55,6 +55,7 @@ export class ActionPlanComponent implements OnInit {
     actionPlan.term = this.date
     if(!this.propService.propSolution.contacts.some(e => e.email === this.selectedResp.email)){
       this.propService.propSolution.contacts.push(this.selectedResp)
+      this.propService.contacts.push(this.selectedResp)
     }
     this.propService.propSolution.actionPlans.push(actionPlan)
     this.name = ""

@@ -14,6 +14,7 @@ import { NonComplianceService } from "../../../_services/non-compliance.service"
 import { Sector } from "../../../models/sector";
 import { SectorService } from "../../../_services/sector.service";
 import { environment } from "src/environments/environment";
+import {Contact} from "../../../models/contact.model";
 
 @Injectable({
   providedIn: "root",
@@ -31,6 +32,7 @@ export class ProposalService {
   actions: ActionPlan[] = [];
   sectors: Sector[];
   checkBoxes: string[] = [];
+  contacts: Contact[] = []
 
   apiUrl = environment.apiURL + "proposal";
   ncProp: NonCompliance;
