@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { ChartsService } from "src/app/_services/charts.service";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: "app-nc-receptor-emissor",
@@ -8,11 +9,10 @@ import { ChartsService } from "src/app/_services/charts.service";
 })
 export class NcReceptorEmissorComponent implements OnInit {
   @Input() size: number[] = [];
-  constructor(public chartsService: ChartsService) {}
+  constructor(public chartsService: ChartsService, public translate: TranslateService) {}
   ngOnInit(): void {
     this.tipos = Object.assign([], this.chartsService.sectors);
     this.popular();
-    console.log(this.graph);
   }
 
   single: any[] = [];
@@ -20,15 +20,15 @@ export class NcReceptorEmissorComponent implements OnInit {
   tipos: string[] = [];
   graph: any;
   tiposNc: string[] = [
-    "Auditoria Interna",
-    "Auditoria Externa",
-    "NC de Fornecedor",
-    "NC de Processo",
-    "NC de Cliente",
-    "NC de Produto",
-    "Todos",
+    this.translate.instant("newNC.step1.ncType.type1"),
+    this.translate.instant("newNC.step1.ncType.type2"),
+    this.translate.instant("newNC.step1.ncType.type3"),
+    this.translate.instant("newNC.step1.ncType.type4"),
+    this.translate.instant("newNC.step1.ncType.type5"),
+    this.translate.instant("newNC.step1.ncType.type6"),
+    this.translate.instant("global.all"),
   ];
-  tiposNcAtual = "Todos";
+  tiposNcAtual = this.translate.instant("global.all");
   quant: number[] = [];
   quantEmissor: number[] = [];
 
@@ -53,7 +53,7 @@ export class NcReceptorEmissorComponent implements OnInit {
       if (
         element.tipos_local_item &&
         (element.tipos_nc_item == this.tiposNcAtual ||
-          this.tiposNcAtual == "Todos")
+          this.tiposNcAtual == this.translate.instant("global.all"))
       ) {
         let setorReceptor = element.tipos_local_item;
         let setorEmissor = element.emissor?.sector?.name;
@@ -81,11 +81,11 @@ export class NcReceptorEmissorComponent implements OnInit {
         name: this.tipos[i],
         series: [
           {
-            name: "Ncs recebidas",
+            name: this.translate.instant("charts.ncsReceived"),
             value: this.quant[i],
           },
           {
-            name: "Ncs emitidas",
+            name: this.translate.instant("charts.ncsSent"),
             value: this.quant[i],
           },
         ],
@@ -98,22 +98,26 @@ export class NcReceptorEmissorComponent implements OnInit {
           x: this.tipos,
           y: this.quant,
           type: "bar",
-          name: "Custo",
+          name: this.translate.instant("charts.cost2"),
           marker: { color: "rgb(29,104,251)" },
         },
         {
           x: this.tipos,
           y: this.quantEmissor,
-          name: "Quantidade",
+          name: this.translate.instant("charts.amount"),
           type: "bar",
           marker: { color: "rgb(51,192,252)" },
         },
       ],
       layout: {
-        width: 1600,
-        height: 500,
+        width: this.size[0],
+        height: this.size[1],
+        xaxis: { title: "Setores" },
+        yaxis: { title: "Custo" },
+        autosize: true,
         title: "",
       },
+      config: { responsive: true },
     };
   }
 
@@ -127,5 +131,5 @@ export class NcReceptorEmissorComponent implements OnInit {
   xAxisLabel = "";
   yAxisLabel = "";
   title =
-    "Departamento/Setor x Quantidade de NCs Recebida e Quantidade de NCs Emitida.";
+      this.translate.instant("charts.title7");
 }

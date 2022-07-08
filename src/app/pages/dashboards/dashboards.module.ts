@@ -17,18 +17,20 @@ import { NcReceptorComponent } from './charts/nc-receptor/nc-receptor.component'
 import { NcReceptorEmissorComponent } from './charts/nc-receptor-emissor/nc-receptor-emissor.component';
 import { NcCountComponent } from './charts/nc-count/nc-count.component';
 import { NcActionplanComponent } from './charts/nc-actionplan/nc-actionplan.component';
+import {TranslateModule} from "@ngx-translate/core";
 
 PlotlyModule.plotlyjs = PlotlyJS;
 
 @NgModule({
   declarations: [DashboardsComponent, NcStatusComponent, NcYearComponent, CostSectorComponent, NcProductsComponent, NcTypesComponent, NcEmissorComponent, NcReceptorComponent, NcReceptorEmissorComponent, NcCountComponent, NcActionplanComponent],
-  imports: [
-    CommonModule,
-    FormsModule,
-    NgxChartsModule,
-    PlotlyModule,
-    DropdownModule,
-    DashboardsRoutingModule,
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        NgxChartsModule,
+        PlotlyModule,
+        DropdownModule,
+        DashboardsRoutingModule,
+        TranslateModule,
+    ],
 })
 export class DashboardsModule {}

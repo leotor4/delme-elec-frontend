@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { ChartsService } from "src/app/_services/charts.service";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: "app-nc-types",
@@ -7,7 +8,7 @@ import { ChartsService } from "src/app/_services/charts.service";
   styleUrls: ["./nc-types.component.css"],
 })
 export class NcTypesComponent implements OnInit {
-  constructor(public chartsService: ChartsService) {}
+  constructor(public chartsService: ChartsService, public translate: TranslateService) {}
   @Input() size: number[] = [];
   setor: any;
   setores: string[] = [];
@@ -23,29 +24,33 @@ export class NcTypesComponent implements OnInit {
   popular() {
     this.single = [
       {
-        name: "Auditoria Interna",
+        name: this.translate.instant("newNC.step1.ncType.type1"),
         value: 0,
       },
       {
-        name: "Auditoria Externa",
+        name: this.translate.instant("newNC.step1.ncType.type2"),
         value: 0,
       },
       {
-        name: "NC de Fornecedor",
+        name: this.translate.instant("newNC.step1.ncType.type3"),
         value: 0,
       },
       {
-        name: "NC de Processo",
+        name: this.translate.instant("newNC.step1.ncType.type4"),
         value: 0,
       },
       {
-        name: "NC de Produto",
+        name: this.translate.instant("newNC.step1.ncType.type5"),
+        value: 0,
+      },
+      {
+        name: this.translate.instant("newNC.step1.ncType.type6"),
         value: 0,
       },
     ];
 
     this.chartsService.ncs.forEach((nc) => {
-      if (nc.tipos_local_item == this.setor || this.setor == "Todos") {
+      if (nc.tipos_local_item == this.setor || this.setor == this.translate.instant("global.all")) {
         if (nc.tipos_nc_item) {
           this.single.forEach((element) => {
             if (element["name"] == nc.tipos_nc_item) {
@@ -60,9 +65,9 @@ export class NcTypesComponent implements OnInit {
   popularSetores() {
     this.setores = Object.assign([], this.chartsService.sectors);
 
-    this.setores.push("Todos");
+    this.setores.unshift(this.translate.instant("global.all"));
 
-    this.setor = "Todos";
+    this.setor = this.translate.instant("global.all");
   }
 
   // options
@@ -72,7 +77,7 @@ export class NcTypesComponent implements OnInit {
   showLegend = true;
   showXAxisLabel = true;
   showYAxisLabel = true;
-  xAxisLabel = "";
-  yAxisLabel = "";
+  xAxisLabel = "Tipos de NC";
+  yAxisLabel = "Quantidade de NC";
   gridColor = "ocean";
 }

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { ChartsService } from "src/app/_services/charts.service";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: "app-nc-emissor",
@@ -8,7 +9,7 @@ import { ChartsService } from "src/app/_services/charts.service";
 })
 export class NcEmissorComponent implements OnInit {
   @Input() size: number[] = [];
-  constructor(public chartsService: ChartsService) {}
+  constructor(public chartsService: ChartsService, public translate: TranslateService) {}
   ngOnInit(): void {
     this.tipos = Object.assign([], this.chartsService.sectors);
     this.popular();
@@ -17,15 +18,15 @@ export class NcEmissorComponent implements OnInit {
   single: any[] = [];
   tipos: string[] = [];
   tiposNc: string[] = [
-    "Auditoria Interna",
-    "Auditoria Externa",
-    "NC de Fornecedor",
-    "NC de Processo",
-    "NC de Cliente",
-    "NC de Produto",
-    "Todos",
+    this.translate.instant("newNC.step1.ncType.type1"),
+    this.translate.instant("newNC.step1.ncType.type2"),
+    this.translate.instant("newNC.step1.ncType.type3"),
+    this.translate.instant("newNC.step1.ncType.type4"),
+    this.translate.instant("newNC.step1.ncType.type5"),
+    this.translate.instant("newNC.step1.ncType.type6"),
+    this.translate.instant("global.all"),
   ];
-  tiposNcAtual = "Todos";
+  tiposNcAtual = this.translate.instant("global.all");
   quant: number[] = [];
 
   ordenar() {
@@ -35,9 +36,9 @@ export class NcEmissorComponent implements OnInit {
   }
 
   popular() {
-    this.quant=[]
-    this.single=[]
-    
+    this.quant = [];
+    this.single = [];
+
     for (var i = 0; i < this.tipos.length; i++) {
       this.quant.push(0);
     }
@@ -45,7 +46,7 @@ export class NcEmissorComponent implements OnInit {
       if (
         element.emissor &&
         (element.tipos_nc_item == this.tiposNcAtual ||
-          this.tiposNcAtual == "Todos")
+          this.tiposNcAtual == this.translate.instant("global.all"))
       ) {
         let setor = element.emissor.sector!.name;
         let index = this.tipos.indexOf(setor);
@@ -75,7 +76,7 @@ export class NcEmissorComponent implements OnInit {
   showLegend = true;
   showXAxisLabel = true;
   showYAxisLabel = true;
-  xAxisLabel = "";
-  yAxisLabel = "";
+  xAxisLabel = "Setores";
+  yAxisLabel = "Quantidade de NC";
   title = "Departamento Emissor x Quantidade de Ncs";
 }

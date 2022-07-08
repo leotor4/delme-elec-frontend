@@ -1,99 +1,103 @@
 <p-accordion [multiple]="true">
-    <p-accordionTab [selected]="true">
-        <ng-template pTemplate="header">
-            <div class="d-flex justify-content-between accordion">
-                <p>
-                    <i class="bi bi-link-45deg"></i>
-                    Reincidência
-                </p>
-            </div>
-        </ng-template>
-        <ng-template pTemplate="content">
-            <div class="card">
-                <p-table [value]="[]">
-                    <ng-template pTemplate="header">
-                        <tr>
-                            <th>Número</th>
-                            <th>Parceiro</th>
-                            <th>Emissor</th>
-                            <th>Status</th>
-                            <th>Data de Fechamento</th>
-                        </tr>
-                    </ng-template>
-                    <ng-template pTemplate="body" let-nc let-i="rowIndex">
-                        <tr>
-                            <td>{{ nc.code }}</td>
-                            <td>{{ (nc.customer?.corporate_name||nc.provider?.corporate_name||nc.sector?.name)
-                            ||"Dado não preenchido" }}</td>
-                            <td>{{ nc.emissor.username }}</td>
-                            <td>{{ nc.status }}</td>
-                            <td>{{ parseDate(nc.data_fechamento||"")||"00/00/0000" }}</td>
-                        </tr>
-                    </ng-template>
-                </p-table>
-            </div>
-        </ng-template>
-    </p-accordionTab>
-    <p-accordionTab [selected]="true">
-        <ng-template pTemplate="header">
-            <div class="d-flex justify-content-between accordion">
-                <p>
-                    <i class="pi pi-compass"></i>
-                    Riscos e Oportunidades
-                </p>
-            </div>
-        </ng-template>
-        <ng-template pTemplate="content">
-            <p-editor [ngModel]="[]" [style]="editorStyle" [readonly]="true">
-                <ng-template pTemplate="header">
-                </ng-template>
-            </p-editor>
-        </ng-template>
-    </p-accordionTab>
-    <p-accordionTab [selected]="true">
-        <ng-template pTemplate="header">
-            <div class="d-flex justify-content-between accordion">
-                <p>
-                    <i class="bi bi-envelope-exclamation"></i>
-                    Mudanças
-                </p>
-            </div>
-        </ng-template>
-        <ng-template pTemplate="content">
-            <p-editor [ngModel]="[]" [style]="editorStyle" [readonly]="true">
-                <ng-template pTemplate="header">
-                </ng-template>
-            </p-editor>
-        </ng-template>
-    </p-accordionTab>
-    <p-accordionTab [selected]="true">
-        <ng-template pTemplate="header">
-            <div class="d-flex justify-content-between accordion">
-                <p>
-                    <i class="bi bi-envelope"></i>
-                    Partes Interessadas
-                </p>
-            </div>
-        </ng-template>
-        <ng-template pTemplate="content">
-            <div class="card">
-                <p-table [value]="[]">
-                    <ng-template pTemplate="header">
-                        <tr>
-                            <th>Nome</th>
-                            <th>E-mail</th>
-                            <th>Tipo de Contato</th>
-                        </tr>
-                    </ng-template>
-                    <ng-template pTemplate="body" let-contact let-i="rowIndex">
-                        <tr>
-                            <td>{{ contact.name }}</td>
-                            <td>{{ contact.email }}</td>
-                            <td>{{ contact.type }}</td>
-                        </tr>
-                    </ng-template>
-                </p-table>
-            </div>
-        </ng-template>
-    </p-accordionTab>
+  <p-accordionTab [selected]="true">
+    <ng-template pTemplate="header">
+      <div class="d-flex justify-content-between accordion">
+        <p>
+          <i class="bi bi-link-45deg"></i>
+          {{ "sgq.steps.step1.stepContentTitle1" | translate }}
+        </p>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="content">
+      <div class="card">
+        <p-table [value]="[]">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>{{ "global.number" | translate }}</th>
+              <th>{{ "global.contacts.partner" | translate }}</th>
+              <th>{{ "newNC.review.issuer" | translate }}</th>
+              <th>{{ "global.status" | translate }}</th>
+              <th>{{ "global.deadline" | translate }}</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-nc let-i="rowIndex">
+            <tr>
+              <td>{{ nc.code }}</td>
+              <td>
+                {{
+                  nc.customer?.corporate_name ||
+                    nc.provider?.corporate_name ||
+                    nc.sector?.name ||
+                    "global.empty" | translate
+                }}
+              </td>
+              <td>{{ nc.emissor.username }}</td>
+              <td>{{ nc.status }}</td>
+              <td>{{ parseDate(nc.data_fechamento || "") || "00/00/0000" }}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </ng-template>
+  </p-accordionTab>
+  <p-accordionTab [selected]="true">
+    <ng-template pTemplate="header">
+      <div class="d-flex justify-content-between accordion">
+        <p>
+          <i class="pi pi-compass"></i>
+          {{ "about.sgqEvalComponent.risks" | translate }}
+        </p>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="content">
+      <p-editor [ngModel]="[]" [style]="editorStyle" [readonly]="true">
+        <ng-template pTemplate="header"> </ng-template>
+      </p-editor>
+    </ng-template>
+  </p-accordionTab>
+  <p-accordionTab [selected]="true">
+    <ng-template pTemplate="header">
+      <div class="d-flex justify-content-between accordion">
+        <p>
+          <i class="bi bi-envelope-exclamation"></i>
+          {{ "sgq.interestedParts" | translate }}
+        </p>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="content">
+      <p-editor [ngModel]="[]" [style]="editorStyle" [readonly]="true">
+        <ng-template pTemplate="header"> </ng-template>
+      </p-editor>
+    </ng-template>
+  </p-accordionTab>
+  <p-accordionTab [selected]="true">
+    <ng-template pTemplate="header">
+      <div class="d-flex justify-content-between accordion">
+        <p>
+          <i class="bi bi-envelope"></i>
+          {{ "about.sgqEvalComponent.changes" | translate }}
+        </p>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="content">
+      <div class="card">
+        <p-table [value]="[]">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>{{ "global.contacts.name" | translate }}</th>
+              <th>{{ "global.contacts.email" | translate }}</th>
+              <th>{{ "global.contacts.type" | translate }}</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-contact let-i="rowIndex">
+            <tr>
+              <td>{{ contact.name }}</td>
+              <td>{{ contact.email }}</td>
+              <td>{{ contact.type }}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </ng-template>
+  </p-accordionTab>
 </p-accordion>

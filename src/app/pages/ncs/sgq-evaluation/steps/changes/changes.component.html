@@ -1,15 +1,13 @@
 <div class="cabecalho">
-    <h1 class="mr-3">Mudanças do SGQ *</h1>
-    <p>
-        Descreva as mudanças no SGQ observadas nesta NC.
-    </p>
+  <h1 class="mr-3">Mudanças do SGQ *</h1>
+  <p>Descreva as mudanças no SGQ observadas nesta NC.</p>
 </div>
 
 <div class="mt-4">
-    <p-editor
-            [(ngModel)]="this.sgqServ.sgq.text_area3"
-            [style]="{ height: '25vh' }"
-            [modules]="{counter: {container: '#counterCh',unit: 'character'}}"
-    ></p-editor>
-    <div id="counterCh" class="text-end">0</div>
+  <p-editor
+    [(ngModel)]="this.sgqServ.sgq.text_area3"
+    [style]="{ height: '25vh' }"
+    [modules]="{ counter: { container: '#counterCh', unit: 'character' } }"
+  ></p-editor>
+  <div id="counterCh" class="text-end">0</div>
 </div>

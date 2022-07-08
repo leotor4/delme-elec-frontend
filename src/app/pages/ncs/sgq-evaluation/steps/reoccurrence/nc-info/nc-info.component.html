@@ -1,81 +1,96 @@
 <div class="d-flex flex-lg-row flex-column justify-content-between mt-4">
-    <div class="cabecalho mt-3 d-flex">
-        <h1 class="mr-3">Não Conformidade </h1>
-        <p-chip>{{nc.code}}</p-chip>
-    </div>
-    <div class="d-flex justify-content-end align-items-center mb-3">
-        <button
-                pButton
-                type="button"
-                icon="bi bi-x-lg"
-                class="p-button-danger p-button-text"
-                (click)="closeDialog(false)"
-        ></button>
-    </div>
+  <div class="cabecalho mt-3 d-flex">
+    <h1 class="mr-3">{{ "about.headerTitle" | translate }}</h1>
+    <p-chip>{{ nc.code }}</p-chip>
+  </div>
+  <div class="d-flex justify-content-end align-items-center mb-3">
+    <button
+      pButton
+      type="button"
+      icon="bi bi-x-lg"
+      class="p-button-danger p-button-text"
+      (click)="closeDialog(false)"
+    ></button>
+  </div>
 </div>
 <div class="mt-3">
-    <p-tabView >
-        <p-tabPanel header="Informações da NC" leftIcon="bi bi-file-earmark-richtext">
-            <div class="content-box">
-                <app-nc-infor-view-nc [nc]="nc"></app-nc-infor-view-nc>
-            </div>
-        </p-tabPanel>
-        <p-tabPanel header="Plano de Ação" leftIcon="bi bi-tools">
-            <div class="content-box">
-                <app-nc-info-action-plan [nc]="nc"></app-nc-info-action-plan>
-            </div>
-        </p-tabPanel>
-        <p-tabPanel header="Custos Incorridos" leftIcon="bi bi-coin">
-            <div class="content-box">
-                <div class="card">
-                <p-table  [value]="nc?.costs||[]">
-                    <ng-template pTemplate="header">
-                        <tr>
-                            <th>Documento</th>
-                            <th>Data de Anexo</th>
-                            <th>Anexado Por</th>
-                            <th>Valor</th>
-                            <th></th>
-                        </tr>
-                    </ng-template>
-                    <ng-template pTemplate="body" let-doc>
-                        <tr>
-                            <td>{{ doc.file_name }}</td>
-                            <td>{{ parseDate(doc.created_at) }}</td>
-                            <td>{{ doc.author?.username }}</td>
-                            <td>{{ doc.value }}</td>
-                            <td>
-                                <button
-                                        pButton
-                                        type="button"
-                                        icon="bi bi-file-earmark-richtext"
-                                        class="p-button-secondary p-button-text"
-                                        (click)="visualizarDocumento(doc.id, 'pdf')"
-                                ></button>
-                                <a
-                                        pButton
-                                        type="button"
-                                        icon="bi bi-download"
-                                        class="p-button-secondary p-button-text"
-                                        [href]="getUrl()+'/costs/files/download/'+doc.id"
-                                        download
-                                ></a>
-                            </td>
-                        </tr>
-                    </ng-template>
-                </p-table>
-            </div>
-            </div>
-        </p-tabPanel>
-        <p-tabPanel header="Avaliação SGQ" leftIcon="bi bi-search">
-            <div class="content-box">
-                <app-nc-info-sgq [nc]="nc"></app-nc-info-sgq>
-            </div>
-        </p-tabPanel>
-        <p-tabPanel header="Fechamento" leftIcon="bi bi-folder-check">
-            <div class="content-box">
-                <app-nc-info-closing [nc]="nc"></app-nc-info-closing>
-            </div>
-        </p-tabPanel>
-    </p-tabView>
+  <p-tabView>
+    <p-tabPanel
+      [header]="'about.ncView.title' | translate"
+      leftIcon="bi bi-file-earmark-richtext"
+    >
+      <div class="content-box">
+        <app-nc-infor-view-nc [nc]="nc"></app-nc-infor-view-nc>
+      </div>
+    </p-tabPanel>
+    <p-tabPanel
+      [header]="'about.proposalComponent.actionPlan' | translate"
+      leftIcon="bi bi-tools"
+    >
+      <div class="content-box">
+        <app-nc-info-action-plan [nc]="nc"></app-nc-info-action-plan>
+      </div>
+    </p-tabPanel>
+    <p-tabPanel [header]="'about.costs' | translate" leftIcon="bi bi-coin">
+      <div class="content-box">
+        <div class="card">
+          <p-table [value]="nc?.costs || []">
+            <ng-template pTemplate="header">
+              <tr>
+                <th>
+                  {{ "about.costsComponent.documents.document" | translate }}
+                </th>
+                <th>{{ "about.costsComponent.documents.date" | translate }}</th>
+                <th>
+                  {{ "about.costsComponent.documents.attachedBy" | translate }}
+                </th>
+                <th>
+                  {{ "about.costsComponent.documents.total" | translate }}
+                </th>
+                <th></th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-doc>
+              <tr>
+                <td>{{ doc.file_name }}</td>
+                <td>{{ parseDate(doc.created_at) }}</td>
+                <td>{{ doc.author?.username }}</td>
+                <td>{{ doc.value }}</td>
+                <td>
+                  <button
+                    pButton
+                    type="button"
+                    icon="bi bi-file-earmark-richtext"
+                    class="p-button-secondary p-button-text"
+                    (click)="visualizarDocumento(doc.id, 'pdf')"
+                  ></button>
+                  <a
+                    pButton
+                    type="button"
+                    icon="bi bi-download"
+                    class="p-button-secondary p-button-text"
+                    [href]="getUrl() + '/costs/files/download/' + doc.id"
+                    download
+                  ></a>
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </div>
+    </p-tabPanel>
+    <p-tabPanel [header]="'about.sgqEval' | translate" leftIcon="bi bi-search">
+      <div class="content-box">
+        <app-nc-info-sgq [nc]="nc"></app-nc-info-sgq>
+      </div>
+    </p-tabPanel>
+    <p-tabPanel
+      [header]="'about.closing' | translate"
+      leftIcon="bi bi-folder-check"
+    >
+      <div class="content-box">
+        <app-nc-info-closing [nc]="nc"></app-nc-info-closing>
+      </div>
+    </p-tabPanel>
+  </p-tabView>
 </div>
