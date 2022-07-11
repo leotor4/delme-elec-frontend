@@ -9,23 +9,23 @@
             <app-view-nc></app-view-nc>
         </div>
     </p-tabPanel>
-    <p-tabPanel [disabled]="this.roleService.checkRoleProposal(this.aboutSrvc?.nc?.sector?.responsible_email)" [header]="'about.proposal'| translate" leftIcon="bi bi-tools" >
+    <p-tabPanel [disabled]="this.roleService.isResponsibleOrManager(this.aboutSrvc?.nc?.sector?.responsible_email)" [header]="'about.proposal'| translate" leftIcon="bi bi-tools" >
         <div class="content-box">
             <app-proposal></app-proposal>
         </div>
     </p-tabPanel>
-    <p-tabPanel [disabled]="this.roleService.checkRoleCost()" [header]="'about.costs'| translate" leftIcon="bi bi-coin">
+    <p-tabPanel [disabled]="this.roleService.isFiscalOrManager()" [header]="'about.costs'| translate" leftIcon="bi bi-coin">
         <div class="content-box">
             <app-costs></app-costs>
         </div>
     </p-tabPanel>
-    <p-tabPanel [header]="'about.sgqEval'| translate" leftIcon="bi bi-search">
+    <p-tabPanel [disabled]="this.roleService.isManager()" [header]="'about.sgqEval'| translate" leftIcon="bi bi-search">
         <div class="content-box">
             
             <app-sgq-evaluation></app-sgq-evaluation>
         </div>
     </p-tabPanel>
-    <p-tabPanel [disabled]="this.roleService.checkRoleClose()" [header]="'about.closing'| translate" leftIcon="bi bi-folder-check">
+    <p-tabPanel [disabled]="this.roleService.isManager()" [header]="'about.closing'| translate" leftIcon="bi bi-folder-check">
         <div class="content-box">
             <app-closing></app-closing>
         </div>

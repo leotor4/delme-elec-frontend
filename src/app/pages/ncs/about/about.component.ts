@@ -37,13 +37,4 @@ export class AboutComponent implements OnInit {
   }
 
 
-  checkRoleProposal (): boolean {
-    var user = this.tokenService.getUser()
-    
-    if (user['email'] == this.aboutSrvc.nc.sector?.responsible_email || user['role_id'] == 3) {
-      return false;
-    } 
-
-    return true;
-  }
 }

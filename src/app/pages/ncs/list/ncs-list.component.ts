@@ -124,10 +124,10 @@ export class NcsListComponent implements OnInit {
         this.listNcs = compliances.map((item: NonCompliance) => {
           return new NcsListDTO(item);
         });
-        this.listNcs = this.listNcs.filter(
-          (item) =>
-            item.system_status !== "deleted" && item.system_status != "arquived"
-        );
+        // this.listNcs = this.listNcs.filter(
+        //   (item) =>
+        //     item.system_status !== "deleted" && item.system_status != "arquived"
+        // );
       }
 
       this.config.filterMatchModeOptions = {
