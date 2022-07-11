@@ -10,7 +10,7 @@ export class WaitingProductComponent implements OnInit {
   @Input()
   titleFigure:string;
   @Input()
-  image:string;
+  isImg1:boolean;
 
   constructor() { }
 

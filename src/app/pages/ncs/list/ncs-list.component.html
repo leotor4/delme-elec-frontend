@@ -121,16 +121,16 @@
 
 
 <div id="div-table">
-<p class="title">Início</p>
-<p class="subtitle">Visualize ou crie não conformidades</p>
+<p class="title">{{'import.home' | translate}}</p>
+<p class="subtitle">{{'list.title' | translate}}</p>
 
 
 <span class="p-input-icon-left">
     <i class="pi pi-search"></i>
-    <input pInputText type="text" (input)="applyFilterGlobal($event, 'contains')" placeholder="Filtro Global" />
+    <input pInputText type="text" (input)="applyFilterGlobal($event, 'contains')" placeholder="{{'list.globalSearch' | translate}}" />
 </span>
 <span style="float:right">
-  <button (click)="openNc()" class="btn btn-primary-color">Nova Não Conformidade <i class="bi bi-file-earmark-plus"></i></button>
+  <button (click)="openNc()" class="btn btn-primary-color">{{'newNC.header' | translate}} <i class="bi bi-file-earmark-plus"></i></button>
 <!-- <p-button label="Nova Não Conformidade"  (click)="openNc()" icon="pi pi-check" styleClass="p-button-sm p-button-secondary" icon="pi pi-plus" iconPos="right" ></p-button> -->
 </span>
 
@@ -139,13 +139,13 @@
   [globalFilterFields]="['id','emissor', 'status', 'tipos_nc_item', 'prazo','tipos_local_item', 'data_abertura', 'dsc_produto']" 
   [value]="listNcs" [columns]="cols" [paginator]="true" [rows]="rows" [(first)]="first" [totalRecords]="totalRecords" 
   [showCurrentPageReport]="true" responsiveLayout="scroll" 
-  currentPageReportTemplate="Exibindo de {first} a {last} de {totalRecords} registros" [rowsPerPageOptions]="[5,10,25,50]" [filterDelay]="0">
+  currentPageReportTemplate="{{'list.currentPageMsg1' | translate}} {first} {{'list.currentPageMsg2' | translate}} {last} {{'list.currentPageMsg3' | translate}} {totalRecords} {{'list.currentPageMsg4' | translate}}" [rowsPerPageOptions]="[5,10,25,50]" [filterDelay]="0">
 
     <ng-template pTemplate="header">
       <tr>
         <th pSortableColumn="id">
           <div class="flex justify-content-between align-items-center" style="width:95px;">
-              Número<br>
+              {{'list.column1' | translate}}<br>
               <p-sortIcon field="id"></p-sortIcon>
               <p-columnFilter type="number" field="id" display="menu" class="ml-auto"></p-columnFilter>
           </div>
@@ -153,7 +153,7 @@
         
         <th pSortableColumn="emissor">
           <div class="flex justify-content-between align-items-center" style="width:95px;">
-              Emissor<br>
+              {{'list.column2' | translate}}<br>
               <p-sortIcon field="emissor"></p-sortIcon>
               <p-columnFilter type="text" field="emissor" display="menu" class="ml-auto"></p-columnFilter>
           </div>
@@ -161,7 +161,7 @@
 
         <th pSortableColumn="tipos_nc_item">
           <div class="flex justify-content-between align-items-center" style="width:100px;">
-              Tipo de NC<br>
+              {{'list.column3' | translate}}<br>
               <p-sortIcon field="tipos_nc_item"></p-sortIcon>
               <p-columnFilter type="text" field="tipos_nc_item" display="menu" class="ml-auto"></p-columnFilter>
           </div>
@@ -170,7 +170,7 @@
 
         <th pSortableColumn="tipos_local_item">
           <div class="flex justify-content-between align-items-center" style="width:110px;">
-              Setor Afetado<br>
+              {{'list.column4' | translate}}<br>
               <p-sortIcon field="tipos_local_item"></p-sortIcon>
               <p-columnFilter type="text" field="tipos_local_item" display="menu" class="ml-auto"></p-columnFilter>
           </div>
@@ -178,7 +178,7 @@
 
         <th pSortableColumn="dsc_produto">
           <div class="flex justify-content-between align-items-center">
-              Produto<br>
+              {{'list.column5' | translate}}<br>
               <p-sortIcon field="dsc_produto"></p-sortIcon>
               <p-columnFilter type="text" field="dsc_produto" display="menu" class="ml-auto"></p-columnFilter>
           </div>
@@ -186,7 +186,7 @@
 
         <th pSortableColumn="status">
             <div class="flex justify-content-between align-items-center">
-                Status<br>
+                {{'list.column6' | translate}}<br>
                 <p-sortIcon field="status"></p-sortIcon>
                 <p-columnFilter type="text" field="status" display="menu" class="ml-auto"></p-columnFilter>
             </div>
@@ -195,7 +195,7 @@
 
         <th pSortableColumn="data_abertura">
           <div class="flex justify-content-between align-items-center" style="width:130px;">
-              Data de Abertura<br>
+              {{'list.column7' | translate}}<br>
               <p-sortIcon field="data_abertura"></p-sortIcon>
               <p-columnFilter type="date" field="data_abertura" display="menu" class="ml-auto"></p-columnFilter>
           </div>
@@ -204,7 +204,7 @@
 
         <th pSortableColumn="prazo">
           <div class="flex justify-content-between align-items-center" style="width:80px;">
-              Prazo<br>
+              {{'list.column8' | translate}}<br>
               <p-sortIcon field="prazo"></p-sortIcon>
               <p-columnFilter type="numeric" field="prazo" display="menu" class="ml-auto"></p-columnFilter>
           </div>
@@ -222,33 +222,33 @@
 
       <tr class="p-selectable-row">
         <td>
-            <span class="p-column-title">Número</span>
+            <span class="p-column-title">{{'list.column1' | translate}}</span>
             {{ncListDTO.numero}}
         </td>
 
 
         <td>
-          <span class="p-column-title">Emissor</span>
+          <span class="p-column-title">{{'list.column2' | translate}}</span>
           {{ncListDTO.emissor}}
         </td>
 
         <td>
-            <span class="p-column-title">Tipo de NC</span>
+            <span class="p-column-title">{{'list.column3' | translate}}</span>
             {{ncListDTO.tipos_nc_item}}
         </td>
 
         <td>
-            <span class="p-column-title">Setor Afetado</span>
+            <span class="p-column-title">{{'list.column4' | translate}}</span>
             {{ncListDTO.tipos_local_item}}
         </td>
 
         <td>
-          <span class="p-column-title">Produto</span>
+          <span class="p-column-title">{{'list.column5' | translate}}</span>
           {{ncListDTO.dsc_produto}}
       </td>
 
         <td>
-          <span class="p-column-title">Status</span>
+          <span class="p-column-title">{{'list.column6' | translate}}</span>
           <span [ngSwitch]="ncListDTO.status" >
             <span *ngSwitchCase="'open'"> {{'global.status1'| translate}}</span>
                         <span *ngSwitchCase="'running'">{{'global.status2'| translate}}</span>
@@ -261,25 +261,25 @@
         </td>
 
         <td>
-          <span class="p-column-title">Data de Abertura</span>
+          <span class="p-column-title">{{'list.column7' | translate}}</span>
           {{ncListDTO.data_abertura | date: 'dd/MM/yyyy'}}
         </td>
 
         <td>
-          <span class="p-column-title">Prazo</span>
+          <span class="p-column-title">{{'list.column8' | translate}}</span>
           {{ncListDTO.prazo}}
         </td>
 
         <td style="text-align: center">
-            <a style="color: black;" type="button" pTooltip="Ver informações da NC" (click)="visualizarInformacoes(ncListDTO.nc.id, ncListDTO.status)" ><i class="bi bi-info-circle"></i></a>
+            <a style="color: black;" type="button" pTooltip="{{'list.moreInfoBtn' | translate}}" (click)="visualizarInformacoes(ncListDTO.nc.id, ncListDTO.status)" ><i class="bi bi-info-circle"></i></a>
         </td>
 
         <td style="text-align: center">
-          <a type="button" style="color: black;" (click)="edit(ncListDTO.nc.id, ncListDTO.status)" pTooltip="Editar NC"><i class="bi bi-file-richtext"></i></a>
+          <a type="button" style="color: black;" (click)="edit(ncListDTO.nc.id, ncListDTO.status)" pTooltip="{{'list.editNcBtn' | translate}}"><i class="bi bi-file-richtext"></i></a>
         </td>
 
         <td style="text-align: center">
-          <a type="button" style="color: black;" (click)="cancelNc(ncListDTO.nc)" pTooltip="Cancelar NC"><i class="pi pi-times"></i></a>
+          <a type="button" style="color: black;" (click)="cancelNc(ncListDTO.nc)" pTooltip="{{'list.cancelNcBtn' | translate}}"><i class="pi pi-times"></i></a>
         </td>
 
     </tr>

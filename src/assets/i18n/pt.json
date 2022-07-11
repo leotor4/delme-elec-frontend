@@ -575,6 +575,23 @@
     "title10": "Número de Ncs x Custo Total"
   },
   "list": {
+    "title": "Visualize ou crie não conformidades",
+    "currentPageMsg1": "Exibindo de ",
+    "currentPageMsg2": " a ",
+    "currentPageMsg3": " de ",
+    "currentPageMsg4": " registros",
+    "globalSearch": "Filtro Global",
+    "column1": "Número",
+    "column2": "Emissor",
+    "column3": "Tipo de NC",
+    "column4": "Setor Afetado",
+    "column5": "Produto",
+    "column6": "Status",
+    "moreInfoBtn": "Ver informações da NC",
+    "cancelNcBtn": "Cancelar NC",
+    "editNcBtn": "Editar NC",
+    "column7": "Data de Abertura",
+    "column8": "Prazo",
     "sub": "Legenda",
     "month": "Mês",
     "ncsAmount": "Qtd de NCs",
@@ -585,7 +602,8 @@
     "cancel": "Operação Cancelada",
     "openInfo": "O processo de abertura desta nc já foi concluído",
     "infoMsg": "Conclua a abertura da NC para poder visualizar as informações",
-    "notFound": "Não foi possível obter o parceiro"
+    "notFound": "Não foi possível obter o parceiro",
+    "error": "Você não tem permissão para abrir esta Nc"
   },
   "sgq": {
     "number": "Número",

@@ -31,7 +31,7 @@ export class NcsListComponent implements OnInit {
   showLabels: boolean = false;
   isDoughnut: boolean = false;
   legendPosition: string = "bottom";
-  legendTitle = "Legenda";
+  legendTitle = this.translate.instant("list.sub");
 
   colorScheme = {
     domain: [
@@ -58,8 +58,8 @@ export class NcsListComponent implements OnInit {
   lineChartYAxis: boolean = true;
   lineChartShowYAxisLabel: boolean = true;
   lineChartShowXAxisLabel: boolean = true;
-  lineChartXAxisLabel: string = "Mês";
-  lineChartYAxisLabel: string = "Qtd de NCs";
+  lineChartXAxisLabel: string = this.translate.instant("list.month");
+  lineChartYAxisLabel: string = this.translate.instant("list.ncsAmount");
   lineChartTimeline: boolean = true;
   //********line chart************
 
@@ -316,7 +316,7 @@ export class NcsListComponent implements OnInit {
       } else {
         this.messageService.add({
           severity: "warn",
-          summary: "Você não tem permissão para abrir esta Nc",
+          summary: this.translate.instant("list.error"),
           life: 5000,
         });
       }
