@@ -1,4 +1,4 @@
-<div class="mt-4">
+<div >
     <div *ngIf="stepPosition==1">
         <h1 class="mb-3">
             {{'about.proposalComponent.material'| translate}}
@@ -124,7 +124,7 @@
                 </p-autoComplete>
             </div>
         </div>
-        <div class="d-flex mt-4">
+        <div class="d-flex">
             <div class="d-flex flex-column col-6">
                 <label>{{'createProp.step1.nr'| translate}}</label>
                 <p-autoComplete
@@ -217,7 +217,7 @@
         <p-editor [style]="{'height':'210px'}" [(ngModel)]="this.propService.propSolution.machine_description" [modules]="{counter: {container: '#counter6',unit: 'character'}}">
         </p-editor>
         <div id="counter6" class="text-end">0</div>
-        <div class="d-flex mt-4">
+        <div class="d-flex">
             <div class="d-flex flex-column col-6">
                 <label>{{'createProp.step1.machines'| translate}}</label>
                 <p-autoComplete
