@@ -1,7 +1,7 @@
 <div class="cabecalho">
-  <h1 class="mr-3">Relato e Evidências da Solução do Problema *</h1>
+  <h1 class="mr-3">{{ "global.NCs" | translate }}</h1>
   <p>
-    Comente sobre o processo e anexe evidências da solução do problema desta NC
+    {{ "global.processComments" | translate }}
   </p>
 </div>
 
@@ -51,7 +51,7 @@
         </div>
     </div>-->
   <div class="div-attachment">
-    <h1>Envie seus documentos</h1>
+    <h1>{{ "global.fileInput.subtitle" | translate }}</h1>
     <div class="white-background" *ngIf="sgqServ.sgq.attachments.length == 0">
       <input
         type="file"
@@ -61,7 +61,7 @@
       />
       <i class="pi pi-cloud-upload"></i>
       <p>
-        Arraste e solte ou <strong>navegue para escolher</strong> um arquivo
+        {{ "global.fileInput.description" | translate }}
       </p>
     </div>
     <div

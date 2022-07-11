@@ -35,17 +35,17 @@
     "choose": "Selecione",
     "upload": "Carregar",
     "cancel": "Cancelar",
-    "dayNames": ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"],
-    "dayNamesShort": ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"],
-    "dayNamesMin": [
-      "Dom",
-      "Seg",
-      "Ter",
-      "Qua",
-      "Qui",
-      "Sex",
-      "Sab"
+    "dayNames": [
+      "Domingo",
+      "Segunda",
+      "Terça",
+      "Quarta",
+      "Quinta",
+      "Sexta",
+      "Sábado"
     ],
+    "dayNamesShort": ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"],
+    "dayNamesMin": ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"],
     "monthNames": [
       "Janeiro",
       "Fevereiro",
@@ -60,7 +60,20 @@
       "Novembro",
       "Dezembero"
     ],
-    "monthNamesShort": ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun","Jul", "Ago", "Set", "Out", "Nov", "Dez"],
+    "monthNamesShort": [
+      "Jan",
+      "Fev",
+      "Mar",
+      "Abr",
+      "Mai",
+      "Jun",
+      "Jul",
+      "Ago",
+      "Set",
+      "Out",
+      "Nov",
+      "Dez"
+    ],
     "dateFormat": "dd/mm/yy",
     "firstDayOfWeek": 1,
     "today": "Hoje",
@@ -126,13 +139,17 @@
     "dashboards": "Dashboards",
     "logout": "Sair",
     "type": "Digite",
-    "next" : "Avançar",
+    "next": "Avançar",
     "finish": "Concluir",
     "number": "Número",
     "editBtn": "Editar",
-    "saved": "salvo com sucesso.",
+    "saved": " salvo com sucesso.",
     "step": "Passo ",
     "reject": "Não, cancelar",
+    "processComments": "Comente sobre o processo e anexe evidências da solução do problema desta NC",
+    "areYouSureReocurrence": "Você tem certeza que quer desfazer a reincidência?",
+    "actionCantBeReversed": "Esta ação não poderá ser revertida!",
+    "yesUndoReocurrence": "Contato Removido com sucesso",
     "select": "Selecione...",
     "deadline": "Prazo",
     "status": "Status",
@@ -156,6 +173,7 @@
     "status8": "Concluido",
     "status9": "Atrasado",
     "status10": "Cancelado",
+    "status11": "Aberta",
     "": "Número de ncs",
     "fileInput": {
       "title": "Anexe evidências objetivas ou fotográficas",
@@ -191,6 +209,7 @@
       "invalidName": " Por favor insira um nome.",
       "invalidEmail": "Por favor insira um email válido.",
       "invalidContactType": "Por favor insira o tipo de contato.",
+      "contactType": "Tipo de Contato",
       "notifications": "Notificação por e-mail"
     }
   },
@@ -223,6 +242,7 @@
     "step1": {
       "identifyNC": {
         "title": "Identificação da Não Conformidade",
+        "titleNC": "Identificação da NC",
         "subtitle": "Preencha os campos abaixo com as informações da NC",
         "type": "Tipo de NC *",
         "segment": "Segmento de Auditoria",
@@ -251,6 +271,7 @@
         "subtitle2": "Caso não encontre o produto, atualize a base de cadastros ou digite \"Não se aplica\".",
         "searchPlaceholder": "Busque por nome, descrição ou código SAP",
         "amountNC": "Quantidade de NC",
+        "amountNonConformity": "Quantidade em Não Conformidade",
         "amount": "Quantidade Total",
         "percent": "Percentual"
       },
@@ -277,7 +298,7 @@
         "nameUpper": "NOME",
         "sector": "Setor",
         "contactTitle": "Dados do Contato",
-        "corporateName": "Razão Socia",
+        "corporateName": "Razão Social",
         "success": "Dados editados com sucesso.",
         "fail": "Houve um problema ao editar os dados."
       },
@@ -316,15 +337,19 @@
       "title": "Não Conformidade",
       "subtitle": "Revise ou altere os dados da NC. Se tudo estiver OK, confirme a criação desta NC",
       "evidence": "Evidências",
+      "actionDescription": "Descrição de Ações Imediatas",
+      "pictureEvidence": "Evidências fotográficas",
+      "productPoints": "Produtos e Pontos",
+      "productData": "Dados do Produto",
       "checkpoint": "Ponto de Controle",
       "identification": "Dados de Identificação",
+      "ncData": "Dados de NC",
       "emission": "Dados de Emissão",
       "issuer": "Emissor",
       "responsible": "Responsável",
       "department": "Departamento",
       "corporateName": "Razão Social",
       "sector": "Dados do Setor"
-
     }
   },
   "register": {
@@ -334,7 +359,7 @@
     "success": "Você receberá um e-mail com as informações de acesso!",
     "error": "Não foi possível enviar as informações de acesso para o e-mail informado. Contate o administrator"
   },
-  "login":{
+  "login": {
     "tittle1": "Boas vindas ao",
     "tittle2": "Sistema de Gestão de",
     "tittle3": "Não Conformidades",
@@ -354,7 +379,7 @@
     "error6": "Credenciais Inválidas",
     "error7": "Ocorreu um erro no servidor!!"
   },
-  "closeNC":{
+  "closeNC": {
     "question": "O plano de ação foi executado e de forma satisfatória?",
     "yesInfo": "Encerrar esta RNC.",
     "noInfo": "Abrir nova RNC fazendo referência a essa.",
@@ -460,6 +485,7 @@
       },
       "evidence": "Relato e Evidências da Solução do Problema",
       "risks": "Riscos e Oportunidades",
+      "risksAsterisk": "Riscos e Oportunidades *",
       "changes": "Mudanças",
       "deadline": "Data de Fechamento"
     },
@@ -540,7 +566,7 @@
     "title5": "Número de Ncs x Custo Total",
     "products": "Quantidade de Produtos",
     "title6": "Departamento Receptor x Quantidade de Ncs",
-    "title7":  "Departamento/Setor x Quantidade de NCs Recebida e Quantidade de NCs Emitida.",
+    "title7": "Departamento/Setor x Quantidade de NCs Recebida e Quantidade de NCs Emitida.",
     "cost2": "Custo",
     "ncsReceived": "Ncs recebidas",
     "ncsSent": "NCs emitidas",
@@ -549,6 +575,23 @@
     "title10": "Número de Ncs x Custo Total"
   },
   "list": {
+    "title": "Visualize ou crie não conformidades",
+    "currentPageMsg1": "Exibindo de ",
+    "currentPageMsg2": " a ",
+    "currentPageMsg3": " de ",
+    "currentPageMsg4": " registros",
+    "globalSearch": "Filtro Global",
+    "column1": "Número",
+    "column2": "Emissor",
+    "column3": "Tipo de NC",
+    "column4": "Setor Afetado",
+    "column5": "Produto",
+    "column6": "Status",
+    "moreInfoBtn": "Ver informações da NC",
+    "cancelNcBtn": "Cancelar NC",
+    "editNcBtn": "Editar NC",
+    "column7": "Data de Abertura",
+    "column8": "Prazo",
     "sub": "Legenda",
     "month": "Mês",
     "ncsAmount": "Qtd de NCs",
@@ -559,9 +602,20 @@
     "cancel": "Operação Cancelada",
     "openInfo": "O processo de abertura desta nc já foi concluído",
     "infoMsg": "Conclua a abertura da NC para poder visualizar as informações",
-    "notFound": "Não foi possível obter o parceiro"
+    "notFound": "Não foi possível obter o parceiro",
+    "error": "Você não tem permissão para abrir esta Nc"
   },
   "sgq": {
+    "number": "Número",
+    "openingDate": "Data de Abertura",
+    "closingDate": "Data de Fechamento",
+    "checkEffectiveness": "Verificação de eficácia",
+    "closeRNC": "Encerrar esta RNC",
+    "comments": "Comentários",
+    "interestedParts": "Partes interessadas",
+    "evidence": {
+      "problemSolution": "Relato e Evidências da Solução do Problema *"
+    },
     "steps": {
       "step1": {
         "stepTitle": "Reincidências e evidências da NC",
@@ -575,18 +629,17 @@
         "searchResultsLabel": "Sinalize as NCs que são reincidentes desta NC."
       },
       "step2": {
-        "stepTitle": "Análises e notificações"
+        "descriptionNotification": "Visualize e adicione contatos a serem notificados acerca do andamento desta NC. Por padrão, são adicionados contatos já incluidos nos passos anteriores.",
+        "stepTitle": "Análises e notificações",
+        "descriptionRisks": "Descreva os riscos e oportunidades observados nesta NC.",
+        "sgqChanges": "Mudanças do SGQ *",
+        "descriptionChanges": "Descreva as mudanças no SGQ observadas nesta NC."
       },
       "step3": {
+        "ncEvaluation": "Avaliação da Não Conformidade",
+        "ncReview": "Revise ou altere os dados da avaliação da NC. Se tudo estiver OK, submeta a avaliação desta NC.",
         "stepTitle": "Revisar Informações"
       }
     }
   }
 }
-
-
-
-
-
-
-

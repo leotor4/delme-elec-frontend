@@ -6,6 +6,7 @@ import {ContactsService} from "../../../create/steps/step3/contacts.service";
 import {ProposalService} from "../../../create-prop/proposal.service";
 import {ContactDialogComponent} from "../../../create/steps/step3/contact-dialog/contact-dialog.component";
 import {SgqService} from "../../sgq.service";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-notifications',
@@ -26,7 +27,8 @@ export class NotificationsComponent implements OnInit {
       private messageService: MessageService,
       private contactsSrvc: ContactsService,
       public dialogService: DialogService,
-      public sgqServ: SgqService
+      public sgqServ: SgqService,
+      public translate: TranslateService
   ) {}
 
   ngOnDestroy(): void {
@@ -44,7 +46,7 @@ export class NotificationsComponent implements OnInit {
         contact: {},
         isEdit: false,
       },
-      header: "Criar Contato",
+      header: this.translate.instant('global.contacts.create'),
       width: "425px",
     });
     ref.onClose.subscribe((contact: Contact) => {
@@ -61,7 +63,7 @@ export class NotificationsComponent implements OnInit {
         contact: { ...contact },
         isEdit: true,
       },
-      header: "Editar Contato",
+      header: this.translate.instant('global.contacts.edit'),
       width: "425px",
     });
     ref.onClose.subscribe((contact: Contact) => {
@@ -81,10 +83,10 @@ export class NotificationsComponent implements OnInit {
   deleteContact(contact: Contact) {
     this.confirmationService.confirm({
       message:
-          "Você tem certeza que quer excluir o contato " +
+          this.translate.instant('global.contacts.message1') +
           contact.name +
-          " da lista?",
-      header: "Excluir Contato",
+          this.translate.instant('global.contacts.message2'),
+      header: this.translate.instant('global.contacts.delete'),
       icon: "pi pi-exclamation-triangle",
       accept: () => {
         this.sgqServ.nc.contacts=
@@ -93,7 +95,7 @@ export class NotificationsComponent implements OnInit {
             );
         this.messageService.add({
           severity: "info",
-          summary: "Contato Removido com sucesso",
+          summary: this.translate.instant('global.contacts.successDel'),
           life: 3000,
         });
       },

@@ -74,7 +74,7 @@ export class ActionPlanComponent implements OnInit {
       message:
           this.translate.instant("createProp.step2.delActionMsg")  +
           action.description+
-          " da lista?",
+          this.translate.instant('global.contacts.message2'),
       header: this.translate.instant("createProp.delActionTitle") ,
       icon: "pi pi-exclamation-triangle",
       accept: () => {
@@ -89,6 +89,10 @@ export class ActionPlanComponent implements OnInit {
               );
           this.propService.ncProp.contacts =
               this.propService.ncProp.contacts.filter(
+                  (val) => val.email !== action.responsible?.email
+              );
+          this.propService.contacts =
+              this.propService.contacts.filter(
                   (val) => val.email !== action.responsible?.email
               );
         }

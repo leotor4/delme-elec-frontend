@@ -42,7 +42,7 @@ export class NcsListDTO {
           this.data_fechamento = new Date(init.data_fechamento);
 
 
-          if (this.status != "canceled") {
+          if (this.status != "canceled" && this.status != "closed") {
             this.prazo = this.getPrazo(init.created_at, init.data_fechamento);
           }
           

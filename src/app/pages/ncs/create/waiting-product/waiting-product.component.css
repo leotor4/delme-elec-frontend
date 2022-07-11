@@ -19,6 +19,20 @@
   object-fit: cover;
   height: 140px;
 }
+.image-box2 {
+  background: #fff;
+  border-radius: 8px;
+  margin-inline: 8px;
+  margin-bottom: 8px;
+  height: 142px;
+}
+.image-box2 img{
+  min-width: 20%;
+  min-height: 20%;
+  padding: 15px;
+  object-fit: cover;
+  height: 142px;
+}
 h4 {
   margin: 8px;
   font-weight: 500;
@@ -30,6 +44,12 @@ h4 {
     padding: 10px;
   }
   .image-box img {
+    width: 25%;
+  }
+  .image-box2 img {
+    padding: 10px;
+  }
+  .image-box2 img {
     width: 25%;
   }
 }

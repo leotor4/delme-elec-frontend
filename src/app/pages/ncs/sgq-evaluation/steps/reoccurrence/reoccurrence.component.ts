@@ -27,8 +27,8 @@ export class ReoccurrenceComponent implements OnInit {
 
   delete(nc: any) {
     this.confirmationService.confirm({
-      message: this.translate.instant("sgq.actionCantReversed"),
-      header: this.translate.instant("sgq.areYouSureReocurrence"),
+      message: this.translate.instant("global.actionCantBeReversed"),
+      header: this.translate.instant("global.areYouSureReocurrence"),
       icon: "pi pi-exclamation-triangle",
       accept: () => {
         this.sgqServ.sgq.recurrence = this.sgqServ.sgq.recurrence?.filter(

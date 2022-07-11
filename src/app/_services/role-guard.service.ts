@@ -34,7 +34,7 @@ export class RoleGuardService implements CanActivate {
       }
       
 
-  public checkRoleProposal (responsible_email : string): boolean {
+  public isResponsibleOrManager (responsible_email : string): boolean {
     var user = this.tokenStorageService.getUser()
     
     if (user['email'] == responsible_email || user['role_id'] == 3) {
@@ -45,7 +45,7 @@ export class RoleGuardService implements CanActivate {
   }
 
 
-  public checkRoleCost (): boolean {
+  public isFiscalOrManager (): boolean {
     var user = this.tokenStorageService.getUser()
     
     if (user['role_id'] == 2 || user['role_id'] == 3) {
@@ -56,7 +56,7 @@ export class RoleGuardService implements CanActivate {
   }
 
 
-  public checkRoleClose (): boolean {
+  public isManager (): boolean {
     var user = this.tokenStorageService.getUser()
     
     if (user['role_id'] == 3) {
