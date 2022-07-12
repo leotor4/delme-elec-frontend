@@ -34,10 +34,10 @@ export class CostsComponent implements OnInit {
   deleteAction(doc: any) {
     this.confirmationService.confirm({
       message:
-          this.translate.instant("about.costsComponent.ncType.delMessage1") +
+          this.translate.instant("about.costsComponent.delMessage1") +
         doc.file_name +
-          this.translate.instant("about.costsComponent.ncType.delMessage2"),
-      header: this.translate.instant("about.costsComponent.ncType.delTitle"),
+          this.translate.instant("about.costsComponent.delMessage2"),
+      header: this.translate.instant("about.costsComponent.delTitle"),
       icon: "pi pi-exclamation-triangle",
       accept: () => {
         this.aboutSrvc.deleteCost(doc.id).subscribe((value) => {
@@ -45,7 +45,7 @@ export class CostsComponent implements OnInit {
         });
         this.messageService.add({
           severity: "info",
-          summary: this.translate.instant("about.costsComponent.ncType.successDel"),
+          summary: this.translate.instant("about.costsComponent.successDel"),
           life: 3000,
         });
       },
@@ -97,7 +97,7 @@ export class CostsComponent implements OnInit {
         this.aboutSrvc.getNC(this.aboutSrvc!.nc!.id!);
         this.messageService.add({
           severity: "success",
-          summary: this.translate.instant("about.costsComponent.ncType.successSave"),
+          summary: this.translate.instant("about.costsComponent.successSave"),
           life: 3000,
         });
       },

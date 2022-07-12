@@ -113,7 +113,7 @@ export class NonComplianceService {
 
       if(this.nc.tipo_controle == this.translate.instant("newNC.step1.checkpoint.type8")){
       return (
-        !!this.nc.procedure
+        !!this.nc.procedure && !!this.nc.instruction
         );
     }
     return false;
