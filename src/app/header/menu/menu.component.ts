@@ -36,12 +36,7 @@ export class MenuComponent implements OnInit {
               {
                 label: data.global.dashboards,
                 icon: 'pi pi-desktop',
-                items: [
-                  {label:data.global.barChart, icon: 'pi pi-chart-bar', routerLink:'/dashboards/bar-chart'},
-                  {label: data.global.groupedBarChart, icon: 'pi pi-chart-bar', routerLink:'/dashboards'}
-
-                ]
-
+                routerLink:'/dashboards'
               },
               {label: data.global.logout, icon: 'pi pi-sign-out',
                 command: () => {

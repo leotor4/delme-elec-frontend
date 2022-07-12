@@ -288,7 +288,7 @@
         "type1Upper": "INTERNO",
         "type2Upper": "CLIENTE",
         "type3Upper": "FORNECEDOR",
-        "label1": "Busque por SAP, razão social ou contato...",
+        "label1": "Selecione...",
         "label2": "Busque por nome do setor ou responsável...",
         "phone": "Telefone",
         "phoneUpper": "TELEFONE",
