@@ -27,7 +27,7 @@ export class CreatePropStepperComponent implements OnInit {
       case 0:
         return this.propService.avancarPasso1Ishkawa();
       case 1:
-        return false;
+        return !(this.propService.propSolution.actionPlans.length>0);
       case 2:
         return false;
       case 3:
