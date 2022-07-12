@@ -25,6 +25,12 @@ export class AboutService {
         return false
     }
 
+    hasSgqEval():boolean{
+        if(!this.nc)return false
+        if(this.nc.sgqEvaluation)return true
+        return false
+    }
+
     getNC(id:number){
         this.ncsService.getById(id).subscribe((data: any) => {
             this.nc = data.nc[0]
