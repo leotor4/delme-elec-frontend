@@ -31,10 +31,69 @@ export class AboutComponent implements OnInit {
       this.router.navigate(["/", "ncs", "createProp", id]);
     }
     console.log(this.aboutSrvc.nc?.proposalSolution)
-    if (e["index"] == 3 && this.aboutSrvc.nc?.proposalSolution && this.aboutSrvc.nc?.costs?.length>0 && !this.aboutSrvc.nc?.sgqEvaluation) {
+    if (e["index"] == 3 && this.aboutSrvc.nc?.proposalSolution && !this.aboutSrvc.nc?.sgqEvaluation) {
       this.router.navigate(["/", "ncs", "sgq", id]);
     }
   }
 
+  checkDisableProposal():boolean {
+    var disabled = true
+    
+    if (this.aboutSrvc.nc?.sector?.responsible_email) {
+      if(this.roleService.isResponsibleOrManager(this.aboutSrvc.nc.sector.responsible_email) || this.isActionPlanResponsible) {
+        disabled = false
+      }
+    }
+    return disabled
+  }
 
+  isActionPlanResponsible():boolean {
+
+    var user = this.tokenService.getUser()
+
+    var listActionPlan = this.aboutSrvc.nc.proposalSolution?.actionPlans
+
+    if(listActionPlan) {
+      for ( var i = 0; i < listActionPlan?.length; i++) {
+        var actionPlanResponsibleEmail = listActionPlan[i].responsible;
+
+        if (actionPlanResponsibleEmail) {
+          if(actionPlanResponsibleEmail == user['email']) return true
+        }
+      }      
+    }
+
+
+    return false
+  }
+
+  checkDisableCosts():boolean {
+
+
+    var disabled = true
+    
+    if (this.aboutSrvc.hasProposal() && this.roleService.isFiscalOrManager()) {
+      disabled = false
+    }
+    return disabled
+  }
+
+  checkDisableSgqEval():boolean {
+    var disabled = true
+    
+    if (this.aboutSrvc.hasProposal() && this.roleService.isManager()) {
+      disabled = false
+    }
+    return disabled
+  }
+
+
+  checkDisableClose():boolean {
+    var disabled = true
+    
+    if (this.aboutSrvc.hasProposal() &&  this.aboutSrvc.hasSgqEval() && this.roleService.isManager()) {
+      disabled = false
+    }
+    return disabled
+  }
 }
