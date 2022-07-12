@@ -56,7 +56,7 @@
             </div>
             <div class="col">
                 
-                <p-editor [ngModel]="this.propService.propSolution.machine_description" [style]="editorStyle" [readonly]="true" (click)="openDialog(6)">
+                <p-editor [ngModel]="this.propService.propSolution.machine_description+ '<p>' + returnString(this.propService.propSolution.machine) + '</p>'+ '<p>' + returnString(this.propService.propSolution.equipament) + '</p>'" [style]="editorStyle" [readonly]="true" (click)="openDialog(6)">
                     <ng-template pTemplate="header">
                     </ng-template>
                 </p-editor><label class="mt-1">{{'about.proposalComponent.machine'| translate}}</label>

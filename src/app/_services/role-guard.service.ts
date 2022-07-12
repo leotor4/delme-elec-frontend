@@ -38,10 +38,10 @@ export class RoleGuardService implements CanActivate {
     var user = this.tokenStorageService.getUser()
     
     if (user['email'] == responsible_email || user['role_id'] == 3) {
-      return false;
+      return true;
     } 
 
-    return true;
+    return false;
   }
 
 
@@ -49,10 +49,10 @@ export class RoleGuardService implements CanActivate {
     var user = this.tokenStorageService.getUser()
     
     if (user['role_id'] == 2 || user['role_id'] == 3) {
-      return false;
+      return true;
     } 
 
-    return true;
+    return false;
   }
 
 
@@ -60,10 +60,10 @@ export class RoleGuardService implements CanActivate {
     var user = this.tokenStorageService.getUser()
     
     if (user['role_id'] == 3) {
-      return false;
+      return true;
     } 
 
-    return true;
+    return false;
   }
 
 }
