@@ -46,7 +46,7 @@ export class IshikawaDiagramComponent implements OnInit {
 
   returnString(obj: any) {
     let str = ''
-    if (obj?.name) str += obj.name + " ";
+    if (obj?.name) return obj.name + " ";
     if (obj?.code) str += obj.code + " ";
     if (obj?.description) str += obj.description + " ";
     if (obj?.rev) str += obj.rev + " ";
