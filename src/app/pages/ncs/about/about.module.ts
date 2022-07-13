@@ -10,7 +10,6 @@ import {ViewStakeholdersComponent} from "./view-nc/stakeholders/view-stakeholder
 import {AccordionModule} from "primeng/accordion";
 import {ViewProductsAndPointsComponent} from "./view-nc/products-and-points/view-products-and-points.component";
 import {ViewIdentifyNCComponent} from "./view-nc/identify-nc/view-identify-n-c.component";
-import {EditorModule} from "primeng/editor";
 import {DividerModule} from "primeng/divider";
 import {CarouselModule} from "primeng/carousel";
 import {TableModule} from "primeng/table";
@@ -29,6 +28,10 @@ import { CurrencyMaskModule } from "ng2-currency-mask";
 import {RadioButtonModule} from "primeng/radiobutton";
 import {TranslateModule} from "@ngx-translate/core";
 import { FechamentoComponent } from './closing/fechamento/fechamento.component';
+import { EditorModule } from 'primeng/editor';
+import { GerarPdfComponent } from '../create/steps/gerar-pdf/gerar-pdf.component';
+import { GerarPdfViewComponent } from './view-nc/gerar-pdf-view/gerar-pdf-view.component';
+
 
 
 
@@ -39,6 +42,7 @@ import { FechamentoComponent } from './closing/fechamento/fechamento.component';
     AboutComponent,
     HeaderComponent,
     ViewNCComponent,
+    GerarPdfViewComponent,
     ViewStakeholdersComponent,
     ViewProductsAndPointsComponent,
     ViewIdentifyNCComponent,
@@ -47,11 +51,11 @@ import { FechamentoComponent } from './closing/fechamento/fechamento.component';
     SGQEvaluationComponent,
     ClosingComponent,
     FechamentoComponent,
-
   ],
   imports: [
     CommonModule,
     NcAboutRoutingModule,
+    EditorModule,
     ChipModule,
     TabViewModule,
     AccordionModule,

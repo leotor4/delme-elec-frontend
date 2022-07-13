@@ -15,9 +15,7 @@ export class GerarPdfComponent implements OnInit {
   @Output() changeStepPosition: EventEmitter<number> = new EventEmitter();
   constructor(public nonComplicanceService: NonComplianceService) {}
 
-  goToStepById(position: number) {
-    this.changeStepPosition.emit(position);
-  }
+
   ngOnInit(): void {}
 
   emissor = "";

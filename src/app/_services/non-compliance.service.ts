@@ -1,11 +1,11 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import momentImported from 'moment';
-import { Observable } from 'rxjs';
+import momentImported from "moment";
+import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
 
-import { Attachment } from '../models/attachment';
+import { Attachment } from "../models/attachment";
 import { Contact } from "../models/contact.model";
 import { Customer } from "../models/customer";
 import { Instruction } from "../models/instruction";
@@ -16,10 +16,10 @@ import { Product } from "../models/product.model";
 import { Provider } from "../models/provider";
 import { Sector } from "../models/sector";
 import { UpdateDate } from "../models/update-date";
-import { ObjectUtils } from '../utils/object-utils';
-import { IdentificacaoNCDTO } from './../pages/ncs/create/steps/step1/identificacao-da-nc/identificacao-nc-dto';
+import { ObjectUtils } from "../utils/object-utils";
+import { IdentificacaoNCDTO } from "./../pages/ncs/create/steps/step1/identificacao-da-nc/identificacao-nc-dto";
 import { TokenStorageService } from "./token-storage.service";
-import {TranslateService} from "@ngx-translate/core";
+import { TranslateService } from "@ngx-translate/core";
 
 const moment = momentImported;
 
@@ -64,135 +64,167 @@ export class NonComplianceService {
   allContacts: Contact[];
   hasSelectedProduct: boolean;
 
-
-  msgHome:string;
-  typeMsgHome:string
+  msgHome: string;
+  typeMsgHome: string;
 
   public formIdentificacaoNC: FormGroup;
   public formParceiroNC: FormGroup;
 
-  constructor(private http: HttpClient,
-              private fb: FormBuilder,
-              private user: TokenStorageService,
-              public translate: TranslateService) {
+  constructor(
+    private http: HttpClient,
+    private fb: FormBuilder,
+    private user: TokenStorageService,
+    public translate: TranslateService
+  ) {
     this.criarFormularios();
   }
 
   private criarFormularios(): void {
-		this.formIdentificacaoNC = this.fb.group({
-			tipos_nc_item: [null,Validators.required],
-			tipos_auditoria_item: [null],
-			tipos_local_item: [null,Validators.required],
-			data_abertura: [moment(new Date())],
-      data_fechamento: [moment(new Date()).add('d', 30)],
-      data_abertura_str: [moment(new Date()).format('yyyy-MM-DD')],
-      data_fechamento_str: [moment(new Date()).add('d', 30).format('yyyy-MM-DD')]
-		});
+    this.formIdentificacaoNC = this.fb.group({
+      tipos_nc_item: [null, Validators.required],
+      tipos_auditoria_item: [null],
+      tipos_local_item: [null, Validators.required],
+      data_abertura: [moment(new Date())],
+      data_fechamento: [moment(new Date()).add("d", 30)],
+      data_abertura_str: [moment(new Date()).format("yyyy-MM-DD")],
+      data_fechamento_str: [
+        moment(new Date()).add("d", 30).format("yyyy-MM-DD"),
+      ],
+    });
 
     this.formParceiroNC = this.fb.group({
-			tipos_parceiro_item: [null],
-			
-		});
-	}
+      tipos_parceiro_item: [null],
+    });
+  }
 
-  validarCheckpoint():boolean{
-    if(this.nc.tipo_controle?.includes(this.translate.instant("newNC.step1.checkpoint.type1"))||this.nc.tipo_controle?.includes(this.translate.instant("newNC.step1.checkpoint.type2"))||this.nc.tipo_controle?.includes(this.translate.instant("newNC.step1.checkpoint.type3"))){
-      return (!!this.nc.num_op) && !!this.nc.instruction;
-    }
-
-    if(this.nc.tipo_controle?.includes(this.translate.instant("newNC.step1.checkpoint.type4"))){
-      return (!!this.nc.num_nota
-        
-        );
-    }
-
-    if(this.nc.tipo_controle == this.translate.instant("newNC.step1.checkpoint.type6") || this.nc.tipo_controle == this.translate.instant("newNC.step1.checkpoint.type5") || this.nc.tipo_controle == this.translate.instant("newNC.step1.checkpoint.type37")){
-      return (!!this.nc.num_nota
-        );
-    }
-
-      if(this.nc.tipo_controle == this.translate.instant("newNC.step1.checkpoint.type8")){
+  validarCheckpoint(): boolean {
+    if (
+      this.nc.tipo_controle?.includes(
+        this.translate.instant("newNC.step1.checkpoint.type1")
+      ) ||
+      this.nc.tipo_controle?.includes(
+        this.translate.instant("newNC.step1.checkpoint.type2")
+      ) ||
+      this.nc.tipo_controle?.includes(
+        this.translate.instant("newNC.step1.checkpoint.type3")
+      )
+    ) {
       return (
-        !!this.nc.procedure && !!this.nc.instruction
-        );
+        this.nc.num_op!.split(" ").join("").length > 0 && !!this.nc.instruction
+      );
+    }
+
+    if (
+      this.nc.tipo_controle?.includes(
+        this.translate.instant("newNC.step1.checkpoint.type4")
+      )
+    ) {
+      return !!this.nc.num_nota;
+    }
+
+    if (
+      this.nc.tipo_controle ==
+        this.translate.instant("newNC.step1.checkpoint.type6") ||
+      this.nc.tipo_controle ==
+        this.translate.instant("newNC.step1.checkpoint.type5") ||
+      this.nc.tipo_controle ==
+        this.translate.instant("newNC.step1.checkpoint.type37")
+    ) {
+      return this.nc.num_nota!.split(" ").join("").length > 0;
+    }
+
+    if (
+      this.nc.tipo_controle ==
+      this.translate.instant("newNC.step1.checkpoint.type8")
+    ) {
+      return !!this.nc.procedure && !!this.nc.instruction;
     }
     return false;
   }
 
-  closeNc(id:number){
-    
-     return this.http.put<any>(this.apiUrl + "/closeNc/" + id, {});
+  closeNc(id: number) {
+    return this.http.put<any>(this.apiUrl + "/closeNc/" + id, {});
   }
 
-  returnfiles(name:string){
-    let files:Attachment[] = []
-    this.nc.attachments.forEach(element =>{
-      if(element.path == name)
-        files.push(element)
-    })
+  returnfiles(name: string) {
+    let files: Attachment[] = [];
+    this.nc.attachments.forEach((element) => {
+      if (element.path == name) files.push(element);
+    });
 
     return files;
   }
 
-
-
-
   avancarPasso1(): boolean {
-    return !(this.formIdentificacaoNC.valid 
-      && this.nc.partner 
-      && this.validaProd()
-      && this.nc.text_area_reject_point
-      && this.nc.tipo_controle
-      //&& this.validarAuditoria()  
-      && this.validarCheckpoint()
-      
-      )
+    this.nc.text_area_reject_point = this.nc.text_area_reject_point ?? "";
+    let b =
+      this.nc.text_area_reject_point.split(" ").join("") != "<p></p>" &&
+      this.nc.text_area_reject_point.split(" ").join("").length != 0;
+    return !(
+      this.formIdentificacaoNC.valid &&
+      this.nc.partner &&
+      this.validaProd() &&
+      this.nc.text_area_reject_point &&
+      b &&
+      this.nc.tipo_controle &&
+      //&& this.validarAuditoria()
+      this.validarCheckpoint()
+    );
   }
-  validaProd(){
-    if(this.formIdentificacaoNC.value.tipos_nc_item==this.translate.instant("newNC.step1.ncType.type6")){
-      return this.nc.product
-          && this.nc.quant_nc
-          && this.nc.quant_total
+  validaProd() {
+    if (
+      this.formIdentificacaoNC.value.tipos_nc_item ==
+      this.translate.instant("newNC.step1.ncType.type6")
+    ) {
+      return this.nc.product && this.nc.quant_nc && this.nc.quant_total;
     } else {
-      return true
+      return true;
     }
   }
-  isType1or2(){
-    return this.formIdentificacaoNC.value.tipos_nc_item==this.translate.instant("newNC.step1.ncType.type1")||
-        this.formIdentificacaoNC.value.tipos_nc_item==this.translate.instant("newNC.step1.ncType.type2")
+  isType1or2() {
+    return (
+      this.formIdentificacaoNC.value.tipos_nc_item ==
+        this.translate.instant("newNC.step1.ncType.type1") ||
+      this.formIdentificacaoNC.value.tipos_nc_item ==
+        this.translate.instant("newNC.step1.ncType.type2")
+    );
   }
-   validaEvi() {
-    if(this.isType1or2()){
-      return true
+  validaEvi() {
+    if (this.isType1or2()) {
+      return true;
     } else {
-      return this.returnfiles("evidenciasNc").length>0
+      return this.returnfiles("evidenciasNc").length > 0;
     }
   }
 
   avancarPasso2(): boolean {
-    return !(
-      !!this.nc.radio_value 
-      && !!this.nc.text_area_nc
-      && !!this.nc.text_area_acoes
-      && this.validaEvi()
-    );
+    this.nc.text_area_nc = this.nc.text_area_nc ?? "";
+    this.nc.text_area_acoes = this.nc.text_area_acoes ?? "";
+    let b =
+      this.nc.text_area_acoes.split(" ").join("") != "<p></p>" &&
+      this.nc.text_area_acoes.split(" ").join("").length != 0 &&
+      this.nc.text_area_nc.split(" ").join("") != "<p></p>" &&
+      this.nc.text_area_nc.split(" ").join("").length != 0;
+    return !(!!this.nc.radio_value && b && this.validaEvi());
   }
 
+  validarAuditoria(): boolean {
+    if (
+      this.formIdentificacaoNC.value["tipos_nc_item"] &&
+      this.formIdentificacaoNC.value["tipos_auditoria_item"]
+    ) {
+      return true;
+    } else if (this.formIdentificacaoNC.value["tipos_nc_item"]) {
+      var isInternaOrExterna =
+        this.formIdentificacaoNC.value["tipos_nc_item"] ==
+          this.translate.instant("newNC.step1.ncType.type1") ||
+        this.formIdentificacaoNC.value["tipos_nc_item"] ==
+          this.translate.instant("newNC.step1.ncType.type2");
+      if (!isInternaOrExterna) return true;
+    }
 
-  validarAuditoria():boolean {
-    if (this.formIdentificacaoNC.value['tipos_nc_item'] && this.formIdentificacaoNC.value['tipos_auditoria_item']) {
-      return true
-    } 
-
-    else if (this.formIdentificacaoNC.value['tipos_nc_item']) {
-      var isInternaOrExterna = this.formIdentificacaoNC.value['tipos_nc_item'] == this.translate.instant("newNC.step1.ncType.type1") || this.formIdentificacaoNC.value['tipos_nc_item'] == this.translate.instant("newNC.step1.ncType.type2")
-      if (!isInternaOrExterna) return true
-    } 
-
-    return false
+    return false;
   }
-
-
 
   uploadFiles(formData: any) {
     for (var i = 0; i < this.fileNc.length; i++) {
@@ -218,32 +250,32 @@ export class NonComplianceService {
 
     formData.append("data", JSON.stringify(this.nc));
 
-    return this.http.post(this.apiUrl, formData)
+    return this.http.post(this.apiUrl, formData);
   }
 
   put() {
-
-
     let formData = new FormData();
     this.uploadFiles(formData);
-    ObjectUtils.adicionar_campos<NonCompliance>(this.nc, this.formIdentificacaoNC.value);
-    formData.append('data', JSON.stringify(this.nc));
+    ObjectUtils.adicionar_campos<NonCompliance>(
+      this.nc,
+      this.formIdentificacaoNC.value
+    );
+    formData.append("data", JSON.stringify(this.nc));
 
-    return this.http.put(this.apiUrl+ "/" + this.nc.id, formData)
+    return this.http.put(this.apiUrl + "/" + this.nc.id, formData);
   }
 
   saveNc() {
     let formData = new FormData();
-    formData.append('data', JSON.stringify(this.nc));
-    return this.http.put(this.apiUrl+ "/" + this.nc.id, formData)
+    formData.append("data", JSON.stringify(this.nc));
+    return this.http.put(this.apiUrl + "/" + this.nc.id, formData);
   }
 
-  
-  abrirNc(){
+  abrirNc() {
     let formData = new FormData();
-    formData.append('data',"{}")
-    this.nc.issuer = this.user.getUser()
-    return this.http.post(this.apiUrl, formData)
+    formData.append("data", "{}");
+    this.nc.issuer = this.user.getUser();
+    return this.http.post(this.apiUrl, formData);
   }
 
   get(): Observable<NonCompliance[]> {
@@ -264,11 +296,10 @@ export class NonComplianceService {
 
   hasProduct(): boolean {
     return this.nc.product != null;
-
   }
 
-  downloadFile(id:number){
-    return this.http.get<any>(this.apiUrl + "/files/"+ id);
+  downloadFile(id: number) {
+    return this.http.get<any>(this.apiUrl + "/files/" + id);
   }
 
   testeError() {

@@ -1,6 +1,6 @@
 <div class="header">
-  <div class="row m-0">
-    <div class="cabecalho text-box p-0 col-lg-7 mr-3">
+  <div class="d-flex flex-row m-0">
+    <div class="cabecalho text-box p-0 mr-3">
       <h1>{{'newNC.step1.product.title'| translate}} *</h1>
       <p>
         {{'newNC.step1.product.subtitle1'| translate}}
@@ -8,7 +8,7 @@
         {{'newNC.step1.product.subtitle2'| translate}}
       </p>
     </div>
-    <div class="col-2" id="div-att-col2">
+    <div class="" id="div-att-col2">
       <p>
         <i class="pi pi-history"> </i>
         {{'newNC.step1.lastUpdate'| translate}}
@@ -25,7 +25,7 @@
     </div>
   </div>
 </div>
-<div class="p-fluid autoComplete mb-1">
+<div class="p-fluid autoComplete" style="margin-top: 20px;">
   <p-autoComplete
     [(ngModel)]="nonComplicanceService.autoCompleteValue"
     [suggestions]="results"

@@ -18,7 +18,7 @@
             <label class="form-check-label ml-1">{{'createProp.step1.materialCheck3'| translate}}</label>
         </div>
         <p class="my-3 fw-bold fs-6">{{'createProp.step1.moreInfo'| translate}}</p>
-        <p-editor [style]="{'height':'210px'}" [(ngModel)]="this.propService.propSolution.material_description" [modules]="{counter: {container: '#counter',unit: 'character'}}">
+        <p-editor [style]="{'height':'210px'}" [onchange]="this.propService.popular()" [(ngModel)]="this.propService.propSolution.material_description" [modules]="{counter: {container: '#counter',unit: 'character'}}">
         </p-editor>
         <div id="counter" class="text-end">0</div>
     </div>
@@ -195,7 +195,7 @@
             <p-checkbox [(ngModel)]="propService.checkBoxes" [value]="'createProp.step1.laborCheck'| translate"></p-checkbox>
             <label class="form-check-label ml-1">{{'createProp.step1.laborCheck'| translate}}</label>
         </div>
-        <p-editor [style]="{'height':'210px'}" [(ngModel)]="this.propService.propSolution.man_power_description" [modules]="{counter: {container: '#counter4',unit: 'character'}}">
+        <p-editor [style]="{'height':'210px'}" [onchange]="this.propService.popular()" [(ngModel)]="this.propService.propSolution.man_power_description" [modules]="{counter: {container: '#counter4',unit: 'character'}}">
         </p-editor>
         <div id="counter4" class="text-end">0</div>
     </div>

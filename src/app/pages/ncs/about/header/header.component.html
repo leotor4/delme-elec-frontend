@@ -1,4 +1,4 @@
-<div class="header-create-nc">
+<div class="header-create-nc" >
     <div class="p-0">
         <div class="d-flex align-items-center">
             <button type="button" class="btn btn-dark" routerLink="/ncs">
@@ -20,9 +20,9 @@
                 {{'global.ncData'| translate}}
                 <i class="bi bi-file-earmark-text"></i>
             </button>
-            <button type="button" class="btn btn-dark mr-2">
+            <button type="button" class="btn btn-dark mr-2" (click)="gerarPdf()">
                 {{'about.export'| translate}}
-                <i class="bi bi-file-earmark-arrow-down"></i>
+                <i class="bi bi-file-earmark-arrow-down" ></i>
             </button>
         </div>
     </div>

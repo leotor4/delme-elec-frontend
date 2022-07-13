@@ -27,6 +27,7 @@ export class IshikawaDialogComponent implements OnInit {
 
   ngOnDestroy(): void {
     this.propService.popular()
+    
   }
   
 

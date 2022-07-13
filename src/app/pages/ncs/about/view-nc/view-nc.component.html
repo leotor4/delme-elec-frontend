@@ -1,4 +1,5 @@
-<div class="d-flex flex-lg-row flex-column justify-content-between">
+<app-gerar-pdf-view *ngIf="aboutSrvc.displayPdf" id="pdfContent"></app-gerar-pdf-view>
+<div class="d-flex flex-lg-row flex-column justify-content-between" >
   <div class="d-flex">
     <div class="cabecalho">
       <div class="d-flex align-items-center">
@@ -30,7 +31,7 @@
     </button>
   </div>
 </div>
-<p-accordion [multiple]="true">
+<p-accordion [multiple]="true" >
   <p-accordionTab [selected]="isAllOpen">
     <ng-template pTemplate="header">
       <div class="d-flex justify-content-between accordion">

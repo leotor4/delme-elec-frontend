@@ -49,7 +49,9 @@ export class NcsCreateStepperComponent implements OnInit {
   }
   getNextPageBtnLabel() {
     let isLastStep = this.stepPosition === this.items.length - 1;
-    return isLastStep ? this.translate.instant("global.finish") : this.translate.instant("global.next");
+    return isLastStep
+      ? this.translate.instant("global.finish")
+      : this.translate.instant("global.next");
   }
 
   getNextPageBtnIcon() {
@@ -71,7 +73,9 @@ export class NcsCreateStepperComponent implements OnInit {
           severity: "success",
           summary: this.isLastStep()
             ? this.translate.instant("newNC.finished")
-            : this.translate.instant("global.step") + (this.stepPosition + 1) + this.translate.instant("global.saved"),
+            : this.translate.instant("global.step") +
+              (this.stepPosition + 1) +
+              this.translate.instant("global.saved"),
           life: 3000,
         });
 
@@ -85,9 +89,7 @@ export class NcsCreateStepperComponent implements OnInit {
         this.messageService.add({
           severity: "error",
           summary:
-              this.translate.instant("global.error") +
-            this.stepPosition +
-            ".",
+            this.translate.instant("global.error") + this.stepPosition + ".",
           life: 3000,
         });
       },

@@ -403,7 +403,7 @@
     "sgqEval": "Avaliação SGQ",
     "closing": "Fechamento",
     "headerTitle": "Não Conformidade",
-    "export": "Exportar NC",
+    "export": "Gerar NC",
     "closingComponent": {
       "title": "Fechamento da NC",
       "subtitle": "Realize o fechamento desta NC.",

@@ -14,7 +14,7 @@ import { NonComplianceService } from "../../../_services/non-compliance.service"
 import { Sector } from "../../../models/sector";
 import { SectorService } from "../../../_services/sector.service";
 import { environment } from "src/environments/environment";
-import {Contact} from "../../../models/contact.model";
+import { Contact } from "../../../models/contact.model";
 
 @Injectable({
   providedIn: "root",
@@ -32,7 +32,7 @@ export class ProposalService {
   actions: ActionPlan[] = [];
   sectors: Sector[];
   checkBoxes: string[] = [];
-  contacts: Contact[] = []
+  contacts: Contact[] = [];
 
   apiUrl = environment.apiURL + "proposal";
   ncProp: NonCompliance;
@@ -77,6 +77,21 @@ export class ProposalService {
       this.propSolution.nbr_id = this.propSolution.nbr.id;
     if (this.propSolution.regulatory)
       this.propSolution.regulatory_id = this.propSolution.regulatory.id;
+
+    this.propSolution.material_description =
+      this.propSolution.material_description ?? "";
+    this.propSolution.measurement_description =
+      this.propSolution.measurement_description ?? "";
+    this.propSolution.method_description =
+      this.propSolution.method_description ?? "";
+    this.propSolution.man_power_description =
+      this.propSolution.man_power_description ?? "";
+    this.propSolution.environment_description =
+      this.propSolution.environment_description ?? "";
+    this.propSolution.machine_description =
+      this.propSolution.machine_description ?? "";
+    this.propSolution.effect_description =
+      this.propSolution.effect_description ?? "";
   }
 
   popularForm() {

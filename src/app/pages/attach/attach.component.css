@@ -85,14 +85,14 @@ label {
 
 .white-background i {
     position: absolute;
-    font-size: 30px;
+
     color: rgb(89, 89, 89);
     font-size: 60px;
 }
 
 .white-background-files i {
 
-    font-size: 17px;
+    font-size: 22px;
     color: rgb(89, 89, 89);
 
 }
