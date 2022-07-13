@@ -607,6 +607,7 @@
   },
   "sgq": {
     "number": "Número",
+    "success": "Avaliação salva com sucesso",
     "openingDate": "Data de Abertura",
     "closingDate": "Data de Fechamento",
     "checkEffectiveness": "Verificação de eficácia",

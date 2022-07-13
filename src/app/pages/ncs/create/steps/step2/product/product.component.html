@@ -25,7 +25,13 @@
     </div>
   </div>
 </div>
-<div class="p-fluid autoComplete" style="margin-top: 20px;">
+<div class="form-check mt-0">
+  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" (change)="notAply($event.target.checked)" [(ngModel)]="checkbox">
+  <label class="form-check-label" for="flexCheckDefault">
+    Não Se Aplica
+  </label>
+</div>
+<div class="p-fluid autoComplete mt-0" style="margin-top: 20px;">
   <p-autoComplete
     [(ngModel)]="nonComplicanceService.autoCompleteValue"
     [suggestions]="results"
