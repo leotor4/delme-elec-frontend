@@ -16,6 +16,7 @@ export class ProductComponent implements OnInit {
 
   products: Product[];
   updates: UpdateDate;
+  checkbox: boolean = false;
 
   constructor(
     private productService: ProductService,
@@ -54,6 +55,7 @@ export class ProductComponent implements OnInit {
 
   checkProduct(Product: Product) {
     this.nonComplicanceService.nc.product = Product;
+    this.checkbox = false
   }
   uncheckProduct() {}
 
@@ -72,4 +74,18 @@ export class ProductComponent implements OnInit {
     }
     return "";
   }
+
+    notAply(checked:boolean) {
+        if(checked){
+          this.nonComplicanceService.nc.product = this.products.filter(obj => {
+            return obj.name === "Não se Aplica"
+          })[0]
+          this.nonComplicanceService.nc.quant_nc = 0
+          this.nonComplicanceService.nc.quant_total = 0
+          this.nonComplicanceService.autoCompleteValue = ""
+        }else {
+          // @ts-ignore
+          this.nonComplicanceService.nc.product = undefined
+        }
+    }
 }

@@ -110,7 +110,7 @@ export class NonComplianceService {
       )
     ) {
       return (
-        this.nc.num_op!.split(" ").join("").length > 0 && !!this.nc.instruction
+        this.nc.num_op!.split(" ").join("").length > 0 && this.isProd()
       );
     }
 
@@ -137,11 +137,16 @@ export class NonComplianceService {
       this.nc.tipo_controle ==
       this.translate.instant("newNC.step1.checkpoint.type8")
     ) {
-      return !!this.nc.procedure && !!this.nc.instruction;
+      return !!this.nc.procedure && this.isProd();
     }
     return false;
   }
-
+  isProd(){
+    if(this.formIdentificacaoNC.value.tipos_nc_item ==
+        this.translate.instant("newNC.step1.ncType.type6")){
+      return !!this.nc.instruction
+    } else return true
+  }
   closeNc(id: number) {
     return this.http.put<any>(this.apiUrl + "/closeNc/" + id, {});
   }
@@ -172,13 +177,10 @@ export class NonComplianceService {
     );
   }
   validaProd() {
-    if (
-      this.formIdentificacaoNC.value.tipos_nc_item ==
-      this.translate.instant("newNC.step1.ncType.type6")
-    ) {
-      return this.nc.product && this.nc.quant_nc && this.nc.quant_total;
-    } else {
+    if(this.nc.product?.name=="Não se Aplica"){
       return true;
+    } else{
+      return this.nc.product && this.nc.quant_nc>0 && this.nc.quant_total>0;
     }
   }
   isType1or2() {

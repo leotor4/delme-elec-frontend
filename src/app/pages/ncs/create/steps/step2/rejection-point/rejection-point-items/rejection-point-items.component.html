@@ -1,10 +1,10 @@
-<div class="mb-3">
+<div class="mb-2">
   <div class="cabecalho">
     <h1>{{'newNC.step1.rejectionPoint.title'| translate}} *</h1>
     <p>{{'newNC.step1.rejectionPoint.subtitle'| translate}}</p>
   </div>
   <p-editor
-    [style]="{ height: '210px' }"
+    [style]="{ height: '200px' }"
     [(ngModel)]="nonComplianceService.nc.text_area_reject_point"
     [modules]="{counter: {container: '#counterR',unit: 'character'}}"
     [readonly]="!nonComplianceService.nc.partner"
@@ -16,7 +16,7 @@
   <div class="row">
     <div class="col">
       <div class="p-fluid autoComplete">
-        <label class="">{{'newNC.step1.rejectionPoint.itTitle'| translate}}</label>
+        <label class="mb-1">{{'newNC.step1.rejectionPoint.itTitle'| translate}}</label>
         <p-autoComplete
           class="p-autocomplete"
           [style]="{ width: '100%' }"

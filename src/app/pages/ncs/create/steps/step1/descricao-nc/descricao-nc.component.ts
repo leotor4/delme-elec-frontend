@@ -63,7 +63,7 @@ export class DescricaoNcComponent implements OnInit {
   }
 
     isRequired() {
-        if(this.nonComplicanceService.isType1or2()){
+        if(!this.nonComplicanceService.isType1or2()){
           return "*"
         } else return ""
     }
