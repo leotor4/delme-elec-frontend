@@ -132,6 +132,12 @@ export class RejectionPointItemsComponent implements OnInit {
   getUrl(){
     return environment.apiURL + 'ncs/import'
   }
+  isRequired() {
+    if(this.nonComplianceService.formIdentificacaoNC.value.tipos_nc_item ==
+        this.translate.instant("newNC.step1.ncType.type6")){
+      return "*"
+    } else return ""
+  }
 
   ngOnInit(): void {}
 }

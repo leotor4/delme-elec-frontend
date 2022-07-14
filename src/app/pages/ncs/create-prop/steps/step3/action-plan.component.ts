@@ -75,7 +75,7 @@ export class ActionPlanComponent implements OnInit {
           this.translate.instant("createProp.step2.delActionMsg")  +
           action.description+
           this.translate.instant('global.contacts.message2'),
-      header: this.translate.instant("createProp.delActionTitle") ,
+      header: this.translate.instant("createProp.step2.delActionTitle") ,
       icon: "pi pi-exclamation-triangle",
       accept: () => {
         this.propService.propSolution.actionPlans =

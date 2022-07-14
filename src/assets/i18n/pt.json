@@ -320,7 +320,7 @@
       "rejectionPoint": {
         "title": "Ponto de Rejeição",
         "subtitle": "Descreva o problema e porque esta NC esta sendo aberta.",
-        "itTitle": "Instrução de Trabalho *",
+        "itTitle": "Instrução de Trabalho",
         "searchPlaceholder": "Busque por nome, número ou descrição",
         "descriptionUpper": "DESCRIÇÃO",
         "revisionUpper": "REVISÃO",
@@ -403,7 +403,7 @@
     "sgqEval": "Avaliação SGQ",
     "closing": "Fechamento",
     "headerTitle": "Não Conformidade",
-    "export": "Gerar NC",
+    "export": "Gerar PDF",
     "closingComponent": {
       "title": "Fechamento da NC",
       "subtitle": "Realize o fechamento desta NC.",
