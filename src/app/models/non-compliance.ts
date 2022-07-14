@@ -49,11 +49,12 @@ export class NonCompliance {
   num_op?: string = "";
   num_nota?: string = "";
   radio_value: string = "val1";
-  status? : string;
-  system_status?:string
-  issuer?:User
+  status?: string;
+  system_status?: string;
+  issuer?: User;
   emissor?: User;
-  proposalSolution?:ProposalSolution;
+  affected_sector?: Sector;
+  proposalSolution?: ProposalSolution;
   created_at?: Date;
 
   constructor(init?: Partial<NonCompliance>) {
@@ -62,14 +63,14 @@ export class NonCompliance {
     }
   }
 
-  public adicionar_campos(novos_campos:Partial<IdentificacaoNCDTO>) {
+  public adicionar_campos(novos_campos: Partial<IdentificacaoNCDTO>) {
     if (novos_campos) {
       Object.assign(this, novos_campos);
-      
-      if (novos_campos.hasOwnProperty('data_abertura')) {
+
+      if (novos_campos.hasOwnProperty("data_abertura")) {
         this.data_abertura = moment(novos_campos.data_abertura).toDate();
       }
-      if (novos_campos.hasOwnProperty('data_fechamento')) {
+      if (novos_campos.hasOwnProperty("data_fechamento")) {
         this.data_fechamento = moment(novos_campos.data_fechamento).toDate();
       }
     }

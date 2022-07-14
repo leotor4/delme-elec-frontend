@@ -26,6 +26,7 @@ export class ProposalComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = parseInt(this.route.snapshot.paramMap.get("id") || "");
+    console.log(this.aboutService.nc.proposalSolution);
   }
 
   goPlaces() {
@@ -38,13 +39,15 @@ export class ProposalComponent implements OnInit {
   }
   returnString(obj: any) {
     let str = "";
-    if (obj?.code) str += obj.code + " ";
-    if (obj?.description) str += obj.description + " ";
-    if (obj?.rev) str += obj.rev + " ";
+    if(obj) str += obj.name??"" 
     return str;
   }
 
-  getContacts(){
-    return this.aboutService.nc.contacts.filter(val=>val.email! != "efraim@electrosonteleco.com")
+  getContacts() {
+    return this.aboutService.nc.contacts.filter(
+      (val) => val.email! != "efraim@electrosonteleco.com"
+    );
   }
+
+  
 }

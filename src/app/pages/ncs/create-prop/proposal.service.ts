@@ -92,6 +92,25 @@ export class ProposalService {
       this.propSolution.machine_description ?? "";
     this.propSolution.effect_description =
       this.propSolution.effect_description ?? "";
+
+  
+  }
+
+  removerNulo(){
+        this.propSolution.material_description =
+          this.propSolution.material_description ?? "";
+        this.propSolution.measurement_description =
+          this.propSolution.measurement_description ?? "";
+        this.propSolution.method_description =
+          this.propSolution.method_description ?? "";
+        this.propSolution.man_power_description =
+          this.propSolution.man_power_description ?? "";
+        this.propSolution.environment_description =
+          this.propSolution.environment_description ?? "";
+        this.propSolution.machine_description =
+          this.propSolution.machine_description ?? "";
+        this.propSolution.effect_description =
+          this.propSolution.effect_description ?? "";
   }
 
   popularForm() {

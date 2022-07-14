@@ -42,11 +42,11 @@ export class AboutComponent implements OnInit {
 
   checkDisableProposal(): boolean {
     var disabled = true;
-
-    if (this.aboutSrvc.nc?.sector?.responsible_email) {
+    console.log(this.aboutSrvc.nc?.affected_sector?.responsible_email);
+    if (this.aboutSrvc.nc?.affected_sector?.responsible_email) {
       if (
         this.roleService.isResponsibleOrManager(
-          this.aboutSrvc.nc.sector.responsible_email
+          this.aboutSrvc.nc.affected_sector.responsible_email
         ) ||
         this.isActionPlanResponsible()
       ) {

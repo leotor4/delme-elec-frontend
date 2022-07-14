@@ -47,7 +47,7 @@
                                 <div class="col">
                                     <label>{{'about.proposalComponent.material'| translate}}</label>
                                     <p-editor
-                                        [ngModel]="'<p>'+this.aboutService.nc.proposalSolution.lack_materials + '</p><p>' + this.aboutService.nc.proposalSolution.low_quality_materials + '</p>' + this.aboutService.nc.proposalSolution.excess_materials + '</p>' + this.aboutService.nc.proposalSolution.material_description"
+                                        [ngModel]="'<p>'+this.aboutService.nc.proposalSolution.lack_materials + '</p><p>' + this.aboutService.nc.proposalSolution.low_quality_materials + '</p><p>' + this.aboutService.nc.proposalSolution.excess_materials + '</p>' + this.aboutService.nc.proposalSolution.material_description"
                                         [style]="editorStyle" [readonly]="true">
                                         <ng-template pTemplate="header">
                                         </ng-template>
@@ -57,7 +57,7 @@
                                 <div class="col">
                                     <label>{{'about.proposalComponent.measure'| translate}}</label>
                                     <p-editor
-                                        [ngModel]="'<p>'+this.aboutService.nc.proposalSolution.lack_parameters + '</p><p>' + this.aboutService.nc.proposalSolution.excess_parameters + '</p><p>' + this.aboutService.nc.proposalSolution.non_achievement_goals+ '</p>' + this.aboutService.nc.proposalSolution.low_quality_materials + '</p>' + this.aboutService.nc.proposalSolution.measurement_description"
+                                        [ngModel]="'<p>'+this.aboutService.nc.proposalSolution.lack_parameters + '</p><p>' + this.aboutService.nc.proposalSolution.excess_parameters + '</p><p>' + this.aboutService.nc.proposalSolution.non_achievement_goals+ '</p><p>'  + this.aboutService.nc.proposalSolution.measurement_description"
                                         [style]="editorStyle" [readonly]="true">
                                         <ng-template pTemplate="header">
                                         </ng-template>
@@ -93,7 +93,7 @@
                                 </div>
                                 <div class="col">
                                     
-                                    <p-editor [ngModel]="this.aboutService.nc.proposalSolution.machine_description"
+                                    <p-editor [ngModel]="this.aboutService.nc.proposalSolution.machine_description + '<p>' +returnString(this.aboutService.nc.proposalSolution.machine)+'</p><p>' +returnString(this.aboutService.nc.proposalSolution.equipament)+'</p>'"
                                         [style]="editorStyle" [readonly]="true">
                                         <ng-template pTemplate="header">
                                         </ng-template>
