@@ -37,6 +37,7 @@ import { GerarPdfViewComponent } from './view-nc/gerar-pdf-view/gerar-pdf-view.c
 
 
 
+
 @NgModule({
   declarations: [
     AboutComponent,
