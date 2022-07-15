@@ -72,7 +72,7 @@ export class ActionPlanComponent implements OnInit {
     let afectedsector = this.propService.sectors.find(i => i.name === this.propService.ncProp.tipos_local_item)
     this.confirmationService.confirm({
       message:
-          this.translate.instant("createProp.step2.delActionMsg")  +
+          this.translate.instant("createProp.step2.delActionMsg")  + ' '  +
           action.description+
           this.translate.instant('global.contacts.message2'),
       header: this.translate.instant("createProp.step2.delActionTitle") ,
