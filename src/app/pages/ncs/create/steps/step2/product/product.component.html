@@ -1,37 +1,38 @@
 <div class="header">
   <div class="d-flex flex-row m-0">
     <div class="cabecalho text-box p-0 mr-3">
-      <h1>{{'newNC.step1.product.title'| translate}} *</h1>
+      <h1>{{ "newNC.step1.product.title" | translate }} *</h1>
       <p>
-        {{'newNC.step1.product.subtitle1'| translate}}
+        {{ "newNC.step1.product.subtitle1" | translate }}
         <br />
-        {{'newNC.step1.product.subtitle2'| translate}}
+        {{ "newNC.step1.product.subtitle2" | translate }}
       </p>
     </div>
     <div class="" id="div-att-col2">
       <p>
         <i class="pi pi-history"> </i>
-        {{'newNC.step1.lastUpdate'| translate}}
+        {{ "newNC.step1.lastUpdate" | translate }}
         {{ returnUpdateTime() }}
       </p>
-      <a      target="_blank"
-              href="ncs/import"
-              role="button"
-              class="btn btn-dark"
-      >
-        {{'newNC.step1.updateBtn'| translate}}
+      <a target="_blank" href="ncs/import" role="button" class="btn btn-dark">
+        {{ "newNC.step1.updateBtn" | translate }}
         <i class="pi pi-download" id="icon-button"></i>
       </a>
     </div>
   </div>
 </div>
 <div class="form-check mt-0">
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" (change)="notAply($event.target.checked)" [(ngModel)]="checkbox">
-  <label class="form-check-label" for="flexCheckDefault">
-    Não Se Aplica
-  </label>
+  <input
+    class="form-check-input"
+    type="checkbox"
+    value=""
+    id="flexCheckDefault"
+    (change)="notAply($event.target.checked)"
+    [(ngModel)]="checkbox"
+  />
+  <label class="form-check-label" for="flexCheckDefault"> Não Se Aplica </label>
 </div>
-<div class="p-fluid autoComplete mt-0" style="margin-top: 20px;">
+<div class="p-fluid autoComplete mt-0 mb-2" style="margin-top: 20px">
   <p-autoComplete
     [(ngModel)]="nonComplicanceService.autoCompleteValue"
     [suggestions]="results"
@@ -39,7 +40,7 @@
     class="p-autocomplete"
     [style]="{ width: '100%' }"
     [inputStyle]="{ width: '100%' }"
-    [placeholder]="'newNC.step1.product.searchPlaceholder'| translate"
+    [placeholder]="'newNC.step1.product.searchPlaceholder' | translate"
     field="name"
     (onSelect)="checkProduct($event)"
     (input)="uncheckProduct()"
