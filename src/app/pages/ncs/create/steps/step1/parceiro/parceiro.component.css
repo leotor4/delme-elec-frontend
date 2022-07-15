@@ -29,10 +29,6 @@ label {
   margin-bottom: 2px;
 }
 
-
-
-
-
 .p-button-secondary {
   background-color: rgb(51, 51, 51);
   background: rgb(51, 51, 51);
@@ -50,15 +46,12 @@ label {
   border: 2px solid rgb(51, 51, 51);
   font-size: 14px;
   padding: 7px;
-  
- 
- 
+  height: 42px;
 }
 
-.dropdown{
+.dropdown {
   margin-top: 10px;
 }
-
 
 .div-att button {
   width: 200px;
@@ -85,8 +78,8 @@ label {
   border-bottom-left-radius: 5px;
 }
 
-#div-att-col2{
-min-width: 200px;
+#div-att-col2 {
+  min-width: 200px;
 }
 
 #div-att-col2 p {
@@ -107,7 +100,6 @@ min-width: 200px;
 #div-att-col2 i {
   margin-right: 3px;
   font-size: 12px;
-  
 }
 
 #search-input {
@@ -118,22 +110,18 @@ min-width: 200px;
   padding: 7px;
 }
 
-
-
 .col-search {
   display: flex;
   align-items: flex-end;
   margin-top: 10px;
-  
 }
 
-.col-search i{
+.col-search i {
   font-size: 15px;
   margin-left: 4px;
-  
 }
 
-.row-search{
+.row-search {
   margin-bottom: 15px;
 }
 
@@ -146,17 +134,14 @@ min-width: 200px;
   background-color: rgb(243, 243, 243);
 }
 
-
-
 .background-white {
   margin: 10px;
   background-color: white;
   border-radius: 7px;
   height: 300px;
-  
 }
 
-.div-ident-parceiro-titulo{
+.div-ident-parceiro-titulo {
   text-align: center;
 }
 
@@ -167,39 +152,35 @@ min-width: 200px;
   background-color: white;
   border-radius: 7px;
   padding: 13px;
-
 }
 
-.titulo-parceiro{
+.titulo-parceiro {
   font-size: 17px;
   font-weight: bold;
   margin-bottom: 0;
   color: rgb(51, 51, 51);
- 
 }
 
-.dados-contato h1{
+.dados-contato h1 {
   font-size: 20px;
   font-weight: bold;
-  color: rgb(51, 51, 51)
+  color: rgb(51, 51, 51);
 }
 
-.razao-social h1{
+.razao-social h1 {
   font-size: 20px;
   font-weight: bold;
-  color: rgb(51, 51, 51)
-
+  color: rgb(51, 51, 51);
 }
 
-
-.dados-contato button{
+.dados-contato button {
   width: 130px;
   height: 30px;
   font-size: 13px;
 }
 
 .razao-social p {
-font-size: 13px;
+  font-size: 13px;
 }
 
 .dados-contato i {
@@ -207,29 +188,28 @@ font-size: 13px;
   margin-right: 8px;
 }
 
-.info-titulo{
+.info-titulo {
   margin-bottom: 1px;
-font-weight: bold;
-color: rgb(103, 103, 103);
+  font-weight: bold;
+  color: rgb(103, 103, 103);
 }
 
-.info-dados{
+.info-dados {
   color: rgb(153, 153, 153);
-  ;
 }
 
-.contato-info i{
+.contato-info i {
   font-size: 14px;
   color: rgb(103, 103, 103);
   margin-right: 10px;
 }
 
-.contato-info{
+.contato-info {
   margin-top: 8px;
   height: 35px;
 }
 
-.auto-complete-title{
+.auto-complete-title {
   font-size: 13px;
   font-weight: bold;
   margin-bottom: 10px;
@@ -238,46 +218,39 @@ color: rgb(103, 103, 103);
 .auto-complete-label {
   font-size: 11px;
   color: gray;
- 
 }
 
-.p-autocomplete{
-width: 850px;
-
-border-radius: 5px;
-border: 2px solid rgb(51, 51, 51);
-height: 38px;
-
-
+.p-autocomplete {
+  width: 850px;
+  border-radius: 5px;
+  border: 2px solid rgb(51, 51, 51);
 }
 
-.col-search button{
+.col-search button {
   width: 120px;
   min-width: 120px;
   height: 38px;
   border-bottom-left-radius: 0px;
   border-top-left-radius: 0px;
 }
-.editar-campo{
+.editar-campo {
   margin-top: 15px;
 }
-.editar-campo input{
-width: 100%;
-border: 2px solid rgb(51, 51, 51);
-border-radius: 5px;
-padding-left: 7px;
-padding-top: 5px;
-padding-bottom: 5px;
-font-size: 13px;
+.editar-campo input {
+  width: 100%;
+  border: 2px solid rgb(51, 51, 51);
+  border-radius: 5px;
+  padding-left: 7px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 13px;
 }
 
-.editar-buttons{
+.editar-buttons {
   margin-top: 30px;
 }
 
-.editar-buttons i{
+.editar-buttons i {
   font-size: 12px;
   margin-left: 5px;
 }
-
-
