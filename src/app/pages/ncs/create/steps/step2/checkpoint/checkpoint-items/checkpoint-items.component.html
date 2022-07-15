@@ -32,7 +32,7 @@
 <div class="input-box mt-3" *ngIf="returnPrScreen()">
   <div class="row mt-3">
     <div class="col">
-      <div class="p-fluid autoComplete">
+      <div class="p-fluid autoComplete mr-0">
         <label class="">{{'newNC.step1.rejectionPoint.pr'| translate}}</label>
         <p-autoComplete
                 [(ngModel)]="nonComplicanceService.autoCompletePrValue"
@@ -43,7 +43,7 @@
                 (completeMethod)="searchPr($event)"
                 [style]="{ width: '100%' }"
                 [inputStyle]="{ width: '100%' }"
-                field="description"
+                field="name"
                 [placeholder]="'newNC.step1.rejectionPoint.searchPlaceholder'| translate"
         >
           <ng-template let-brand pTemplate="item">
@@ -69,7 +69,7 @@
         </p-autoComplete>
       </div>
     </div>
-    <div class="col att-button">
+    <div class="col att-button ml-0">
       <div>
 <!--        <p class="p-0"><i class="pi pi-history"></i> {{'newNC.step1.lastUpdate'| translate}} {{ returnUpdateTime() }}</p>-->
         <a      target="_blank"

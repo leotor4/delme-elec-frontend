@@ -3,7 +3,7 @@
   <div class="dados-parceiro col razao-social">
     <div class="d-flex">
       <h2 class="mr-2">
-        {{aboutSrvc.nc?.product?.name||'global.dontApply'| translate}}
+        {{aboutSrvc.nc?.product?.description}}
       </h2>
       <p-chip>
         <i class="bi bi-ticket-perforated mr-2"></i>
@@ -11,7 +11,7 @@
       </p-chip>
     </div>
     <p class="d-block">
-      {{aboutSrvc.nc?.product?.description||'global.dontApply'| translate}}
+      {{aboutSrvc.nc?.product?.name}}
     </p>
   </div>
   <div class="dados-parceiro col">
@@ -78,7 +78,7 @@
   </h2>
   <div class="d-flex dados-contato mb-3 ">
     <div class="contato-info d-flex flex-row mb-5 mr-5" *ngIf="aboutSrvc.nc?.num_lote">
-      <i class="bi bi-123"></i>
+      <i class="bi bi-file-earmark-text"></i>
       <div>
         <span class="info-titulo">{{'newNC.step1.rejectionPoint.numBatch'| translate}}</span>
         <br />
@@ -88,7 +88,7 @@
       </div>
     </div>
     <div class="contato-info d-flex flex-row mb-5 mr-5" *ngIf="aboutSrvc.nc?.num_ordem_compra">
-      <i class="bi bi-123"></i>
+      <i class="bi bi-file-earmark-text"></i>
       <div>
         <span class="info-titulo">{{'newNC.step1.rejectionPoint.numOC'| translate}}</span>
         <br />
@@ -98,7 +98,7 @@
       </div>
     </div>
     <div class="contato-info d-flex flex-row mb-5 mr-5" *ngIf="aboutSrvc.nc?.instruction?.code">
-      <i class="bi bi-123"></i>
+      <i class="bi bi-file-earmark-text"></i>
       <div>
         <span class="info-titulo">IT</span>
         <br />
@@ -110,7 +110,7 @@
       </div>
     </div>
     <div class="contato-info d-flex flex-row mb-5 mr-5" *ngIf="aboutSrvc.nc?.procedure">
-      <i class="bi bi-123"></i>
+      <i class="bi bi-file-earmark-text"></i>
       <div>
         <span class="info-titulo">PR</span>
         <br />
