@@ -60,6 +60,7 @@ export class CheckpointItemsComponent implements OnInit {
   returnNfScreen() {
     return this.nonComplicanceService.nc.tipo_controle == this.translate.instant("newNC.step1.checkpoint.type4") ||
         this.nonComplicanceService.nc.tipo_controle == this.translate.instant("newNC.step1.checkpoint.type5") ||
+         
         this.nonComplicanceService.nc.tipo_controle == this.translate.instant("newNC.step1.checkpoint.type6") ||
         this.nonComplicanceService.nc.tipo_controle == this.translate.instant("newNC.step1.checkpoint.type7");
   }

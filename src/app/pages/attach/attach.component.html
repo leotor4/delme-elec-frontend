@@ -16,7 +16,7 @@
   <div class="white-background-files" *ngIf="returnFiles(item).length > 0">
     <div class="d-flex justify-content-start" style="width: 100%;">
       <label for="inputTag" style="cursor: pointer">
-        <i class="bi bi-plus" style="font-size: 40px;"></i>
+        <i class="bi bi-plus-circle-fill" style="font-size: 30px;color: rgb(0,91,123);"></i>
         <input
           id="inputTag"
           type="file"
@@ -34,7 +34,7 @@
     >
       {{ files.name }}
       <button (click)="clearFileByName(files.name)">
-        <i class="bi bi-x"></i>
+        <i class="bi bi-x-circle"></i>
       </button>
     </div>
   </div>

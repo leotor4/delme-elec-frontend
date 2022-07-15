@@ -28,6 +28,7 @@
   <label class="mb-2 mt-3">{{'global.fileInput.title2'| translate}} </label>
   <app-attach [item]="'pontoControle'"></app-attach>
 </div>
+
 <div class="input-box mt-3" *ngIf="returnPrScreen()">
   <div class="row mt-3">
     <div class="col">
@@ -83,37 +84,5 @@
     </div>
   </div>
   <label class="mb-2 mt-3">{{'global.fileInput.title2'| translate}} </label>
-  <div class="div-attachment pb-3">
-    <h1>{{'global.fileInput.subtitle'| translate}}</h1>
-    <div
-            class="white-background"
-            *ngIf="nonComplicanceService.fileControle.length == 0"
-    >
-      <input
-              type="file"
-              class="input-attachment"
-              (change)="onUpload($event, 'pontoControle')"
-              multiple
-      />
-      <i class="pi pi-cloud-upload"></i>
-      <p>
-        {{'global.fileInput.description'| translate}}
-      </p>
-    </div>
-    <div
-            class="white-background-files"
-            *ngIf="returnFiles('pontoControle').length != 0"
-    >
-      <button
-              type="button"
-              (click)="clearFileName('pontoControle')"
-              class="btn btn-light"
-      >
-        <i class="pi pi-replay"></i>
-      </button>
-      <p *ngFor="let files of returnFiles('pontoControle')">
-        {{ files.name }}
-      </p>
-    </div>
-  </div>
+  <app-attach [item]="'pontoControle'"></app-attach>
 </div>
