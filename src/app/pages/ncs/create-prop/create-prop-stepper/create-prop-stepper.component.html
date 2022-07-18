@@ -4,6 +4,7 @@
             <button
                     type="button"
                     class="btn btn-dark btn-sm"
+                    style="background-color: #00344D;"
                     (click)="backStep()"
                     [disabled]="isFirstStep()"
             >
@@ -24,6 +25,7 @@
                         type="button"
                         (click)="nextStep()"
                         [disabled]="disableButton()"
+                        style="background-color: #00344D;"
                         class="btn btn-dark btn-sm"
                 >
                     {{ getNextPageBtnLabel() }}

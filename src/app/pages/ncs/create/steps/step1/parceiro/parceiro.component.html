@@ -7,7 +7,7 @@
   </ng-template>
 
   <div class="editar-campo">
-    <label for="">{{ "global.contact.name" | translate }}</label>
+    <label for="">{{ "global.contacts.name" | translate }}</label>
     <input type="text" [(ngModel)]="nonComplicanceService.editarNomeItem" />
   </div>
   <div class="editar-campo">
@@ -15,16 +15,16 @@
     <input type="text" [(ngModel)]="nonComplicanceService.editarTelefoneItem" />
   </div>
   <div class="editar-campo">
-    <label for="">{{ "global.contact.email" | translate }}</label>
+    <label for="">{{ "global.contacts.email" | translate }}</label>
     <input type="text" [(ngModel)]="nonComplicanceService.editarEmailItem" />
   </div>
   <div class="d-flex justify-content-end editar-buttons">
-    <button type="button" class="btn btn-outline-dark" (click)="hideDialog()">
-      {{ "global.contact.cancel" | translate }}
+    <button type="button" class="btn btn-outline-warning" (click)="hideDialog()">
+      {{ "global.cancel" | translate }}
     </button>
     <div class="ml-2 mr-2"></div>
-    <button type="button" class="btn btn-dark" (click)="editar()">
-      {{ "global.contact.confirm" | translate }} <i class="pi pi-check"></i>
+    <button type="button" class="btn btn-dark" style="background-color: #00344D;" (click)="editar()">
+      {{ "global.confirm" | translate }} <i class="pi pi-check"></i>
     </button>
   </div>
 </p-dialog>
@@ -44,7 +44,7 @@
         <i class="pi pi-history"> </i
         >{{ "newNC.step1.lastUpdate" | translate }} {{ returnUpdateTime() }}
       </p>
-      <a target="_blank" href="ncs/import" role="button" class="btn btn-dark">
+      <a target="_blank" href="ncs/import" role="button" class="btn btn-dark" style="background-color: #00344D;">
         {{ "newNC.step1.updateBtn" | translate }}
         <i class="pi pi-download" id="icon-button"></i>
       </a>
@@ -195,6 +195,7 @@
         <button
           type="button"
           class="btn btn-dark"
+          style="background-color: #00344D;"
           iconPos="left"
           (click)="showDialog()"
         >

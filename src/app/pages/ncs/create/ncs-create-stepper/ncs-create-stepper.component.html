@@ -4,6 +4,7 @@
       <button
         type="button"
         class="btn btn-dark btn-sm"
+        style="background-color: #00344D;"
         (click)="backStep()"
         [disabled]="isFirstStep()"
       >
@@ -23,6 +24,7 @@
         <button
           type="button"
           (click)="nextStep()"
+          style="background-color: #00344D;"
           [disabled]="disableButton()"
           class="btn btn-dark btn-sm"
         >
@@ -32,7 +34,7 @@
 
         <button
           *ngIf="stepPosition == 2"
-          style="margin-left: 15px"
+          style="background-color: #00344D;margin-left: 15px"
           type="button"
           (click)="gerarPdf()"
           class="btn btn-dark btn-sm"

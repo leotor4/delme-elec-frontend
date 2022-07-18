@@ -18,7 +18,7 @@
             <label class="form-check-label ml-1">{{'createProp.step1.materialCheck3'| translate}}</label>
         </div>
         <p class="my-3 fw-bold fs-6">{{'createProp.step1.moreInfo'| translate}}</p>
-        <p-editor [style]="{'height':'125px'}" [onchange]="propService.removerNulo()"[(ngModel)]="this.propService.propSolution.material_description" [modules]="{counter: {container: '#counter',unit: 'character'}}">
+        <p-editor [style]="{'height':'125px','font-size': '25px'}" [onchange]="propService.removerNulo()"[(ngModel)]="this.propService.propSolution.material_description" [modules]="{counter: {container: '#counter',unit: 'character'}}">
         </p-editor>
         <div id="counter" class="text-end">0</div>
     </div>
@@ -41,7 +41,7 @@
             <label class="form-check-label ml-1">{{'createProp.step1.measureCheck3'| translate}}</label>
         </div>
         <p class="my-3 fw-bold fs-6">{{'createProp.step1.moreInfo'| translate}}</p>
-        <p-editor [style]="{'height':'125px'}" [(ngModel)]="this.propService.propSolution.measurement_description" [modules]="{counter: {container: '#counter1',unit: 'character'}}">
+        <p-editor [style]="{'height':'125px','font-size': '25px'}" [(ngModel)]="this.propService.propSolution.measurement_description" [modules]="{counter: {container: '#counter1',unit: 'character'}}">
         </p-editor>
         <div id="counter1" class="text-end">0</div>
     </div>
@@ -51,7 +51,7 @@
         </h1>
         <p>{{'createProp.step1.method'| translate}}</p>
 
-        <p-editor [style]="{'height':'125px'}" [(ngModel)]="this.propService.propSolution.method_description" [modules]="{counter: {container: '#counter3',unit: 'character'}}">
+        <p-editor [style]="{'height':'125px','font-size': '25px'}" [(ngModel)]="this.propService.propSolution.method_description" [modules]="{counter: {container: '#counter3',unit: 'character'}}">
         </p-editor>
         <div id="counter3" class="text-end">0</div>
         <div class="d-flex mt-4">
@@ -195,7 +195,7 @@
             <p-checkbox [(ngModel)]="propService.checkBoxes" [value]="'createProp.step1.laborCheck'| translate"></p-checkbox>
             <label class="form-check-label ml-1">{{'createProp.step1.laborCheck'| translate}}</label>
         </div>
-        <p-editor [style]="{'height':'125px'}" [onchange]="propService.removerNulo()" [(ngModel)]="this.propService.propSolution.man_power_description" [modules]="{counter: {container: '#counter4',unit: 'character'}}">
+        <p-editor [style]="{'height':'125px','font-size': '25px'}" [onchange]="propService.removerNulo()" [(ngModel)]="this.propService.propSolution.man_power_description" [modules]="{counter: {container: '#counter4',unit: 'character'}}">
         </p-editor>
         <div id="counter4" class="text-end">0</div>
     </div>
@@ -204,7 +204,7 @@
             {{'about.proposalComponent.ambient'| translate}}
         </h1>
         <p class="mb-3">{{'createProp.step1.ambient'| translate}}</p>
-        <p-editor [style]="{'height':'125px'}" [(ngModel)]="this.propService.propSolution.environment_description" [modules]="{counter: {container: '#counter5',unit: 'character'}}">
+        <p-editor [style]="{'height':'125px','font-size': '25px'}" [(ngModel)]="this.propService.propSolution.environment_description" [modules]="{counter: {container: '#counter5',unit: 'character'}}">
         </p-editor>
         <div id="counter5" class="text-end">0</div>
     </div>
@@ -214,7 +214,7 @@
         </h1>
         <p>{{'createProp.step1.machine'| translate}}</p>
 
-        <p-editor [style]="{'height':'125px'}" [(ngModel)]="this.propService.propSolution.machine_description" [modules]="{counter: {container: '#counter6',unit: 'character'}}">
+        <p-editor [style]="{'height':'125px','font-size': '25px'}" [(ngModel)]="this.propService.propSolution.machine_description" [modules]="{counter: {container: '#counter6',unit: 'character'}}">
         </p-editor>
         <div id="counter6" class="text-end">0</div>
         <div class="d-flex">
@@ -257,7 +257,7 @@
         </h1>
         <p class="mb-3">{{'createProp.step1.effect'| translate}}</p>
         
-        <p-editor [style]="{'height':'125px'}" [(ngModel)]="this.propService.propSolution.effect_description" [modules]="{counter: {container: '#counter7',unit: 'character'}}">
+        <p-editor [style]="{'height':'125px','font-size': '25px'}" [(ngModel)]="this.propService.propSolution.effect_description" [modules]="{counter: {container: '#counter7',unit: 'character'}}">
         </p-editor>
         <div id="counter7" class="text-end">0</div>
         
@@ -268,7 +268,7 @@
               <i class="bi bi-file-earmark-text"></i>
                 {{'about.ncView.description'| translate}}
             </h2>
-            <p-editor [style]="{'height':'144px', border: '1px solid #dddddd' }" [readonly]="true" [ngModel]="propService.ncProp.text_area_nc">
+            <p-editor [style]="{'height':'144px', border: '1px solid #dddddd','font-size': '25px' }" [readonly]="true" [ngModel]="propService.ncProp.text_area_nc">
                 <ng-template pTemplate="header">
                 </ng-template>
             </p-editor>
@@ -278,7 +278,7 @@
 </div>
 <div class="d-flex justify-content-between mt-5">
     <button type="button"
-            class="btn btn-outline-dark"
+            class="btn btn-outline-warning"
             (click)="close()"
     >
         {{'createProp.step1.back'| translate}}
@@ -287,6 +287,7 @@
     <div class="d-flex">
         <button type="button"
                 class="btn btn-dark"
+                style="background-color: #00344D;"
                 [disabled]="isFirstStep()"
                 (click)="backStep()"
         >
@@ -297,7 +298,7 @@
         <button
                 type="button"
                 class="btn btn-dark"
-                
+                style="background-color: #00344D;"
                 (click)="nextStep()"
         >
             {{returnTextButton()}}

@@ -34,5 +34,14 @@ export class EvidenceComponent implements OnInit {
     }
 
   }
+  clearById(name: string) {
+    let aux = this.sgqServ.sgq.attachments;
+    this.sgqServ.sgq.attachments = [];
+    for (let i = 0; i < aux.length; i++) {
+      if (!(aux[i].name == name)) {
+        this.sgqServ.sgq.attachments.push(aux[i]);
+      }
+    }
+  }
 
 }
