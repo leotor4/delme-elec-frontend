@@ -43,7 +43,7 @@
 </div>
 <div class="d-flex justify-content-end editar-buttons">
     <button type="button"
-            class="btn btn-outline-dark"
+            class="btn btn-outline-warning"
             (click)="cancel()">
         {{'global.cancel'| translate}}
     </button>
@@ -51,6 +51,7 @@
     <button
             type="button"
             class="btn btn-dark"
+            style="background-color: #00344D;"
             [disabled]="(nameCtrl.invalid) || (emailCtrl.invalid) || (typeCtrl.invalid)"
             (click)="saveContact()"
     >

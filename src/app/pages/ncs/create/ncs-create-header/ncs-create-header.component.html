@@ -1,7 +1,7 @@
 <div class="header-create-nc">
   <div class="p-0">
     <div class="d-flex">
-      <button type="button" class="btn btn-dark" (click)="salvarNc('home')">
+      <button type="button" class="btn btn-dark" (click)="salvarNc('home')" style="background-color: #00344D;">
         <i class="pi pi-home"></i>
         {{'global.home'| translate}}
       </button>
@@ -12,11 +12,11 @@
   </div>
   <div class="d-flex justify-content-end p-0">
     <div class="d-flex buttons">
-      <button type="button" (click)="openCancelDialog()" class="btn btn-outline-dark mr-2">
+      <button type="button" (click)="openCancelDialog()" class="btn btn-outline-warning mr-2" >
         {{'global.cancel'| translate}}
         <i class="pi pi-times"></i>
       </button>
-      <button type="button" class="btn btn-dark" (click)="salvarNc('save')">
+      <button type="button" class="btn btn-dark" (click)="salvarNc('save')" style="background-color: #00344D;">
         {{'global.save'| translate}}
         <i class="pi pi-save"></i>
       </button>

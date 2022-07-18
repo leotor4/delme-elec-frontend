@@ -4,7 +4,7 @@
     <p>{{'newNC.step1.rejectionPoint.subtitle'| translate}}</p>
   </div>
   <p-editor
-    [style]="{ height: '200px' }"
+    [style]="{ height: '200px','font-size': '25px' }"
     [(ngModel)]="nonComplianceService.nc.text_area_reject_point"
     [modules]="{counter: {container: '#counterR',unit: 'character'}}"
     [readonly]="!nonComplianceService.nc.partner"

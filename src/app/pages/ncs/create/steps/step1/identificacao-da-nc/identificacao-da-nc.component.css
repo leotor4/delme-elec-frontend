@@ -16,8 +16,6 @@
   margin-bottom: 0px;
 }
 
-
-
 .cabecalho p {
   font-size: 14px;
   color: gray;
@@ -34,6 +32,7 @@
   padding: 7px;
   width: 100%;
   font-size: 13px;
+  height: 38px;
 }
 
 label {
@@ -69,17 +68,14 @@ span > .p-inputtext:enabled:focus {
   padding-right: 5px;
   width: 100%;
   font-size: 14px;
+  height: 38px;
 }
 
 .p-input-icon-left {
   width: 100%;
 }
 
-.dropdown{
-  margin-bottom: 12px;
-}
-
-.option-titulo{
+.option-titulo {
   font-weight: bold;
 }
 

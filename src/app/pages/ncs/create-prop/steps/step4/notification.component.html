@@ -9,7 +9,7 @@
     </div>
   </div>
   <div class="col-4 d-flex justify-content-end align-items-center">
-    <button iconPos="right" class="btn btn-dark" (click)="showAddContacts()">
+    <button iconPos="right" class="btn btn-dark" style="background-color: #00344D;" (click)="showAddContacts()">
       {{'global.contacts.addBtn'| translate}}<i class="pi pi-plus"></i>
     </button>
   </div>
@@ -94,6 +94,7 @@
       <button
         type="button"
         class="btn btn-dark col-3"
+        style="background-color: #00344D;"
         (click)="createNewContact()"
       >
         {{'global.contacts.create'| translate}} <i class="pi pi-user-plus"></i>
@@ -136,7 +137,7 @@
     <div class="d-flex justify-content-end">
       <button
         type="button"
-        class="btn btn-outline-dark"
+        class="btn btn-outline-warning"
         (click)="hideAddContacts()"
       >
         {{'global.cancel'| translate}}
@@ -144,6 +145,7 @@
       <button
         type="button"
         class="btn btn-dark"
+        style="background-color: #00344D;"
         [disabled]="selectedContacts.length == 0"
         (click)="saveSelection()"
       >
