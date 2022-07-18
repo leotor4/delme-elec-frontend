@@ -1,65 +1,64 @@
 <form [formGroup]="nonComplicanceService.formIdentificacaoNC">
   <div class="cabecalho">
-    <p>{{'global.requiredFields'| translate}}</p>
-    <h1>{{'newNC.step1.identifyNC.title'| translate}}</h1>
-    <p>{{'newNC.step1.identifyNC.subtitle'| translate}}</p>
+    <p>{{ "global.requiredFields" | translate }}</p>
+    <h1>{{ "newNC.step1.identifyNC.title" | translate }}</h1>
+    <p>{{ "newNC.step1.identifyNC.subtitle" | translate }}</p>
   </div>
-  
+
   <div class="row">
     <div class="col">
-      <div class="dropdown">
-        <label for="">{{'newNC.step1.identifyNC.type'| translate}}</label>
+      <div class="dropdown mb-2">
+        <label for="">{{ "newNC.step1.identifyNC.type" | translate }}</label>
         <select id="selectTypeNc" formControlName="tipos_nc_item">
-          <option [ngValue]="null" disabled selected hidden>{{'global.select'| translate}}</option>
-          <option *ngFor="let tiposNc of tiposNc" value="{{ tiposNc }}">{{ tiposNc }}</option>
+          <option [ngValue]="null" disabled selected hidden>
+            {{ "global.select" | translate }}
+          </option>
+          <option *ngFor="let tiposNc of tiposNc" value="{{ tiposNc }}">
+            {{ tiposNc }}
+          </option>
         </select>
       </div>
     </div>
 
-
-
-
-
-
-
-
-    <div class="d-flex flex-column inputs-sm  col-5" >
-      <label for="tipos_auditoria_item">{{'newNC.step1.identifyNC.segment'| translate}}</label>
+    <div class="d-flex flex-column inputs-sm col-md-5 col-12 mb-2">
+      <label for="tipos_auditoria_item">{{
+        "newNC.step1.identifyNC.segment" | translate
+      }}</label>
       <input
-              formControlName="tipos_auditoria_item"
-              name="tipos_auditoria_item"
-              type="text"
-              pInputText
-              placeholder="Digite"
-              class="p-inputtext-sm input"
-              id="inputAuditoria"
-              disabled
+        formControlName="tipos_auditoria_item"
+        name="tipos_auditoria_item"
+        type="text"
+        pInputText
+        placeholder="Digite"
+        class="p-inputtext-sm input"
+        id="inputAuditoria"
+        disabled
       />
     </div>
 
-
-
-
-
-
-
-
-
-
     <div class="col">
-      <div class="dropdown">
-        <label for="">{{'newNC.step1.identifyNC.sector'| translate}}</label>
+      <div class="dropdown mb-2">
+        <label for="">{{ "newNC.step1.identifyNC.sector" | translate }}</label>
         <select formControlName="tipos_local_item">
-          <option [ngValue]="null" disabled selected hidden>{{'global.select'| translate}}</option>
-          <option *ngFor="let item of nonComplicanceService.sectors" [attr.selected]="nonComplicanceService.nc.tipos_local_item==item.name ? true : null">
+          <option [ngValue]="null" disabled selected hidden>
+            {{ "global.select" | translate }}
+          </option>
+          <option
+            *ngFor="let item of nonComplicanceService.sectors"
+            [attr.selected]="
+              nonComplicanceService.nc.tipos_local_item == item.name
+                ? true
+                : null
+            "
+          >
             {{ item.name }}
           </option>
         </select>
       </div>
     </div>
   </div>
-  
-    <!-- <div class="col">
+
+  <!-- <div class="col">
       <div class="dropdown">
         <label for="">Setor/Departamento Afetado</label>
         <select formControlName="tipos_local_item">
@@ -71,28 +70,38 @@
       </div>
     </div>
   </div> -->
-  
+
   <div class="row">
     <div class="col date-group">
-      <div><label for="date-input">{{'newNC.step1.identifyNC.dateOpen'| translate}}</label></div>
+      <div>
+        <label for="date-input">{{
+          "newNC.step1.identifyNC.dateOpen" | translate
+        }}</label>
+      </div>
       <span class="p-input-icon-left">
         <i class="pi pi-calendar"></i>
-        <input disabled
+        <input
+          disabled
           type="date"
           pInputText
           id="date-input"
           formControlName="data_abertura_str"
         />
       </span>
-      <p>{{'newNC.step1.identifyNC.dateOpenDesc'| translate}}</p>
+      <p>{{ "newNC.step1.identifyNC.dateOpenDesc" | translate }}</p>
     </div>
-  
+
     <div class="col date-group">
-      <div><label for="date-input">{{'newNC.step1.identifyNC.dateClose'| translate}}</label></div>
-  
+      <div>
+        <label for="date-input">{{
+          "newNC.step1.identifyNC.dateClose" | translate
+        }}</label>
+      </div>
+
       <span class="p-input-icon-left">
         <i class="pi pi-calendar icone"></i>
-        <input disabled
+        <input
+          disabled
           type="date"
           pInputText
           id="date-input"
@@ -100,12 +109,11 @@
         />
       </span>
       <p>
-        {{'newNC.step1.identifyNC.dateCloseDesc'| translate}}
+        {{ "newNC.step1.identifyNC.dateCloseDesc" | translate }}
       </p>
     </div>
   </div>
 </form>
-
 
 <div class="pt-3 pb-3">
   <p-divider class=""></p-divider>

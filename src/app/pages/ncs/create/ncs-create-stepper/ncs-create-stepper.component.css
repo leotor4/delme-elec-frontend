@@ -1,6 +1,6 @@
 .content-create-nc {
   width: 100%;
-  height: calc(100vh - 249.6px);
+  height: calc(100vh - 226px);
   border-top: 2px solid #e5e5e5;
   border-right: 2px solid #e5e5e5;
   border-left: 2px solid #e5e5e5;
@@ -8,12 +8,11 @@
   border-top-right-radius: 10px;
   overflow-y: auto;
   padding: 40px;
-  
 }
 .stepper-buttons {
   display: flex;
   justify-content: space-between;
- 
+
   height: 80px;
 }
 .stepper-buttons button {
@@ -22,7 +21,6 @@
 .stepper {
   width: calc(100% - 252px);
   padding: 0 50px;
- 
 }
 @media (max-width: 1000px) {
   .stepper {
@@ -30,12 +28,12 @@
   }
 }
 
-button{
+button {
   width: 110px;
   height: 35px;
 }
 
-i{
+i {
   font-size: 13px;
   margin-left: 3px;
   margin-right: 3px;
