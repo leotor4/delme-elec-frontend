@@ -47,7 +47,7 @@
         Descrição
       </h2>
       <p-editor
-        [(ngModel)]="this.aboutService.nc.text_area_nc"
+        [(ngModel)]="this.ncService.nc.text_area_nc"
         [style]="{ height: '100px', border: '1px solid #dddddd' }"
         [readonly]="true"
       >
@@ -74,7 +74,7 @@
         Ações Imediatas
       </h2>
       <p-editor
-        [(ngModel)]="this.aboutService.nc.text_area_acoes"
+        [(ngModel)]="this.ncService.nc.text_area_acoes"
         [style]="{ height: '100px', border: '1px solid #dddddd' }"
         [readonly]="true"
       >
@@ -94,7 +94,7 @@
   </div>
   <div class="mt-3 mb-5">
     <div class="card">
-    <p-table [value]="this.aboutService.nc.contacts">
+    <p-table [value]="this.ncService.nc.contacts">
         <ng-template pTemplate="header">
             <tr>
                 <th>{{'global.contacts.name'| translate}}</th>

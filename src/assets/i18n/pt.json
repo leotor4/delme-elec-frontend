@@ -270,9 +270,9 @@
         "subtitle1": "Identifique o produto desta NC.",
         "subtitle2": "Caso não encontre o produto, atualize a base de cadastros ou digite \"Não se aplica\".",
         "searchPlaceholder": "Busque por nome, descrição ou código SAP",
-        "amountNC": "Quantidade de NC",
+        "amountNC": "Quant. NC",
         "amountNonConformity": "Quantidade em Não Conformidade",
-        "amount": "Quantidade Total",
+        "amount": "Quant. Total",
         "percent": "Percentual"
       },
       "partner": {

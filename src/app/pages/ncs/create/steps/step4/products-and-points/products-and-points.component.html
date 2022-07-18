@@ -1,29 +1,27 @@
 <div class="div-ident-parceiro row">
-  <h1 class="titulo-parceiro">{{'newNC.step1.product.title'| translate}}</h1>
+  <h1 class="titulo-parceiro">{{ "newNC.step1.product.title" | translate }}</h1>
   <div class="dados-parceiro col razao-social">
     <div class="d-flex">
       <h2 class="mr-2">
-        {{
-          this.nonComplicanceService.nc?.product?.description
-        }}
+        {{ this.nonComplicanceService.nc?.product?.description }}
       </h2>
       <p-chip>
         <i class="bi bi-ticket-perforated mr-2"></i>
-        {{ this.nonComplicanceService.nc?.product?.code}}
+        {{ this.nonComplicanceService.nc?.product?.code }}
       </p-chip>
     </div>
     <p class="d-block">
-      {{
-      this.nonComplicanceService.nc?.product?.name
-      }}
+      {{ this.nonComplicanceService.nc?.product?.name }}
     </p>
   </div>
   <div class="dados-parceiro col">
-    <div class="dados-contato">
+    <div class="dados-contato d-flex flex-row justify-content-around">
       <div class="contato-info d-flex flex-row">
         <i class="bi bi-calculator"></i>
         <div>
-          <span class="info-titulo">{{'newNC.step1.product.amount'| translate}}</span>
+          <span class="info-titulo">{{
+            "newNC.step1.product.amount" | translate
+          }}</span>
           <br />
           <span class="info-dados">{{
             this.nonComplicanceService.nc.quant_total || "0"
@@ -33,7 +31,9 @@
       <div class="contato-info d-flex flex-row">
         <i class="bi bi-calculator"></i>
         <div>
-          <span class="info-titulo">{{'newNC.step1.product.amountNC'| translate}}</span>
+          <span class="info-titulo">{{
+            "newNC.step1.product.amountNC" | translate
+          }}</span>
           <br />
           <span class="info-dados">{{
             this.nonComplicanceService.nc.quant_nc || "0"
@@ -43,7 +43,9 @@
       <div class="contato-info d-flex flex-row">
         <i class="bi bi-percent"></i>
         <div>
-          <span class="info-titulo">{{'newNC.step1.product.percent'| translate}}</span>
+          <span class="info-titulo">{{
+            "newNC.step1.product.percent" | translate
+          }}</span>
           <br />
           <span class="info-dados">{{ getPercent() }}</span>
         </div>
@@ -54,40 +56,50 @@
 <div class="div-ident-parceiro mt-3">
   <h2>
     <i class="bi bi-people"></i>
-    {{'newNC.review.checkpoint'| translate}}
+    {{ "newNC.review.checkpoint" | translate }}
   </h2>
-  <div class="d-flex">
-    <div class="col-6 d-flex flex-row">
-      <i class="pi pi-directions mr-1"></i>
-      <div>
-        <span class="info-titulo">{{
-          this.nonComplicanceService.nc?.tipo_controle || 'global.empty'| translate
-          }}</span>
-      </div>
-    </div>
-    <div class="d-flex flex-row" *ngIf="this.nonComplicanceService.nc?.tipo_controle!='PR'">
-      <i class="bi bi-calculator mr-1"></i>
-      <div >
-        <span class="info-titulo">{{'global.number'| translate}}</span>
-        <br />
-        <p class="info-dados">
-          {{
-          (this.nonComplicanceService.nc?.num_op || this.nonComplicanceService.nc?.num_nota)|| 'global.empty'| translate
-          }}
-        </p>
+
+  <div class="d-flex flex-row">
+    <i class="pi pi-directions mr-1"></i>
+    <div>
+      <span class="info-titulo">{{
+        this.nonComplicanceService.nc?.tipo_controle || "global.empty"
+          | translate
+      }}</span>
+
+      <div class="d-flex flex-row mt-2">
+        <span class="info-dados">{{
+          this.nonComplicanceService.nc?.procedure?.code || "0"
+        }}</span>
+
+        <span class="info-dados ml-3">{{
+          this.nonComplicanceService.nc?.procedure?.description || "0"
+        }}</span>
+
+        <span class="info-dados ml-3">{{
+          this.nonComplicanceService.nc?.procedure?.rev || "0"
+        }}</span>
       </div>
     </div>
   </div>
-  <div class="dados-parceiro razao-social item mt-3" *ngIf="returnFile('pontoControle').length>0">
+  <div
+    class="d-flex flex-row"
+    *ngIf="this.nonComplicanceService.nc?.tipo_controle != 'PR'"
+  ></div>
+
+  <div
+    class="dados-parceiro razao-social item mt-3"
+    *ngIf="returnFile('pontoControle').length > 0"
+  >
     <h2 class="mr-2 mb-5">
       <i class="bi bi-paperclip"></i>
-      {{'global.fileInput.attachments'| translate}}
+      {{ "global.fileInput.attachments" | translate }}
     </h2>
     <p-carousel
-            [value]="returnFile('pontoControle')"
-            [numVisible]="3"
-            [numScroll]="3"
-            [showIndicators]="false"
+      [value]="returnFile('pontoControle')"
+      [numVisible]="3"
+      [numScroll]="3"
+      [showIndicators]="false"
     >
       <ng-template let-file pTemplate="item">
         <i class="bi bi-file-earmark fs-1"></i>
@@ -95,63 +107,77 @@
       </ng-template>
     </p-carousel>
   </div>
-
 </div>
 <div class="div-ident-parceiro pr-4 mt-3">
   <h2>
     <i class="bi bi-people"></i>
-    {{'newNC.step1.rejectionPoint.title'| translate}}
+    {{ "newNC.step1.rejectionPoint.title" | translate }}
   </h2>
-  <div class="d-flex dados-contato mb-3 ">
-    <div class="contato-info d-flex flex-row mb-5 mr-5" *ngIf="this.nonComplicanceService.nc?.num_lote">
+  <div class="d-flex dados-contato mb-3">
+    <div
+      class="contato-info d-flex flex-row mb-5 mr-5"
+      *ngIf="this.nonComplicanceService.nc?.num_lote"
+    >
       <i class="bi bi-file-earmark-text"></i>
       <div>
-        <span class="info-titulo">{{'newNC.step1.rejectionPoint.numBatch'| translate}}</span>
+        <span class="info-titulo">{{
+          "newNC.step1.rejectionPoint.numBatch" | translate
+        }}</span>
         <br />
         <span class="info-dados">{{
           this.nonComplicanceService.nc?.num_lote || "0"
-          }}</span>
+        }}</span>
       </div>
     </div>
-    <div class="contato-info d-flex flex-row mb-5 mr-5" *ngIf="this.nonComplicanceService.nc?.num_ordem_compra">
+    <div
+      class="contato-info d-flex flex-row mb-5 mr-5"
+      *ngIf="this.nonComplicanceService.nc?.num_ordem_compra"
+    >
       <i class="bi bi-file-earmark-text"></i>
       <div>
-        <span class="info-titulo">{{'newNC.step1.rejectionPoint.numOC'| translate}}</span>
+        <span class="info-titulo">{{
+          "newNC.step1.rejectionPoint.numOC" | translate
+        }}</span>
         <br />
         <span class="info-dados">{{
           this.nonComplicanceService.nc?.num_ordem_compra || "0"
+        }}</span>
+      </div>
+    </div>
+    <div
+      class="contato-info d-flex flex-row mb- mr-5"
+      *ngIf="this.nonComplicanceService.nc?.instruction?.code"
+    >
+      <i class="bi bi-file-earmark-text"></i>
+      <div>
+        <span class="info-titulo">{{
+          "newNC.step1.rejectionPoint.it" | translate
+        }}</span>
+
+        <div class="d-flex flex-row mt-2">
+          <span class="info-dados">{{
+            this.nonComplicanceService.nc?.instruction?.code || "0"
           }}</span>
-      </div>
-    </div>
-    <div class="contato-info d-flex flex-row mb-5 mr-5" *ngIf="this.nonComplicanceService.nc?.instruction?.code">
-      <i class="bi bi-file-earmark-text"></i>
-      <div>
-        <span class="info-titulo">{{'newNC.step1.rejectionPoint.it'| translate}}</span>
-        <br />
-        <span class="info-dados">{{ ('global.number'| translate) + ": " + this.nonComplicanceService.nc?.instruction?.code || "0" }}</span>
-        <br />
-        <span class="info-dados">{{ ('global.description'| translate) + ": " + this.nonComplicanceService.nc?.instruction?.description || "0" }}</span>
-        <br />
-        <span class="info-dados">{{ ('global.revision'| translate) + ": " + this.nonComplicanceService.nc?.instruction?.rev || "0" }}</span>
-      </div>
-    </div>
-    <div class="contato-info d-flex flex-row mb-5 mr-5" *ngIf="this.nonComplicanceService.nc?.procedure">
-      <i class="bi bi-file-earmark-text"></i>
-      <div>
-        <span class="info-titulo">{{'newNC.step1.rejectionPoint.it'| translate}}</span>
-        <br />
-        <span class="info-dados">{{ this.nonComplicanceService.nc?.procedure?.code|| "0" }}</span>
+
+          <span class="info-dados ml-3">{{
+            this.nonComplicanceService.nc?.instruction?.description || "0"
+          }}</span>
+
+          <span class="info-dados ml-3">{{
+            this.nonComplicanceService.nc?.instruction?.rev || "0"
+          }}</span>
+        </div>
       </div>
     </div>
   </div>
+
   <div class="dados-parceiro col razao-social">
     <p-editor
-            [(ngModel)]="this.nonComplicanceService.nc.text_area_reject_point"
-            [style]="{ height: '100%', border: '0px solid #dddddd'}"
-            [readonly]="true"
+      [(ngModel)]="this.nonComplicanceService.nc.text_area_reject_point"
+      [style]="{ height: '100%', border: '0px solid #dddddd' }"
+      [readonly]="true"
     >
       <ng-template pTemplate="header" hidden> </ng-template>
     </p-editor>
   </div>
 </div>
-

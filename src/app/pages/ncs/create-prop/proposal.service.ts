@@ -56,14 +56,19 @@ export class ProposalService {
     this.propSolution.fifth_why = this.step2.textAreas[4];
     this.propSolution.first_why_label = this.step2.textAreas[5];
     this.propSolution.root_cause = this.step2.selectedValue;
-
-    this.propSolution.lack_materials = this.checkBoxes[0] ?? "";
-    this.propSolution.excess_materials = this.checkBoxes[1] ?? "";
-    this.propSolution.low_quality_materials = this.checkBoxes[2] ?? "";
-    this.propSolution.lack_parameters = this.checkBoxes[3] ?? "";
-    this.propSolution.excess_parameters = this.checkBoxes[4] ?? "";
-    this.propSolution.non_achievement_goals = this.checkBoxes[5] ?? "";
-    this.propSolution.run_training = this.checkBoxes[6] ?? "";
+    this.propSolution.lack_materials = this.haveItem("Falta de Insumos");
+    this.propSolution.excess_materials = this.haveItem("Excesso de Insumos");
+    this.propSolution.low_quality_materials = this.haveItem(
+      "Matéria prima de má qualidade"
+    );
+    this.propSolution.lack_parameters = this.haveItem("Falta de Parâmetros");
+    this.propSolution.excess_parameters = this.haveItem(
+      "Excesso de Parâmetros"
+    );
+    this.propSolution.non_achievement_goals = this.haveItem(
+      "Não atingimento de metas"
+    );
+    this.propSolution.run_training = this.haveItem("Executar treinamento");
 
     if (this.propSolution.machine)
       this.propSolution.machine_id = this.propSolution.machine.id;
@@ -78,6 +83,47 @@ export class ProposalService {
     if (this.propSolution.regulatory)
       this.propSolution.regulatory_id = this.propSolution.regulatory.id;
 
+    this.propSolution.material_description = this.tratarDescricao(
+      this.propSolution.material_description
+    );
+    this.propSolution.measurement_description = this.tratarDescricao(
+      this.propSolution.measurement_description
+    );
+    this.propSolution.method_description = this.tratarDescricao(
+      this.propSolution.method_description
+    );
+    this.propSolution.man_power_description = this.tratarDescricao(
+      this.propSolution.man_power_description
+    );
+    this.propSolution.environment_description = this.tratarDescricao(
+      this.propSolution.environment_description
+    );
+    this.propSolution.machine_description = this.tratarDescricao(
+      this.propSolution.machine_description
+    );
+    this.propSolution.effect_description = this.tratarDescricao(
+      this.propSolution.effect_description
+    );
+
+    
+  }
+
+  haveItem(text: string) {
+    if (text) {
+      let index = this.checkBoxes.indexOf(text);
+      if (index != -1) return this.checkBoxes[index];
+    }
+
+    return "";
+  }
+
+  tratarDescricao(text: string) {
+    let txt = text.split(" ").join("");
+
+    if (txt == "<p></p>") return "";
+    return text;
+  }
+  removerNulo() {
     this.propSolution.material_description =
       this.propSolution.material_description ?? "";
     this.propSolution.measurement_description =
@@ -92,25 +138,6 @@ export class ProposalService {
       this.propSolution.machine_description ?? "";
     this.propSolution.effect_description =
       this.propSolution.effect_description ?? "";
-
-  
-  }
-
-  removerNulo(){
-        this.propSolution.material_description =
-          this.propSolution.material_description ?? "";
-        this.propSolution.measurement_description =
-          this.propSolution.measurement_description ?? "";
-        this.propSolution.method_description =
-          this.propSolution.method_description ?? "";
-        this.propSolution.man_power_description =
-          this.propSolution.man_power_description ?? "";
-        this.propSolution.environment_description =
-          this.propSolution.environment_description ?? "";
-        this.propSolution.machine_description =
-          this.propSolution.machine_description ?? "";
-        this.propSolution.effect_description =
-          this.propSolution.effect_description ?? "";
   }
 
   popularForm() {

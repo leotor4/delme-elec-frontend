@@ -13,7 +13,6 @@
 
 .div-ident-parceiro {
   margin: 0;
-  width: 100%;
   padding: 10px;
   border-radius: 7px;
   background-color: rgb(243, 243, 243);
@@ -24,12 +23,23 @@
 }
 
 .dados-parceiro {
-  min-width: 230px;
+  
   margin: 10px;
   margin-top: 0px;
   background-color: white;
   border-radius: 7px;
   height: 220px;
+  padding: 13px;
+  overflow: auto;
+}
+
+.dados-produto {
+
+  margin: 10px;
+  margin-top: 0px;
+  background-color: white;
+  border-radius: 7px;
+  height: 100px;
   padding: 13px;
   overflow: auto;
 }
