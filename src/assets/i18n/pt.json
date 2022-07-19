@@ -386,7 +386,7 @@
     "question2": "Deseja adicionar comentários?",
     "info": "Isto é opcional",
     "confirm": "Fechar NC",
-    "success": "Fechamento criado com sucesso",
+    "success": "Fechamento realizado com sucesso",
     "comments": "Comentários"
   },
   "cancelNC": {
@@ -436,6 +436,7 @@
       "newCostSubtitle": "Informe o valor e anexe o relatório de custos ou documento para registrar um custo incorrido.",
       "attachTitle": "Anexar Documento",
       "attachSubtitle": "Anexar relatório de custos",
+      "evidenceSolution": "Anexar evidências da solução",
       "save": "Registrar Custo Incorrido",
       "successDel": "Documento removido com sucesso",
       "delTitle": "Excluir Documento",
