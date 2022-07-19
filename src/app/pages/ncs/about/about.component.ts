@@ -76,24 +76,32 @@ export class AboutComponent implements OnInit {
 
   checkDisableCosts(): boolean {
     var disabled = true;
+    let teste = false;
+
 
     if (this.aboutSrvc.hasProposal() && this.roleService.isFiscalOrManager()) {
       let proposta = this.aboutSrvc.nc.proposalSolution;
 
+      console.log(this.aboutSrvc.nc.proposalSolution)
+
+
+
       if (
-        !!proposta?.root_cause &&
-        !!proposta?.effect_description &&
-        (!!proposta?.material_description ||
-          !!proposta?.man_power_description ||
-          !!proposta?.environment_description ||
-          !!proposta?.machine_description ||
-          !!proposta?.method_description ||
-          !!proposta?.measurement_description) &&
+        proposta?.root_cause &&
+        proposta?.effect_description &&
+        (proposta?.material_description ||
+          proposta?.man_power_description ||
+          proposta?.environment_description ||
+          proposta?.machine_description ||
+          proposta?.method_description ||
+          proposta?.lack_materials ||
+          proposta?.measurement_description) &&
         proposta?.actionPlans.length > 0
       ) {
         disabled = false;
       }
     }
+
     return disabled;
   }
 
@@ -104,14 +112,15 @@ export class AboutComponent implements OnInit {
       let proposta = this.aboutSrvc.nc.proposalSolution;
 
       if (
-        !!proposta?.root_cause &&
-        !!proposta?.effect_description &&
-        (!!proposta?.material_description ||
-          !!proposta?.man_power_description ||
-          !!proposta?.environment_description ||
-          !!proposta?.machine_description ||
-          !!proposta?.method_description ||
-          !!proposta?.measurement_description) &&
+        proposta?.root_cause &&
+        proposta?.effect_description &&
+        (proposta?.material_description ||
+          proposta?.man_power_description ||
+          proposta?.environment_description ||
+          proposta?.machine_description ||
+          proposta?.method_description ||
+          proposta?.lack_materials ||
+          proposta?.measurement_description) &&
         proposta?.actionPlans.length > 0
       ) {
         disabled = false;
