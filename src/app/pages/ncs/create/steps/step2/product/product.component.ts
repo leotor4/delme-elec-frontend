@@ -84,6 +84,7 @@ export class ProductComponent implements OnInit {
           this.nonComplicanceService.nc.quant_total = 0
           this.nonComplicanceService.autoCompleteValue = ""
         }else {
+          console.log('checked')
           // @ts-ignore
           this.nonComplicanceService.nc.product = undefined
         }

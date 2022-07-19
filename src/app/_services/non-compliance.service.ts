@@ -126,7 +126,7 @@ export class NonComplianceService {
       this.nc.tipo_controle ==
         this.translate.instant("newNC.step1.checkpoint.type5") ||
       this.nc.tipo_controle ==
-        this.translate.instant("newNC.step1.checkpoint.type37")
+        this.translate.instant("newNC.step1.checkpoint.type7")
     ) {
       return this.nc.num_nota!.split(" ").join("").length > 0;
     }

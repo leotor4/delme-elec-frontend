@@ -50,7 +50,8 @@ export class CreatePropHeaderComponent implements OnInit {
   }
 
   openDados(){
-    const ref = this.dialogService.open(DadosNCComponent, {
+    this.dialogService.open(DadosNCComponent, {
+      data: {nc: this.propService.ncProp},
       width: '1100px',
       closable: true,
       showHeader: false

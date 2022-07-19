@@ -38,10 +38,6 @@ h2 {
     width: 100%;
 }
 
-:host ::ng-deep .ql-toolbar.ql-snow {
-    display: none;
-}
-
 .caixa-cinza {
     background-color: #EEEEEE;
     border-radius: 8px;

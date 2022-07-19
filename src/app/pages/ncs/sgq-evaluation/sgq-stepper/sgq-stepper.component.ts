@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import {Component, ElementRef, OnInit, ViewChild} from "@angular/core";
 import { MenuItem, MessageService } from "primeng/api";
 import { NonComplianceService } from "../../../../_services/non-compliance.service";
 import { SgqService } from "../sgq.service";
@@ -14,6 +14,7 @@ export class SgqStepperComponent implements OnInit {
   items: MenuItem[];
   stepPosition: number = 0;
   lastStepLabel = this.translate.instant("global.next");
+  @ViewChild('divToScroll') divToScroll: ElementRef;
 
   constructor(
     public sgqSrv: SgqService,
@@ -74,6 +75,7 @@ export class SgqStepperComponent implements OnInit {
         this.stepPosition >= this.items.length - 1
           ? this.router.navigateByUrl("/ncs/about/" + id)
           : this.stepPosition++;
+        this.divToScroll.nativeElement.scrollTop = 0;
       },
       error: (err) => {
         this.messageService.add({
@@ -88,6 +90,7 @@ export class SgqStepperComponent implements OnInit {
   backStep() {
     if (this.stepPosition <= 0) return;
     this.stepPosition--;
+    this.divToScroll.nativeElement.scrollTop = 0;
     this.isFirstStep();
   }
   changeStepByPosition(event: any) {

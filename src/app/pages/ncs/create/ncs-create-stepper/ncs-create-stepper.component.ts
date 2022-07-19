@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, ElementRef, OnInit, ViewChild} from "@angular/core";
 import {Router} from "@angular/router";
 import {MenuItem, MessageService} from "primeng/api";
 import {NonComplianceService} from "src/app/_services/non-compliance.service";
@@ -15,7 +15,8 @@ import {TranslateService} from "@ngx-translate/core";
 export class NcsCreateStepperComponent implements OnInit {
   items: MenuItem[];
   stepPosition: number = 0;
-  
+  displayPdf = false;
+  @ViewChild('divToScroll') divToScroll: ElementRef;
 
   constructor(
     private router: Router,
@@ -83,7 +84,10 @@ export class NcsCreateStepperComponent implements OnInit {
           this.nonComplianceService.nc = new NonCompliance();
           this.router.navigate(["/ncs/"]);
         }
-        if (!this.isLastStep()) this.stepPosition++;
+        if (!this.isLastStep()) {
+          this.stepPosition++
+          this.divToScroll.nativeElement.scrollTop = 0;
+        }
       },
       error: (err) => {
         this.messageService.add({
@@ -98,6 +102,7 @@ export class NcsCreateStepperComponent implements OnInit {
   backStep() {
     if (this.stepPosition <= 0) return;
     this.stepPosition--;
+    this.divToScroll.nativeElement.scrollTop = 0;
     this.isFirstStep();
   }
   changeStepByPosition(event: any) {
@@ -125,7 +130,7 @@ export class NcsCreateStepperComponent implements OnInit {
       let h = data.offsetHeight * 0.7;
 
       html2canvas(data, {}).then((canvas) => {
-        
+
         if (data) {
           let HTML_Width = w;
           let HTML_Height = h;

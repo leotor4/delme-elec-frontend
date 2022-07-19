@@ -16,7 +16,7 @@ export class ProductInfoComponent implements OnInit {
   ngOnInit(): void {}
 
   isNotApply() {
-    return this.nonComplianceService.nc.product.name == "Não se Aplica";
+    return this.nonComplianceService.nc.product?.name=="Não se Aplica";
   }
 
   returnError(): string {

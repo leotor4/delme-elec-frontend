@@ -80,7 +80,7 @@ export class IshikawaDialogComponent implements OnInit {
       case 'nbr':
       this.nbrs= [];
          this.propService.nbrs.forEach(element =>{
-      if(element.description.normalize('NFKD').replace(/[^\w]/g, '').toLowerCase().includes(filtro.toLowerCase())){
+      if(element.description.normalize('NFKD').replace(/[^\w]/g, '').toLowerCase().includes(filtro.toLowerCase())||element.code.normalize('NFKD').replace(/[^\w]/g, '').toLowerCase().includes(filtro.toLowerCase())){
         this.nbrs.push(element)
       }
     })
@@ -89,7 +89,7 @@ export class IshikawaDialogComponent implements OnInit {
       case 'regulatory':
       this.regulatoryNorms = [];
          this.propService.regulatorys.forEach(element =>{
-      if(element.description.normalize('NFKD').replace(/[^\w]/g, '').toLowerCase().includes(filtro.toLowerCase())){
+      if(element.description.normalize('NFKD').replace(/[^\w]/g, '').toLowerCase().includes(filtro.toLowerCase())||element.code.normalize('NFKD').replace(/[^\w]/g, '').toLowerCase().includes(filtro.toLowerCase())){
         this.regulatoryNorms.push(element)
       }
     })

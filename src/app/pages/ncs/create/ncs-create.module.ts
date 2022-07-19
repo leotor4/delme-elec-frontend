@@ -50,6 +50,7 @@ import { CancelDialogComponent } from './ncs-create-header/cancel-dialog/cancel-
 import { GerarPdfComponent } from './steps/gerar-pdf/gerar-pdf.component';
 import {TranslateModule} from "@ngx-translate/core";
 import { AttachComponent } from "../../attach/attach.component";
+import {ScrollTopModule} from "primeng/scrolltop";
 
 
 
@@ -111,6 +112,7 @@ import { AttachComponent } from "../../attach/attach.component";
         CarouselModule,
         PdfViewerModule,
         TranslateModule,
+        ScrollTopModule,
     ],
     entryComponents: [ContactDialogComponent],
     providers: [ConfirmationService],
