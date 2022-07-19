@@ -15,7 +15,7 @@ import {TranslateService} from "@ngx-translate/core";
 export class NcsCreateStepperComponent implements OnInit {
   items: MenuItem[];
   stepPosition: number = 0;
-  displayPdf = false;
+  
 
   constructor(
     private router: Router,
@@ -111,10 +111,10 @@ export class NcsCreateStepperComponent implements OnInit {
   }
 
   gerarPdf() {
-    this.displayPdf = true;
+    this.nonComplianceService.displayPdf = true;
     setTimeout(this.generatePDF, 1000);
     setTimeout(() => {
-      this.displayPdf = false;
+      this.nonComplianceService.displayPdf = false;
     }, 1000);
   }
 
@@ -125,7 +125,7 @@ export class NcsCreateStepperComponent implements OnInit {
       let h = data.offsetHeight * 0.7;
 
       html2canvas(data, {}).then((canvas) => {
-        this.displayPdf = false;
+        
         if (data) {
           let HTML_Width = w;
           let HTML_Height = h;

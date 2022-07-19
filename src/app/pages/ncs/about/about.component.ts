@@ -21,8 +21,14 @@ export class AboutComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    
     let id = parseInt(this.route.snapshot.paramMap.get("id") || "");
     this.aboutSrvc.getNC(id);
+  }
+
+  ngOnDestroy(): void {
+    this.aboutSrvc.isLoad = false;
+    console.log(this.aboutSrvc.isLoad);
   }
 
   goCreateProp(e: any) {
@@ -88,6 +94,13 @@ export class AboutComponent implements OnInit {
           !!proposta?.environment_description ||
           !!proposta?.machine_description ||
           !!proposta?.method_description ||
+          !!proposta?.lack_materials ||
+          !!proposta?.excess_materials ||
+          !!proposta?.lack_parameters ||
+          !!proposta?.excess_parameters ||
+          !!proposta?.non_achievement_goals ||
+          !!proposta?.low_quality_materials ||
+          !!proposta?.run_training ||
           !!proposta?.measurement_description) &&
         proposta?.actionPlans.length > 0
       ) {
@@ -111,6 +124,13 @@ export class AboutComponent implements OnInit {
           !!proposta?.environment_description ||
           !!proposta?.machine_description ||
           !!proposta?.method_description ||
+          !!proposta?.lack_materials ||
+          !!proposta?.excess_materials ||
+          !!proposta?.lack_parameters ||
+          !!proposta?.excess_parameters ||
+          !!proposta?.non_achievement_goals ||
+          !!proposta?.low_quality_materials ||
+          !!proposta?.run_training ||
           !!proposta?.measurement_description) &&
         proposta?.actionPlans.length > 0
       ) {

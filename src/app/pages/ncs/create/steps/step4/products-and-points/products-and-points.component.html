@@ -24,7 +24,7 @@
           }}</span>
           <br />
           <span class="info-dados">{{
-            this.nonComplicanceService.nc.quant_total || "0"
+            this.nonComplicanceService.nc.quant_total || ""
           }}</span>
         </div>
       </div>
@@ -36,7 +36,7 @@
           }}</span>
           <br />
           <span class="info-dados">{{
-            this.nonComplicanceService.nc.quant_nc || "0"
+            this.nonComplicanceService.nc.quant_nc || ""
           }}</span>
         </div>
       </div>
@@ -69,15 +69,15 @@
 
       <div class="d-flex flex-row mt-2">
         <span class="info-dados">{{
-          this.nonComplicanceService.nc?.procedure?.code || "0"
+          this.nonComplicanceService.nc?.procedure?.code || ""
         }}</span>
 
         <span class="info-dados ml-3">{{
-          this.nonComplicanceService.nc?.procedure?.description || "0"
+          this.nonComplicanceService.nc?.procedure?.description || ""
         }}</span>
 
         <span class="info-dados ml-3">{{
-          this.nonComplicanceService.nc?.procedure?.rev || "0"
+          this.nonComplicanceService.nc?.procedure?.rev || ""
         }}</span>
       </div>
     </div>
@@ -88,25 +88,35 @@
   ></div>
 
   <div
-    class="dados-parceiro razao-social item mt-3"
-    *ngIf="returnFile('pontoControle').length > 0"
-  >
-    <h2 class="mr-2 mb-5">
-      <i class="bi bi-paperclip"></i>
-      {{ "global.fileInput.attachments" | translate }}
-    </h2>
-    <p-carousel
-      [value]="returnFile('pontoControle')"
-      [numVisible]="3"
-      [numScroll]="3"
-      [showIndicators]="false"
+      class="dados-parceiro razao-social item mt-3"
+      *ngIf="returnFile('pontoControle').length > 0"
     >
-      <ng-template let-file pTemplate="item">
-        <i class="bi bi-file-earmark fs-1"></i>
-        <p>{{ file.name }}</p>
-      </ng-template>
-    </p-carousel>
-  </div>
+      <h2 class="mr-2 mb-5">
+        <i class="bi bi-paperclip"></i>
+        {{ "global.fileInput.attachments" | translate }}
+      </h2>
+      <div *ngIf="!nonComplicanceService.displayPdf">
+        <p-carousel
+          [value]="returnFile('pontoControle')"
+          [numVisible]="3"
+          [numScroll]="3"
+          [showIndicators]="false"
+        >
+          <ng-template let-file pTemplate="item">
+            <i class="bi bi-file-earmark fs-1"></i>
+            <p>{{ file.name }}</p>
+          </ng-template>
+        </p-carousel>
+      </div>
+
+      <div *ngIf="nonComplicanceService.displayPdf">
+        <div class="d-flex flex-row flex-wrap">
+          <div *ngFor="let item of returnFile('pontoControle')">
+            {{ item.name + " /" }}
+          </div>
+        </div>
+      </div>
+    </div>
 </div>
 <div class="div-ident-parceiro pr-4 mt-3">
   <h2>
@@ -125,7 +135,7 @@
         }}</span>
         <br />
         <span class="info-dados">{{
-          this.nonComplicanceService.nc?.num_lote || "0"
+          this.nonComplicanceService.nc?.num_lote || ""
         }}</span>
       </div>
     </div>
@@ -140,7 +150,7 @@
         }}</span>
         <br />
         <span class="info-dados">{{
-          this.nonComplicanceService.nc?.num_ordem_compra || "0"
+          this.nonComplicanceService.nc?.num_ordem_compra || ""
         }}</span>
       </div>
     </div>
@@ -156,15 +166,15 @@
 
         <div class="d-flex flex-row mt-2">
           <span class="info-dados">{{
-            this.nonComplicanceService.nc?.instruction?.code || "0"
+            this.nonComplicanceService.nc?.instruction?.code || ""
           }}</span>
 
           <span class="info-dados ml-3">{{
-            this.nonComplicanceService.nc?.instruction?.description || "0"
+            this.nonComplicanceService.nc?.instruction?.description || ""
           }}</span>
 
           <span class="info-dados ml-3">{{
-            this.nonComplicanceService.nc?.instruction?.rev || "0"
+            this.nonComplicanceService.nc?.instruction?.rev || ""
           }}</span>
         </div>
       </div>

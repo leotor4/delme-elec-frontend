@@ -13,10 +13,17 @@ export class ProductInfoComponent implements OnInit {
     return this.nonComplianceService.nc.product != null;
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   isNotApply() {
-    return this.nonComplianceService.nc.product.name=="Não se Aplica";
+    return this.nonComplianceService.nc.product.name == "Não se Aplica";
+  }
+
+  returnError(): string {
+    let nc = this.nonComplianceService.nc;
+    if (nc.quant_nc > nc.quant_total)
+      return "Quantidade da NC maior que Quantidade Total *";
+
+    return "";
   }
 }

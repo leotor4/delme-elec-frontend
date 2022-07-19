@@ -1,4 +1,5 @@
 <div class="header">
+  
   <div class="d-flex flex-row m-0">
     <div class="cabecalho text-box p-0 mr-3">
       <h1>{{ "newNC.step1.product.title" | translate }} *</h1>
@@ -46,7 +47,9 @@
     (input)="uncheckProduct()"
   >
     <ng-template let-product pTemplate="item">
+      
       <div class="autoComplete-item">
+        
         <h4>{{ product.name }}</h4>
         <span>{{ product.code }}</span>
         <p>{{ product.description }}</p>

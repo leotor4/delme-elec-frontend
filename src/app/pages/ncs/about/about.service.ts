@@ -13,6 +13,7 @@ import { environment } from 'src/environments/environment';
 export class AboutService {
     displayPdf = false
     apiUrl = environment.apiURL;
+    isLoad = false
 
     nc: NonCompliance
     proposalSolution:ProposalSolution
@@ -51,6 +52,7 @@ export class AboutService {
                 proposal.machine_description = proposal.machine_description??""
                 proposal.effect_description = proposal.effect_description??""
             }
+            this.isLoad = true
             
         })
     }

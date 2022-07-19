@@ -30,7 +30,7 @@ export class NonComplianceService {
   apiUrl = environment.apiURL + "noncompliances";
 
   public nc = new NonCompliance();
-
+  public displayPdf = false;
   public ncs: NonCompliance[] = [];
 
   public editarNomeItem = "";
@@ -109,9 +109,7 @@ export class NonComplianceService {
         this.translate.instant("newNC.step1.checkpoint.type3")
       )
     ) {
-      return (
-        this.nc.num_op!.split(" ").join("").length > 0 && this.isProd()
-      );
+      return this.nc.num_op!.split(" ").join("").length > 0 && this.isProd();
     }
 
     if (
@@ -141,11 +139,13 @@ export class NonComplianceService {
     }
     return false;
   }
-  isProd(){
-    if(this.formIdentificacaoNC.value.tipos_nc_item ==
-        this.translate.instant("newNC.step1.ncType.type6")){
-      return !!this.nc.instruction
-    } else return true
+  isProd() {
+    if (
+      this.formIdentificacaoNC.value.tipos_nc_item ==
+      this.translate.instant("newNC.step1.ncType.type6")
+    ) {
+      return !!this.nc.instruction;
+    } else return true;
   }
   closeNc(id: number) {
     return this.http.put<any>(this.apiUrl + "/closeNc/" + id, {});
@@ -173,14 +173,15 @@ export class NonComplianceService {
       b &&
       this.nc.tipo_controle &&
       //&& this.validarAuditoria()
-      this.validarCheckpoint()
+      this.validarCheckpoint() &&
+      this.nc.quant_nc <= this.nc.quant_total
     );
   }
   validaProd() {
-    if(this.nc.product?.name=="Não se Aplica"){
+    if (this.nc.product?.name == "Não se Aplica") {
       return true;
-    } else{
-      return this.nc.product && this.nc.quant_nc>0 && this.nc.quant_total>0;
+    } else {
+      return this.nc.product && this.nc.quant_nc > 0 && this.nc.quant_total > 0;
     }
   }
   isType1or2() {

@@ -104,8 +104,6 @@ export class ProposalService {
     this.propSolution.effect_description = this.tratarDescricao(
       this.propSolution.effect_description
     );
-
-    
   }
 
   haveItem(text: string) {
@@ -118,6 +116,7 @@ export class ProposalService {
   }
 
   tratarDescricao(text: string) {
+    this.removerNulo();
     let txt = text.split(" ").join("");
 
     if (txt == "<p></p>") return "";

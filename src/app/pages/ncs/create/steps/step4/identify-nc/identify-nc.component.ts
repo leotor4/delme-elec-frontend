@@ -23,15 +23,7 @@ export class IdentifyNCComponent implements OnInit {
     return this.translate.instant("newNC.review.corporateName");
   }
 
-  returnFile(name: string) {
-    let acoesFile: Attachment[] = [];
-    this.nonComplicanceService.nc.attachments.forEach((element) => {
-      if (element.path == name) {
-        acoesFile.push(element);
-      }
-    });
-    return acoesFile;
-  }
+ 
 
   formato_brasileiro(data: Date | undefined | null): string {
     return data

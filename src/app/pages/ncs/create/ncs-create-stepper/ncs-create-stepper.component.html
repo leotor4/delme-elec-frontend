@@ -75,13 +75,13 @@
       <app-step3></app-step3>
     </div>
     <div *ngIf="stepPosition === 2">
-      <div *ngIf="displayPdf">
+      <div *ngIf="nonComplianceService.displayPdf">
         <app-gerar-pdf
           (changeStepPosition)="changeStepByPosition($event)"
         ></app-gerar-pdf>
       </div>
 
-      <div *ngIf="!displayPdf">
+      <div *ngIf="!nonComplianceService.displayPdf">
         <app-step4
           (changeStepPosition)="changeStepByPosition($event)"
         ></app-step4>
