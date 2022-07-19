@@ -82,9 +82,15 @@ export class AboutComponent implements OnInit {
 
   checkDisableCosts(): boolean {
     var disabled = true;
+    let teste = false;
+
 
     if (this.aboutSrvc.hasProposal() && this.roleService.isFiscalOrManager()) {
       let proposta = this.aboutSrvc.nc.proposalSolution;
+
+      console.log(this.aboutSrvc.nc.proposalSolution)
+
+
 
       if (
         !!proposta?.root_cause &&
@@ -107,6 +113,7 @@ export class AboutComponent implements OnInit {
         disabled = false;
       }
     }
+
     return disabled;
   }
 
@@ -149,7 +156,7 @@ export class AboutComponent implements OnInit {
       this.roleService.isManager()
     ) {
       let sgq = this.aboutSrvc.nc.sgqEvaluation;
-      if (!!sgq.text_area1 && !!sgq.text_area2 && !!sgq.text_area3) {
+      if (sgq.text_area1 && sgq.text_area2 && sgq.text_area3) {
         disabled = false;
       }
     }

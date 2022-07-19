@@ -19,8 +19,8 @@ import html2canvas from "html2canvas";
 export class ViewNCComponent implements OnInit {
   ncID = "001/2022";
   isAllOpen = true;
-  unselectedClass = "btn btn-outline-dark";
-  selectedClass = "btn btn-dark";
+  unselectedClass = "btn unselected-btn";
+  selectedClass = "btn selected-btn";
   displayPdf = false;
   constructor(
     public aboutSrvc: AboutService,

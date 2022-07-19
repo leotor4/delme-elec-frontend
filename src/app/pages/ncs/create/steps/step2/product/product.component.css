@@ -27,6 +27,7 @@
 .cabecalho p {
   font-size: 14px;
   color: gray;
+  height: 80px;
 }
 .search-box {
   display: flex;
