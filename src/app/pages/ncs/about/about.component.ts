@@ -138,7 +138,7 @@ export class AboutComponent implements OnInit {
       this.roleService.isManager()
     ) {
       let sgq = this.aboutSrvc.nc.sgqEvaluation;
-      if (!!sgq.text_area1 && !!sgq.text_area2 && !!sgq.text_area3) {
+      if (sgq.text_area1 && sgq.text_area2 && sgq.text_area3) {
         disabled = false;
       }
     }
