@@ -43,3 +43,11 @@ h2 {
     border: 2px solid #333333;
     border-radius: 8px;
 }
+.selected-btn {
+    background-color: #00344D;
+    color: #fff;
+  }
+.unselected-btn {
+    border-color: #00344D;
+    color:#00344D;
+}

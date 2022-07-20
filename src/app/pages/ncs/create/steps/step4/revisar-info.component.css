@@ -141,3 +141,11 @@ h2{
   font-size:24px;
 }
 
+.selected-btn {
+  background-color: #00344D;
+  color: #fff;
+}
+.unselected-btn {
+  border-color: #00344D;
+  color:#00344D;
+}

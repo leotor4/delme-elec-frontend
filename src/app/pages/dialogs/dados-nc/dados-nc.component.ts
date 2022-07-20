@@ -16,8 +16,8 @@ import {VisualizarDocumentoDialogComponent} from "../visualizar-documento-dialog
 })
 export class DadosNCComponent implements OnInit {
   isAllOpen = true;
-  unselectedClass = "btn btn-outline-dark";
-  selectedClass = "btn btn-dark";
+  unselectedClass = "btn unselected-btn";
+  selectedClass = "btn selected-btn";
   nc:any;
   constructor(public ref: DynamicDialogRef,
               public cServ: ClosingService,
