@@ -85,38 +85,38 @@
   <div
     class="d-flex flex-row"
     *ngIf="this.nonComplicanceService.nc?.tipo_controle != 'PR'"
-  ></div>
+  ><span class="info-titulo">{{returnNumber()}}</span></div>
 
   <div
-      class="dados-parceiro razao-social item mt-3"
-      *ngIf="returnFile('pontoControle').length > 0"
-    >
-      <h2 class="mr-2 mb-5">
-        <i class="bi bi-paperclip"></i>
-        {{ "global.fileInput.attachments" | translate }}
-      </h2>
-      <div *ngIf="!nonComplicanceService.displayPdf">
-        <p-carousel
-          [value]="returnFile('pontoControle')"
-          [numVisible]="3"
-          [numScroll]="3"
-          [showIndicators]="false"
-        >
-          <ng-template let-file pTemplate="item">
-            <i class="bi bi-file-earmark fs-1"></i>
-            <p>{{ file.name }}</p>
-          </ng-template>
-        </p-carousel>
-      </div>
+    class="dados-parceiro razao-social item mt-3"
+    *ngIf="returnFile('pontoControle').length > 0"
+  >
+    <h2 class="mr-2 mb-5">
+      <i class="bi bi-paperclip"></i>
+      {{ "global.fileInput.attachments" | translate }}
+    </h2>
+    <div *ngIf="!nonComplicanceService.displayPdf">
+      <p-carousel
+        [value]="returnFile('pontoControle')"
+        [numVisible]="3"
+        [numScroll]="3"
+        [showIndicators]="false"
+      >
+        <ng-template let-file pTemplate="item">
+          <i class="bi bi-file-earmark fs-1"></i>
+          <p>{{ file.name }}</p>
+        </ng-template>
+      </p-carousel>
+    </div>
 
-      <div *ngIf="nonComplicanceService.displayPdf">
-        <div class="d-flex flex-row flex-wrap">
-          <div *ngFor="let item of returnFile('pontoControle')">
-            {{ item.name + " /" }}
-          </div>
+    <div *ngIf="nonComplicanceService.displayPdf">
+      <div class="d-flex flex-row flex-wrap">
+        <div *ngFor="let item of returnFile('pontoControle')">
+          {{ item.name + " /" }}
         </div>
       </div>
     </div>
+  </div>
 </div>
 <div class="div-ident-parceiro pr-4 mt-3">
   <h2>
@@ -183,9 +183,13 @@
 
   <div class="dados-parceiro col razao-social">
     <p-editor
-            [(ngModel)]="this.nonComplicanceService.nc.text_area_reject_point"
-            [style]="{ height: '100%', border: '0px solid #dddddd','font-size': '25px'}"
-            [readonly]="true"
+      [(ngModel)]="this.nonComplicanceService.nc.text_area_reject_point"
+      [style]="{
+        height: '100%',
+        border: '0px solid #dddddd',
+        'font-size': '25px'
+      }"
+      [readonly]="true"
     >
       <ng-template pTemplate="header" hidden> </ng-template>
     </p-editor>

@@ -26,4 +26,17 @@ export class ViewProductsAndPointsComponent implements OnInit {
     });
     return acoesFile;
   }
+
+  returnNumber(): string {
+    let text = "";
+    let nc = this.aboutSrvc.nc;
+
+    if (nc.tipo_controle!.includes("OP")) {
+      text = nc.num_op!;
+    } else {
+      text = nc.num_nota!;
+    }
+
+    return text;
+  }
 }

@@ -4,7 +4,7 @@ import {ClosingService} from "../../ncs/about/closing/closing.service";
 import {MessageService} from "primeng/api";
 import {ProposalService} from "../../ncs/create-prop/proposal.service";
 import {DateUtils} from "../../../utils/date-utils";
-import {VisualizarDocumentoDialogComponent} from "../visualizar-documento-dialog/visualizar-documento-dialog.component";
+
 
 @Component({
   selector: 'app-dados-nc',

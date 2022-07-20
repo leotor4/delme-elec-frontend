@@ -78,6 +78,10 @@
       </div>
     </div>
     <div
+    class="d-flex flex-row"
+    *ngIf="this.aboutSrvc.nc?.tipo_controle != 'PR'"
+  ><span class="info-titulo">{{returnNumber()}}</span></div>
+    <div
       class="dados-parceiro razao-social item"
       *ngIf="returnFile('pontoControle').length > 0"
     >

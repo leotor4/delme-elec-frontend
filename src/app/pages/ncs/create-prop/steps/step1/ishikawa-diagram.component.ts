@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {DialogService} from 'primeng/dynamicdialog';
 import {IshikawaDialogComponent} from "./ishikawa-dialog/ishikawa-dialog.component";
 import {ProposalService} from "../../proposal.service";
-import {Instruction} from "../../../../../models/instruction";
+
 
 @Component({
   selector: 'app-ishikawa-diagram',
@@ -23,6 +23,7 @@ export class IshikawaDiagramComponent implements OnInit {
   constructor(public dialogService: DialogService, public propService: ProposalService) { }
 
   ngOnInit(): void {
+    this.propService.load();
   }
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.

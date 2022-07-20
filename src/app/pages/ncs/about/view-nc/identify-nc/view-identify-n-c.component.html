@@ -88,8 +88,8 @@
 <div class="div-ident-parceiro mt-3">
   <h1 class="titulo-parceiro">{{ "newNC.step1.partner.title" | translate }}</h1>
   <div class="d-flex">
-    <div class="item">
-      <div class="dados-parceiro razao-social">
+    <div class="item ">
+      <div class="parceiro razao-social ">
         <div class="d-flex">
           <h2 class="mr-2">{{ returnTitle() }}</h2>
           <p-chip>
@@ -112,12 +112,13 @@
       </div>
     </div>
     <div class="item">
-      <div class="dados-parceiro razao-social">
+      <div class="parceiro razao-social">
         <h2>
           {{ "newNC.step1.partner.contactTitle" | translate }}
         </h2>
-        <div></div>
-        <div class="contato-info d-flex flex-row">
+        
+        <div class="d-flex flex-row mb-3">
+          <div class="contato-info d-flex flex-row mr-2">
           <i class="pi pi-user"></i>
           <div>
             <span class="info-titulo">{{
@@ -150,6 +151,7 @@
               }}
             </span>
           </div>
+        </div>
         </div>
         <div class="contato-info d-flex flex-row">
           <i class="pi pi-at"></i>

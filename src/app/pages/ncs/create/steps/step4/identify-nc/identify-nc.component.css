@@ -44,6 +44,17 @@
   overflow: auto;
 }
 
+.parceiro {
+  min-width: 230px;
+  margin: 10px;
+  margin-top: 0px;
+  background-color: white;
+  border-radius: 7px;
+  height: 180px;
+  padding: 13px;
+  overflow: auto;
+}
+
 .titulo-parceiro {
   font-size: 17px;
   font-weight: bold;

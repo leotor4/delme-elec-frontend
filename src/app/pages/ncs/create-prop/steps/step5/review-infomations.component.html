@@ -55,7 +55,7 @@
                         </div>
                         <div class="col">
                             <label>{{'about.proposalComponent.measure'| translate}}</label>
-                            <p-editor [ngModel]="'<p>'+this.propService.propSolution.lack_parameters + '</p><p>' + this.propService.propSolution.excess_parameters + '</p><p>' + this.propService.propSolution.non_achievement_goals+ '</p>' + this.propService.propSolution.low_quality_materials + '</p>' + this.propService.propSolution.measurement_description" [style]="editorStyle" [readonly]="true">
+                            <p-editor [ngModel]="'<p>'+this.propService.propSolution.lack_parameters + '</p><p>' + this.propService.propSolution.excess_parameters + '</p><p>' + this.propService.propSolution.non_achievement_goals" [style]="editorStyle" [readonly]="true">
                                 <ng-template pTemplate="header">
                                 </ng-template>
                             </p-editor>

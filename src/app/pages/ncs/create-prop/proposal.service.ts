@@ -106,6 +106,17 @@ export class ProposalService {
     );
   }
 
+  load(){
+    this.checkBoxes = []
+    this.checkBoxes.push(this.propSolution.lack_materials)
+    this.checkBoxes.push(this.propSolution.excess_materials);
+    this.checkBoxes.push(this.propSolution.lack_parameters);
+    this.checkBoxes.push(this.propSolution.excess_parameters);
+    this.checkBoxes.push(this.propSolution.non_achievement_goals);
+    this.checkBoxes.push(this.propSolution.run_training);
+    this.checkBoxes.push(this.propSolution.low_quality_materials);
+  }
+
   haveItem(text: string) {
     if (text) {
       let index = this.checkBoxes.indexOf(text);
