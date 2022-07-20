@@ -8,8 +8,8 @@ import { NonComplianceService } from "../../../../../_services/non-compliance.se
 })
 export class RevisarInfoComponent implements OnInit {
   isAllOpen = true;
-  unselectedClass = "btn btn-outline-dark";
-  selectedClass = "btn btn-dark";
+  unselectedClass = "btn unselected-btn";
+  selectedClass = "btn selected-btn";
   @Output() changeStepPosition: EventEmitter<number> = new EventEmitter();
   constructor(public nonComplicanceService: NonComplianceService) {}
 

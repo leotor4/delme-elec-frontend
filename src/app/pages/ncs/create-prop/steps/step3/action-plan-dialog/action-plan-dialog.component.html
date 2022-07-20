@@ -33,7 +33,7 @@
     </div>
 </div>
 <div class="d-flex justify-content-end mt-5">
-    <button class="btn btn-outline-warning mr-3" (click)="close()">
+    <button class="btn cancel-btn mr-3" (click)="close()">
         {{'global.cancel'| translate}}
     </button>
     <button class="btn btn-dark" style="background-color: #00344D;" [disabled]="!action.name||!action.deadline||!action.responsible||!action.status" (click)="save()">

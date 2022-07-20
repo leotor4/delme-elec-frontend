@@ -13,8 +13,8 @@ import {DadosNCComponent} from "../../../../dialogs/dados-nc/dados-nc.component"
 export class ReviewInfoSGQComponent implements OnInit {
   ncID = "001/2022";
   isAllOpen = true;
-  unselectedClass = "btn btn-outline-dark";
-  selectedClass = "btn btn-dark";
+  unselectedClass = "btn unselected-btn";
+  selectedClass = "btn selected-btn";
   editorStyle = {
     'width': '100%',
     'border': '0px',
