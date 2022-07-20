@@ -26,6 +26,11 @@ export class IdentificacaoDaNcComponent implements OnInit {
     this.translate.instant("newNC.step1.ncType.type6"),
   ];
   ngOnInit(): void {
+    window.scroll({
+      top: 0,
+      left: 0,
+    });
+    console.log('a')
    
     this.nonComplicanceService.formIdentificacaoNC.get("tipos_nc_item")?.valueChanges.subscribe(
       (item:string) => {

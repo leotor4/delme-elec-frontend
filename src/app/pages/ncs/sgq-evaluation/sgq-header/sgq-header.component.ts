@@ -3,11 +3,14 @@ import {SgqService} from "../sgq.service";
 import {ActivatedRoute} from "@angular/router";
 import {MessageService} from "primeng/api";
 import {TranslateService} from "@ngx-translate/core";
+import {DadosNCComponent} from "../../../dialogs/dados-nc/dados-nc.component";
+import {DialogService} from "primeng/dynamicdialog";
 
 @Component({
   selector: 'app-sgq-header',
   templateUrl: './sgq-header.component.html',
-  styleUrls: ['./sgq-header.component.css']
+  styleUrls: ['./sgq-header.component.css'],
+  providers: [DialogService]
 })
 export class SgqHeaderComponent implements OnInit {
     id: number;
@@ -15,6 +18,7 @@ export class SgqHeaderComponent implements OnInit {
   constructor(public sgqServ: SgqService,
               private route: ActivatedRoute,
               private messageService: MessageService,
+              public dialogService: DialogService,
               public translate: TranslateService) { }
 
   ngOnInit(): void {
@@ -38,5 +42,13 @@ export class SgqHeaderComponent implements OnInit {
         });
       }
     })
+  }
+  openDados(){
+    this.dialogService.open(DadosNCComponent, {
+      data: {nc: this.sgqServ.nc},
+      width: '1100px',
+      closable: true,
+      showHeader: false
+    });
   }
 }

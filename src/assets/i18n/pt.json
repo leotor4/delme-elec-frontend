@@ -315,6 +315,9 @@
         "type8": "PR(PROCEDIMENTO)",
         "op": "Número da OP *",
         "numb": "Número da Nota *",
+        "numb1": "Número do PC *",
+        "numb2": "Número da PV *",
+        "numb3": "Número da CC *",
         "createIT": "Criar Instrução"
       },
       "rejectionPoint": {

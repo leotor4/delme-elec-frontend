@@ -64,6 +64,16 @@ export class CheckpointItemsComponent implements OnInit {
         this.nonComplicanceService.nc.tipo_controle == this.translate.instant("newNC.step1.checkpoint.type6") ||
         this.nonComplicanceService.nc.tipo_controle == this.translate.instant("newNC.step1.checkpoint.type7");
   }
+  getString(){
+    switch (this.nonComplicanceService.nc.tipo_controle){
+      case this.translate.instant("newNC.step1.checkpoint.type5"):
+        return this.translate.instant('newNC.step1.checkpoint.numb1');
+      case this.translate.instant("newNC.step1.checkpoint.type6"):
+        return this.translate.instant('newNC.step1.checkpoint.numb2');
+      case this.translate.instant("newNC.step1.checkpoint.type7"):
+        return this.translate.instant('newNC.step1.checkpoint.numb3');
+    }
+  }
 
   returnPrScreen() {
     return this.nonComplicanceService.nc.tipo_controle == this.translate.instant("newNC.step1.checkpoint.type8");

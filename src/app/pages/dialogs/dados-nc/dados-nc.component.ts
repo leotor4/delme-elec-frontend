@@ -18,6 +18,7 @@ export class DadosNCComponent implements OnInit {
   isAllOpen = true;
   unselectedClass = "btn btn-outline-dark";
   selectedClass = "btn btn-dark";
+  nc:any;
   constructor(public ref: DynamicDialogRef,
               public cServ: ClosingService,
               public config: DynamicDialogConfig,
@@ -25,6 +26,7 @@ export class DadosNCComponent implements OnInit {
               public propSrvc: ProposalService) { }
 
   ngOnInit(): void {
+    this.nc = this.config.data.nc
   }
   formato_brasileiro(data:Date | undefined | null): string {
     const dataFormatada = data ? DateUtils.formato_brasileiro(data) : '00/00/0000';

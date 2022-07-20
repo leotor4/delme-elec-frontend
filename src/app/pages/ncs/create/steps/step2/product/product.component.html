@@ -29,7 +29,7 @@
     value=""
     id="flexCheckDefault"
     (change)="notAply($event.target.checked)"
-    [(ngModel)]="checkbox"
+    [checked]="this.nonComplicanceService.nc.product?.name=='Não se Aplica'"
   />
   <label class="form-check-label" for="flexCheckDefault"> Não Se Aplica </label>
 </div>

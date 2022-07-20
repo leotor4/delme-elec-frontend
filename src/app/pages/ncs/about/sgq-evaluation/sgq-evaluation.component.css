@@ -14,3 +14,7 @@ h2 {
     font-size: 15px;
     color: gray;
 }
+:host ::ng-deep .ql-toolbar.ql-snow {
+    display: none;
+}
+

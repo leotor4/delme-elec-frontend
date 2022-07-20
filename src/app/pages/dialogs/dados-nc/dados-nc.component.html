@@ -1,4 +1,4 @@
-<div class="d-flex flex-lg-row flex-column justify-content-between mt-3">
+<div class="d-flex flex-lg-row flex-column justify-content-between mt-4">
     <div class="d-flex">
         <div class="cabecalho">
             <div class="d-flex align-items-center">
@@ -26,6 +26,13 @@
             <i class="bi bi-arrows-collapse"></i>
             Colapsar Todos
         </button>
+        <button
+                pButton
+                class="p-button-danger p-button-text ml-2"
+                (click)="this.ref.close()"
+        >
+            <i class="pi pi-times"></i>
+        </button>
     </div>
 </div>
 <p-accordion [multiple]="true">
@@ -51,7 +58,7 @@
                             <div>
                                 <span class="info-titulo">Número</span>
                                 <br />
-                                <span class="info-dados">{{propSrvc.ncProp?.code||""}}</span>
+                                <span class="info-dados">{{this.nc?.code||""}}</span>
                             </div>
                         </div>
                         <div class="contato-info d-flex flex-row">
@@ -60,7 +67,7 @@
                                 <span class="info-titulo">Data de Abertura</span>
                                 <br />
                                 <span class="info-dados">
-            {{formato_brasileiro(propSrvc.ncProp?.data_abertura)}}
+            {{formato_brasileiro(this.nc?.data_abertura)}}
 
           </span>
                             </div>
@@ -71,7 +78,7 @@
                                 <span class="info-titulo">Prazo de Fechamento</span>
                                 <br/>
                                 <span class="info-dados">
-            {{formato_brasileiro(propSrvc.ncProp?.data_fechamento)}}
+            {{formato_brasileiro(this.nc?.data_fechamento)}}
 
           </span>
                             </div>
@@ -90,7 +97,7 @@
                             <div>
                                 <span class="info-titulo">Emissor</span>
                                 <br/>
-                                <span class="info-dados">{{propSrvc.ncProp?.issuer?.username||"não preenchido"}}</span>
+                                <span class="info-dados">{{this.nc?.issuer?.username||"não preenchido"}}</span>
                             </div>
                         </div>
                         <div class="contato-info d-flex flex-row">
@@ -121,11 +128,11 @@
                                 <h2 class="mr-2">Razão Social</h2>
                                 <p-chip>
                                     <i class="bi bi-ticket-perforated mr-2"></i>
-                                    {{ (propSrvc.ncProp?.customer?.code||propSrvc.ncProp?.provider?.code)||"00000000" }}
+                                    {{ (this.nc?.customer?.code||this.nc?.provider?.code)||"00000000" }}
                                 </p-chip>
                             </div>
                             <p>
-                                {{(propSrvc.ncProp?.customer?.corporate_name||propSrvc.ncProp?.provider?.corporate_name||propSrvc.ncProp?.sector?.name)
+                                {{(this.nc?.customer?.corporate_name||this.nc?.provider?.corporate_name||this.nc?.sector?.name)
                             ||"Dado não preenchido"}}
                             </p>
                         </div>
@@ -141,7 +148,7 @@
                                         <span class="info-titulo">Nome</span>
                                         <br />
                                         <span class="info-dados">
-                {{(propSrvc.ncProp?.customer?.responsible_name||propSrvc.ncProp?.provider?.responsible_name||propSrvc.ncProp?.sector?.responsible_name)
+                {{(this.nc?.customer?.responsible_name||this.nc?.provider?.responsible_name||this.nc?.sector?.responsible_name)
                                         ||"Dado não preenchido"}}
               </span>
                                     </div>
@@ -152,7 +159,7 @@
                                         <span class="info-titulo">Telefone</span>
                                         <br />
                                         <span class="info-dados">
-                {{(propSrvc.ncProp?.customer?.responsible_phone||propSrvc.ncProp?.provider?.responsible_phone||propSrvc.ncProp?.sector?.responsible_phone)
+                {{(this.nc?.customer?.responsible_phone||this.nc?.provider?.responsible_phone||this.nc?.sector?.responsible_phone)
                                         ||"(00) 00000-0000"}}
               </span>
                                     </div>
@@ -163,7 +170,7 @@
                                         <span class="info-titulo">E-mail</span>
                                         <br />
                                         <span class="info-dados">
-                {{(propSrvc.ncProp?.customer?.responsible_email||propSrvc.ncProp?.provider?.responsible_email||propSrvc.ncProp?.sector?.responsible_email)
+                {{(this.nc?.customer?.responsible_email||this.nc?.provider?.responsible_email||this.nc?.sector?.responsible_email)
                                         ||"Dado não preenchido"}}
               </span>
                                     </div>
@@ -179,7 +186,7 @@
                         <i class="bi bi-file-earmark-text"></i>
                         Descrição da Não Conformidade
                     </h2>
-                    <p-editor [style]="{'height':'144px', border: '1px solid #dddddd' }" [readonly]="true" [ngModel]="propSrvc.ncProp?.text_area_nc">
+                    <p-editor [style]="{'height':'144px', border: '1px solid #dddddd' }" [readonly]="true" [ngModel]="this.nc?.text_area_nc">
                         <ng-template pTemplate="header">
                         </ng-template>
                     </p-editor>
@@ -190,7 +197,7 @@
                         <i class="pi pi-camera"></i>
                         Evidencias fotográficas
                     </h2>
-                    <p-carousel [value]="this.propSrvc.ncProp?.attachments?.filter(isType1) || []" [numVisible]="3" [numScroll]="3" [showIndicators]="false">
+                    <p-carousel [value]="this.nc?.attachments?.filter(isType1) || []" [numVisible]="3" [numScroll]="3" [showIndicators]="false">
                         <ng-template let-file pTemplate="item" >
                             <div><i class="bi bi-file-earmark fs-1"></i>
                                 <p>{{file.name||"file.txt"}}</p></div>
@@ -204,7 +211,7 @@
                         <i class="bi bi-geo"></i>
                         Descrição de Ações Imediatas
                     </h2>
-                    <p-editor [style]="{'height':'144px', border: '1px solid #dddddd' }" [readonly]="true" [ngModel]="propSrvc.ncProp?.text_area_acoes">
+                    <p-editor [style]="{'height':'144px', border: '1px solid #dddddd' }" [readonly]="true" [ngModel]="this.nc?.text_area_acoes">
                         <ng-template pTemplate="header" hidden>
                         </ng-template>
                     </p-editor>
@@ -215,7 +222,7 @@
                         <i class="pi pi-camera"></i>
                         Evidencias fotográficas
                     </h2>
-                    <p-carousel [value]="propSrvc.ncProp?.attachments?.filter(isType2) || []" [numVisible]="3" [numScroll]="3" [showIndicators]="false">
+                    <p-carousel [value]="this.nc?.attachments?.filter(isType2) || []" [numVisible]="3" [numScroll]="3" [showIndicators]="false">
                         <ng-template let-file pTemplate="item">
                             <div >
                                 <i class="bi bi-file-earmark fs-1"></i>
@@ -243,15 +250,15 @@
                 <div class="dados-parceiro col razao-social">
                     <div class="d-flex">
                         <h2 class="mr-2">
-                            {{propSrvc.ncProp?.product?.name||"Dado não preenchido"}}
+                            {{this.nc?.product?.name||"Dado não preenchido"}}
                         </h2>
                         <p-chip>
                             <i class="bi bi-ticket-perforated mr-2"></i>
-                            {{propSrvc.ncProp?.product?.code||"000000"}}
+                            {{this.nc?.product?.code||"000000"}}
                         </p-chip>
                     </div>
                     <p class="d-block">
-                        {{propSrvc.ncProp?.product?.description||"Dado não preenchido"}}
+                        {{this.nc?.product?.description||"Dado não preenchido"}}
                     </p>
                 </div>
                 <div class="dados-parceiro col">
@@ -264,7 +271,7 @@
                             <div>
                                 <span class="info-titulo">Quantidade Total</span>
                                 <br />
-                                <span class="info-dados">{{propSrvc.ncProp?.quant_total||""}}</span>
+                                <span class="info-dados">{{this.nc?.quant_total||""}}</span>
                             </div>
                         </div>
                         <div class="contato-info d-flex flex-row">
@@ -272,7 +279,7 @@
                             <div>
                                 <span class="info-titulo">Quantidade em Não Conformidade</span>
                                 <br />
-                                <span class="info-dados">{{propSrvc.ncProp?.quant_nc||""}}</span>
+                                <span class="info-dados">{{this.nc?.quant_nc||""}}</span>
                             </div>
                         </div>
                         <div class="contato-info d-flex flex-row">
@@ -296,18 +303,18 @@
                         <i class="pi pi-directions mr-1"></i>
                         <div>
         <span class="info-titulo">{{
-            propSrvc.ncProp?.tipo_controle || "Dado não preenchido"
+            this.nc?.tipo_controle || "Dado não preenchido"
             }}</span>
                         </div>
                     </div>
-                    <div class="d-flex flex-row" *ngIf="propSrvc.ncProp?.tipo_controle!='PR'">
+                    <div class="d-flex flex-row" *ngIf="this.nc?.tipo_controle!='PR'">
                         <i class="bi bi-calculator mr-1"></i>
                         <div >
                             <span class="info-titulo">Número</span>
                             <br />
                             <p class="info-dados">
                                 {{
-                                (propSrvc.ncProp?.num_op || propSrvc.ncProp?.num_nota)|| "Dado não preenchido"
+                                (this.nc?.num_op || this.nc?.num_nota)|| "Dado não preenchido"
                                 }}
                             </p>
                         </div>
@@ -320,50 +327,50 @@
                     Ponto de Rejeição
                 </h2>
                 <div class="d-flex dados-contato mb-3 ">
-                    <div class="contato-info d-flex flex-row mb-5 mr-5" *ngIf="propSrvc.ncProp?.num_lote">
+                    <div class="contato-info d-flex flex-row mb-5 mr-5" *ngIf="this.nc?.num_lote">
                         <i class="bi bi-123"></i>
                         <div>
                             <span class="info-titulo">Número do Lote</span>
                             <br />
                             <span class="info-dados">{{
-                                propSrvc.ncProp?.num_lote || "0"
+                                this.nc?.num_lote || "0"
                                 }}</span>
                         </div>
                     </div>
-                    <div class="contato-info d-flex flex-row mb-5 mr-5" *ngIf="propSrvc.ncProp?.num_ordem_compra">
+                    <div class="contato-info d-flex flex-row mb-5 mr-5" *ngIf="this.nc?.num_ordem_compra">
                         <i class="bi bi-123"></i>
                         <div>
                             <span class="info-titulo">Quantidade em Não Conformidade</span>
                             <br />
                             <span class="info-dados">{{
-                                propSrvc.ncProp?.num_ordem_compra || "0"
+                                this.nc?.num_ordem_compra || "0"
                                 }}</span>
                         </div>
                     </div>
-                    <div class="contato-info d-flex flex-row mb-5 mr-5" *ngIf="propSrvc.ncProp?.instruction?.code">
+                    <div class="contato-info d-flex flex-row mb-5 mr-5" *ngIf="this.nc?.instruction?.code">
                         <i class="bi bi-123"></i>
                         <div>
                             <span class="info-titulo">IT</span>
                             <br />
-                            <span class="info-dados">{{ "Numero: " + propSrvc.ncProp?.instruction?.code || "0" }}</span>
+                            <span class="info-dados">{{ "Numero: " + this.nc?.instruction?.code || "0" }}</span>
                             <br />
-                            <span class="info-dados">{{ "Descrição: " + propSrvc.ncProp?.instruction?.description || "0" }}</span>
+                            <span class="info-dados">{{ "Descrição: " + this.nc?.instruction?.description || "0" }}</span>
                             <br />
-                            <span class="info-dados">{{ "Revisão: " + propSrvc.ncProp?.instruction?.rev || "0" }}</span>
+                            <span class="info-dados">{{ "Revisão: " + this.nc?.instruction?.rev || "0" }}</span>
                         </div>
                     </div>
-                    <div class="contato-info d-flex flex-row mb-5 mr-5" *ngIf="propSrvc.ncProp?.procedure">
+                    <div class="contato-info d-flex flex-row mb-5 mr-5" *ngIf="this.nc?.procedure">
                         <i class="bi bi-123"></i>
                         <div>
                             <span class="info-titulo">Número PR</span>
                             <br />
-                            <span class="info-dados">{{ propSrvc.ncProp?.procedure?.code|| "0" }}</span>
+                            <span class="info-dados">{{ this.nc?.procedure?.code|| "0" }}</span>
                         </div>
                     </div>
                 </div>
                 <div class="dados-parceiro col razao-social">
                     <p-editor
-                            [ngModel]="propSrvc.ncProp?.text_area_reject_point"
+                            [ngModel]="this.nc?.text_area_reject_point"
                             [style]="{ height: '100%', border: '0px solid #dddddd'}"
                             [readonly]="true"
                     >

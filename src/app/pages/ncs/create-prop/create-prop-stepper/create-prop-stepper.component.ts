@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MenuItem, MessageService} from "primeng/api";
 import {NonComplianceService} from "../../../../_services/non-compliance.service";
@@ -14,6 +14,7 @@ export class CreatePropStepperComponent implements OnInit {
   items: MenuItem[];
   stepPosition: number = 0;
   lastStepLabel = "Avançar";
+  @ViewChild('divToScroll') divToScroll: ElementRef;
   constructor(private route: ActivatedRoute,
     private ncService:NonComplianceService,
     private messageService: MessageService,
@@ -75,6 +76,7 @@ export class CreatePropStepperComponent implements OnInit {
           life: 3000,
         });
         this.stepPosition >= this.items.length - 1?this.router.navigateByUrl('/ncs/about/' + id):this.stepPosition++
+         this.divToScroll.nativeElement.scrollTop = 0;
       },
       error:err =>{
         this.messageService.add({
@@ -90,6 +92,7 @@ export class CreatePropStepperComponent implements OnInit {
   backStep() {
     if (this.stepPosition <= 0) return;
     this.stepPosition--;
+    this.divToScroll.nativeElement.scrollTop = 0;
     this.isFirstStep();
   }
   
