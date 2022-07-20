@@ -30,7 +30,10 @@ label {
 .dropdown p {
   font-size: 14px;
 }
-
+.dropdown label {
+  height: 24px;
+  margin-bottom: 0;
+}
 .dropdown select {
   width: 200px;
   min-width: 150px;
@@ -40,10 +43,6 @@ label {
   font-size: 14px;
   padding: 7px;
   height: 42px;
-}
-
-.dropdown {
-  margin-top: 10px;
 }
 
 .div-att button {
@@ -124,7 +123,7 @@ label {
   border: 2px solid rgb(51, 51, 51);
   padding: 10px;
   border-radius: 8px;
-  background-color: rgb(243, 243, 243);
+  background-color: #eeeeee;
 }
 
 .background-white {
@@ -140,13 +139,14 @@ label {
 
 .dados-parceiro {
   min-width: 230px;
-  margin: 10px;
-  margin-top: 0px;
   background-color: white;
   border-radius: 7px;
-  padding: 13px;
+  padding: 8px;
 }
-
+.dados-parceiro h1,
+.dados-parceiro p {
+  margin-bottom: 0;
+}
 .titulo-parceiro {
   font-size: 17px;
   font-weight: bold;
