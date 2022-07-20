@@ -1,8 +1,8 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {SgqService} from "../../sgq.service";
-import {NcInfoComponent} from "../reoccurrence/nc-info/nc-info.component";
 import {DialogService} from "primeng/dynamicdialog";
 import {Contact} from "../../../../../models/contact.model";
+import {DadosNCComponent} from "../../../../dialogs/dados-nc/dados-nc.component";
 
 @Component({
   selector: 'app-review-info-sgq',
@@ -37,7 +37,7 @@ export class ReviewInfoSGQComponent implements OnInit {
   }
 
   details(nc: any) {
-    const ref = this.dialogService.open(NcInfoComponent, {
+    const ref = this.dialogService.open(DadosNCComponent, {
       data: {nc: nc,
       },
       showHeader: false,

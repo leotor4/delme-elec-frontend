@@ -20,3 +20,6 @@ label {
     font-size: 13px;
     font-weight: bold;
 }
+:host ::ng-deep .removeHeader .ql-toolbar.ql-snow {
+    display: none;
+}

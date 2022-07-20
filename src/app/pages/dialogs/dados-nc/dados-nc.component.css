@@ -123,3 +123,11 @@ h2 {
 :host ::ng-deep .ql-toolbar.ql-snow {
     display: none;
 }
+.selected-btn {
+    background-color: #00344D;
+    color: #fff;
+}
+.unselected-btn {
+    border-color: #00344D;
+    color:#00344D;
+}

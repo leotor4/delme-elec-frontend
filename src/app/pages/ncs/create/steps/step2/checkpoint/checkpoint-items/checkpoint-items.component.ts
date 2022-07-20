@@ -66,6 +66,8 @@ export class CheckpointItemsComponent implements OnInit {
   }
   getString(){
     switch (this.nonComplicanceService.nc.tipo_controle){
+      case this.translate.instant("newNC.step1.checkpoint.type4"):
+        return this.translate.instant('newNC.step1.checkpoint.numb');
       case this.translate.instant("newNC.step1.checkpoint.type5"):
         return this.translate.instant('newNC.step1.checkpoint.numb1');
       case this.translate.instant("newNC.step1.checkpoint.type6"):

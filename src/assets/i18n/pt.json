@@ -149,7 +149,7 @@
     "processComments": "Comente sobre o processo e anexe evidências da solução do problema desta NC",
     "areYouSureReocurrence": "Você tem certeza que quer desfazer a reincidência?",
     "actionCantBeReversed": "Esta ação não poderá ser revertida!",
-    "yesUndoReocurrence": "Contato Removido com sucesso",
+    "yesUndoReocurrence": "Sim, desfazer a reincidência!",
     "select": "Selecione...",
     "deadline": "Prazo",
     "status": "Status",
@@ -628,7 +628,7 @@
         "stepContentSubtitle1": "Informe se esta NC possui ligação com outra NC presente no sistema.",
         "selectReocurrence": "Selecionar NC Reincidente",
         "addReocurrence": "Adicionar NC Reincidente",
-        "addReocurrenceSubtitle": "Busque por NCs que reincidam a NC #",
+        "addReocurrenceSubtitle": "Busque por NCs que reincidam a ",
         "addReocurrenceInputPlaceholder": "Busque por produto, parceiro ou descrição da NC...",
         "searchResults": "Resultados da busca",
         "searchResultsLabel": "Sinalize as NCs que são reincidentes desta NC."
