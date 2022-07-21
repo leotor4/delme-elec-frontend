@@ -38,5 +38,7 @@ i {
   margin-left: 3px;
   margin-right: 3px;
 }
-
-
+::ng-deep .p-steps-override span.p-steps-number {
+  background: #B48C28 !important;
+  color: #fff !important;
+}
