@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {AboutService} from "../about.service";
 import {ActivatedRoute} from "@angular/router";
-import {NcInfoComponent} from "../../sgq-evaluation/steps/reoccurrence/nc-info/nc-info.component";
 import {DialogService} from "primeng/dynamicdialog";
+import {DadosNCComponent} from "../../../dialogs/dados-nc/dados-nc.component";
 
 @Component({
   selector: 'app-sgq-evaluation',
@@ -30,7 +30,7 @@ export class SGQEvaluationComponent implements OnInit {
     return d.toLocaleDateString();
   }
   details(nc: any) {
-    const ref = this.dialogService.open(NcInfoComponent, {
+    const ref = this.dialogService.open(DadosNCComponent, {
       data: {nc: nc,
       },
       showHeader: false,

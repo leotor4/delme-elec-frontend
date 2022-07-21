@@ -6,7 +6,7 @@
         </p>
     </div>
     <div class="d-flex justify-content-end align-items-center mb-3">
-        <button class="btn btn-dark ml-3" style="background-color: #00344D;">
+        <button class="btn btn-dark ml-3" style="background-color: #00344D;" (click)="showDescriptionDialog()">
             {{ "createProp.step1.descBtn" | translate }}
             <i class="bi bi-file-earmark-medical"></i>
         </button>
@@ -82,3 +82,20 @@
 <div class="mt-4">
     <app-reasons-why></app-reasons-why>
 </div>
+
+<p-dialog [(visible)]="displayModal" [modal]="true" [style]="{width: '50vw'}"
+          [draggable]="false" [resizable]="false">
+    <ng-template pTemplate="header">
+        <h2 class="mr-2">
+            <i class="bi bi-file-earmark-text"></i>
+            {{'about.ncView.description'| translate}}
+        </h2>
+    </ng-template>
+    <div>
+
+        <p-editor [style]="{'height':'144px', border: '1px solid #dddddd','font-size': '25px' }" [readonly]="true" [ngModel]="propService.ncProp.text_area_nc">
+            <ng-template pTemplate="header">
+            </ng-template>
+        </p-editor>
+    </div>
+</p-dialog>

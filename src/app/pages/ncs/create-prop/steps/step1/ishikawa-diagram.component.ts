@@ -19,6 +19,7 @@ export class IshikawaDiagramComponent implements OnInit {
     'border-radius': '5px'
     
   }
+    displayModal: boolean = false;
 
   constructor(public dialogService: DialogService, public propService: ProposalService) { }
 
@@ -52,5 +53,8 @@ export class IshikawaDiagramComponent implements OnInit {
     if (obj?.description) str += obj.description + " ";
     if (obj?.rev) str += obj.rev + " ";
     return str
+  }
+  showDescriptionDialog() {
+    this.displayModal = true;
   }
 }

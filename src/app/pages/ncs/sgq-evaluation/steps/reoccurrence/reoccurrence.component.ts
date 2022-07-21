@@ -3,8 +3,8 @@ import { SgqService } from "../../sgq.service";
 import { DialogService } from "primeng/dynamicdialog";
 import { AddNcDialogComponent } from "./add-nc-dialog/add-nc-dialog.component";
 import { ConfirmationService, MessageService } from "primeng/api";
-import { NcInfoComponent } from "./nc-info/nc-info.component";
 import { TranslateService } from "@ngx-translate/core";
+import {DadosNCComponent} from "../../../../dialogs/dados-nc/dados-nc.component";
 
 @Component({
   selector: "app-reoccurrence",
@@ -50,7 +50,7 @@ export class ReoccurrenceComponent implements OnInit {
 
   openDialog() {
     const ref = this.dialogService.open(AddNcDialogComponent, {
-      data: { nc: "xxx.2022", selected: this.sgqServ.sgq.recurrence },
+      data: { nc: this.sgqServ.nc.code, selected: this.sgqServ.sgq.recurrence },
       showHeader: false,
       width: "60vw",
     });
@@ -60,7 +60,7 @@ export class ReoccurrenceComponent implements OnInit {
   }
 
   details(nc: any) {
-    const ref = this.dialogService.open(NcInfoComponent, {
+    const ref = this.dialogService.open(DadosNCComponent, {
       data: { nc: nc },
       showHeader: false,
       width: "60vw",

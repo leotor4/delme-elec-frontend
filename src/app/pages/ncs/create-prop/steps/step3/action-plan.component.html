@@ -96,7 +96,7 @@
 </div>
 <p-confirmDialog #cd [style]="{ width: '50vw' }">
     <ng-template pTemplate="footer">
-        <button type="button" class="btn btn-outline-warning" (click)="cd.reject()">
+        <button type="button" class="btn cancel-btn" (click)="cd.reject()">
             {{'global.reject'| translate}}
         </button>
         <button type="button" class="btn btn-dark" style="background-color: #00344D;" (click)="cd.accept()">

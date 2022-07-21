@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
     providedIn: 'root'
 })
 export class AboutService {
-    displayPdf = true
+    displayPdf = false
     apiUrl = environment.apiURL;
     isLoad = false
 

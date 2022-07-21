@@ -14,4 +14,13 @@ h2 {
     font-size: 15px;
     color: gray;
 }
-
+.cancel-btn {
+    border: 2px solid  #B48C28;
+    border-radius: 0.25rem;
+    color: #B48C28;
+    height: 35px;
+  }
+.cancel-btn:hover {
+    color: #fff;
+    background:#B48C28;
+}
