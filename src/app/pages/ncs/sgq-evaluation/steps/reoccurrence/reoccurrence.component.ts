@@ -35,7 +35,7 @@ export class ReoccurrenceComponent implements OnInit {
           (val) => val.id !== nc.id
         );
         this.messageService.add({
-          severity: "info",
+          severity: "success",
           summary: this.translate.instant("sgq.steps.step1.successDel"),
           life: 3000,
         });
