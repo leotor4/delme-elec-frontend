@@ -26,9 +26,7 @@ export class FechamentoComponent implements OnInit {
     public translate: TranslateService
   ) {}
 
-  ngOnInit(): void {
-    this.radioValue = "sim"
-  }
+  ngOnInit(): void {}
   radioValue: string;
   editorValue = "";
 

@@ -30,13 +30,14 @@
 
         <div class="d-flex flex-column mr-lg-3 inputs-sm my-auto">
             <label>{{'global.deadline'| translate}}</label>
-            <input
+            <!--<input
                     type="date"
                     pInputText
                     id="date-input"
                     class="p-input text-sm input"
                     [(ngModel)]="date"
-            />
+            />-->
+            <p-calendar class="p-input text-sm input" [(ngModel)]="date" [minDate]="minDate" placeholder="dd/mm/yy"></p-calendar>
         </div>
         <div class="d-flex flex-column mr-lg-3 inputs-sm my-auto">
             <label>{{'global.status'| translate}}</label>

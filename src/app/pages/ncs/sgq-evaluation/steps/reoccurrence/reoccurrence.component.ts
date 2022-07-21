@@ -36,7 +36,7 @@ export class ReoccurrenceComponent implements OnInit {
         );
         this.messageService.add({
           severity: "info",
-          summary: this.translate.instant("global.contacts.successDel"),
+          summary: this.translate.instant("sgq.steps.step1.successDel"),
           life: 3000,
         });
       },
