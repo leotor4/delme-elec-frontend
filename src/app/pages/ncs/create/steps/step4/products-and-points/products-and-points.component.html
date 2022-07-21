@@ -61,12 +61,18 @@
 
   <div class="d-flex flex-row">
     <i class="pi pi-directions mr-1"></i>
-    <div>
+    <div class="d-flex">
       <span class="info-titulo">{{
         this.nonComplicanceService.nc?.tipo_controle || "global.empty"
           | translate
       }}</span>
-
+      <div
+              class="d-flex flex-row ml-5"
+              *ngIf="this.nonComplicanceService.nc?.tipo_controle != 'PR'"
+      >
+        <i class="bi bi-calculator"></i>
+        <span class="info-titulo">{{("global.number" | translate) + ": "+(returnNumber())}}</span>
+      </div>
       <div class="d-flex flex-row mt-2">
         <span class="info-dados">{{
           this.nonComplicanceService.nc?.procedure?.code || ""
@@ -82,10 +88,6 @@
       </div>
     </div>
   </div>
-  <div
-    class="d-flex flex-row"
-    *ngIf="this.nonComplicanceService.nc?.tipo_controle != 'PR'"
-  ><span class="info-titulo">{{returnNumber()}}</span></div>
 
   <div
     class="dados-parceiro razao-social item mt-3"

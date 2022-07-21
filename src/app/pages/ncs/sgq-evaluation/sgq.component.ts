@@ -3,6 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 import {SgqService} from "./sgq.service";
 import {NonComplianceService} from "../../../_services/non-compliance.service";
 import {MessageService} from "primeng/api";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-create-prop',
@@ -12,7 +13,11 @@ import {MessageService} from "primeng/api";
 })
 export class SgqComponent implements OnInit {
 
-  constructor(private ncService:NonComplianceService, private route: ActivatedRoute, private sgqSrv: SgqService, private messageService: MessageService) { }
+  constructor(private ncService:NonComplianceService,
+              private route: ActivatedRoute,
+              private sgqSrv: SgqService,
+              private messageService: MessageService,
+              private translate: TranslateService) { }
 
   ngOnInit(): void {
     let id = parseInt(this.route.snapshot.paramMap.get('id')||"")
@@ -31,22 +36,20 @@ export class SgqComponent implements OnInit {
               this.sgqSrv.sgq.attachments = []
               this.messageService.add({
                 severity: "success",
-                summary: "Avaliação SGQ criada com sucesso.",
+                summary: this.translate.instant('sgq.successCreate'),
                 life: 3000,
               });
             },
             error:err =>{
               this.messageService.add({
                 severity: "error",
-                summary: "Houve um erro ao criar Avaliação SGQ.",
+                summary: this.translate.instant('sgq.fail'),
                 life: 3000,
               });
             }
           })
         } else{
           this.sgqSrv.sgq = this.sgqSrv.nc.sgqEvaluation
-          console.log(this.sgqSrv.sgq )
-          console.log(this.sgqSrv.nc.sgqEvaluation)
         }
       }
     })

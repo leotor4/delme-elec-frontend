@@ -612,6 +612,8 @@
   "sgq": {
     "number": "Número",
     "success": "Avaliação salva com sucesso",
+    "successCreate": "Avaliação SGQ criada com sucesso.",
+    "fail": "Houve um erro ao criar Avaliação SGQ.",
     "openingDate": "Data de Abertura",
     "closingDate": "Data de Fechamento",
     "checkEffectiveness": "Verificação de eficácia",
@@ -631,7 +633,8 @@
         "addReocurrenceSubtitle": "Busque por NCs que reincidam a ",
         "addReocurrenceInputPlaceholder": "Busque por produto, parceiro ou descrição da NC...",
         "searchResults": "Resultados da busca",
-        "searchResultsLabel": "Sinalize as NCs que são reincidentes desta NC."
+        "searchResultsLabel": "Sinalize as NCs que são reincidentes desta NC.",
+        "successDel": "Reincidência removida com sucesso"
       },
       "step2": {
         "descriptionNotification": "Visualize e adicione contatos a serem notificados acerca do andamento desta NC. Por padrão, são adicionados contatos já incluidos nos passos anteriores.",

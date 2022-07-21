@@ -26,7 +26,8 @@ export class ActionPlanComponent implements OnInit {
   statuses: string[] = [this.translate.instant("createProp.step2.status1"), this.translate.instant("createProp.step2.status2"), this.translate.instant("createProp.step2.status3"), this.translate.instant("createProp.step2.status4")];
   selectedStatus: string;
   name: string;
-  contacts: Contact[]
+  contacts: Contact[];
+  minDate: Date;
 
   constructor(private actionService:ActionPlanService,
               private confirmationService: ConfirmationService,
@@ -38,6 +39,7 @@ export class ActionPlanComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllContacts()
+    this.minDate = new Date();
 
   }
 
