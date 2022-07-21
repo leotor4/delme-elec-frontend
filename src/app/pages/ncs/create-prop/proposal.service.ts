@@ -15,6 +15,7 @@ import { Sector } from "../../../models/sector";
 import { SectorService } from "../../../_services/sector.service";
 import { environment } from "src/environments/environment";
 import { Contact } from "../../../models/contact.model";
+import { AboutService } from "../about/about.service";
 
 @Injectable({
   providedIn: "root",
@@ -40,7 +41,8 @@ export class ProposalService {
   constructor(
     private ncsService: NonComplianceService,
     private http: HttpClient,
-    public sectorService: SectorService
+    public sectorService: SectorService,
+    private aboutService: AboutService
   ) {}
 
   step2 = {
@@ -106,9 +108,13 @@ export class ProposalService {
     );
   }
 
-  load(){
+  load() {
     this.checkBoxes = []
-    this.checkBoxes.push(this.propSolution.lack_materials)
+    this.step2 = {
+      textAreas: ["", "", "", "", "", ""],
+      selectedValue: "",
+    };
+    this.checkBoxes.push(this.propSolution.lack_materials);
     this.checkBoxes.push(this.propSolution.excess_materials);
     this.checkBoxes.push(this.propSolution.lack_parameters);
     this.checkBoxes.push(this.propSolution.excess_parameters);

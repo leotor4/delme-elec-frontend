@@ -28,7 +28,7 @@ export class AboutComponent implements OnInit {
 
   ngOnDestroy(): void {
     this.aboutSrvc.isLoad = false;
-    console.log(this.aboutSrvc.isLoad);
+  
   }
 
   goCreateProp(e: any) {

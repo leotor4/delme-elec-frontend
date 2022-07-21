@@ -27,8 +27,8 @@ export class SgqComponent implements OnInit {
         if(!this.sgqSrv.nc.sgqEvaluation){
           this.sgqSrv.abrirSGQ(id).subscribe({
             next:(data:any )=> {
-              this.sgqSrv.sgq.id = data['sgq']['id']
-
+              this.sgqSrv.sgq = data['sgq']
+              this.sgqSrv.sgq.attachments = []
               this.messageService.add({
                 severity: "success",
                 summary: "Avaliação SGQ criada com sucesso.",

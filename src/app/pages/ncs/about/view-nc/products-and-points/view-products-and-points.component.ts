@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import { Attachment } from 'src/app/models/attachment';
-import {AboutService} from "../../about.service";
+import { Component, OnInit } from "@angular/core";
+import { Attachment } from "src/app/models/attachment";
+import { AboutService } from "../../about.service";
 
 @Component({
   selector: "app-view-products-and-points",
@@ -31,10 +31,12 @@ export class ViewProductsAndPointsComponent implements OnInit {
     let text = "";
     let nc = this.aboutSrvc.nc;
 
-    if (nc.tipo_controle!.includes("OP")) {
-      text = nc.num_op!;
-    } else {
-      text = nc.num_nota!;
+    if (nc.tipo_controle) {
+      if (nc.tipo_controle.includes("OP")) {
+        text = nc.num_op!;
+      } else {
+        text = nc.num_nota!;
+      }
     }
 
     return text;

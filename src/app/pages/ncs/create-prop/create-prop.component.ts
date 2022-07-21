@@ -14,7 +14,7 @@ import { RegulatoryNormService } from "src/app/_services/regulatory-norm.service
 import { UserService } from "src/app/_services/user.service";
 import { AboutService } from "../about/about.service";
 import { ProposalService } from "./proposal.service";
-import {TranslateService} from "@ngx-translate/core";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: "app-create-prop",
@@ -24,7 +24,6 @@ import {TranslateService} from "@ngx-translate/core";
 export class CreatePropComponent implements OnInit {
   constructor(
     private ncService: NonComplianceService,
-    private aboutService: AboutService,
     private userService: UserService,
     private messageService: MessageService,
     private route: ActivatedRoute,
@@ -46,40 +45,43 @@ export class CreatePropComponent implements OnInit {
     this.ncService.getById(id).subscribe({
       next: (data: any) => {
         this.propService.ncProp = data.nc[0];
-          if (this.propService.ncProp.proposalSolution) {
-            this.propService.propSolution =
-              this.propService.ncProp.proposalSolution;
-              this.propService.popularForm();
-          } else {
-            this.propService.post().subscribe({
-              next: (data: any) => {
-                this.propService.propSolution.id = data["proposta"]["id"];
-                this.messageService.add({
-                  severity: "success",
-                  summary: this.translate.instant("createProp.success"),
-                  life: 3000,
-                });
-              },
-              error: (err) => {
-                this.messageService.add({
-                  severity: "error",
-                  summary: this.translate.instant("createProp.fail1"),
-                  life: 3000,
-                });
-              },
-            });
-          }
-        
-      },error:(err)=>{
-         this.messageService.add({
-           severity: "error",
-           summary: this.translate.instant("createProp.fail2"),
-           life: 3000,
-         });
-      }
-    });
+        console.log(data.nc[0]);
+        if (this.propService.ncProp.proposalSolution) {
+          this.propService.propSolution =
+            this.propService.ncProp.proposalSolution;
+          this.propService.popularForm();
+        } else {
+          this.propService.post().subscribe({
+            next: (data: any) => {
+              this.propService.propSolution = data["proposta"];
+              this.propService.propSolution.actionPlans = [];
+              this.propService.load();
+              this.propService.popular();
 
-  
+              this.messageService.add({
+                severity: "success",
+                summary: this.translate.instant("createProp.success"),
+                life: 3000,
+              });
+            },
+            error: (err) => {
+              this.messageService.add({
+                severity: "error",
+                summary: this.translate.instant("createProp.fail1"),
+                life: 3000,
+              });
+            },
+          });
+        }
+      },
+      error: (err) => {
+        this.messageService.add({
+          severity: "error",
+          summary: this.translate.instant("createProp.fail2"),
+          life: 3000,
+        });
+      },
+    });
 
     this.equipService.get().subscribe({
       next: (data) => {

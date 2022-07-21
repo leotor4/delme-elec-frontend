@@ -25,6 +25,7 @@ export class IshikawaDiagramComponent implements OnInit {
 
   ngOnInit(): void {
     
+   
   }
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.

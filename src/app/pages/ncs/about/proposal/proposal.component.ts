@@ -1,6 +1,7 @@
-import {Component, OnInit} from "@angular/core";
-import {ActivatedRoute, Router} from "@angular/router";
-import {AboutService} from "../about.service";
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
+import { ProposalService } from "../../create-prop/proposal.service";
+import { AboutService } from "../about.service";
 
 @Component({
   selector: "app-proposal",
@@ -11,7 +12,8 @@ export class ProposalComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    public aboutService: AboutService
+    public aboutService: AboutService,
+    private proposalService: ProposalService
   ) {}
   id: number;
   isAllOpen = true;
@@ -26,7 +28,7 @@ export class ProposalComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = parseInt(this.route.snapshot.paramMap.get("id") || "");
-    console.log(this.aboutService.nc.proposalSolution);
+  
   }
 
   goPlaces() {
@@ -39,7 +41,7 @@ export class ProposalComponent implements OnInit {
   }
   returnString(obj: any) {
     let str = "";
-    if(obj) str += obj.name??"" 
+    if (obj) str += obj.name ?? "";
     return str;
   }
 
@@ -48,6 +50,4 @@ export class ProposalComponent implements OnInit {
       (val) => val.email! != "efraim@electrosonteleco.com"
     );
   }
-
-  
 }

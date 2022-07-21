@@ -30,7 +30,6 @@ export class IshikawaDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.propService.load();
     this.stepPosition = this.config.data.page;
   }
 
