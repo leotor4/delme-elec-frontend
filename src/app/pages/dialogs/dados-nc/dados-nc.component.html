@@ -1,4 +1,3 @@
-
 <div class="d-flex flex-lg-row flex-column justify-content-between mt-4">
     <div class="d-flex">
         <div class="cabecalho">
@@ -9,27 +8,15 @@
         </div>
     </div>
     <div class="d-flex justify-content-end align-items-center mb-3">
-        <button
-                [class]="isAllOpen ? selectedClass : unselectedClass"
-                class="mr-2 btn-sm"
-                (click)="isAllOpen = true"
-        >
+        <button [class]="isAllOpen ? selectedClass : unselectedClass" class="mr-2 btn-sm" (click)="isAllOpen = true">
             <i class="bi bi-arrows-expand"></i>
             {{ "global.expand" | translate }}
         </button>
-        <button
-                [class]="isAllOpen ? unselectedClass : selectedClass"
-                (click)="isAllOpen = false"
-                class="btn-sm"
-        >
+        <button [class]="isAllOpen ? unselectedClass : selectedClass" (click)="isAllOpen = false" class="btn-sm">
             <i class="bi bi-arrows-collapse"></i>
             {{ "global.colapse" | translate }}
         </button>
-        <button
-                pButton
-                class="p-button-danger p-button-text ml-2"
-                (click)="this.ref.close()"
-        >
+        <button pButton class="p-button-danger p-button-text ml-2" (click)="this.ref.close()">
             <i class="pi pi-times"></i>
         </button>
     </div>
@@ -56,32 +43,28 @@
                             <i class="bi bi-ticket-perforated mr-1"></i>
                             <div>
                                 <span class="info-titulo">{{ "global.number" | translate }}</span>
-                                <br />
+                                <br/>
                                 <span class="info-dados">{{ this.nc?.code || "" }}</span>
                             </div>
                         </div>
                         <div class="contato-info d-flex flex-row">
                             <i class="bi bi-calendar-week mr-1"></i>
                             <div>
-          <span class="info-titulo">{{
-              "newNC.step1.identifyNC.dateOpen" | translate
-              }}</span>
-                                <br />
+                                <span class="info-titulo">{{ "newNC.step1.identifyNC.dateOpen" | translate }}</span>
+                                <br/>
                                 <span class="info-dados">
-            {{ formato_brasileiro(this.nc?.data_abertura) }}
-          </span>
+                                    {{ formato_brasileiro(this.nc?.data_abertura) }}
+                                </span>
                             </div>
                         </div>
                         <div class="contato-info d-flex flex-row">
                             <i class="bi bi-calendar-week mr-1"></i>
                             <div>
-          <span class="info-titulo">{{
-              "newNC.step1.identifyNC.dateClose" | translate
-              }}</span>
-                                <br />
+                                <span class="info-titulo">{{ "newNC.step1.identifyNC.dateClose" | translate }}</span>
+                                <br/>
                                 <span class="info-dados">
-            {{ formato_brasileiro(this.nc?.data_fechamento) }}
-          </span>
+                                    {{ formato_brasileiro(this.nc?.data_fechamento) }}
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -96,34 +79,24 @@
                         <div class="contato-info d-flex flex-row">
                             <i class="bi bi-person-circle mr-1"></i>
                             <div>
-          <span class="info-titulo">{{
-              "newNC.review.issuer" | translate
-              }}</span>
-                                <br />
-                                <span class="info-dados">{{
-                                    this.nc?.emissor?.username || "não preenchido"
-                                    }}</span>
+                                <span class="info-titulo">{{ "newNC.review.issuer" | translate }}</span>
+                                <br/>
+                                <span class="info-dados">{{ this.nc?.emissor?.username || "não preenchido" }}</span>
                             </div>
                         </div>
                         <div class="contato-info d-flex flex-row">
                             <i class="bi bi-person-circle mr-1"></i>
                             <div>
-          <span class="info-titulo">{{
-              "newNC.review.responsible" | translate
-              }}</span>
-                                <br />
-                                <span class="info-dados">{{
-                                    this.nc?.emissor?.sector?.responsible_name || "não preenchido"
-                                    }}</span>
+                                <span class="info-titulo">{{ "newNC.review.responsible" | translate }}</span>
+                                <br/>
+                                <span class="info-dados">{{ this.nc?.emissor?.sector?.responsible_name || "não preenchido" }}</span>
                             </div>
                         </div>
                         <div class="contato-info d-flex flex-row">
                             <i class="bi bi-geo-alt mr-1"></i>
                             <div>
-          <span class="info-titulo">{{
-              "newNC.review.department" | translate
-              }}</span>
-                                <br />
+                                <span class="info-titulo">{{ "newNC.review.department" | translate }}</span>
+                                <br/>
                                 <p class="info-dados">
                                     {{ this.nc?.emissor?.sector?.name || "não preenchido" }}
                                 </p>
@@ -141,20 +114,11 @@
                                 <h2 class="mr-2">{{ returnTitle() }}</h2>
                                 <p-chip>
                                     <i class="bi bi-ticket-perforated mr-2"></i>
-                                    {{
-                                    this.nc?.customer?.code ||
-                                    this.nc?.provider?.code ||
-                                    "00000000"
-                                    }}
+                                    {{ this.nc?.customer?.code || this.nc?.provider?.code || "00000000" }}
                                 </p-chip>
                             </div>
                             <p>
-                                {{
-                                this.nc?.customer?.corporate_name ||
-                                this.nc?.provider?.corporate_name ||
-                                this.nc?.sector?.name ||
-                                "global.empty" | translate
-                                }}
+                                {{ this.nc?.customer?.corporate_name || this.nc?.provider?.corporate_name || this.nc?.sector?.name || "global.empty" | translate }}
                             </p>
                         </div>
                     </div>
@@ -167,63 +131,41 @@
                             <div class="contato-info d-flex flex-row">
                                 <i class="pi pi-user"></i>
                                 <div>
-            <span class="info-titulo">{{
-                "global.contacts.name" | translate
-                }}</span>
-                                    <br />
+                                    <span class="info-titulo">{{ "global.contacts.name" | translate }}</span>
+                                    <br/>
                                     <span class="info-dados">
-              {{
-                                        this.nc?.customer?.responsible_name ||
-                                        this.nc?.provider?.responsible_name ||
-                                        this.nc?.sector?.responsible_name ||
-                                        "global.empty" | translate
-                                        }}
-            </span>
+                                        {{ this.nc?.customer?.responsible_name || this.nc?.provider?.responsible_name || this.nc?.sector?.responsible_name || "global.empty" | translate }}
+                                    </span>
                                 </div>
                             </div>
                             <div class="contato-info d-flex flex-row">
                                 <i class="pi pi-phone"></i>
                                 <div>
-            <span class="info-titulo">{{
-                "newNC.step1.partner.phone" | translate
-                }}</span>
-                                    <br />
+                                    <span class="info-titulo">{{ "newNC.step1.partner.phone" | translate }}</span>
+                                    <br/>
                                     <span class="info-dados">
-              {{
-                                        this.nc?.customer?.responsible_phone ||
-                                        this.nc?.provider?.responsible_phone ||
-                                        this.nc?.sector?.responsible_phone ||
-                                        "(00) 00000-0000"
-                                        }}
-            </span>
+                                        {{ this.nc?.customer?.responsible_phone || this.nc?.provider?.responsible_phone || this.nc?.sector?.responsible_phone || "(00) 00000-0000" }}
+                                    </span>
                                 </div>
                             </div>
                             <div class="contato-info d-flex flex-row">
                                 <i class="pi pi-at"></i>
                                 <div>
-            <span class="info-titulo">{{
-                "global.contacts.email" | translate
-                }}</span>
-                                    <br />
+                                    <span class="info-titulo">{{ "global.contacts.email" | translate }}</span>
+                                    <br/>
                                     <span class="info-dados">
-              {{
-                                        this.nc?.customer?.responsible_email ||
-                                        this.nc?.provider?.responsible_email ||
-                                        this.nc?.sector?.responsible_email ||
-                                        "global.empty" | translate
-                                        }}
-            </span>
+                                        {{ this.nc?.customer?.responsible_email || this.nc?.provider?.responsible_email || this.nc?.sector?.responsible_email || "global.empty" | translate }}
+                                    </span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="div-ident-parceiro row ">
+            <div class="div-ident-parceiro row">
                 <h1 class="titulo-parceiro">{{ "newNC.step1.product.title" | translate }}</h1>
                 <div class="dados-produto col razao-social">
                     <div class="d-flex">
-
                         <h2 class="mr-2">
                             {{ nc?.product?.description }}
                         </h2>
@@ -241,30 +183,24 @@
                         <div class="contato-info d-flex flex-row">
                             <i class="bi bi-calculator"></i>
                             <div>
-          <span class="info-titulo">{{
-              "newNC.step1.product.amount" | translate
-              }}</span>
-                                <br />
+                                <span class="info-titulo">{{ "newNC.step1.product.amount" | translate }}</span>
+                                <br/>
                                 <span class="info-dados">{{ nc?.quant_total || "" }}</span>
                             </div>
                         </div>
                         <div class="contato-info d-flex flex-row">
                             <i class="bi bi-calculator"></i>
                             <div>
-          <span class="info-titulo">{{
-              "newNC.step1.product.amountNC" | translate
-              }}</span>
-                                <br />
+                                <span class="info-titulo">{{ "newNC.step1.product.amountNC" | translate }}</span>
+                                <br/>
                                 <span class="info-dados">{{ nc?.quant_nc || "" }}</span>
                             </div>
                         </div>
                         <div class="contato-info d-flex flex-row">
                             <i class="bi bi-percent"></i>
                             <div>
-          <span class="info-titulo">{{
-              "newNC.step1.product.percent" | translate
-              }}</span>
-                                <br />
+                                <span class="info-titulo">{{ "newNC.step1.product.percent" | translate }}</span>
+                                <br/>
                                 <span class="info-dados">{{ getPercent() || "" }}%</span>
                             </div>
                         </div>
@@ -279,40 +215,30 @@
                 <div class="d-flex flex-column">
                     <div class="d-flex flex-row">
                         <i class="pi pi-directions mr-1"></i>
-                        <div>
-        <span class="info-titulo">{{
-            nc?.tipo_controle || "global.empty" | translate
-            }}</span>
+                        <div class="d-flex">
+                            <span class="info-titulo">{{ nc?.tipo_controle || "global.empty" | translate }}</span>
+                            <div class="d-flex flex-row ml-5" *ngIf="nc?.tipo_controle != 'PR'">
+                                <i class="bi bi-calculator"></i>
+                                <span class="info-titulo">{{("global.number" | translate) + ": " + (returnNumber())}}</span>
+                            </div>
                             <div class="d-flex flex-row mt-2">
-          <span class="info-dados">{{
-              nc?.procedure?.code || ""
-              }}</span>
+                                <span class="info-dados">{{ nc?.procedure?.code || "" }}</span>
 
-                                <span class="info-dados ml-3">{{
-                                    nc?.procedure?.description || ""
-                                    }}</span>
+                                <span class="info-dados ml-3">{{ nc?.procedure?.description || "" }}</span>
 
-                                <span class="info-dados ml-3">{{
-                                    nc?.procedure?.rev || ""
-                                    }}</span>
+                                <span class="info-dados ml-3">{{ nc?.procedure?.rev || "" }}</span>
                             </div>
                         </div>
+
                     </div>
-                    <div
-                            class="dados-parceiro razao-social item"
-                            *ngIf="returnFile('pontoControle').length > 0"
-                    >
+                    <div class="dados-parceiro razao-social item mt-3" *ngIf="returnFile('pontoControle').length > 0">
                         <h2 class="mr-2 mb-3">
                             <i class="bi bi-paperclip"></i>
                             {{ "global.fileInput.attachments" | translate }}
                         </h2>
                         <div>
-                            <p-carousel
-                                    [value]="returnFile('pontoControle')"
-                                    [numVisible]="3"
-                                    [numScroll]="3"
-                                    [showIndicators]="false"
-                            >
+                            <p-carousel [value]="returnFile('pontoControle')" [numVisible]="3" [numScroll]="3"
+                                        [showIndicators]="false">
                                 <ng-template let-file pTemplate="item">
                                     <i class="bi bi-file-earmark fs-1"></i>
                                     <p>{{ file.name }}</p>
@@ -328,69 +254,44 @@
                     {{ "newNC.step1.rejectionPoint.title" | translate }}
                 </h2>
                 <div class="d-flex dados-contato mb-3">
-                    <div
-                            class="contato-info d-flex flex-row mb-5 mr-5"
-                            *ngIf="nc?.num_lote"
-                    >
+                    <div class="contato-info d-flex flex-row mb-5 mr-5" *ngIf="nc?.num_lote">
                         <i class="bi bi-file-earmark-text"></i>
                         <div>
-        <span class="info-titulo">{{
-            "newNC.step1.rejectionPoint.numBatch" | translate
-            }}</span>
-                            <br />
+                            <span class="info-titulo">{{ "newNC.step1.rejectionPoint.numBatch" | translate }}</span>
+                            <br/>
                             <span class="info-dados">{{ nc?.num_lote || "" }}</span>
                         </div>
                     </div>
-                    <div
-                            class="contato-info d-flex flex-row mb-5 mr-5"
-                            *ngIf="nc?.num_ordem_compra"
-                    >
+                    <div class="contato-info d-flex flex-row mb-5 mr-5" *ngIf="nc?.num_ordem_compra">
                         <i class="bi bi-file-earmark-text"></i>
                         <div>
-        <span class="info-titulo">{{
-            "newNC.step1.rejectionPoint.numOC" | translate
-            }}</span>
-                            <br />
-                            <span class="info-dados">{{
-                                nc?.num_ordem_compra || ""
-                                }}</span>
+                            <span class="info-titulo">{{ "newNC.step1.rejectionPoint.numOC" | translate }}</span>
+                            <br/>
+                            <span class="info-dados">{{ nc?.num_ordem_compra || "" }}</span>
                         </div>
                     </div>
-                    <div
-                            class="contato-info d-flex flex-row mb-3 mr-5"
-                            *ngIf="nc?.instruction?.code"
-                    >
+                    <div class="contato-info d-flex flex-row mb-3 mr-5" *ngIf="nc?.instruction?.code">
                         <i class="bi bi-file-earmark-text"></i>
                         <div>
                             <span class="info-titulo">IT</span>
-                            <br />
+                            <br/>
                             <div class="d-flex flex-row mt-2">
-          <span class="info-dados">{{
-              nc?.instruction?.code || ""
-              }}</span>
+                                <span class="info-dados">{{ nc?.instruction?.code || "" }}</span>
 
-                                <span class="info-dados ml-3">{{
-                                    nc?.instruction?.description || ""
-                                    }}</span>
+                                <span class="info-dados ml-3">{{ nc?.instruction?.description || "" }}</span>
 
-                                <span class="info-dados ml-3">{{
-                                    nc?.instruction?.rev || ""
-                                    }}</span>
+                                <span class="info-dados ml-3">{{ nc?.instruction?.rev || "" }}</span>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="dados-parceiro col razao-social">
-                    <p-editor
-                            [ngModel]="nc?.text_area_reject_point"
-                            [style]="{ height: '100%', border: '0px solid #dddddd' }"
-                            [readonly]="true"
-                    >
-                        <ng-template pTemplate="header" hidden> </ng-template>
+                    <p-editor [ngModel]="nc?.text_area_reject_point"
+                              [style]="{ height: '100%', border: '0px solid #dddddd' }" [readonly]="true">
+                        <ng-template pTemplate="header" hidden></ng-template>
                     </p-editor>
                 </div>
             </div>
-
         </ng-template>
     </p-accordionTab>
     <p-accordionTab [selected]="isAllOpen">
@@ -403,7 +304,7 @@
             </div>
         </ng-template>
         <ng-template pTemplate="content">
-            <div class="div-ident-parceiro d-flex  mt-3">
+            <div class="div-ident-parceiro d-flex mt-3">
                 <div class="dados-parceiro razao-social item">
                     <h2 class="mr-2">
                         <i class="bi bi-file-earmark-text"></i>
@@ -418,7 +319,7 @@
                             [readonly]="true"
                             [ngModel]="this.nc?.text_area_nc"
                     >
-                        <ng-template pTemplate="header"> </ng-template>
+                        <ng-template pTemplate="header"></ng-template>
                     </p-editor>
                 </div>
                 <div class="dados-parceiro razao-social item">
@@ -426,12 +327,8 @@
                         <i class="pi pi-camera"></i>
                         {{ "newNC.review.evidence" | translate }}
                     </h2>
-                    <p-carousel
-                            [value]="this.nc?.attachments?.filter(isType1) || []"
-                            [numVisible]="3"
-                            [numScroll]="3"
-                            [showIndicators]="false"
-                    >
+                    <p-carousel [value]="this.nc?.attachments?.filter(isType1) || []" [numVisible]="3" [numScroll]="3"
+                                [showIndicators]="false">
                         <ng-template let-file pTemplate="item">
                             <div>
                                 <i class="bi bi-file-earmark fs-1"></i>
@@ -442,7 +339,7 @@
                 </div>
             </div>
 
-            <div class="div-ident-parceiro d-flex  mt-3">
+            <div class="div-ident-parceiro d-flex mt-3">
                 <div class="dados-parceiro razao-social item">
                     <h2 class="mr-2">
                         <i class="bi bi-geo"></i>
@@ -457,7 +354,7 @@
                             [readonly]="true"
                             [ngModel]="this.nc?.text_area_acoes"
                     >
-                        <ng-template pTemplate="header" hidden> </ng-template>
+                        <ng-template pTemplate="header" hidden></ng-template>
                     </p-editor>
                 </div>
                 <div class="dados-parceiro razao-social item">
@@ -465,12 +362,8 @@
                         <i class="pi pi-camera"></i>
                         {{ "newNC.review.evidence" | translate }}
                     </h2>
-                    <p-carousel
-                            [value]="this.nc?.attachments?.filter(isType2) || []"
-                            [numVisible]="3"
-                            [numScroll]="3"
-                            [showIndicators]="false"
-                    >
+                    <p-carousel [value]="this.nc?.attachments?.filter(isType2) || []" [numVisible]="3" [numScroll]="3"
+                                [showIndicators]="false">
                         <ng-template let-file pTemplate="item">
                             <div>
                                 <i class="bi bi-file-earmark fs-1"></i>
@@ -483,4 +376,3 @@
         </ng-template>
     </p-accordionTab>
 </p-accordion>
-

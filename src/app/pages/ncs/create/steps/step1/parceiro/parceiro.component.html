@@ -79,6 +79,7 @@
         class="p-autocomplete"
         [placeholder]="label"
         field="name"
+        [disabled] = "!nonComplicanceService.nc?.tipos_parceiro_item"
       >
         <ng-template let-brand pTemplate="  ">
           <div>

@@ -64,4 +64,18 @@ export class DadosNCComponent implements OnInit {
     return this.translate.instant("newNC.review.corporateName");
   }
 
+  returnNumber(): string {
+    let text = "";
+
+    if (this.nc.tipo_controle) {
+      if (this.nc.tipo_controle.includes("OP")) {
+        text = this.nc.num_op!;
+      } else {
+        text = this.nc.num_nota!;
+      }
+    }
+
+    return text;
+  }
+
 }
