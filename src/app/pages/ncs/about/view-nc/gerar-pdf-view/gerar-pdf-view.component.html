@@ -97,7 +97,10 @@
     <app-view-stakeholders></app-view-stakeholders>
   </div>
 
-  <div>
+
+
+  <div *ngIf="aboutService.hasProposal()">
+    <div>
     <div class="d-flex justify-content-between accordion">
       <p>
         <i class="bi bi-suit-diamond"></i>
@@ -454,8 +457,9 @@
       </ng-template>
     </p-table>
   </div>
+  </div>
 
-   <div class="quebrar-linha mb-4">
+   <div class="quebrar-linha mb-4" *ngIf="aboutService.hasSgqEval()">
     <h2>Reincidência</h2>
     <div class="card">
       <p-table [value]="aboutService.nc.sgqEvaluation.recurrence || []">
