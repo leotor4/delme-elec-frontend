@@ -1,4 +1,6 @@
 <div id="pdfContent">
+ 
+
   <div class="cabecalho-eletrosom d-flex">
     <div class="logo d-flex align-items-center col-6">
       <img src="../assets/images/logo2.png" alt="Electroson" />
@@ -90,7 +92,8 @@
       </span>
     </div>
   </div>
-  <div class="mt-3 mb-5">
+  <div class="quebrar-linha-contato mb-5">
+    <h3><strong>Contatos</strong></h3>
     <app-view-stakeholders></app-view-stakeholders>
   </div>
 
@@ -424,7 +427,144 @@
       </ng-template>
     </p-table>
   </div>
-  
+
+  <h2 class="mr-4 text-black mt-4 fs-5">
+    <i class="pi pi-copy"></i>
+    {{ "about.costsComponent.documents.title" | translate }}
+  </h2>
+  <div class="card mt-3">
+    <p-table [value]="this.aboutService.nc?.costs || []">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>{{ "about.costsComponent.documents.document" | translate }}</th>
+          <th>{{ "about.costsComponent.documents.date" | translate }}</th>
+          <th>{{ "about.costsComponent.documents.attachedBy" | translate }}</th>
+          <th>{{ "about.costsComponent.documents.total" | translate }}</th>
+          <th></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-doc>
+        <tr>
+          <td>{{ doc.file_name }}</td>
+          <td>{{ parseDate(doc.created_at) }}</td>
+          <td>{{ doc.author?.username }}</td>
+          <td>{{ format(doc.value) }}</td>
+          <td></td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+
+   <div  class="mt-4 mb-4">
+    <h2>Reincidência</h2>
+    <div class="card">
+      <p-table [value]="aboutService.nc.sgqEvaluation.recurrence || []">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>{{ "global.number" | translate }}</th>
+            <th>{{ "newNC.review.issuer" | translate }}</th>
+            <th>{{ "about.sgqEvalComponent.recurrence.type" | translate }}</th>
+            <th>
+              {{ "about.sgqEvalComponent.recurrence.sector" | translate }}
+            </th>
+            <th>
+              {{ "about.sgqEvalComponent.recurrence.product" | translate }}
+            </th>
+            <th>{{ "global.status" | translate }}</th>
+            <th>{{ "about.sgqEvalComponent.deadline" | translate }}</th>
+            <th></th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-nc let-i="rowIndex">
+          <tr></tr>
+          <tr>
+            <td>{{ nc.code }}</td>
+            <td>{{ nc.emissor?.username }}</td>
+            <td>{{ nc.tipos_nc_item }}</td>
+            <td>{{ nc.tipos_local_item }}</td>
+            <td>{{ nc.product?.name || nc.product?.description }}</td>
+
+            <td>
+              <span [ngSwitch]="nc.status">
+                <span *ngSwitchCase="'open'">
+                  {{ "global.status1" | translate }}</span
+                >
+                <span *ngSwitchCase="'running'">{{
+                  "global.status2" | translate
+                }}</span>
+                <span *ngSwitchCase="'late'">
+                  {{ "global.status3" | translate }}</span
+                >
+                <span *ngSwitchCase="'deleted'">
+                  {{ "global.status4" | translate }}</span
+                >
+                <span *ngSwitchCase="'archived'">
+                  {{ "global.status5" | translate }}</span
+                >
+                <span *ngSwitchCase="'canceled'">
+                  {{ "global.status6" | translate }}</span
+                >
+                <span *ngSwitchCase="'closed'">
+                  {{ "global.status7" | translate }}</span
+                >
+              </span>
+            </td>
+            <td>{{ parseDate(nc.data_fechamento || "") || "00/00/0000" }}</td>
+            <td>
+              <button
+                pButton
+                type="button"
+                icon="bi bi-info-circle"
+                class="p-button-secondary p-button-text"
+                (click)="details(nc)"
+              ></button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+
+    <div class="quebrar-linha">
+      <h2>Relato e evidências da solução do problema</h2>
+      <p-editor
+        [ngModel]="aboutService.nc.sgqEvaluation.text_area1"
+        [style]="editorStyle"
+        [readonly]="true"
+      >
+        <ng-template pTemplate="header"> </ng-template>
+      </p-editor>
+    </div>
+    <div class="mt-4">
+      <h3><strong>Anexos</strong></h3>
+      <div class="d-flex flex-wrap">
+        <div *ngFor="let item of aboutService.nc.sgqEvaluation.attachments">
+          {{ item.name + " / " }}
+        </div>
+      </div>
+    </div>
+    <div class="mt-4">
+      <h2>Riscos de oportunidades</h2>
+      <p-editor
+        [ngModel]="aboutService.nc.sgqEvaluation.text_area2"
+        [style]="editorStyle"
+        [readonly]="true"
+      >
+        <ng-template pTemplate="header"> </ng-template>
+      </p-editor>
+    </div>
+
+    <div class="mt-4">
+      <h2>Mudanças</h2>
+      <p-editor
+        [ngModel]="aboutService.nc.sgqEvaluation.text_area3"
+        [style]="editorStyle"
+        [readonly]="true"
+      >
+        <ng-template pTemplate="header"> </ng-template>
+      </p-editor>
+    </div>
+  </div>
+
   <div class="d-flex flex-row align-items-center fotter">
     <div class="d-flex flex-column justify-content-center p-2">
       <span>Sempre conectados</span>

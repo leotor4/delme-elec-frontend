@@ -12,7 +12,7 @@
   </p-tabPanel>
 
   <p-tabPanel
-    [disabled]="checkDisableProposal()"
+    [disabled]=" checkDisableProposal()"
     [header]="'about.proposal' | translate"
     leftIcon="bi bi-tools"
   >
@@ -22,7 +22,7 @@
   </p-tabPanel>
 
   <p-tabPanel
-    [disabled]="checkDisableCosts()"
+    [disabled]=" checkDisableCosts()"
     [header]="'about.costs' | translate"
     leftIcon="bi bi-coin"
   >
@@ -32,7 +32,7 @@
   </p-tabPanel>
 
   <p-tabPanel
-    [disabled]="checkDisableSgqEval()"
+    [disabled]=" checkDisableSgqEval()"
     [header]="'about.sgqEval' | translate"
     leftIcon="bi bi-search"
   >
@@ -42,7 +42,7 @@
   </p-tabPanel>
 
   <p-tabPanel
-    [disabled]="checkDisableClose()"
+    [disabled]=" checkDisableClose()"
     [header]="'about.closing' | translate"
     leftIcon="bi bi-folder-check"
   >

@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Attachment } from 'src/app/models/attachment';
-import { AboutService } from '../../about.service';
+import { Component, OnInit } from "@angular/core";
+import { Attachment } from "src/app/models/attachment";
+import { AboutService } from "../../about.service";
 
 @Component({
   selector: "app-gerar-pdf-view",
@@ -25,6 +25,16 @@ export class GerarPdfViewComponent implements OnInit {
   dataParse(date: any) {
     let newDate = new Date(date);
     return newDate.toLocaleString("pt-Br").split(" ")[0];
+  }
+  parseDate(date: string) {
+    let d = new Date(Date.parse(date));
+    return d.toLocaleDateString();
+  }
+  format(text: string) {
+    return parseFloat(text).toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    });
   }
 
   returnFile(name: string) {

@@ -54,6 +54,7 @@ export class CreatePropComponent implements OnInit {
           this.propService.post().subscribe({
             next: (data: any) => {
               this.propService.propSolution = data["proposta"];
+              console.log(this.propService.propSolution);
               this.propService.propSolution.actionPlans = [];
               this.propService.load();
               this.propService.popular();
