@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { ChartsService } from "src/app/_services/charts.service";
-import {TranslateService} from "@ngx-translate/core";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: "app-nc-emissor",
@@ -9,7 +9,10 @@ import {TranslateService} from "@ngx-translate/core";
 })
 export class NcEmissorComponent implements OnInit {
   @Input() size: number[] = [];
-  constructor(public chartsService: ChartsService, public translate: TranslateService) {}
+  constructor(
+    public chartsService: ChartsService,
+    public translate: TranslateService
+  ) {}
   ngOnInit(): void {
     this.tipos = Object.assign([], this.chartsService.sectors);
     this.popular();
@@ -17,14 +20,15 @@ export class NcEmissorComponent implements OnInit {
 
   single: any[] = [];
   tipos: string[] = [];
+  graph: any;
   tiposNc: string[] = [
+    this.translate.instant("global.all"),
     this.translate.instant("newNC.step1.ncType.type1"),
     this.translate.instant("newNC.step1.ncType.type2"),
     this.translate.instant("newNC.step1.ncType.type3"),
     this.translate.instant("newNC.step1.ncType.type4"),
     this.translate.instant("newNC.step1.ncType.type5"),
     this.translate.instant("newNC.step1.ncType.type6"),
-    this.translate.instant("global.all"),
   ];
   tiposNcAtual = this.translate.instant("global.all");
   quant: number[] = [];
@@ -67,6 +71,34 @@ export class NcEmissorComponent implements OnInit {
     }
 
     this.ordenar();
+
+    let tipos2: string[] = [];
+    let quant2: number[] = [];
+    this.single.forEach((element) => {
+      tipos2.push(element.name);
+      quant2.push(element.value);
+    });
+    this.graph = {
+      data: [
+        {
+          x: tipos2,
+          y: quant2,
+          type: "bar",
+          name: this.translate.instant("charts.ncsReceived"),
+          marker: { color: "rgb(29,104,251)" },
+        },
+      ],
+      layout: {
+        width: this.size[0],
+        height: this.size[1],
+        xaxis: { title: "Setores" },
+        yaxis: { title: "Quantidade de NCs" },
+      
+        autosize: true,
+        title: "",
+      },
+      config: { responsive: true },
+    };
   }
 
   // options

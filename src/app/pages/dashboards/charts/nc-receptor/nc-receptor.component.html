@@ -9,7 +9,7 @@
       (onChange)="popular()"
     ></p-dropdown>
     </div>
-  <ngx-charts-bar-vertical
+  <!-- <ngx-charts-bar-vertical
     [view]="size"
     [results]="single"
     [gradient]="gradient"
@@ -24,5 +24,6 @@
 
     
   >
-  </ngx-charts-bar-vertical>
+  </ngx-charts-bar-vertical> -->
+  <plotly-plot [data]="graph.data" [layout]="graph.layout" [config]="graph.config"> </plotly-plot>
 </div>

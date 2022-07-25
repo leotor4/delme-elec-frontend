@@ -8,10 +8,14 @@ import {TranslateService} from "@ngx-translate/core";
   styleUrls: ["./nc-status.component.css"],
 })
 export class NcStatusComponent implements OnInit {
-  constructor(public chartsService: ChartsService, public translate: TranslateService) {}
+  constructor(
+    public chartsService: ChartsService,
+    public translate: TranslateService
+  ) {}
   @Input() size: number[] = [];
   setor: any;
   setores: string[] = [];
+  graph: any;
 
   ngOnInit(): void {
     this.popularSetores();
@@ -73,7 +77,10 @@ export class NcStatusComponent implements OnInit {
       },
     ];
     this.chartsService.ncs.forEach((element) => {
-      if (element.tipos_local_item == this.setor || this.setor == this.translate.instant("global.all")) {
+      if (
+        element.tipos_local_item == this.setor ||
+        this.setor == this.translate.instant("global.all")
+      ) {
         console.log("entrou");
         switch (element.status) {
           case "open":
@@ -94,13 +101,40 @@ export class NcStatusComponent implements OnInit {
         }
       }
     });
+    let tipos:string[] = []
+    let quant:number[] = []
+    this.single.forEach(element=>{
+      tipos.push(element.name)
+      quant.push(element.value);
+    })
+    this.graph = {
+      data: [
+        {
+          x: tipos,
+          y: quant,
+          type: "bar",
+          name: this.translate.instant("charts.ncsReceived"),
+          
+        },
+      ],
+      layout: {
+        width: this.size[0],
+        height: this.size[1],
+        xaxis: { title: "Status da Nc" },
+        yaxis: { title: "Quantidade de NCs" },
+        autosize: true,
+      
+        title: "",
+      },
+      config: { responsive: true },
+    };
   }
 
   // options
   showXAxis = true;
   showYAxis = true;
   gradient = false;
-  showLegend = true;
+  showLegend = false;
   showXAxisLabel = true;
   showYAxisLabel = true;
   xAxisLabel = "Status da Nc";

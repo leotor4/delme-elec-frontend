@@ -9,7 +9,10 @@ import {TranslateService} from "@ngx-translate/core";
 })
 export class NcReceptorEmissorComponent implements OnInit {
   @Input() size: number[] = [];
-  constructor(public chartsService: ChartsService, public translate: TranslateService) {}
+  constructor(
+    public chartsService: ChartsService,
+    public translate: TranslateService
+  ) {}
   ngOnInit(): void {
     this.tipos = Object.assign([], this.chartsService.sectors);
     this.popular();
@@ -20,13 +23,13 @@ export class NcReceptorEmissorComponent implements OnInit {
   tipos: string[] = [];
   graph: any;
   tiposNc: string[] = [
+    this.translate.instant("global.all"),
     this.translate.instant("newNC.step1.ncType.type1"),
     this.translate.instant("newNC.step1.ncType.type2"),
     this.translate.instant("newNC.step1.ncType.type3"),
     this.translate.instant("newNC.step1.ncType.type4"),
     this.translate.instant("newNC.step1.ncType.type5"),
     this.translate.instant("newNC.step1.ncType.type6"),
-    this.translate.instant("global.all"),
   ];
   tiposNcAtual = this.translate.instant("global.all");
   quant: number[] = [];
@@ -98,13 +101,13 @@ export class NcReceptorEmissorComponent implements OnInit {
           x: this.tipos,
           y: this.quant,
           type: "bar",
-          name: this.translate.instant("charts.cost2"),
+          name: this.translate.instant("charts.ncsReceived"),
           marker: { color: "rgb(29,104,251)" },
         },
         {
           x: this.tipos,
           y: this.quantEmissor,
-          name: this.translate.instant("charts.amount"),
+          name: this.translate.instant("charts.ncsSent"),
           type: "bar",
           marker: { color: "rgb(51,192,252)" },
         },
@@ -130,6 +133,5 @@ export class NcReceptorEmissorComponent implements OnInit {
   showYAxisLabel = true;
   xAxisLabel = "";
   yAxisLabel = "";
-  title =
-      this.translate.instant("charts.title7");
+  title = this.translate.instant("charts.title7");
 }

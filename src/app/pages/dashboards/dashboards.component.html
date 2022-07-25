@@ -1,21 +1,8 @@
 <div
   class="d-flex flex-column justify-content-around align-items-center"
-  style="height: 7200px;"
+  style="height:7200px;"
   *ngIf="carregou()"
 >
-<!-- 
-1 - (nc-status)
-2 - (nc-year)
-3 - (cost-sector)
-4 - (nc-products)
-5 - (nc-types)
-6 - (nc-emissor)
-7 - (nc-receptor)
-8 - (nc-receptor-emissor)
-9 - (nc-count) 
-10 - (nc-actionplan) 
--->
-
   <app-nc-receptor-emissor [size]="[getWidth(), 400]"></app-nc-receptor-emissor>
   <app-nc-status [size]="[getWidth(), 400]"></app-nc-status>
   <app-nc-year [size]="[getWidth(), 400]"></app-nc-year>
