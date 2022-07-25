@@ -86,10 +86,10 @@ export class CostSectorComponent implements OnInit {
         height: this.size[1],
         xaxis: {
           autotick: false,
-          title: "Setor",
+          title: this.translate.instant("charts.sector"),
         },
 
-        yaxis: { title: "Quantidade e Custo de NC" },
+        yaxis: { title: this.translate.instant("charts.subtitle1") },
         title: "",
       },
     };
@@ -97,8 +97,8 @@ export class CostSectorComponent implements OnInit {
 
   popularSetores() {
     this.setoresAux = Object.assign([], this.chartsService.sectors);
-    this.setoresAux.unshift("Todos");
-    this.setor = "Todos";
+    this.setoresAux.unshift(this.translate.instant("global.all"));
+    this.setor = this.translate.instant("global.all");
     this.setoresAux.push(this.translate.instant("global.all"));
     this.setor = this.translate.instant("global.all");
   }

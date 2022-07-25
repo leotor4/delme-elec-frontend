@@ -560,6 +560,11 @@
     "reviewSubtitle": "Revise ou altere os dados da análise da NC. Se tudo estiver OK, submeta a análise desta NC."
   },
   "charts": {
+    "sectors": "Setores",
+    "sector": "Setor",
+    "year": "Ano",
+    "subtitle1": "Quantidade e Custo de NC",
+    "amountActions": "Quantidade de Ações",
     "title1": "Número de Ncs x Custo Total",
     "cost": "Custos",
     "amount": "Quantidade",

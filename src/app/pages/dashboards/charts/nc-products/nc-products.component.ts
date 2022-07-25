@@ -66,8 +66,8 @@ export class NcProductsComponent implements OnInit {
       layout: {
         width: this.size[0],
         height: this.size[1],
-        xaxis: { title: "Ano" },
-        yaxis: { title: "Quantidade de Produtos" },
+        xaxis: { title: this.translate.instant("charts.year") },
+        yaxis: { title: this.translate.instant("charts.products") },
         title: "",
       },
     };

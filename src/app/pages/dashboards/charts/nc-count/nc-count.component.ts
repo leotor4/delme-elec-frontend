@@ -67,10 +67,10 @@ export class NcCountComponent implements OnInit {
       height: 500,
       xaxis: {
         autotick: false,
-        title: "Ano",
+        title: this.translate.instant("charts.year"),
       },
 
-      yaxis: { title: "Quantidade de NC" },
+      yaxis: { title: this.translate.instant("charts.ncAmount") },
     },
   };
 }

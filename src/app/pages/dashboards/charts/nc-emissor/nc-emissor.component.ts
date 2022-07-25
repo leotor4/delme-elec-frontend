@@ -91,8 +91,8 @@ export class NcEmissorComponent implements OnInit {
       layout: {
         width: this.size[0],
         height: this.size[1],
-        xaxis: { title: "Setores" },
-        yaxis: { title: "Quantidade de NCs" },
+        xaxis: { title: this.translate.instant("charts.sectors") },
+        yaxis: { title: this.translate.instant("charts.ncAmount") },
       
         autosize: true,
         title: "",
@@ -108,7 +108,7 @@ export class NcEmissorComponent implements OnInit {
   showLegend = true;
   showXAxisLabel = true;
   showYAxisLabel = true;
-  xAxisLabel = "Setores";
-  yAxisLabel = "Quantidade de NC";
-  title = "Departamento Emissor x Quantidade de Ncs";
+  xAxisLabel = this.translate.instant("charts.sectors");
+  yAxisLabel = this.translate.instant("charts.ncAmount");
+  title = this.translate.instant("charts.title4");
 }
