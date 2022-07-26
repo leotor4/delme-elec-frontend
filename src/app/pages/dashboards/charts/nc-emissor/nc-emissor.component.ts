@@ -47,19 +47,23 @@ export class NcEmissorComponent implements OnInit {
       this.quant.push(0);
     }
     this.chartsService.ncs.forEach((element) => {
-      if (
-        element.emissor &&
-        (element.tipos_nc_item == this.tiposNcAtual ||
-          this.tiposNcAtual == this.translate.instant("global.all"))
-      ) {
-        let setor = element.emissor.sector!.name;
-        let index = this.tipos.indexOf(setor);
-        if (index == -1) {
-          this.tipos.push(setor);
-          this.quant.push(1);
-        } else {
-          this.quant[index]++;
+      try {
+        if (
+          element.emissor &&
+          (element.tipos_nc_item == this.tiposNcAtual ||
+            this.tiposNcAtual == this.translate.instant("global.all"))
+        ) {
+          let setor = element.emissor.sector!.name;
+          let index = this.tipos.indexOf(setor);
+          if (index == -1) {
+            this.tipos.push(setor);
+            this.quant.push(1);
+          } else {
+            this.quant[index]++;
+          }
         }
+      } catch (e) {
+       
       }
     });
 
@@ -93,7 +97,7 @@ export class NcEmissorComponent implements OnInit {
         height: this.size[1],
         xaxis: { title: "Setores" },
         yaxis: { title: "Quantidade de NCs" },
-      
+
         autosize: true,
         title: "",
       },

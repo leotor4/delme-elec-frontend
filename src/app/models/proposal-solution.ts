@@ -37,9 +37,10 @@ export class ProposalSolution {
     fifth_why:string= "";
     root_cause:string;
     non_compliance_id:number;
-     machine = new Machine()
-     actionPlans:ActionPlan[] = []
-     contacts:Contact[] = []
+    machine = new Machine()
+    actionPlans:ActionPlan[] = []
+    contacts:Contact[] = []
+    status:string;
   equipament = new Equipament()
   instruction = new Instruction()
   procedure = new Procedure()

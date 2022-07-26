@@ -127,6 +127,7 @@ export class NcActionplanComponent implements OnInit {
           y: this.ncs,
           name: this.translate.instant("global.ncAmount"),
           type: "scatter",
+          yaxis: "y2",
           marker: { color: "rgb(252,134,43)" },
         },
       ],
@@ -138,6 +139,7 @@ export class NcActionplanComponent implements OnInit {
           autotick: false,
           title: "Setores",
         },
+        yaxis2: this.chartsService.yaxisConfig,
 
         yaxis: { title: "Quantidade de Ações" },
       },

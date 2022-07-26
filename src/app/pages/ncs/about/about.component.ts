@@ -21,14 +21,12 @@ export class AboutComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    
     let id = parseInt(this.route.snapshot.paramMap.get("id") || "");
     this.aboutSrvc.getNC(id);
   }
 
   ngOnDestroy(): void {
     this.aboutSrvc.isLoad = false;
-  
   }
 
   goCreateProp(e: any) {
@@ -48,7 +46,7 @@ export class AboutComponent implements OnInit {
 
   checkDisableProposal(): boolean {
     var disabled = true;
-    console.log(this.aboutSrvc.nc?.affected_sector?.responsible_email);
+   
     if (this.aboutSrvc.nc?.affected_sector?.responsible_email) {
       if (
         this.roleService.isResponsibleOrManager(
@@ -84,32 +82,9 @@ export class AboutComponent implements OnInit {
     var disabled = true;
     let teste = false;
 
-
     if (this.aboutSrvc.hasProposal() && this.roleService.isFiscalOrManager()) {
       let proposta = this.aboutSrvc.nc.proposalSolution;
-
-      console.log(this.aboutSrvc.nc.proposalSolution)
-
-
-
-      if (
-        !!proposta?.root_cause &&
-        !!proposta?.effect_description &&
-        (!!proposta?.material_description ||
-          !!proposta?.man_power_description ||
-          !!proposta?.environment_description ||
-          !!proposta?.machine_description ||
-          !!proposta?.method_description ||
-          !!proposta?.lack_materials ||
-          !!proposta?.excess_materials ||
-          !!proposta?.lack_parameters ||
-          !!proposta?.excess_parameters ||
-          !!proposta?.non_achievement_goals ||
-          !!proposta?.low_quality_materials ||
-          !!proposta?.run_training ||
-          !!proposta?.measurement_description) &&
-        proposta?.actionPlans.length > 0
-      ) {
+      if (proposta?.status == "complete") {
         disabled = false;
       }
     }
@@ -123,26 +98,9 @@ export class AboutComponent implements OnInit {
     if (this.aboutSrvc.hasProposal() && this.roleService.isManager()) {
       let proposta = this.aboutSrvc.nc.proposalSolution;
 
-      if (
-        !!proposta?.root_cause &&
-        !!proposta?.effect_description &&
-        (!!proposta?.material_description ||
-          !!proposta?.man_power_description ||
-          !!proposta?.environment_description ||
-          !!proposta?.machine_description ||
-          !!proposta?.method_description ||
-          !!proposta?.lack_materials ||
-          !!proposta?.excess_materials ||
-          !!proposta?.lack_parameters ||
-          !!proposta?.excess_parameters ||
-          !!proposta?.non_achievement_goals ||
-          !!proposta?.low_quality_materials ||
-          !!proposta?.run_training ||
-          !!proposta?.measurement_description) &&
-        proposta?.actionPlans.length > 0
-      ) {
-        disabled = false;
-      }
+     if (proposta?.status == "complete") {
+       disabled = false;
+     }
     }
     return disabled;
   }

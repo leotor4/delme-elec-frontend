@@ -18,11 +18,12 @@ import { NcReceptorEmissorComponent } from './charts/nc-receptor-emissor/nc-rece
 import { NcCountComponent } from './charts/nc-count/nc-count.component';
 import { NcActionplanComponent } from './charts/nc-actionplan/nc-actionplan.component';
 import {TranslateModule} from "@ngx-translate/core";
+import { NcSectorProposalComponent } from './charts/nc-sector-proposal/nc-sector-proposal.component';
 
 PlotlyModule.plotlyjs = PlotlyJS;
 
 @NgModule({
-  declarations: [DashboardsComponent, NcStatusComponent, NcYearComponent, CostSectorComponent, NcProductsComponent, NcTypesComponent, NcEmissorComponent, NcReceptorComponent, NcReceptorEmissorComponent, NcCountComponent, NcActionplanComponent],
+  declarations: [DashboardsComponent, NcStatusComponent, NcYearComponent, CostSectorComponent, NcProductsComponent, NcTypesComponent, NcEmissorComponent, NcReceptorComponent, NcReceptorEmissorComponent, NcCountComponent, NcActionplanComponent, NcSectorProposalComponent],
     imports: [
         CommonModule,
         FormsModule,

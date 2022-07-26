@@ -1,0 +1,15 @@
+<div class="d-flex flex-column justify-content-center align-items-start">
+  <div class="d-flex justify-content-center" style="width: 100%">
+    <h2>{{'charts.title8' | translate}}</h2>
+  </div>
+
+  <div class="mb-5">
+      <p-dropdown
+      [options]="setoresAux"
+      [(ngModel)]="setor"
+      (onChange)="popular()"
+    ></p-dropdown>
+  </div>
+ 
+ <plotly-plot [data]="graph.data" [layout]="graph.layout"> </plotly-plot>
+</div>

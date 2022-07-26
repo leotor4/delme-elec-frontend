@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
-import { MessageService } from 'primeng/api';
-import { Closing } from 'src/app/models/closing';
-import { NonComplianceService } from 'src/app/_services/non-compliance.service';
-import { AboutService } from '../../about.service';
-import { ClosingService } from '../closing.service';
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
+import { TranslateService } from "@ngx-translate/core";
+import { MessageService } from "primeng/api";
+import { Closing } from "src/app/models/closing";
+import { NonComplianceService } from "src/app/_services/non-compliance.service";
+import { AboutService } from "../../about.service";
+import { ClosingService } from "../closing.service";
 
 @Component({
   selector: "app-fechamento",
@@ -30,8 +30,11 @@ export class FechamentoComponent implements OnInit {
   radioValue: string;
   editorValue = "";
 
+  disableButton():boolean {
+    if (this.radioValue) return false;
+    return true;
+  }
   save() {
-    
     this.closing.nonCompliance_id = parseInt(
       this.route.snapshot.paramMap.get("id")!
     );
@@ -45,7 +48,7 @@ export class FechamentoComponent implements OnInit {
               summary: this.translate.instant("closeNC.success"),
               life: 3000,
             });
-           this.router.navigate(["/", "ncs"]);
+            this.router.navigate(["/", "ncs"]);
           },
           error: (error) => {
             this.messageService.add({

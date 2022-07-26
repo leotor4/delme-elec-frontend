@@ -22,7 +22,6 @@ export class NcTypesComponent implements OnInit {
   }
 
   single: any[] = [];
- 
 
   popular() {
     this.single = [
@@ -66,8 +65,8 @@ export class NcTypesComponent implements OnInit {
         }
       }
     });
-     let tipos: string[] = [];
-     let quant: number[] = [];
+    let tipos: string[] = [];
+    let quant: number[] = [];
     this.single.forEach((element) => {
       tipos.push(element.name);
       quant.push(element.value);
@@ -109,7 +108,7 @@ export class NcTypesComponent implements OnInit {
   showLegend = true;
   showXAxisLabel = true;
   showYAxisLabel = true;
-  xAxisLabel = "Tipos de NC";
-  yAxisLabel = "Quantidade de NC";
+  xAxisLabel = "Quantidade de NC";
+  yAxisLabel = "Tipos de NC";
   gridColor = "ocean";
 }

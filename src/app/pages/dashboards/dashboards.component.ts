@@ -78,7 +78,10 @@ export class DashboardsComponent implements OnInit {
       next: (data: any) => {
         this.chartsService.sectors = [];
         data.sectors.forEach((element: any) => {
-          this.chartsService.sectors.push(element.name);
+          let sectorName = element.name;
+          if(sectorName){
+            this.chartsService.sectors.push(sectorName);
+          }
         });
 
         this.load3 = true;

@@ -67,25 +67,35 @@ export class CreatePropStepperComponent implements OnInit {
 
     
     this.propService.popular()
-    this.propService.put().subscribe({
-       next:(data:any )=> {
-
-        this.messageService.add({
-          severity: "success",
-          summary:  this.translate.instant("global.step") + (this.stepPosition + 1) + this.translate.instant("global.saved"),
-          life: 3000,
-        });
-        this.stepPosition >= this.items.length - 1?this.router.navigateByUrl('/ncs/about/' + id):this.stepPosition++
-         this.divToScroll.nativeElement.scrollTop = 0;
-      },
-      error:err =>{
-        this.messageService.add({
-          severity: "error",
-          summary: this.translate.instant("global.error") + (this.stepPosition + 1) + "." ,
-          life: 3000,
-        });
-      }
-    })
+    if (this.stepPosition >= this.items.length - 1){
+      this.propService.propSolution.status = "complete"
+    }
+      this.propService.put().subscribe({
+        next: (data: any) => {
+          this.messageService.add({
+            severity: "success",
+            summary:
+              this.translate.instant("global.step") +
+              (this.stepPosition + 1) +
+              this.translate.instant("global.saved"),
+            life: 3000,
+          });
+          this.stepPosition >= this.items.length - 1
+            ? this.router.navigateByUrl("/ncs/about/" + id)
+            : this.stepPosition++;
+          this.divToScroll.nativeElement.scrollTop = 0;
+        },
+        error: (err) => {
+          this.messageService.add({
+            severity: "error",
+            summary:
+              this.translate.instant("global.error") +
+              (this.stepPosition + 1) +
+              ".",
+            life: 3000,
+          });
+        },
+      });
     
   }
 

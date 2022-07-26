@@ -59,6 +59,7 @@ export class NcYearComponent implements OnInit {
           x: this.anos,
           y: this.quantCusto,
           type: "scatter",
+          yaxis: "y2",
           name: "Custo",
           marker: { color: "rgb(252,134,43)" },
         },
@@ -77,6 +78,7 @@ export class NcYearComponent implements OnInit {
           autotick: false,
           title: "Ano",
         },
+        yaxis2: this.chartsService.yaxisConfig,
 
         yaxis: { title: "Quantidade e Custo de NC" },
       },

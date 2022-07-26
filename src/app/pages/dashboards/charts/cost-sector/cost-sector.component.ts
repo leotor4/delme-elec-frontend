@@ -68,17 +68,18 @@ export class CostSectorComponent implements OnInit {
       data: [
         {
           x: this.setores,
-          y: this.quantCusto,
-          type: "scatter",
-          name: this.translate.instant("charts.cost"),
-          marker: { color: "rgb(252,134,43)" },
-        },
-        {
-          x: this.setores,
           y: this.quantAnos,
           name: this.translate.instant("charts.amount"),
           type: "bar",
           marker: { color: "rgb(29,104,251)" },
+        },
+        {
+          x: this.setores,
+          y: this.quantCusto,
+          type: "scatter",
+          yaxis: "y2",
+          name: this.translate.instant("charts.cost"),
+          marker: { color: "rgb(252,134,43)" },
         },
       ],
       layout: {
@@ -90,6 +91,7 @@ export class CostSectorComponent implements OnInit {
         },
 
         yaxis: { title: "Quantidade e Custo de NC" },
+        yaxis2: this.chartsService.yaxisConfig,
         title: "",
       },
     };
