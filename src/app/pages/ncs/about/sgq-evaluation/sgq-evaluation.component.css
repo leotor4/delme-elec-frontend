@@ -18,3 +18,11 @@ h2 {
     display: none;
 }
 
+.selected-btn {
+    background-color: #00344D;
+    color: #fff;
+}
+.unselected-btn {
+    border-color: #00344D;
+    color:#00344D;
+}
