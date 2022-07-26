@@ -76,11 +76,11 @@ export class NcYearComponent implements OnInit {
         height: this.size[1],
         xaxis: {
           autotick: false,
-          title: "Ano",
+          title: this.translate.instant("charts.year"),
         },
         yaxis2: this.chartsService.yaxisConfig,
 
-        yaxis: { title: "Quantidade e Custo de NC" },
+        yaxis: { title: this.translate.instant("charts.subtitle1") },
       },
     };
   }

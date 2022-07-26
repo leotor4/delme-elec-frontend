@@ -84,8 +84,8 @@ export class NcTypesComponent implements OnInit {
       layout: {
         width: this.size[0],
         height: this.size[1],
-        xaxis: { title: "Tipos de NC" },
-        yaxis: { title: "Quantidade de NCs" },
+        xaxis: { title: this.translate.instant("charts.ncAmount") },
+        yaxis: { title: this.translate.instant("charts.title8") },
         autosize: true,
         title: "",
       },
@@ -108,7 +108,8 @@ export class NcTypesComponent implements OnInit {
   showLegend = true;
   showXAxisLabel = true;
   showYAxisLabel = true;
-  xAxisLabel = "Quantidade de NC";
-  yAxisLabel = "Tipos de NC";
+ 
+  xAxisLabel = this.translate.instant("charts.title8");
+  yAxisLabel = this.translate.instant("charts.ncAmount");
   gridColor = "ocean";
 }

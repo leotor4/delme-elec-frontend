@@ -120,8 +120,8 @@ export class NcStatusComponent implements OnInit {
       layout: {
         width: this.size[0],
         height: this.size[1],
-        xaxis: { title: "Status da Nc" },
-        yaxis: { title: "Quantidade de NCs" },
+        xaxis: { title: this.translate.instant("charts.title9") },
+        yaxis: { title: this.translate.instant("charts.ncAmount") },
         autosize: true,
       
         title: "",
@@ -137,8 +137,8 @@ export class NcStatusComponent implements OnInit {
   showLegend = false;
   showXAxisLabel = true;
   showYAxisLabel = true;
-  xAxisLabel = "Status da Nc";
-  yAxisLabel = "Quantidade de NCs";
+  xAxisLabel = this.translate.instant("charts.title9");
+  yAxisLabel = this.translate.instant("charts.ncAmount");
   gridColor = "ocean";
 
   onSelect(event: any) {}

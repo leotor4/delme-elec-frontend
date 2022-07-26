@@ -125,7 +125,7 @@ export class NcActionplanComponent implements OnInit {
         {
           x: this.tipos,
           y: this.ncs,
-          name: this.translate.instant("global.ncAmount"),
+          name: this.translate.instant("charts.ncAmount"),
           type: "scatter",
           yaxis: "y2",
           marker: { color: "rgb(252,134,43)" },
@@ -137,11 +137,11 @@ export class NcActionplanComponent implements OnInit {
         title: "",
         xaxis: {
           autotick: false,
-          title: "Setores",
+          title: this.translate.instant("charts.sectors"),
         },
         yaxis2: this.chartsService.yaxisConfig,
 
-        yaxis: { title: "Quantidade de Ações" },
+        yaxis: { title: this.translate.instant("charts.amountActions") },
       },
     };
   }
