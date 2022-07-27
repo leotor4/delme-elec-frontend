@@ -73,8 +73,14 @@ export class NcProductsComponent implements OnInit {
       layout: {
         width: this.size[0],
         height: this.size[1],
-      
-        yaxis2: this.chartsService.yaxisConfig,
+
+        yaxis2: {
+          overlaying: "y",
+          side: "right",
+          showgrid: false,
+          zeroline: false,
+          title: this.translate.instant("charts.title11"),
+        },
         xaxis: { title: this.translate.instant("charts.year") },
         yaxis: { title: this.translate.instant("charts.products") },
         title: "",

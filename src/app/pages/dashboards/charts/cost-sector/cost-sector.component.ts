@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { ChartsService } from "src/app/_services/charts.service";
-import {TranslateService} from "@ngx-translate/core";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: "app-cost-sector",
@@ -8,9 +8,11 @@ import {TranslateService} from "@ngx-translate/core";
   styleUrls: ["./cost-sector.component.css"],
 })
 export class CostSectorComponent implements OnInit {
- 
   @Input() size: number[] = [];
-  constructor(public chartsService: ChartsService, public translate: TranslateService) {}
+  constructor(
+    public chartsService: ChartsService,
+    public translate: TranslateService
+  ) {}
   display = true;
   ngOnInit(): void {
     this.popularSetores();
@@ -24,14 +26,17 @@ export class CostSectorComponent implements OnInit {
   quantAnos: number[] = [];
   quantCusto: number[] = [];
   graph: any;
-  title = this.translate.instant("charts.title1")
+  title = this.translate.instant("charts.title1");
 
   popular() {
     this.setores = [];
     this.quantAnos = [];
     this.quantCusto = [];
     this.chartsService.sectors.forEach((element) => {
-      if (element == this.setor || this.setor == this.translate.instant("global.all")) {
+      if (
+        element == this.setor ||
+        this.setor == this.translate.instant("global.all")
+      ) {
         this.setores.push(element);
         this.quantAnos.push(0);
         this.quantCusto.push(0);
@@ -90,9 +95,14 @@ export class CostSectorComponent implements OnInit {
           title: this.translate.instant("charts.sector"),
         },
 
-       
-        yaxis2: this.chartsService.yaxisConfig,
-        yaxis: { title: this.translate.instant("charts.subtitle1") },
+        yaxis2: {
+          overlaying: "y",
+          side: "right",
+          showgrid: false,
+          zeroline: false,
+          title: this.translate.instant("charts.subtitle2"),
+        },
+        yaxis: { title: this.translate.instant("charts.title11") },
         title: "",
       },
     };

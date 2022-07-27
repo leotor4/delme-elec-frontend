@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { CostsComponent } from "src/app/pages/ncs/about/costs/costs.component";
 import { ChartsService } from "src/app/_services/charts.service";
-import {TranslateService} from "@ngx-translate/core";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: "app-nc-year",
@@ -9,7 +9,10 @@ import {TranslateService} from "@ngx-translate/core";
   styleUrls: ["./nc-year.component.css"],
 })
 export class NcYearComponent implements OnInit {
-  constructor(public chartsService: ChartsService, public translate: TranslateService) {}
+  constructor(
+    public chartsService: ChartsService,
+    public translate: TranslateService
+  ) {}
   @Input() size: number[] = [];
 
   ngOnInit(): void {
@@ -78,9 +81,15 @@ export class NcYearComponent implements OnInit {
           autotick: false,
           title: this.translate.instant("charts.year"),
         },
-        yaxis2: this.chartsService.yaxisConfig,
+        yaxis2: {
+          overlaying: "y",
+          side: "right",
+          showgrid: false,
+          zeroline: false,
+          title: this.translate.instant("charts.subtitle2"),
+        },
 
-        yaxis: { title: this.translate.instant("charts.subtitle1") },
+        yaxis: { title: this.translate.instant("charts.title11") },
       },
     };
   }

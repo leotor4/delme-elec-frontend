@@ -45,7 +45,6 @@ export class CreatePropComponent implements OnInit {
     this.ncService.getById(id).subscribe({
       next: (data: any) => {
         this.propService.ncProp = data.nc[0];
-        console.log(data.nc[0]);
         if (this.propService.ncProp.proposalSolution) {
           this.propService.propSolution =
             this.propService.ncProp.proposalSolution;
@@ -54,8 +53,7 @@ export class CreatePropComponent implements OnInit {
           this.propService.post().subscribe({
             next: (data: any) => {
               this.propService.propSolution = data["proposta"];
-              console.log(this.propService.propSolution);
-              this.propService.propSolution.actionPlans = [];
+              console.log(data["proposta"]);
               this.propService.load();
               this.propService.popular();
 
@@ -66,6 +64,7 @@ export class CreatePropComponent implements OnInit {
               });
             },
             error: (err) => {
+              this.propService.propSolution = new ProposalSolution()
               this.messageService.add({
                 severity: "error",
                 summary: this.translate.instant("createProp.fail1"),

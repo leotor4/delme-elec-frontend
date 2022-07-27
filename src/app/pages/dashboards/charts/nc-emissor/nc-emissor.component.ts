@@ -63,7 +63,7 @@ export class NcEmissorComponent implements OnInit {
           }
         }
       } catch (e) {
-       
+       console.log(e)
       }
     });
 

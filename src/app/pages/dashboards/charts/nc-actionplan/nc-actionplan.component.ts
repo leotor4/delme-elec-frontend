@@ -139,7 +139,13 @@ export class NcActionplanComponent implements OnInit {
           autotick: false,
           title: this.translate.instant("charts.sectors"),
         },
-        yaxis2: this.chartsService.yaxisConfig,
+        yaxis2: {
+          overlaying: "y",
+          side: "right",
+          showgrid: false,
+          zeroline: false,
+          title: this.translate.instant("charts.title11"),
+        },
 
         yaxis: { title: this.translate.instant("charts.amountActions") },
       },

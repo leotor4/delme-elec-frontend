@@ -564,6 +564,7 @@
     "sector": "Setor",
     "year": "Ano",
     "subtitle1": "Quantidade e Custo de NC",
+    "subtitle2": "Custo das NCs",
     "amountActions": "Quantidade de Ações",
     "title1": "Número de Ncs x Custo Total",
     "cost": "Custos",
@@ -575,14 +576,15 @@
     "title5": "Número de Ncs x Custo Total",
     "products": "Quantidade de Produtos",
     "title6": "Departamento Receptor x Quantidade de Ncs",
-    "title7": "Departamento/Setor x Quantidade de NCs Recebida e Quantidade de NCs Emitida.",
+    "title7": "Departamento/Setor x Quantidade de NCs Recebidas e Quantidade de NCs Emitidas.",
     "cost2": "Custo",
     "ncsReceived": "Ncs recebidas",
     "ncsSent": "NCs emitidas",
     "title8": "Tipos de Ncs",
     "title9": "Status das Ncs",
     "title10": "Número de Ncs x Custo Total",
-    "title11": "Quantidade de NCs"
+    "title11": "Quantidade de NCs",
+    "title12": "Status Proposta de Solução das NCs"
   },
   "list": {
     "title": "Visualize ou crie não conformidades",
