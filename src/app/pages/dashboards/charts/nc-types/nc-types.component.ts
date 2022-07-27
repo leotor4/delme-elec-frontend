@@ -84,8 +84,8 @@ export class NcTypesComponent implements OnInit {
       layout: {
         width: this.size[0],
         height: this.size[1],
-        xaxis: { title: this.translate.instant("charts.ncAmount") },
-        yaxis: { title: this.translate.instant("charts.title8") },
+        xaxis: { title: this.translate.instant("charts.title8") },
+        yaxis: { title: this.translate.instant("charts.ncAmount") },
         autosize: true,
         title: "",
       },

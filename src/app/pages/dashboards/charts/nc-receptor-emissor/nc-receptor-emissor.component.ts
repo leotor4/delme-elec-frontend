@@ -117,7 +117,7 @@ export class NcReceptorEmissorComponent implements OnInit {
         height: this.size[1],
      
         xaxis: { title: this.translate.instant("charts.sectors") },
-        yaxis: { title: this.translate.instant("charts.cost2") },
+        yaxis: { title: this.translate.instant("charts.title11") },
         autosize: true,
         title: "",
       },

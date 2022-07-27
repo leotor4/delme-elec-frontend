@@ -581,7 +581,8 @@
     "ncsSent": "NCs emitidas",
     "title8": "Tipos de Ncs",
     "title9": "Status das Ncs",
-    "title10": "Número de Ncs x Custo Total"
+    "title10": "Número de Ncs x Custo Total",
+    "title11": "Quantidade de NCs"
   },
   "list": {
     "title": "Visualize ou crie não conformidades",
