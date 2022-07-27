@@ -5,57 +5,16 @@
   </p>
 </div>
 
-<div class="d-flex flex-row flex-wrap justify-content-between mt-4">
-  <div class="mt-1">
+<div class="d-flex mt-4 flex-column flex-xl-row justify-content-between">
+  <div class="mr-xl-4 mr-0 mb-4 mb-xl-0">
     <p-editor
-      [style]="{ height: '210px', width: '700px', 'font-size': '25px' }"
+      [style]="{ height: '210px', width: '100%', 'font-size': '25px' }"
       [(ngModel)]="sgqServ.sgq.text_area1"
       [modules]="{ counter: { container: '#counterEv', unit: 'character' } }"
     ></p-editor>
     <div id="counterEv" class="text-end">0</div>
   </div>
-  <div class="div-attachment">
-    <h1>{{ "about.costsComponent.evidenceSolution" | translate }}</h1>
-    <div class="white-background" *ngIf="sgqServ.sgq.attachments.length == 0">
-      <input
-              type="file"
-              class="input-attachment"
-              (change)="onUpload($event)"
-              multiple
-              required
-      />
-      <i class="pi pi-cloud-upload"></i>
-      <p>
-        {{ "global.fileInput.description" | translate }}
-      </p>
-    </div>
-    <div class="white-background-files" *ngIf="sgqServ.sgq.attachments.length != 0">
-      <div class="d-flex justify-content-start" style="width: 100%">
-        <label for="inputTag" style="cursor: pointer">
-          <i
-                  class="bi bi-plus-circle-fill"
-                  style="font-size: 30px; color: rgb(0, 91, 123)"
-          ></i>
-          <input
-                  id="inputTag"
-                  type="file"
-                  accept=".pdf,image/jpeg,image/png,xlsx,xls"
-                  class=""
-                  (change)="onUpload($event)"
-                  style="display: none"
-                  multiple
-          />
-        </label>
-      </div>
-      <div
-              *ngFor="let item of sgqServ.sgq.attachments"
-              class="d-flex justify-content-center align-items-center files"
-      >
-        {{ item.name }}
-        <button (click)="clearById(item.name)">
-          <i class="bi bi-x-circle"></i>
-        </button>
-      </div>
-    </div>
+  <div class="input_file_box">
+    <app-input-file></app-input-file>
   </div>
 </div>

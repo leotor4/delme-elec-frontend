@@ -1,0 +1,45 @@
+<div class="container">
+  <span>{{ "about.costsComponent.evidenceSolution" | translate }}</span>
+  <div class="withoutFiles" *ngIf="sgqServ.sgq.attachments.length == 0">
+    <label for="arquivo"
+      ><i class="pi pi-cloud-upload"></i>
+      {{ "global.fileInput.description" | translate }}</label
+    >
+    <input
+      type="file"
+      name=""
+      id="arquivo"
+      multiple
+      required
+      (change)="onUpload($event)"
+    />
+  </div>
+  <div class="withFile" *ngIf="sgqServ.sgq.attachments.length != 0">
+    <div>
+      <label for="inputTag">
+        <i
+          class="bi bi-plus-circle-fill"
+          style="font-size: 30px; color: rgb(0, 91, 123)"
+        ></i>
+        <div
+          *ngFor="let item of sgqServ.sgq.attachments"
+          class="d-flex justify-content-center align-items-center files"
+        >
+          {{ item.name }}
+          <button (click)="clearById(item.name)">
+            <i class="bi bi-x-circle"></i>
+          </button>
+        </div>
+      </label>
+      <input
+        id="inputTag"
+        type="file"
+        accept=".pdf,image/jpeg,image/png,xlsx,xls"
+        class=""
+        (change)="onUpload($event)"
+        style="display: none"
+        multiple
+      />
+    </div>
+  </div>
+</div>
