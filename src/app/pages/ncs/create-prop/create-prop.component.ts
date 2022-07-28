@@ -53,7 +53,6 @@ export class CreatePropComponent implements OnInit {
           this.propService.post().subscribe({
             next: (data: any) => {
               this.propService.propSolution = data["proposta"];
-              console.log(data["proposta"]);
               this.propService.load();
               this.propService.popular();
 
@@ -105,7 +104,7 @@ export class CreatePropComponent implements OnInit {
       next: (data: any) => {
         this.propService.procedures = data.procedures;
       },
-    });
+    });    
 
     this.regulatoryService.get().subscribe({
       next: (data: any) => {

@@ -4,6 +4,7 @@ import {SgqService} from "./sgq.service";
 import {NonComplianceService} from "../../../_services/non-compliance.service";
 import {MessageService} from "primeng/api";
 import {TranslateService} from "@ngx-translate/core";
+import { SgqEval } from 'src/app/models/SgqEval';
 
 @Component({
   selector: 'app-create-prop',
@@ -41,6 +42,7 @@ export class SgqComponent implements OnInit {
               });
             },
             error:err =>{
+              this.sgqSrv.sgq = new SgqEval()
               this.messageService.add({
                 severity: "error",
                 summary: this.translate.instant('sgq.fail'),

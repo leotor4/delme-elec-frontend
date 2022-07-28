@@ -47,7 +47,7 @@
                     <div class="d-flex">
                         <div class="col">
                             <label>{{'about.proposalComponent.material'| translate}}</label>
-                            <p-editor [ngModel]="'<p>'+this.propService.propSolution.lack_materials + '</p><p>' + this.propService.propSolution.low_quality_materials + '</p>' + this.propService.propSolution.material_description" [style]="editorStyle" [readonly]="true" >
+                            <p-editor [ngModel]="'<p>'+this.propService.propSolution.lack_materials + '</p><p>' + this.propService.propSolution.excess_materials + '</p><p>' + this.propService.propSolution.low_quality_materials + '</p>' + this.propService.propSolution.material_description" [style]="editorStyle" [readonly]="true" >
                                 <ng-template pTemplate="header">
                                 </ng-template>
                             </p-editor>
@@ -55,7 +55,7 @@
                         </div>
                         <div class="col">
                             <label>{{'about.proposalComponent.measure'| translate}}</label>
-                            <p-editor [ngModel]="'<p>'+this.propService.propSolution.lack_parameters + '</p><p>' + this.propService.propSolution.excess_parameters + '</p><p>' + this.propService.propSolution.non_achievement_goals" [style]="editorStyle" [readonly]="true">
+                            <p-editor [ngModel]="'<p>'+this.propService.propSolution.lack_parameters + '</p><p>' + this.propService.propSolution.excess_parameters + '</p><p>' + this.propService.propSolution.non_achievement_goals + '</p><p>' + this.propService.propSolution.method_description" [style]="editorStyle" [readonly]="true">
                                 <ng-template pTemplate="header">
                                 </ng-template>
                             </p-editor>
@@ -86,7 +86,7 @@
                         </div>
                         <div class="col">
                             <label>{{'about.proposalComponent.machine'| translate}}</label>
-                            <p-editor [ngModel]="this.propService.propSolution.machine_description" [style]="editorStyle" [readonly]="true">
+                            <p-editor [ngModel]="this.propService.propSolution.machine_description+ '<p>' + returnString(this.propService.propSolution.machine) + '</p>'+ '<p>' + returnString(this.propService.propSolution.equipament) + '</p>'" [style]="editorStyle" [readonly]="true">
                                 <ng-template pTemplate="header">
                                 </ng-template>
                             </p-editor>

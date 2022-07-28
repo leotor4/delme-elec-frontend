@@ -14,7 +14,7 @@ import {TranslateService} from "@ngx-translate/core";
 })
 export class NcsCreateStepperComponent implements OnInit {
   items: MenuItem[];
-  stepPosition: number = 2;
+  stepPosition: number = 0;
   displayPdf = false;
   @ViewChild('divToScroll') divToScroll: ElementRef;
 
