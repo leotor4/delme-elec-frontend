@@ -11,13 +11,15 @@ import { NcsListDTO } from './ncs-list-dto';
 import { DashboardsService } from '../../dashboards/dashboards.service';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
 import {TranslateService} from "@ngx-translate/core";
+import {DadosNCComponent} from "../../dialogs/dados-nc/dados-nc.component";
+import {DialogService} from "primeng/dynamicdialog";
 
 @Component({
   selector: "app-ncs-list",
   templateUrl: "./ncs-list.component.html",
 
   styleUrls: ["./ncs-list.component.css"],
-  providers: [ConfirmationService],
+  providers: [ConfirmationService, DialogService],
 })
 export class NcsListComponent implements OnInit {
   viewCards = [1296,150]
@@ -106,7 +108,8 @@ export class NcsListComponent implements OnInit {
     private dashboardService: DashboardsService,
     private confirmationService: ConfirmationService,
     private tokenService : TokenStorageService,
-    public translate: TranslateService
+    public translate: TranslateService,
+    public dialogService: DialogService,
   ) {}
 
   ngOnInit(): void {
@@ -289,11 +292,7 @@ export class NcsListComponent implements OnInit {
   edit(idNc: number, status: string) {
     
     if (status.toUpperCase() != "OPEN") {
-      this.messageService.add({
-        severity: "info",
-        summary: this.translate.instant("list.openInfo"),
-        life: 5000,
-      });
+      this.router.navigate(["/ncs/about/", idNc]);
     }
     else {
       var user = this.tokenService.getUser()
@@ -325,19 +324,22 @@ export class NcsListComponent implements OnInit {
     
   }
 
-  visualizarInformacoes(idNc: number, status: string) {
-    if (status.toUpperCase() == "RUNNING") {
-      this.router.navigate(["/ncs/about/", idNc]);
-    } else if (status.toUpperCase() == "OPEN") {
+  visualizarInformacoes(nc: NonCompliance) {
+    const isOpenNC = nc.status?.toUpperCase() == "OPEN"
+    if(isOpenNC){
       this.messageService.add({
         severity: "info",
-        summary:
-            this.translate.instant("list.infoMsg"),
-        life: 5000,
+        summary: this.translate.instant("list.infoMsg"),
+        life: 3000,
+      });
+    } else {
+      const ref = this.dialogService.open(DadosNCComponent, {
+        data: { nc: nc },
+        showHeader: false,
+        width: "60vw",
       });
     }
 
-    
   }
 
   setPositionTextCards() {
@@ -522,6 +524,8 @@ export class NcsListComponent implements OnInit {
     setTimeout(this.setPositionTextCards, 500);
   }
 
-  
 
+  getTooltip(status: string) {
+    return status.toUpperCase() == "OPEN" ? this.translate.instant('list.editNcBtn') : this.translate.instant('list.moreInfoBtn')
+  }
 }

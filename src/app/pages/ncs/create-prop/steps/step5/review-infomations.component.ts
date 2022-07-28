@@ -9,8 +9,8 @@ import {Contact} from "../../../../../models/contact.model";
 })
 export class ReviewInfomationsComponent implements OnInit {
   isAllOpen = true;
-  unselectedClass = "btn btn-outline-dark";
-  selectedClass = "btn btn-dark";
+  unselectedClass = "btn unselected-btn";
+  selectedClass = "btn selected-btn";
   editorStyle = {
     height: "120px",
     width: "260px",

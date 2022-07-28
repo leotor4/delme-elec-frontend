@@ -600,6 +600,7 @@
     "column5": "Produto",
     "column6": "Status",
     "moreInfoBtn": "Ver informações da NC",
+    "infoBtn": "Ver Resumo da NC",
     "cancelNcBtn": "Cancelar NC",
     "editNcBtn": "Editar NC",
     "column7": "Data de Abertura",
@@ -613,7 +614,7 @@
     "cancelNcTitle": "Cancelar NC",
     "cancel": "Operação Cancelada",
     "openInfo": "O processo de abertura desta nc já foi concluído",
-    "infoMsg": "Conclua a abertura da NC para poder visualizar as informações",
+    "infoMsg": "Conclua a abertura da NC para poder visualizar o resumo da NC",
     "notFound": "Não foi possível obter o parceiro",
     "error": "Você não tem permissão para abrir esta Nc"
   },

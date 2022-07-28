@@ -1,14 +1,16 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import {DialogService, DynamicDialogConfig, DynamicDialogRef} from "primeng/dynamicdialog";
 import { SgqService } from "../../../sgq.service";
 import { Contact } from "../../../../../../models/contact.model";
 import { NonCompliance } from "../../../../../../models/non-compliance";
 import { Table } from "primeng/table";
+import {ConfirmationService} from "primeng/api";
 
 @Component({
   selector: "app-add-nc-dialog",
   templateUrl: "./add-nc-dialog.component.html",
   styleUrls: ["./add-nc-dialog.component.css"],
+  providers: [DialogService]
 })
 export class AddNcDialogComponent implements OnInit {
   @ViewChild("dt1") dt: Table;

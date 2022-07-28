@@ -271,11 +271,11 @@
         </td>
 
         <td style="text-align: center">
-            <a style="color: black;" type="button" pTooltip="{{'list.moreInfoBtn' | translate}}" (click)="visualizarInformacoes(ncListDTO.nc.id, ncListDTO.status)" ><i class="bi bi-info-circle"></i></a>
+            <a style="color: black;" type="button" pTooltip="{{'list.infoBtn' | translate}}" (click)="visualizarInformacoes(ncListDTO.nc)" ><i class="bi bi-info-circle"></i></a>
         </td>
 
         <td style="text-align: center">
-          <a type="button" style="color: black;" (click)="edit(ncListDTO.nc.id, ncListDTO.status)" pTooltip="{{'list.editNcBtn' | translate}}"><i class="bi bi-file-richtext"></i></a>
+          <a type="button" style="color: black;" (click)="edit(ncListDTO.nc.id, ncListDTO.status)" pTooltip="{{getTooltip(ncListDTO.status)}}"><i class="bi bi-file-richtext"></i></a>
         </td>
 
         <td style="text-align: center">
