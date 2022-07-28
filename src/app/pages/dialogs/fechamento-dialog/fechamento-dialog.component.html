@@ -1,31 +1,52 @@
-<span class="question">{{'closeNC.question'| translate}}</span>
+<span class="question">{{ "closeNC.question" | translate }}</span>
 
 <div class="d-flex flex-row mt-4 justify-content-between">
-    <div class="d-flex radio-div ">
-        <div class="mr-4">
-            <p-radioButton name="groupname" value="sim" [(ngModel)]="radioValue"></p-radioButton>
-        </div>
-        <div class="d-flex flex-column"><span class="confirm">{{'global.yes'| translate}}</span>
-        <span class="information">{{'closeNC.yesInfo'| translate}}</span>
-        </div>
-        </div>
-    
-    <div class="d-flex radio-div ">
-        <div class="mr-4">
-            <p-radioButton name="groupname" value="não" [(ngModel)]="radioValue"></p-radioButton>
-        </div>
-        <div class="d-flex flex-column">
-            <span class="confirm">{{'global.no'| translate}}</span>
-            <span class="information">{{'closeNC.noInfo'| translate}}</span>
-        </div>
+  <div class="d-flex radio-div">
+    <div class="mr-4">
+      <p-radioButton
+        name="groupname"
+        value="sim"
+        [(ngModel)]="radioValue"
+      ></p-radioButton>
     </div>
+    <div class="d-flex flex-column">
+      <span class="confirm">{{ "global.yes" | translate }}</span>
+      <span class="information">{{ "closeNC.yesInfo" | translate }}</span>
+    </div>
+  </div>
+
+  <div class="d-flex radio-div">
+    <div class="mr-4">
+      <p-radioButton
+        name="groupname"
+        value="não"
+        [(ngModel)]="radioValue"
+      ></p-radioButton>
+    </div>
+    <div class="d-flex flex-column">
+      <span class="confirm">{{ "global.no" | translate }}</span>
+      <span class="information">{{ "closeNC.noInfo" | translate }}</span>
+    </div>
+  </div>
 </div>
 
-<div class="mt-4"><span class="question">{{'closeNC.question2'| translate}}</span></div>
-<div class="mb-2"><span class="question-information">{{'closeNC.info'| translate}}</span></div>
-<p-editor [style]="{ height: '200px' }" [(ngModel)]="editorValue" class="p-editor"></p-editor>
+<div class="mt-4">
+  <span class="question">{{ "closeNC.question2" | translate }}</span>
+</div>
+<div class="mb-2">
+  <span class="question-information">{{ "closeNC.info" | translate }}</span>
+</div>
+<p-editor
+  styleClass="p-editor-override"
+  [style]="{ height: '200px' }"
+  [(ngModel)]="editorValue"
+  class="p-editor"
+></p-editor>
 <div class="d-flex flex-row justify-content-end button-bar mt-3">
-    <button class="btn cancel-btn mr-4" (click)="close()">{{'global.cancel'| translate}}</button>
-    <button class="btn btn-primary" (click)="save()">{{'closeNC.confirm'| translate}}</button>
+  <button class="btn cancel-btn mr-4" (click)="close()">
+    {{ "global.cancel" | translate }}
+  </button>
+  <button class="btn btn-primary" (click)="save()">
+    {{ "closeNC.confirm" | translate }}
+  </button>
 </div>
-

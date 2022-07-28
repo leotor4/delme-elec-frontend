@@ -1,12 +1,13 @@
 <div class="mb-2">
   <div class="cabecalho">
-    <h1>{{'newNC.step1.rejectionPoint.title'| translate}} *</h1>
-    <p>{{'newNC.step1.rejectionPoint.subtitle'| translate}}</p>
+    <h1>{{ "newNC.step1.rejectionPoint.title" | translate }} *</h1>
+    <p>{{ "newNC.step1.rejectionPoint.subtitle" | translate }}</p>
   </div>
   <p-editor
-    [style]="{ height: '200px','font-size': '25px' }"
+    [style]="{ height: '200px', 'font-size': '25px' }"
+    styleClass="p-editor-override"
     [(ngModel)]="nonComplianceService.nc.text_area_reject_point"
-    [modules]="{counter: {container: '#counterR',unit: 'character'}}"
+    [modules]="{ counter: { container: '#counterR', unit: 'character' } }"
     [readonly]="!nonComplianceService.nc.partner"
   ></p-editor>
   <div id="counterR" class="text-end">0</div>
@@ -16,7 +17,10 @@
   <div class="row">
     <div class="col">
       <div class="p-fluid autoComplete">
-        <label class="mb-1">{{'newNC.step1.rejectionPoint.itTitle'| translate}}{{isRequired()}}</label>
+        <label class="mb-1"
+          >{{ "newNC.step1.rejectionPoint.itTitle" | translate
+          }}{{ isRequired() }}</label
+        >
         <p-autoComplete
           class="p-autocomplete"
           [style]="{ width: '100%' }"
@@ -27,27 +31,39 @@
           (onSelect)="onSelectedIt()"
           field="name"
           [(ngModel)]="nonComplianceService.autoCompleteItValue"
-          [placeholder]="'newNC.step1.rejectionPoint.searchPlaceholder'| translate"
+          [placeholder]="
+            'newNC.step1.rejectionPoint.searchPlaceholder' | translate
+          "
         >
           <ng-template let-brand pTemplate="item">
             <div>
               <div class="d-flex">
                 <div class="mr-2">
-                  <span class="auto-complete-label">{{'newNC.step1.partner.codeUpper'| translate}}</span><br />
+                  <span class="auto-complete-label">{{
+                    "newNC.step1.partner.codeUpper" | translate
+                  }}</span
+                  ><br />
                   <span class="auto-complete-item">{{ brand.code }}</span>
                 </div>
                 <div class="mr-2">
-                  <span class="auto-complete-label">{{'newNC.step1.rejectionPoint.descriptionUpper'| translate}}</span><br />
+                  <span class="auto-complete-label">{{
+                    "newNC.step1.rejectionPoint.descriptionUpper" | translate
+                  }}</span
+                  ><br />
                   <span class="auto-complete-item">{{
                     brand.description
                   }}</span>
                 </div>
                 <div class="mr-2">
-                  <span class="auto-complete-label">{{'newNC.step1.rejectionPoint.revisionUpper'| translate}}</span><br />
+                  <span class="auto-complete-label">{{
+                    "newNC.step1.rejectionPoint.revisionUpper" | translate
+                  }}</span
+                  ><br />
                   <span class="auto-complete-item">{{ brand.rev }}</span>
                 </div>
               </div>
-            </div></ng-template>
+            </div></ng-template
+          >
         </p-autoComplete>
       </div>
     </div>
@@ -67,7 +83,7 @@
     </div>
   </div>-->
 
-  <!--<div *ngIf="false" class="d-flex justify-content-center mt-3">
+    <!--<div *ngIf="false" class="d-flex justify-content-center mt-3">
     <button
       class="btn btn-dark"
       (click)="visualizarIt()"
@@ -75,33 +91,37 @@
       {{'newNC.step1.rejectionPoint.viewDocument'| translate}}
     </button>
   </div>-->
-</div>
+  </div>
 
-<div
-  class="d-flex flex-wrap justify-content-between row-inputs"
-  *ngIf="returnNfScreen()"
->
-  <div class="d-flex flex-column inputs-sm my-auto">
-    <label for="amountTotal">{{'newNC.step1.rejectionPoint.numBatch'| translate}}</label>
-    <input
-      [(ngModel)]="nonComplianceService.nc.num_lote"
-      name="amountTotal"
-      type="text"
-      pInputText
-      [placeholder]="'global.type'| translate"
-      class="p-input text-sm input"
-    />
+  <div
+    class="d-flex flex-wrap justify-content-between row-inputs"
+    *ngIf="returnNfScreen()"
+  >
+    <div class="d-flex flex-column inputs-sm my-auto">
+      <label for="amountTotal">{{
+        "newNC.step1.rejectionPoint.numBatch" | translate
+      }}</label>
+      <input
+        [(ngModel)]="nonComplianceService.nc.num_lote"
+        name="amountTotal"
+        type="text"
+        pInputText
+        [placeholder]="'global.type' | translate"
+        class="p-input text-sm input"
+      />
+    </div>
+    <div class="d-flex flex-column inputs-sm my-auto">
+      <label for="amountTotal">{{
+        "newNC.step1.rejectionPoint.numOC" | translate
+      }}</label>
+      <input
+        [(ngModel)]="nonComplianceService.nc.num_ordem_compra"
+        name="amountTotal"
+        type="text"
+        pInputText
+        [placeholder]="'global.type' | translate"
+        class="p-input text-sm input"
+      />
+    </div>
   </div>
-  <div class="d-flex flex-column inputs-sm my-auto">
-    <label for="amountTotal">{{'newNC.step1.rejectionPoint.numOC'| translate}}</label>
-    <input
-      [(ngModel)]="nonComplianceService.nc.num_ordem_compra"
-      name="amountTotal"
-      type="text"
-      pInputText
-      [placeholder]="'global.type'| translate"
-      class="p-input text-sm input"
-    />
-  </div>
-</div>
 </div>

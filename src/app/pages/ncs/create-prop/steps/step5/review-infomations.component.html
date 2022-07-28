@@ -1,257 +1,435 @@
 <div class="d-flex flex-lg-row flex-column justify-content-between">
-    <div class="d-flex">
-        <div class="cabecalho">
-            <div class="d-flex align-items-center">
-                <h1 class="mr-3">{{'createProp.reviewTitle'| translate}}</h1>
-            </div>
-            <p>
-                {{'createProp.reviewSubtitle'| translate}}
-            </p>
-        </div>
+  <div class="d-flex">
+    <div class="cabecalho">
+      <div class="d-flex align-items-center">
+        <h1 class="mr-3">{{ "createProp.reviewTitle" | translate }}</h1>
+      </div>
+      <p>
+        {{ "createProp.reviewSubtitle" | translate }}
+      </p>
     </div>
-    <div class="d-flex justify-content-end align-items-center mb-3">
-        <button
-                [class]="isAllOpen ? selectedClass : unselectedClass"
-                class="mr-2 btn-sm"
-                (click)="isAllOpen = true"
-        >
-            <i class="bi bi-arrows-expand"></i>
-            {{'global.expand'| translate}}        </button>
-        <button
-                [class]="isAllOpen ? unselectedClass : selectedClass"
-                (click)="isAllOpen = false"
-                class="btn-sm"
-        >
-            <i class="bi bi-arrows-collapse"></i>
-            {{'global.colapse'| translate}}
-        </button>
-    </div>
+  </div>
+  <div class="d-flex justify-content-end align-items-center mb-3">
+    <button
+      [class]="isAllOpen ? selectedClass : unselectedClass"
+      class="mr-2 btn-sm"
+      (click)="isAllOpen = true"
+    >
+      <i class="bi bi-arrows-expand"></i>
+      {{ "global.expand" | translate }}
+    </button>
+    <button
+      [class]="isAllOpen ? unselectedClass : selectedClass"
+      (click)="isAllOpen = false"
+      class="btn-sm"
+    >
+      <i class="bi bi-arrows-collapse"></i>
+      {{ "global.colapse" | translate }}
+    </button>
+  </div>
 </div>
 <p-accordion [multiple]="true">
-    <p-accordionTab [selected]="isAllOpen">
-        <ng-template pTemplate="header">
-            <div class="d-flex justify-content-between accordion">
-                <p>
-                    <i class="bi bi-suit-diamond"></i>
-                    {{'about.proposalComponent.ishikawaDiagram'| translate}}
-                </p>
-                <button class="btn btn-dark red" style="background-color: #00344D;" (click)="goToStepById(0)">
-                    <i class="bi bi-pencil mr-1"></i>
-                    {{'global.edit'| translate}}
-                </button>
+  <p-accordionTab [selected]="isAllOpen">
+    <ng-template pTemplate="header">
+      <div class="d-flex justify-content-between accordion">
+        <p>
+          <i class="bi bi-suit-diamond"></i>
+          {{ "about.proposalComponent.ishikawaDiagram" | translate }}
+        </p>
+        <button
+          class="btn btn-dark red"
+          style="background-color: #00344d"
+          (click)="goToStepById(0)"
+        >
+          <i class="bi bi-pencil mr-1"></i>
+          {{ "global.edit" | translate }}
+        </button>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="content">
+      <div class="d-flex caixa-cinza pr-2 py-4 mt-4">
+        <div>
+          <div class="d-flex">
+            <div class="col">
+              <label>{{
+                "about.proposalComponent.material" | translate
+              }}</label>
+              <p-editor
+                styleClass="p-editor-override"
+                [ngModel]="
+                  '<p>' +
+                  this.propService.propSolution.lack_materials +
+                  '</p><p>' +
+                  this.propService.propSolution.excess_materials +
+                  '</p><p>' +
+                  this.propService.propSolution.low_quality_materials +
+                  '</p>' +
+                  this.propService.propSolution.material_description
+                "
+                [style]="editorStyle"
+                [readonly]="true"
+              >
+                <ng-template pTemplate="header"> </ng-template>
+              </p-editor>
             </div>
-        </ng-template>
-        <ng-template pTemplate="content">
-            <div class="d-flex caixa-cinza pr-2 py-4 mt-4">
-                <div>
-                    <div class="d-flex">
-                        <div class="col">
-                            <label>{{'about.proposalComponent.material'| translate}}</label>
-                            <p-editor [ngModel]="'<p>'+this.propService.propSolution.lack_materials + '</p><p>' + this.propService.propSolution.excess_materials + '</p><p>' + this.propService.propSolution.low_quality_materials + '</p>' + this.propService.propSolution.material_description" [style]="editorStyle" [readonly]="true" >
-                                <ng-template pTemplate="header">
-                                </ng-template>
-                            </p-editor>
-
-                        </div>
-                        <div class="col">
-                            <label>{{'about.proposalComponent.measure'| translate}}</label>
-                            <p-editor [ngModel]="'<p>'+this.propService.propSolution.lack_parameters + '</p><p>' + this.propService.propSolution.excess_parameters + '</p><p>' + this.propService.propSolution.non_achievement_goals + '</p><p>' + this.propService.propSolution.method_description" [style]="editorStyle" [readonly]="true">
-                                <ng-template pTemplate="header">
-                                </ng-template>
-                            </p-editor>
-                        </div>
-                        <div class="col">
-                            <label>{{'about.proposalComponent.method'| translate}}</label>
-                            <p-editor [ngModel]="this.propService.propSolution.method_description + '<p>' + returnString(this.propService.propSolution.instruction) + '</p>'+ '<p>' + returnString(this.propService.propSolution.procedure) + '</p>'+ '<p>' + returnString(this.propService.propSolution.regulatory) + '</p>'+ '<p>' + returnString(this.propService.propSolution.nbr) + '</p>'" [style]="editorStyle" [readonly]="true">
-                                <ng-template pTemplate="header">
-                                </ng-template>
-                            </p-editor>
-                        </div>
-                    </div>
-                    <img src="../../../../../../assets/images/Espinha de Peixe.png" width="850" class="ml-5 mr-3">
-                    <div class="d-flex">
-                        <div class="col">
-                            <label>{{'about.proposalComponent.labor'| translate}}</label>
-                            <p-editor [ngModel]="'<p>'+this.propService.propSolution.run_training + '</p>' + this.propService.propSolution.man_power_description" [style]="editorStyle" [readonly]="true">
-                                <ng-template pTemplate="header">
-                                </ng-template>
-                            </p-editor>
-                        </div>
-                        <div class="col">
-                            <label>{{'about.proposalComponent.ambient'| translate}}</label>
-                            <p-editor [ngModel]="this.propService.propSolution.environment_description"[style]="editorStyle" [readonly]="true">
-                                <ng-template pTemplate="header">
-                                </ng-template>
-                            </p-editor>
-                        </div>
-                        <div class="col">
-                            <label>{{'about.proposalComponent.machine'| translate}}</label>
-                            <p-editor [ngModel]="this.propService.propSolution.machine_description+ '<p>' + returnString(this.propService.propSolution.machine) + '</p>'+ '<p>' + returnString(this.propService.propSolution.equipament) + '</p>'" [style]="editorStyle" [readonly]="true">
-                                <ng-template pTemplate="header">
-                                </ng-template>
-                            </p-editor>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="d-block mt-5">
-                    <label>{{'about.proposalComponent.effect'| translate}}</label>
-                    <p-editor [ngModel]="this.propService.propSolution.effect_description"
-                              [style]="{'height':'300px','width':'230px','border': '2px solid #333333','border-radius': '5px'}"
-                              [readonly]="true">
-                        <ng-template pTemplate="header">
-                        </ng-template>
-                    </p-editor>
-                </div>
+            <div class="col">
+              <label>{{ "about.proposalComponent.measure" | translate }}</label>
+              <p-editor
+                styleClass="p-editor-override"
+                [ngModel]="
+                  '<p>' +
+                  this.propService.propSolution.lack_parameters +
+                  '</p><p>' +
+                  this.propService.propSolution.excess_parameters +
+                  '</p><p>' +
+                  this.propService.propSolution.non_achievement_goals +
+                  '</p><p>' +
+                  this.propService.propSolution.method_description
+                "
+                [style]="editorStyle"
+                [readonly]="true"
+              >
+                <ng-template pTemplate="header"> </ng-template>
+              </p-editor>
             </div>
-        </ng-template>
-    </p-accordionTab>
-    <p-accordionTab [selected]="isAllOpen">
-        <ng-template pTemplate="header">
-            <div class="d-flex justify-content-between accordion">
-                <p>
-                    <i class="bi bi-dice-5"></i>
-                    {{'about.proposalComponent.5why'| translate}}
-                </p>
-                <button class="btn btn-dark red" style="background-color: #00344D;" (click)="goToStepById(1)">
-                    <i class="bi bi-pencil mr-1"></i>
-                    {{'global.edit'| translate}}
-                </button>
+            <div class="col">
+              <label>{{ "about.proposalComponent.method" | translate }}</label>
+              <p-editor
+                styleClass="p-editor-override"
+                [ngModel]="
+                  this.propService.propSolution.method_description +
+                  '<p>' +
+                  returnString(this.propService.propSolution.instruction) +
+                  '</p>' +
+                  '<p>' +
+                  returnString(this.propService.propSolution.procedure) +
+                  '</p>' +
+                  '<p>' +
+                  returnString(this.propService.propSolution.regulatory) +
+                  '</p>' +
+                  '<p>' +
+                  returnString(this.propService.propSolution.nbr) +
+                  '</p>'
+                "
+                [style]="editorStyle"
+                [readonly]="true"
+              >
+                <ng-template pTemplate="header"> </ng-template>
+              </p-editor>
             </div>
-        </ng-template>
-        <ng-template pTemplate="content">
-            <div class="caixa-cinza p-2">
-                <div class="d-flex justify-content-evenly">
-                    <p-chip>1</p-chip>
-                    <div>
-                       
-                       <textarea disabled [(ngModel)]="propService.propSolution.first_why" pInputTextarea cols="35" rows="5" class="textarea">
-                       </textarea>
-                        <div class="text-center form-check caixa-preta mx-3" *ngIf="propService.propSolution.root_cause=='cause1'">
-                            <input class="form-check-input" type="checkbox" value="" onclick="return false;" checked/>
-                            <label class="form-check-label text-light">
-                                {{'about.proposalComponent.rootCause'| translate}}
-                            </label>
-                        </div>
-                    </div>
-                    <p-chip>2</p-chip>
-                    <div>
-                       <textarea disabled [(ngModel)]="propService.propSolution.second_why" pInputTextarea cols="35" rows="5" class="textarea">
-                       </textarea>
-                        <div class="text-center form-check caixa-preta mx-3" *ngIf="propService.propSolution.root_cause=='cause2'">
-                            <input class="form-check-input" type="checkbox" value="" onclick="return false;" checked/>
-                            <label class="form-check-label text-light">
-                                {{'about.proposalComponent.rootCause'| translate}}
-                            </label>
-                        </div>
-                    </div>
-                    <p-chip>3</p-chip>
-                    <div>
-                       <textarea disabled [(ngModel)]="propService.propSolution.third_why" pInputTextarea cols="35" rows="5" class="textarea">
-                       </textarea>
-                        <div class="text-center form-check caixa-preta mx-3" *ngIf="propService.propSolution.root_cause=='cause3'">
-                            <input class="form-check-input" type="checkbox" value="" onclick="return false;" checked/>
-                            <label class="form-check-label text-light">
-                                {{'about.proposalComponent.rootCause'| translate}}
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="d-flex justify-content-evenly">
-                    <p-chip>4</p-chip>
-                    <div>
-                       <textarea disabled [(ngModel)]="propService.propSolution.quarter_why" pInputTextarea cols="55" rows="5" class="textarea">
-                       </textarea>
-                        <div class="text-center form-check caixa-preta mx-3" *ngIf="propService.propSolution.root_cause=='cause4'">
-                            <input class="form-check-input" type="checkbox" value="" onclick="return false;" checked/>
-                            <label class="form-check-label text-light">
-                                {{'about.proposalComponent.rootCause'| translate}}
-                            </label>
-                        </div>
-                    </div>
-                    <p-chip>5</p-chip>
-                    <div>
-                       <textarea disabled [(ngModel)]="propService.propSolution.fifth_why" pInputTextarea cols="55" rows="5" class="textarea">
-                       </textarea>
-                        <div class="text-center form-check caixa-preta mx-3" *ngIf="propService.propSolution.root_cause=='cause5'">
-                            <input class="form-check-input" type="checkbox" value="" onclick="return false;" checked/>
-                            <label class="form-check-label text-light">
-                                {{'about.proposalComponent.rootCause'| translate}}
-                            </label>
-                        </div>
-                    </div>
-                </div>
+          </div>
+          <img
+            src="../../../../../../assets/images/Espinha de Peixe.png"
+            width="850"
+            class="ml-5 mr-3"
+          />
+          <div class="d-flex">
+            <div class="col">
+              <label>{{ "about.proposalComponent.labor" | translate }}</label>
+              <p-editor
+                styleClass="p-editor-override"
+                [ngModel]="
+                  '<p>' +
+                  this.propService.propSolution.run_training +
+                  '</p>' +
+                  this.propService.propSolution.man_power_description
+                "
+                [style]="editorStyle"
+                [readonly]="true"
+              >
+                <ng-template pTemplate="header"> </ng-template>
+              </p-editor>
             </div>
-        </ng-template>
-    </p-accordionTab>
-    <p-accordionTab [selected]="isAllOpen">
-        <ng-template pTemplate="header">
-            <div class="d-flex justify-content-between accordion">
-                <p>
-                    <i class="bi bi-geo"></i>
-                    {{'about.proposalComponent.actionPlan'| translate}}
-                </p>
-                <button class="btn btn-dark red" style="background-color: #00344D;" (click)="goToStepById(1)">
-                    <i class="bi bi-pencil mr-1"></i>
-                    {{'global.edit'| translate}}
-                </button>
+            <div class="col">
+              <label>{{ "about.proposalComponent.ambient" | translate }}</label>
+              <p-editor
+                styleClass="p-editor-override"
+                [ngModel]="
+                  this.propService.propSolution.environment_description
+                "
+                [style]="editorStyle"
+                [readonly]="true"
+              >
+                <ng-template pTemplate="header"> </ng-template>
+              </p-editor>
             </div>
-        </ng-template>
-        <ng-template pTemplate="content">
-            <div class="card">
-                <p-table [value]="propService.propSolution.actionPlans">
-                    <ng-template pTemplate="header">
-                        <tr>
-                            <th>{{'global.description'| translate}}</th>
-                            <th>{{'global.responsible'| translate}}</th>
-                            <th>{{'global.deadline'| translate}}</th>
-                            <th>{{'global.status'| translate}}</th>
-                        </tr>
-                    </ng-template>
-                    <ng-template pTemplate="body" let-action>
-                        <tr>
-                            <td>{{ action.description }}</td>
-                            <td>{{ action.responsible.name}}</td>
-                            <td>{{ dataParse(action.term)}}</td>
-                            <td>{{ action.status }}</td>
-                        </tr>
-                    </ng-template>
-                </p-table>
+            <div class="col">
+              <label>{{ "about.proposalComponent.machine" | translate }}</label>
+              <p-editor
+                styleClass="p-editor-override"
+                [ngModel]="
+                  this.propService.propSolution.machine_description +
+                  '<p>' +
+                  returnString(this.propService.propSolution.machine) +
+                  '</p>' +
+                  '<p>' +
+                  returnString(this.propService.propSolution.equipament) +
+                  '</p>'
+                "
+                [style]="editorStyle"
+                [readonly]="true"
+              >
+                <ng-template pTemplate="header"> </ng-template>
+              </p-editor>
             </div>
-        </ng-template>
-    </p-accordionTab>
-    <p-accordionTab [selected]="isAllOpen">
-        <ng-template pTemplate="header">
-            <div class="d-flex justify-content-between accordion">
-                <p>
-                    <i class="bi bi-envelope"></i>
-                    {{'global.contacts.notifications'| translate}}
-                </p>
-                <button class="btn btn-dark red" style="background-color: #00344D;" (click)="goToStepById(3)">
-                    <i class="bi bi-pencil mr-1"></i>
-                    {{'global.edit'| translate}}
-                </button>
+          </div>
+        </div>
+        <div class="d-block mt-5">
+          <label>{{ "about.proposalComponent.effect" | translate }}</label>
+          <p-editor
+            styleClass="p-editor-override"
+            [ngModel]="this.propService.propSolution.effect_description"
+            [style]="{
+              height: '300px',
+              width: '230px',
+              border: '2px solid #333333',
+              'border-radius': '5px'
+            }"
+            [readonly]="true"
+          >
+            <ng-template pTemplate="header"> </ng-template>
+          </p-editor>
+        </div>
+      </div>
+    </ng-template>
+  </p-accordionTab>
+  <p-accordionTab [selected]="isAllOpen">
+    <ng-template pTemplate="header">
+      <div class="d-flex justify-content-between accordion">
+        <p>
+          <i class="bi bi-dice-5"></i>
+          {{ "about.proposalComponent.5why" | translate }}
+        </p>
+        <button
+          class="btn btn-dark red"
+          style="background-color: #00344d"
+          (click)="goToStepById(1)"
+        >
+          <i class="bi bi-pencil mr-1"></i>
+          {{ "global.edit" | translate }}
+        </button>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="content">
+      <div class="caixa-cinza p-2">
+        <div class="d-flex justify-content-evenly">
+          <p-chip>1</p-chip>
+          <div>
+            <textarea
+              disabled
+              [(ngModel)]="propService.propSolution.first_why"
+              pInputTextarea
+              cols="35"
+              rows="5"
+              class="textarea"
+            >
+            </textarea>
+            <div
+              class="text-center form-check caixa-preta mx-3"
+              *ngIf="propService.propSolution.root_cause == 'cause1'"
+            >
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                onclick="return false;"
+                checked
+              />
+              <label class="form-check-label text-light">
+                {{ "about.proposalComponent.rootCause" | translate }}
+              </label>
             </div>
-        </ng-template>
-        <ng-template pTemplate="content">
-            <div class="card">
-                <p-table [value]="propService.contacts">
-                    <ng-template pTemplate="header">
-                        <tr>
-                            <th>{{'global.contacts.name'| translate}}</th>
-                            <th>{{'global.contacts.email'| translate}}</th>
-                            <th>{{'global.contacts.partner'| translate}}</th>
-                        </tr>
-                    </ng-template>
-                    <ng-template pTemplate="body" let-contact let-i="rowIndex">
-                        <tr>
-                            <td>{{ contact.name }}</td>
-                            <td>{{ contact.email }}</td>
-                            <td>{{ contact.type }}</td>
-                        </tr>
-                    </ng-template>
-                </p-table>
+          </div>
+          <p-chip>2</p-chip>
+          <div>
+            <textarea
+              disabled
+              [(ngModel)]="propService.propSolution.second_why"
+              pInputTextarea
+              cols="35"
+              rows="5"
+              class="textarea"
+            >
+            </textarea>
+            <div
+              class="text-center form-check caixa-preta mx-3"
+              *ngIf="propService.propSolution.root_cause == 'cause2'"
+            >
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                onclick="return false;"
+                checked
+              />
+              <label class="form-check-label text-light">
+                {{ "about.proposalComponent.rootCause" | translate }}
+              </label>
             </div>
-        </ng-template>
-    </p-accordionTab>
+          </div>
+          <p-chip>3</p-chip>
+          <div>
+            <textarea
+              disabled
+              [(ngModel)]="propService.propSolution.third_why"
+              pInputTextarea
+              cols="35"
+              rows="5"
+              class="textarea"
+            >
+            </textarea>
+            <div
+              class="text-center form-check caixa-preta mx-3"
+              *ngIf="propService.propSolution.root_cause == 'cause3'"
+            >
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                onclick="return false;"
+                checked
+              />
+              <label class="form-check-label text-light">
+                {{ "about.proposalComponent.rootCause" | translate }}
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-evenly">
+          <p-chip>4</p-chip>
+          <div>
+            <textarea
+              disabled
+              [(ngModel)]="propService.propSolution.quarter_why"
+              pInputTextarea
+              cols="55"
+              rows="5"
+              class="textarea"
+            >
+            </textarea>
+            <div
+              class="text-center form-check caixa-preta mx-3"
+              *ngIf="propService.propSolution.root_cause == 'cause4'"
+            >
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                onclick="return false;"
+                checked
+              />
+              <label class="form-check-label text-light">
+                {{ "about.proposalComponent.rootCause" | translate }}
+              </label>
+            </div>
+          </div>
+          <p-chip>5</p-chip>
+          <div>
+            <textarea
+              disabled
+              [(ngModel)]="propService.propSolution.fifth_why"
+              pInputTextarea
+              cols="55"
+              rows="5"
+              class="textarea"
+            >
+            </textarea>
+            <div
+              class="text-center form-check caixa-preta mx-3"
+              *ngIf="propService.propSolution.root_cause == 'cause5'"
+            >
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                onclick="return false;"
+                checked
+              />
+              <label class="form-check-label text-light">
+                {{ "about.proposalComponent.rootCause" | translate }}
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </p-accordionTab>
+  <p-accordionTab [selected]="isAllOpen">
+    <ng-template pTemplate="header">
+      <div class="d-flex justify-content-between accordion">
+        <p>
+          <i class="bi bi-geo"></i>
+          {{ "about.proposalComponent.actionPlan" | translate }}
+        </p>
+        <button
+          class="btn btn-dark red"
+          style="background-color: #00344d"
+          (click)="goToStepById(1)"
+        >
+          <i class="bi bi-pencil mr-1"></i>
+          {{ "global.edit" | translate }}
+        </button>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="content">
+      <div class="card">
+        <p-table [value]="propService.propSolution.actionPlans">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>{{ "global.description" | translate }}</th>
+              <th>{{ "global.responsible" | translate }}</th>
+              <th>{{ "global.deadline" | translate }}</th>
+              <th>{{ "global.status" | translate }}</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-action>
+            <tr>
+              <td>{{ action.description }}</td>
+              <td>{{ action.responsible.name }}</td>
+              <td>{{ dataParse(action.term) }}</td>
+              <td>{{ action.status }}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </ng-template>
+  </p-accordionTab>
+  <p-accordionTab [selected]="isAllOpen">
+    <ng-template pTemplate="header">
+      <div class="d-flex justify-content-between accordion">
+        <p>
+          <i class="bi bi-envelope"></i>
+          {{ "global.contacts.notifications" | translate }}
+        </p>
+        <button
+          class="btn btn-dark red"
+          style="background-color: #00344d"
+          (click)="goToStepById(3)"
+        >
+          <i class="bi bi-pencil mr-1"></i>
+          {{ "global.edit" | translate }}
+        </button>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="content">
+      <div class="card">
+        <p-table [value]="propService.contacts">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>{{ "global.contacts.name" | translate }}</th>
+              <th>{{ "global.contacts.email" | translate }}</th>
+              <th>{{ "global.contacts.partner" | translate }}</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-contact let-i="rowIndex">
+            <tr>
+              <td>{{ contact.name }}</td>
+              <td>{{ contact.email }}</td>
+              <td>{{ contact.type }}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </ng-template>
+  </p-accordionTab>
 </p-accordion>

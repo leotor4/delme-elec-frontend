@@ -1,42 +1,43 @@
 <div class="cabecalho">
-  <p>{{'global.requiredFields'| translate}}</p>
-  <h1>{{'newNC.step2.descNCTitle'| translate}}</h1>
+  <p>{{ "global.requiredFields" | translate }}</p>
+  <h1>{{ "newNC.step2.descNCTitle" | translate }}</h1>
   <p>
-    {{'newNC.step2.descNCSubtitle'| translate}}
+    {{ "newNC.step2.descNCSubtitle" | translate }}
   </p>
 </div>
-<div class="d-flex  justify-content-evenly mb-2">
+<div class="d-flex justify-content-evenly mb-2">
   <p-radioButton
-          name="ncType"
-          [label]="'newNC.step2.radioLabel1'| translate"
-          value="val1"
-          [(ngModel)]="nonComplicanceService.nc.radio_value"
+    name="ncType"
+    [label]="'newNC.step2.radioLabel1' | translate"
+    value="val1"
+    [(ngModel)]="nonComplicanceService.nc.radio_value"
   ></p-radioButton>
   <p-radioButton
-          name="ncType"
-          [label]="'newNC.step2.radioLabel2'| translate"
-          class="pt-2"
-          value="val2"
-          [(ngModel)]="nonComplicanceService.nc.radio_value"
+    name="ncType"
+    [label]="'newNC.step2.radioLabel2' | translate"
+    class="pt-2"
+    value="val2"
+    [(ngModel)]="nonComplicanceService.nc.radio_value"
   ></p-radioButton>
 </div>
-
 
 <div class="d-flex row">
   <div class="col col-editor">
-    <label>{{'newNC.step2.ncText'| translate}}</label>
+    <label>{{ "newNC.step2.ncText" | translate }}</label>
     <p-editor
-      [style]="{ height: '200px','font-size': '25px' }"
+      styleClass="p-editor-override"
+      [style]="{ height: '200px', 'font-size': '25px' }"
       [(ngModel)]="this.nonComplicanceService.nc.text_area_nc"
       class="p-editor"
-      [modules]="{counter: {container: '#counterDescNC',unit: 'character'}}"
+      [modules]="{
+        counter: { container: '#counterDescNC', unit: 'character' }
+      }"
     ></p-editor>
     <div id="counterDescNC" class="text-end">0</div>
   </div>
 
-  
   <div class="col-3 col-attachment">
-    <label>{{'global.fileInput.title'| translate}} {{isRequired()}}</label>
+    <label>{{ "global.fileInput.title" | translate }} {{ isRequired() }}</label>
     <app-attach [item]="'evidenciasNc'"></app-attach>
   </div>
 </div>
@@ -44,27 +45,26 @@
 <div class="mt-4 mb-4"></div>
 
 <div class="cabecalho">
-  <h1>{{'newNC.step2.actionsTitle'| translate}}</h1>
+  <h1>{{ "newNC.step2.actionsTitle" | translate }}</h1>
   <p>
-    {{'newNC.step2.actionsSubtitle'| translate}}
+    {{ "newNC.step2.actionsSubtitle" | translate }}
   </p>
 </div>
 
 <div class="d-flex row">
   <div class="col col-editor">
-    <label for="desc-area">{{'newNC.step2.actionsText'| translate}} *</label>
+    <label for="desc-area">{{ "newNC.step2.actionsText" | translate }} *</label>
     <p-editor
-      [style]="{ height: '200px','font-size': '25px' }"
+      styleClass="p-editor-override"
+      [style]="{ height: '200px', 'font-size': '25px' }"
       [(ngModel)]="this.nonComplicanceService.nc.text_area_acoes"
-      [modules]="{counter: {container: '#counterACI',unit: 'character'}}"
+      [modules]="{ counter: { container: '#counterACI', unit: 'character' } }"
     ></p-editor>
     <div id="counterACI" class="text-end">0</div>
   </div>
 
-
-
   <div class="col-3 col-attachment">
-    <label for="desc-area">{{'global.fileInput.title'| translate}}</label>
+    <label for="desc-area">{{ "global.fileInput.title" | translate }}</label>
     <app-attach [item]="'evidenciasAcoes'"></app-attach>
   </div>
 </div>
