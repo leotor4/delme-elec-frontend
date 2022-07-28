@@ -1,101 +1,205 @@
 <div class="d-flex flex-lg-row flex-column justify-content-between">
-    <div class="cabecalho">
-        <h1 class="mr-3">{{ "about.proposalComponent.ishikawaDiagram" | translate }}</h1>
-        <p>
-            {{ "createProp.step1.subtitle" | translate }}
-        </p>
-    </div>
-    <div class="d-flex justify-content-end align-items-center mb-3">
-        <button class="btn btn-dark ml-3" style="background-color: #00344D;" (click)="showDescriptionDialog()">
-            {{ "createProp.step1.descBtn" | translate }}
-            <i class="bi bi-file-earmark-medical"></i>
-        </button>
-    </div>
+  <div class="cabecalho">
+    <h1 class="mr-3">
+      {{ "about.proposalComponent.ishikawaDiagram" | translate }}
+    </h1>
+    <p>
+      {{ "createProp.step1.subtitle" | translate }}
+    </p>
+  </div>
+  <div class="d-flex justify-content-end align-items-center mb-3">
+    <button
+      class="btn btn-dark ml-3"
+      style="background-color: #00344d"
+      (click)="showDescriptionDialog()"
+    >
+      {{ "createProp.step1.descBtn" | translate }}
+      <i class="bi bi-file-earmark-medical"></i>
+    </button>
+  </div>
 </div>
 <div class="d-flex caixa-cinza pr-2 py-4 mt-4">
-    <div>
-        <div class="d-flex">
-            <div class="col">
-                <label>{{'about.proposalComponent.material'| translate}}</label>
-                <p-editor [ngModel]="'<p>'+this.propService.propSolution.lack_materials + '</p><p>' + this.propService.propSolution.excess_materials + '</p><p>' + this.propService.propSolution.low_quality_materials + '</p>' + '</p>' + this.propService.propSolution.material_description" [style]="editorStyle" [readonly]="true" (click)="openDialog(1)">
-                    <ng-template pTemplate="header">
-                    </ng-template>
-                </p-editor>
-
-            </div>
-            <div class="col">
-                <label>{{'about.proposalComponent.measure'| translate}}</label>
-                <p-editor [ngModel]="'<p>'+this.propService.propSolution.lack_parameters + '</p><p>' + this.propService.propSolution.excess_parameters + '</p><p>' + this.propService.propSolution.non_achievement_goals + '</p>' +  '</p>' + this.propService.propSolution.measurement_description" [style]="editorStyle" [readonly]="true" (click)="openDialog(2)">
-                    <ng-template pTemplate="header">
-                    </ng-template>
-                </p-editor>
-            </div>
-            <div class="col">
-                <label>{{'about.proposalComponent.method'| translate}}</label>
-                <p-editor [ngModel]="this.propService.propSolution.method_description + '<p>' + returnString(this.propService.propSolution.instruction) + '</p>'+ '<p>' + returnString(this.propService.propSolution.procedure) + '</p>'+ '<p>' + returnString(this.propService.propSolution.regulatory) + '</p>'+ '<p>' + returnString(this.propService.propSolution.nbr) + '</p>'" [style]="editorStyle" [readonly]="true" (click)="openDialog(3)">
-                    <ng-template pTemplate="header">
-                    </ng-template>
-                </p-editor>
-            </div>
-        </div>
-        <img src="../../../../../../assets/images/Espinha de Peixe.png" width="900" class="ml-5">
-        <div class="d-flex">
-            <div class="col">
-                
-                <p-editor [ngModel]="'<p>'+this.propService.propSolution.run_training + '</p>' + this.propService.propSolution.man_power_description" [style]="editorStyle" [readonly]="true" (click)="openDialog(4)">
-                    <ng-template pTemplate="header">
-                    </ng-template>
-                </p-editor><label class="mt-1">{{'about.proposalComponent.labor'| translate}}</label>
-            </div>
-            <div class="col">
-               
-                <p-editor [ngModel]="this.propService.propSolution.environment_description" [style]="editorStyle" [readonly]="true" (click)="openDialog(5)">
-                    <ng-template pTemplate="header">
-                    </ng-template>
-                </p-editor><label class="mt-1">{{'about.proposalComponent.ambient'| translate}}</label>
-            </div>
-            <div class="col">
-                
-                <p-editor [ngModel]="this.propService.propSolution.machine_description+ '<p>' + returnString(this.propService.propSolution.machine) + '</p>'+ '<p>' + returnString(this.propService.propSolution.equipament) + '</p>'" [style]="editorStyle" [readonly]="true" (click)="openDialog(6)">
-                    <ng-template pTemplate="header">
-                    </ng-template>
-                </p-editor><label class="mt-1">{{'about.proposalComponent.machine'| translate}}</label>
-
-            </div>
-        </div>
-    </div>
-    <div class="d-block mt-5">
-        <label>{{'about.proposalComponent.effect'| translate}}</label>
-        <p-editor [ngModel]="this.propService.propSolution.effect_description"
-                  [style]="{'height':'300px','width':'230px','border': '2px solid #333333','border-radius': '5px'}"
-                  [readonly]="true"
-
-                  (click)="openDialog(7)"
+  <div>
+    <div class="d-flex">
+      <div class="col">
+        <label>{{ "about.proposalComponent.material" | translate }}</label>
+        <p-editor
+          styleClass="p-editor-override"
+          [ngModel]="
+            '<p>' +
+            this.propService.propSolution.lack_materials +
+            '</p><p>' +
+            this.propService.propSolution.excess_materials +
+            '</p><p>' +
+            this.propService.propSolution.low_quality_materials +
+            '</p>' +
+            '</p>' +
+            this.propService.propSolution.material_description
+          "
+          [style]="editorStyle"
+          [readonly]="true"
+          (click)="openDialog(1)"
         >
-            <ng-template pTemplate="header">
-            </ng-template>
+          <ng-template pTemplate="header"> </ng-template>
         </p-editor>
-
+      </div>
+      <div class="col">
+        <label>{{ "about.proposalComponent.measure" | translate }}</label>
+        <p-editor
+          styleClass="p-editor-override"
+          [ngModel]="
+            '<p>' +
+            this.propService.propSolution.lack_parameters +
+            '</p><p>' +
+            this.propService.propSolution.excess_parameters +
+            '</p><p>' +
+            this.propService.propSolution.non_achievement_goals +
+            '</p>' +
+            '</p>' +
+            this.propService.propSolution.measurement_description
+          "
+          [style]="editorStyle"
+          [readonly]="true"
+          (click)="openDialog(2)"
+        >
+          <ng-template pTemplate="header"> </ng-template>
+        </p-editor>
+      </div>
+      <div class="col">
+        <label>{{ "about.proposalComponent.method" | translate }}</label>
+        <p-editor
+          styleClass="p-editor-override"
+          [ngModel]="
+            this.propService.propSolution.method_description +
+            '<p>' +
+            returnString(this.propService.propSolution.instruction) +
+            '</p>' +
+            '<p>' +
+            returnString(this.propService.propSolution.procedure) +
+            '</p>' +
+            '<p>' +
+            returnString(this.propService.propSolution.regulatory) +
+            '</p>' +
+            '<p>' +
+            returnString(this.propService.propSolution.nbr) +
+            '</p>'
+          "
+          [style]="editorStyle"
+          [readonly]="true"
+          (click)="openDialog(3)"
+        >
+          <ng-template pTemplate="header"> </ng-template>
+        </p-editor>
+      </div>
     </div>
+    <img
+      src="../../../../../../assets/images/Espinha de Peixe.png"
+      width="900"
+      class="ml-5"
+    />
+    <div class="d-flex">
+      <div class="col">
+        <p-editor
+          styleClass="p-editor-override"
+          [ngModel]="
+            '<p>' +
+            this.propService.propSolution.run_training +
+            '</p>' +
+            this.propService.propSolution.man_power_description
+          "
+          [style]="editorStyle"
+          [readonly]="true"
+          (click)="openDialog(4)"
+        >
+          <ng-template pTemplate="header"> </ng-template> </p-editor
+        ><label class="mt-1">{{
+          "about.proposalComponent.labor" | translate
+        }}</label>
+      </div>
+      <div class="col">
+        <p-editor
+          styleClass="p-editor-override"
+          [ngModel]="this.propService.propSolution.environment_description"
+          [style]="editorStyle"
+          [readonly]="true"
+          (click)="openDialog(5)"
+        >
+          <ng-template pTemplate="header"> </ng-template> </p-editor
+        ><label class="mt-1">{{
+          "about.proposalComponent.ambient" | translate
+        }}</label>
+      </div>
+      <div class="col">
+        <p-editor
+          styleClass="p-editor-override"
+          [ngModel]="
+            this.propService.propSolution.machine_description +
+            '<p>' +
+            returnString(this.propService.propSolution.machine) +
+            '</p>' +
+            '<p>' +
+            returnString(this.propService.propSolution.equipament) +
+            '</p>'
+          "
+          [style]="editorStyle"
+          [readonly]="true"
+          (click)="openDialog(6)"
+        >
+          <ng-template pTemplate="header"> </ng-template> </p-editor
+        ><label class="mt-1">{{
+          "about.proposalComponent.machine" | translate
+        }}</label>
+      </div>
+    </div>
+  </div>
+  <div class="d-block mt-5">
+    <label>{{ "about.proposalComponent.effect" | translate }}</label>
+    <p-editor
+      styleClass="p-editor-override"
+      [ngModel]="this.propService.propSolution.effect_description"
+      [style]="{
+        height: '300px',
+        width: '230px',
+        border: '2px solid #333333',
+        'border-radius': '5px'
+      }"
+      [readonly]="true"
+      (click)="openDialog(7)"
+    >
+      <ng-template pTemplate="header"> </ng-template>
+    </p-editor>
+  </div>
 </div>
 
 <div class="mt-4">
-    <app-reasons-why></app-reasons-why>
+  <app-reasons-why></app-reasons-why>
 </div>
 
-<p-dialog [(visible)]="displayModal" [modal]="true" [style]="{width: '50vw'}"
-          [draggable]="false" [resizable]="false">
-    <ng-template pTemplate="header">
-        <h2 class="mr-2">
-            <i class="bi bi-file-earmark-text"></i>
-            {{'about.ncView.description'| translate}}
-        </h2>
-    </ng-template>
-    <div>
-
-        <p-editor [style]="{'height':'144px', border: '1px solid #dddddd','font-size': '25px' }" [readonly]="true" [ngModel]="propService.ncProp.text_area_nc">
-            <ng-template pTemplate="header">
-            </ng-template>
-        </p-editor>
-    </div>
+<p-dialog
+  [(visible)]="displayModal"
+  [modal]="true"
+  [style]="{ width: '50vw' }"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <ng-template pTemplate="header">
+    <h2 class="mr-2">
+      <i class="bi bi-file-earmark-text"></i>
+      {{ "about.ncView.description" | translate }}
+    </h2>
+  </ng-template>
+  <div>
+    <p-editor
+      styleClass="p-editor-override"
+      [style]="{
+        height: '144px',
+        border: '1px solid #dddddd',
+        'font-size': '25px'
+      }"
+      [readonly]="true"
+      [ngModel]="propService.ncProp.text_area_nc"
+    >
+      <ng-template pTemplate="header"> </ng-template>
+    </p-editor>
+  </div>
 </p-dialog>

@@ -33,3 +33,7 @@ div {
   font-size: 200%;
   text-align: center;
 }
+::ng-deep .p-editor-override p {
+  margin-bottom: 0;
+  line-height: 1;
+}

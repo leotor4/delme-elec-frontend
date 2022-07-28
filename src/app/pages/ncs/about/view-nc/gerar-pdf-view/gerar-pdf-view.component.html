@@ -1,6 +1,4 @@
 <div id="pdfContent">
- 
-
   <div class="cabecalho-eletrosom d-flex">
     <div class="logo d-flex align-items-center col-6">
       <img src="../assets/images/logo2.png" alt="Electroson" />
@@ -47,6 +45,7 @@
         Descrição
       </h2>
       <p-editor
+        styleClass="p-editor-override"
         [(ngModel)]="this.aboutService.nc.text_area_nc"
         [style]="{ height: '100px', border: '1px solid #dddddd' }"
         [readonly]="true"
@@ -74,6 +73,7 @@
         Ações Imediatas
       </h2>
       <p-editor
+        styleClass="p-editor-override"
         [(ngModel)]="this.aboutService.nc.text_area_acoes"
         [style]="{ height: '100px', border: '1px solid #dddddd' }"
         [readonly]="true"
@@ -97,369 +97,382 @@
     <app-view-stakeholders></app-view-stakeholders>
   </div>
 
-
-
   <div *ngIf="aboutService.hasProposal()">
     <div>
-    <div class="d-flex justify-content-between accordion">
+      <div class="d-flex justify-content-between accordion">
+        <p>
+          <i class="bi bi-suit-diamond"></i>
+          {{ "about.proposalComponent.ishikawaDiagram" | translate }}
+        </p>
+      </div>
+      <div class="d-flex caixa-cinza pr-2 py-4 mt-4">
+        <div>
+          <div class="d-flex">
+            <div class="col">
+              <label>{{
+                "about.proposalComponent.material" | translate
+              }}</label>
+              <p-editor
+                styleClass="p-editor-override"
+                [ngModel]="
+                  '<p>' +
+                  this.aboutService.nc.proposalSolution!.lack_materials +
+                  '</p><p>' +
+                  this.aboutService.nc.proposalSolution!.low_quality_materials +
+                  '</p><p>' +
+                  this.aboutService.nc.proposalSolution!.excess_materials +
+                  '</p>' +
+                  this.aboutService.nc.proposalSolution!.material_description
+                "
+                [style]="editorStyle"
+                [readonly]="true"
+              >
+              </p-editor>
+            </div>
+            <div class="col">
+              <label>{{ "about.proposalComponent.measure" | translate }}</label>
+              <p-editor
+                styleClass="p-editor-override"
+                [ngModel]="
+                  '<p>' +
+                  this.aboutService.nc.proposalSolution!.lack_parameters +
+                  '</p><p>' +
+                  this.aboutService.nc.proposalSolution!.excess_parameters +
+                  '</p><p>' +
+                  this.aboutService.nc.proposalSolution!.non_achievement_goals +
+                  '</p><p>' +
+                  this.aboutService.nc.proposalSolution!.measurement_description
+                "
+                [style]="editorStyle"
+                [readonly]="true"
+              >
+              </p-editor>
+            </div>
+            <div class="col">
+              <label>{{ "about.proposalComponent.method" | translate }}</label>
+              <p-editor
+                styleClass="p-editor-override"
+                [ngModel]="
+                  this.aboutService.nc.proposalSolution!.method_description +
+                  '<p>' +
+                  returnString(
+                    this.aboutService.nc.proposalSolution!.instruction
+                  ) +
+                  '</p>' +
+                  '<p>' +
+                  returnString(
+                    this.aboutService.nc.proposalSolution!.procedure
+                  ) +
+                  '</p>' +
+                  '<p>' +
+                  returnString(
+                    this.aboutService.nc.proposalSolution!.regulatory
+                  ) +
+                  '</p>' +
+                  '<p>' +
+                  returnString(this.aboutService.nc.proposalSolution!.nbr) +
+                  '</p>'
+                "
+                [style]="editorStyle"
+                [readonly]="true"
+              >
+              </p-editor>
+            </div>
+          </div>
+          <img
+            src="../../../../../../assets/images/Espinha de Peixe.png"
+            width="850"
+            class="ml-5"
+          />
+          <div class="d-flex">
+            <div class="col">
+              <p-editor
+                styleClass="p-editor-override"
+                [ngModel]="
+                  '<p>' +
+                  this.aboutService.nc.proposalSolution!.run_training +
+                  '</p>' +
+                  this.aboutService.nc.proposalSolution!.man_power_description
+                "
+                [style]="editorStyle"
+                [readonly]="true"
+              >
+              </p-editor
+              ><label class="mt-1">{{
+                "about.proposalComponent.labor" | translate
+              }}</label>
+            </div>
+            <div class="col">
+              <p-editor
+                styleClass="p-editor-override"
+                [ngModel]="
+                  this.aboutService.nc.proposalSolution!.environment_description
+                "
+                [style]="editorStyle"
+                [readonly]="true"
+              >
+              </p-editor
+              ><label class="mt-1">{{
+                "about.proposalComponent.ambient" | translate
+              }}</label>
+            </div>
+            <div class="col">
+              <p-editor
+                styleClass="p-editor-override"
+                [ngModel]="
+                  this.aboutService.nc.proposalSolution!.machine_description +
+                  '<p>' +
+                  returnString(this.aboutService.nc.proposalSolution!.machine) +
+                  '</p><p>' +
+                  returnString(
+                    this.aboutService.nc.proposalSolution!.equipament
+                  ) +
+                  '</p>'
+                "
+                [style]="editorStyle"
+                [readonly]="true"
+              >
+              </p-editor
+              ><label class="mt-1">{{
+                "about.proposalComponent.machine" | translate
+              }}</label>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex flex-column justify-content-center">
+          <label>{{ "about.proposalComponent.effect" | translate }}</label>
+          <p-editor
+            styleClass="p-editor-override"
+            [ngModel]="
+              this.aboutService.nc.proposalSolution!.effect_description
+            "
+            [style]="{
+              height: '300px',
+              width: '230px',
+              border: '2px solid #333333',
+              'border-radius': '5px'
+            }"
+            [readonly]="true"
+          >
+          </p-editor>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-between accordion mt-5">
       <p>
-        <i class="bi bi-suit-diamond"></i>
-        {{ "about.proposalComponent.ishikawaDiagram" | translate }}
+        <i class="bi bi-dice-5"></i>
+        {{ "about.proposalComponent.5why" | translate }}
       </p>
     </div>
-    <div class="d-flex caixa-cinza pr-2 py-4 mt-4">
-      <div>
-        <div class="d-flex">
-          <div class="col">
-            <label>{{ "about.proposalComponent.material" | translate }}</label>
-            <p-editor
-              [ngModel]="
-                '<p>' +
-                this.aboutService.nc.proposalSolution!.lack_materials +
-                '</p><p>' +
-                this.aboutService.nc.proposalSolution!.low_quality_materials +
-                '</p><p>' +
-                this.aboutService.nc.proposalSolution!.excess_materials +
-                '</p>' +
-                this.aboutService.nc.proposalSolution!.material_description
-              "
-              [style]="editorStyle"
-              [readonly]="true"
-            >
-            </p-editor>
-          </div>
-          <div class="col">
-            <label>{{ "about.proposalComponent.measure" | translate }}</label>
-            <p-editor
-              [ngModel]="
-                '<p>' +
-                this.aboutService.nc.proposalSolution!.lack_parameters +
-                '</p><p>' +
-                this.aboutService.nc.proposalSolution!.excess_parameters +
-                '</p><p>' +
-                this.aboutService.nc.proposalSolution!.non_achievement_goals +
-                '</p><p>' +
-                this.aboutService.nc.proposalSolution!.measurement_description
-              "
-              [style]="editorStyle"
-              [readonly]="true"
-            >
-            </p-editor>
-          </div>
-          <div class="col">
-            <label>{{ "about.proposalComponent.method" | translate }}</label>
-            <p-editor
-              [ngModel]="
-                this.aboutService.nc.proposalSolution!.method_description +
-                '<p>' +
-                returnString(
-                  this.aboutService.nc.proposalSolution!.instruction
-                ) +
-                '</p>' +
-                '<p>' +
-                returnString(this.aboutService.nc.proposalSolution!.procedure) +
-                '</p>' +
-                '<p>' +
-                returnString(
-                  this.aboutService.nc.proposalSolution!.regulatory
-                ) +
-                '</p>' +
-                '<p>' +
-                returnString(this.aboutService.nc.proposalSolution!.nbr) +
-                '</p>'
-              "
-              [style]="editorStyle"
-              [readonly]="true"
-            >
-            </p-editor>
-          </div>
-        </div>
-        <img
-          src="../../../../../../assets/images/Espinha de Peixe.png"
-          width="850"
-          class="ml-5"
-        />
-        <div class="d-flex">
-          <div class="col">
-            <p-editor
-              [ngModel]="
-                '<p>' +
-                this.aboutService.nc.proposalSolution!.run_training +
-                '</p>' +
-                this.aboutService.nc.proposalSolution!.man_power_description
-              "
-              [style]="editorStyle"
-              [readonly]="true"
-            >
-            </p-editor
-            ><label class="mt-1">{{
-              "about.proposalComponent.labor" | translate
+    <div>
+      <div class="caixa-cinza p-2 mt-3">
+        <div class="d-flex justify-content-evenly flex-wrap">
+          <div class="d-flex flex-column why-box">
+            <label class="mb-2" for="">{{
+              aboutService.nc.proposalSolution!.first_why_label
             }}</label>
-          </div>
-          <div class="col">
-            <p-editor
-              [ngModel]="
-                this.aboutService.nc.proposalSolution!.environment_description
-              "
-              [style]="editorStyle"
-              [readonly]="true"
+            <textarea
+              [(ngModel)]="aboutService.nc.proposalSolution!.first_why"
+              pInputTextarea
+              cols="35"
+              rows="5"
+              class="textarea"
             >
-            </p-editor
-            ><label class="mt-1">{{
-              "about.proposalComponent.ambient" | translate
-            }}</label>
-          </div>
-          <div class="col">
-            <p-editor
-              [ngModel]="
-                this.aboutService.nc.proposalSolution!.machine_description +
-                '<p>' +
-                returnString(this.aboutService.nc.proposalSolution!.machine) +
-                '</p><p>' +
-                returnString(
-                  this.aboutService.nc.proposalSolution!.equipament
-                ) +
-                '</p>'
-              "
-              [style]="editorStyle"
-              [readonly]="true"
+            </textarea>
+            <div
+              class="text-center form-check caixa-preta"
+              *ngIf="aboutService.nc.proposalSolution!.root_cause == 'cause1'"
             >
-            </p-editor
-            ><label class="mt-1">{{
-              "about.proposalComponent.machine" | translate
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                onclick="return false;"
+                checked
+              />
+              <label class="mb-2" class="form-check-label text-light">
+                {{ "about.proposalComponent.rootCause" | translate }}
+              </label>
+            </div>
+          </div>
+
+          <div class="d-flex flex-column why-box">
+            <label class="mb-2" for="">{{
+              aboutService.nc.proposalSolution!.second_why
             }}</label>
+            <textarea
+              [(ngModel)]="aboutService.nc.proposalSolution!.second_why"
+              pInputTextarea
+              cols="35"
+              rows="5"
+              class="textarea"
+            >
+            </textarea>
+            <div
+              class="text-center form-check caixa-preta"
+              *ngIf="aboutService.nc.proposalSolution!.root_cause == 'cause2'"
+            >
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                onclick="return false;"
+                checked
+              />
+              <label class="form-check-label text-light">
+                {{ "about.proposalComponent.rootCause" | translate }}
+              </label>
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="d-flex flex-column justify-content-center">
-        <label>{{ "about.proposalComponent.effect" | translate }}</label>
-        <p-editor
-          [ngModel]="this.aboutService.nc.proposalSolution!.effect_description"
-          [style]="{
-            height: '300px',
-            width: '230px',
-            border: '2px solid #333333',
-            'border-radius': '5px'
-          }"
-          [readonly]="true"
-        >
-        </p-editor>
-      </div>
-    </div>
-  </div>
-  <div class="d-flex justify-content-between accordion mt-5">
-    <p>
-      <i class="bi bi-dice-5"></i>
-      {{ "about.proposalComponent.5why" | translate }}
-    </p>
-  </div>
-  <div>
-    <div class="caixa-cinza p-2 mt-3">
-      <div class="d-flex justify-content-evenly flex-wrap">
-        <div class="d-flex flex-column why-box">
-          <label class="mb-2" for="">{{
-            aboutService.nc.proposalSolution!.first_why_label
-          }}</label>
-          <textarea
-            [(ngModel)]="aboutService.nc.proposalSolution!.first_why"
-            pInputTextarea
-            cols="35"
-            rows="5"
-            class="textarea"
-          >
-          </textarea>
-          <div
-            class="text-center form-check caixa-preta"
-            *ngIf="aboutService.nc.proposalSolution!.root_cause == 'cause1'"
-          >
-            <input
-              class="form-check-input"
-              type="checkbox"
-              value=""
-              onclick="return false;"
-              checked
-            />
-            <label class="mb-2" class="form-check-label text-light">
-              {{ "about.proposalComponent.rootCause" | translate }}
-            </label>
-          </div>
-        </div>
 
-        <div class="d-flex flex-column why-box">
-          <label class="mb-2" for="">{{
-            aboutService.nc.proposalSolution!.second_why
-          }}</label>
-          <textarea
-            [(ngModel)]="aboutService.nc.proposalSolution!.second_why"
-            pInputTextarea
-            cols="35"
-            rows="5"
-            class="textarea"
-          >
-          </textarea>
-          <div
-            class="text-center form-check caixa-preta"
-            *ngIf="aboutService.nc.proposalSolution!.root_cause == 'cause2'"
-          >
-            <input
-              class="form-check-input"
-              type="checkbox"
-              value=""
-              onclick="return false;"
-              checked
-            />
-            <label class="form-check-label text-light">
-              {{ "about.proposalComponent.rootCause" | translate }}
-            </label>
+          <div class="d-flex flex-column why-box">
+            <label class="mb-2" for="">{{
+              aboutService.nc.proposalSolution!.second_why
+            }}</label>
+            <textarea
+              [(ngModel)]="aboutService.nc.proposalSolution!.third_why"
+              pInputTextarea
+              cols="35"
+              rows="5"
+              class="textarea"
+            >
+            </textarea>
+            <div
+              class="text-center form-check caixa-preta"
+              *ngIf="aboutService.nc.proposalSolution!.root_cause == 'cause3'"
+            >
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                onclick="return false;"
+                checked
+              />
+              <label class="form-check-label text-light">
+                {{ "about.proposalComponent.rootCause" | translate }}
+              </label>
+            </div>
           </div>
         </div>
+        <div class="d-flex justify-content-evenly flex-wrap">
+          <div class="d-flex flex-column why-box">
+            <label class="mb-2" for="">{{
+              aboutService.nc.proposalSolution!.third_why
+            }}</label>
+            <textarea
+              [(ngModel)]="aboutService.nc.proposalSolution!.quarter_why"
+              pInputTextarea
+              cols="55"
+              rows="5"
+              class="textarea"
+            >
+            </textarea>
+            <div
+              class="text-center form-check caixa-preta"
+              *ngIf="aboutService.nc.proposalSolution!.root_cause == 'cause4'"
+            >
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                onclick="return false;"
+                checked
+              />
+              <label class="form-check-label text-light">
+                {{ "about.proposalComponent.rootCause" | translate }}
+              </label>
+            </div>
+          </div>
 
-        <div class="d-flex flex-column why-box">
-          <label class="mb-2" for="">{{
-            aboutService.nc.proposalSolution!.second_why
-          }}</label>
-          <textarea
-            [(ngModel)]="aboutService.nc.proposalSolution!.third_why"
-            pInputTextarea
-            cols="35"
-            rows="5"
-            class="textarea"
-          >
-          </textarea>
-          <div
-            class="text-center form-check caixa-preta"
-            *ngIf="aboutService.nc.proposalSolution!.root_cause == 'cause3'"
-          >
-            <input
-              class="form-check-input"
-              type="checkbox"
-              value=""
-              onclick="return false;"
-              checked
-            />
-            <label class="form-check-label text-light">
-              {{ "about.proposalComponent.rootCause" | translate }}
-            </label>
-          </div>
-        </div>
-      </div>
-      <div class="d-flex justify-content-evenly flex-wrap">
-        <div class="d-flex flex-column why-box">
-          <label class="mb-2" for="">{{
-            aboutService.nc.proposalSolution!.third_why
-          }}</label>
-          <textarea
-            [(ngModel)]="aboutService.nc.proposalSolution!.quarter_why"
-            pInputTextarea
-            cols="55"
-            rows="5"
-            class="textarea"
-          >
-          </textarea>
-          <div
-            class="text-center form-check caixa-preta"
-            *ngIf="aboutService.nc.proposalSolution!.root_cause == 'cause4'"
-          >
-            <input
-              class="form-check-input"
-              type="checkbox"
-              value=""
-              onclick="return false;"
-              checked
-            />
-            <label class="form-check-label text-light">
-              {{ "about.proposalComponent.rootCause" | translate }}
-            </label>
-          </div>
-        </div>
-
-        <div class="d-flex flex-column why-box">
-          <label class="mb-2" for="">{{
-            aboutService.nc.proposalSolution!.quarter_why
-          }}</label>
-          <textarea
-            [(ngModel)]="aboutService.nc.proposalSolution!.fifth_why"
-            pInputTextarea
-            cols="55"
-            rows="5"
-            class="textarea"
-          >
-          </textarea>
-          <div
-            class="text-center form-check caixa-preta"
-            *ngIf="aboutService.nc.proposalSolution!.root_cause == 'cause5'"
-          >
-            <input
-              class="form-check-input"
-              type="checkbox"
-              value=""
-              onclick="return false;"
-              checked
-            />
-            <label class="form-check-label text-light">
-              {{ "about.proposalComponent.rootCause" | translate }}
-            </label>
+          <div class="d-flex flex-column why-box">
+            <label class="mb-2" for="">{{
+              aboutService.nc.proposalSolution!.quarter_why
+            }}</label>
+            <textarea
+              [(ngModel)]="aboutService.nc.proposalSolution!.fifth_why"
+              pInputTextarea
+              cols="55"
+              rows="5"
+              class="textarea"
+            >
+            </textarea>
+            <div
+              class="text-center form-check caixa-preta"
+              *ngIf="aboutService.nc.proposalSolution!.root_cause == 'cause5'"
+            >
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                onclick="return false;"
+                checked
+              />
+              <label class="form-check-label text-light">
+                {{ "about.proposalComponent.rootCause" | translate }}
+              </label>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="d-flex justify-content-between accordion mt-5">
-    <p>
-      <i class="bi bi-geo"></i>
-      {{ "about.proposalComponent.rootCause" | translate }}
-    </p>
-  </div>
-  <div class="card">
-    <p-table [value]="aboutService.nc.proposalSolution!.actionPlans">
-      <ng-template pTemplate="header">
-        <tr>
-          <th>{{ "global.description" | translate }}</th>
-          <th>{{ "global.responsible" | translate }}</th>
-          <th>{{ "global.deadline" | translate }}</th>
-          <th>{{ "global.status" | translate }}</th>
-        </tr>
-      </ng-template>
-      <ng-template pTemplate="body" let-action>
-        <tr>
-          <td>{{ action.description }}</td>
-          <td>{{ action.responsible.name }}</td>
-          <td>{{ dataParse(action.term) }}</td>
-          <td>{{ action.status }}</td>
-        </tr>
-      </ng-template>
-    </p-table>
+    <div class="d-flex justify-content-between accordion mt-5">
+      <p>
+        <i class="bi bi-geo"></i>
+        {{ "about.proposalComponent.rootCause" | translate }}
+      </p>
+    </div>
+    <div class="card">
+      <p-table [value]="aboutService.nc.proposalSolution!.actionPlans">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>{{ "global.description" | translate }}</th>
+            <th>{{ "global.responsible" | translate }}</th>
+            <th>{{ "global.deadline" | translate }}</th>
+            <th>{{ "global.status" | translate }}</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-action>
+          <tr>
+            <td>{{ action.description }}</td>
+            <td>{{ action.responsible.name }}</td>
+            <td>{{ dataParse(action.term) }}</td>
+            <td>{{ action.status }}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+
+    <h2 class="mr-4 text-black mt-4 fs-5">
+      <i class="pi pi-copy"></i>
+      {{ "about.costsComponent.documents.title" | translate }}
+    </h2>
+    <div class="card mt-3">
+      <p-table [value]="this.aboutService.nc?.costs || []">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>{{ "about.costsComponent.documents.document" | translate }}</th>
+            <th>{{ "about.costsComponent.documents.date" | translate }}</th>
+            <th>
+              {{ "about.costsComponent.documents.attachedBy" | translate }}
+            </th>
+            <th>{{ "about.costsComponent.documents.total" | translate }}</th>
+            <th></th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-doc>
+          <tr>
+            <td>{{ doc.file_name }}</td>
+            <td>{{ parseDate(doc.created_at) }}</td>
+            <td>{{ doc.author?.username }}</td>
+            <td>{{ format(doc.value) }}</td>
+            <td></td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
   </div>
 
-  <h2 class="mr-4 text-black mt-4 fs-5">
-    <i class="pi pi-copy"></i>
-    {{ "about.costsComponent.documents.title" | translate }}
-  </h2>
-  <div class="card mt-3">
-    <p-table [value]="this.aboutService.nc?.costs || []">
-      <ng-template pTemplate="header">
-        <tr>
-          <th>{{ "about.costsComponent.documents.document" | translate }}</th>
-          <th>{{ "about.costsComponent.documents.date" | translate }}</th>
-          <th>{{ "about.costsComponent.documents.attachedBy" | translate }}</th>
-          <th>{{ "about.costsComponent.documents.total" | translate }}</th>
-          <th></th>
-        </tr>
-      </ng-template>
-      <ng-template pTemplate="body" let-doc>
-        <tr>
-          <td>{{ doc.file_name }}</td>
-          <td>{{ parseDate(doc.created_at) }}</td>
-          <td>{{ doc.author?.username }}</td>
-          <td>{{ format(doc.value) }}</td>
-          <td></td>
-        </tr>
-      </ng-template>
-    </p-table>
-  </div>
-  </div>
-
-   <div class="quebrar-linha mb-4" *ngIf="aboutService.hasSgqEval()">
+  <div class="quebrar-linha mb-4" *ngIf="aboutService.hasSgqEval()">
     <h2>Reincidência</h2>
     <div class="card">
       <p-table [value]="aboutService.nc.sgqEvaluation.recurrence || []">
@@ -531,6 +544,7 @@
     <div class="mt-4">
       <h2>Relato e evidências da solução do problema</h2>
       <p-editor
+        styleClass="p-editor-override"
         [ngModel]="aboutService.nc.sgqEvaluation.text_area1"
         [style]="editorStyle"
         [readonly]="true"
@@ -549,6 +563,7 @@
     <div class="mt-4">
       <h2>Riscos de oportunidades</h2>
       <p-editor
+        styleClass="p-editor-override"
         [ngModel]="aboutService.nc.sgqEvaluation.text_area2"
         [style]="editorStyle"
         [readonly]="true"
@@ -560,6 +575,7 @@
     <div class="mt-4">
       <h2>Mudanças</h2>
       <p-editor
+        styleClass="p-editor-override"
         [ngModel]="aboutService.nc.sgqEvaluation.text_area3"
         [style]="editorStyle"
         [readonly]="true"

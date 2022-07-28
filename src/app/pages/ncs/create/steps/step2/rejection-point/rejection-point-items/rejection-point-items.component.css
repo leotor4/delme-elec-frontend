@@ -1,105 +1,96 @@
 .cabecalho h1 {
-    font-size: 25px;
-    font-weight: 500;
-    margin-bottom: 0px;
-    margin-top: 0px;
+  font-size: 25px;
+  font-weight: 500;
+  margin-bottom: 0px;
+  margin-top: 0px;
 }
 
 .cabecalho p {
-    font-size: 14px;
-    color: gray;
+  font-size: 14px;
+  color: gray;
 }
 
-
 .autoComplete-item h4 {
-    font-size: 14px;
-    font-weight: 700;
+  font-size: 14px;
+  font-weight: 700;
 }
 
 .autoComplete-item span {
-    font-size: 12px;
-    font-weight: 700;
-    color: #b4b4b4;
+  font-size: 12px;
+  font-weight: 700;
+  color: #b4b4b4;
 }
 
 .autoComplete-item p {
-    font-size: 14px;
-    font-weight: 400;
-    color: #7d7d7d;
-    white-space: normal !important;
+  font-size: 14px;
+  font-weight: 400;
+  color: #7d7d7d;
+  white-space: normal !important;
 }
 
 .p-autocomplete {
-    border-radius: 5px;
-    border: 2px solid rgb(51, 51, 51);
+  border-radius: 5px;
+  border: 2px solid rgb(51, 51, 51);
 }
 
 .input {
-    border-radius: 5px;
-    border: 2px solid rgb(51, 51, 51);
+  border-radius: 5px;
+  border: 2px solid rgb(51, 51, 51);
 }
 
 .att-button a {
-    width: 150px;
-    height: 36px;
-    font-size: 15px;
+  width: 150px;
+  height: 36px;
+  font-size: 15px;
 }
 
 .att-button i {
-    margin-left: 7px;
-    font-size: 11px;
+  margin-left: 7px;
+  font-size: 11px;
 }
 
 .att-button p {
-    font-size: 11px;
-    color: gray;
-    margin: 0;
+  font-size: 11px;
+  color: gray;
+  margin: 0;
 }
 
 .att-button {
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-end;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
 }
 
 .p-autocomplete {
-    border-radius: 5px;
-    border: 2px solid rgb(51, 51, 51);
-    height: 36px;
+  border-radius: 5px;
+  border: 2px solid rgb(51, 51, 51);
+  height: 36px;
 }
 
 label {
-    min-width: 200px;
-    font-size: 13px;
-    font-weight: bold;
-    margin-bottom: 2px;
+  min-width: 200px;
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 2px;
 }
 
-.row-inputs input{
-    width: 270px;
-   
+.row-inputs input {
+  width: 270px;
 }
 
 .p-autocomplete {
-    border-radius: 5px;
-    border: 2px solid rgb(51, 51, 51);
-    height: 36px;
+  border-radius: 5px;
+  border: 2px solid rgb(51, 51, 51);
+  height: 36px;
 }
 
 .auto-complete-title {
-    font-size: 13px;
-    font-weight: bold;
-    margin-bottom: 10px;
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
 .auto-complete-label {
-    font-size: 11px;
-    color: gray;
-
+  font-size: 11px;
+  color: gray;
 }
-
-
-
-
-
-

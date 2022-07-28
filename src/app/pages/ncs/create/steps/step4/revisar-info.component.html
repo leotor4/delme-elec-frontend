@@ -2,14 +2,14 @@
   <div class="d-flex">
     <div class="cabecalho">
       <div class="d-flex align-items-center">
-        <h1 class="mr-3">{{'newNC.review.title'| translate}}</h1>
+        <h1 class="mr-3">{{ "newNC.review.title" | translate }}</h1>
         <p-chip>
           <i class="bi bi-ticket-perforated mr-2"></i>
           {{ this.nonComplicanceService.nc?.code || "XXXX.XX" }}
         </p-chip>
       </div>
       <p>
-        {{'newNC.review.subtitle'| translate}}
+        {{ "newNC.review.subtitle" | translate }}
       </p>
     </div>
   </div>
@@ -20,7 +20,7 @@
       (click)="isAllOpen = true"
     >
       <i class="bi bi-arrows-expand"></i>
-      {{'global.expand'| translate}}
+      {{ "global.expand" | translate }}
     </button>
     <button
       [class]="isAllOpen ? unselectedClass : selectedClass"
@@ -28,7 +28,7 @@
       class="btn-sm"
     >
       <i class="bi bi-arrows-collapse"></i>
-      {{'global.colapse'| translate}}
+      {{ "global.colapse" | translate }}
     </button>
   </div>
 </div>
@@ -38,18 +38,22 @@
       <div class="d-flex justify-content-between accordion">
         <p>
           <i class="bi bi-file-earmark-text"></i>
-          {{'global.ncData'| translate}}
+          {{ "global.ncData" | translate }}
         </p>
-        <button class="btn btn-dark red" style="background-color: #00344D;" (click)="goToStepById(0)">
+        <button
+          class="btn btn-dark red"
+          style="background-color: #00344d"
+          (click)="goToStepById(0)"
+        >
           <i class="bi bi-pencil mr-1"></i>
-          {{'global.edit'| translate}}
+          {{ "global.edit" | translate }}
         </button>
       </div>
     </ng-template>
     <ng-template pTemplate="content">
       <app-identify-nc></app-identify-nc>
       <div class="mt-3"></div>
-       <app-products-and-points></app-products-and-points>
+      <app-products-and-points></app-products-and-points>
     </ng-template>
   </p-accordionTab>
   <p-accordionTab [selected]="isAllOpen">
@@ -57,81 +61,95 @@
       <div class="d-flex justify-content-between accordion">
         <p>
           <i class="bi bi-box-seam"></i>
-          {{'global.description'| translate}}
+          {{ "global.description" | translate }}
         </p>
-        <button class="btn btn-dark red" style="background-color: #00344D;" (click)="goToStepById(1)">
+        <button
+          class="btn btn-dark red"
+          style="background-color: #00344d"
+          (click)="goToStepById(1)"
+        >
           <i class="bi bi-pencil mr-1"></i>
-          {{'global.edit'| translate}}
+          {{ "global.edit" | translate }}
         </button>
       </div>
     </ng-template>
     <ng-template pTemplate="content">
-     <div class="div-ident-parceiro d-flex flex-column flex-lg-row mt-3">
-  <div class="dados-parceiro razao-social item">
-    <h2 class="mr-2">
-      <i class="bi bi-file-earmark-text"></i>
-      {{'global.description'| translate}}
-    </h2>
-    <p-editor
-      [(ngModel)]="this.nonComplicanceService.nc.text_area_nc"
-      [style]="{ height: '100px', border: '1px solid #dddddd', 'font-size': '20px' }"
-      [readonly]="true"
-    >
-      <ng-template pTemplate="header"> </ng-template>
-    </p-editor>
-  </div>
-  <p-divider layout="vertical"></p-divider>
-  <div class="dados-parceiro razao-social item">
-    <h2 class="mr-2 mb-3">
-      <i class="bi bi-paperclip"></i>
-      {{'newNC.review.evidence'| translate}}
-    </h2>
-    <p-carousel
-      [value]="returnFile('evidenciasNc')"
-      [numVisible]="3"
-      [numScroll]="3"
-      [showIndicators]="false"
-    >
-      <ng-template let-file pTemplate="item">
-        <i class="bi bi-file-earmark fs-1"></i>
-        <p>{{ file.name }}</p>
-      </ng-template>
-    </p-carousel>
-  </div>
-</div>
-<div class="div-ident-parceiro d-flex mt-3">
-  <div class="dados-parceiro razao-social item">
-    <h2 class="mr-2">
-      <i class="bi bi-geo"></i>
-      {{'newNC.step2.actionsTitle'| translate}}
-    </h2>
-    <p-editor
-      [(ngModel)]="this.nonComplicanceService.nc.text_area_acoes"
-      [style]="{ height: '100px', border: '1px solid #dddddd', 'font-size': '20px' }"
-      [readonly]="true"
-    >
-      <ng-template pTemplate="header" hidden> </ng-template>
-    </p-editor>
-  </div>
-  <p-divider layout="vertical"></p-divider>
-  <div class="dados-parceiro razao-social item">
-    <h2 class="mr-2 mb-5">
-      <i class="bi bi-paperclip"></i>
-      {{'newNC.review.evidence'| translate}}
-    </h2>
-    <p-carousel
-      [value]="returnFile('evidenciasAcoes')"
-      [numVisible]="3"
-      [numScroll]="3"
-      [showIndicators]="false"
-    >
-      <ng-template let-file pTemplate="item">
-        <i class="bi bi-file-earmark fs-1"></i>
-        <p>{{ file.name }}</p>
-      </ng-template>
-    </p-carousel>
-  </div>
-</div>
+      <div class="div-ident-parceiro d-flex flex-column flex-lg-row mt-3">
+        <div class="dados-parceiro razao-social item">
+          <h2 class="mr-2">
+            <i class="bi bi-file-earmark-text"></i>
+            {{ "global.description" | translate }}
+          </h2>
+          <p-editor
+            styleClass="p-editor-override"
+            [(ngModel)]="this.nonComplicanceService.nc.text_area_nc"
+            [style]="{
+              height: '100px',
+              border: '1px solid #dddddd',
+              'font-size': '20px'
+            }"
+            [readonly]="true"
+          >
+            <ng-template pTemplate="header"> </ng-template>
+          </p-editor>
+        </div>
+        <p-divider layout="vertical"></p-divider>
+        <div class="dados-parceiro razao-social item">
+          <h2 class="mr-2 mb-3">
+            <i class="bi bi-paperclip"></i>
+            {{ "newNC.review.evidence" | translate }}
+          </h2>
+          <p-carousel
+            [value]="returnFile('evidenciasNc')"
+            [numVisible]="3"
+            [numScroll]="3"
+            [showIndicators]="false"
+          >
+            <ng-template let-file pTemplate="item">
+              <i class="bi bi-file-earmark fs-1"></i>
+              <p>{{ file.name }}</p>
+            </ng-template>
+          </p-carousel>
+        </div>
+      </div>
+      <div class="div-ident-parceiro d-flex mt-3">
+        <div class="dados-parceiro razao-social item">
+          <h2 class="mr-2">
+            <i class="bi bi-geo"></i>
+            {{ "newNC.step2.actionsTitle" | translate }}
+          </h2>
+          <p-editor
+            styleClass="p-editor-override"
+            [(ngModel)]="this.nonComplicanceService.nc.text_area_acoes"
+            [style]="{
+              height: '100px',
+              border: '1px solid #dddddd',
+              'font-size': '20px'
+            }"
+            [readonly]="true"
+          >
+            <ng-template pTemplate="header" hidden> </ng-template>
+          </p-editor>
+        </div>
+        <p-divider layout="vertical"></p-divider>
+        <div class="dados-parceiro razao-social item">
+          <h2 class="mr-2 mb-5">
+            <i class="bi bi-paperclip"></i>
+            {{ "newNC.review.evidence" | translate }}
+          </h2>
+          <p-carousel
+            [value]="returnFile('evidenciasAcoes')"
+            [numVisible]="3"
+            [numScroll]="3"
+            [showIndicators]="false"
+          >
+            <ng-template let-file pTemplate="item">
+              <i class="bi bi-file-earmark fs-1"></i>
+              <p>{{ file.name }}</p>
+            </ng-template>
+          </p-carousel>
+        </div>
+      </div>
     </ng-template>
   </p-accordionTab>
   <p-accordionTab [selected]="isAllOpen">
@@ -139,11 +157,15 @@
       <div class="d-flex justify-content-between accordion">
         <p>
           <i class="bi bi-file-earmark-text"></i>
-          {{'global.contacts.notifications'| translate}}
+          {{ "global.contacts.notifications" | translate }}
         </p>
-        <button class="btn btn-dark red" style="background-color: #00344D;" (click)="goToStepById(2)">
+        <button
+          class="btn btn-dark red"
+          style="background-color: #00344d"
+          (click)="goToStepById(2)"
+        >
           <i class="bi bi-pencil mr-1"></i>
-          {{'global.edit'| translate}}
+          {{ "global.edit" | translate }}
         </button>
       </div>
     </ng-template>

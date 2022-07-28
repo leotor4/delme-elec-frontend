@@ -28,8 +28,8 @@
       <i class="bi bi-arrows-collapse"></i>
       {{ "global.colapse" | translate }}
     </button>
-    <button class="btn btn-dark btn-sm ml-2" style="background-color: #00344D;">
-      {{'about.ncView.editBtn'| translate}}
+    <button class="btn btn-dark btn-sm ml-2" style="background-color: #00344d">
+      {{ "about.ncView.editBtn" | translate }}
       <i class="bi bi-pencil-square"></i>
     </button>
   </div>
@@ -60,13 +60,14 @@
       </div>
     </ng-template>
     <ng-template pTemplate="content">
-      <div class="div-ident-parceiro d-flex  mt-3">
+      <div class="div-ident-parceiro d-flex mt-3">
         <div class="dados-parceiro razao-social item">
           <h2 class="mr-2">
             <i class="bi bi-file-earmark-text"></i>
             {{ "about.ncView.description" | translate }}
           </h2>
           <p-editor
+            styleClass="p-editor-override"
             [style]="{
               height: '144px',
               border: '1px solid #dddddd',
@@ -99,13 +100,14 @@
         </div>
       </div>
 
-      <div class="div-ident-parceiro d-flex  mt-3">
+      <div class="div-ident-parceiro d-flex mt-3">
         <div class="dados-parceiro razao-social item">
           <h2 class="mr-2">
             <i class="bi bi-geo"></i>
             {{ "newNC.step2.actionsTitle" | translate }}
           </h2>
           <p-editor
+            styleClass="p-editor-override"
             [style]="{
               height: '144px',
               border: '1px solid #dddddd',
