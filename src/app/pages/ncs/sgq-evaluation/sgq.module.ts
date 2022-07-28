@@ -30,6 +30,7 @@ import { DividerModule } from "primeng/divider";
 import { CarouselModule } from "primeng/carousel";
 import { InputTextareaModule } from "primeng/inputtextarea";
 import { TranslateModule } from "@ngx-translate/core";
+import { InputFileComponent } from "src/app/components/input-file/input-file.component";
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { TranslateModule } from "@ngx-translate/core";
     NotificationsComponent,
     ReviewInfoSGQComponent,
     AddNcDialogComponent,
+    InputFileComponent,
   ],
   imports: [
     CommonModule,
