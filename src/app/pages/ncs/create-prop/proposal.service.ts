@@ -134,7 +134,7 @@ export class ProposalService {
 
   tratarDescricao(text: string) {
     this.removerNulo();
-    let txt = text.split(" ").join("");
+    let txt = text?.split(" ").join("")||"";
 
     if (txt == "<p></p>") return "";
     return text;

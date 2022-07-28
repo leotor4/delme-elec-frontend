@@ -38,7 +38,7 @@
     <p-editor
       styleClass="p-editor-override"
       [style]="{ height: '125px', 'font-size': '25px' }"
-      [onchange]="propService.removerNulo()"
+      (change)="propService.removerNulo()"
       [(ngModel)]="this.propService.propSolution.material_description"
       [modules]="{ counter: { container: '#counter', unit: 'character' } }"
     >
@@ -284,7 +284,7 @@
     <p-editor
       styleClass="p-editor-override"
       [style]="{ height: '125px', 'font-size': '25px' }"
-      [onchange]="propService.removerNulo()"
+      (change)="propService.removerNulo()"
       [(ngModel)]="this.propService.propSolution.man_power_description"
       [modules]="{ counter: { container: '#counter4', unit: 'character' } }"
     >
@@ -310,6 +310,168 @@
       {{ "about.proposalComponent.machine" | translate }}
     </h1>
     <p>{{ "createProp.step1.machine" | translate }}</p>
+        <p-editor [style]="{'height':'125px','font-size': '25px'}" [(ngModel)]="this.propService.propSolution.method_description" [modules]="{counter: {container: '#counter3',unit: 'character'}}">
+        </p-editor>
+        <div id="counter3" class="text-end">0</div>
+        <div class="d-flex mt-4">
+            <div class="d-flex flex-column col-6">
+                <label>{{'createProp.step1.it'| translate}}</label>
+                <p-autoComplete
+                        [placeholder]="'createProp.step1.search'| translate"
+                        field="name"
+                        [suggestions]="instructions"
+                        (completeMethod)="search($event,'instruction')"
+                        [(ngModel)]="propService.propSolution.instruction"
+                        [style]="{ width: '100%' }"
+                        [inputStyle]="{ width: '100%' }"
+                        class="p-autocomplete mr-5"
+                >
+
+                    <ng-template let-brand pTemplate="item">
+                        <div>
+                            <div class="d-flex">
+                                <div class="mr-2">
+                                    <span class="auto-complete-label">{{'newNC.step1.partner.codeUpper'| translate}}</span><br />
+                                    <span class="auto-complete-item">{{ brand.code }}</span>
+                                </div>
+                                <div class="mr-2">
+                                    <span class="auto-complete-label">{{'newNC.step1.rejectionPoint.descriptionUpper'| translate}}</span><br />
+                                    <span class="auto-complete-item">{{
+                                        brand.description
+                                        }}</span>
+                                </div>
+                                <div class="mr-2">
+                                    <span class="auto-complete-label">{{'newNC.step1.rejectionPoint.revisionUpper'| translate}}</span><br />
+                                    <span class="auto-complete-item">{{ brand.rev }}</span>
+                                </div>
+                            </div>
+                        </div></ng-template>
+                </p-autoComplete>
+
+            </div>
+            <div class="ml-4 d-flex flex-column col-6">
+                <label>{{'createProp.step1.pr'| translate}}</label>
+                <p-autoComplete
+                        [placeholder]="'createProp.step1.search'| translate"
+                        field="name"
+                        [suggestions]="procedures"
+                        (completeMethod)="search($event,'procedure')"
+                        [(ngModel)]="propService.propSolution.procedure"
+                        [style]="{ width: '100%' }"
+                        [inputStyle]="{ width: '100%' }"
+                        class="p-autocomplete mr-5"
+                >
+                    <ng-template let-brand pTemplate="item">
+                        <div>
+                            <div class="d-flex">
+                                <div class="mr-2">
+                                    <span class="auto-complete-label">{{'newNC.step1.partner.codeUpper'| translate}}</span><br />
+                                    <span class="auto-complete-item">{{ brand.code }}</span>
+                                </div>
+                                <div class="mr-2">
+                                    <span class="auto-complete-label">{{'newNC.step1.rejectionPoint.descriptionUpper'| translate}}</span><br />
+                                    <span class="auto-complete-item">{{
+                                        brand.description
+                                        }}</span>
+                                </div>
+                                <div class="mr-2">
+                                    <span class="auto-complete-label">{{'newNC.step1.rejectionPoint.revisionUpper'| translate}}</span><br />
+                                    <span class="auto-complete-item">{{ brand.rev }}</span>
+                                </div>
+                            </div>
+                        </div></ng-template>
+                </p-autoComplete>
+            </div>
+        </div>
+        <div class="d-flex">
+            <div class="d-flex flex-column col-6">
+                <label>{{'createProp.step1.nr'| translate}}</label>
+                <p-autoComplete
+                        [placeholder]="'createProp.step1.search'| translate"
+                        field="name"
+                        [suggestions]="regulatoryNorms"
+                        (completeMethod)="search($event,'regulatory')"
+                        [(ngModel)]="propService.propSolution.regulatory"
+                        [style]="{ width: '100%' }"
+                        [inputStyle]="{ width: '100%' }"
+                        class="p-autocomplete mr-5"
+                >
+                    <ng-template let-brand pTemplate="item">
+                        <div>
+                            <div class="d-flex">
+                                <div class="mr-2">
+                                    <span class="auto-complete-label">{{'newNC.step1.partner.codeUpper'| translate}}</span><br />
+                                    <span class="auto-complete-item">{{ brand.code }}</span>
+                                </div>
+                                <div class="mr-2">
+                                    <span class="auto-complete-label">{{'newNC.step1.rejectionPoint.descriptionUpper'| translate}}</span><br />
+                                    <span class="auto-complete-item">{{
+                                        brand.description
+                                        }}</span>
+                                </div>
+                            </div>
+                        </div></ng-template>
+                </p-autoComplete>
+
+            </div>
+            <div class="ml-4 d-flex flex-column col-6">
+                <label>{{'createProp.step1.iso'| translate}}</label>
+                <p-autoComplete
+                        [placeholder]="'createProp.step1.search'| translate"
+                        field="name"
+                        [suggestions]="nbrs"
+                        (completeMethod)="search($event,'nbr')"
+                        [(ngModel)]="propService.propSolution.nbr"
+                        [style]="{ width: '100%' }"
+                        [inputStyle]="{ width: '100%' }"
+                        class="p-autocomplete mr-5"
+                >
+                    <ng-template let-brand pTemplate="item">
+                        <div>
+                            <div class="d-flex">
+                                <div class="mr-2">
+                                    <span class="auto-complete-label">{{'newNC.step1.partner.codeUpper'| translate}}</span><br />
+                                    <span class="auto-complete-item">{{ brand.code }}</span>
+                                </div>
+                                <div class="mr-2">
+                                    <span class="auto-complete-label">{{'newNC.step1.rejectionPoint.descriptionUpper'| translate}}</span><br />
+                                    <span class="auto-complete-item">{{
+                                        brand.description
+                                        }}</span>
+                                </div>
+                            </div>
+                        </div></ng-template>
+                </p-autoComplete>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="stepPosition==4">
+        <h1 class="mb-3">
+            {{'about.proposalComponent.labor'| translate}}
+        </h1>
+        <p>{{'createProp.step1.labor'| translate}}</p>
+        <div class="form-check pl-0 my-2">
+            <p-checkbox [(ngModel)]="propService.checkBoxes" [value]="'createProp.step1.laborCheck'| translate"></p-checkbox>
+            <label class="form-check-label ml-1">{{'createProp.step1.laborCheck'| translate}}</label>
+        </div>
+        <p-editor [style]="{'height':'125px','font-size': '25px'}" (change)="propService.removerNulo()" [(ngModel)]="this.propService.propSolution.man_power_description" [modules]="{counter: {container: '#counter4',unit: 'character'}}">
+        </p-editor>
+        <div id="counter4" class="text-end">0</div>
+    </div>
+    <div *ngIf="stepPosition==5">
+        <h1 class="mb-3">
+            {{'about.proposalComponent.ambient'| translate}}
+        </h1>
+        <p class="mb-3">{{'createProp.step1.ambient'| translate}}</p>
+        <p-editor [style]="{'height':'125px','font-size': '25px'}" [(ngModel)]="this.propService.propSolution.environment_description" [modules]="{counter: {container: '#counter5',unit: 'character'}}">
+        </p-editor>
+        <div id="counter5" class="text-end">0</div>
+    </div>
+    <div *ngIf="stepPosition==6">
+        <h1 class="mb-3">
+            {{'about.proposalComponent.machine'| translate}}
+        </h1>
+        <p>{{'createProp.step1.machine'| translate}}</p>
 
     <p-editor
       styleClass="p-editor-override"

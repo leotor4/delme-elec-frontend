@@ -100,7 +100,7 @@
               >
             </span>
           </td>
-          <td>{{ parseDate(nc.data_fechamento || "") || "00/00/0000" }}</td>
+          <td>{{ parseDate(nc.data_fechamento) || "00/00/0000" }}</td>
           <td>
             <p-tableCheckbox [value]="nc"></p-tableCheckbox>
           </td>

@@ -250,9 +250,12 @@ export class NonComplianceService {
   post() {
     let formData = new FormData();
     this.uploadFiles(formData);
-
+    ObjectUtils.adicionar_campos<NonCompliance>(
+        this.nc,
+        this.formIdentificacaoNC.value
+    );
     formData.append("data", JSON.stringify(this.nc));
-
+    console.log(this.nc)
     return this.http.post(this.apiUrl, formData);
   }
 
@@ -276,8 +279,13 @@ export class NonComplianceService {
 
   abrirNc() {
     let formData = new FormData();
-    formData.append("data", "{}");
+    this.uploadFiles(formData);
+    ObjectUtils.adicionar_campos<NonCompliance>(
+        this.nc,
+        this.formIdentificacaoNC.value
+    );
     this.nc.issuer = this.user.getUser();
+    formData.append("data", JSON.stringify(this.nc));
     return this.http.post(this.apiUrl, formData);
   }
 

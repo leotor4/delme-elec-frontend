@@ -22,21 +22,29 @@ export class AddNcDialogComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.ncCode = this.config.data.nc;
-    this.selected = this.config.data.selected;
-    this.ncs = this.sgqServ.allNCs.filter((val) => {
-      console.log(!this.selected);
-      return !this.selected.some((e) => e.id == val.id);
+    this.ncCode = this.config.data.nc
+    this.selected = this.config.data.selected
+    this.sgqServ.getRecurrence().subscribe((data:any)=>{
+
+      this.sgqServ.allNCs = data.noncompliances
+      this.ncs = this.sgqServ.allNCs.filter(
+          (val) => {
+            return !(this.selected?.some(e => e.id == val.id)) && val.id!=this.sgqServ.nc.id
+          }
+      );
     });
-    console.log(this.ncs);
+
   }
 
   closeDialog() {
     this.ref.close(this.selected);
   }
-  parseDate(date: string) {
-    let d = new Date(Date.parse(date));
-    return d.toLocaleDateString();
+  parseDate(date:string){
+    if(date){
+      let d = new Date(Date.parse(date))
+      return d.toLocaleDateString();
+    }
+    return ""
   }
   applyFilterGlobal($event: any, stringVal: any) {
     this.dt!.filterGlobal(($event.target as HTMLInputElement).value, stringVal);

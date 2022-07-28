@@ -17,49 +17,6 @@
         </button>
     </div>
 </div>
-<!--<div *ngIf="false">
-    <div class="d-flex justify-content-center">
-        <div class="d-block">
-            <div class="d-flex">
-                <p-chip>
-                    {{stepPosition + 1}}
-                </p-chip>
-                <label class="ml-3" *ngIf="stepPosition===0">Porquê lorem ipsum ?</label>
-                <label class="ml-3" *ngIf="stepPosition>=1">Porquê {{propService.step2.textAreas[stepPosition-1]}} ?</label>
-            </div>
-            <textarea  [(ngModel)]="propService.step2.textAreas[stepPosition]" pInputTextarea cols="60" rows="5" class="textarea">
-            </textarea>
-        </div>
-    </div>
-    <div class="d-flex justify-content-center">
-        <button type="button"
-                class="btn btn-dark"
-                [disabled]="isFirstStep()"
-                (click)="backStep()"
-        >
-            <i class="bi bi-arrow-left"></i>
-            Voltar
-        </button>
-        <button type="button"
-                class="btn btn-dark mx-5"
-                [disabled]="!isLastStep()"
-                (click)="showAllTextAreas=true"
-        >
-            Identificar Causa Raiz
-            <i class="bi bi-check2"></i>
-        </button>
-
-        <button
-                type="button"
-                class="btn btn-dark"
-                [disabled]="isLastStep()"
-                (click)="nextStep()"
-        >
-            Aprofundar
-            <i class="bi bi-arrow-right"></i>
-        </button>
-    </div>
-</div>-->
 <div>
     <div class="d-flex justify-content-center">
         <div class="d-block p-2 caixa-cinza mb-3">
@@ -92,7 +49,7 @@
                 </div>
             </div>
 
-            <textarea  [(ngModel)]="propService.step2.textAreas[1]" pInputTextarea cols="60" rows="5" class="textarea">
+            <textarea  [(ngModel)]="propService.step2.textAreas[1]" pInputTextarea cols="60" rows="5" class="textarea" [disabled]="!propService.step2.textAreas[0]&&!propService.step2.textAreas[1]">
             </textarea>
         </div>
         <div class="d-block p-2 caixa-cinza">
@@ -108,7 +65,7 @@
                     <label class="form-check-label radio-label ml-1">{{'createProp.step1.rootCause'| translate}}</label>
                 </div>
             </div>
-            <textarea  [(ngModel)]="propService.step2.textAreas[2]" pInputTextarea cols="60" rows="5" class="textarea">
+            <textarea  [(ngModel)]="propService.step2.textAreas[2]" pInputTextarea cols="60" rows="5" class="textarea" [disabled]="!propService.step2.textAreas[1]&&!propService.step2.textAreas[2]">
             </textarea>
         </div>
     </div>
@@ -126,7 +83,7 @@
                 <label class="form-check-label radio-label ml-1">{{'createProp.step1.rootCause'| translate}}</label>
             </div>
         </div>
-            <textarea  [(ngModel)]="propService.step2.textAreas[3]" pInputTextarea cols="60" rows="5" class="textarea">
+            <textarea  [(ngModel)]="propService.step2.textAreas[3]" pInputTextarea cols="60" rows="5" class="textarea" [disabled]="!propService.step2.textAreas[2]&&!propService.step2.textAreas[3]">
             </textarea>
         </div>
         <div class="d-block p-2 caixa-cinza">
@@ -142,7 +99,7 @@
                     <label class="form-check-label radio-label ml-1">{{'createProp.step1.rootCause'| translate}}</label>
                 </div>
             </div>
-            <textarea  [(ngModel)]="propService.step2.textAreas[4]" pInputTextarea cols="60" rows="5" class="textarea">
+            <textarea  [(ngModel)]="propService.step2.textAreas[4]" pInputTextarea cols="60" rows="5" class="textarea" [disabled]="!propService.step2.textAreas[3]&&!propService.step2.textAreas[4]">
             </textarea>
         </div>
     </div>

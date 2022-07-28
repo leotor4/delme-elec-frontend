@@ -22,7 +22,6 @@ export class ReoccurrenceComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.sgqServ.getAllNC();
   }
 
   delete(nc: any) {

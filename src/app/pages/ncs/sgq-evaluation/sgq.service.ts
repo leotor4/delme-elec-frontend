@@ -5,6 +5,7 @@ import {NonComplianceService} from "../../../_services/non-compliance.service";
 import {HttpClient} from "@angular/common/http";
 import {SgqEval} from "../../../models/SgqEval";
 import {environment} from "../../../../environments/environment";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -18,14 +19,8 @@ export class SgqService {
   nc: NonCompliance;
   constructor(private ncsService : NonComplianceService, private http: HttpClient) { }
 
-  getAllNC(){
-    this.ncsService.get().subscribe((data: any) => {
-      this.allNCs = data.noncompliances
-      this.allNCs = this.allNCs.filter(element=>{
-        return element.id!=this.nc.id
-      })
-    })
-
+  getRecurrence(): Observable<NonCompliance[]> {
+    return this.http.get<NonCompliance[]>(environment.apiURL+"recidivisms/getSimilar");
   }
 
   uploadFiles(formData: any) {
