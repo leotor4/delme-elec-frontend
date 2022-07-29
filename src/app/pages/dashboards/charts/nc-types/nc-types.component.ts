@@ -77,6 +77,8 @@ export class NcTypesComponent implements OnInit {
           x: tipos,
           y: quant,
           type: "bar",
+          text: quant.map(String),
+          textposition: "auto",
           name: this.translate.instant("charts.ncsReceived"),
           marker: { color: "rgb(29,104,251)" },
         },

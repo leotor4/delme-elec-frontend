@@ -96,6 +96,8 @@ export class NcActionplanComponent implements OnInit {
         {
           x: this.tipos,
           y: this.execucao,
+          text: this.execucao.map(String),
+          textposition: "auto",
           type: "bar",
           name: this.translate.instant("global.status2"),
           marker: { color: "rgb(29,104,251)" },
@@ -103,6 +105,8 @@ export class NcActionplanComponent implements OnInit {
         {
           x: this.tipos,
           y: this.concluido,
+          text: this.concluido.map(String),
+          textposition: "auto",
           name: this.translate.instant("global.status8"),
           type: "bar",
           marker: { color: "rgb(51,192,252)" },
@@ -110,6 +114,8 @@ export class NcActionplanComponent implements OnInit {
         {
           x: this.tipos,
           y: this.atrasado,
+          text: this.atrasado.map(String),
+          textposition: "auto",
           name: this.translate.instant("global.status9"),
           type: "bar",
           marker: { color: "rgb(74,255,254)" },
@@ -118,6 +124,8 @@ export class NcActionplanComponent implements OnInit {
         {
           x: this.tipos,
           y: this.cancelado,
+          text: this.cancelado.map(String),
+          textposition: "auto",
           name: this.translate.instant("global.status10"),
           type: "bar",
           marker: { color: "rgb(175,255,255)" },
@@ -125,6 +133,9 @@ export class NcActionplanComponent implements OnInit {
         {
           x: this.tipos,
           y: this.ncs,
+          text: this.ncs.map(String),
+          mode: "lines+markers+text",
+          textposition: "top",
           name: this.translate.instant("charts.ncAmount"),
           type: "scatter",
           yaxis: "y2",

@@ -84,6 +84,8 @@ export class NcReceptorComponent implements OnInit {
         {
           x: tipos2,
           y: quant2,
+          text: quant2.map(String),
+          textposition: "auto",
           type: "bar",
           name: this.translate.instant("charts.ncsReceived"),
           marker: { color: "rgb(29,104,251)" },

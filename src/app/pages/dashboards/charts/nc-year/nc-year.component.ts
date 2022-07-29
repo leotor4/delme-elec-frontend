@@ -62,6 +62,9 @@ export class NcYearComponent implements OnInit {
           x: this.anos,
           y: this.quantCusto,
           type: "scatter",
+          text: this.quantCusto.map(String),
+          mode: "lines+markers+text",
+          textposition: "top",
           yaxis: "y2",
           name: "Custo",
           marker: { color: "rgb(252,134,43)" },
@@ -69,6 +72,8 @@ export class NcYearComponent implements OnInit {
         {
           x: this.anos,
           y: this.quantAnos,
+          text: this.quantAnos.map(String),
+          textposition: "auto",
           name: "Quantidade",
           type: "bar",
           marker: { color: "rgb(29,104,251)" },

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { ChartsService } from "src/app/_services/charts.service";
-import {TranslateService} from "@ngx-translate/core";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: "app-nc-count",
@@ -8,7 +8,10 @@ import {TranslateService} from "@ngx-translate/core";
   styleUrls: ["./nc-count.component.css"],
 })
 export class NcCountComponent implements OnInit {
-  constructor(public chartsService: ChartsService, public translate: TranslateService) {}
+  constructor(
+    public chartsService: ChartsService,
+    public translate: TranslateService
+  ) {}
   @Input() size: number[] = [];
 
   ngOnInit(): void {
@@ -20,6 +23,8 @@ export class NcCountComponent implements OnInit {
   anos: number[] = [];
   quantAnos: number[] = [];
   quantCusto: number[] = [];
+  labels: string[] = [];
+  graph: any;
 
   popular() {
     this.chartsService.ncs.forEach((element) => {
@@ -50,27 +55,39 @@ export class NcCountComponent implements OnInit {
         }
       }
     });
+    this.anos.forEach((element) => {
+      let indexAtual = this.anos.indexOf(element);
+      let indexAnterior = this.anos.indexOf(element - 1);
+      let value = 0;
+      if (indexAnterior != -1) {
+        value = (this.quantAnos[indexAtual]  - this.quantAnos[indexAnterior]) * 100 / this.quantAnos[indexAnterior]
+      }
+      this.labels[indexAtual] = value.toString() + "%"
+    });
+   
+    this.graph = {
+      data: [
+        {
+          x: this.anos,
+          y: this.quantAnos,
+          mode: "lines+markers+text",
+          textposition: "top",
+          text: this.labels,
+          type: "scatter",
+          name: this.translate.instant("charts.ncAmount"),
+          marker: { color: "rgb(252,134,43)" },
+        },
+      ],
+      layout: {
+        width: 1600,
+        height: 500,
+        xaxis: {
+          autotick: false,
+          title: this.translate.instant("charts.year"),
+        },
+
+        yaxis: { title: this.translate.instant("charts.ncAmount") },
+      },
+    };
   }
-
-  graph = {
-    data: [
-      {
-        x: this.anos,
-        y: this.quantAnos,
-        type: "scatter",
-        name: this.translate.instant("charts.ncAmount"),
-        marker: { color: "rgb(252,134,43)" },
-      },
-    ],
-    layout: {
-      width: 1600,
-      height: 500,
-      xaxis: {
-        autotick: false,
-        title: this.translate.instant("charts.year"),
-      },
-
-      yaxis: { title: this.translate.instant("charts.ncAmount") },
-    },
-  };
 }

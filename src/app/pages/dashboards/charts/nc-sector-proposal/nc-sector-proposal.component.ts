@@ -69,6 +69,8 @@ export class NcSectorProposalComponent implements OnInit {
         {
           x: setores,
           y: respostaPrazo,
+          text: respostaPrazo.map(String),
+          textposition: "auto",
           type: "bar",
           name: "Respondida – no prazo",
           marker: { color: "rgb(29,104,251)" },
@@ -76,6 +78,8 @@ export class NcSectorProposalComponent implements OnInit {
         {
           x: setores,
           y: respostaAtrasado,
+          text: respostaAtrasado.map(String),
+          textposition: "auto",
           type: "bar",
           name: "Respondida – atrasada",
           marker: { color: "rgb(51,192,252)" },
@@ -83,6 +87,8 @@ export class NcSectorProposalComponent implements OnInit {
         {
           x: setores,
           y: semRespostaPrazo,
+          text: semRespostaPrazo.map(String),
+          textposition: "auto",
           type: "bar",
           name: "Sem resposta – no prazo",
           marker: { color: "rgb(74,255,254)" },
@@ -90,6 +96,8 @@ export class NcSectorProposalComponent implements OnInit {
         {
           x: setores,
           y: sempRespostaAtrasado,
+          text: sempRespostaAtrasado.map(String),
+          textposition: "auto",
           type: "bar",
           name: "Sem resposta – atrasada",
           marker: { color: "rgb(175,255,255)" },

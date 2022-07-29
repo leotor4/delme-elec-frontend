@@ -57,6 +57,8 @@ export class NcProductsComponent implements OnInit {
         {
           x: this.meses,
           y: this.quantProdutos,
+          text: this.quantProdutos.map(String),
+          textposition: "auto",
           type: "bar",
           name: this.translate.instant("charts.products"),
           marker: { color: "rgb(29,104,251)" },
@@ -64,6 +66,10 @@ export class NcProductsComponent implements OnInit {
         {
           x: this.meses,
           y: this.quantMeses,
+          mode: "lines+markers+text",
+          textposition: "top",
+          text: this.quantMeses.map(String),
+
           name: this.translate.instant("charts.ncAmount"),
           type: "scatter",
           yaxis: "y2",
@@ -73,7 +79,6 @@ export class NcProductsComponent implements OnInit {
       layout: {
         width: this.size[0],
         height: this.size[1],
-
         yaxis2: {
           overlaying: "y",
           side: "right",

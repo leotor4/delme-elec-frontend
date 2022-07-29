@@ -95,11 +95,15 @@ export class NcReceptorEmissorComponent implements OnInit {
       });
     }
     this.ordenar();
+    console.log(this.quantEmissor)
     this.graph = {
       data: [
         {
           x: this.tipos,
           y: this.quant,
+          text: this.quant.map(String),
+          textposition: "auto",
+          hoverinfo: "none",
           type: "bar",
           name: this.translate.instant("charts.ncsReceived"),
           marker: { color: "rgb(29,104,251)" },
@@ -107,6 +111,9 @@ export class NcReceptorEmissorComponent implements OnInit {
         {
           x: this.tipos,
           y: this.quantEmissor,
+          text: this.quantEmissor.map(String),
+          textposition: "auto",
+
           name: this.translate.instant("charts.ncsSent"),
           type: "bar",
           marker: { color: "rgb(51,192,252)" },
@@ -115,7 +122,7 @@ export class NcReceptorEmissorComponent implements OnInit {
       layout: {
         width: this.size[0],
         height: this.size[1],
-     
+
         xaxis: { title: this.translate.instant("charts.sectors") },
         yaxis: { title: this.translate.instant("charts.title11") },
         autosize: true,

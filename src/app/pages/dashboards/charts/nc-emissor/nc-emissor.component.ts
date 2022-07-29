@@ -63,7 +63,7 @@ export class NcEmissorComponent implements OnInit {
           }
         }
       } catch (e) {
-       console.log(e)
+        console.log(e);
       }
     });
 
@@ -88,6 +88,8 @@ export class NcEmissorComponent implements OnInit {
           x: tipos2,
           y: quant2,
           type: "bar",
+          text: quant2.map(String),
+          textposition: "auto",
           name: this.translate.instant("charts.ncsReceived"),
           marker: { color: "rgb(29,104,251)" },
         },
@@ -95,11 +97,10 @@ export class NcEmissorComponent implements OnInit {
       layout: {
         width: this.size[0],
         height: this.size[1],
-    
 
         xaxis: { title: this.translate.instant("charts.sectors") },
         yaxis: { title: this.translate.instant("charts.ncAmount") },
-      
+
         autosize: true,
         title: "",
       },

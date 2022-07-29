@@ -114,7 +114,8 @@ export class NcStatusComponent implements OnInit {
           y: quant,
           type: "bar",
           name: this.translate.instant("charts.ncsReceived"),
-          
+          text: quant.map(String),
+          textposition: "auto",
         },
       ],
       layout: {
@@ -123,7 +124,7 @@ export class NcStatusComponent implements OnInit {
         xaxis: { title: this.translate.instant("charts.title9") },
         yaxis: { title: this.translate.instant("charts.ncAmount") },
         autosize: true,
-      
+
         title: "",
       },
       config: { responsive: true },
