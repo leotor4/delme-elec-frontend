@@ -1,18 +1,21 @@
-
-
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ConfirmationService, FilterMatchMode, MessageService, PrimeNGConfig } from 'primeng/api';
-import { Table } from 'primeng/table';
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
+import {
+  ConfirmationService,
+  FilterMatchMode,
+  MessageService,
+  PrimeNGConfig,
+} from "primeng/api";
+import { Table } from "primeng/table";
 import { NonComplianceService } from "src/app/_services/non-compliance.service";
-import { NonCompliance } from 'src/app/models/non-compliance';
+import { NonCompliance } from "src/app/models/non-compliance";
 
-import { NcsListDTO } from './ncs-list-dto';
-import { DashboardsService } from '../../dashboards/dashboards.service';
-import { TokenStorageService } from 'src/app/_services/token-storage.service';
-import {TranslateService} from "@ngx-translate/core";
-import {DadosNCComponent} from "../../dialogs/dados-nc/dados-nc.component";
-import {DialogService} from "primeng/dynamicdialog";
+import { NcsListDTO } from "./ncs-list-dto";
+import { DashboardsService } from "../../dashboards/dashboards.service";
+import { TokenStorageService } from "src/app/_services/token-storage.service";
+import { TranslateService } from "@ngx-translate/core";
+import { DadosNCComponent } from "../../dialogs/dados-nc/dados-nc.component";
+import { DialogService } from "primeng/dynamicdialog";
 
 @Component({
   selector: "app-ncs-list",
@@ -22,7 +25,7 @@ import {DialogService} from "primeng/dynamicdialog";
   providers: [ConfirmationService, DialogService],
 })
 export class NcsListComponent implements OnInit {
-  viewCards = [1296,150]
+  viewCards = [1296, 150];
   cardValues: any[] = [];
   gridColor = "ocean";
   gradient: boolean = true;
@@ -67,7 +70,7 @@ export class NcsListComponent implements OnInit {
 
   @ViewChild("dt") dt: Table;
   listNcs: Array<NcsListDTO> = [];
-  listNcsObj : Array<NonCompliance> = [];
+  listNcsObj: Array<NonCompliance> = [];
   cols: any[];
   first = 0;
   totalRecords = 0;
@@ -107,9 +110,9 @@ export class NcsListComponent implements OnInit {
     public messageService: MessageService,
     private dashboardService: DashboardsService,
     private confirmationService: ConfirmationService,
-    private tokenService : TokenStorageService,
+    private tokenService: TokenStorageService,
     public translate: TranslateService,
-    public dialogService: DialogService,
+    public dialogService: DialogService
   ) {}
 
   ngOnInit(): void {
@@ -121,7 +124,7 @@ export class NcsListComponent implements OnInit {
     this.ncsService.get().subscribe((data: any) => {
       //this.listNcs.append(data.noncompliances);
       const compliances: Array<NonCompliance> = data.noncompliances;
-      this.listNcsObj = data.noncompliances
+      this.listNcsObj = data.noncompliances;
 
       if (compliances?.length > 0) {
         this.listNcs = compliances.map((item: NonCompliance) => {
@@ -187,7 +190,6 @@ export class NcsListComponent implements OnInit {
   }
 
   parseMonthStrToNumber(strMonth: string): string {
-
     switch (strMonth) {
       case "january":
         return this.translate.instant("primeng.monthNamesShort")[0];
@@ -244,9 +246,8 @@ export class NcsListComponent implements OnInit {
 
   cancelNc(ncDto: NonCompliance) {
     this.confirmationService.confirm({
-      message:
-          this.translate.instant("list.cancelMsg"),
-      header: this.translate.instant("list.cancelTitle"),
+      message: this.translate.instant("list.cancelNcMsg"),
+      header: this.translate.instant("list.cancelNcTitle"),
       icon: "pi pi-exclamation-triangle",
       accept: () => {
         if (ncDto.id) {
@@ -290,25 +291,19 @@ export class NcsListComponent implements OnInit {
   }
 
   edit(idNc: number, status: string) {
-    
     if (status.toUpperCase() != "OPEN") {
       this.router.navigate(["/ncs/about/", idNc]);
-    }
-    else {
-      var user = this.tokenService.getUser()
-      console.log(user)
-      
-      
-      var listNcsAux = this.listNcsObj.filter(
-        (item) =>
-          item.id == idNc 
-      );
-  
+    } else {
+      var user = this.tokenService.getUser();
+      console.log(user);
+
+      var listNcsAux = this.listNcsObj.filter((item) => item.id == idNc);
+
       var nc = listNcsAux[0];
-  
-      console.log(nc.emissor)
-      
-      if (user['email'] == nc.emissor?.email || user['role_id'] == 3) {
+
+      console.log(nc.emissor);
+
+      if (user["email"] == nc.emissor?.email || user["role_id"] == 3) {
         if (status.toUpperCase() == "OPEN") {
           this.router.navigate(["/ncs/create/", idNc]);
         }
@@ -319,14 +314,12 @@ export class NcsListComponent implements OnInit {
           life: 5000,
         });
       }
-    } 
-
-    
+    }
   }
 
   visualizarInformacoes(nc: NonCompliance) {
-    const isOpenNC = nc.status?.toUpperCase() == "OPEN"
-    if(isOpenNC){
+    const isOpenNC = nc.status?.toUpperCase() == "OPEN";
+    if (isOpenNC) {
       this.messageService.add({
         severity: "info",
         summary: this.translate.instant("list.infoMsg"),
@@ -339,68 +332,64 @@ export class NcsListComponent implements OnInit {
         width: "60vw",
       });
     }
-
   }
 
   setPositionTextCards() {
-    let textCards = document.getElementsByTagName("ngx-charts-number-card")[0].getElementsByTagName("text");
-    let foreignObjects = document.getElementsByTagName("ngx-charts-number-card")[0].getElementsByTagName("foreignObject");
-    
+    let textCards = document
+      .getElementsByTagName("ngx-charts-number-card")[0]
+      .getElementsByTagName("text");
+    let foreignObjects = document
+      .getElementsByTagName("ngx-charts-number-card")[0]
+      .getElementsByTagName("foreignObject");
+
     for (var i = 0; i < textCards.length; i++) {
-      var valueCard = textCards[i]
-      var foreignObject = foreignObjects[i]
-      let labelCard = foreignObject.getElementsByTagName("p")[0]
-      
-      
-      let divTable = document.getElementById('div-table');
-      let width
-      
-      if(divTable) {
+      var valueCard = textCards[i];
+      var foreignObject = foreignObjects[i];
+      let labelCard = foreignObject.getElementsByTagName("p")[0];
+
+      let divTable = document.getElementById("div-table");
+      let width;
+
+      if (divTable) {
         width = divTable.offsetWidth;
-        
+
         if (width > 1150) {
-          valueCard.setAttribute("y", "40")
-          valueCard.setAttribute("style", "font-size : 25pt; fill:#D6DEE2;")
-          foreignObject.setAttribute("y", "72.5")
-          foreignObject.setAttribute("width", "200")
-          foreignObject.setAttribute("height", "57.5")
-          labelCard.setAttribute("style", "font-size : 15px; color:#D6DEE2;")
+          valueCard.setAttribute("y", "40");
+          valueCard.setAttribute("style", "font-size : 25pt; fill:#D6DEE2;");
+          foreignObject.setAttribute("y", "72.5");
+          foreignObject.setAttribute("width", "200");
+          foreignObject.setAttribute("height", "57.5");
+          labelCard.setAttribute("style", "font-size : 15px; color:#D6DEE2;");
         } else if (width > 1000 && width <= 1150) {
-          valueCard.setAttribute("y", "40")
-          valueCard.setAttribute("style", "font-size : 25pt; fill:#D6DEE2;")
-          foreignObject.setAttribute("y", "72.5")
-          foreignObject.setAttribute("width", "200")
-          foreignObject.setAttribute("height", "57.5")
-          labelCard.setAttribute("style", "font-size : 15px; color:#D6DEE2;")
+          valueCard.setAttribute("y", "40");
+          valueCard.setAttribute("style", "font-size : 25pt; fill:#D6DEE2;");
+          foreignObject.setAttribute("y", "72.5");
+          foreignObject.setAttribute("width", "200");
+          foreignObject.setAttribute("height", "57.5");
+          labelCard.setAttribute("style", "font-size : 15px; color:#D6DEE2;");
         } else if (width > 800 && width <= 1000) {
-          valueCard.setAttribute("y", "40")
-          valueCard.setAttribute("style", "font-size : 20pt; fill:#D6DEE2;")
-          foreignObject.setAttribute("y", "72.5")
-          foreignObject.setAttribute("width", "200")
-          foreignObject.setAttribute("height", "57.5")
-          labelCard.setAttribute("style", "font-size : 15px; color:#D6DEE2;")
-
+          valueCard.setAttribute("y", "40");
+          valueCard.setAttribute("style", "font-size : 20pt; fill:#D6DEE2;");
+          foreignObject.setAttribute("y", "72.5");
+          foreignObject.setAttribute("width", "200");
+          foreignObject.setAttribute("height", "57.5");
+          labelCard.setAttribute("style", "font-size : 15px; color:#D6DEE2;");
         } else if (width > 600 && width <= 800) {
-          valueCard.setAttribute("y", "6")
-          valueCard.setAttribute("style", "font-size : 15pt; fill:#D6DEE2;")
-          foreignObject.setAttribute("y", "28")
-          foreignObject.setAttribute("width", "200")
-          foreignObject.setAttribute("height", "57.5")
-          labelCard.setAttribute("style", "font-size : 15px; color:#D6DEE2;")
-        }  else if (width > 400 && width <= 600) {
-          valueCard.setAttribute("y", "6")
-          valueCard.setAttribute("style", "font-size : 15pt; fill:#D6DEE2;")
-          foreignObject.setAttribute("y", "22")
-          foreignObject.setAttribute("width", "200")
-          foreignObject.setAttribute("height", "57.5")
-          labelCard.setAttribute("style", "font-size : 10px; color:#D6DEE2;")
-        } 
-  
+          valueCard.setAttribute("y", "6");
+          valueCard.setAttribute("style", "font-size : 15pt; fill:#D6DEE2;");
+          foreignObject.setAttribute("y", "28");
+          foreignObject.setAttribute("width", "200");
+          foreignObject.setAttribute("height", "57.5");
+          labelCard.setAttribute("style", "font-size : 15px; color:#D6DEE2;");
+        } else if (width > 400 && width <= 600) {
+          valueCard.setAttribute("y", "6");
+          valueCard.setAttribute("style", "font-size : 15pt; fill:#D6DEE2;");
+          foreignObject.setAttribute("y", "22");
+          foreignObject.setAttribute("width", "200");
+          foreignObject.setAttribute("height", "57.5");
+          labelCard.setAttribute("style", "font-size : 10px; color:#D6DEE2;");
+        }
       }
-  
-
-
-
     }
   }
 
@@ -440,7 +429,6 @@ export class NcsListComponent implements OnInit {
         //   break;
         // }
         if (data.hasOwnProperty(key)) {
-
           var series = [
             {
               name: this.translate.instant("global.status1"),
@@ -477,55 +465,47 @@ export class NcsListComponent implements OnInit {
     console.log("Activate", JSON.parse(JSON.stringify(data)));
   }
 
-
-  onResizeBarChart(event:any) {
+  onResizeBarChart(event: any) {
     //this.lineChartView = [this.getWidthBarGraph(event.target.innerWidth), 350];
-    
 
-    let divTable = document.getElementById('div-table');
-    let width
-    if(divTable) {
+    let divTable = document.getElementById("div-table");
+    let width;
+    if (divTable) {
       width = divTable.offsetWidth;
-      
+
       if (width * 0.7 < 1000) {
         this.lineChartView = [width * 0.7, 350];
       }
-
     }
-
   }
 
-  onResizePizzaChart(event:any) {
-    
-    let divTable = document.getElementById('div-table');
-    let width
-    if(divTable) {
+  onResizePizzaChart(event: any) {
+    let divTable = document.getElementById("div-table");
+    let width;
+    if (divTable) {
       width = divTable.offsetWidth;
-      
+
       if (width * 0.3 < 500) {
         this.view = [width * 0.3, 350];
-     }  
-      
+      }
     }
   }
 
-
-  onResizeCardChart(event:any) {
-    let divCards = document.getElementById('div-cards');
-    let divTable = document.getElementById('div-table');
-    let width
-    if(divTable) {
+  onResizeCardChart(event: any) {
+    let divCards = document.getElementById("div-cards");
+    let divTable = document.getElementById("div-table");
+    let width;
+    if (divTable) {
       width = divTable.offsetWidth;
-      this.viewCards = [width,150]
-      
+      this.viewCards = [width, 150];
     }
 
-    
     setTimeout(this.setPositionTextCards, 500);
   }
 
-
   getTooltip(status: string) {
-    return status.toUpperCase() == "OPEN" ? this.translate.instant('list.editNcBtn') : this.translate.instant('list.moreInfoBtn')
+    return status.toUpperCase() == "OPEN"
+      ? this.translate.instant("list.editNcBtn")
+      : this.translate.instant("list.moreInfoBtn");
   }
 }
