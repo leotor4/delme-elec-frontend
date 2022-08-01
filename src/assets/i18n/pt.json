@@ -395,6 +395,7 @@
   "cancelNC": {
     "title": "Deseja cancelar esta não conformidade?",
     "accept": "Sim, cancelar não conformidade",
+    "deny": "Não, voltar para a tela de edição",
     "success": "Não conformidade cancelada com sucesso.",
     "error": "Houve um problema ao cancelar não conformidade."
   },
