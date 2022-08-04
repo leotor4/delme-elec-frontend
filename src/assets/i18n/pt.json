@@ -116,10 +116,11 @@
     "workplaceSecurityUpper": "SEGURANÇA DO TRABALHO",
     "commercialUpper": "COMERCIAL",
     "NCsTotal": "Total de NCs",
-    "ncStatus1": "NCs em elaboração",
+    "ncStatus1": "NCs Fechadas",
     "ncStatus2": "NCs em execução",
     "ncStatus3": "NCs canceladas",
     "ncStatus4": "NCs atrasadas",
+    
     "canceled": "Canceladas",
     "late": "Atrasadas",
     "SGQ": "SGQ",
@@ -174,6 +175,8 @@
     "status9": "Atrasado",
     "status10": "Cancelado",
     "status11": "Aberta",
+    "status12": "No prazo",
+    "status13": "Elaborada",
     "": "Número de ncs",
     "fileInput": {
       "title": "Anexe evidências objetivas ou fotográficas",

@@ -9,30 +9,28 @@ import { NcsListRoutingModule } from './ncs-list-routing.module';
 import { NcsListComponent } from './ncs-list.component';
 import {TooltipModule} from 'primeng/tooltip';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
-
+import * as PlotlyJS from "plotly.js-dist-min";
+import { PlotlyModule } from "angular-plotly.js";
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {TranslateModule} from "@ngx-translate/core";
 
-
+PlotlyModule.plotlyjs = PlotlyJS;
 @NgModule({
-  declarations: [
-    NcsListComponent
+  declarations: [NcsListComponent],
+  imports: [
+    CommonModule,
+    NcsListRoutingModule,
+    TableModule,
+    ButtonModule,
+    InputTextModule,
+    PaginatorModule,
+    ToastModule,
+    InputTextModule,
+    TooltipModule,
+    PlotlyModule,
+    ConfirmDialogModule,
+    NgxChartsModule,
+    TranslateModule,
   ],
-    imports: [
-        CommonModule,
-        NcsListRoutingModule,
-        TableModule,
-        ButtonModule,
-        InputTextModule,
-        PaginatorModule,
-        ToastModule,
-        InputTextModule,
-        TooltipModule,
-        ConfirmDialogModule,
-        NgxChartsModule,
-        TranslateModule
-    ]
 })
-
-
-export class NcsListModule { }
+export class NcsListModule {}

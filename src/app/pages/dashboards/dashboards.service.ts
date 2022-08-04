@@ -486,10 +486,11 @@ export class DashboardsService {
     var totalNcsRunning = 0
     var totalNcsCanceled = 0
     var totalNcsLate = 0
-    var totalNcsOpened = 0 
+    var totalNcsClosed = 0 
 
     for (let i = 0; i < compliances.length; i++) {
       var nc = compliances[i];
+     
 
       if (nc.code.split('/')[1] == currentYear.toString()) {
         totalNcsYear = totalNcsYear + 1
@@ -506,8 +507,8 @@ export class DashboardsService {
           totalNcsLate = totalNcsLate + 1
         }
 
-        if(nc.status?.toLowerCase() == 'open') {
-          totalNcsOpened = totalNcsOpened + 1
+        if(nc.status?.toLowerCase() == 'closed') {
+          totalNcsClosed = totalNcsClosed + 1;
         }
       }
     } 
@@ -521,11 +522,11 @@ export class DashboardsService {
 
     kpiData.push({
       "name" : this.translate.instant("global.ncStatus1"),
-      "value": totalNcsOpened
+      "value": totalNcsClosed
     })
 
     kpiData.push({
-      "name" : this.translate.instant("global.ncStatus2"),
+      "name" : this.translate.instant("global.status2"),
       "value": totalNcsRunning
     })
 
@@ -547,19 +548,18 @@ export class DashboardsService {
 
   getPiesValues(compliances: NonCompliance[], filterStatus : string) {
     var pieData: any[] = []
+    
 
-    var totalNcsRunning = 0
+    
     var totalNcsCanceled = 0
     var totalNcsLate = 0
     var totalNcsOpened = 0
+    var totalNcsClosed = 0;
  
     for (let i = 0; i < compliances.length; i++) {
       var nc = compliances[i];
 
 
-        if(nc.status?.toLowerCase() == 'running') {
-          totalNcsRunning = totalNcsRunning + 1
-        }
 
         if(nc.status?.toLowerCase() == 'canceled') {
           totalNcsCanceled = totalNcsCanceled + 1
@@ -569,19 +569,18 @@ export class DashboardsService {
           totalNcsLate = totalNcsLate + 1
         }
 
-        if(nc.status?.toLowerCase() == 'open') {
+        if(nc.status?.toLowerCase() == 'running') {
           totalNcsOpened = totalNcsOpened + 1
+        }
+
+        if (nc.status?.toLowerCase() == "closed") {
+          totalNcsClosed = totalNcsClosed + 1;
         }
       
     } 
 
 
-    if (filterStatus == 'all' || filterStatus == 'running') {
-      pieData.push({
-        "name" : this.translate.instant("global.status2"),
-        "value": totalNcsRunning
-      })
-    }
+   
 
 
     if (filterStatus == 'all' || filterStatus == 'canceled') {
@@ -590,6 +589,8 @@ export class DashboardsService {
         "value": totalNcsCanceled
       })
     }      
+
+
     
     if (filterStatus == 'all' || filterStatus == 'late') {
       pieData.push({
@@ -600,11 +601,22 @@ export class DashboardsService {
     
 
 
-    if (filterStatus == 'all' || filterStatus == 'open') {
+    if (
+      filterStatus == "all" ||
+      filterStatus == "open" ||
+      filterStatus == "running"
+    ) {
       pieData.push({
-        "name" : this.translate.instant("global.status1"),
-        "value": totalNcsOpened
-      })
+        name: this.translate.instant("global.status2"),
+        value: totalNcsOpened,
+      });
+    }
+
+    if (filterStatus == "all" || filterStatus == "close") {
+      pieData.push({
+        name: this.translate.instant("global.status7"),
+        value: totalNcsClosed,
+      });
     }
 
 
