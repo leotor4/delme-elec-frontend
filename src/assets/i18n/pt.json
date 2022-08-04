@@ -146,7 +146,6 @@
     "saved": " salvo com sucesso.",
     "step": "Passo ",
     "reject": "Não, cancelar",
-    "processComments": "Comente sobre o processo e anexe evidências da solução do problema desta NC",
     "areYouSureReocurrence": "Você tem certeza que quer desfazer a reincidência?",
     "actionCantBeReversed": "Esta ação não poderá ser revertida!",
     "yesUndoReocurrence": "Sim, desfazer a reincidência!",
@@ -644,7 +643,9 @@
         "addReocurrenceInputPlaceholder": "Busque por produto, parceiro ou descrição da NC...",
         "searchResults": "Resultados da busca",
         "searchResultsLabel": "Sinalize as NCs que são reincidentes desta NC.",
-        "successDel": "Reincidência removida com sucesso"
+        "successDel": "Reincidência removida com sucesso",
+        "ncEvalTitle": "Avaliação da Solução",
+        "ncEvalSubtitle": "Comente sobre a solução do problema desta NC"
       },
       "step2": {
         "descriptionNotification": "Visualize e adicione contatos a serem notificados acerca do andamento desta NC. Por padrão, são adicionados contatos já incluidos nos passos anteriores.",

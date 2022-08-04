@@ -18,8 +18,8 @@ import { ClosingService } from "./closing.service";
 export class ClosingComponent implements OnInit {
   closing = new Closing();
   isAllOpen = true;
-  unselectedClass = "btn btn-outline-dark";
-  selectedClass = "btn btn-dark";
+  unselectedClass = "btn unselected-btn";
+  selectedClass = "btn selected-btn";
   radioValue: string;
   editorValue = "";
   constructor(

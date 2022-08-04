@@ -31,8 +31,8 @@ export class FechamentoComponent implements OnInit {
   editorValue = "";
 
   disableButton():boolean {
-    if (this.radioValue) return false;
-    return true;
+    return !this.radioValue;
+
   }
   save() {
     this.closing.nonCompliance_id = parseInt(
@@ -61,5 +61,6 @@ export class FechamentoComponent implements OnInit {
       },
       error: (err) => {},
     });
+    this.closing.is_satisfied = this.radioValue == "sim";
   }
 }

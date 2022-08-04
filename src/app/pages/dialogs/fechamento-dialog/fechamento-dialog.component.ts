@@ -66,7 +66,7 @@ export class FechamentoDialogComponent implements OnInit {
               error:(err)=>{}
             }
           )
-    this.closing.isSatisfied = this.radioValue == "sim";
+    this.closing.is_satisfied = this.radioValue == "sim";
     
   }
 }

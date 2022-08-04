@@ -136,7 +136,7 @@
 
 <div style="margin-top: 10px;">
   <p-table  responsiveLayout="scroll" #dt 
-  [globalFilterFields]="['id','emissor', 'status', 'tipos_nc_item', 'prazo','tipos_local_item', 'data_abertura', 'dsc_produto']" 
+  [globalFilterFields]="['id', 'code','emissor', 'status', 'tipos_nc_item', 'prazo','tipos_local_item', 'data_abertura', 'dsc_produto']"
   [value]="listNcs" [columns]="cols" [paginator]="true" [rows]="rows" [(first)]="first" [totalRecords]="totalRecords" 
   [showCurrentPageReport]="true" responsiveLayout="scroll" 
   currentPageReportTemplate="{{'list.currentPageMsg1' | translate}} {first} {{'list.currentPageMsg2' | translate}} {last} {{'list.currentPageMsg3' | translate}} {totalRecords} {{'list.currentPageMsg4' | translate}}" [rowsPerPageOptions]="[5,10,25,50]" [filterDelay]="0">

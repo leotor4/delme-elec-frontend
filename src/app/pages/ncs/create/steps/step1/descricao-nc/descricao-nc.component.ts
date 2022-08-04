@@ -15,7 +15,7 @@ export class DescricaoNcComponent implements OnInit {
   uploadedFile: File;
 
   ngOnInit(): void {
-    
+    console.log(this.nonComplicanceService.nc.radio_value)
   }
 
   clearFileName(name: string) {

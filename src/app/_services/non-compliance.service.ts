@@ -280,11 +280,14 @@ export class NonComplianceService {
   abrirNc() {
     let formData = new FormData();
     this.uploadFiles(formData);
+    this.criarFormularios();
     ObjectUtils.adicionar_campos<NonCompliance>(
         this.nc,
         this.formIdentificacaoNC.value
     );
     this.nc.issuer = this.user.getUser();
+    console.log(this.formIdentificacaoNC.value)
+    console.log(this.nc)
     formData.append("data", JSON.stringify(this.nc));
     return this.http.post(this.apiUrl, formData);
   }

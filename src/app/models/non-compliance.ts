@@ -48,7 +48,7 @@ export class NonCompliance {
   num_lote?: string = "";
   num_op?: string = "";
   num_nota?: string = "";
-  radio_value: string = "val1";
+  radio_value: string = "";
   status?: string;
   system_status?: string;
   issuer?: User;

@@ -14,91 +14,92 @@
   <div class="mt-4">
     <app-fechamento></app-fechamento>
   </div>
-  <div *ngIf="aboutSrv.nc?.closing">
-    <div class="d-flex flex-lg-row flex-column justify-content-between">
-      <div class="d-flex">
-        <div class="cabecalho">
-          <div class="d-flex align-items-center">
-            <h1 class="mr-3">
-              {{ "about.closingComponent.title" | translate }}
-            </h1>
-          </div>
-          <p>
-            {{ "about.closingComponent.subtitle" | translate }}
-          </p>
+</div>
+<div *ngIf="aboutSrv.nc?.closing">
+  <div class="d-flex flex-lg-row flex-column justify-content-between">
+    <div class="d-flex">
+      <div class="cabecalho">
+        <div class="d-flex align-items-center">
+          <h1 class="mr-3">
+            {{ "about.closingComponent.title" | translate }}
+          </h1>
         </div>
-      </div>
-      <div class="d-flex justify-content-end align-items-center mb-3">
-        <button
-          [class]="isAllOpen ? selectedClass : unselectedClass"
-          class="mr-2 btn-sm"
-          (click)="isAllOpen = true"
-        >
-          <i class="bi bi-arrows-expand"></i>
-          {{ "global.expand" | translate }}
-        </button>
-        <button
-          [class]="isAllOpen ? unselectedClass : selectedClass"
-          (click)="isAllOpen = false"
-          class="btn-sm"
-        >
-          <i class="bi bi-arrows-collapse"></i>
-          {{ "global.colapse" | translate }}
-        </button>
+        <p>
+          {{ "about.closingComponent.subtitle" | translate }}
+        </p>
       </div>
     </div>
-    <p-accordion [multiple]="true">
-      <p-accordionTab [selected]="isAllOpen">
-        <ng-template pTemplate="header">
-          <div class="d-flex justify-content-between accordion">
-            <p>
-              <i class="bi bi-check2-circle"></i>
-              {{ "about.closingComponent.verification" | translate }}
-            </p>
-          </div>
-        </ng-template>
-        <ng-template pTemplate="content">
-          <div class="d-flex ml-5">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              value=""
-              onclick="return false;"
-              checked
-            />
-            <div class="d-block" *ngIf="aboutSrv.nc.closing.is_satisfied">
-              <span class="fw-bold fs-5">{{ "global.yes" | translate }}</span>
-              <br />
-              <span class="fs-6">{{ "closeNC.yesInfo" | translate }}</span>
-            </div>
-            <div class="d-block" *ngIf="!aboutSrv.nc.closing.is_satisfied">
-              <span class="fw-bold fs-5">{{ "global.no" | translate }}</span>
-              <br />
-              <span class="fs-6">{{ "closeNC.noInfo" | translate }}</span>
-            </div>
-          </div>
-        </ng-template>
-      </p-accordionTab>
-      <p-accordionTab [selected]="isAllOpen">
-        <ng-template pTemplate="header">
-          <div class="d-flex justify-content-between accordion">
-            <p>
-              <i class="bi bi-chat-right-text"></i>
-              {{ "closeNC.comments" | translate }}
-            </p>
-          </div>
-        </ng-template>
-        <ng-template pTemplate="content">
-          <p-editor
-            styleClass="p-editor-override"
-            [ngModel]="aboutSrv.nc.closing.comment"
-            [style]="{ height: '100%', border: '0px solid #dddddd' }"
-            [readonly]="true"
-          >
-            <ng-template pTemplate="header"> </ng-template>
-          </p-editor>
-        </ng-template>
-      </p-accordionTab>
-    </p-accordion>
+    <div class="d-flex justify-content-end align-items-center mb-3">
+      <button
+              [class]="isAllOpen ? selectedClass : unselectedClass"
+              class="mr-2 btn-sm"
+              (click)="isAllOpen = true"
+      >
+        <i class="bi bi-arrows-expand"></i>
+        {{ "global.expand" | translate }}
+      </button>
+      <button
+              [class]="isAllOpen ? unselectedClass : selectedClass"
+              (click)="isAllOpen = false"
+              class="btn-sm"
+      >
+        <i class="bi bi-arrows-collapse"></i>
+        {{ "global.colapse" | translate }}
+      </button>
+    </div>
   </div>
+  <p-accordion [multiple]="true">
+    <p-accordionTab [selected]="isAllOpen">
+      <ng-template pTemplate="header">
+        <div class="d-flex justify-content-between accordion">
+          <p>
+            <i class="bi bi-check2-circle"></i>
+            {{ "about.closingComponent.verification" | translate }}
+          </p>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="content">
+        <div class="d-flex ml-5">
+          <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  onclick="return false;"
+                  checked
+          />
+          <div class="d-block" *ngIf="aboutSrv.nc.closing.is_satisfied">
+            <span class="fw-bold fs-5">{{ "global.yes" | translate }}</span>
+            <br />
+            <span class="fs-6">{{ "closeNC.yesInfo" | translate }}</span>
+          </div>
+          <div class="d-block" *ngIf="!aboutSrv.nc.closing.is_satisfied">
+            <span class="fw-bold fs-5">{{ "global.no" | translate }}</span>
+            <br />
+            <span class="fs-6">{{ "closeNC.noInfo" | translate }}</span>
+          </div>
+        </div>
+      </ng-template>
+    </p-accordionTab>
+    <p-accordionTab [selected]="isAllOpen">
+      <ng-template pTemplate="header">
+        <div class="d-flex justify-content-between accordion">
+          <p>
+            <i class="bi bi-chat-right-text"></i>
+            {{ "closeNC.comments" | translate }}
+          </p>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="content">
+        <p-editor
+                class="removeHeader"
+                styleClass="p-editor-override"
+                [ngModel]="aboutSrv.nc.closing.comment"
+                [style]="{ height: '100%', border: '0px solid #dddddd' }"
+                [readonly]="true"
+        >
+          <ng-template pTemplate="header"> </ng-template>
+        </p-editor>
+      </ng-template>
+    </p-accordionTab>
+  </p-accordion>
 </div>
