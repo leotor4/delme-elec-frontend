@@ -13,6 +13,42 @@
   <div id="counterR" class="text-end">0</div>
 </div>
 
+<div *ngIf="returnNfScreen()">
+  <div class="d-flex flex-column">
+    <label for="numLote">{{
+      "newNC.step1.rejectionPoint.lote" | translate
+    }}</label>
+    <input
+      [(ngModel)]="nonComplianceService.nc.num_lote"
+      name="numLote"
+      type="text"
+      pInputText
+      [placeholder]="'global.type' | translate"
+      class="p-inputtext-sm input"
+    />
+    <div class="mt-1"></div>
+    <label for="numPv">Número do Pedido de Compra</label>
+    <input
+      [(ngModel)]="nonComplianceService.nc.num_pc"
+      name="numPv"
+      type="text"
+      pInputText
+      [placeholder]="'global.type' | translate"
+      class="p-inputtext-sm input"
+    />
+    <div class="mt-1"></div>
+    <label for="numPc">Número do Pedido de Venda</label>
+    <input
+      [(ngModel)]="nonComplianceService.nc.num_pv"
+      name="numPc"
+      type="text"
+      pInputText
+      [placeholder]="'global.type' | translate"
+      class="p-inputtext-sm input"
+    />
+  </div>
+</div>
+
 <div *ngIf="returnOpScreen() || returnPrScreen()">
   <div class="row">
     <div class="col">

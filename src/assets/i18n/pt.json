@@ -334,6 +334,9 @@
         "numBatch": "Número do Lote",
         "numOC": "Número da Ordem de Compra",
         "pr": "Selecionar PR",
+        "pc": "Número do Pedido de Venda",
+        "pv": "Número do Pedido de Compra",
+        "lote": "Número do Lote",
         "updatePr": "Atualizar PRs",
         "prCode": "Número PR",
         "it": "IT"
