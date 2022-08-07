@@ -629,6 +629,7 @@
     "closeRNC": "Encerrar esta RNC",
     "comments": "Comentários",
     "interestedParts": "Partes interessadas",
+    "noRecurrenceSelected": "Nenhuma reincidência selecionada",
     "evidence": {
       "problemSolution": "Relato e Evidências da Solução do Problema *"
     },
