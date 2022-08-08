@@ -9,6 +9,7 @@ import {NonComplianceService} from 'src/app/_services/non-compliance.service';
 import {AboutService} from '../about.service';
 import * as jspdf from "jspdf";
 import html2canvas from "html2canvas";
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: "app-view-nc",
@@ -26,7 +27,8 @@ export class ViewNCComponent implements OnInit {
     public aboutSrvc: AboutService,
     public ncService: NonComplianceService,
     public dialogService: DialogService,
-    public messageService: MessageService
+    public messageService: MessageService,
+    public translate: TranslateService
   ) {}
 
   ngOnInit(): void {}
@@ -71,6 +73,16 @@ export class ViewNCComponent implements OnInit {
         });
       },
     });
+  }
+
+  returnRadioValue(): string {
+    if (this.aboutSrvc.nc.radio_value == "val1") {
+      return this.translate.instant("newNC.step2.radioLabel1");
+    }
+    if (this.aboutSrvc.nc.radio_value == "val2") {
+      return this.translate.instant("newNC.step2.radioLabel2");
+    }
+    return "";
   }
 
   generatePDF() {

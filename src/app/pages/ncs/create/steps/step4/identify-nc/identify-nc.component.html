@@ -6,7 +6,7 @@
         {{ "newNC.review.identification" | translate }}
       </h2>
       <div class="d-flex justify-content-between flex-column flex-lg-row">
-        <div class="contato-info d-flex flex-row">
+        <div class="contato-info-ident  d-flex flex-row">
           <i class="bi bi-ticket-perforated mr-1"></i>
           <div>
             <span class="info-titulo">{{ "global.number" | translate }}</span>
@@ -16,7 +16,7 @@
             }}</span>
           </div>
         </div>
-        <div class="contato-info d-flex flex-row">
+        <div class="contato-info-ident  d-flex flex-row">
           <i class="bi bi-calendar-week mr-1"></i>
           <div>
             <span class="info-titulo">{{
@@ -30,7 +30,7 @@
             </span>
           </div>
         </div>
-        <div class="contato-info d-flex flex-row">
+        <div class="contato-info-ident d-flex flex-row">
           <i class="bi bi-calendar-week mr-1"></i>
           <div>
             <span class="info-titulo">{{
@@ -39,6 +39,44 @@
             <br />
             <span class="info-dados">{{
               formato_brasileiro(this.nonComplicanceService.nc.data_fechamento)
+            }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex mt-2 justify-content-between flex-column flex-lg-row">
+        <div class="contato-info-ident d-flex flex-row">
+          <i class="bi bi-file-text mr-1"></i>
+          <div>
+            <span class="info-titulo">{{
+              "newNC.step1.identifyNC.typeLabel" | translate
+            }}</span>
+            <br />
+            <span class="info-dados">{{
+              this.nonComplicanceService.nc.tipos_nc_item
+            }}</span>
+          </div>
+        </div>
+        <div class="contato-info-ident  d-flex flex-row">
+          <i class="bi bi-people mr-1"></i>
+          <div>
+            <span class="info-titulo">{{
+              "newNC.step1.identifyNC.sectorLabel" | translate
+            }}</span>
+            <br />
+            <span class="info-dados">{{
+              this.nonComplicanceService.nc.tipos_local_item
+            }}</span>
+          </div>
+        </div>
+        <div class="contato-info-ident  d-flex flex-row" *ngIf="haveSegment()">
+          <i class="bi bi-file-bar-graph mr-1"></i>
+          <div>
+            <span class="info-titulo">{{
+              "newNC.step1.identifyNC.segment" | translate
+            }}</span>
+            <br />
+            <span class="info-dados">{{
+              this.nonComplicanceService.nc.tipos_auditoria_item
             }}</span>
           </div>
         </div>
