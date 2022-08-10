@@ -540,7 +540,8 @@
       "backWhy": "Retornar aos Porquês",
       "why": "Porquê",
       "rootCause": "Esta é a Causa Raiz",
-      "firstWhy": "Escreva o primeiro porquê"
+      "firstWhy": "Escreva o primeiro porquê",
+      "extraInfoTitle": "Informações Complementares"
     },
     "step2": {
       "status1": "Em execução",

@@ -27,6 +27,9 @@ h2 {
 :host ::ng-deep .ql-toolbar.ql-snow {
     display: none;
 }
+:host ::ng-deep .header .ql-toolbar.ql-snow {
+    display: block;
+}
 
 ::ng-deep p-editor p{
     margin-bottom: 0 !important;

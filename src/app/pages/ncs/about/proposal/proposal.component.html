@@ -384,6 +384,29 @@
       <ng-template pTemplate="header">
         <div class="d-flex justify-content-between accordion">
           <p>
+            <i class="bi bi-card-text"></i>
+            {{ "createProp.step1.extraInfoTitle" | translate }}
+          </p>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="content">
+        <div class="caixa-cinza p-2">
+          <div>
+            <p-editor
+                    class="header"
+                    styleClass="p-editor-override"
+                    [style]="{ height: '20vh', 'font-size': '25px' }"
+                    [ngModel]="aboutService.nc.proposalSolution.additional_info"
+                    [readonly]="true"
+            ></p-editor>
+          </div>
+        </div>
+      </ng-template>
+    </p-accordionTab>
+    <p-accordionTab [selected]="isAllOpen">
+      <ng-template pTemplate="header">
+        <div class="d-flex justify-content-between accordion">
+          <p>
             <i class="bi bi-geo"></i>
             {{ "about.proposalComponent.rootCause" | translate }}
           </p>
