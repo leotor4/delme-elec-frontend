@@ -130,6 +130,26 @@ export class NcsListComponent implements OnInit {
         this.listNcs = compliances.map((item: NonCompliance) => {
           return new NcsListDTO(item);
         });
+        for (let i = 0; i < this.listNcs.length; i++) {
+          if(this.listNcs[i].status == "running"){
+            this.listNcs[i].status = this.translate.instant("global.status2")
+          }
+          if(this.listNcs[i].status == "late"){
+            this.listNcs[i].status = this.translate.instant("global.status3")
+          }
+          if(this.listNcs[i].status == "deleted"){
+            this.listNcs[i].status = this.translate.instant("global.status4")
+          }
+          if(this.listNcs[i].status == "archived"){
+            this.listNcs[i].status = this.translate.instant("global.status5")
+          }
+          if(this.listNcs[i].status == "canceled"){
+            this.listNcs[i].status = this.translate.instant("global.status6")
+          }
+          if(this.listNcs[i].status == "closed"){
+            this.listNcs[i].status = this.translate.instant("global.status7")
+          }
+        }
         // this.listNcs = this.listNcs.filter(
         //   (item) =>
         //     item.system_status !== "deleted" && item.system_status != "arquived"
@@ -174,6 +194,7 @@ export class NcsListComponent implements OnInit {
       setTimeout(this.setPositionTextCards, 200);
 
       this.totalRecords = this.listNcs.length;
+      console.log(this.listNcs)
     });
   }
 

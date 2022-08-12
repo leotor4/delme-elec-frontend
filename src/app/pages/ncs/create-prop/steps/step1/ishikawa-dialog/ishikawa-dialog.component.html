@@ -1,361 +1,161 @@
-<div>
-  <div *ngIf="stepPosition == 1">
-    <h1 class="mb-3">
-      {{ "about.proposalComponent.material" | translate }}
-    </h1>
-    <p>{{ "createProp.step1.material" | translate }}</p>
+<div class="mt-0">
+    <div *ngIf="stepPosition == 1">
+        <h1 class="mb-3">
+            {{ "about.proposalComponent.material" | translate }}
+        </h1>
+        <p>{{ "createProp.step1.material" | translate }}</p>
 
-    <div class="form-check pl-0">
-      <p-checkbox
-        [(ngModel)]="this.propService.checkBoxes"
-        [value]="'createProp.step1.materialCheck1' | translate"
-      ></p-checkbox>
-      <label class="form-check-label ml-1">{{
-        "createProp.step1.materialCheck1" | translate
-      }}</label>
+        <div class="form-check pl-0">
+            <p-checkbox
+                    [(ngModel)]="this.propService.checkBoxes"
+                    [value]="'createProp.step1.materialCheck1' | translate"
+            ></p-checkbox>
+            <label class="form-check-label ml-1">{{
+                "createProp.step1.materialCheck1" | translate
+                }}</label>
+        </div>
+        <div class="form-check pl-0">
+            <p-checkbox
+                    [(ngModel)]="propService.checkBoxes"
+                    [value]="'createProp.step1.materialCheck2' | translate"
+            ></p-checkbox>
+            <label class="form-check-label ml-1">{{
+                "createProp.step1.materialCheck2" | translate
+                }}</label>
+        </div>
+        <div class="form-check pl-0">
+            <p-checkbox
+                    [(ngModel)]="propService.checkBoxes"
+                    [value]="'createProp.step1.materialCheck3' | translate"
+            ></p-checkbox>
+            <label class="form-check-label ml-1">{{
+                "createProp.step1.materialCheck3" | translate
+                }}</label>
+        </div>
+        <p class="my-3 fw-bold fs-6">
+            {{ "createProp.step1.moreInfo" | translate }}
+        </p>
+        <p-editor
+                styleClass="p-editor-override"
+                [style]="{ height: '125px', 'font-size': '25px' }"
+                (change)="propService.removerNulo()"
+                [(ngModel)]="this.propService.propSolution.material_description"
+                [modules]="{ counter: { container: '#counter', unit: 'character' } }"
+        >
+        </p-editor>
+        <div id="counter" class="text-end">0</div>
     </div>
-    <div class="form-check pl-0">
-      <p-checkbox
-        [(ngModel)]="propService.checkBoxes"
-        [value]="'createProp.step1.materialCheck2' | translate"
-      ></p-checkbox>
-      <label class="form-check-label ml-1">{{
-        "createProp.step1.materialCheck2" | translate
-      }}</label>
-    </div>
-    <div class="form-check pl-0">
-      <p-checkbox
-        [(ngModel)]="propService.checkBoxes"
-        [value]="'createProp.step1.materialCheck3' | translate"
-      ></p-checkbox>
-      <label class="form-check-label ml-1">{{
-        "createProp.step1.materialCheck3" | translate
-      }}</label>
-    </div>
-    <p class="my-3 fw-bold fs-6">
-      {{ "createProp.step1.moreInfo" | translate }}
-    </p>
-    <p-editor
-      styleClass="p-editor-override"
-      [style]="{ height: '125px', 'font-size': '25px' }"
-      (change)="propService.removerNulo()"
-      [(ngModel)]="this.propService.propSolution.material_description"
-      [modules]="{ counter: { container: '#counter', unit: 'character' } }"
-    >
-    </p-editor>
-    <div id="counter" class="text-end">0</div>
-  </div>
-  <div *ngIf="stepPosition == 2">
-    <h1 class="mb-3">
-      {{ "about.proposalComponent.measure" | translate }}
-    </h1>
-    <p>{{ "createProp.step1.measure" | translate }}</p>
+    <div *ngIf="stepPosition == 2">
+        <h1 class="mb-3">
+            {{ "about.proposalComponent.measure" | translate }}
+        </h1>
+        <p>{{ "createProp.step1.measure" | translate }}</p>
 
-    <div class="form-check pl-0">
-      <p-checkbox
-        [(ngModel)]="propService.checkBoxes"
-        [value]="'createProp.step1.measureCheck1' | translate"
-      ></p-checkbox>
-      <label class="form-check-label ml-1">{{
-        "createProp.step1.measureCheck1" | translate
-      }}</label>
+        <div class="form-check pl-0">
+            <p-checkbox
+                    [(ngModel)]="propService.checkBoxes"
+                    [value]="'createProp.step1.measureCheck1' | translate"
+            ></p-checkbox>
+            <label class="form-check-label ml-1">{{
+                "createProp.step1.measureCheck1" | translate
+                }}</label>
+        </div>
+        <div class="form-check pl-0">
+            <p-checkbox
+                    [(ngModel)]="propService.checkBoxes"
+                    [value]="'createProp.step1.measureCheck2' | translate"
+            ></p-checkbox>
+            <label class="form-check-label ml-1">{{
+                "createProp.step1.measureCheck2" | translate
+                }}</label>
+        </div>
+        <div class="form-check pl-0">
+            <p-checkbox
+                    [(ngModel)]="propService.checkBoxes"
+                    [value]="'createProp.step1.measureCheck3' | translate"
+            ></p-checkbox>
+            <label class="form-check-label ml-1">{{
+                "createProp.step1.measureCheck3" | translate
+                }}</label>
+        </div>
+        <p class="my-3 fw-bold fs-6">
+            {{ "createProp.step1.moreInfo" | translate }}
+        </p>
+        <p-editor
+                styleClass="p-editor-override"
+                [style]="{ height: '125px', 'font-size': '25px' }"
+                [(ngModel)]="this.propService.propSolution.measurement_description"
+                [modules]="{ counter: { container: '#counter1', unit: 'character' } }"
+        >
+        </p-editor>
+        <div id="counter1" class="text-end">0</div>
     </div>
-    <div class="form-check pl-0">
-      <p-checkbox
-        [(ngModel)]="propService.checkBoxes"
-        [value]="'createProp.step1.measureCheck2' | translate"
-      ></p-checkbox>
-      <label class="form-check-label ml-1">{{
-        "createProp.step1.measureCheck2" | translate
-      }}</label>
-    </div>
-    <div class="form-check pl-0">
-      <p-checkbox
-        [(ngModel)]="propService.checkBoxes"
-        [value]="'createProp.step1.measureCheck3' | translate"
-      ></p-checkbox>
-      <label class="form-check-label ml-1">{{
-        "createProp.step1.measureCheck3" | translate
-      }}</label>
-    </div>
-    <p class="my-3 fw-bold fs-6">
-      {{ "createProp.step1.moreInfo" | translate }}
-    </p>
-    <p-editor
-      styleClass="p-editor-override"
-      [style]="{ height: '125px', 'font-size': '25px' }"
-      [(ngModel)]="this.propService.propSolution.measurement_description"
-      [modules]="{ counter: { container: '#counter1', unit: 'character' } }"
-    >
-    </p-editor>
-    <div id="counter1" class="text-end">0</div>
-  </div>
-  <div *ngIf="stepPosition == 3">
-    <h1 class="mb-3">
-      {{ "about.proposalComponent.method" | translate }}
-    </h1>
-    <p>{{ "createProp.step1.method" | translate }}</p>
+    <div *ngIf="stepPosition == 3">
+        <h1 class="mb-3">
+            {{ "about.proposalComponent.method" | translate }}
+        </h1>
+        <p>{{ "createProp.step1.method" | translate }}</p>
 
-    <p-editor
-      styleClass="p-editor-override"
-      [style]="{ height: '125px', 'font-size': '25px' }"
-      [(ngModel)]="this.propService.propSolution.method_description"
-      [modules]="{ counter: { container: '#counter3', unit: 'character' } }"
-    >
-    </p-editor>
-    <div id="counter3" class="text-end">0</div>
-    <div class="d-flex mt-4">
-      <div class="d-flex flex-column col-6">
-        <label>{{ "createProp.step1.it" | translate }}</label>
-        <p-autoComplete
-          [placeholder]="'createProp.step1.search' | translate"
-          field="name"
-          [suggestions]="instructions"
-          (completeMethod)="search($event, 'instruction')"
-          [(ngModel)]="propService.propSolution.instruction"
-          [style]="{ width: '100%' }"
-          [inputStyle]="{ width: '100%' }"
-          class="p-autocomplete mr-5"
+        <p-editor
+                styleClass="p-editor-override"
+                [style]="{ height: '125px', 'font-size': '25px' }"
+                [(ngModel)]="this.propService.propSolution.method_description"
+                [modules]="{ counter: { container: '#counter3', unit: 'character' } }"
         >
-          <ng-template let-brand pTemplate="item">
-            <div>
-              <div class="d-flex">
-                <div class="mr-2">
-                  <span class="auto-complete-label">{{
-                    "newNC.step1.partner.codeUpper" | translate
-                  }}</span
-                  ><br />
-                  <span class="auto-complete-item">{{ brand.code }}</span>
-                </div>
-                <div class="mr-2">
-                  <span class="auto-complete-label">{{
-                    "newNC.step1.rejectionPoint.descriptionUpper" | translate
-                  }}</span
-                  ><br />
-                  <span class="auto-complete-item">{{
-                    brand.description
-                  }}</span>
-                </div>
-                <div class="mr-2">
-                  <span class="auto-complete-label">{{
-                    "newNC.step1.rejectionPoint.revisionUpper" | translate
-                  }}</span
-                  ><br />
-                  <span class="auto-complete-item">{{ brand.rev }}</span>
-                </div>
-              </div>
-            </div></ng-template
-          >
-        </p-autoComplete>
-      </div>
-      <div class="ml-4 d-flex flex-column col-6">
-        <label>{{ "createProp.step1.pr" | translate }}</label>
-        <p-autoComplete
-          [placeholder]="'createProp.step1.search' | translate"
-          field="name"
-          [suggestions]="procedures"
-          (completeMethod)="search($event, 'procedure')"
-          [(ngModel)]="propService.propSolution.procedure"
-          [style]="{ width: '100%' }"
-          [inputStyle]="{ width: '100%' }"
-          class="p-autocomplete mr-5"
-        >
-          <ng-template let-brand pTemplate="item">
-            <div>
-              <div class="d-flex">
-                <div class="mr-2">
-                  <span class="auto-complete-label">{{
-                    "newNC.step1.partner.codeUpper" | translate
-                  }}</span
-                  ><br />
-                  <span class="auto-complete-item">{{ brand.code }}</span>
-                </div>
-                <div class="mr-2">
-                  <span class="auto-complete-label">{{
-                    "newNC.step1.rejectionPoint.descriptionUpper" | translate
-                  }}</span
-                  ><br />
-                  <span class="auto-complete-item">{{
-                    brand.description
-                  }}</span>
-                </div>
-                <div class="mr-2">
-                  <span class="auto-complete-label">{{
-                    "newNC.step1.rejectionPoint.revisionUpper" | translate
-                  }}</span
-                  ><br />
-                  <span class="auto-complete-item">{{ brand.rev }}</span>
-                </div>
-              </div>
-            </div></ng-template
-          >
-        </p-autoComplete>
-      </div>
-    </div>
-    <div class="d-flex">
-      <div class="d-flex flex-column col-6">
-        <label>{{ "createProp.step1.nr" | translate }}</label>
-        <p-autoComplete
-          [placeholder]="'createProp.step1.search' | translate"
-          field="name"
-          [suggestions]="regulatoryNorms"
-          (completeMethod)="search($event, 'regulatory')"
-          [(ngModel)]="propService.propSolution.regulatory"
-          [style]="{ width: '100%' }"
-          [inputStyle]="{ width: '100%' }"
-          class="p-autocomplete mr-5"
-        >
-          <ng-template let-brand pTemplate="item">
-            <div>
-              <div class="d-flex">
-                <div class="mr-2">
-                  <span class="auto-complete-label">{{
-                    "newNC.step1.partner.codeUpper" | translate
-                  }}</span
-                  ><br />
-                  <span class="auto-complete-item">{{ brand.code }}</span>
-                </div>
-                <div class="mr-2">
-                  <span class="auto-complete-label">{{
-                    "newNC.step1.rejectionPoint.descriptionUpper" | translate
-                  }}</span
-                  ><br />
-                  <span class="auto-complete-item">{{
-                    brand.description
-                  }}</span>
-                </div>
-              </div>
-            </div></ng-template
-          >
-        </p-autoComplete>
-      </div>
-      <div class="ml-4 d-flex flex-column col-6">
-        <label>{{ "createProp.step1.iso" | translate }}</label>
-        <p-autoComplete
-          [placeholder]="'createProp.step1.search' | translate"
-          field="name"
-          [suggestions]="nbrs"
-          (completeMethod)="search($event, 'nbr')"
-          [(ngModel)]="propService.propSolution.nbr"
-          [style]="{ width: '100%' }"
-          [inputStyle]="{ width: '100%' }"
-          class="p-autocomplete mr-5"
-        >
-          <ng-template let-brand pTemplate="item">
-            <div>
-              <div class="d-flex">
-                <div class="mr-2">
-                  <span class="auto-complete-label">{{
-                    "newNC.step1.partner.codeUpper" | translate
-                  }}</span
-                  ><br />
-                  <span class="auto-complete-item">{{ brand.code }}</span>
-                </div>
-                <div class="mr-2">
-                  <span class="auto-complete-label">{{
-                    "newNC.step1.rejectionPoint.descriptionUpper" | translate
-                  }}</span
-                  ><br />
-                  <span class="auto-complete-item">{{
-                    brand.description
-                  }}</span>
-                </div>
-              </div>
-            </div></ng-template
-          >
-        </p-autoComplete>
-      </div>
-    </div>
-  </div>
-  <div *ngIf="stepPosition == 4">
-    <h1 class="mb-3">
-      {{ "about.proposalComponent.labor" | translate }}
-    </h1>
-    <p>{{ "createProp.step1.labor" | translate }}</p>
-    <div class="form-check pl-0 my-2">
-      <p-checkbox
-        [(ngModel)]="propService.checkBoxes"
-        [value]="'createProp.step1.laborCheck' | translate"
-      ></p-checkbox>
-      <label class="form-check-label ml-1">{{
-        "createProp.step1.laborCheck" | translate
-      }}</label>
-    </div>
-    <p-editor
-      styleClass="p-editor-override"
-      [style]="{ height: '125px', 'font-size': '25px' }"
-      (change)="propService.removerNulo()"
-      [(ngModel)]="this.propService.propSolution.man_power_description"
-      [modules]="{ counter: { container: '#counter4', unit: 'character' } }"
-    >
-    </p-editor>
-    <div id="counter4" class="text-end">0</div>
-  </div>
-  <div *ngIf="stepPosition == 5">
-    <h1 class="mb-3">
-      {{ "about.proposalComponent.ambient" | translate }}
-    </h1>
-    <p class="mb-3">{{ "createProp.step1.ambient" | translate }}</p>
-    <p-editor
-      styleClass="p-editor-override"
-      [style]="{ height: '125px', 'font-size': '25px' }"
-      [(ngModel)]="this.propService.propSolution.environment_description"
-      [modules]="{ counter: { container: '#counter5', unit: 'character' } }"
-    >
-    </p-editor>
-    <div id="counter5" class="text-end">0</div>
-  </div>
-  <div *ngIf="stepPosition == 6">
-    <h1 class="mb-3">
-      {{ "about.proposalComponent.machine" | translate }}
-    </h1>
-    <p>{{ "createProp.step1.machine" | translate }}</p>
-        <p-editor [style]="{'height':'125px','font-size': '25px'}" [(ngModel)]="this.propService.propSolution.method_description" [modules]="{counter: {container: '#counter3',unit: 'character'}}">
         </p-editor>
         <div id="counter3" class="text-end">0</div>
         <div class="d-flex mt-4">
             <div class="d-flex flex-column col-6">
-                <label>{{'createProp.step1.it'| translate}}</label>
+                <label>{{ "createProp.step1.it" | translate }}</label>
                 <p-autoComplete
-                        [placeholder]="'createProp.step1.search'| translate"
+                        [placeholder]="'createProp.step1.search' | translate"
                         field="name"
                         [suggestions]="instructions"
-                        (completeMethod)="search($event,'instruction')"
+                        (completeMethod)="search($event, 'instruction')"
                         [(ngModel)]="propService.propSolution.instruction"
                         [style]="{ width: '100%' }"
                         [inputStyle]="{ width: '100%' }"
                         class="p-autocomplete mr-5"
                 >
-
                     <ng-template let-brand pTemplate="item">
                         <div>
                             <div class="d-flex">
                                 <div class="mr-2">
-                                    <span class="auto-complete-label">{{'newNC.step1.partner.codeUpper'| translate}}</span><br />
+                  <span class="auto-complete-label">{{
+                      "newNC.step1.partner.codeUpper" | translate
+                      }}</span
+                  ><br/>
                                     <span class="auto-complete-item">{{ brand.code }}</span>
                                 </div>
                                 <div class="mr-2">
-                                    <span class="auto-complete-label">{{'newNC.step1.rejectionPoint.descriptionUpper'| translate}}</span><br />
+                  <span class="auto-complete-label">{{
+                      "newNC.step1.rejectionPoint.descriptionUpper" | translate
+                      }}</span
+                  ><br/>
                                     <span class="auto-complete-item">{{
                                         brand.description
                                         }}</span>
                                 </div>
                                 <div class="mr-2">
-                                    <span class="auto-complete-label">{{'newNC.step1.rejectionPoint.revisionUpper'| translate}}</span><br />
+                  <span class="auto-complete-label">{{
+                      "newNC.step1.rejectionPoint.revisionUpper" | translate
+                      }}</span
+                  ><br/>
                                     <span class="auto-complete-item">{{ brand.rev }}</span>
                                 </div>
                             </div>
-                        </div></ng-template>
+                        </div>
+                    </ng-template
+                    >
                 </p-autoComplete>
-
             </div>
             <div class="ml-4 d-flex flex-column col-6">
-                <label>{{'createProp.step1.pr'| translate}}</label>
+                <label>{{ "createProp.step1.pr" | translate }}</label>
                 <p-autoComplete
-                        [placeholder]="'createProp.step1.search'| translate"
+                        [placeholder]="'createProp.step1.search' | translate"
                         field="name"
                         [suggestions]="procedures"
-                        (completeMethod)="search($event,'procedure')"
+                        (completeMethod)="search($event, 'procedure')"
                         [(ngModel)]="propService.propSolution.procedure"
                         [style]="{ width: '100%' }"
                         [inputStyle]="{ width: '100%' }"
@@ -365,32 +165,43 @@
                         <div>
                             <div class="d-flex">
                                 <div class="mr-2">
-                                    <span class="auto-complete-label">{{'newNC.step1.partner.codeUpper'| translate}}</span><br />
+                  <span class="auto-complete-label">{{
+                      "newNC.step1.partner.codeUpper" | translate
+                      }}</span
+                  ><br/>
                                     <span class="auto-complete-item">{{ brand.code }}</span>
                                 </div>
                                 <div class="mr-2">
-                                    <span class="auto-complete-label">{{'newNC.step1.rejectionPoint.descriptionUpper'| translate}}</span><br />
+                  <span class="auto-complete-label">{{
+                      "newNC.step1.rejectionPoint.descriptionUpper" | translate
+                      }}</span
+                  ><br/>
                                     <span class="auto-complete-item">{{
                                         brand.description
                                         }}</span>
                                 </div>
                                 <div class="mr-2">
-                                    <span class="auto-complete-label">{{'newNC.step1.rejectionPoint.revisionUpper'| translate}}</span><br />
+                  <span class="auto-complete-label">{{
+                      "newNC.step1.rejectionPoint.revisionUpper" | translate
+                      }}</span
+                  ><br/>
                                     <span class="auto-complete-item">{{ brand.rev }}</span>
                                 </div>
                             </div>
-                        </div></ng-template>
+                        </div>
+                    </ng-template
+                    >
                 </p-autoComplete>
             </div>
         </div>
         <div class="d-flex">
             <div class="d-flex flex-column col-6">
-                <label>{{'createProp.step1.nr'| translate}}</label>
+                <label>{{ "createProp.step1.nr" | translate }}</label>
                 <p-autoComplete
-                        [placeholder]="'createProp.step1.search'| translate"
+                        [placeholder]="'createProp.step1.search' | translate"
                         field="name"
                         [suggestions]="regulatoryNorms"
-                        (completeMethod)="search($event,'regulatory')"
+                        (completeMethod)="search($event, 'regulatory')"
                         [(ngModel)]="propService.propSolution.regulatory"
                         [style]="{ width: '100%' }"
                         [inputStyle]="{ width: '100%' }"
@@ -400,27 +211,34 @@
                         <div>
                             <div class="d-flex">
                                 <div class="mr-2">
-                                    <span class="auto-complete-label">{{'newNC.step1.partner.codeUpper'| translate}}</span><br />
+                  <span class="auto-complete-label">{{
+                      "newNC.step1.partner.codeUpper" | translate
+                      }}</span
+                  ><br/>
                                     <span class="auto-complete-item">{{ brand.code }}</span>
                                 </div>
                                 <div class="mr-2">
-                                    <span class="auto-complete-label">{{'newNC.step1.rejectionPoint.descriptionUpper'| translate}}</span><br />
+                  <span class="auto-complete-label">{{
+                      "newNC.step1.rejectionPoint.descriptionUpper" | translate
+                      }}</span
+                  ><br/>
                                     <span class="auto-complete-item">{{
                                         brand.description
                                         }}</span>
                                 </div>
                             </div>
-                        </div></ng-template>
+                        </div>
+                    </ng-template
+                    >
                 </p-autoComplete>
-
             </div>
             <div class="ml-4 d-flex flex-column col-6">
-                <label>{{'createProp.step1.iso'| translate}}</label>
+                <label>{{ "createProp.step1.iso" | translate }}</label>
                 <p-autoComplete
-                        [placeholder]="'createProp.step1.search'| translate"
+                        [placeholder]="'createProp.step1.search' | translate"
                         field="name"
                         [suggestions]="nbrs"
-                        (completeMethod)="search($event,'nbr')"
+                        (completeMethod)="search($event, 'nbr')"
                         [(ngModel)]="propService.propSolution.nbr"
                         [style]="{ width: '100%' }"
                         [inputStyle]="{ width: '100%' }"
@@ -430,17 +248,25 @@
                         <div>
                             <div class="d-flex">
                                 <div class="mr-2">
-                                    <span class="auto-complete-label">{{'newNC.step1.partner.codeUpper'| translate}}</span><br />
+                  <span class="auto-complete-label">{{
+                      "newNC.step1.partner.codeUpper" | translate
+                      }}</span
+                  ><br/>
                                     <span class="auto-complete-item">{{ brand.code }}</span>
                                 </div>
                                 <div class="mr-2">
-                                    <span class="auto-complete-label">{{'newNC.step1.rejectionPoint.descriptionUpper'| translate}}</span><br />
+                  <span class="auto-complete-label">{{
+                      "newNC.step1.rejectionPoint.descriptionUpper" | translate
+                      }}</span
+                  ><br/>
                                     <span class="auto-complete-item">{{
                                         brand.description
                                         }}</span>
                                 </div>
                             </div>
-                        </div></ng-template>
+                        </div>
+                    </ng-template
+                    >
                 </p-autoComplete>
             </div>
         </div>
@@ -451,10 +277,13 @@
         </h1>
         <p>{{'createProp.step1.labor'| translate}}</p>
         <div class="form-check pl-0 my-2">
-            <p-checkbox [(ngModel)]="propService.checkBoxes" [value]="'createProp.step1.laborCheck'| translate"></p-checkbox>
+            <p-checkbox [(ngModel)]="propService.checkBoxes"
+                        [value]="'createProp.step1.laborCheck'| translate"></p-checkbox>
             <label class="form-check-label ml-1">{{'createProp.step1.laborCheck'| translate}}</label>
         </div>
-        <p-editor [style]="{'height':'125px','font-size': '25px'}" (change)="propService.removerNulo()" [(ngModel)]="this.propService.propSolution.man_power_description" [modules]="{counter: {container: '#counter4',unit: 'character'}}">
+        <p-editor [style]="{'height':'125px','font-size': '25px'}" (change)="propService.removerNulo()"
+                  [(ngModel)]="this.propService.propSolution.man_power_description"
+                  [modules]="{counter: {container: '#counter4',unit: 'character'}}">
         </p-editor>
         <div id="counter4" class="text-end">0</div>
     </div>
@@ -463,7 +292,9 @@
             {{'about.proposalComponent.ambient'| translate}}
         </h1>
         <p class="mb-3">{{'createProp.step1.ambient'| translate}}</p>
-        <p-editor [style]="{'height':'125px','font-size': '25px'}" [(ngModel)]="this.propService.propSolution.environment_description" [modules]="{counter: {container: '#counter5',unit: 'character'}}">
+        <p-editor [style]="{'height':'125px','font-size': '25px'}"
+                  [(ngModel)]="this.propService.propSolution.environment_description"
+                  [modules]="{counter: {container: '#counter5',unit: 'character'}}">
         </p-editor>
         <div id="counter5" class="text-end">0</div>
     </div>
@@ -473,107 +304,109 @@
         </h1>
         <p>{{'createProp.step1.machine'| translate}}</p>
 
-    <p-editor
-      styleClass="p-editor-override"
-      [style]="{ height: '125px', 'font-size': '25px' }"
-      [(ngModel)]="this.propService.propSolution.machine_description"
-      [modules]="{ counter: { container: '#counter6', unit: 'character' } }"
-    >
-    </p-editor>
-    <div id="counter6" class="text-end">0</div>
-    <div class="d-flex">
-      <div class="d-flex flex-column col-6">
-        <label>{{ "createProp.step1.machines" | translate }}</label>
-        <p-autoComplete
-          [placeholder]="'createProp.step1.search' | translate"
-          [suggestions]="machines"
-          (completeMethod)="search($event, 'machine')"
-          field="name"
-          [(ngModel)]="propService.propSolution.machine"
-          [style]="{ width: '100%' }"
-          [inputStyle]="{ width: '100%' }"
-          class="p-autocomplete mr-5"
+        <p-editor
+                styleClass="p-editor-override"
+                [style]="{ height: '125px', 'font-size': '25px' }"
+                [(ngModel)]="this.propService.propSolution.machine_description"
+                [modules]="{ counter: { container: '#counter6', unit: 'character' } }"
         >
-        </p-autoComplete>
-      </div>
-      <div class="ml-4 d-flex flex-column col-6">
-        <label>{{ "createProp.step1.equipments" | translate }}</label>
-        <p-autoComplete
-          [placeholder]="'createProp.step1.search' | translate"
-          [suggestions]="equipaments"
-          (completeMethod)="search($event, 'equipament')"
-          [(ngModel)]="propService.propSolution.equipament"
-          field="name"
-          [style]="{ width: '100%' }"
-          [inputStyle]="{ width: '100%' }"
-          class="p-autocomplete mr-5"
-        >
-        </p-autoComplete>
-      </div>
+        </p-editor>
+        <div id="counter6" class="text-end">0</div>
+        <div class="d-flex">
+            <div class="d-flex flex-column col-6">
+                <label>{{ "createProp.step1.machines" | translate }}</label>
+                <p-autoComplete
+                        [placeholder]="'createProp.step1.search' | translate"
+                        [suggestions]="machines"
+                        (completeMethod)="search($event, 'machine')"
+                        field="name"
+                        [(ngModel)]="propService.propSolution.machine"
+                        [style]="{ width: '100%' }"
+                        [inputStyle]="{ width: '100%' }"
+                        class="p-autocomplete mr-5"
+                >
+                </p-autoComplete>
+            </div>
+            <div class="ml-4 d-flex flex-column col-6">
+                <label>{{ "createProp.step1.equipments" | translate }}</label>
+                <p-autoComplete
+                        [placeholder]="'createProp.step1.search' | translate"
+                        [suggestions]="equipaments"
+                        (completeMethod)="search($event, 'equipament')"
+                        [(ngModel)]="propService.propSolution.equipament"
+                        field="name"
+                        [style]="{ width: '100%' }"
+                        [inputStyle]="{ width: '100%' }"
+                        class="p-autocomplete mr-5"
+                >
+                </p-autoComplete>
+            </div>
+        </div>
     </div>
-  </div>
-  <div *ngIf="stepPosition == 7">
-    <h1 class="mb-3">
-      {{ "about.proposalComponent.effect" | translate }}
-    </h1>
-    <p class="mb-3">{{ "createProp.step1.effect" | translate }}</p>
+    <div *ngIf="stepPosition == 7">
+        <h1 class="mb-3">
+            {{ "about.proposalComponent.effect" | translate }}
+        </h1>
+        <p class="mb-3">
+            {{ "createProp.step1.effect" | translate }}
+        </p>
 
-    <p-editor
-      styleClass="p-editor-override"
-      [style]="{ height: '125px', 'font-size': '25px' }"
-      [(ngModel)]="this.propService.propSolution.effect_description"
-      [modules]="{ counter: { container: '#counter7', unit: 'character' } }"
-    >
-    </p-editor>
-    <div id="counter7" class="text-end">0</div>
+        <p-editor
+                styleClass="p-editor-override"
+                [style]="{ height: '125px', 'font-size': '25px' }"
+                [(ngModel)]="this.propService.propSolution.effect_description"
+                [modules]="{ counter: { container: '#counter7', unit: 'character' } }"
+        >
+        </p-editor>
+        <div id="counter7" class="text-end">0</div>
 
-    <p-divider layout="horizontal"></p-divider>
+        <p-divider layout="horizontal"></p-divider>
 
-    <div class="removeHeader">
-      <h2 class="mr-2">
-        <i class="bi bi-file-earmark-text"></i>
-        {{ "about.ncView.description" | translate }}
-      </h2>
-      <p-editor
-        styleClass="p-editor-override"
-        [style]="{
+        <div class="removeHeader">
+            <h2 class="mr-2">
+                <i class="bi bi-file-earmark-text"></i>
+                {{ "about.ncView.description" | translate }}
+            </h2>
+            <p-editor
+                    styleClass="p-editor-override"
+                    [style]="{
           height: '144px',
           border: '1px solid #dddddd',
           'font-size': '25px'
         }"
-        [readonly]="true"
-        [ngModel]="propService.ncProp.text_area_nc"
-      >
-        <ng-template pTemplate="header"> </ng-template>
-      </p-editor>
+                    [readonly]="true"
+                    [ngModel]="propService.ncProp.text_area_nc"
+            >
+                <ng-template pTemplate="header"></ng-template>
+            </p-editor>
+        </div>
     </div>
-  </div>
 </div>
 <div class="d-flex justify-content-between mt-5">
-  <button type="button" class="btn cancel-btn" (click)="close()">
-    {{ "createProp.step1.back" | translate }}
-    <i class="bi bi-suit-diamond"></i>
-  </button>
-  <div class="d-flex">
-    <button
-      type="button"
-      class="btn btn-dark"
-      style="background-color: #00344d"
-      [disabled]="isFirstStep()"
-      (click)="backStep()"
-    >
-      <i class="bi bi-arrow-left"></i>
-      {{ "global.back" | translate }}
+    <button type="button" class="btn cancel-btn" (click)="close()">
+        {{ "createProp.step1.back" | translate }}
+        <i class="bi bi-suit-diamond"></i>
     </button>
-    <div class="ml-2 mr-2"></div>
-    <button
-      type="button"
-      class="btn btn-dark"
-      style="background-color: #00344d"
-      (click)="nextStep()"
-    >
-      {{ returnTextButton() }}
-      <i *ngIf="!isLastStep()" class="bi bi-arrow-right"></i>
-    </button>
-  </div>
+    <div class="d-flex">
+        <button
+                type="button"
+                class="btn btn-dark"
+                style="background-color: #00344d"
+                [disabled]="isFirstStep()"
+                (click)="backStep()"
+        >
+            <i class="bi bi-arrow-left"></i>
+            {{ "global.back" | translate }}
+        </button>
+        <div class="ml-2 mr-2"></div>
+        <button
+                type="button"
+                class="btn btn-dark"
+                style="background-color: #00344d"
+                (click)="nextStep()"
+        >
+            {{ returnTextButton() }}
+            <i *ngIf="!isLastStep()" class="bi bi-arrow-right"></i>
+        </button>
+    </div>
 </div>

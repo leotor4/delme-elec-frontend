@@ -51,23 +51,22 @@
         <div>
           <div class="d-flex">
             <div class="col">
-              <label>{{
-                "about.proposalComponent.material" | translate
-              }}</label>
+              <label>{{ "about.proposalComponent.material" | translate }}</label>
               <p-editor
-                styleClass="p-editor-override"
-                [ngModel]="
-                  '<p>' +
-                  this.propService.propSolution.lack_materials +
-                  '</p><p>' +
-                  this.propService.propSolution.excess_materials +
-                  '</p><p>' +
-                  this.propService.propSolution.low_quality_materials +
-                  '</p>' +
-                  this.propService.propSolution.material_description
-                "
-                [style]="editorStyle"
-                [readonly]="true"
+                      styleClass="p-editor-override"
+                      [ngModel]="
+            '<p>' +
+            this.propService.propSolution.lack_materials +
+            '</p><p>' +
+            this.propService.propSolution.excess_materials +
+            '</p><p>' +
+            this.propService.propSolution.low_quality_materials +
+            '</p>' +
+            '</p>' +
+            this.propService.propSolution.material_description
+          "
+                      [style]="editorStyle"
+                      [readonly]="true"
               >
                 <ng-template pTemplate="header"> </ng-template>
               </p-editor>
@@ -75,19 +74,20 @@
             <div class="col">
               <label>{{ "about.proposalComponent.measure" | translate }}</label>
               <p-editor
-                styleClass="p-editor-override"
-                [ngModel]="
-                  '<p>' +
-                  this.propService.propSolution.lack_parameters +
-                  '</p><p>' +
-                  this.propService.propSolution.excess_parameters +
-                  '</p><p>' +
-                  this.propService.propSolution.non_achievement_goals +
-                  '</p><p>' +
-                  this.propService.propSolution.method_description
-                "
-                [style]="editorStyle"
-                [readonly]="true"
+                      styleClass="p-editor-override"
+                      [ngModel]="
+            '<p>' +
+            this.propService.propSolution.lack_parameters +
+            '</p><p>' +
+            this.propService.propSolution.excess_parameters +
+            '</p><p>' +
+            this.propService.propSolution.non_achievement_goals +
+            '</p>' +
+            '</p>' +
+            this.propService.propSolution.measurement_description
+          "
+                      [style]="editorStyle"
+                      [readonly]="true"
               >
                 <ng-template pTemplate="header"> </ng-template>
               </p-editor>
@@ -95,97 +95,98 @@
             <div class="col">
               <label>{{ "about.proposalComponent.method" | translate }}</label>
               <p-editor
-                styleClass="p-editor-override"
-                [ngModel]="
-                  this.propService.propSolution.method_description +
-                  '<p>' +
-                  returnString(this.propService.propSolution.instruction) +
-                  '</p>' +
-                  '<p>' +
-                  returnString(this.propService.propSolution.procedure) +
-                  '</p>' +
-                  '<p>' +
-                  returnString(this.propService.propSolution.regulatory) +
-                  '</p>' +
-                  '<p>' +
-                  returnString(this.propService.propSolution.nbr) +
-                  '</p>'
-                "
-                [style]="editorStyle"
-                [readonly]="true"
+                      styleClass="p-editor-override"
+                      [ngModel]="
+            this.propService.propSolution.method_description +
+            '<p>' +
+            returnString(this.propService.propSolution.instruction) +
+            '</p>' +
+            '<p>' +
+            returnString(this.propService.propSolution.procedure) +
+            '</p>' +
+            '<p>' +
+            returnString(this.propService.propSolution.regulatory) +
+            '</p>' +
+            '<p>' +
+            returnString(this.propService.propSolution.nbr) +
+            '</p>'
+          "
+                      [style]="editorStyle"
+                      [readonly]="true"
               >
                 <ng-template pTemplate="header"> </ng-template>
               </p-editor>
             </div>
           </div>
           <img
-            src="../../../../../../assets/images/Espinha de Peixe.png"
-            width="850"
-            class="ml-5 mr-3"
+                  src="../../../../../../assets/images/Espinha de Peixe.png"
+                  width="850"
+                  class="ml-5"
           />
           <div class="d-flex">
             <div class="col">
-              <label>{{ "about.proposalComponent.labor" | translate }}</label>
               <p-editor
-                styleClass="p-editor-override"
-                [ngModel]="
-                  '<p>' +
-                  this.propService.propSolution.run_training +
-                  '</p>' +
-                  this.propService.propSolution.man_power_description
-                "
-                [style]="editorStyle"
-                [readonly]="true"
+                      styleClass="p-editor-override"
+                      [ngModel]="
+            '<p>' +
+            this.propService.propSolution.run_training +
+            '</p>' +
+            this.propService.propSolution.man_power_description
+          "
+                      [style]="editorStyle"
+                      [readonly]="true"
               >
-                <ng-template pTemplate="header"> </ng-template>
-              </p-editor>
+                <ng-template pTemplate="header"> </ng-template> </p-editor
+              ><label class="mt-1">{{
+              "about.proposalComponent.labor" | translate
+              }}</label>
             </div>
             <div class="col">
-              <label>{{ "about.proposalComponent.ambient" | translate }}</label>
               <p-editor
-                styleClass="p-editor-override"
-                [ngModel]="
-                  this.propService.propSolution.environment_description
-                "
-                [style]="editorStyle"
-                [readonly]="true"
+                      styleClass="p-editor-override"
+                      [ngModel]="this.propService.propSolution.environment_description"
+                      [style]="editorStyle"
+                      [readonly]="true"
               >
-                <ng-template pTemplate="header"> </ng-template>
-              </p-editor>
+                <ng-template pTemplate="header"> </ng-template> </p-editor
+              ><label class="mt-1">{{
+              "about.proposalComponent.ambient" | translate
+              }}</label>
             </div>
             <div class="col">
-              <label>{{ "about.proposalComponent.machine" | translate }}</label>
               <p-editor
-                styleClass="p-editor-override"
-                [ngModel]="
-                  this.propService.propSolution.machine_description +
-                  '<p>' +
-                  returnString(this.propService.propSolution.machine) +
-                  '</p>' +
-                  '<p>' +
-                  returnString(this.propService.propSolution.equipament) +
-                  '</p>'
-                "
-                [style]="editorStyle"
-                [readonly]="true"
+                      styleClass="p-editor-override"
+                      [ngModel]="
+            this.propService.propSolution.machine_description +
+            '<p>' +
+            returnString(this.propService.propSolution.machine) +
+            '</p>' +
+            '<p>' +
+            returnString(this.propService.propSolution.equipament) +
+            '</p>'
+          "
+                      [style]="editorStyle"
+                      [readonly]="true"
               >
-                <ng-template pTemplate="header"> </ng-template>
-              </p-editor>
+                <ng-template pTemplate="header"> </ng-template> </p-editor
+              ><label class="mt-1">{{
+              "about.proposalComponent.machine" | translate
+              }}</label>
             </div>
           </div>
         </div>
         <div class="d-block mt-5">
           <label>{{ "about.proposalComponent.effect" | translate }}</label>
           <p-editor
-            styleClass="p-editor-override"
-            [ngModel]="this.propService.propSolution.effect_description"
-            [style]="{
-              height: '300px',
-              width: '230px',
-              border: '2px solid #333333',
-              'border-radius': '5px'
-            }"
-            [readonly]="true"
+                  styleClass="p-editor-override"
+                  [ngModel]="this.propService.propSolution.effect_description"
+                  [style]="{
+        height: '300px',
+        width: '230px',
+        border: '2px solid #333333',
+        'border-radius': '5px'
+      }"
+                  [readonly]="true"
           >
             <ng-template pTemplate="header"> </ng-template>
           </p-editor>
@@ -203,7 +204,7 @@
         <button
           class="btn btn-dark red"
           style="background-color: #00344d"
-          (click)="goToStepById(1)"
+          (click)="goToStepById(0)"
         >
           <i class="bi bi-pencil mr-1"></i>
           {{ "global.edit" | translate }}
@@ -358,6 +359,37 @@
     <ng-template pTemplate="header">
       <div class="d-flex justify-content-between accordion">
         <p>
+          <i class="bi bi-card-text"></i>
+          {{ "createProp.step1.extraInfoTitle" | translate }}
+        </p>
+        <button
+                class="btn btn-dark red"
+                style="background-color: #00344d"
+                (click)="goToStepById(0)"
+        >
+          <i class="bi bi-pencil mr-1"></i>
+          {{ "global.edit" | translate }}
+        </button>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="content">
+      <div class="caixa-cinza p-2">
+        <div>
+          <p-editor
+                  class="header"
+                  styleClass="p-editor-override"
+                  [style]="{ height: '20vh', 'font-size': '25px' }"
+                  [ngModel]="this.propService.propSolution.additional_info"
+                  [readonly]="true"
+          ></p-editor>
+        </div>
+      </div>
+    </ng-template>
+  </p-accordionTab>
+  <p-accordionTab [selected]="isAllOpen">
+    <ng-template pTemplate="header">
+      <div class="d-flex justify-content-between accordion">
+        <p>
           <i class="bi bi-geo"></i>
           {{ "about.proposalComponent.actionPlan" | translate }}
         </p>
@@ -404,7 +436,7 @@
         <button
           class="btn btn-dark red"
           style="background-color: #00344d"
-          (click)="goToStepById(3)"
+          (click)="goToStepById(1)"
         >
           <i class="bi bi-pencil mr-1"></i>
           {{ "global.edit" | translate }}
