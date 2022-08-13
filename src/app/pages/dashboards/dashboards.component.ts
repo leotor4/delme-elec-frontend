@@ -2,6 +2,7 @@ import { DashboardsService } from "./dashboards.service";
 import { Component, HostListener, OnInit } from "@angular/core";
 import { ChartsService } from "src/app/_services/charts.service";
 import { ThisReceiver } from "@angular/compiler";
+import { NonCompliance } from "src/app/models/non-compliance";
 
 @Component({
   selector: "app-dashboards",
@@ -62,7 +63,9 @@ export class DashboardsComponent implements OnInit {
     this.getScreenWidth = window.innerWidth;
     this.chartsService.get().subscribe({
       next: (data: any) => {
-        this.chartsService.ncs = data.noncompliances;
+        this.chartsService.ncs = data.noncompliances.filter(
+          (item:NonCompliance) => item.status != "open"
+        );
         this.load1 = true;
       },
     });

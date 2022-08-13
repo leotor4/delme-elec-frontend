@@ -14,6 +14,11 @@ h2 {
   color: gray;
 }
 
+.radio-title{
+  font-size: x-large;
+  font-weight: 700;
+}
+
 :host /deep/ .p-accordion .p-accordion-header:hover a {
   text-decoration: none;
  

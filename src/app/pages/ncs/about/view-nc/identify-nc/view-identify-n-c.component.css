@@ -81,27 +81,38 @@ button{
 .dados-contato i {
   font-size: 11px;
   margin-right: 8px;
+  
 }
 
 .info-titulo {
   margin-bottom: 1px;
   font-weight: bold;
   color: rgb(103, 103, 103);
+  
 }
 
 .info-dados {
-  color: rgb(153, 153, 153);
+  color: rgb(153, 153, 153);width: 80px;
 }
 
 .contato-info i {
   font-size: 14px;
   color: rgb(103, 103, 103);
-  margin-right: 10px;
+  
+  
+}
+
+.contato-info-ident {
+  margin-top: 8px;
+  height: 35px;
+  width: 200px;
 }
 
 .contato-info {
   margin-top: 8px;
   height: 35px;
+
+
 }
 .item {
   width: 100%;

@@ -46,17 +46,17 @@ export class AboutComponent implements OnInit {
 
   checkDisableProposal(): boolean {
     var disabled = true;
-   
-    if (this.aboutSrvc.nc?.affected_sector?.responsible_email) {
+    var setorResponsible = this.aboutSrvc.nc?.sector?.responsible_email??"";
+    console.log(setorResponsible);
+    
       if (
-        this.roleService.isResponsibleOrManager(
-          this.aboutSrvc.nc.affected_sector.responsible_email
-        ) ||
+        this.roleService.isResponsibleOrManager(setorResponsible) ||
         this.isActionPlanResponsible()
       ) {
         disabled = false;
       }
-    }
+    
+
     return disabled;
   }
 
@@ -98,9 +98,9 @@ export class AboutComponent implements OnInit {
     if (this.aboutSrvc.hasProposal() && this.roleService.isManager()) {
       let proposta = this.aboutSrvc.nc.proposalSolution;
 
-     if (proposta?.status == "complete") {
-       disabled = false;
-     }
+      if (proposta?.status == "complete") {
+        disabled = false;
+      }
     }
     return disabled;
   }

@@ -46,6 +46,8 @@ export class NonCompliance {
   text_area_reject_point?: string = "";
   num_ordem_compra?: string = "";
   num_lote?: string = "";
+  num_pc?: string = "";
+  num_pv?: string = "";
   num_op?: string = "";
   num_nota?: string = "";
   radio_value: string = "";

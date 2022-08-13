@@ -28,7 +28,7 @@
   min-width: 230px;
   background-color: white;
   border-radius: 7px;
-  height: 150px;
+  height: 190px;
   padding: 13px;
   overflow: auto;
 }
@@ -90,14 +90,14 @@
 }
 
 .info-titulo {
-  font-size: large;
+  font-size: medium;
   margin-bottom: 1px;
   font-weight: bold;
   color: rgb(103, 103, 103);
 }
 
 .info-dados {
-  font-size: large;
+  font-size: medium;
   color: rgb(153, 153, 153);
 }
 
@@ -110,6 +110,14 @@
 .contato-info {
   margin-top: 8px;
   height: 35px;
+  
+}
+
+.contato-info-ident {
+  margin-top: 8px;
+  height: 35px;
+  width: 200px;
+ 
 }
 .item {
   width: 100%;

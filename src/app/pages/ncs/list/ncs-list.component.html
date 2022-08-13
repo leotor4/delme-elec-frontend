@@ -17,8 +17,7 @@
       <ngx-charts-pie-chart
       (window:resize)="onResizePizzaChart($event)"
       [view]="view" 
-      [scheme]="gridColor"
-      [gradient]="gradient"
+      [scheme] = "colorScheme2"
       [results]="pieValues"
       
       [legend]="showLegend"
@@ -44,7 +43,7 @@
 
 
     <div>
-      <ngx-charts-bar-vertical-2d
+      <!-- <ngx-charts-bar-vertical-2d
         (window:resize)="onResizeBarChart($event)"
         [view]="lineChartView"
         [scheme]="gridColor"
@@ -59,7 +58,8 @@
         [legendPosition]="legendPosition"
         [legendTitle]="legendTitle"
         [barPadding]="0"      >
-      </ngx-charts-bar-vertical-2d>
+      </ngx-charts-bar-vertical-2d> -->
+      <plotly-plot [data]="graph.data" [layout]="graph.layout"> </plotly-plot>
     </div>
     </div>
   </div>

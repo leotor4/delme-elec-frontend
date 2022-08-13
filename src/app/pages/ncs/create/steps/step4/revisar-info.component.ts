@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from "@angular/core";
+import { TranslateService } from "@ngx-translate/core";
 import { Attachment } from "src/app/models/attachment";
 import { NonComplianceService } from "../../../../../_services/non-compliance.service";
 @Component({
@@ -11,14 +12,15 @@ export class RevisarInfoComponent implements OnInit {
   unselectedClass = "btn unselected-btn";
   selectedClass = "btn selected-btn";
   @Output() changeStepPosition: EventEmitter<number> = new EventEmitter();
-  constructor(public nonComplicanceService: NonComplianceService) {}
+  constructor(
+    public nonComplicanceService: NonComplianceService,
+    public translate: TranslateService
+  ) {}
 
   goToStepById(position: number) {
     this.changeStepPosition.emit(position);
   }
-  ngOnInit(): void {
-   
-  }
+  ngOnInit(): void {}
 
   emissor = "";
 
@@ -36,5 +38,15 @@ export class RevisarInfoComponent implements OnInit {
       }
     });
     return acoesFile;
+  }
+
+  returnRadioValue(): string {
+    if (this.nonComplicanceService.nc.radio_value == "val1") {
+      return this.translate.instant("newNC.step2.radioLabel1");
+    }
+    if (this.nonComplicanceService.nc.radio_value == "val2") {
+      return this.translate.instant("newNC.step2.radioLabel2");
+    }
+    return "";
   }
 }

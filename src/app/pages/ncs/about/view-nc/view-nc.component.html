@@ -60,6 +60,7 @@
       </div>
     </ng-template>
     <ng-template pTemplate="content">
+      <div class="d-flex flex-row justify-content-center radio-title">{{returnRadioValue()}}</div>
       <div class="div-ident-parceiro d-flex mt-3">
         <div class="dados-parceiro razao-social item">
           <h2 class="mr-2">
@@ -79,6 +80,7 @@
             <ng-template pTemplate="header"> </ng-template>
           </p-editor>
         </div>
+        
         <div class="dados-parceiro razao-social item">
           <h2 class="mr-2 mb-5">
             <i class="pi pi-camera"></i>
@@ -99,8 +101,8 @@
           </p-carousel>
         </div>
       </div>
-
-      <div class="div-ident-parceiro d-flex mt-3">
+      
+      <div class="div-ident-parceiro  d-flex mt-3">
         <div class="dados-parceiro razao-social item">
           <h2 class="mr-2">
             <i class="bi bi-geo"></i>

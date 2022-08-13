@@ -8,63 +8,70 @@ import {AboutService} from "../../about.service";
 import {TranslateService} from "@ngx-translate/core";
 
 @Component({
-  selector: 'app-view-identify-nc',
-  templateUrl: './view-identify-n-c.component.html',
-  styleUrls: ['./view-identify-n-c.component.css'],
-  providers:[
-    DialogService
-  ],
+  selector: "app-view-identify-nc",
+  templateUrl: "./view-identify-n-c.component.html",
+  styleUrls: ["./view-identify-n-c.component.css"],
+  providers: [DialogService],
 })
 export class ViewIdentifyNCComponent implements OnInit {
-  constructor(public dialogService: DialogService,
-              public messageService:MessageService,
-              public aboutSrvc: AboutService,
-              public ncService:NonComplianceService,
-              public translate: TranslateService) { }
+  constructor(
+    public dialogService: DialogService,
+    public messageService: MessageService,
+    public aboutSrvc: AboutService,
+    public ncService: NonComplianceService,
+    public translate: TranslateService
+  ) {}
 
-  ngOnInit(): void {
-    
-  }
+  ngOnInit(): void {}
 
-   returnTitle():string{
-    if(this.aboutSrvc.nc?.tipos_parceiro_item == "Interno")
+  returnTitle(): string {
+    if (this.aboutSrvc.nc?.tipos_parceiro_item == "Interno")
       return this.translate.instant("newNC.review.sector");
-     return this.translate.instant("newNC.review.corporateName");
+    return this.translate.instant("newNC.review.corporateName");
   }
 
-  formato_brasileiro(data:Date | undefined | null): string {
-    const dataFormatada = data ? DateUtils.formato_brasileiro(data) : '00/00/0000';
-    return dataFormatada
+  formato_brasileiro(data: Date | undefined | null): string {
+    const dataFormatada = data
+      ? DateUtils.formato_brasileiro(data)
+      : "00/00/0000";
+    return dataFormatada;
   }
-  isType1(element:any) {
-    return element.path=="evidenciasNc";
+  isType1(element: any) {
+    return element.path == "evidenciasNc";
   }
-    isType2(element:any) {
-        return element.path=="evidenciasAcoes";
-    }
+  isType2(element: any) {
+    return element.path == "evidenciasAcoes";
+  }
 
-    visualizarDocumento(id:number,type:string){
-      this.ncService.downloadFile(id).subscribe({
-        next:(data)=>{
-          
-          const ref = this.dialogService.open(
-            VisualizarDocumentoDialogComponent,
-            {
-              data: {
-                base64: data.data,
-                type:type,
-              },
-              header: "Visualizar Documento",
-              width: "1000px",
-            }
-          );
-        },error:(err)=>{
-          this.messageService.add({
-            severity: "error",
-            summary: "Houve um problema ao visualizar arquivo.",
-            life: 3000,
-          });
-        }
-      })
+  visualizarDocumento(id: number, type: string) {
+    this.ncService.downloadFile(id).subscribe({
+      next: (data) => {
+        const ref = this.dialogService.open(
+          VisualizarDocumentoDialogComponent,
+          {
+            data: {
+              base64: data.data,
+              type: type,
+            },
+            header: "Visualizar Documento",
+            width: "1000px",
+          }
+        );
+      },
+      error: (err) => {
+        this.messageService.add({
+          severity: "error",
+          summary: "Houve um problema ao visualizar arquivo.",
+          life: 3000,
+        });
+      },
+    });
+  }
+
+  haveSegment(): boolean {
+    if (this.aboutSrvc.nc.tipos_auditoria_item) {
+      return true;
     }
+    return false;
+  }
 }
