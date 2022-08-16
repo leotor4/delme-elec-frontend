@@ -51,12 +51,7 @@ export class NcsListComponent implements OnInit {
   };
 
   colorScheme2 = {
-    domain: [
-      "rgb(255,255,0)",
-      "rgb(128, 128, 128)",
-      "rgb(238, 75, 43)",
-      "rgb(124, 252, 0)",
-    ],
+    domain: [],
   };
 
   cardColor: string = "#00344D";
@@ -81,6 +76,7 @@ export class NcsListComponent implements OnInit {
 
   @ViewChild("dt") dt: Table;
   listNcs: Array<NcsListDTO> = [];
+  listNcsAux: Array<NcsListDTO> = [];
   listNcsObj: Array<NonCompliance> = [];
   setores: String[] = [];
   noPrazo: number[] = [];
@@ -91,7 +87,20 @@ export class NcsListComponent implements OnInit {
   totalRecords = 0;
   rows = 5;
 
+  haveOpenNc():number{
+    let n = -1
+    let user = this.tokenService.getUser()
+    this.listNcsAux.forEach((element)=>{
+      let nc = element.nc
+      if(nc.emissor?.id == user.id && nc.status == "open"){
+        n = nc.id!
+      }
+    })
+    return n
+  }
   openNc() {
+  let openNc = this.haveOpenNc()
+  if(openNc == -1){
     this.ncsService.abrirNc().subscribe({
       next: (response: any) => {
         this.messageService.add({
@@ -115,6 +124,11 @@ export class NcsListComponent implements OnInit {
         });
       },
     });
+  }else{
+    this.router.navigate(["/ncs/create/", openNc]);
+  }
+    
+ 
   }
 
   constructor(
@@ -127,7 +141,8 @@ export class NcsListComponent implements OnInit {
     private confirmationService: ConfirmationService,
     private tokenService: TokenStorageService,
     public translate: TranslateService,
-    public dialogService: DialogService
+    public dialogService: DialogService,
+    
   ) {}
 
   ngOnInit(): void {
@@ -242,6 +257,10 @@ export class NcsListComponent implements OnInit {
         this.listNcs = compliances.map((item: NonCompliance) => {
           return new NcsListDTO(item);
         });
+
+        this.listNcsAux = compliances.map((item: NonCompliance) => {
+          return new NcsListDTO(item);
+        });
         for (let i = 0; i < this.listNcs.length; i++) {
           if(this.listNcs[i].status == "running"){
             this.listNcs[i].status = this.translate.instant("global.status2")
@@ -304,13 +323,13 @@ export class NcsListComponent implements OnInit {
       if (filterStatus == "late")
         this.listNcs = this.listNcs.filter((item) => item.status == "late");
 
-      console.log(this.listNcs)
-
+      
+        this.listNcs = this.listNcs.filter((item) => item.status != "open");
       this.setDataCards(compliances, filterStatus);
       setTimeout(this.setPositionTextCards, 200);
 
       this.totalRecords = this.listNcs.length;
-      console.log(this.listNcs)
+      
     });
   }
 
@@ -325,6 +344,31 @@ export class NcsListComponent implements OnInit {
         this.pieValues = data;
       
       });
+
+      let colors:any = [
+      ]
+      this.pieValues.forEach(element=>{
+        if(element.name == this.translate.instant("global.canceled")){
+          colors.push("rgb(255,255,0)")
+        }
+        if(element.name == this.translate.instant("global.late")){
+          colors.push("rgb(128, 128, 128)")
+        }
+        if(element.name == this.translate.instant("global.status2")){
+          colors.push("rgb(238, 75, 43")
+        }
+        if(element.name == this.translate.instant("global.status7")){
+          colors.push("rgb(124, 252, 0)")
+        }
+      })
+      
+
+      this.colorScheme2.domain = colors
+      
+       
+     
+
+      console.log("teste")
   }
 
   parseMonthStrToNumber(strMonth: string): string {

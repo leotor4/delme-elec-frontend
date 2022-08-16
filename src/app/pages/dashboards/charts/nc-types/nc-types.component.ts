@@ -67,17 +67,21 @@ export class NcTypesComponent implements OnInit {
     });
     let tipos: string[] = [];
     let quant: number[] = [];
+    let total = 0
     this.single.forEach((element) => {
       tipos.push(element.name);
       quant.push(element.value);
     });
+quant.forEach(element=>{
+      total += element
+    })
     this.graph = {
       data: [
         {
           x: tipos,
           y: quant,
           type: "bar",
-          text: quant.map(String),
+          text: quant.map((quant)=>{return quant +  " (" + (quant/total*100) + "%)"}),
           textposition: "auto",
           name: this.translate.instant("charts.ncsReceived"),
           marker: { color: "rgb(29,104,251)" },

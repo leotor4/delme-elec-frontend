@@ -585,7 +585,7 @@
     "title5": "Número de Ncs x Custo Total",
     "products": "Quantidade de Produtos",
     "title6": "Departamento Receptor x Quantidade de Ncs",
-    "title7": "Departamento/Setor x Quantidade de NCs Recebidas e Quantidade de NCs Emitidas.",
+    "title7": "Total de NCs Recebidas e Emitidas por setor",
     "cost2": "Custo",
     "ncsReceived": "Ncs recebidas",
     "ncsSent": "NCs emitidas",

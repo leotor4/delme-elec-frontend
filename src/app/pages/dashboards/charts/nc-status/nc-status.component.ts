@@ -16,6 +16,11 @@ export class NcStatusComponent implements OnInit {
   setor: any;
   setores: string[] = [];
   graph: any;
+  colorScheme = {
+    domain: [
+     
+    ],
+  };
 
   ngOnInit(): void {
     this.popularSetores();
@@ -55,20 +60,17 @@ export class NcStatusComponent implements OnInit {
 
   popular() {
     this.single = [
+    
       {
-        name: this.translate.instant("global.status1"),
+        name: this.translate.instant("global.canceled"),
+        value: 0,
+      },
+      {
+        name: this.translate.instant("global.late"),
         value: 0,
       },
       {
         name: this.translate.instant("global.status2"),
-        value: 0,
-      },
-      {
-        name: this.translate.instant("global.status6"),
-        value: 0,
-      },
-      {
-        name: this.translate.instant("global.status3"),
         value: 0,
       },
       {
@@ -81,31 +83,39 @@ export class NcStatusComponent implements OnInit {
         element.tipos_local_item == this.setor ||
         this.setor == this.translate.instant("global.all")
       ) {
-        console.log("entrou");
+      
         switch (element.status) {
-          case "open":
+         
+          case "canceled":
             this.single[0].value++;
             break;
-          case "running":
+          case "late":
             this.single[1].value++;
             break;
-          case "canceled":
+          case "running":
             this.single[2].value++;
             break;
-          case "late":
-            this.single[3].value++;
-            break;
           case "closed":
-            this.single[4].value++;
+            this.single[3].value++;
             break;
         }
       }
     });
     let tipos:string[] = []
     let quant:number[] = []
+    let total = 0
     this.single.forEach(element=>{
       tipos.push(element.name)
       quant.push(element.value);
+    })
+    let colors:any = [
+       "rgb(255,255,0)",
+       "rgb(128, 128, 128)",
+      "rgb(238, 75, 43)",
+        "rgb(124, 252, 0)",
+    ]
+    quant.forEach(element=>{
+      total += element
     })
     this.graph = {
       data: [
@@ -114,8 +124,11 @@ export class NcStatusComponent implements OnInit {
           y: quant,
           type: "bar",
           name: this.translate.instant("charts.ncsReceived"),
-          text: quant.map(String),
+          text: quant.map((quant)=>{return quant +  " (" + (quant/total*100) + "%)"}),
           textposition: "auto",
+           marker: {
+      color: colors
+  }
         },
       ],
       layout: {

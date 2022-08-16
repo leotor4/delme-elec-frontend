@@ -18,15 +18,16 @@ export class DashboardsComponent implements OnInit {
   atual = 0;
   isReloaded = false;
   getScreenWidth: any;
+  height = 450
 
   carregou(): boolean {
     return this.load1 && this.load2 && this.load3 && this.load4;
   }
 
   getWidth() {
-    let largura = this.getScreenWidth;
-    if (largura < 700) return 500;
-    if (largura < 1000) return 800;
+    // let largura = this.getScreenWidth;
+    // if (largura < 700) return 500;
+    // if (largura < 1000) return 800;
     return 1400;
   }
 
