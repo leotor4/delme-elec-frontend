@@ -55,27 +55,33 @@ export class NcReceptorEmissorComponent implements OnInit {
     }
     this.chartsService.ncs.forEach((element) => {
       if (
-        element.tipos_local_item &&
+        
         (element.tipos_nc_item == this.tiposNcAtual ||
           this.tiposNcAtual == this.translate.instant("global.all"))
       ) {
-        let setorReceptor = element.tipos_local_item;
-        let setorEmissor = element.emissor?.sector?.name;
-
-        let index = this.tipos.indexOf(setorReceptor);
+       
+        let setorReceptor = element.sector;
+        let setorEmissor = element.emissor?.sector;
+        console.log(element.emissor)
+        if(setorReceptor){
+          
+          let index = this.tipos.indexOf(setorReceptor.name);
         if (index == -1) {
-          this.tipos.push(setorReceptor);
+          this.tipos.push(setorReceptor.name);
           this.quant.push(1);
         } else {
           this.quant[index]++;
         }
+        }
 
-        index = this.tipos.indexOf(setorEmissor!);
+        if(setorEmissor){
+          let index = this.tipos.indexOf(setorEmissor.name);
         if (index == -1) {
-          this.tipos.push(setorReceptor);
+          this.tipos.push(setorEmissor.name);
           this.quantEmissor.push(1);
         } else {
           this.quantEmissor[index]++;
+        }
         }
       }
     });
@@ -110,7 +116,9 @@ export class NcReceptorEmissorComponent implements OnInit {
       break;
     }
     this.ordenar();
-    
+    console.log(this.quant)
+    console.log(this.quantEmissor)
+    console.log(this.tipos)
     this.graph = {
       data: [
         {

@@ -81,7 +81,7 @@ quant.forEach(element=>{
           x: tipos,
           y: quant,
           type: "bar",
-          text: quant.map((quant)=>{return quant +  " (" + (quant/total*100) + "%)"}),
+          text: quant.map((quant)=>{return quant +  " (" + (Math.round(quant/total*100)) + "%)"}),
           textposition: "auto",
           name: this.translate.instant("charts.ncsReceived"),
           marker: { color: "rgb(29,104,251)" },

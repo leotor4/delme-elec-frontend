@@ -574,6 +574,8 @@
     "year": "Ano",
     "subtitle1": "Quantidade e Custo de NC",
     "subtitle2": "Custo das NCs",
+    "subtitle3": "Variação anual (%)",
+    "subtitle4": "Quantidade de Ncs (%)",
     "amountActions": "Quantidade de Ações",
     "title1": "Número de Ncs x Custo Total",
     "cost": "Custos",
@@ -581,6 +583,7 @@
     "title2": "Status do Plano de Ação x Setor/Departamento e Tipo de NC.",
     "title3": "Evolução Anual do Número de NCs",
     "ncAmount": "Quantidade de ncs",
+    
     "title4": "Departamento Emissor x Quantidade de Ncs",
     "title5": "Número de Ncs x Custo Total",
     "products": "Quantidade de Produtos",
@@ -593,7 +596,8 @@
     "title9": "Status das Ncs",
     "title10": "Número de Ncs x Custo Total",
     "title11": "Quantidade de NCs",
-    "title12": "Status Proposta de Solução das NCs"
+    "title12": "Status Proposta de Solução das NCs",
+    "title13":"Quantidade de Produtos não-conformes x Produto"
   },
   "list": {
     "title": "Visualize ou crie não conformidades",
