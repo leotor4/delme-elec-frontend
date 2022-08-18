@@ -492,7 +492,7 @@ export class DashboardsService {
       var nc = compliances[i];
      
 
-      if (nc.code.split('/')[1] == currentYear.toString()) {
+      if (nc.code?.split('/')[1] == currentYear.toString()) {
         totalNcsYear = totalNcsYear + 1
 
         if(nc.status?.toLowerCase() == 'running') {
