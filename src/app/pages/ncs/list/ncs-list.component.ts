@@ -243,23 +243,31 @@ export class NcsListComponent implements OnInit {
           return new NcsListDTO(item);
         });
         for (let i = 0; i < this.listNcs.length; i++) {
-          if(this.listNcs[i].status == "running"){
-            this.listNcs[i].status = this.translate.instant("global.status2")
-          }
-          if(this.listNcs[i].status == "late"){
-            this.listNcs[i].status = this.translate.instant("global.status3")
-          }
-          if(this.listNcs[i].status == "deleted"){
-            this.listNcs[i].status = this.translate.instant("global.status4")
-          }
-          if(this.listNcs[i].status == "archived"){
-            this.listNcs[i].status = this.translate.instant("global.status5")
-          }
-          if(this.listNcs[i].status == "canceled"){
-            this.listNcs[i].status = this.translate.instant("global.status6")
-          }
-          if(this.listNcs[i].status == "closed"){
-            this.listNcs[i].status = this.translate.instant("global.status7")
+          switch ( this.listNcs[i].status ) {
+            case "open":
+              this.listNcs[i].status = this.translate.instant("global.status1")
+              break;
+            case "running":
+              this.listNcs[i].status = this.translate.instant("global.status2")
+              break;
+            case "late":
+              this.listNcs[i].status = this.translate.instant("global.status3")
+              break;
+            case "deleted":
+              this.listNcs[i].status = this.translate.instant("global.status4")
+              break;
+            case "archived":
+              this.listNcs[i].status = this.translate.instant("global.status5")
+              break;
+            case "canceled":
+              this.listNcs[i].status = this.translate.instant("global.status6")
+              break;
+            case "closed":
+              this.listNcs[i].status = this.translate.instant("global.status7")
+              break;
+            default:
+              //
+              break;
           }
         }
         // this.listNcs = this.listNcs.filter(
