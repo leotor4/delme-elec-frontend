@@ -34,14 +34,51 @@ export class IdentificacaoDaNcComponent implements OnInit {
    
     this.nonComplicanceService.formIdentificacaoNC.get("tipos_nc_item")?.valueChanges.subscribe(
       (item:string) => {
-        if(item == this.translate.instant("newNC.step1.ncType.type3")) {
-          this.nonComplicanceService.nc.data_fechamento = moment(new Date()).add('d', 60).toDate()
-          this.nonComplicanceService.formIdentificacaoNC.get('data_fechamento')?.setValue(moment(this.nonComplicanceService.nc.data_fechamento))
-          this.nonComplicanceService.formIdentificacaoNC.get('data_fechamento_str')?.setValue(moment(this.nonComplicanceService.nc.data_fechamento).format('yyyy-MM-DD'))
-        } else {
-          this.nonComplicanceService.nc.data_fechamento = moment(new Date()).add('d', 30).toDate()
-          this.nonComplicanceService.formIdentificacaoNC.get('data_fechamento')?.setValue(moment(this.nonComplicanceService.nc.data_fechamento))
-          this.nonComplicanceService.formIdentificacaoNC.get('data_fechamento_str')?.setValue(moment(this.nonComplicanceService.nc.data_fechamento).format('yyyy-MM-DD'))
+        switch (this.nonComplicanceService.nc.radio_value) {
+          case "val1":
+            if (this.nonComplicanceService.formIdentificacaoNC.get("tipos_nc_item")?.value == this.translate.instant("newNC.step1.ncType.type3")) {
+              this.nonComplicanceService.nc.data_fechamento = moment(new Date()).add('d', 60).toDate()
+              this.nonComplicanceService.formIdentificacaoNC.get('data_fechamento')?.setValue(moment(this.nonComplicanceService.nc.data_fechamento))
+              this.nonComplicanceService.formIdentificacaoNC.get('data_fechamento_str')?.setValue(moment(this.nonComplicanceService.nc.data_fechamento).format('yyyy-MM-DD'))
+            } else {
+              this.nonComplicanceService.nc.data_fechamento = moment(new Date()).add('d', 30).toDate()
+              this.nonComplicanceService.formIdentificacaoNC.get('data_fechamento')?.setValue(moment(this.nonComplicanceService.nc.data_fechamento))
+              this.nonComplicanceService.formIdentificacaoNC.get('data_fechamento_str')?.setValue(moment(this.nonComplicanceService.nc.data_fechamento).format('yyyy-MM-DD'))
+            }
+            break;
+          case "val2":
+            if (this.nonComplicanceService.formIdentificacaoNC.get("tipos_nc_item")?.value == this.translate.instant("newNC.step1.ncType.type3")) {
+              this.nonComplicanceService.nc.data_fechamento = moment(new Date()).add('d', 30).toDate()
+              this.nonComplicanceService.formIdentificacaoNC.get('data_fechamento')?.setValue(moment(this.nonComplicanceService.nc.data_fechamento))
+              this.nonComplicanceService.formIdentificacaoNC.get('data_fechamento_str')?.setValue(moment(this.nonComplicanceService.nc.data_fechamento).format('yyyy-MM-DD'))
+            } else {
+              this.nonComplicanceService.nc.data_fechamento = moment(new Date()).add('d', 15).toDate()
+              this.nonComplicanceService.formIdentificacaoNC.get('data_fechamento')?.setValue(moment(this.nonComplicanceService.nc.data_fechamento))
+              this.nonComplicanceService.formIdentificacaoNC.get('data_fechamento_str')?.setValue(moment(this.nonComplicanceService.nc.data_fechamento).format('yyyy-MM-DD'))
+            }
+            break;
+          case "val3":
+            if (this.nonComplicanceService.formIdentificacaoNC.get("tipos_nc_item")?.value == this.translate.instant("newNC.step1.ncType.type3")) {
+              this.nonComplicanceService.nc.data_fechamento = moment(new Date()).add('d', 15).toDate()
+              this.nonComplicanceService.formIdentificacaoNC.get('data_fechamento')?.setValue(moment(this.nonComplicanceService.nc.data_fechamento))
+              this.nonComplicanceService.formIdentificacaoNC.get('data_fechamento_str')?.setValue(moment(this.nonComplicanceService.nc.data_fechamento).format('yyyy-MM-DD'))
+            } else {
+              this.nonComplicanceService.nc.data_fechamento = moment(new Date()).add('d', 7).toDate()
+              this.nonComplicanceService.formIdentificacaoNC.get('data_fechamento')?.setValue(moment(this.nonComplicanceService.nc.data_fechamento))
+              this.nonComplicanceService.formIdentificacaoNC.get('data_fechamento_str')?.setValue(moment(this.nonComplicanceService.nc.data_fechamento).format('yyyy-MM-DD'))
+            }
+            break;
+          case "val4":
+            if (this.nonComplicanceService.formIdentificacaoNC.get("tipos_nc_item")?.value == this.translate.instant("newNC.step1.ncType.type3")) {
+              this.nonComplicanceService.nc.data_fechamento = moment(new Date()).add('d', 15).toDate()
+              this.nonComplicanceService.formIdentificacaoNC.get('data_fechamento')?.setValue(moment(this.nonComplicanceService.nc.data_fechamento))
+              this.nonComplicanceService.formIdentificacaoNC.get('data_fechamento_str')?.setValue(moment(this.nonComplicanceService.nc.data_fechamento).format('yyyy-MM-DD'))
+            } else {
+              this.nonComplicanceService.nc.data_fechamento = moment(new Date()).add('d', 7).toDate()
+              this.nonComplicanceService.formIdentificacaoNC.get('data_fechamento')?.setValue(moment(this.nonComplicanceService.nc.data_fechamento))
+              this.nonComplicanceService.formIdentificacaoNC.get('data_fechamento_str')?.setValue(moment(this.nonComplicanceService.nc.data_fechamento).format('yyyy-MM-DD'))
+            }
+            break;
         }
 
         
@@ -65,7 +102,7 @@ export class IdentificacaoDaNcComponent implements OnInit {
   }
   
 
-  setDtFechamentoFornecedor () {
+  /*setDtFechamentoFornecedor () {
     this.nonComplicanceService.nc.data_fechamento = moment().add('d', 60).toDate()
     this.nonComplicanceService.formIdentificacaoNC.value['data_fechamento'] = this.nonComplicanceService.nc.data_fechamento
     return of([moment().add('d', 60).format('yyyy-MM-DD')])
@@ -94,5 +131,5 @@ export class IdentificacaoDaNcComponent implements OnInit {
         })
       }
     }
-  }
+  }*/
 }
