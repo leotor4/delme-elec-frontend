@@ -55,8 +55,7 @@ export class NcCountComponent implements OnInit {
           this.quantCusto[index] += somatorio;
         }
       }
-    }); this.anos.push(2023)
-    this.quantAnos.push(20)
+    }); 
     this.anos.forEach((element) => {
       let indexAtual = this.anos.indexOf(element);
       let indexAnterior = this.anos.indexOf(element - 1);

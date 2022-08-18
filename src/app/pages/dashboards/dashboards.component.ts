@@ -1,7 +1,6 @@
-import { DashboardsService } from "./dashboards.service";
+
 import { Component, HostListener, OnInit } from "@angular/core";
-import { ChartsService } from "src/app/_services/charts.service";
-import { ThisReceiver } from "@angular/compiler";
+import { ChartsService } from "src/app/_services/charts.service";;
 import { NonCompliance } from "src/app/models/non-compliance";
 
 @Component({
@@ -19,7 +18,9 @@ export class DashboardsComponent implements OnInit {
   isReloaded = false;
   getScreenWidth: any;
   height = 450
-
+  dateList = ["Todos"]
+  dateAtual = "Todos"
+  
   carregou(): boolean {
     return this.load1 && this.load2 && this.load3 && this.load4;
   }
@@ -29,6 +30,15 @@ export class DashboardsComponent implements OnInit {
     // if (largura < 700) return 500;
     // if (largura < 1000) return 800;
     return 1400;
+  }
+
+  onDateChange(){
+    this.chartsService.ncs = this.chartsService.ncsAux.filter(element =>{
+      let date = element.data_abertura
+      return new Date(date!).toLocaleDateString("pt-BR",{ year:"numeric", month:"numeric"}) == this.dateAtual || this.dateAtual == "Todos"
+    })
+  
+    this.reload()
   }
 
   @HostListener("window:resize", ["$event"])
@@ -67,7 +77,19 @@ export class DashboardsComponent implements OnInit {
         this.chartsService.ncs = data.noncompliances.filter(
           (item:NonCompliance) => item.status != "open"
         );
+        this.chartsService.ncsAux = data.noncompliances.filter(
+          (item:NonCompliance) => item.status != "open"
+        );
         this.load1 = true;
+          this.chartsService.ncs.forEach(element=>{
+            if(element.data_abertura){
+              let date = new Date(element.data_abertura).toLocaleDateString("pt-BR",{ year:"numeric", month:"numeric"})
+              let index = this.dateList.indexOf(date)
+              if(index == -1) 
+                this.dateList.push(date)
+             
+            }
+          })
       },
     });
 

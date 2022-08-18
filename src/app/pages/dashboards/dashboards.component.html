@@ -1,11 +1,14 @@
+ <p-dropdown
+      [options]="dateList"
+      [(ngModel)]="dateAtual"
+      (onChange)="onDateChange()"
+    ></p-dropdown>
 <div
   class="d-flex flex-column justify-content-around align-items-center"
-  style=""
+  style="height: 7500px;"
   *ngIf="carregou()"
 >
-  
-  <app-nc-year-cost></app-nc-year-cost>
-  <!-- 
+
     <app-nc-receptor-emissor [size]="[getWidth(), height]"></app-nc-receptor-emissor>
   <app-nc-status [size]="[getWidth(), height]"></app-nc-status>
   <app-nc-year [size]="[getWidth(), height]"></app-nc-year>
@@ -16,5 +19,6 @@
 <app-nc-count [size]="[getWidth(), height]"></app-nc-count>
  <app-nc-actionplan [size]="[getWidth(), height]"></app-nc-actionplan>
   <app-nc-products [size]="[getWidth(), height]"></app-nc-products> 
-  <app-nc-sector-proposal [size]="[getWidth(), height]"></app-nc-sector-proposal> -->
+ <app-nc-year-cost [size]="[getWidth(), height]"></app-nc-year-cost>
+  <app-nc-sector-proposal [size]="[getWidth(), height]"></app-nc-sector-proposal>
 </div>

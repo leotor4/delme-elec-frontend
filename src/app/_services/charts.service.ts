@@ -12,6 +12,7 @@ import { Sector } from "../models/sector";
 export class ChartsService {
   apiUrl = environment.apiURL;
   ncs: NonCompliance[] = [];
+  ncsAux: NonCompliance[] = [];
   products: Product[] = [];
   sectors: string[] = [];
   yaxisConfig= {
