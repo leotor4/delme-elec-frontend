@@ -13,3 +13,24 @@
 	background: transparent url(/bg-um.gif);
     margin-top: 50px;
 	}
+
+.filtro-title{
+	font-weight: bold;
+	margin: 0;
+}
+
+
+
+.filter-row{
+	margin-top: 30px;
+}
+
+.filter-span{
+font-size: large;
+font-weight: 500;
+margin-right: 15px;
+}
+
+.filter-div{
+	margin-left: 20px;
+}

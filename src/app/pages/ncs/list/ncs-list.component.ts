@@ -16,7 +16,7 @@ import { TokenStorageService } from "src/app/_services/token-storage.service";
 import { TranslateService } from "@ngx-translate/core";
 import { DadosNCComponent } from "../../dialogs/dados-nc/dados-nc.component";
 import { DialogService } from "primeng/dynamicdialog";
-import { ThisReceiver } from "@angular/compiler";
+
 
 @Component({
   selector: "app-ncs-list",
@@ -312,8 +312,7 @@ export class NcsListComponent implements OnInit {
         ],
       };
 
-      if (filterStatus == "open")
-        this.listNcs = this.listNcs.filter((item) => item.status == "open");
+     
       if (filterStatus == "canceled")
         this.listNcs = this.listNcs.filter((item) => item.status == "canceled");
       if (filterStatus == "running")
@@ -324,7 +323,7 @@ export class NcsListComponent implements OnInit {
         this.listNcs = this.listNcs.filter((item) => item.status == "late");
 
       
-        this.listNcs = this.listNcs.filter((item) => item.status != "open");
+      this.listNcs = this.listNcs.filter((item) => item.status != "open");
       this.setDataCards(compliances, filterStatus);
       setTimeout(this.setPositionTextCards, 200);
 

@@ -62,7 +62,7 @@ export class NcReceptorEmissorComponent implements OnInit {
        
         let setorReceptor = element.sector;
         let setorEmissor = element.emissor?.sector;
-        console.log(element.emissor)
+        
         if(setorReceptor){
           
           let index = this.tipos.indexOf(setorReceptor.name);
@@ -116,9 +116,7 @@ export class NcReceptorEmissorComponent implements OnInit {
       break;
     }
     this.ordenar();
-    console.log(this.quant)
-    console.log(this.quantEmissor)
-    console.log(this.tipos)
+  
     this.graph = {
       data: [
         {

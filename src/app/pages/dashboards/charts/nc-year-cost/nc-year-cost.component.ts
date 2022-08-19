@@ -23,9 +23,7 @@ graph: any;
 
   ngOnInit(): void {
     this.popular()
-    console.log(this.anos)
-    console.log(this.quantCusto)
-    console.log(this.percent)
+   
 
   }
 

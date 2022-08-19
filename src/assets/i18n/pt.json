@@ -600,7 +600,8 @@
     "title11": "Quantidade de NCs",
     "title12": "Status Proposta de Solução das NCs",
     "title13":"Quantidade de Produtos não-conformes x Produto",
-    "title14":" Evolução Anual dos Custos das NCs"
+    "title14":" Evolução Anual dos Custos das NCs",
+    "failFilter":"Intervalo inválido"
   },
   "list": {
     "title": "Visualize ou crie não conformidades",
