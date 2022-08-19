@@ -232,8 +232,10 @@
     "step2": {
       "descNCTitle": "Descrição da NC *",
       "descNCSubtitle": "Informe abaixo os detalhes da não conformidade",
-      "radioLabel1": "Não conformidade real",
-      "radioLabel2": "Não conformidade Potencial / Oportunidade de Melhoria",
+      "radioLabel1": "Não conformidade Maior",
+      "radioLabel2": "Não conformidade Menor",
+      "radioLabel3": "Observação (OBS)",
+      "radioLabel4": "Oportunidade de Melhoria (OM)",
       "ncText": "Descreva a não conformidade *",
       "actionsTitle": "Ações Imediatas",
       "actionsSubtitle": "Preencha o campo abaixo com ações imediatas e anexe evidências, sejam fotográficas ou documentais.",

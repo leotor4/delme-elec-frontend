@@ -5,22 +5,122 @@
     {{ "newNC.step2.descNCSubtitle" | translate }}
   </p>
 </div>
-<div class="d-flex justify-content-evenly mb-2">
+<!--<div class="d-flex justify-content-evenly mb-2">
   <p-radioButton
     name="ncType"
-    [label]="'newNC.step2.radioLabel1' | translate"
+    [label]="'NC Maior'"
     value="val1"
     [(ngModel)]="nonComplicanceService.nc.radio_value"
+    pTooltip="Indicam ruptura do sistema, por não atendimento a um requisito especificado, ou quando não executamos o que estabelecemos em nossos procedimentos e instruções documentados."
   ></p-radioButton>
   <p-radioButton
     name="ncType"
-    [label]="'newNC.step2.radioLabel2' | translate"
+    [label]="'NC Menor' | translate"
+    pTooltip="Falta de eventuais procedimentos e instruções onde se façam necessários, ou falhas ocasionais nos procedimentos auditados, quando não impactam no produto ou processo."
     class="pt-2"
     value="val2"
     [(ngModel)]="nonComplicanceService.nc.radio_value"
   ></p-radioButton>
-</div>
 
+</div>
+<div class="d-flex justify-content-evenly mb-2">
+  <p-radioButton
+          name="ncType"
+          [label]="'Observação (OBS)' | translate"
+          value="val1"
+          [(ngModel)]="nonComplicanceService.nc.radio_value"
+          pTooltip="Uma não conformidade potencial, ou seja, algo que possa se tornar uma não conformidade."
+  ></p-radioButton>
+  <p-radioButton
+          name="ncType"
+          [label]="'Oportunidade de Melhoria (OM)' | translate"
+          class="pt-2"
+          value="val2"
+          [(ngModel)]="nonComplicanceService.nc.radio_value"
+          pTooltip="Melhoria significativa diagnosticada que possa evoluir algum processo e diminuir ou eliminar as não conformidades."
+  ></p-radioButton>
+
+</div>-->
+<div class="text-center">
+  <div class="container">
+    <div class="row row-cols-2 justify-content-between">
+      <div class="col"><p-radioButton
+              name="ncType"
+              [label]="'NC Maior'"
+              value="val1"
+              [(ngModel)]="nonComplicanceService.nc.radio_value"
+              pTooltip="Indicam ruptura do sistema, por não atendimento a um requisito especificado, ou quando não executamos o que estabelecemos em nossos procedimentos e instruções documentados."
+              (onClick)="ncTypeChange()"
+      ></p-radioButton></div>
+      <div class="col"><p-radioButton
+              name="ncType"
+              [label]="'NC Menor' | translate"
+              pTooltip="Falta de eventuais procedimentos e instruções onde se façam necessários, ou falhas ocasionais nos procedimentos auditados, quando não impactam no produto ou processo."
+              class="pt-2"
+              value="val2"
+              [(ngModel)]="nonComplicanceService.nc.radio_value"
+              (onClick)="ncTypeChange()"
+      ></p-radioButton></div>
+      <div class="col"><p-radioButton
+              name="ncType"
+              [label]="'Observação (OBS)' | translate"
+              value="val3"
+              [(ngModel)]="nonComplicanceService.nc.radio_value"
+              pTooltip="Uma não conformidade potencial, ou seja, algo que possa se tornar uma não conformidade."
+              (onClick)="ncTypeChange()"
+      ></p-radioButton></div>
+      <div class="col"><p-radioButton
+              name="ncType"
+              [label]="'Oportunidade de Melhoria (OM)' | translate"
+              class="pt-2"
+              value="val4"
+              [(ngModel)]="nonComplicanceService.nc.radio_value"
+              pTooltip="Melhoria significativa diagnosticada que possa evoluir algum processo e diminuir ou eliminar as não conformidades."
+              (onClick)="ncTypeChange()"
+      ></p-radioButton></div>
+    </div>
+  </div>
+</div>
+<form [formGroup]="nonComplicanceService.formIdentificacaoNC">
+  <div class="row">
+    <div class="col date-group">
+      <div>
+        <label for="date-input">{{
+          "newNC.step1.identifyNC.dateOpen" | translate
+          }}</label>
+      </div>
+      <span class="p-input-icon-left">
+        <i class="pi pi-calendar"></i>
+        <input
+                readonly
+                type="date"
+                pInputText
+                id="date-input"
+                formControlName="data_abertura_str"
+        />
+      </span>
+    </div>
+
+    <div class="col date-group">
+      <div>
+        <label for="date-input">{{
+          "newNC.step1.identifyNC.dateClose" | translate
+          }}</label>
+      </div>
+
+      <span class="p-input-icon-left">
+        <i class="pi pi-calendar icone"></i>
+        <input
+                readonly
+                type="date"
+                pInputText
+                id="date-input"
+                formControlName="data_fechamento_str"
+        />
+      </span>
+    </div>
+  </div>
+</form>
 <div class="d-flex row">
   <div class="col col-editor">
     <label>{{ "newNC.step2.ncText" | translate }}</label>

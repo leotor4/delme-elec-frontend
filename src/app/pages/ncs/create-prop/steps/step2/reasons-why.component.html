@@ -26,11 +26,11 @@
                 </p-chip>
                 <div class="d-flex align-items-center flex-row">
                     <label class="">{{'createProp.step1.why'| translate}}</label>
-                    <input style="width:300px;" class="ml-1 mr-1" type="text" [placeholder]="'createProp.step1.firstWhy'| translate" [(ngModel)]="propService.step2.textAreas[5]">
+                    <input style="width:300px;" class="ml-1 mr-1" type="text" [placeholder]="(this.propService.ncProp?.radio_value=='val1'||this.propService.ncProp?.radio_value=='val2')?('createProp.step1.firstWhy'| translate):''" [(ngModel)]="propService.step2.textAreas[5]" [disabled]="(this.propService.ncProp?.radio_value=='val3'||this.propService.ncProp?.radio_value=='val4')">
                     <label class="">?</label>
                 </div>
             </div>
-            <textarea  [(ngModel)]="propService.step2.textAreas[0]" pInputTextarea cols="60" rows="5" class="textarea">
+            <textarea  [(ngModel)]="propService.step2.textAreas[0]" pInputTextarea cols="60" rows="5" class="textarea" [disabled]="(this.propService.ncProp?.radio_value=='val3'||this.propService.ncProp?.radio_value=='val4')">
             </textarea>
         </div>
     </div>

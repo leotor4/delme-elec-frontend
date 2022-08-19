@@ -302,15 +302,15 @@ export class NcsListComponent implements OnInit {
       };
 
       if (filterStatus == "open")
-        this.listNcs = this.listNcs.filter((item) => item.status == "open");
+        this.listNcs = this.listNcs.filter((item) => item.status == this.translate.instant("global.status1"));
       if (filterStatus == "canceled")
-        this.listNcs = this.listNcs.filter((item) => item.status == "canceled");
+        this.listNcs = this.listNcs.filter((item) => item.status == this.translate.instant("global.status6"));
       if (filterStatus == "running")
-        this.listNcs = this.listNcs.filter((item) => item.status == "running");
+        this.listNcs = this.listNcs.filter((item) => item.status == this.translate.instant("global.status2"));
       if (filterStatus == "close")
-        this.listNcs = this.listNcs.filter((item) => item.status == "closed");
+        this.listNcs = this.listNcs.filter((item) => item.status == this.translate.instant("global.status7"));
       if (filterStatus == "late")
-        this.listNcs = this.listNcs.filter((item) => item.status == "late");
+        this.listNcs = this.listNcs.filter((item) => item.status == this.translate.instant("global.status3"));
 
       console.log(this.listNcs)
 
@@ -437,7 +437,8 @@ export class NcsListComponent implements OnInit {
   }
 
   edit(idNc: number, status: string) {
-    if (status.toUpperCase() != "OPEN") {
+    console.log(status)
+    if (status != this.translate.instant("global.status1")) {
       this.router.navigate(["/ncs/about/", idNc]);
     } else {
       var user = this.tokenService.getUser();
@@ -450,7 +451,7 @@ export class NcsListComponent implements OnInit {
     
 
       if (user["email"] == nc.emissor?.email || user["role_id"] == 3) {
-        if (status.toUpperCase() == "OPEN") {
+        if (status == this.translate.instant("global.status1")) {
           this.router.navigate(["/ncs/create/", idNc]);
         }
       } else {
@@ -475,6 +476,8 @@ export class NcsListComponent implements OnInit {
       const ref = this.dialogService.open(DadosNCComponent, {
         data: { nc: nc },
         showHeader: false,
+        closable: true,
+        dismissableMask: true,
         width: "60vw",
       });
     }
