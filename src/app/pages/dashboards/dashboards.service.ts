@@ -492,25 +492,23 @@ export class DashboardsService {
       var nc = compliances[i];
      
 
-      if(nc.code){
-        if (nc.code.split('/')[1] == currentYear.toString()) {
-          totalNcsYear = totalNcsYear + 1
-  
-          if(nc.status?.toLowerCase() == 'running') {
-            totalNcsRunning = totalNcsRunning + 1
-          }
-  
-          if(nc.status?.toLowerCase() == 'canceled') {
-            totalNcsCanceled = totalNcsCanceled + 1
-          }
-  
-          if(nc.status?.toLowerCase() == 'late') {
-            totalNcsLate = totalNcsLate + 1
-          }
-  
-          if(nc.status?.toLowerCase() == 'closed') {
-            totalNcsClosed = totalNcsClosed + 1;
-          }
+      if (nc.code.split('/')[1] == currentYear.toString()) {
+        totalNcsYear = totalNcsYear + 1
+
+        if(nc.status?.toLowerCase() == 'running') {
+          totalNcsRunning = totalNcsRunning + 1
+        }
+
+        if(nc.status?.toLowerCase() == 'canceled') {
+          totalNcsCanceled = totalNcsCanceled + 1
+        }
+
+        if(nc.status?.toLowerCase() == 'late') {
+          totalNcsLate = totalNcsLate + 1
+        }
+
+        if(nc.status?.toLowerCase() == 'closed') {
+          totalNcsClosed = totalNcsClosed + 1;
         }
       }
     } 
