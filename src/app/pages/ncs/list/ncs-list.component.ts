@@ -476,6 +476,8 @@ export class NcsListComponent implements OnInit {
       const ref = this.dialogService.open(DadosNCComponent, {
         data: { nc: nc },
         showHeader: false,
+        closable: true,
+        dismissableMask: true,
         width: "60vw",
       });
     }

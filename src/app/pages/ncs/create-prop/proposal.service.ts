@@ -223,9 +223,9 @@ export class ProposalService {
   avancarPasso1Ishkawa(): boolean {
     return !(
       (
-        this.propSolution.effect_description &&
+        (this.propSolution.effect_description &&
         this.checkOneBoxIshikawa() &&
-        this.checkWhies()
+        this.checkWhies())||(this.ncProp?.radio_value=="val3"||this.ncProp?.radio_value=="val4")
       )
       // && this.propSolution.second_why
       // && this.propSolution.third_why
