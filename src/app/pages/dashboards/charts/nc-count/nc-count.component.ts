@@ -23,11 +23,12 @@ export class NcCountComponent implements OnInit {
   anos: number[] = [];
   quantAnos: number[] = [];
   quantCusto: number[] = [];
-  labels: string[] = [];
+  labels: number[] = [];
   graph: any;
 
   popular() {
     this.chartsService.ncs.forEach((element) => {
+      
       if (element.data_abertura) {
         let data = new Date(element.data_abertura);
         let ano = data.getFullYear();
@@ -54,7 +55,7 @@ export class NcCountComponent implements OnInit {
           this.quantCusto[index] += somatorio;
         }
       }
-    });
+    }); 
     this.anos.forEach((element) => {
       let indexAtual = this.anos.indexOf(element);
       let indexAnterior = this.anos.indexOf(element - 1);
@@ -62,7 +63,7 @@ export class NcCountComponent implements OnInit {
       if (indexAnterior != -1) {
         value = (this.quantAnos[indexAtual]  - this.quantAnos[indexAnterior]) * 100 / this.quantAnos[indexAnterior]
       }
-      this.labels[indexAtual] = value.toString() + "%"
+      this.labels[indexAtual] = value
     });
    
     this.graph = {
@@ -70,13 +71,21 @@ export class NcCountComponent implements OnInit {
         {
           x: this.anos,
           y: this.quantAnos,
+          textposition: "top",
+          text: this.quantAnos.map(String),
+          type: "bar",
+          name: this.translate.instant("charts.ncAmount"),
+        },{
+          x: this.anos,
+          y: this.labels,
           mode: "lines+markers+text",
           textposition: "top",
-          text: this.labels,
+          yaxis: "y2",
+          text: this.labels.map((element)=>{return element + "%"}),
           type: "scatter",
-          name: this.translate.instant("charts.ncAmount"),
+          name: this.translate.instant("charts.subtitle4"),
           marker: { color: "rgb(252,134,43)" },
-        },
+        }
       ],
       layout: {
         width: 1600,
@@ -85,7 +94,13 @@ export class NcCountComponent implements OnInit {
           autotick: false,
           title: this.translate.instant("charts.year"),
         },
-
+          yaxis2: {
+          overlaying: "y",
+          side: "right",
+          showgrid: false,
+          zeroline: false,
+          title: this.translate.instant("charts.subtitle3"),
+        },
         yaxis: { title: this.translate.instant("charts.ncAmount") },
       },
     };

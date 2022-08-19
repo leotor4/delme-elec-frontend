@@ -1,17 +1,40 @@
+<div class="d-flex justify-content-end align-items-end filter-row">
+  <div class="d-flex flex-column">
+    <label for="" class="filtro-title">Período Inicial</label>
+    <p-dropdown
+      [options]="dateList"
+      [(ngModel)]="dateInicio"
+      (onChange)="onDateChange()"
+    ></p-dropdown>
+  </div>
+  <div class="d-flex flex-column filter-div">
+    <label for="" class="filtro-title">Período Final</label>
+    <p-dropdown
+      [options]="dateList"
+      [(ngModel)]="dateFim"
+      (onChange)="onDateChange()"
+    ></p-dropdown>
+  </div>
+</div>
 <div
   class="d-flex flex-column justify-content-around align-items-center"
-  style="height:7200px"
+  style="height: 7500px; margin-top: 80px"
   *ngIf="carregou()"
 >
-  <app-nc-receptor-emissor [size]="[getWidth(), 400]"></app-nc-receptor-emissor>
-  <app-nc-status [size]="[getWidth(), 400]"></app-nc-status>
-  <app-nc-year [size]="[getWidth(), 400]"></app-nc-year>
-  <app-nc-types [size]="[getWidth(), 400]"></app-nc-types>
-  <app-nc-emissor [size]="[getWidth(), 400]"></app-nc-emissor>
-  <app-nc-receptor [size]="[getWidth(), 400]"></app-nc-receptor>
-  <app-cost-sector [size]="[getWidth(), 400]"></app-cost-sector>
-  <app-nc-count [size]="[getWidth(), 400]"></app-nc-count>
- <app-nc-actionplan [size]="[getWidth(), 400]"></app-nc-actionplan>
-  <app-nc-products [size]="[getWidth(), 400]"></app-nc-products> 
-  <app-nc-sector-proposal [size]="[getWidth(), 400]"></app-nc-sector-proposal>
+  <app-nc-receptor-emissor
+    [size]="[getWidth(), height]"
+  ></app-nc-receptor-emissor>
+  <app-nc-status [size]="[getWidth(), height]"></app-nc-status>
+  <app-nc-year [size]="[getWidth(), height]"></app-nc-year>
+  <app-nc-types [size]="[getWidth(), height]"></app-nc-types>
+  <app-nc-emissor [size]="[getWidth(), height]"></app-nc-emissor>
+  <app-nc-receptor [size]="[getWidth(), height]"></app-nc-receptor>
+  <app-cost-sector [size]="[getWidth(), height]"></app-cost-sector>
+  <app-nc-count [size]="[getWidth(), height]"></app-nc-count>
+  <app-nc-actionplan [size]="[getWidth(), height]"></app-nc-actionplan>
+  <app-nc-products [size]="[getWidth(), height]"></app-nc-products>
+  <app-nc-year-cost [size]="[getWidth(), height]"></app-nc-year-cost>
+  <app-nc-sector-proposal
+    [size]="[getWidth(), height]"
+  ></app-nc-sector-proposal>
 </div>

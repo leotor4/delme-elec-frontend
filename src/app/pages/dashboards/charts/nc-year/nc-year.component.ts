@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { CostsComponent } from "src/app/pages/ncs/about/costs/costs.component";
 import { ChartsService } from "src/app/_services/charts.service";
 import { TranslateService } from "@ngx-translate/core";
 
@@ -55,7 +54,7 @@ export class NcYearComponent implements OnInit {
         }
       }
     });
-    console.log(this.quantAnos);
+    
     this.graph = {
       data: [
         {

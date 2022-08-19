@@ -47,6 +47,7 @@ export class NcReceptorEmissorComponent implements OnInit {
     this.quant = [];
     this.quantEmissor = [];
     this.multi = [];
+    this.tipos = Object.assign([], this.chartsService.sectors);
 
     for (var i = 0; i < this.tipos.length; i++) {
       this.quant.push(0);
@@ -54,27 +55,33 @@ export class NcReceptorEmissorComponent implements OnInit {
     }
     this.chartsService.ncs.forEach((element) => {
       if (
-        element.tipos_local_item &&
+        
         (element.tipos_nc_item == this.tiposNcAtual ||
           this.tiposNcAtual == this.translate.instant("global.all"))
       ) {
-        let setorReceptor = element.tipos_local_item;
-        let setorEmissor = element.emissor?.sector?.name;
-
-        let index = this.tipos.indexOf(setorReceptor);
+       
+        let setorReceptor = element.sector;
+        let setorEmissor = element.emissor?.sector;
+        
+        if(setorReceptor){
+          
+          let index = this.tipos.indexOf(setorReceptor.name);
         if (index == -1) {
-          this.tipos.push(setorReceptor);
+          this.tipos.push(setorReceptor.name);
           this.quant.push(1);
         } else {
           this.quant[index]++;
         }
+        }
 
-        index = this.tipos.indexOf(setorEmissor!);
+        if(setorEmissor){
+          let index = this.tipos.indexOf(setorEmissor.name);
         if (index == -1) {
-          this.tipos.push(setorReceptor);
+          this.tipos.push(setorEmissor.name);
           this.quantEmissor.push(1);
         } else {
           this.quantEmissor[index]++;
+        }
         }
       }
     });
@@ -94,8 +101,22 @@ export class NcReceptorEmissorComponent implements OnInit {
         ],
       });
     }
+
+   
+    let cont = 0
+    while(true){
+      if(this.quant[cont]==0 && this.quantEmissor[cont]==0){
+        this.tipos.splice(cont,1)
+        this.quant.splice(cont,1)
+        this.quantEmissor.splice(cont,1)
+      }else{
+        cont++
+      }
+      if(cont == this.tipos.length)
+      break;
+    }
     this.ordenar();
-    console.log(this.quantEmissor)
+  
     this.graph = {
       data: [
         {
@@ -103,6 +124,7 @@ export class NcReceptorEmissorComponent implements OnInit {
           y: this.quant,
           text: this.quant.map(String),
           textposition: "auto",
+          
           hoverinfo: "none",
           type: "bar",
           name: this.translate.instant("charts.ncsReceived"),
