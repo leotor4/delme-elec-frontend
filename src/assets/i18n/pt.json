@@ -107,6 +107,7 @@
     "fail": "Erro ao importar arquivo"
   },
   "global": {
+    "fileTooLarge": "Arquivo(os) muito grande, favor enviar apenas arquivos com menos de 2MB",
     "finishTest": "Concluir Avaliação",
     "companyName": "Electroson Brasil",
     "labUpper": "LABORATÓRIO",
