@@ -27,6 +27,14 @@ export class DashboardsComponent implements OnInit {
   dateList: string[] = [];
   dateInicio = "";
   dateFim = "";
+  ncRadioList = [
+    this.translate.instant("global.all"),
+    this.translate.instant("newNC.step2.radioLabel1"),
+    this.translate.instant("newNC.step2.radioLabel2"),
+    this.translate.instant("newNC.step2.radioLabel3"),
+    this.translate.instant("newNC.step2.radioLabel4"),
+  ];
+  ncRadioValue = this.translate.instant("global.all");
   carregou(): boolean {
     return this.load1 && this.load2 && this.load3 && this.load4;
   }
@@ -38,11 +46,28 @@ export class DashboardsComponent implements OnInit {
     return 1400;
   }
 
+  returnRadioValue() {
+    switch (this.ncRadioValue) {
+      case this.translate.instant("newNC.step2.radioLabel1"):
+        return "val1";
+
+      case this.translate.instant("newNC.step2.radioLabel2"):
+        return "val2";
+
+      case this.translate.instant("newNC.step2.radioLabel3"):
+        return "val3";
+
+      case this.translate.instant("newNC.step2.radioLabel4"):
+        return "val4";
+
+        default:
+          return "Todos"
+    }
+  }
+
   onDateChange() {
     let dateInitial = this.stringToDate(this.dateInicio);
     let dateFim = this.stringToDate(this.dateFim);
-    console.log(dateInitial);
-    console.log(dateFim);
     if (dateInitial > dateFim || dateFim < dateInitial) {
       this.messageService.add({
         severity: "error",
@@ -50,29 +75,36 @@ export class DashboardsComponent implements OnInit {
         life: 3000,
       });
     } else {
+      
       if (
         dateInitial.getMonth() == dateFim.getMonth() &&
         dateInitial.getFullYear() == dateFim.getFullYear()
       ) {
         this.chartsService.ncs = this.chartsService.ncsAux.filter((element) => {
           let date = new Date(element.data_abertura!);
+          let radioValue = element.radio_value
           return (
             date.getMonth() == dateInitial.getMonth() &&
-            date.getFullYear() == dateInitial.getFullYear()
+            date.getFullYear() == dateInitial.getFullYear() &&
+            (radioValue == this.returnRadioValue() ||
+              this.ncRadioValue ==
+                this.translate.instant("global.all"))
           );
         });
       } else {
         this.chartsService.ncs = this.chartsService.ncsAux.filter((element) => {
           let date = new Date(element.data_abertura!);
+          let radioValue = element.radio_value;
           return (
             date.getMonth() >= dateInitial.getMonth() &&
             date.getFullYear() >= dateInitial.getFullYear() &&
             date.getMonth() <= dateFim.getMonth() &&
-            date.getFullYear() <= dateFim.getFullYear()
+            date.getFullYear() <= dateFim.getFullYear() &&
+            (radioValue == this.returnRadioValue() ||
+              this.ncRadioValue == this.translate.instant("global.all"))
           );
         });
       }
-      console.log(this.chartsService.ncs.length);
       this.reload();
     }
   }
@@ -117,12 +149,10 @@ export class DashboardsComponent implements OnInit {
     this.chartsService.get().subscribe({
       next: (data: any) => {
         this.chartsService.ncs = data.noncompliances.filter(
-          (item: NonCompliance) =>
-            item.status != "open" 
+          (item: NonCompliance) => item.status != "open"
         );
         this.chartsService.ncsAux = data.noncompliances.filter(
-          (item: NonCompliance) =>
-            item.status != "open" 
+          (item: NonCompliance) => item.status != "open"
         );
 
         this.createDateList();
@@ -141,7 +171,7 @@ export class DashboardsComponent implements OnInit {
       next: (data: any) => {
         this.chartsService.sectors = [];
         data.sectors.forEach((element: any) => {
-          let sectorName = element.name;
+          let sectorName = element.initials;
           if (sectorName) {
             this.chartsService.sectors.push(sectorName);
           }
@@ -165,21 +195,17 @@ export class DashboardsComponent implements OnInit {
       }
     });
 
-    
-      this.dateList.push(this.formatDate(initialDate));
-    
-    
-
+    this.dateList.push(this.formatDate(initialDate));
 
     this.dateInicio = this.formatDate(initialDate);
     while (
       initialDate.getMonth() < lastDate.getMonth() &&
       initialDate.getFullYear() <= lastDate.getFullYear()
-    ){
-      initialDate.setMonth(initialDate.getMonth()+1)
+    ) {
+      initialDate.setMonth(initialDate.getMonth() + 1);
       this.dateList.push(this.formatDate(initialDate));
     }
-      this.dateFim = this.formatDate(lastDate);
+    this.dateFim = this.formatDate(lastDate);
   }
 
   formatDate(date: Date): string {

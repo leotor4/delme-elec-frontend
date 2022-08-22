@@ -120,7 +120,7 @@
     "ncStatus2": "NCs em execução",
     "ncStatus3": "NCs canceladas",
     "ncStatus4": "NCs atrasadas",
-    
+    "print":"Imprimir",
     "canceled": "Canceladas",
     "late": "Atrasadas",
     "SGQ": "SGQ",
@@ -284,7 +284,7 @@
       "partner": {
         "editTitle": "Editar Contato do Parceiro",
         "editSubtitle": "Preencha os campos abaixo.",
-        "title": "Dados do Parceiro *",
+        "title": "Dados do Parceiro/Setor Receptor *",
         "subtitle1": "Identifique o parceiro responsável pelo produto nesta NC.",
         "subtitle2": "Caso não encontre o parceiro, atualize a base de cadastros.",
         "partnerType": "Tipo de Parceiro *",
