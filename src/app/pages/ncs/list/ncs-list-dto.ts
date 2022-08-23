@@ -1,6 +1,7 @@
 import { ObjectUtils } from './../../../utils/object-utils';
 import { NonCompliance } from 'src/app/models/non-compliance';
-import momentImported from 'moment'; 
+import momentImported from 'moment';
+import {DateUtils} from "../../../utils/date-utils";
 const moment = momentImported;
 
 export class NcsListDTO {
@@ -12,8 +13,8 @@ export class NcsListDTO {
   tipos_nc_item:string;
   tipos_auditoria_item:string;
   system_status:string;
-  data_abertura:Date;
-  data_fechamento:Date;
+  data_abertura:string;
+  data_fechamento:string;
   tipos_local_item:string;
   dsc_produto: string;
   prazo:number;
@@ -38,8 +39,8 @@ export class NcsListDTO {
 
         if (init.created_at && init.data_fechamento) {
           
-          this.data_abertura = new Date(init.created_at);
-          this.data_fechamento = new Date(init.data_fechamento);
+          this.data_abertura = DateUtils.formato_brasileiro(new Date(init.created_at));
+          this.data_fechamento = DateUtils.formato_brasileiro(new Date(init.data_fechamento));
 
 
           if (this.status != "canceled" && this.status != "closed") {

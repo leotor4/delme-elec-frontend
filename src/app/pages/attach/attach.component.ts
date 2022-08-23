@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { Attachment } from "src/app/models/attachment";
 import { NonComplianceService } from "src/app/_services/non-compliance.service";
+import {MessageService} from "primeng/api";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: "app-attach",
@@ -8,7 +10,9 @@ import { NonComplianceService } from "src/app/_services/non-compliance.service";
   styleUrls: ["./attach.component.css"],
 })
 export class AttachComponent implements OnInit {
-  constructor(public nonComplicanceService: NonComplianceService) {}
+  constructor(public nonComplicanceService: NonComplianceService,
+              private messageService: MessageService,
+              public translate: TranslateService) {}
   @Input() item = ""; // decorate the property with @Input()
 
   ngOnInit(): void {}
@@ -40,14 +44,30 @@ export class AttachComponent implements OnInit {
 
   onUpload(event: any, name: string) {
     const target = event.target as HTMLInputElement;
+
     if (target.files && target.files.length > 0) {
       let files = target.files;
+      for (let i = 0; i < files.length; i++) {
+        if (files[i].size > 2048) {
+          this.messageService.add({
+            severity: "error",
+            summary: this.translate.instant("global.fileTooLarge"),
+            life: 3000,
+          });
+          return
+
+        }
+      }
       if (name == "evidenciasNc") {
         this.nonComplicanceService.fileNc = files;
       } else if (name == "evidenciasAcoes") {
         this.nonComplicanceService.fileAcoes = files;
       }
-      for (var i = 0; i < files.length; i++) {
+      for (let i = 0; i < files.length; i++) {
+        if (files[i].size>2048){
+          /*console.log(this.nonComplicanceService.fileNc.indexOf(files[i]),
+          this.nonComplicanceService.fileAcoes.indexOf(files[i]))*/
+        }
         let att = new Attachment();
         att.name = files[i].name;
         att.type = files[i].name.split(".")[1];

@@ -131,7 +131,6 @@ export class NcSectorProposalComponent implements OnInit {
   popularSetores() {
     this.setoresAux = Object.assign([], this.chartsService.sectors);
     this.setoresAux.unshift("Todos");
-    this.setor = "Todos";
     this.setoresAux.push(this.translate.instant("global.all"));
     this.setor = this.translate.instant("global.all");
   }

@@ -17,8 +17,7 @@
       <ngx-charts-pie-chart
       (window:resize)="onResizePizzaChart($event)"
       [view]="view" 
-      [scheme]="gridColor"
-      [gradient]="gradient"
+      [scheme] = "colorScheme2"
       [results]="pieValues"
       
       [legend]="showLegend"
@@ -44,7 +43,7 @@
 
 
     <div>
-      <ngx-charts-bar-vertical-2d
+      <!-- <ngx-charts-bar-vertical-2d
         (window:resize)="onResizeBarChart($event)"
         [view]="lineChartView"
         [scheme]="gridColor"
@@ -59,7 +58,8 @@
         [legendPosition]="legendPosition"
         [legendTitle]="legendTitle"
         [barPadding]="0"      >
-      </ngx-charts-bar-vertical-2d>
+      </ngx-charts-bar-vertical-2d> -->
+      <plotly-plot [data]="graph.data" [layout]="graph.layout"> </plotly-plot>
     </div>
     </div>
   </div>
@@ -136,7 +136,7 @@
 
 <div style="margin-top: 10px;">
   <p-table  responsiveLayout="scroll" #dt 
-  [globalFilterFields]="['id', 'code','emissor', 'status', 'tipos_nc_item', 'prazo','tipos_local_item', 'data_abertura', 'dsc_produto']"
+  [globalFilterFields]="['numero','emissor', 'status', 'tipos_nc_item', 'prazo','tipos_local_item', 'data_abertura', 'dsc_produto']"
   [value]="listNcs" [columns]="cols" [paginator]="true" [rows]="rows" [(first)]="first" [totalRecords]="totalRecords" 
   [showCurrentPageReport]="true" responsiveLayout="scroll" 
   currentPageReportTemplate="{{'list.currentPageMsg1' | translate}} {first} {{'list.currentPageMsg2' | translate}} {last} {{'list.currentPageMsg3' | translate}} {totalRecords} {{'list.currentPageMsg4' | translate}}" [rowsPerPageOptions]="[5,10,25,50]" [filterDelay]="0">
@@ -239,7 +239,7 @@
 
         <td>
             <span class="p-column-title">{{'list.column4' | translate}}</span>
-            {{ncListDTO.tipos_local_item}}
+            {{ncListDTO.parceiro}}
         </td>
 
         <td>
@@ -249,20 +249,14 @@
 
         <td>
           <span class="p-column-title">{{'list.column6' | translate}}</span>
-          <span [ngSwitch]="ncListDTO.status" >
-            <span *ngSwitchCase="'open'"> {{'global.status1'| translate}}</span>
-                        <span *ngSwitchCase="'running'">{{'global.status2'| translate}}</span>
-                        <span *ngSwitchCase="'late'"> {{'global.status3'| translate}}</span>
-                        <span *ngSwitchCase="'deleted'"> {{'global.status4'| translate}}</span>
-                        <span *ngSwitchCase="'archived'"> {{'global.status5'| translate}}</span>
-                        <span *ngSwitchCase="'canceled'"> {{'global.status6'| translate}}</span>
-                        <span *ngSwitchCase="'closed'"> {{'global.status7'| translate}}</span>
+          <span>
+              {{ncListDTO.status}}
           </span>
         </td>
 
         <td>
           <span class="p-column-title">{{'list.column7' | translate}}</span>
-          {{ncListDTO.data_abertura | date: 'dd/MM/yyyy'}}
+          {{ncListDTO.data_abertura}}
         </td>
 
         <td>

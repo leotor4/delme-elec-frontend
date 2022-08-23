@@ -17,6 +17,7 @@ import { TranslateService } from "@ngx-translate/core";
 import { DadosNCComponent } from "../../dialogs/dados-nc/dados-nc.component";
 import { DialogService } from "primeng/dynamicdialog";
 
+
 @Component({
   selector: "app-ncs-list",
   templateUrl: "./ncs-list.component.html",
@@ -31,6 +32,7 @@ export class NcsListComponent implements OnInit {
   gradient: boolean = true;
   view = [500, 300];
   pieValues: any[] = [];
+  graph: any;
 
   showLegend: boolean = true;
   showLabels: boolean = false;
@@ -40,14 +42,18 @@ export class NcsListComponent implements OnInit {
 
   colorScheme = {
     domain: [
-      "rgb(0, 91, 123)",
-      "rgb(0, 91, 123)",
-      "rgb(0, 91, 123)",
-      "rgb(0, 91, 123)",
-      "rgb(0, 91, 123)",
-      "rgb(0, 91, 123)",
+      "rgb(125, 249, 255)",
+      "rgb(124, 252, 0)",
+      "rgb(238, 75, 43)",
+      "rgb(255,255,0)",
+      "rgb(128, 128, 128)",
     ],
   };
+
+  colorScheme2 = {
+    domain: [],
+  };
+
   cardColor: string = "#00344D";
 
   lineChartData: any[] = [];
@@ -70,13 +76,31 @@ export class NcsListComponent implements OnInit {
 
   @ViewChild("dt") dt: Table;
   listNcs: Array<NcsListDTO> = [];
+  listNcsAux: Array<NcsListDTO> = [];
   listNcsObj: Array<NonCompliance> = [];
+  setores: String[] = [];
+  noPrazo: number[] = [];
+  atrasado: number[] = [];
+  elaborado: number[] = [];
   cols: any[];
   first = 0;
   totalRecords = 0;
   rows = 5;
 
+  haveOpenNc():number{
+    let n = -1
+    let user = this.tokenService.getUser()
+    this.listNcsAux.forEach((element)=>{
+      let nc = element.nc
+      if(nc.emissor?.id == user.id && nc.status == "open"){
+        n = nc.id!
+      }
+    })
+    return n
+  }
   openNc() {
+  let openNc = this.haveOpenNc()
+  if(openNc == -1){
     this.ncsService.abrirNc().subscribe({
       next: (response: any) => {
         this.messageService.add({
@@ -100,6 +124,11 @@ export class NcsListComponent implements OnInit {
         });
       },
     });
+  }else{
+    this.router.navigate(["/ncs/create/", openNc]);
+  }
+
+
   }
 
   constructor(
@@ -112,16 +141,114 @@ export class NcsListComponent implements OnInit {
     private confirmationService: ConfirmationService,
     private tokenService: TokenStorageService,
     public translate: TranslateService,
-    public dialogService: DialogService
+    public dialogService: DialogService,
+
   ) {}
 
   ngOnInit(): void {
     this.setDataLineChart();
     this.startListNcs("all");
+    this.graph = {
+      data: [
+        {
+          x: [],
+          y: [],
+          type: "bar",
+          name: "",
+          marker: { color: "rgb(252,134,43)" },
+        },
+      ],
+      layout: {
+        xaxis: {
+          autotick: false,
+          title: this.translate.instant("charts.year"),
+        },
+
+        yaxis: { title: "" },
+      },
+    };
+  }
+
+  isLate(nc: NonCompliance): boolean {
+    let dataAbertura = new Date(nc.data_abertura!);
+    let now = new Date();
+    let daysDiff = now.getDate() - dataAbertura.getDate();
+    if (daysDiff >= 14) return true;
+    return false;
+  }
+
+  popular(ncs: NonCompliance[]) {
+    this.setores = [];
+    this.elaborado = [];
+    this.atrasado = [];
+    this.noPrazo = [];
+
+    ncs.forEach((element) => {
+      let setor = element.tipos_local_item;
+      let proposta = element.proposalSolution;
+      if (setor && proposta && element.status != "closed") {
+        let index = this.setores.indexOf(setor);
+        if (index == -1) {
+          this.setores.push(setor);
+          this.elaborado.push(0);
+          this.noPrazo.push(0);
+          this.atrasado.push(0);
+          index = this.setores.indexOf(setor);
+        }
+
+        if (proposta.status == "complete") {
+          this.elaborado[index]++;
+        } else if (this.isLate(element)) {
+          this.atrasado[index]++;
+        } else {
+          this.noPrazo[index]++;
+        }
+      }
+    });
+
+    this.graph = {
+      data: [
+        {
+          x: this.setores,
+          y: this.elaborado,
+          type: "bar",
+          name: this.translate.instant("global.status13"),
+          marker: { color: "rgb(124, 252, 0)" },
+        },
+        {
+          x: this.setores,
+          y: this.noPrazo,
+          type: "bar",
+          name: this.translate.instant("global.status12"),
+          marker: { color: "rgb(255,255,0)" },
+        },
+        {
+          x: this.setores,
+          y: this.atrasado,
+          type: "bar",
+          name: this.translate.instant("global.status3"),
+          marker: { color: "rgb(238, 75, 43)" },
+        },
+      ],
+      layout: {
+        width: 800,
+        height: 500,
+        title:"Status da Proposta de Solução",
+        xaxis: {
+          autotick: false,
+          title: "",
+        },
+
+        yaxis: { title: "" },
+      },
+    };
+
+   
   }
 
   startListNcs(filterStatus: string) {
     this.ncsService.get().subscribe((data: any) => {
+      this.popular(data.noncompliances);
       //this.listNcs.append(data.noncompliances);
       const compliances: Array<NonCompliance> = data.noncompliances;
       this.listNcsObj = data.noncompliances;
@@ -130,6 +257,38 @@ export class NcsListComponent implements OnInit {
         this.listNcs = compliances.map((item: NonCompliance) => {
           return new NcsListDTO(item);
         });
+
+        this.listNcsAux = compliances.map((item: NonCompliance) => {
+          return new NcsListDTO(item);
+        });
+        for (let i = 0; i < this.listNcs.length; i++) {
+          switch ( this.listNcs[i].status ) {
+            case "open":
+              this.listNcs[i].status = this.translate.instant("global.status1")
+              break;
+            case "running":
+              this.listNcs[i].status = this.translate.instant("global.status2")
+              break;
+            case "late":
+              this.listNcs[i].status = this.translate.instant("global.status3")
+              break;
+            case "deleted":
+              this.listNcs[i].status = this.translate.instant("global.status4")
+              break;
+            case "archived":
+              this.listNcs[i].status = this.translate.instant("global.status5")
+              break;
+            case "canceled":
+              this.listNcs[i].status = this.translate.instant("global.status6")
+              break;
+            case "closed":
+              this.listNcs[i].status = this.translate.instant("global.status7")
+              break;
+            default:
+              //
+              break;
+          }
+        }
         // this.listNcs = this.listNcs.filter(
         //   (item) =>
         //     item.system_status !== "deleted" && item.system_status != "arquived"
@@ -161,19 +320,23 @@ export class NcsListComponent implements OnInit {
         ],
       };
 
-      if (filterStatus == "open")
-        this.listNcs = this.listNcs.filter((item) => item.status == "open");
-      if (filterStatus == "canceled")
-        this.listNcs = this.listNcs.filter((item) => item.status == "canceled");
-      if (filterStatus == "running")
-        this.listNcs = this.listNcs.filter((item) => item.status == "running");
-      if (filterStatus == "late")
-        this.listNcs = this.listNcs.filter((item) => item.status == "late");
 
+      if (filterStatus == "canceled")
+        this.listNcs = this.listNcs.filter((item) => item.status == this.translate.instant("global.status6"));
+      if (filterStatus == "running")
+        this.listNcs = this.listNcs.filter((item) => item.status == this.translate.instant("global.status2"));
+      if (filterStatus == "close")
+        this.listNcs = this.listNcs.filter((item) => item.status == this.translate.instant("global.status7"));
+      if (filterStatus == "late")
+        this.listNcs = this.listNcs.filter((item) => item.status == this.translate.instant("global.status3"));
+
+
+      this.listNcs = this.listNcs.filter((item) => item.status != "open");
       this.setDataCards(compliances, filterStatus);
       setTimeout(this.setPositionTextCards, 200);
 
       this.totalRecords = this.listNcs.length;
+
     });
   }
 
@@ -186,7 +349,33 @@ export class NcsListComponent implements OnInit {
       .getPiesValues(compliances, filterStatus)
       .subscribe((data: any) => {
         this.pieValues = data;
+      
       });
+
+      let colors:any = [
+      ]
+      this.pieValues.forEach(element=>{
+        if(element.name == this.translate.instant("global.canceled")){
+          colors.push("rgb(255,255,0)")
+        }
+        if(element.name == this.translate.instant("global.late")){
+          colors.push("rgb(128, 128, 128)")
+        }
+        if(element.name == this.translate.instant("global.status2")){
+          colors.push("rgb(238, 75, 43")
+        }
+        if(element.name == this.translate.instant("global.status7")){
+          colors.push("rgb(124, 252, 0)")
+        }
+      })
+
+
+      this.colorScheme2.domain = colors
+
+
+
+
+      console.log("teste")
   }
 
   parseMonthStrToNumber(strMonth: string): string {
@@ -291,20 +480,20 @@ export class NcsListComponent implements OnInit {
   }
 
   edit(idNc: number, status: string) {
-    if (status.toUpperCase() != "OPEN") {
+    if (status != this.translate.instant("global.status1")) {
       this.router.navigate(["/ncs/about/", idNc]);
     } else {
       var user = this.tokenService.getUser();
-      console.log(user);
+  
 
       var listNcsAux = this.listNcsObj.filter((item) => item.id == idNc);
 
       var nc = listNcsAux[0];
 
-      console.log(nc.emissor);
+    
 
       if (user["email"] == nc.emissor?.email || user["role_id"] == 3) {
-        if (status.toUpperCase() == "OPEN") {
+        if (status == this.translate.instant("global.status1")) {
           this.router.navigate(["/ncs/create/", idNc]);
         }
       } else {
@@ -329,6 +518,8 @@ export class NcsListComponent implements OnInit {
       const ref = this.dialogService.open(DadosNCComponent, {
         data: { nc: nc },
         showHeader: false,
+        closable: true,
+        dismissableMask: true,
         width: "60vw",
       });
     }
@@ -394,14 +585,18 @@ export class NcsListComponent implements OnInit {
   }
 
   onSelectCard(event: any) {
+   
     if (event["name"] == this.translate.instant("global.NCsTotal")) {
       this.startListNcs("all");
     }
 
+ 
     if (event["name"] == this.translate.instant("global.ncStatus1")) {
-      this.startListNcs("open");
+  
+      this.startListNcs("close");
     }
 
+  
     if (event["name"] == this.translate.instant("global.ncStatus4")) {
       this.startListNcs("late");
     }
@@ -410,7 +605,8 @@ export class NcsListComponent implements OnInit {
       this.startListNcs("canceled");
     }
 
-    if (event["name"] == this.translate.instant("global.ncStatus2")) {
+    if (event["name"] == this.translate.instant("global.status2")) {
+   
       this.startListNcs("running");
     }
   }

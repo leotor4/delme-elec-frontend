@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Attachment } from 'src/app/models/attachment';
 import { SgqService } from 'src/app/pages/ncs/sgq-evaluation/sgq.service';
+import {MessageService} from "primeng/api";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-input-file',
@@ -9,7 +11,9 @@ import { SgqService } from 'src/app/pages/ncs/sgq-evaluation/sgq.service';
 })
 export class InputFileComponent implements OnInit {
 
-  constructor(public sgqServ: SgqService) { }
+  constructor(public sgqServ: SgqService,
+              private messageService: MessageService,
+              public translate: TranslateService) { }
 
   ngOnInit(): void {
   }
@@ -21,7 +25,17 @@ export class InputFileComponent implements OnInit {
     const target = event.target as HTMLInputElement;
     if (target.files && target.files.length > 0) {
       let files = target.files;
-      console.log(files)
+      for (let i = 0; i < files.length; i++) {
+        if (files[i].size > 2048) {
+          this.messageService.add({
+            severity: "error",
+            summary: this.translate.instant("global.fileTooLarge"),
+            life: 3000,
+          });
+          return
+
+        }
+      }
       this.sgqServ.step2File = files
 
       for (let i = 0; i < target.files.length; i++) {

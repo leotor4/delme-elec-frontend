@@ -117,7 +117,6 @@ export class CostSectorComponent implements OnInit {
     this.setoresAux = Object.assign([], this.chartsService.sectors);
     this.setoresAux.unshift(this.translate.instant("global.all"));
     this.setor = this.translate.instant("global.all");
-    this.setoresAux.push(this.translate.instant("global.all"));
     this.setor = this.translate.instant("global.all");
   }
 }
