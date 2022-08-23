@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  title: 'Production Environment Heading',
-  apiURL: 'http://localhost:8080/'
+  title: 'Ambiente de Homologação AWS',
+  apiURL: 'http://172.31.15.116:3333/'
 };

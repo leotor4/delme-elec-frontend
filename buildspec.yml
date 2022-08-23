@@ -10,7 +10,7 @@ phases:
       - echo install process started
       - npm install -y npm@latest 
       - npm install -g @angular/cli
-      - rm package-lock.json
+     # - rm package-lock.json
   build:
     commands:
       - echo build process started now
