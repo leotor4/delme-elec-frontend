@@ -1,7 +1,7 @@
 version: 0.2
 env:
   variables:
-    APP_NAME: "electroson-frontend"
+    APP_NAME: "electroson-front"
 phases:
   install:
     runtime-versions:
