@@ -1,22 +1,16 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import {
-  ConfirmationService,
-  FilterMatchMode,
-  MessageService,
-  PrimeNGConfig,
-} from "primeng/api";
+import { TranslateService } from "@ngx-translate/core";
+import { ConfirmationService, FilterMatchMode, MessageService, PrimeNGConfig } from "primeng/api";
+import { DialogService } from "primeng/dynamicdialog";
 import { Table } from "primeng/table";
 import { NonComplianceService } from "src/app/_services/non-compliance.service";
+import { TokenStorageService } from "src/app/_services/token-storage.service";
 import { NonCompliance } from "src/app/models/non-compliance";
 
-import { NcsListDTO } from "./ncs-list-dto";
 import { DashboardsService } from "../../dashboards/dashboards.service";
-import { TokenStorageService } from "src/app/_services/token-storage.service";
-import { TranslateService } from "@ngx-translate/core";
 import { DadosNCComponent } from "../../dialogs/dados-nc/dados-nc.component";
-import { DialogService } from "primeng/dynamicdialog";
-
+import { NcsListDTO } from "./ncs-list-dto";
 
 @Component({
   selector: "app-ncs-list",
@@ -30,7 +24,7 @@ export class NcsListComponent implements OnInit {
   cardValues: any[] = [];
   gridColor = "ocean";
   gradient: boolean = true;
-  view = [500, 300];
+  view = [492, 300];
   pieValues: any[] = [];
   graph: any;
 
@@ -231,7 +225,7 @@ export class NcsListComponent implements OnInit {
         },
       ],
       layout: {
-        width: 800,
+        width: 804,
         height: 500,
         title:"Status da Proposta de Solução",
         xaxis: {
@@ -243,7 +237,9 @@ export class NcsListComponent implements OnInit {
       },
     };
 
-   
+   this.onResizeBarChart("")
+   this.onResizePizzaChart("")
+   this.onResizeCardChart("")
   }
 
   startListNcs(filterStatus: string) {
@@ -325,10 +321,11 @@ export class NcsListComponent implements OnInit {
         this.listNcs = this.listNcs.filter((item) => item.status == this.translate.instant("global.status6"));
       if (filterStatus == "running")
         this.listNcs = this.listNcs.filter((item) => item.status == this.translate.instant("global.status2"));
-      if (filterStatus == "close")
+      if (filterStatus == "closed")
         this.listNcs = this.listNcs.filter((item) => item.status == this.translate.instant("global.status7"));
       if (filterStatus == "late")
         this.listNcs = this.listNcs.filter((item) => item.status == this.translate.instant("global.status3"));
+
 
 
       this.listNcs = this.listNcs.filter((item) => item.status != "open");
@@ -662,27 +659,33 @@ export class NcsListComponent implements OnInit {
   }
 
   onResizeBarChart(event: any) {
-    //this.lineChartView = [this.getWidthBarGraph(event.target.innerWidth), 350];
+    
+  //  this.lineChartView = [this.getWidthBarGraph(event.target.innerWidth), 350];
 
+    debugger
     let divTable = document.getElementById("div-table");
     let width;
     if (divTable) {
       width = divTable.offsetWidth;
-
-      if (width * 0.7 < 1000) {
+      var teste = width * 0.62 
+      if (width * 0.62 < 804) {
         this.lineChartView = [width * 0.7, 350];
+
+        this.graph.layout.width = width * 0.62
+        this.graph.layout.height = 500
       }
     }
   }
 
   onResizePizzaChart(event: any) {
+    
     let divTable = document.getElementById("div-table");
     let width;
     if (divTable) {
       width = divTable.offsetWidth;
 
-      if (width * 0.3 < 500) {
-        this.view = [width * 0.3, 350];
+      if (width * 0.38 < 500) {
+        this.view = [width * 0.38, 350];
       }
     }
   }

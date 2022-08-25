@@ -59,7 +59,7 @@
         [legendTitle]="legendTitle"
         [barPadding]="0"      >
       </ngx-charts-bar-vertical-2d> -->
-      <plotly-plot [data]="graph.data" [layout]="graph.layout"> </plotly-plot>
+      <plotly-plot (window:resize)="onResizeBarChart($event)" [data]="graph.data" [layout]="graph.layout"> </plotly-plot>
     </div>
     </div>
   </div>
