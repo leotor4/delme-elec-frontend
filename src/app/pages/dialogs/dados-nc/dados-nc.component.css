@@ -126,10 +126,21 @@ h2 {
 .selected-btn {
     background-color: #00344D;
     color: #fff;
+     width: 130px;
 }
+
+.print-btn {
+    background-color: #fff;
+    color: #00344D;
+    width: 130px;
+    margin-left: 10px;
+    border: #00344D 1px solid;
+}
+
 .unselected-btn {
     border-color: #00344D;
     color:#00344D;
+     width: 130px;
 }
 .radio-title{
     font-size: x-large;
