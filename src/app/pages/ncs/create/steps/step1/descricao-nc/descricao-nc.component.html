@@ -46,7 +46,7 @@
     <div class="row row-cols-2 justify-content-between">
       <div class="col"><p-radioButton
               name="ncType"
-              [label]="'NC Maior'"
+              [label]="'newNC.step2.radioLabel1'| translate"
               value="val1"
               [(ngModel)]="nonComplicanceService.nc.radio_value"
               pTooltip="Indicam ruptura do sistema, por não atendimento a um requisito especificado, ou quando não executamos o que estabelecemos em nossos procedimentos e instruções documentados."
@@ -54,7 +54,7 @@
       ></p-radioButton></div>
       <div class="col"><p-radioButton
               name="ncType"
-              [label]="'NC Menor' | translate"
+              [label]="'newNC.step2.radioLabel2' | translate"
               pTooltip="Falta de eventuais procedimentos e instruções onde se façam necessários, ou falhas ocasionais nos procedimentos auditados, quando não impactam no produto ou processo."
               class="pt-2"
               value="val2"
@@ -63,7 +63,7 @@
       ></p-radioButton></div>
       <div class="col"><p-radioButton
               name="ncType"
-              [label]="'Observação (OBS)' | translate"
+              [label]="'newNC.step2.radioLabel3' | translate"
               value="val3"
               [(ngModel)]="nonComplicanceService.nc.radio_value"
               pTooltip="Uma não conformidade potencial, ou seja, algo que possa se tornar uma não conformidade."
@@ -71,7 +71,7 @@
       ></p-radioButton></div>
       <div class="col"><p-radioButton
               name="ncType"
-              [label]="'Oportunidade de Melhoria (OM)' | translate"
+              [label]="'newNC.step2.radioLabel4' | translate"
               class="pt-2"
               value="val4"
               [(ngModel)]="nonComplicanceService.nc.radio_value"

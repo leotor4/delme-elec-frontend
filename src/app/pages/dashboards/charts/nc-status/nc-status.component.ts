@@ -108,12 +108,12 @@ export class NcStatusComponent implements OnInit {
       tipos.push(element.name)
       quant.push(element.value);
     })
-    let colors:any = [
-       "rgb(255,255,0)",
-       "rgb(128, 128, 128)",
+    let colors: any = [
+      "rgb(128, 128, 128)",
       "rgb(238, 75, 43)",
-        "rgb(124, 252, 0)",
-    ]
+      "rgb(255,255,0)",
+      "rgb(124, 252, 0)",
+    ];
     quant.forEach(element=>{
       total += element
     })

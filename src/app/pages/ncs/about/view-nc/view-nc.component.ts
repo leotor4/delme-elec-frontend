@@ -10,6 +10,8 @@ import {AboutService} from '../about.service';
 import * as jspdf from "jspdf";
 import html2canvas from "html2canvas";
 import { TranslateService } from '@ngx-translate/core';
+import { TokenStorageService } from 'src/app/_services/token-storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: "app-view-nc",
@@ -28,6 +30,8 @@ export class ViewNCComponent implements OnInit {
     public ncService: NonComplianceService,
     public dialogService: DialogService,
     public messageService: MessageService,
+    private tokenService:TokenStorageService,
+    private router:Router,
     public translate: TranslateService
   ) {}
 
@@ -84,7 +88,19 @@ export class ViewNCComponent implements OnInit {
     }
     return "";
   }
-
+  editNc(){
+    let user = this.tokenService.getUser()
+    if(user.role_id == "3"){
+      let id = this.aboutSrvc.nc.id
+      this.router.navigate(["ncs", "create", id]);
+    }else{
+      this.messageService.add({
+        severity: "info",
+        summary: this.translate.instant("about.ncView.editNonPermission"),
+        life: 3000,
+      });
+    }
+  }
   generatePDF() {
     let data = document.getElementById("pdfContent");
     if (data) {

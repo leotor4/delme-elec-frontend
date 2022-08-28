@@ -222,6 +222,7 @@
     "fail": "Houve um problema ao salvar não conformidade.",
     "failToSave": "Houve um problema ao salvar as informações da NC que você acabou de criar",
     "cancelNC": "Cancelar Não conformidade",
+    
     "error": "Houve um problema ao consultar esta NC!",
     "stepper": {
       "generatePDF": "Gerar PDF",
@@ -233,8 +234,8 @@
     "step2": {
       "descNCTitle": "Descrição da NC *",
       "descNCSubtitle": "Informe abaixo os detalhes da não conformidade",
-      "radioLabel1": "Não conformidade Maior",
-      "radioLabel2": "Não conformidade Menor",
+      "radioLabel1": "NC Maior",
+      "radioLabel2": "Nc Menor",
       "radioLabel3": "Observação (OBS)",
       "radioLabel4": "Oportunidade de Melhoria (OM)",
       "ncText": "Descreva a não conformidade *",
@@ -250,7 +251,7 @@
         "titleNC": "Identificação da NC",
         "subtitle": "Preencha os campos abaixo com as informações da NC",
         "type": "Tipo de NC *",
-        "typeLabel":"Tipo de NC",
+        "typeLabel": "Tipo de NC",
         "segment": "Segmento de Auditoria",
         "sector": "Setor/Local Afetado *",
         "sectorLabel": "Setor Afetado",
@@ -407,7 +408,8 @@
     "accept": "Sim, cancelar não conformidade",
     "deny": "Não, voltar para a tela de edição",
     "success": "Não conformidade cancelada com sucesso.",
-    "error": "Houve um problema ao cancelar não conformidade."
+    "error": "Houve um problema ao cancelar não conformidade.",
+    "failtToCancel": "Essa Nc já foi cancelada."
   },
   "about": {
     "viewNC": "Informações da NC",
@@ -508,6 +510,7 @@
       "title": "Informações da NC",
       "subtitle": "Visualize os detalhes cadastrados nesta NC.",
       "editBtn": "Editar NC",
+      "editNonPermission":"Você não possui permissão para editar.",
       "description": "Descrição da Não Conformidade"
     }
   },

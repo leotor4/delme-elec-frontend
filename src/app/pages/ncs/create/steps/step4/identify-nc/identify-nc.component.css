@@ -50,7 +50,7 @@
   margin-top: 0px;
   background-color: white;
   border-radius: 7px;
-  height: 180px;
+  height: 140px;
   padding: 13px;
   overflow: auto;
 }
@@ -110,6 +110,7 @@
 .contato-info {
   margin-top: 8px;
   height: 35px;
+
   
 }
 
