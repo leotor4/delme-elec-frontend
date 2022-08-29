@@ -182,7 +182,7 @@ export class NcsListComponent implements OnInit {
     ncs.forEach((element) => {
       let setor = element.tipos_local_item;
       let proposta = element.proposalSolution;
-      if (setor && proposta && element.status != "closed") {
+      if (setor && element.status != "closed") {
         let index = this.setores.indexOf(setor);
         if (index == -1) {
           this.setores.push(setor);
@@ -192,8 +192,10 @@ export class NcsListComponent implements OnInit {
           index = this.setores.indexOf(setor);
         }
 
-        if (proposta.status == "complete") {
-          this.elaborado[index]++;
+        if (proposta) {
+          if (proposta!.status == "complete") {
+            this.elaborado[index]++;
+          }
         } else if (this.isLate(element)) {
           this.atrasado[index]++;
         } else {

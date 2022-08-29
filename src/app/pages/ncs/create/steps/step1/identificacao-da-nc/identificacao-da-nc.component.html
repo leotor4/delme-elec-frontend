@@ -9,7 +9,7 @@
     <div class="col">
       <div class="dropdown mb-2">
         <label for="">{{ "newNC.step1.identifyNC.type" | translate }}</label>
-        <select id="selectTypeNc" formControlName="tipos_nc_item">
+        <select id="selectTypeNc" formControlName="tipos_nc_item" (change)="changeDisableSector()" [(ngModel)]="ncType">
           <option [ngValue]="null" disabled selected hidden>
             {{ "global.select" | translate }}
           </option>
@@ -40,7 +40,7 @@
     <div class="col">
       <div class="dropdown mb-2">
         <label for="">{{ "newNC.step1.identifyNC.sector" | translate }}</label>
-        <select formControlName="tipos_local_item">
+        <select [attr.disabled]="disableSetorAfetado?true:null" formControlName="tipos_nc_item">
           <option [ngValue]="null" disabled selected hidden>
             {{ "global.select" | translate }}
           </option>
@@ -51,8 +51,10 @@
                 ? true
                 : null
             "
+             
           >
             {{ item.name }}
+           
           </option>
         </select>
       </div>
