@@ -12,6 +12,8 @@ import { DashboardsService } from "../../dashboards/dashboards.service";
 import { DadosNCComponent } from "../../dialogs/dados-nc/dados-nc.component";
 import { NcsListDTO } from "./ncs-list-dto";
 
+
+
 @Component({
   selector: "app-ncs-list",
   templateUrl: "./ncs-list.component.html",
@@ -81,48 +83,46 @@ export class NcsListComponent implements OnInit {
   totalRecords = 0;
   rows = 5;
 
-  haveOpenNc():number{
-    let n = -1
-    let user = this.tokenService.getUser()
-    this.listNcsAux.forEach((element)=>{
-      let nc = element.nc
-      if(nc.emissor?.id == user.id && nc.status == "open"){
-        n = nc.id!
+  haveOpenNc(): number {
+    let n = -1;
+    let user = this.tokenService.getUser();
+    this.listNcsAux.forEach((element) => {
+      let nc = element.nc;
+      if (nc.emissor?.id == user.id && nc.status == "open") {
+        n = nc.id!;
       }
-    })
-    return n
+    });
+    return n;
   }
   openNc() {
-  let openNc = this.haveOpenNc()
-  if(openNc == -1){
-    this.ncsService.abrirNc().subscribe({
-      next: (response: any) => {
-        this.messageService.add({
-          severity: "success",
-          summary: this.translate.instant("list.success"),
-          life: 3000,
-        });
+    let openNc = this.haveOpenNc();
+    if (openNc == -1) {
+      this.ncsService.abrirNc().subscribe({
+        next: (response: any) => {
+          this.messageService.add({
+            severity: "success",
+            summary: this.translate.instant("list.success"),
+            life: 3000,
+          });
 
-        this.ncsService.nc.code = response["nonCompliance"]["code"];
-        this.ncsService.nc.issuer = response["nonCompliance"]["emissor"];
-        this.ncsService.nc.id = response["nonCompliance"]["id"];
-        this.ncsService.nc.status = response["nonCompliance"]["status"];
+          this.ncsService.nc.code = response["nonCompliance"]["code"];
+          this.ncsService.nc.issuer = response["nonCompliance"]["emissor"];
+          this.ncsService.nc.id = response["nonCompliance"]["id"];
+          this.ncsService.nc.status = response["nonCompliance"]["status"];
 
-        this.router.navigate(["/ncs/create/", this.ncsService.nc.id]);
-      },
-      error: (err) => {
-        this.messageService.add({
-          severity: "error",
-          summary: this.translate.instant("list.fail"),
-          life: 3000,
-        });
-      },
-    });
-  }else{
-    this.router.navigate(["/ncs/create/", openNc]);
-  }
-
-
+          this.router.navigate(["/ncs/create/", this.ncsService.nc.id]);
+        },
+        error: (err) => {
+          this.messageService.add({
+            severity: "error",
+            summary: this.translate.instant("list.fail"),
+            life: 3000,
+          });
+        },
+      });
+    } else {
+      this.router.navigate(["/ncs/create/", openNc]);
+    }
   }
 
   constructor(
@@ -135,8 +135,7 @@ export class NcsListComponent implements OnInit {
     private confirmationService: ConfirmationService,
     private tokenService: TokenStorageService,
     public translate: TranslateService,
-    public dialogService: DialogService,
-
+    public dialogService: DialogService
   ) {}
 
   ngOnInit(): void {
@@ -180,7 +179,7 @@ export class NcsListComponent implements OnInit {
     ncs.forEach((element) => {
       let setor = element.tipos_local_item;
       let proposta = element.proposalSolution;
-      if (setor && proposta && element.status != "closed") {
+      if (setor && element.status != "closed") {
         let index = this.setores.indexOf(setor);
         if (index == -1) {
           this.setores.push(setor);
@@ -190,8 +189,10 @@ export class NcsListComponent implements OnInit {
           index = this.setores.indexOf(setor);
         }
 
-        if (proposta.status == "complete") {
-          this.elaborado[index]++;
+        if (proposta) {
+          if (proposta!.status == "complete") {
+            this.elaborado[index]++;
+          }
         } else if (this.isLate(element)) {
           this.atrasado[index]++;
         } else {
@@ -227,7 +228,7 @@ export class NcsListComponent implements OnInit {
       layout: {
         width: 804,
         height: 500,
-        title:"Status da Proposta de Solução",
+        title: "Status da Proposta de Solução",
         xaxis: {
           autotick: false,
           title: "",
@@ -237,9 +238,7 @@ export class NcsListComponent implements OnInit {
       },
     };
 
-   this.onResizeBarChart("")
-   this.onResizePizzaChart("")
-   this.onResizeCardChart("")
+   
   }
 
   startListNcs(filterStatus: string) {
@@ -258,37 +257,33 @@ export class NcsListComponent implements OnInit {
           return new NcsListDTO(item);
         });
         for (let i = 0; i < this.listNcs.length; i++) {
-          switch ( this.listNcs[i].status ) {
+          switch (this.listNcs[i].status) {
             case "open":
-              this.listNcs[i].status = this.translate.instant("global.status1")
+              this.listNcs[i].status = this.translate.instant("global.status1");
               break;
             case "running":
-              this.listNcs[i].status = this.translate.instant("global.status2")
+              this.listNcs[i].status = this.translate.instant("global.status2");
               break;
             case "late":
-              this.listNcs[i].status = this.translate.instant("global.status3")
+              this.listNcs[i].status = this.translate.instant("global.status3");
               break;
             case "deleted":
-              this.listNcs[i].status = this.translate.instant("global.status4")
+              this.listNcs[i].status = this.translate.instant("global.status4");
               break;
             case "archived":
-              this.listNcs[i].status = this.translate.instant("global.status5")
+              this.listNcs[i].status = this.translate.instant("global.status5");
               break;
             case "canceled":
-              this.listNcs[i].status = this.translate.instant("global.status6")
+              this.listNcs[i].status = this.translate.instant("global.status6");
               break;
             case "closed":
-              this.listNcs[i].status = this.translate.instant("global.status7")
+              this.listNcs[i].status = this.translate.instant("global.status7");
               break;
             default:
               //
               break;
           }
         }
-        // this.listNcs = this.listNcs.filter(
-        //   (item) =>
-        //     item.system_status !== "deleted" && item.system_status != "arquived"
-        // );
       }
 
       this.config.filterMatchModeOptions = {
@@ -316,16 +311,16 @@ export class NcsListComponent implements OnInit {
         ],
       };
 
-
       if (filterStatus == "canceled")
-        this.listNcs = this.listNcs.filter((item) => item.status == this.translate.instant("global.status6"));
+        this.listNcs = this.listNcs.filter(
+          (item) => item.status == this.translate.instant("global.status6")
+        );
       if (filterStatus == "running")
         this.listNcs = this.listNcs.filter((item) => item.status == this.translate.instant("global.status2"));
-      if (filterStatus == "closed")
+      if (filterStatus == "close")
         this.listNcs = this.listNcs.filter((item) => item.status == this.translate.instant("global.status7"));
       if (filterStatus == "late")
         this.listNcs = this.listNcs.filter((item) => item.status == this.translate.instant("global.status3"));
-
 
 
       this.listNcs = this.listNcs.filter((item) => item.status != "open");
@@ -333,7 +328,6 @@ export class NcsListComponent implements OnInit {
       setTimeout(this.setPositionTextCards, 200);
 
       this.totalRecords = this.listNcs.length;
-
     });
   }
 
@@ -346,33 +340,27 @@ export class NcsListComponent implements OnInit {
       .getPiesValues(compliances, filterStatus)
       .subscribe((data: any) => {
         this.pieValues = data;
-      
       });
 
-      let colors:any = [
-      ]
-      this.pieValues.forEach(element=>{
-        if(element.name == this.translate.instant("global.canceled")){
-          colors.push("rgb(255,255,0)")
-        }
-        if(element.name == this.translate.instant("global.late")){
-          colors.push("rgb(128, 128, 128)")
-        }
-        if(element.name == this.translate.instant("global.status2")){
-          colors.push("rgb(238, 75, 43")
-        }
-        if(element.name == this.translate.instant("global.status7")){
-          colors.push("rgb(124, 252, 0)")
-        }
-      })
+    let colors: any = [];
+    this.pieValues.forEach((element) => {
+      if (element.name == this.translate.instant("global.canceled")) {
+        colors.push("rgb(128, 128, 128)");
+      }
+      if (element.name == this.translate.instant("global.late")) {
+        colors.push("rgb(238, 75, 43)");
+      }
+      if (element.name == this.translate.instant("global.status2")) {
+        colors.push("rgb(255,255,0)");
+      }
+      if (element.name == this.translate.instant("global.status7")) {
+        colors.push("rgb(124, 252, 0)");
+      }
+    });
 
+    this.colorScheme2.domain = colors;
 
-      this.colorScheme2.domain = colors
-
-
-
-
-      console.log("teste")
+    console.log("teste");
   }
 
   parseMonthStrToNumber(strMonth: string): string {
@@ -431,49 +419,57 @@ export class NcsListComponent implements OnInit {
   }
 
   cancelNc(ncDto: NonCompliance) {
-    this.confirmationService.confirm({
-      message: this.translate.instant("list.cancelNcMsg"),
-      header: this.translate.instant("list.cancelNcTitle"),
-      icon: "pi pi-exclamation-triangle",
-      accept: () => {
-        if (ncDto.id) {
-          this.ncsService.getById(ncDto.id).subscribe({
-            next: (response: any) => {
-              this.ncsService.nc = new NonCompliance(response["nc"][0]);
+    if (ncDto.status == "canceled") {
+      this.messageService.add({
+        severity: "info",
+        summary: this.translate.instant("cancelNC.failtToCancel"),
+        life: 3000,
+      });
+    } else {
+      this.confirmationService.confirm({
+        message: this.translate.instant("list.cancelNcMsg"),
+        header: this.translate.instant("list.cancelNcTitle"),
+        icon: "pi pi-exclamation-triangle",
+        accept: () => {
+          if (ncDto.id) {
+            this.ncsService.getById(ncDto.id).subscribe({
+              next: (response: any) => {
+                this.ncsService.nc = new NonCompliance(response["nc"][0]);
 
-              this.ncsService.nc.status = "canceled";
+                this.ncsService.nc.status = "canceled";
 
-              this.ncsService.saveNc().subscribe({
-                next: (data) => {
-                  this.messageService.add({
-                    severity: "success",
-                    summary: this.translate.instant("cancelNC.success"),
-                    life: 3000,
-                  });
+                this.ncsService.saveNc().subscribe({
+                  next: (data) => {
+                    this.messageService.add({
+                      severity: "success",
+                      summary: this.translate.instant("cancelNC.success"),
+                      life: 3000,
+                    });
 
-                  window.location.reload();
-                },
-                error: (err) => {
-                  this.messageService.add({
-                    severity: "error",
-                    summary: this.translate.instant("cancelNC.error"),
-                    life: 3000,
-                  });
-                },
-              });
-            },
+                    window.location.reload();
+                  },
+                  error: (err) => {
+                    this.messageService.add({
+                      severity: "error",
+                      summary: this.translate.instant("cancelNC.error"),
+                      life: 3000,
+                    });
+                  },
+                });
+              },
+            });
+          }
+        },
+
+        reject: () => {
+          this.messageService.add({
+            severity: "info",
+            summary: this.translate.instant("list.cancel"),
+            life: 5000,
           });
-        }
-      },
-
-      reject: () => {
-        this.messageService.add({
-          severity: "info",
-          summary: this.translate.instant("list.cancel"),
-          life: 5000,
-        });
-      },
-    });
+        },
+      });
+    }
   }
 
   edit(idNc: number, status: string) {
@@ -481,13 +477,10 @@ export class NcsListComponent implements OnInit {
       this.router.navigate(["/ncs/about/", idNc]);
     } else {
       var user = this.tokenService.getUser();
-  
 
       var listNcsAux = this.listNcsObj.filter((item) => item.id == idNc);
 
       var nc = listNcsAux[0];
-
-    
 
       if (user["email"] == nc.emissor?.email || user["role_id"] == 3) {
         if (status == this.translate.instant("global.status1")) {
@@ -582,18 +575,14 @@ export class NcsListComponent implements OnInit {
   }
 
   onSelectCard(event: any) {
-   
     if (event["name"] == this.translate.instant("global.NCsTotal")) {
       this.startListNcs("all");
     }
 
- 
     if (event["name"] == this.translate.instant("global.ncStatus1")) {
-  
       this.startListNcs("close");
     }
 
-  
     if (event["name"] == this.translate.instant("global.ncStatus4")) {
       this.startListNcs("late");
     }
@@ -603,7 +592,6 @@ export class NcsListComponent implements OnInit {
     }
 
     if (event["name"] == this.translate.instant("global.status2")) {
-   
       this.startListNcs("running");
     }
   }
