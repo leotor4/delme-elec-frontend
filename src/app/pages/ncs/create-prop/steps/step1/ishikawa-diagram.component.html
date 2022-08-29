@@ -179,6 +179,8 @@
   <div class="cabecalho">
     <h1 class="mr-3">
       {{ "createProp.step1.extraInfoTitle" | translate }}
+      {{(this.propService.ncProp?.radio_value=='val3'||this.propService.ncProp?.radio_value=='val4')?"*":""}}
+
     </h1>
   </div>
   <div class="mt-3">

@@ -26,7 +26,7 @@ export class InputFileComponent implements OnInit {
     if (target.files && target.files.length > 0) {
       let files = target.files;
       for (let i = 0; i < files.length; i++) {
-        if (files[i].size > 2048) {
+        if (files[i].size > 2098000) {
           this.messageService.add({
             severity: "error",
             summary: this.translate.instant("global.fileTooLarge"),

@@ -225,7 +225,8 @@ export class ProposalService {
       (
         (this.propSolution.effect_description &&
         this.checkOneBoxIshikawa() &&
-        this.checkWhies())||(this.ncProp?.radio_value=="val3"||this.ncProp?.radio_value=="val4")
+        this.checkWhies())||(this.ncProp?.radio_value=="val3"||this.ncProp?.radio_value=="val4") &&
+            this.propSolution.additional_info||(this.ncProp?.radio_value=="val1"||this.ncProp?.radio_value=="val2")
       )
       // && this.propSolution.second_why
       // && this.propSolution.third_why

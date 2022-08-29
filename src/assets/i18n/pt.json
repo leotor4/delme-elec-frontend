@@ -498,10 +498,10 @@
         "sector": "Setor Afetado",
         "product": "Produto"
       },
-      "evidence": "Relato e Evidências da Solução do Problema",
+      "evidence": "Avaliação da Solução",
       "risks": "Riscos e Oportunidades",
       "risksAsterisk": "Riscos e Oportunidades *",
-      "changes": "Mudanças",
+      "changes": "Mudanças do SGQ",
       "deadline": "Data de Fechamento"
     },
     "ncView": {

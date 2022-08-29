@@ -48,7 +48,7 @@ export class AttachComponent implements OnInit {
     if (target.files && target.files.length > 0) {
       let files = target.files;
       for (let i = 0; i < files.length; i++) {
-        if (files[i].size > 2048) {
+        if (files[i].size > 2098000) {
           this.messageService.add({
             severity: "error",
             summary: this.translate.instant("global.fileTooLarge"),
@@ -64,10 +64,6 @@ export class AttachComponent implements OnInit {
         this.nonComplicanceService.fileAcoes = files;
       }
       for (let i = 0; i < files.length; i++) {
-        if (files[i].size>2048){
-          /*console.log(this.nonComplicanceService.fileNc.indexOf(files[i]),
-          this.nonComplicanceService.fileAcoes.indexOf(files[i]))*/
-        }
         let att = new Attachment();
         att.name = files[i].name;
         att.type = files[i].name.split(".")[1];

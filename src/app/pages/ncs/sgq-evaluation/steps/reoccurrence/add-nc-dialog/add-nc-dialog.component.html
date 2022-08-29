@@ -59,7 +59,7 @@
           <th>{{ "global.number" | translate }}</th>
           <th>{{ "newNC.review.issuer" | translate }}</th>
           <th>{{ "about.sgqEvalComponent.recurrence.type" | translate }}</th>
-          <th>{{ "about.sgqEvalComponent.recurrence.sector" | translate }}</th>
+          <th>{{ "global.contacts.partner" | translate }}</th>
           <th>{{ "about.sgqEvalComponent.recurrence.product" | translate }}</th>
           <th>{{ "global.status" | translate }}</th>
           <th>{{ "about.sgqEvalComponent.deadline" | translate }}</th>
@@ -72,7 +72,7 @@
           <td>{{ nc.code }}</td>
           <td>{{ nc.emissor.username }}</td>
           <td>{{ nc.tipos_nc_item }}</td>
-          <td>{{ nc.tipos_local_item }}</td>
+          <td>{{ nc.sector?.name||nc.custumer?.name  }}</td>
           <td>{{ nc.product?.name || nc.product?.description }}</td>
 
           <td>
