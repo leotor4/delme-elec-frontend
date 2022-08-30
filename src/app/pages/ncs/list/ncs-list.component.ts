@@ -86,8 +86,7 @@ export class NcsListComponent implements OnInit {
   haveOpenNc(): number {
     let n = -1;
     let user = this.tokenService.getUser();
-    this.listNcsAux.forEach((element) => {
-      let nc = element.nc;
+    this.listNcsObj.forEach((nc) => {
       if (nc.emissor?.id == user.id && nc.status == "open") {
         n = nc.id!;
       }
@@ -96,6 +95,7 @@ export class NcsListComponent implements OnInit {
   }
   openNc() {
     let openNc = this.haveOpenNc();
+    console.log("id:" + openNc);
     if (openNc == -1) {
       this.ncsService.abrirNc().subscribe({
         next: (response: any) => {
@@ -163,7 +163,6 @@ export class NcsListComponent implements OnInit {
 
     this.onResizeCardChart("");
     this.onResizePizzaChart("");
-    
   }
 
   isLate(nc: NonCompliance): boolean {
@@ -241,8 +240,6 @@ export class NcsListComponent implements OnInit {
         yaxis: { title: "" },
       },
     };
-
-   
   }
 
   startListNcs(filterStatus: string) {
@@ -254,7 +251,6 @@ export class NcsListComponent implements OnInit {
 
       compliances = compliances.filter((item) => item.status != "open");
 
-      
       if (compliances?.length > 0) {
         this.listNcs = compliances.map((item: NonCompliance) => {
           return new NcsListDTO(item);
@@ -323,20 +319,24 @@ export class NcsListComponent implements OnInit {
           (item) => item.status == this.translate.instant("global.status6")
         );
       if (filterStatus == "running")
-        this.listNcs = this.listNcs.filter((item) => item.status == this.translate.instant("global.status2"));
+        this.listNcs = this.listNcs.filter(
+          (item) => item.status == this.translate.instant("global.status2")
+        );
       if (filterStatus == "close")
-        this.listNcs = this.listNcs.filter((item) => item.status == this.translate.instant("global.status7"));
+        this.listNcs = this.listNcs.filter(
+          (item) => item.status == this.translate.instant("global.status7")
+        );
       if (filterStatus == "late")
-        this.listNcs = this.listNcs.filter((item) => item.status == this.translate.instant("global.status3"));
+        this.listNcs = this.listNcs.filter(
+          (item) => item.status == this.translate.instant("global.status3")
+        );
 
-          
       this.listNcs = this.listNcs.filter((item) => item.status != "open");
       this.setDataCards(compliances, filterStatus);
       setTimeout(this.setPositionTextCards, 200);
 
       this.totalRecords = this.listNcs.length;
       this.onResizeBarChart("");
-
     });
   }
 
@@ -656,26 +656,23 @@ export class NcsListComponent implements OnInit {
   }
 
   onResizeBarChart(event: any) {
-    
-  //  this.lineChartView = [this.getWidthBarGraph(event.target.innerWidth), 350];
+    //  this.lineChartView = [this.getWidthBarGraph(event.target.innerWidth), 350];
 
-    
     let divTable = document.getElementById("div-table");
     let width;
     if (divTable) {
       width = divTable.offsetWidth;
-      var teste = width * 0.62 
+      var teste = width * 0.62;
       if (width * 0.62 < 804) {
         this.lineChartView = [width * 0.7, 350];
 
-        this.graph.layout.width = width * 0.62
-        this.graph.layout.height = 500
+        this.graph.layout.width = width * 0.62;
+        this.graph.layout.height = 500;
       }
     }
   }
 
   onResizePizzaChart(event: any) {
-    
     let divTable = document.getElementById("div-table");
     let width;
     if (divTable) {
