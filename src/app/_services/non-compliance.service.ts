@@ -166,7 +166,7 @@ export class NonComplianceService {
       this.nc.text_area_reject_point.split(" ").join("") != "<p></p>" &&
       this.nc.text_area_reject_point.split(" ").join("").length != 0;
     return !(
-      //this.formIdentificacaoNC.valid &&
+      this.formIdentificacaoNC.valid &&
       this.nc.partner &&
       this.validaProd() &&
       this.nc.text_area_reject_point &&
