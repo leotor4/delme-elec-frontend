@@ -160,6 +160,10 @@ export class NcsListComponent implements OnInit {
         yaxis: { title: "" },
       },
     };
+
+    this.onResizeCardChart("");
+    this.onResizePizzaChart("");
+    
   }
 
   isLate(nc: NonCompliance): boolean {
@@ -245,9 +249,12 @@ export class NcsListComponent implements OnInit {
     this.ncsService.get().subscribe((data: any) => {
       this.popular(data.noncompliances);
       //this.listNcs.append(data.noncompliances);
-      const compliances: Array<NonCompliance> = data.noncompliances;
+      var compliances: Array<NonCompliance> = data.noncompliances;
       this.listNcsObj = data.noncompliances;
 
+      compliances = compliances.filter((item) => item.status != "open");
+
+      
       if (compliances?.length > 0) {
         this.listNcs = compliances.map((item: NonCompliance) => {
           return new NcsListDTO(item);
@@ -322,12 +329,14 @@ export class NcsListComponent implements OnInit {
       if (filterStatus == "late")
         this.listNcs = this.listNcs.filter((item) => item.status == this.translate.instant("global.status3"));
 
-
+          
       this.listNcs = this.listNcs.filter((item) => item.status != "open");
       this.setDataCards(compliances, filterStatus);
       setTimeout(this.setPositionTextCards, 200);
 
       this.totalRecords = this.listNcs.length;
+      this.onResizeBarChart("");
+
     });
   }
 
@@ -650,7 +659,7 @@ export class NcsListComponent implements OnInit {
     
   //  this.lineChartView = [this.getWidthBarGraph(event.target.innerWidth), 350];
 
-    debugger
+    
     let divTable = document.getElementById("div-table");
     let width;
     if (divTable) {
