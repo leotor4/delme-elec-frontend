@@ -5,7 +5,7 @@
   <div style="display: flex; flex-direction:column;">
       <ngx-charts-number-card
         (window:resize)="onResizeCardChart($event)"
-        [view]="viewCards" 
+        [view]="viewCards"
         [scheme]="colorScheme"
         [results]="cardValues"
         [cardColor]="cardColor"
@@ -16,17 +16,17 @@
     <div style="display: flex; flex-direction:row;">
       <ngx-charts-pie-chart
       (window:resize)="onResizePizzaChart($event)"
-      [view]="view" 
+      [view]="view"
       [scheme] = "colorScheme2"
       [results]="pieValues"
-      
+
       [legend]="showLegend"
       [legendPosition]="legendPosition"
       [labels]="showLabels"
       [doughnut]="isDoughnut"
       [legendTitle]="legendTitle"
       (activate)="onActivate($event)"
-      
+
       >
 
 
@@ -135,10 +135,10 @@
 </span>
 
 <div style="margin-top: 10px;">
-  <p-table  responsiveLayout="scroll" #dt 
+  <p-table  responsiveLayout="scroll" #dt
   [globalFilterFields]="['numero','emissor', 'status', 'tipos_nc_item', 'prazo','tipos_local_item', 'data_abertura', 'dsc_produto']"
-  [value]="listNcs" [columns]="cols" [paginator]="true" [rows]="rows" [(first)]="first" [totalRecords]="totalRecords" 
-  [showCurrentPageReport]="true" responsiveLayout="scroll" 
+  [value]="listNcs" [columns]="cols" [paginator]="true" [rows]="rows" [(first)]="first" [totalRecords]="totalRecords"
+  [showCurrentPageReport]="true" responsiveLayout="scroll"
   currentPageReportTemplate="{{'list.currentPageMsg1' | translate}} {first} {{'list.currentPageMsg2' | translate}} {last} {{'list.currentPageMsg3' | translate}} {totalRecords} {{'list.currentPageMsg4' | translate}}" [rowsPerPageOptions]="[5,10,25,50]" [filterDelay]="0">
 
     <ng-template pTemplate="header">
@@ -150,7 +150,7 @@
               <p-columnFilter type="number" field="id" display="menu" class="ml-auto"></p-columnFilter>
           </div>
         </th>
-        
+
         <th pSortableColumn="emissor">
           <div class="flex justify-content-between align-items-center" style="width:95px;">
               {{'list.column2' | translate}}<br>
@@ -265,11 +265,11 @@
         </td>
 
         <td style="text-align: center">
-            <a style="color: black;" type="button" pTooltip="{{'list.infoBtn' | translate}}" (click)="visualizarInformacoes(ncListDTO.nc)" ><i class="bi bi-info-circle"></i></a>
+            <a style="color: black;" type="button" pTooltip="{{'list.moreInfoBtn' | translate}}" (click)="visualizarInformacoes(ncListDTO.nc)" ><i class="bi bi-info-circle"></i></a>
         </td>
 
         <td style="text-align: center">
-          <a type="button" style="color: black;" (click)="edit(ncListDTO.nc.id, ncListDTO.status)" pTooltip="{{getTooltip(ncListDTO.status)}}"><i class="bi bi-file-richtext"></i></a>
+          <a type="button" style="color: black;" (click)="edit(ncListDTO.nc.id, ncListDTO.status)" pTooltip="{{'list.editNcBtn' | translate}}"><i class="bi bi-file-richtext"></i></a>
         </td>
 
         <td style="text-align: center">
@@ -281,5 +281,5 @@
     </ng-template>
   </p-table>
 </div>
-  
+
 </div>

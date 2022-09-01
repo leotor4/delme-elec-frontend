@@ -16,7 +16,8 @@ export class IshikawaDiagramComponent implements OnInit {
     'height':'120px',
     'width':'260px',
     'border': '2px solid #333333',
-    'border-radius': '5px'
+    'border-radius': '5px',
+    'background-color': '#333333'
     
   }
     displayModal: boolean = false;

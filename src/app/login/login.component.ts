@@ -11,6 +11,7 @@ import { AuthService } from '../_services/auth.service';
 import { TokenStorageService } from '../_services/token-storage.service';
 import { AppComponent } from './../app.component';
 import {TranslateService} from "@ngx-translate/core";
+import {VersionService} from "../_services/version.service";
 
 @Component({
   selector: 'app-login',
@@ -39,13 +40,16 @@ export class LoginComponent implements OnInit {
   isLoginFailed = false;
   errorMessage = '';
   roles: string[] = [];
+  backVersion = "0.0.0";
+  frontVersion = "1.0.0";
 
   constructor(private router: ActivatedRoute,
               private authService: AuthService,
               private tokenStorage: TokenStorageService,
               private modalService: NgbModal,
               private messageService: MessageService,
-              public translate: TranslateService) { }
+              public translate: TranslateService,
+              public versionSrvc: VersionService) { }
 
   ngOnInit(): void {
 
@@ -57,6 +61,7 @@ export class LoginComponent implements OnInit {
       this.isLoggedIn = true;
       this.roles = this.tokenStorage.getUser().roles;
     }
+    this.versionSrvc.get().subscribe(value => this.backVersion = value.version, error => {console.log(error)})
   }
 
   onSubmit(): void {

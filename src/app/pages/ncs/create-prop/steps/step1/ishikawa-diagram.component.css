@@ -14,23 +14,37 @@ h2 {
     font-size: 15px;
     color: gray;
 }
-.caixa-cinza{
+
+.caixa-cinza {
     background-color: #EEEEEE;
     border-radius: 8px;
 }
-.textarea{
-    overflow-y:auto;
-    resize:none;
+
+.textarea {
+    overflow-y: auto;
+    resize: none;
     border: 2px solid #333333;
     border-radius: 8px;
 }
+
 :host ::ng-deep .ql-toolbar.ql-snow {
     display: none;
 }
+
 :host ::ng-deep .header .ql-toolbar.ql-snow {
     display: block;
 }
 
-::ng-deep p-editor p{
+::ng-deep p-editor p {
     margin-bottom: 0 !important;
-  }
+}
+
+.textarea {
+    height: 120px;
+    width: 260px;
+}
+
+.textarea2 {
+    height: 300px;
+    width: 230px;
+}

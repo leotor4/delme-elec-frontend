@@ -1,31 +1,32 @@
 <div class="d-flex flex-lg-row flex-column justify-content-between">
-  <div class="cabecalho">
-    <h1 class="mr-3">
-      {{ "about.proposalComponent.ishikawaDiagram" | translate }}
-    </h1>
-    <p>
-      {{ "createProp.step1.subtitle" | translate }}
-    </p>
-  </div>
-  <div class="d-flex justify-content-end align-items-center mb-3">
-    <button
-      class="btn btn-dark ml-3"
-      style="background-color: #00344d"
-      (click)="showDescriptionDialog()"
-    >
-      {{ "createProp.step1.descBtn" | translate }}
-      <i class="bi bi-file-earmark-medical"></i>
-    </button>
-  </div>
+    <div class="cabecalho">
+        <h1 class="mr-3">
+            {{ "about.proposalComponent.ishikawaDiagram" | translate }}
+        </h1>
+        <p>
+            {{ "createProp.step1.subtitle" | translate }}
+        </p>
+    </div>
+    <div class="d-flex justify-content-end align-items-center mb-3">
+        <button
+                class="btn btn-dark ml-3"
+                style="background-color: #00344d"
+                (click)="showDescriptionDialog()"
+        >
+            {{ "createProp.step1.descBtn" | translate }}
+            <i class="bi bi-file-earmark-medical"></i>
+        </button>
+    </div>
 </div>
 <div class="d-flex caixa-cinza pr-2 py-4 mt-4">
-  <div>
-    <div class="d-flex">
-      <div class="col">
-        <label>{{ "about.proposalComponent.material" | translate }}</label>
-        <p-editor
-          styleClass="p-editor-override"
-          [ngModel]="
+    <div>
+        <div class="d-flex">
+            <div class="col">
+                <label>{{ "about.proposalComponent.material" | translate }}</label>
+                <div *ngIf="(this.propService.ncProp?.radio_value=='val1'||this.propService.ncProp?.radio_value=='val2')">
+                    <p-editor
+                            styleClass="p-editor-override"
+                            [ngModel]="
             '<p>' +
             this.propService.propSolution.lack_materials +
             '</p><p>' +
@@ -36,18 +37,25 @@
             '</p>' +
             this.propService.propSolution.material_description
           "
-          [style]="editorStyle"
-          [readonly]="true"
-          (click)="(this.propService.ncProp?.radio_value=='val1'||this.propService.ncProp?.radio_value=='val2')&&openDialog(1)"
-        >
-          <ng-template pTemplate="header"> </ng-template>
-        </p-editor>
-      </div>
-      <div class="col">
-        <label>{{ "about.proposalComponent.measure" | translate }}</label>
-        <p-editor
-          styleClass="p-editor-override"
-          [ngModel]="
+                            [style]="editorStyle"
+                            [readonly]="true"
+                            (click)="(this.propService.ncProp?.radio_value=='val1'||this.propService.ncProp?.radio_value=='val2')&&openDialog(1)"
+                    >
+                        <ng-template pTemplate="header"></ng-template>
+                    </p-editor>
+                </div>
+                <div *ngIf="(this.propService.ncProp?.radio_value=='val3'||this.propService.ncProp?.radio_value=='val4')">
+          <textarea pInputTextarea class="textarea" [disabled]="true">
+            </textarea>
+                </div>
+
+            </div>
+            <div class="col">
+                <label>{{ "about.proposalComponent.measure" | translate }}</label>
+                <div *ngIf="(this.propService.ncProp?.radio_value=='val1'||this.propService.ncProp?.radio_value=='val2')">
+                    <p-editor
+                            styleClass="p-editor-override"
+                            [ngModel]="
             '<p>' +
             this.propService.propSolution.lack_parameters +
             '</p><p>' +
@@ -58,18 +66,24 @@
             '</p>' +
             this.propService.propSolution.measurement_description
           "
-          [style]="editorStyle"
-          [readonly]="true"
-          (click)="(this.propService.ncProp?.radio_value=='val1'||this.propService.ncProp?.radio_value=='val2')&&openDialog(2)"
-        >
-          <ng-template pTemplate="header"> </ng-template>
-        </p-editor>
-      </div>
-      <div class="col">
-        <label>{{ "about.proposalComponent.method" | translate }}</label>
-        <p-editor
-          styleClass="p-editor-override"
-          [ngModel]="
+                            [style]="editorStyle"
+                            [readonly]="true"
+                            (click)="(this.propService.ncProp?.radio_value=='val1'||this.propService.ncProp?.radio_value=='val2')&&openDialog(2)"
+                    >
+                        <ng-template pTemplate="header"></ng-template>
+                    </p-editor>
+                </div>
+                <div *ngIf="(this.propService.ncProp?.radio_value=='val3'||this.propService.ncProp?.radio_value=='val4')">
+          <textarea pInputTextarea class="textarea" [disabled]="true">
+            </textarea>
+                </div>
+            </div>
+            <div class="col">
+                <label>{{ "about.proposalComponent.method" | translate }}</label>
+              <div *ngIf="(this.propService.ncProp?.radio_value=='val1'||this.propService.ncProp?.radio_value=='val2')">
+                <p-editor
+                        styleClass="p-editor-override"
+                        [ngModel]="
             this.propService.propSolution.method_description +
             '<p>' +
             returnString(this.propService.propSolution.instruction) +
@@ -84,55 +98,77 @@
             returnString(this.propService.propSolution.nbr) +
             '</p>'
           "
-          [style]="editorStyle"
-          [readonly]="true"
-          (click)="(this.propService.ncProp?.radio_value=='val1'||this.propService.ncProp?.radio_value=='val2')&&openDialog(3)"
-        >
-          <ng-template pTemplate="header"> </ng-template>
-        </p-editor>
-      </div>
-    </div>
-    <img
-      src="../../../../../../assets/images/Espinha de Peixe.png"
-      width="900"
-      class="ml-5"
-    />
-    <div class="d-flex">
-      <div class="col">
-        <p-editor
-          styleClass="p-editor-override"
-          [ngModel]="
+                        [style]="editorStyle"
+                        [readonly]="true"
+                        (click)="(this.propService.ncProp?.radio_value=='val1'||this.propService.ncProp?.radio_value=='val2')&&openDialog(3)"
+                >
+                    <ng-template pTemplate="header"></ng-template>
+                </p-editor>
+              </div>
+                <div *ngIf="(this.propService.ncProp?.radio_value=='val3'||this.propService.ncProp?.radio_value=='val4')">
+          <textarea pInputTextarea class="textarea" [disabled]="true">
+            </textarea>
+                </div>
+            </div>
+        </div>
+        <img
+                src="../../../../../../assets/images/Espinha de Peixe.png"
+                width="900"
+                class="ml-5"
+        />
+        <div class="d-flex">
+            <div class="col">
+              <div *ngIf="(this.propService.ncProp?.radio_value=='val1'||this.propService.ncProp?.radio_value=='val2')">
+                <p-editor
+                        styleClass="p-editor-override"
+                        [ngModel]="
             '<p>' +
             this.propService.propSolution.run_training +
             '</p>' +
             this.propService.propSolution.man_power_description
           "
-          [style]="editorStyle"
-          [readonly]="true"
-          (click)="(this.propService.ncProp?.radio_value=='val1'||this.propService.ncProp?.radio_value=='val2')&&openDialog(4)"
-        >
-          <ng-template pTemplate="header"> </ng-template> </p-editor
-        ><label class="mt-1">{{
-          "about.proposalComponent.labor" | translate
-        }}</label>
-      </div>
-      <div class="col">
-        <p-editor
-          styleClass="p-editor-override"
-          [ngModel]="this.propService.propSolution.environment_description"
-          [style]="editorStyle"
-          [readonly]="true"
-          (click)="(this.propService.ncProp?.radio_value=='val1'||this.propService.ncProp?.radio_value=='val2')&&openDialog(5)"
-        >
-          <ng-template pTemplate="header"> </ng-template> </p-editor
-        ><label class="mt-1">{{
-          "about.proposalComponent.ambient" | translate
-        }}</label>
-      </div>
-      <div class="col">
-        <p-editor
-          styleClass="p-editor-override"
-          [ngModel]="
+                        [style]="editorStyle"
+                        [readonly]="true"
+                        (click)="(this.propService.ncProp?.radio_value=='val1'||this.propService.ncProp?.radio_value=='val2')&&openDialog(4)"
+                >
+                    <ng-template pTemplate="header"></ng-template>
+                </p-editor
+                >
+              </div>
+                <div *ngIf="(this.propService.ncProp?.radio_value=='val3'||this.propService.ncProp?.radio_value=='val4')">
+          <textarea pInputTextarea class="textarea" [disabled]="true">
+            </textarea>
+                </div>
+                <label class="mt-1">{{
+                    "about.proposalComponent.labor" | translate
+                    }}</label>
+            </div>
+            <div class="col">
+              <div *ngIf="(this.propService.ncProp?.radio_value=='val1'||this.propService.ncProp?.radio_value=='val2')">
+                <p-editor
+                        styleClass="p-editor-override"
+                        [ngModel]="this.propService.propSolution.environment_description"
+                        [style]="editorStyle"
+                        [readonly]="true"
+                        (click)="(this.propService.ncProp?.radio_value=='val1'||this.propService.ncProp?.radio_value=='val2')&&openDialog(5)"
+                >
+                    <ng-template pTemplate="header"></ng-template>
+                </p-editor
+                >
+              </div>
+              <div *ngIf="(this.propService.ncProp?.radio_value=='val3'||this.propService.ncProp?.radio_value=='val4')">
+          <textarea pInputTextarea  class="textarea" [disabled]="true">
+            </textarea>
+              </div>
+                <label class="mt-1">{{
+                    "about.proposalComponent.ambient" | translate
+                    }}</label>
+            </div>
+            <div class="col">
+              <div *ngIf="(this.propService.ncProp?.radio_value=='val1'||this.propService.ncProp?.radio_value=='val2')">
+                <p-editor
+                        styleClass="p-editor-override"
+                        [ngModel]="
             this.propService.propSolution.machine_description +
             '<p>' +
             returnString(this.propService.propSolution.machine) +
@@ -141,85 +177,98 @@
             returnString(this.propService.propSolution.equipament) +
             '</p>'
           "
-          [style]="editorStyle"
-          [readonly]="true"
-          (click)="(this.propService.ncProp?.radio_value=='val1'||this.propService.ncProp?.radio_value=='val2')&&openDialog(6)"
-        >
-          <ng-template pTemplate="header"> </ng-template> </p-editor
-        ><label class="mt-1">{{
-          "about.proposalComponent.machine" | translate
-        }}</label>
-      </div>
+                        [style]="editorStyle"
+                        [readonly]="true"
+                        (click)="(this.propService.ncProp?.radio_value=='val1'||this.propService.ncProp?.radio_value=='val2')&&openDialog(6)"
+                >
+                    <ng-template pTemplate="header"></ng-template>
+                </p-editor
+                >
+              </div>
+              <div *ngIf="(this.propService.ncProp?.radio_value=='val3'||this.propService.ncProp?.radio_value=='val4')">
+          <textarea pInputTextarea  class="textarea" [disabled]="true">
+            </textarea>
+              </div>
+                <label class="mt-1">{{
+                    "about.proposalComponent.machine" | translate
+                    }}</label>
+            </div>
+        </div>
     </div>
-  </div>
-  <div class="d-block mt-5">
-    <label>{{ "about.proposalComponent.effect" | translate }}</label>
-    <p-editor
-      styleClass="p-editor-override"
-      [ngModel]="this.propService.propSolution.effect_description"
-      [style]="{
+    <div class="d-block mt-5">
+        <label>{{ "about.proposalComponent.effect" | translate }}</label>
+      <div *ngIf="(this.propService.ncProp?.radio_value=='val1'||this.propService.ncProp?.radio_value=='val2')">
+        <p-editor
+                styleClass="p-editor-override"
+                [ngModel]="this.propService.propSolution.effect_description"
+                [style]="{
         height: '300px',
         width: '230px',
         border: '2px solid #333333',
         'border-radius': '5px'
       }"
-      [readonly]="true"
-      (click)="(this.propService.ncProp?.radio_value=='val1'||this.propService.ncProp?.radio_value=='val2')&&openDialog(7)"
-    >
-      <ng-template pTemplate="header"> </ng-template>
-    </p-editor>
-  </div>
+                [readonly]="true"
+                (click)="(this.propService.ncProp?.radio_value=='val1'||this.propService.ncProp?.radio_value=='val2')&&openDialog(7)"
+        >
+            <ng-template pTemplate="header"></ng-template>
+        </p-editor>
+        </div>
+      <div *ngIf="(this.propService.ncProp?.radio_value=='val3'||this.propService.ncProp?.radio_value=='val4')">
+          <textarea pInputTextarea  class="textarea textarea2"  [disabled]="true">
+            </textarea>
+      </div>
+    </div>
 </div>
 
 <div class="mt-4">
-  <app-reasons-why></app-reasons-why>
+    <app-reasons-why></app-reasons-why>
 </div>
 
 <div class="mt-4">
-  <div class="cabecalho">
-    <h1 class="mr-3">
-      {{ "createProp.step1.extraInfoTitle" | translate }}
-      {{(this.propService.ncProp?.radio_value=='val3'||this.propService.ncProp?.radio_value=='val4')?"*":""}}
+    <div class="cabecalho">
+        <h1 class="mr-3">
+            {{ "createProp.step1.extraInfoTitle" | translate }}
+            {{(this.propService.ncProp?.radio_value == 'val3' || this.propService.ncProp?.radio_value == 'val4') ? "*" : ""}}
 
-    </h1>
-  </div>
-  <div class="mt-3">
-    <p-editor
-            class="header"
-            styleClass="p-editor-override"
-            [style]="{ height: '20vh', 'font-size': '25px' }"
-            [(ngModel)]="this.propService.propSolution.additional_info"
-            [modules]="{ counter: { container: '#counterCh', unit: 'character' } }"
-    ></p-editor>
-    <div id="counterCh" class="text-end">0</div>
-  </div>
+        </h1>
+    </div>
+    <div class="mt-3">
+        <p-editor
+                class="header"
+                styleClass="p-editor-override"
+                [style]="{ height: '20vh', 'font-size': '25px' }"
+                [(ngModel)]="this.propService.propSolution.additional_info"
+                [modules]="{ counter: { container: '#counterCh', unit: 'character' } }"
+        ></p-editor>
+        <div id="counterCh" class="text-end">0</div>
+    </div>
 </div>
 
 <p-dialog
-  [(visible)]="displayModal"
-  [modal]="true"
-  [style]="{ width: '50vw' }"
-  [draggable]="false"
-  [resizable]="false"
+        [(visible)]="displayModal"
+        [modal]="true"
+        [style]="{ width: '50vw' }"
+        [draggable]="false"
+        [resizable]="false"
 >
-  <ng-template pTemplate="header">
-    <h2 class="mr-2">
-      <i class="bi bi-file-earmark-text"></i>
-      {{ "about.ncView.description" | translate }}
-    </h2>
-  </ng-template>
-  <div>
-    <p-editor
-      styleClass="p-editor-override"
-      [style]="{
+    <ng-template pTemplate="header">
+        <h2 class="mr-2">
+            <i class="bi bi-file-earmark-text"></i>
+            {{ "about.ncView.description" | translate }}
+        </h2>
+    </ng-template>
+    <div>
+        <p-editor
+                styleClass="p-editor-override"
+                [style]="{
         height: '144px',
         border: '1px solid #dddddd',
         'font-size': '25px'
       }"
-      [readonly]="true"
-      [ngModel]="propService.ncProp?.text_area_nc"
-    >
-      <ng-template pTemplate="header"> </ng-template>
-    </p-editor>
-  </div>
+                [readonly]="true"
+                [ngModel]="propService.ncProp?.text_area_nc"
+        >
+            <ng-template pTemplate="header"></ng-template>
+        </p-editor>
+    </div>
 </p-dialog>

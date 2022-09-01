@@ -80,13 +80,18 @@ export class ViewNCComponent implements OnInit {
   }
 
   returnRadioValue(): string {
-    if (this.aboutSrvc.nc.radio_value == "val1") {
-      return this.translate.instant("newNC.step2.radioLabel1");
+    switch (this.aboutSrvc.nc.radio_value) {
+      case "val1":
+        return this.translate.instant("newNC.step2.radioLabel1");
+      case "val2":
+        return this.translate.instant("newNC.step2.radioLabel2");
+      case "val3":
+        return this.translate.instant("newNC.step2.radioLabel3");
+      case "val4":
+        return this.translate.instant("newNC.step2.radioLabel4");
+      default:
+        return "";
     }
-    if (this.aboutSrvc.nc.radio_value == "val2") {
-      return this.translate.instant("newNC.step2.radioLabel2");
-    }
-    return "";
   }
   editNc(){
     let user = this.tokenService.getUser()
